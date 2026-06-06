@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAHI.ar | Directorio de Salud</title>
+    
+    <!-- Meta SEO para indexación -->
+    <meta name="description" content="Directorio de salud, farmacias y guardias en Bahía Blanca.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header único -->
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
+        </div>
+    </header>
+
+    <!-- Buscador Global -->
+    <div class="search-container">
+        <div class="search-icon">🔍</div>
+        <input type="text" placeholder="Buscar en BAHI.ar...">
+    </div>
+
+    <!-- Contenido Principal -->
+    <main class="app-view" id="content">
+        <!-- El contenido específico de cada pestaña irá aquí -->
+        <div id="main-content"></div>
+    </main>
+
+    <!-- Navegación -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="guardias.html" class="nav-link">Guardias</a>
+        <a href="farmacias.html" class="nav-link">Farmacias</a>
+    </nav>
+
+    <script src="app.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
+</body>
+</html>

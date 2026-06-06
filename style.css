@@ -1,0 +1,118 @@
+/* 
+ * =========================================================================
+ * PROYECTO: BAHI.ar - Sistema de Diseño Unificado
+ * =========================================================================
+ * Este archivo es la ÚNICA fuente de verdad. No crees estilos CSS en los HTML.
+ * Si necesitas un estilo nuevo, añádelo aquí usando variables.
+ */
+
+/* ── 1. CONFIGURACIÓN MAESTRA (Variables) ── */
+/* Cambia estos valores aquí y se actualizará en toda la PWA automáticamente */
+:root {
+    /* Paleta de colores principal */
+    --primary: #191971;          /* Azul corporativo */
+    --accent: #1F75FE;           /* Azul claro de acento */
+    --bg-main: #F8FAFC;          /* Fondo de toda la app */
+    --card-bg: #FFFFFF;          /* Fondo de las tarjetas */
+    --text-main: #0F172A;        /* Color de texto principal */
+    --text-muted: #64748B;       /* Color para texto secundario */
+    --border-light: rgba(226, 232, 240, 0.8); /* Bordes suaves */
+
+    /* Paleta Naranja (Universal para botones y alertas) */
+    --orange: #FF6B00;
+    --orange-dark: #CC5500;
+    --orange-light: rgba(255, 107, 0, 0.10);
+    --orange-border: rgba(255, 107, 0, 0.25);
+
+    /* Medidas y Estructura */
+    --radius-card: 16px;         /* Redondez de tarjetas */
+    --radius-btn: 12px;          /* Redondez de botones */
+    --shadow-soft: 0 2px 4px rgba(15, 23, 42, 0.05); /* Sombra suave */
+}
+
+/* Reset básico para que los navegadores no agreguen márgenes extra */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: var(--bg-main); 
+    color: var(--text-main); 
+}
+
+/* ── 2. BOTONES UNIVERSALES ── */
+/* Uso: <a class="btn btn-accent">Texto</a> */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 40px; padding: 0 16px; border-radius: var(--radius-btn);
+    font-size: 13px; font-weight: 700; cursor: pointer; border: none;
+    transition: all 0.2s; text-decoration: none;
+}
+
+/* Botón principal color naranja */
+.btn-accent { background: var(--orange); color: #fff; }
+.btn-accent:hover { opacity: 0.9; }
+
+/* Botón secundario con borde (ideal para mapas) */
+.btn-outline { 
+    background: var(--orange-light); 
+    color: var(--orange-dark); 
+    border: 1px solid var(--orange-border); 
+}
+
+/* ── 3. SISTEMA DE CARDS (Tarjetas Colapsables) ── */
+/* Todas las tarjetas usan esta estructura base */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border-light);
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+}
+
+/* Cabecera de la tarjeta: el botón que abre/cierra */
+.card-header {
+    padding: 16px; width: 100%; border: none; background: transparent;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; text-align: left;
+}
+
+/* Cuerpo de la tarjeta (oculto por defecto) */
+.card-body-collapse {
+    max-height: 0; opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    padding: 0 16px;
+}
+
+/* Clase dinámica: cuando se añade 'open', se muestra el contenido */
+.card-body-collapse.open {
+    max-height: 1000px; opacity: 1;
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border-light);
+}
+
+/* ── 4. UTILIDADES ── */
+.hidden { display: none; }
+
+/* Estilo del buscador */
+.search-container {
+    position: relative;
+    margin: 1rem 16px;
+}
+
+.search-container input[type="text"] {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-btn);
+    background: white;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
