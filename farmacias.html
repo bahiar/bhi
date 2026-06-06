@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAHI.ar | Farmacias</title>
+    
+    <meta name="description" content="Directorio de farmacias en Bahía Blanca.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
+        </div>
+    </header>
+
+    <!-- Buscador -->
+    <div class="search-container">
+        <div class="search-icon">🔍</div>
+        <input type="text" placeholder="Buscar farmacias...">
+    </div>
+
+    <!-- Contenido Principal -->
+    <main class="app-view" id="content">
+        <div id="main-content">
+            <div style="padding: 16px;">
+                <h2>Farmacias</h2>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
+                    Encuentra farmacias de turno y ubicación.
+                </p>
+            </div>
+
+            <!-- Estructura de Tarjeta (Copia y pega este bloque para cada farmacia) -->
+            <div class="card">
+                <button class="card-header">
+                    <span>Nombre de la Farmacia</span>
+                    <span>▼</span>
+                </button>
+                <div class="card-body-collapse">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> Calle Ejemplo 123</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="tel:02910000000" class="btn btn-accent">Llamar</a>
+                        <a href="#" target="_blank" class="btn btn-outline">Mapa</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Navegación -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="guardias.html" class="nav-link">Guardias</a>
+        <a href="farmacias.html" class="nav-link">Farmacias</a>
+    </nav>
+
+    <script src="app.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
+</body>
+</html>

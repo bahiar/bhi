@@ -1,0 +1,70 @@
+!DOCTYPE html
+html lang=es
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleBAHI.ar  Laboratoriostitle
+    
+    meta name=description content=Directorio de laboratorios de análisis clínicos en Bahía Blanca.
+    link rel=manifest href=manifest.json
+    link rel=stylesheet href=style.css
+head
+body
+
+    !-- Header --
+    header class=main-header
+        div class=header-content
+            a href=index.html class=brand-logoBAHIspan.arspana
+        div
+    header
+
+    !-- Buscador --
+    div class=search-container
+        div class=search-icon🔍div
+        input type=text placeholder=Buscar laboratorios...
+    div
+
+    !-- Contenido Principal --
+    main class=app-view id=content
+        div id=main-content
+            div style=padding 16px;
+                h2Laboratoriosh2
+                p style=color var(--text-muted); font-size 14px; margin-bottom 16px;
+                    Análisis clínicos y bioquímicos en la ciudad.
+                p
+            div
+
+            !-- Card de Ejemplo (Copia y pega este bloque para cada laboratorio) --
+            div class=card
+                button class=card-header
+                    spanNombre del Laboratoriospan
+                    span▼span
+                button
+                div class=card-body-collapse
+                    p style=margin-bottom 10px;strongDirecciónstrong Calle Ejemplo 123p
+                    div style=display flex; gap 10px;
+                        a href=tel02910000000 class=btn btn-accentLlamara
+                        a href=# target=_blank class=btn btn-outlineMapaa
+                    div
+                div
+            div
+
+            !-- Puedes agregar más tarjetas aquí siguiendo la misma estructura --
+        div
+    main
+
+    !-- Navegación --
+    nav class=bottom-nav
+        a href=index.html class=nav-linkInicioa
+        a href=guardias.html class=nav-linkGuardiasa
+        a href=farmacias.html class=nav-linkFarmaciasa
+    nav
+
+    script src=app.jsscript
+    script
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    script
+body
+html
