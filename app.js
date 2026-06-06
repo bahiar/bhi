@@ -7,3 +7,15 @@ document.addEventListener('click', function (event) {
         body.classList.toggle('open');
     }
 });
+document.addEventListener("DOMContentLoaded", function() {
+    const navPlaceholder = document.getElementById('nav-placeholder');
+    
+    if (navPlaceholder) {
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                navPlaceholder.innerHTML = data;
+            })
+            .catch(error => console.error('Error cargando la navegación:', error));
+    }
+});
