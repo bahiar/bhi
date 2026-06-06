@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAHI.ar | Guardias</title>
+    
+    <meta name="description" content="Directorio de salud, farmacias y guardias en Bahía Blanca.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header (Solo contiene el logo) -->
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
+        </div>
+    </header>
+
+    <!-- Buscador Global -->
+    <div class="search-container">
+        <div class="search-icon">🔍</div>
+        <input type="text" placeholder="Buscar en BAHI.ar...">
+    </div>
+
+    <!-- Contenido Principal (Aquí van las Guardias) -->
+    <main class="app-view" id="content">
+        <div id="main-content">
+            <div style="padding: 16px;">
+                <h2>Guardias Médicas</h2>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
+                    Directorio de salud Bahía Blanca.
+                </p>
+            </div>
+
+            <!-- Hospital Municipal -->
+            <div class="card">
+                <button class="card-header">
+                    <span>Hospital Municipal</span>
+                    <span>▼</span>
+                </button>
+                <div class="card-body-collapse">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> Estomba 968</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="tel:02914598484" class="btn btn-accent">Llamar</a>
+                        <a href="https://maps.google.com/?cid=16810520313590473464&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="btn btn-outline">Mapa</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hospital Penna -->
+            <div class="card">
+                <button class="card-header">
+                    <span>Hospital Penna</span>
+                    <span>▼</span>
+                </button>
+                <div class="card-body-collapse">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> Av. Lainez 2401</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="tel:02914593600" class="btn btn-accent">Llamar</a>
+                        <a href="https://maps.google.com/?cid=16307574064946898385&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="btn btn-outline">Mapa</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privado del Sur -->
+            <div class="card">
+                <button class="card-header">
+                    <span>Privado del Sur</span>
+                    <span>▼</span>
+                </button>
+                <div class="card-body-collapse">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> Las Heras 164</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="tel:02914550270" class="btn btn-accent">Llamar</a>
+                        <a href="https://maps.google.com/?cid=4096557740069257162&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="btn btn-outline">Mapa</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HAM - Asociación Médica -->
+            <div class="card">
+                <button class="card-header">
+                    <span>HAM - Asociación Médica</span>
+                    <span>▼</span>
+                </button>
+                <div class="card-body-collapse">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> Patricios 347</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="tel:02914557877" class="btn btn-accent">Llamar</a>
+                        <a href="https://maps.google.com/?cid=5361214841895970615&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="btn btn-outline">Mapa</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hospital Italiano -->
+            <div class="card">
+                <button class="card-header">
+                    <span>Hospital Italiano</span>
+                    <span>▼</span>
+                </button>
+                <div class="card-body-collapse">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> Necochea 675</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="tel:02914583100" class="btn btn-accent">Llamar</a>
+                        <a href="https://maps.google.com/?cid=3736778501007264660&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="btn btn-outline">Mapa</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hospital Español -->
+            <div class="card">
+                <button class="card-header">
+                    <span>Hospital Español</span>
+                    <span>▼</span>
+                </button>
+                <div class="card-body-collapse">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> Estomba 571</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="tel:02914595555" class="btn btn-accent">Llamar</a>
+                        <a href="https://maps.google.com/?cid=2064372742749592359&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="btn btn-outline">Mapa</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hospital Matera -->
+            <div class="card">
+                <button class="card-header">
+                    <span>Hospital Matera</span>
+                    <span>▼</span>
+                </button>
+                <div class="card-body-collapse">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> 9 de Julio 461</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="tel:02914558880" class="btn btn-accent">Llamar</a>
+                        <a href="https://maps.google.com/?cid=13981706602155362647&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="btn btn-outline">Mapa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Navegación -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="guardias.html" class="nav-link">Guardias</a>
+        <a href="farmacias.html" class="nav-link">Farmacias</a>
+    </nav>
+
+    <script src="app.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
+</body>
+</html>
