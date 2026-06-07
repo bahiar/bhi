@@ -3,56 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAHI.ar | Farmacias</title>
-    <meta name="description" content="Directorio de farmacias en Bahía Blanca.">
-    <link rel="manifest" href="manifest.json">
+    <title>BAHI.ar</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header class="main-header">
-        <div class="header-content">
-            <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
-        </div>
-    </header>
-
-    <div class="search-container">
-        <div class="search-icon" aria-hidden="true">🔍</div>
-        <input type="text" placeholder="Buscar farmacias..." aria-label="Buscar farmacias">
-    </div>
-
-    <main class="app-view" id="content">
-        <div id="main-content">
-            <div style="padding: 16px;">
-                <h2>Farmacias</h2>
-                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
-                    Encuentra farmacias de turno y ubicación.
-                </p>
-            </div>
-
-            <!-- AQUÍ ES DONDE OCURRE LA MAGIA -->
-            <!-- Creamos este contenedor vacío para que JS inyecte las tarjetas aquí -->
-            <div id="contenedor-cards"></div>
-            
-        </div>
-    </main>
-
+    <header class="main-header"><a href="index.html">BAHI.ar</a></header>
+    <div class="search-container"><input type="text" placeholder="Buscar..."></div>
+    <div id="contenedor-cards"></div>
     <div id="nav-placeholder"></div>
-
     <script src="app.js"></script>
     <script>
-        // Registramos el Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-
-        // Llamamos a la función indicándole que ponga las tarjetas en 'contenedor-cards'
+        // CAMBIA 'FARMACIA' POR EL TIPO QUE CORRESPONDA EN CADA HTML
         renderizarDatos('FARMACIA', 'contenedor-cards');
     </script>
-	<script src="app.js"></script>
-<script>
-    // Esto ejecuta la función una vez que carga la página
-    renderizarDatos('FARMACIA', 'contenedor-cards');
-</script>
 </body>
 </html>
