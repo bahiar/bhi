@@ -41,18 +41,10 @@
 
     <script src="app.js"></script>
     <script>
-        // Registramos el Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js');
         }
-
-        // Llamamos a la función indicándole que ponga las tarjetas en 'contenedor-cards'
         renderizarDatos('FARMACIA', 'contenedor-cards');
     </script>
-	<script src="app.js"></script>
-<script>
-    // Esto ejecuta la función una vez que carga la página
-    renderizarDatos('FARMACIA', 'contenedor-cards');
-</script>
 </body>
 </html>

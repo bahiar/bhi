@@ -20,13 +20,9 @@ function activarAcordeon() {
         
         if (header) {
             const body = header.nextElementSibling;
-            const estaAbierto = body.style.display === 'block';
-            
-            // Alternar visibilidad
-            body.style.display = estaAbierto ? 'none' : 'block';
-            
-            // Actualizar estado aria para lectores de pantalla
-            header.setAttribute('aria-expanded', estaAbierto ? 'false' : 'true');
+            body.classList.toggle('open');
+            const estaAbierto = body.classList.contains('open');
+            header.setAttribute('aria-expanded', estaAbierto);
         }
     });
 }
@@ -34,6 +30,7 @@ function activarAcordeon() {
 // Función dinámica para cargar datos[cite: 13]
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
+    if (!contenedor) return;
     contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando...</div>';
 
     fetch('data/bd_bahiar.json')
@@ -49,17 +46,22 @@ function renderizarDatos(tipo, contenedorId) {
 
             filtrados.forEach((item, index) => {
                 const bodyId = `card-body-${tipo}-${index}`;
-                const telLimpio = item.FIJO ? item.FIJO.replace(/\D/g, '') : '';
+                
+                let linkTel = item.FIJO ? item.FIJO : '';
+                if (linkTel && !linkTel.startsWith('tel:')) {
+                    linkTel = 'tel:' + linkTel;
+                }
+
                 const card = `
                 <div class="card">
                     <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
                         <span>${item.PRESTADOR}</span>
                         <span aria-hidden="true">▼</span>
                     </button>
-                    <div class="card-body-collapse" id="${bodyId}" style="display: none;">
+                    <div class="card-body-collapse" id="${bodyId}">
                         <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
                         <div style="display: flex; gap: 10px;">
-                            ${item.FIJO ? `<a href="tel:${item.FIJO}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
+                            ${item.FIJO ? `<a href="${linkTel}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
                             <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
                         </div>
                     </div>
