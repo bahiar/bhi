@@ -63,7 +63,7 @@ function renderizarDatos(tipo, contenedorId) {
         lista.forEach((item, index) => {
             const bodyId = `card-body-${tipo}-${index}`;
             let linkTel = item.FIJO ? item.FIJO : '';
-            if (linkTel && !linkTel.startsWith('tel:')) {
+            if (linkTel && !linkTel.toLowerCase().startsWith('tel:')) {
                 linkTel = 'tel:' + linkTel;
             }
             const card = `
