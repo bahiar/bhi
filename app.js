@@ -1,5 +1,6 @@
 // Cargar la navegación modular y activar buscador al iniciar
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("App iniciada. Cargando componentes...");
     const navPlaceholder = document.getElementById('nav-placeholder');
     if (navPlaceholder) {
         fetch('nav.html')
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     registrarServiceWorker();
 });
 
-// Registro del Service Worker con detección de actualización disponible
+// Registro del Service Worker
 function registrarServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
 
@@ -72,33 +73,51 @@ function mostrarIndicadorCache(enCache) {
     }
 }
 
-// FIX: usar clase CSS 'open' en lugar de toggle de display inline
+// Lógica del acordeón (Delegación de eventos)
 function activarAcordeon() {
     document.addEventListener('click', function(e) {
         const header = e.target.closest('.card-header');
-
         if (header) {
             const body = header.nextElementSibling;
             const estaAbierto = body.classList.contains('open');
-
             body.classList.toggle('open');
             header.setAttribute('aria-expanded', String(!estaAbierto));
+            console.log("Acordeón toggleado:", !estaAbierto);
         }
     });
 }
 
+// Función de renderizado con logs de depuración
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
-    contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando...</div>';
+    if (!contenedor) {
+        console.error("Error: No se encontró el contenedor con ID:", contenedorId);
+        return;
+    }
+    
+    contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando datos...</div>';
 
     fetch('data/bd_bahiar.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error("No se pudo conectar al JSON. Error " + response.status);
+            return response.json();
+        })
         .then(data => {
-            contenedor.innerHTML = '';
+            console.log("JSON cargado exitosamente. Datos recibidos:", data);
+            
+            // Verificamos si data.prestadores existe
+            if (!data.prestadores) {
+                console.error("Error: La estructura del JSON no tiene una propiedad 'prestadores'.");
+                return;
+            }
+
             const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
+            console.log("Filtrando por tipo:", tipo, ". Encontrados:", filtrados.length);
+
+            contenedor.innerHTML = '';
 
             if (filtrados.length === 0) {
-                contenedor.innerHTML = '<p style="padding: 16px;">No hay datos disponibles.</p>';
+                contenedor.innerHTML = '<p style="padding: 16px;">No hay datos para esta categoría.</p>';
                 return;
             }
 
@@ -111,8 +130,8 @@ function renderizarDatos(tipo, contenedorId) {
                         <span aria-hidden="true">▼</span>
                     </button>
                     <div class="card-body-collapse" id="${bodyId}">
-                        <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
-                        <div style="display: flex; gap: 10px;">
+                        <p style="padding: 16px; margin:0;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
+                        <div style="display: flex; gap: 10px; padding: 0 16px 16px;">
                             ${item.FIJO ? `<a href="${item.FIJO}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}">Llamar</a>` : ''}
                             <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
                         </div>
@@ -122,19 +141,17 @@ function renderizarDatos(tipo, contenedorId) {
             });
         })
         .catch(error => {
-            console.error('Error:', error);
-            contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar datos.</p>';
+            console.error('Error crítico en renderizarDatos:', error);
+            contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar datos. Revisa la consola.</p>';
         });
 }
 
 function configurarBuscador() {
     const input = document.querySelector('.search-container input');
-
     if (input) {
         input.addEventListener('input', (e) => {
             const filtro = e.target.value.toLowerCase();
             const tarjetas = document.querySelectorAll('.card');
-
             tarjetas.forEach(card => {
                 const nombre = card.querySelector('.card-header span').textContent.toLowerCase();
                 card.style.display = nombre.includes(filtro) ? '' : 'none';
