@@ -10,20 +10,17 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header class="main-header">
         <div class="header-content">
             <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
         </div>
     </header>
 
-    <!-- Buscador -->
     <div class="search-container">
         <div class="search-icon" aria-hidden="true">🔍</div>
         <input type="text" placeholder="Buscar laboratorios..." aria-label="Buscar laboratorios">
     </div>
 
-    <!-- Contenido Principal -->
     <main class="app-view" id="content">
         <div id="main-content">
             <div style="padding: 16px;">
@@ -33,28 +30,24 @@
                 </p>
             </div>
 
-            <!-- AQUÍ SE CARGARÁN LOS DATOS AUTOMÁTICAMENTE -->
             <div id="contenedor-cards"></div>
             
         </div>
     </main>
 
-    <!-- Navegación -->
     <div id="nav-placeholder"></div>
 
     <script src="app.js"></script>
     <script>
+      // 1. Registro del Service Worker
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js');
       }
 
-      // IMPORTANTE: Aquí cambiamos el tipo de filtro a 'LABORATORIO'
+      // 2. Carga de datos
+      // Asegúrate de que el primer parámetro sea tal cual figura en tu JSON
+      // (ej: 'LABORATORIO' o 'Laboratorio')
       renderizarDatos('LABORATORIO', 'contenedor-cards');
     </script>
-	<script src="app.js"></script>
-<script>
-    // Esto ejecuta la función una vez que carga la página
-    renderizarDatos('FARMACIA', 'contenedor-cards');
-</script>
 </body>
 </html>
