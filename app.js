@@ -31,48 +31,61 @@ function activarAcordeon() {
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
     if (!contenedor) return;
-    contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando...</div>';
 
-    fetch('data/bd_bahiar.json')
-        .then(response => response.json())
-        .then(data => {
-            contenedor.innerHTML = ''; 
-            const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
-            
-            if (filtrados.length === 0) {
-                contenedor.innerHTML = '<p style="padding: 16px;">No hay datos disponibles.</p>';
-                return;
+    const renderCards = (lista) => {
+        contenedor.innerHTML = '';
+        if (lista.length === 0) {
+            contenedor.innerHTML = '<p style="padding: 16px;">No hay datos disponibles.</p>';
+            return;
+        }
+        lista.forEach((item, index) => {
+            const bodyId = `card-body-${tipo}-${index}`;
+            let linkTel = item.FIJO ? item.FIJO : '';
+            if (linkTel && !linkTel.startsWith('tel:')) {
+                linkTel = 'tel:' + linkTel;
             }
-
-            filtrados.forEach((item, index) => {
-                const bodyId = `card-body-${tipo}-${index}`;
-                
-                let linkTel = item.FIJO ? item.FIJO : '';
-                if (linkTel && !linkTel.startsWith('tel:')) {
-                    linkTel = 'tel:' + linkTel;
-                }
-
-                const card = `
-                <div class="card">
-                    <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
-                        <span>${item.PRESTADOR}</span>
-                        <span aria-hidden="true">▼</span>
-                    </button>
-                    <div class="card-body-collapse" id="${bodyId}">
-                        <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
-                        <div style="display: flex; gap: 10px;">
-                            ${item.FIJO ? `<a href="${linkTel}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
-                            <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
-                        </div>
+            const card = `
+            <div class="card">
+                <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
+                    <span>${item.PRESTADOR}</span>
+                    <span aria-hidden="true">▼</span>
+                </button>
+                <div class="card-body-collapse" id="${bodyId}">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
+                    <div style="display: flex; gap: 10px;">
+                        ${item.FIJO ? `<a href="${linkTel}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
+                        <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
                     </div>
-                </div>`;
-                contenedor.innerHTML += card;
-            });
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar datos.</p>';
+                </div>
+            </div>`;
+            contenedor.innerHTML += card;
         });
+    };
+
+    if (tipo === 'GUARDIA') {
+        const guardiasEstaticas = [
+            { PRESTADOR: "Hospital Municipal", DOMICILIO: "Estomba 968", FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464" },
+            { PRESTADOR: "Hospital Penna", DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385" },
+            { PRESTADOR: "Privado del Sur", DOMICILIO: "Las Heras 164", FIJO: "02914550270", MAPS: "https://maps.google.com/?cid=4096557740069257162" },
+            { PRESTADOR: "HAM - Asociación Médica", DOMICILIO: "Patricios 347", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615" },
+            { PRESTADOR: "Hospital Italiano", DOMICILIO: "Necochea 675", FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660" },
+            { PRESTADOR: "Hospital Español", DOMICILIO: "Estomba 571", FIJO: "02914595555", MAPS: "https://maps.google.com/?cid=2064372742749592359" },
+            { PRESTADOR: "Hospital Matera", DOMICILIO: "9 de Julio 461", FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647" }
+        ];
+        renderCards(guardiasEstaticas);
+    } else {
+        contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando...</div>';
+        fetch('data/bd_bahiar.json')
+            .then(response => response.json())
+            .then(data => {
+                const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
+                renderCards(filtrados);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar datos.</p>';
+            });
+    }
 }
 
 // Buscador dinámico[cite: 13]
