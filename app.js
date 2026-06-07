@@ -20,13 +20,13 @@ function activarAcordeon() {
         
         if (header) {
             const body = header.nextElementSibling;
+            const estaAbierto = body.style.display === 'block';
             
             // Alternar visibilidad
-            if (body.style.display === 'block') {
-                body.style.display = 'none';
-            } else {
-                body.style.display = 'block';
-            }
+            body.style.display = estaAbierto ? 'none' : 'block';
+            
+            // Actualizar estado aria para lectores de pantalla
+            header.setAttribute('aria-expanded', estaAbierto ? 'false' : 'true');
         }
     });
 }
@@ -47,18 +47,20 @@ function renderizarDatos(tipo, contenedorId) {
                 return;
             }
 
-            filtrados.forEach(item => {
+            filtrados.forEach((item, index) => {
+                const bodyId = `card-body-${tipo}-${index}`;
+                const telLimpio = item.FIJO ? item.FIJO.replace(/\D/g, '') : '';
                 const card = `
                 <div class="card">
-                    <button class="card-header">
+                    <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
                         <span>${item.PRESTADOR}</span>
-                        <span>▼</span>
+                        <span aria-hidden="true">▼</span>
                     </button>
-                    <div class="card-body-collapse" style="display: none;">
+                    <div class="card-body-collapse" id="${bodyId}" style="display: none;">
                         <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
                         <div style="display: flex; gap: 10px;">
-                            ${item.FIJO ? `<a href="tel:${item.FIJO}" class="btn btn-accent">Llamar</a>` : ''}
-                            <a href="${item.MAPS}" target="_blank" class="btn btn-outline">Mapa</a>
+                            ${item.FIJO ? `<a href="tel:${item.FIJO}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
+                            <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
                         </div>
                     </div>
                 </div>`;
