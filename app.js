@@ -1,4 +1,4 @@
-// --- 1. INICIALIZACIÓN ---
+// Cargar la navegación modular y activar buscador al iniciar
 document.addEventListener("DOMContentLoaded", function() {
     const navPlaceholder = document.getElementById('nav-placeholder');
     if (navPlaceholder) {
@@ -9,101 +9,83 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     configurarBuscador();
-    activarAcordeon();
-    registrarServiceWorker();
+    activarAcordeon(); // Activamos la lógica de apertura/cierre
 });
 
-// --- 2. SERVICE WORKER ---
-function registrarServiceWorker() {
-    if (!('serviceWorker' in navigator)) return;
-
-    navigator.serviceWorker.register('sw.js').then((registration) => {
-        registration.addEventListener('updatefound', () => {
-            const nuevoSW = registration.installing;
-            nuevoSW.addEventListener('statechange', () => {
-                if (nuevoSW.state === 'installed' && navigator.serviceWorker.controller) {
-                    mostrarBannerActualizacion(registration);
-                }
-            });
-        });
-    });
-
-    navigator.serviceWorker.addEventListener('message', (e) => {
-        if (e.data.tipo === 'DATOS_EN_CACHE') mostrarIndicadorCache(true);
-        if (e.data.tipo === 'DATOS_FRESCOS')  mostrarIndicadorCache(false);
-    });
-}
-
-// --- 3. UI HELPERS ---
-function mostrarBannerActualizacion(registration) {
-    const banner = document.createElement('div');
-    banner.id = 'update-banner';
-    banner.innerHTML = `<span>Hay una nueva versión disponible.</span><button id="btn-actualizar">Actualizar</button>`;
-    document.body.prepend(banner);
-    document.getElementById('btn-actualizar').addEventListener('click', () => {
-        if (registration.waiting) registration.waiting.postMessage('SKIP_WAITING');
-        window.location.reload();
-    });
-}
-
-function mostrarIndicadorCache(enCache) {
-    let indicador = document.getElementById('cache-indicator');
-    if (!indicador) {
-        indicador = document.createElement('p');
-        indicador.id = 'cache-indicator';
-        const contenedor = document.getElementById('contenedor-cards');
-        if (contenedor) contenedor.parentNode.insertBefore(indicador, contenedor);
-    }
-    indicador.textContent = enCache ? '⚠ Mostrando datos guardados. Conectate para actualizar.' : '';
-}
-
-// --- 4. ACORDEÓN ---
+// Lógica de apertura/cierre de las tarjetas (Delegación de eventos)
 function activarAcordeon() {
     document.addEventListener('click', function(e) {
+        // Buscamos si el clic ocurrió dentro de un botón de cabecera
         const header = e.target.closest('.card-header');
+        
         if (header) {
             const body = header.nextElementSibling;
-            body.classList.toggle('open');
-            header.setAttribute('aria-expanded', body.classList.contains('open'));
+            const estaAbierto = body.style.display === 'block';
+            
+            // Alternar visibilidad
+            body.style.display = estaAbierto ? 'none' : 'block';
+            
+            // Actualizar estado aria para lectores de pantalla
+            header.setAttribute('aria-expanded', estaAbierto ? 'false' : 'true');
         }
     });
 }
 
-// --- 5. RENDERIZADO DE DATOS (Con todos los campos) ---
+// Función dinámica para cargar datos[cite: 13]
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
-    if (!contenedor) return;
+    contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando...</div>';
 
     fetch('data/bd_bahiar.json')
         .then(response => response.json())
         .then(data => {
-            contenedor.innerHTML = '';
-            // Filtramos según el tipo que pasaste
+            contenedor.innerHTML = ''; 
             const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
-
+            
             if (filtrados.length === 0) {
-                contenedor.innerHTML = '<p style="padding: 16px;">No hay resultados para esta categoría.</p>';
+                contenedor.innerHTML = '<p style="padding: 16px;">No hay datos disponibles.</p>';
                 return;
             }
 
             filtrados.forEach((item, index) => {
                 const bodyId = `card-body-${tipo}-${index}`;
-                
-                // Construcción de la tarjeta con TODOS los campos
+                const telLimpio = item.FIJO ? item.FIJO.replace(/\D/g, '') : '';
                 const card = `
                 <div class="card">
                     <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
                         <span>${item.PRESTADOR}</span>
                         <span aria-hidden="true">▼</span>
                     </button>
-                    <div class="card-body-collapse" id="${bodyId}">
-                        <div style="padding: 16px;">
-                            <p style="margin-bottom: 5px;"><strong>Dirección:</strong> ${item.DOMICILIO} (${item.LOCALIDAD})</p>
-                            ${item.HORARIO ? `<p style="margin-bottom: 5px;"><strong>Horario:</strong> ${item.HORARIO}</p>` : ''}
-                            ${item.OOSS ? `<p style="margin-bottom: 5px;"><strong>OOSS:</strong> ${item.OOSS}</p>` : ''}
-                            ${item.NIVEL ? `<p style="margin-bottom: 5px;"><strong>Nivel:</strong> ${item.NIVEL}</p>` : ''}
-                            
-                            <div style="display: flex; gap: 6px; margin: 10px 0;">
-                                ${item.INYECTABLES ? '<span class="badge">💉 Inyectables</span>' : ''}
-                                ${item.DELIVERY ? '<span class="badge">🛵 Delivery</span>' : ''}
-                            </div>
+                    <div class="card-body-collapse" id="${bodyId}" style="display: none;">
+                        <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
+                        <div style="display: flex; gap: 10px;">
+                            ${item.FIJO ? `<a href="tel:${item.FIJO}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
+                            <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
+                        </div>
+                    </div>
+                </div>`;
+                contenedor.innerHTML += card;
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar datos.</p>';
+        });
+}
+
+// Buscador dinámico[cite: 13]
+function configurarBuscador() {
+    const input = document.querySelector('.search-container input');
+    
+    if (input) {
+        input.addEventListener('input', (e) => {
+            const filtro = e.target.value.toLowerCase();
+            const tarjetas = document.querySelectorAll('.card');
+            
+            tarjetas.forEach(card => {
+                const nombre = card.querySelector('.card-header span').textContent.toLowerCase();
+                card.style.display = nombre.includes(filtro) ? '' : 'none';
+            });
+        });
+    }
+}
