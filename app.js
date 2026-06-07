@@ -9,60 +9,58 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     configurarBuscador();
-    activarAcordeon();
+    activarAcordeon(); // Activamos la lógica de apertura/cierre
 });
 
-// Lógica de apertura/cierre de las tarjetas
+// Lógica de apertura/cierre de las tarjetas (Delegación de eventos)
 function activarAcordeon() {
     document.addEventListener('click', function(e) {
+        // Buscamos si el clic ocurrió dentro de un botón de cabecera
         const header = e.target.closest('.card-header');
+        
         if (header) {
             const body = header.nextElementSibling;
             const estaAbierto = body.style.display === 'block';
+            
+            // Alternar visibilidad
             body.style.display = estaAbierto ? 'none' : 'block';
+            
+            // Actualizar estado aria para lectores de pantalla
             header.setAttribute('aria-expanded', estaAbierto ? 'false' : 'true');
         }
     });
 }
 
-// Función robusta para cargar y filtrar datos
+// Función dinámica para cargar datos[cite: 13]
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
-    if (!contenedor) return;
+    contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando...</div>';
 
-    // Convertimos el filtro a minúsculas para que sea insensible a mayúsculas
-    const filtroNormalizado = tipo.toLowerCase().trim();
-
-    fetch('bd_bahiar.json')
+    fetch('data/bd_bahiar.json')
         .then(response => response.json())
         .then(data => {
-            const lista = data.prestadores || [];
+            contenedor.innerHTML = ''; 
+            const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
             
-            // Filtro inteligente
-            const filtrados = lista.filter(p => {
-                const tipoJson = (p.TIPO || '').toLowerCase().trim();
-                return tipoJson === filtroNormalizado;
-            });
-
             if (filtrados.length === 0) {
-                contenedor.innerHTML = '<p style="padding: 16px;">No se encontraron resultados.</p>';
+                contenedor.innerHTML = '<p style="padding: 16px;">No hay datos disponibles.</p>';
                 return;
             }
 
-            contenedor.innerHTML = ''; 
-            filtrados.forEach(item => {
-                const bodyId = 'collapse-' + Math.random().toString(36).substr(2, 9);
+            filtrados.forEach((item, index) => {
+                const bodyId = `card-body-${tipo}-${index}`;
+                const telLimpio = item.FIJO ? item.FIJO.replace(/\D/g, '') : '';
                 const card = `
                 <div class="card">
-                    <button class="card-header" aria-expanded="false">
+                    <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
                         <span>${item.PRESTADOR}</span>
                         <span aria-hidden="true">▼</span>
                     </button>
                     <div class="card-body-collapse" id="${bodyId}" style="display: none;">
                         <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
                         <div style="display: flex; gap: 10px;">
-                            ${item.FIJO ? `<a href="tel:${item.FIJO}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}">Llamar</a>` : ''}
-                            <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver en Google Maps">Mapa</a>
+                            ${item.FIJO ? `<a href="tel:${item.FIJO}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
+                            <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
                         </div>
                     </div>
                 </div>`;
@@ -75,12 +73,15 @@ function renderizarDatos(tipo, contenedorId) {
         });
 }
 
+// Buscador dinámico[cite: 13]
 function configurarBuscador() {
     const input = document.querySelector('.search-container input');
+    
     if (input) {
         input.addEventListener('input', (e) => {
             const filtro = e.target.value.toLowerCase();
             const tarjetas = document.querySelectorAll('.card');
+            
             tarjetas.forEach(card => {
                 const nombre = card.querySelector('.card-header span').textContent.toLowerCase();
                 card.style.display = nombre.includes(filtro) ? '' : 'none';
