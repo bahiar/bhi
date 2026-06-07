@@ -27,7 +27,7 @@ function activarAcordeon() {
     });
 }
 
-// Función dinámica para cargar datos[cite: 13]
+// Función dinámica para cargar datos
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
     if (!contenedor) return;
@@ -51,17 +51,12 @@ function renderizarDatos(tipo, contenedorId) {
                     <span aria-hidden="true">▼</span>
                 </button>
                 <div class="card-body-collapse" id="${bodyId}">
-                    <p style="margin-bottom: 5px;"><strong>Dirección:</strong> ${item.DOMICILIO} (${item.LOCALIDAD})</p>
-                    ${item.HORARIO ? `<p style="margin-bottom: 5px;"><strong>Horario:</strong> ${item.HORARIO}</p>` : ''}
-                    ${item.GRUPO ? `<p style="margin-bottom: 5px;"><strong>Grupo:</strong> ${item.GRUPO}</p>` : ''}
-                    ${item.OOSS ? `<p style="margin-bottom: 5px;"><strong>Obras Sociales:</strong> ${item.OOSS}</p>` : ''}
-                    ${item.INYECTABLES || item.DELIVERY ? `<p style="margin-bottom: 10px;">
-                        ${item.INYECTABLES ? '💉 Inyectables ' : ''}
-                        ${item.DELIVERY ? '🚚 Delivery' : ''}
-                    </p>` : ''}
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
+                    <p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${item.LOCALIDAD}</p>
+                    <p style="margin-bottom: 10px;"><strong>Horario:</strong> ${item.HORARIO}</p>
+                    <p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${item.OOSS}</p>
+                    <div style="display: flex; gap: 10px;">
                         ${item.FIJO ? `<a href="${linkTel}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
-                        ${item.MOVIL ? `<a href="${item.MOVIL}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="background: #25D366; color: white; border: none;">WhatsApp</a>` : ''}
                         <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
                     </div>
                 </div>
@@ -72,13 +67,13 @@ function renderizarDatos(tipo, contenedorId) {
 
     if (tipo === 'GUARDIA') {
         const guardiasEstaticas = [
-            { PRESTADOR: "Hospital Municipal", DOMICILIO: "Estomba 968", FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464" },
-            { PRESTADOR: "Hospital Penna", DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385" },
-            { PRESTADOR: "Privado del Sur", DOMICILIO: "Las Heras 164", FIJO: "02914550270", MAPS: "https://maps.google.com/?cid=4096557740069257162" },
-            { PRESTADOR: "HAM - Asociación Médica", DOMICILIO: "Patricios 347", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615" },
-            { PRESTADOR: "Hospital Italiano", DOMICILIO: "Necochea 675", FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660" },
-            { PRESTADOR: "Hospital Español", DOMICILIO: "Estomba 571", FIJO: "02914595555", MAPS: "https://maps.google.com/?cid=2064372742749592359" },
-            { PRESTADOR: "Hospital Matera", DOMICILIO: "9 de Julio 461", FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647" }
+            { PRESTADOR: "Hospital Municipal", DOMICILIO: "Estomba 968", LOCALIDAD: "Bahia Blanca", HORARIO: "24 hs", OOSS: "Todas", FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464" },
+            { PRESTADOR: "Hospital Penna", DOMICILIO: "Av. Lainez 2401", LOCALIDAD: "Bahia Blanca", HORARIO: "24 hs", OOSS: "Todas", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385" },
+            { PRESTADOR: "Privado del Sur", DOMICILIO: "Las Heras 164", LOCALIDAD: "Bahia Blanca", HORARIO: "24 hs", OOSS: "Todas", FIJO: "02914550270", MAPS: "https://maps.google.com/?cid=4096557740069257162" },
+            { PRESTADOR: "HAM - Asociación Médica", DOMICILIO: "Patricios 347", LOCALIDAD: "Bahia Blanca", HORARIO: "24 hs", OOSS: "Todas", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615" },
+            { PRESTADOR: "Hospital Italiano", DOMICILIO: "Necochea 675", LOCALIDAD: "Bahia Blanca", HORARIO: "24 hs", OOSS: "Todas", FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660" },
+            { PRESTADOR: "Hospital Español", DOMICILIO: "Estomba 571", LOCALIDAD: "Bahia Blanca", HORARIO: "24 hs", OOSS: "Todas", FIJO: "02914595555", MAPS: "https://maps.google.com/?cid=2064372742749592359" },
+            { PRESTADOR: "Hospital Matera", DOMICILIO: "9 de Julio 461", LOCALIDAD: "Bahia Blanca", HORARIO: "24 hs", OOSS: "Todas", FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647" }
         ];
         renderCards(guardiasEstaticas);
     } else {
@@ -96,7 +91,7 @@ function renderizarDatos(tipo, contenedorId) {
     }
 }
 
-// Buscador dinámico[cite: 13]
+// Buscador dinámico
 function configurarBuscador() {
     const input = document.querySelector('.search-container input');
     

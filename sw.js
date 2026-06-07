@@ -1,5 +1,5 @@
-const CACHE_NAME = 'bahi-cache-v2';
-const DATA_CACHE_NAME = 'bahi-data-cache-v2';
+const CACHE_NAME = 'bahi-cache-v2.2';
+const DATA_CACHE_NAME = 'bahi-data-cache-v2.2';
 
 // Assets del shell de la app (Cache-first)
 const SHELL_ASSETS = ['./', './index.html', './style.css', './app.js', './nav.html', './farmacias.html', './guardias.html', './laboratorios.html'];
