@@ -136,3 +136,46 @@ body {
     transform: translateY(-50%);
     color: var(--text-muted);
 }
+/* ── 5. OFFLINE / UPDATE ── */
+/* Banner de nueva versión disponible */
+#update-banner {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 14px;
+}
+
+#update-banner #btn-actualizar {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    background: #fff;
+    color: var(--primary);
+    border: none;
+    border-radius: var(--radius-btn);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#update-banner #btn-actualizar:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Indicador de datos en caché */
+.cache-indicator-warning {
+    margin: 0 16px 8px;
+    padding: 10px 14px;
+    background: var(--orange-light);
+    border: 1px solid var(--orange-border);
+    border-radius: var(--radius-btn);
+    color: var(--orange-dark);
+    font-size: 13px;
+}
