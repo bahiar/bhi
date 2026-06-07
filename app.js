@@ -1,6 +1,5 @@
-// Cargar la navegación modular y activar buscador al iniciar
+// --- 1. INICIALIZACIÓN ---
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("App iniciada. Cargando componentes...");
     const navPlaceholder = document.getElementById('nav-placeholder');
     if (navPlaceholder) {
         fetch('nav.html')
@@ -14,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     registrarServiceWorker();
 });
 
-// Registro del Service Worker
+// --- 2. SERVICE WORKER ---
 function registrarServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
 
@@ -35,21 +34,14 @@ function registrarServiceWorker() {
     });
 }
 
+// --- 3. UI HELPERS ---
 function mostrarBannerActualizacion(registration) {
     const banner = document.createElement('div');
     banner.id = 'update-banner';
-    banner.setAttribute('role', 'status');
-    banner.setAttribute('aria-live', 'polite');
-    banner.innerHTML = `
-        <span>Hay una nueva versión disponible.</span>
-        <button id="btn-actualizar">Actualizar</button>
-    `;
+    banner.innerHTML = `<span>Hay una nueva versión disponible.</span><button id="btn-actualizar">Actualizar</button>`;
     document.body.prepend(banner);
-
     document.getElementById('btn-actualizar').addEventListener('click', () => {
-        if (registration.waiting) {
-            registration.waiting.postMessage('SKIP_WAITING');
-        }
+        if (registration.waiting) registration.waiting.postMessage('SKIP_WAITING');
         window.location.reload();
     });
 }
@@ -59,70 +51,45 @@ function mostrarIndicadorCache(enCache) {
     if (!indicador) {
         indicador = document.createElement('p');
         indicador.id = 'cache-indicator';
-        indicador.setAttribute('role', 'status');
-        indicador.setAttribute('aria-live', 'polite');
-        const contenedor = document.getElementById('contenedor-cards') || document.getElementById('main-content');
+        const contenedor = document.getElementById('contenedor-cards');
         if (contenedor) contenedor.parentNode.insertBefore(indicador, contenedor);
     }
-    if (enCache) {
-        indicador.textContent = '⚠ Mostrando datos guardados. Conectate para ver la información actualizada.';
-        indicador.className = 'cache-indicator-warning';
-    } else {
-        indicador.textContent = '';
-        indicador.className = '';
-    }
+    indicador.textContent = enCache ? '⚠ Mostrando datos guardados. Conectate para actualizar.' : '';
 }
 
-// Lógica del acordeón (Delegación de eventos)
+// --- 4. ACORDEÓN ---
 function activarAcordeon() {
     document.addEventListener('click', function(e) {
         const header = e.target.closest('.card-header');
         if (header) {
             const body = header.nextElementSibling;
-            const estaAbierto = body.classList.contains('open');
             body.classList.toggle('open');
-            header.setAttribute('aria-expanded', String(!estaAbierto));
-            console.log("Acordeón toggleado:", !estaAbierto);
+            header.setAttribute('aria-expanded', body.classList.contains('open'));
         }
     });
 }
 
-// Función de renderizado con logs de depuración
+// --- 5. RENDERIZADO DE DATOS (Con todos los campos) ---
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
-    if (!contenedor) {
-        console.error("Error: No se encontró el contenedor con ID:", contenedorId);
-        return;
-    }
-    
-    contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando datos...</div>';
+    if (!contenedor) return;
 
     fetch('data/bd_bahiar.json')
-        .then(response => {
-            if (!response.ok) throw new Error("No se pudo conectar al JSON. Error " + response.status);
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log("JSON cargado exitosamente. Datos recibidos:", data);
-            
-            // Verificamos si data.prestadores existe
-            if (!data.prestadores) {
-                console.error("Error: La estructura del JSON no tiene una propiedad 'prestadores'.");
-                return;
-            }
-
-            const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
-            console.log("Filtrando por tipo:", tipo, ". Encontrados:", filtrados.length);
-
             contenedor.innerHTML = '';
+            // Filtramos según el tipo que pasaste
+            const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
 
             if (filtrados.length === 0) {
-                contenedor.innerHTML = '<p style="padding: 16px;">No hay datos para esta categoría.</p>';
+                contenedor.innerHTML = '<p style="padding: 16px;">No hay resultados para esta categoría.</p>';
                 return;
             }
 
             filtrados.forEach((item, index) => {
                 const bodyId = `card-body-${tipo}-${index}`;
+                
+                // Construcción de la tarjeta con TODOS los campos
                 const card = `
                 <div class="card">
                     <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
@@ -130,32 +97,13 @@ function renderizarDatos(tipo, contenedorId) {
                         <span aria-hidden="true">▼</span>
                     </button>
                     <div class="card-body-collapse" id="${bodyId}">
-                        <p style="padding: 16px; margin:0;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
-                        <div style="display: flex; gap: 10px; padding: 0 16px 16px;">
-                            ${item.FIJO ? `<a href="${item.FIJO}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}">Llamar</a>` : ''}
-                            <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
-                        </div>
-                    </div>
-                </div>`;
-                contenedor.innerHTML += card;
-            });
-        })
-        .catch(error => {
-            console.error('Error crítico en renderizarDatos:', error);
-            contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar datos. Revisa la consola.</p>';
-        });
-}
-
-function configurarBuscador() {
-    const input = document.querySelector('.search-container input');
-    if (input) {
-        input.addEventListener('input', (e) => {
-            const filtro = e.target.value.toLowerCase();
-            const tarjetas = document.querySelectorAll('.card');
-            tarjetas.forEach(card => {
-                const nombre = card.querySelector('.card-header span').textContent.toLowerCase();
-                card.style.display = nombre.includes(filtro) ? '' : 'none';
-            });
-        });
-    }
-}
+                        <div style="padding: 16px;">
+                            <p style="margin-bottom: 5px;"><strong>Dirección:</strong> ${item.DOMICILIO} (${item.LOCALIDAD})</p>
+                            ${item.HORARIO ? `<p style="margin-bottom: 5px;"><strong>Horario:</strong> ${item.HORARIO}</p>` : ''}
+                            ${item.OOSS ? `<p style="margin-bottom: 5px;"><strong>OOSS:</strong> ${item.OOSS}</p>` : ''}
+                            ${item.NIVEL ? `<p style="margin-bottom: 5px;"><strong>Nivel:</strong> ${item.NIVEL}</p>` : ''}
+                            
+                            <div style="display: flex; gap: 6px; margin: 10px 0;">
+                                ${item.INYECTABLES ? '<span class="badge">💉 Inyectables</span>' : ''}
+                                ${item.DELIVERY ? '<span class="badge">🛵 Delivery</span>' : ''}
+                            </div>
