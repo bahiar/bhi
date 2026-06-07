@@ -1,5 +1,9 @@
 // Cargar la navegación modular y activar buscador al iniciar
 document.addEventListener("DOMContentLoaded", function() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+    }
+
     const navPlaceholder = document.getElementById('nav-placeholder');
     if (navPlaceholder) {
         fetch('nav.html')
@@ -27,6 +31,24 @@ function activarAcordeon() {
     });
 }
 
+// Sanitización de texto para interpolación segura en innerHTML
+function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = str ?? '';
+    return d.innerHTML;
+}
+
+// Validación de URL de Maps: solo acepta dominios de Google Maps
+function safeMapsUrl(url) {
+    try {
+        const parsed = new URL(url);
+        if (parsed.hostname === 'maps.google.com' || parsed.hostname === 'www.google.com') {
+            return url;
+        }
+    } catch (_) {}
+    return '#';
+}
+
 // Función dinámica para cargar datos
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
@@ -47,17 +69,17 @@ function renderizarDatos(tipo, contenedorId) {
             const card = `
             <div class="card">
                 <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
-                    <span>${item.PRESTADOR}</span>
+                    <span>${esc(item.PRESTADOR)}</span>
                     <span aria-hidden="true">▼</span>
                 </button>
                 <div class="card-body-collapse" id="${bodyId}">
-                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
-                    <p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${item.LOCALIDAD}</p>
-                    <p style="margin-bottom: 10px;"><strong>Horario:</strong> ${item.HORARIO}</p>
-                    <p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${item.OOSS}</p>
+                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${esc(item.DOMICILIO)}</p>
+                    <p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${esc(item.LOCALIDAD)}</p>
+                    <p style="margin-bottom: 10px;"><strong>Horario:</strong> ${esc(item.HORARIO)}</p>
+                    <p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${esc(item.OOSS)}</p>
                     <div style="display: flex; gap: 10px;">
-                        ${item.FIJO ? `<a href="${linkTel}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
-                        <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
+                        ${item.FIJO ? `<a href="${esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${esc(item.PRESTADOR)}, ${esc(item.FIJO)}">Llamar</a>` : ''}
+                        <a href="${safeMapsUrl(item.MAPS)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${esc(item.PRESTADOR)} en Google Maps">Mapa</a>
                     </div>
                 </div>
             </div>`;

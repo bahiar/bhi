@@ -1,15 +1,19 @@
-const CACHE_NAME = 'bahi-cache-v2.2';
-const DATA_CACHE_NAME = 'bahi-data-cache-v2.2';
+const CACHE_NAME = 'bahi-cache-v2.4';
+const DATA_CACHE_NAME = 'bahi-data-cache-v2.4';
 
 // Assets del shell de la app (Cache-first)
 const SHELL_ASSETS = ['./', './index.html', './style.css', './app.js', './nav.html', './farmacias.html', './guardias.html', './laboratorios.html'];
 
-// Instalar: precachear el shell completo y activar inmediatamente
+// Assets de datos (Stale-While-Revalidate)
+const DATA_ASSETS = ['./data/bd_bahiar.json'];
+
+// Instalar: precachear el shell y los datos en sus cachés correspondientes
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(SHELL_ASSETS))
-      .then(() => self.skipWaiting())
+    Promise.all([
+      caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_ASSETS)),
+      caches.open(DATA_CACHE_NAME).then((cache) => cache.addAll(DATA_ASSETS))
+    ]).then(() => self.skipWaiting())
   );
 });
 
@@ -67,7 +71,9 @@ self.addEventListener('fetch', (e) => {
 
   // Cache-first para el resto de assets del shell
   e.respondWith(
-    caches.match(e.request).then((response) => response || fetch(e.request))
+    caches.match(e.request).then((response) => response || fetch(e.request).catch(
+      () => new Response('Offline', { status: 503, statusText: 'Service Unavailable' })
+    ))
   );
 });
 
