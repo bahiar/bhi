@@ -55,9 +55,9 @@
 
     <!-- Navegación -->
     <div id="nav-placeholder"></div>
-    <script src="app.js"></script>
-    <script>
-      renderizarDatos('LABORATORIO', 'contenedor-cards');
+    <script src="app.js" defer></script>
+    <script defer>
+      document.addEventListener('DOMContentLoaded', () => renderizarDatos('LABORATORIO', 'contenedor-cards'));
     </script>
 </body>
 </html>

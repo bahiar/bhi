@@ -3,6 +3,7 @@
   "short_name": "BAHI.ar",
   "description": "Directorio de salud, farmacias y guardias en Bahía Blanca.",
   "start_url": "/bhi/index.html",
+  "scope": "/bhi/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#F8FAFC",

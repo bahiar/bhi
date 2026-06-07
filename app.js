@@ -2,6 +2,14 @@
 document.addEventListener("DOMContentLoaded", function() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js');
+        navigator.serviceWorker.addEventListener('message', (e) => {
+            if (e.data && e.data.tipo === 'DATOS_EN_CACHE') {
+                console.info('[SW] Datos servidos desde caché offline.');
+            }
+            if (e.data && e.data.tipo === 'DATOS_FRESCOS') {
+                console.info('[SW] Datos actualizados desde la red.');
+            }
+        });
     }
 
     const navPlaceholder = document.getElementById('nav-placeholder');
@@ -60,13 +68,14 @@ function renderizarDatos(tipo, contenedorId) {
             contenedor.innerHTML = '<p style="padding: 16px;">No hay datos disponibles.</p>';
             return;
         }
+        const fragments = [];
         lista.forEach((item, index) => {
             const bodyId = `card-body-${tipo}-${index}`;
             let linkTel = item.FIJO ? item.FIJO : '';
             if (linkTel && !linkTel.toLowerCase().startsWith('tel:')) {
                 linkTel = 'tel:' + linkTel;
             }
-            const card = `
+            fragments.push(`
             <div class="card">
                 <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
                     <span>${esc(item.PRESTADOR)}</span>
@@ -82,9 +91,9 @@ function renderizarDatos(tipo, contenedorId) {
                         <a href="${safeMapsUrl(item.MAPS)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${esc(item.PRESTADOR)} en Google Maps">Mapa</a>
                     </div>
                 </div>
-            </div>`;
-            contenedor.innerHTML += card;
+            </div>`);
         });
+        contenedor.innerHTML = fragments.join('');
     };
 
     if (tipo === 'GUARDIA') {
