@@ -10,17 +10,20 @@
 </head>
 <body>
 
+    <!-- Header único -->
     <header class="main-header">
         <div class="header-content">
             <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
         </div>
     </header>
 
+    <!-- Buscador Global -->
     <div class="search-container">
         <div class="search-icon" aria-hidden="true">🔍</div>
-        <input type="text" placeholder="Buscar farmacias..." aria-label="Buscar farmacias">
+        <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
     </div>
 
+    <!-- Contenido Principal -->
     <main class="app-view" id="content">
         <div id="main-content">
             <div style="padding: 16px;">
@@ -37,17 +40,14 @@
         </div>
     </main>
 
+    <!-- Navegación -->
     <div id="nav-placeholder"></div>
-
     <script src="app.js"></script>
     <script>
-        // Registramos el Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-
-        // Llamamos a la función indicándole que ponga las tarjetas en 'contenedor-cards'
-        renderizarDatos('FARMACIA', 'contenedor-cards');
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+      renderizarDatos('FARMACIA', 'contenedor-cards');
     </script>
 </body>
 </html>
