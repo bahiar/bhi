@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     configurarBuscador();
-    activarAcordeon(); // Activamos la lógica de apertura/cierre
+    activarAcordeon();
     registrarServiceWorker();
 });
 
@@ -18,7 +18,6 @@ function registrarServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
 
     navigator.serviceWorker.register('sw.js').then((registration) => {
-        // Detectar cuando hay una nueva versión esperando
         registration.addEventListener('updatefound', () => {
             const nuevoSW = registration.installing;
             nuevoSW.addEventListener('statechange', () => {
@@ -29,14 +28,12 @@ function registrarServiceWorker() {
         });
     });
 
-    // Escuchar mensajes del SW sobre el estado de los datos
     navigator.serviceWorker.addEventListener('message', (e) => {
         if (e.data.tipo === 'DATOS_EN_CACHE') mostrarIndicadorCache(true);
         if (e.data.tipo === 'DATOS_FRESCOS')  mostrarIndicadorCache(false);
     });
 }
 
-// Banner que aparece cuando hay una nueva versión de la app disponible
 function mostrarBannerActualizacion(registration) {
     const banner = document.createElement('div');
     banner.id = 'update-banner';
@@ -56,7 +53,6 @@ function mostrarBannerActualizacion(registration) {
     });
 }
 
-// Indicador de estado de los datos (frescos vs. guardados en caché)
 function mostrarIndicadorCache(enCache) {
     let indicador = document.getElementById('cache-indicator');
     if (!indicador) {
@@ -76,26 +72,21 @@ function mostrarIndicadorCache(enCache) {
     }
 }
 
-// Lógica de apertura/cierre de las tarjetas (Delegación de eventos)
+// FIX: usar clase CSS 'open' en lugar de toggle de display inline
 function activarAcordeon() {
     document.addEventListener('click', function(e) {
-        // Buscamos si el clic ocurrió dentro de un botón de cabecera
         const header = e.target.closest('.card-header');
-        
+
         if (header) {
             const body = header.nextElementSibling;
-            const estaAbierto = body.style.display === 'block';
-            
-            // Alternar visibilidad
-            body.style.display = estaAbierto ? 'none' : 'block';
-            
-            // Actualizar estado aria para lectores de pantalla
-            header.setAttribute('aria-expanded', estaAbierto ? 'false' : 'true');
+            const estaAbierto = body.classList.contains('open');
+
+            body.classList.toggle('open');
+            header.setAttribute('aria-expanded', String(!estaAbierto));
         }
     });
 }
 
-// Función dinámica para cargar datos[cite: 13]
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
     contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando...</div>';
@@ -103,9 +94,9 @@ function renderizarDatos(tipo, contenedorId) {
     fetch('data/bd_bahiar.json')
         .then(response => response.json())
         .then(data => {
-            contenedor.innerHTML = ''; 
+            contenedor.innerHTML = '';
             const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
-            
+
             if (filtrados.length === 0) {
                 contenedor.innerHTML = '<p style="padding: 16px;">No hay datos disponibles.</p>';
                 return;
@@ -113,17 +104,16 @@ function renderizarDatos(tipo, contenedorId) {
 
             filtrados.forEach((item, index) => {
                 const bodyId = `card-body-${tipo}-${index}`;
-                const telLimpio = item.FIJO ? item.FIJO.replace(/\D/g, '') : '';
                 const card = `
                 <div class="card">
                     <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
                         <span>${item.PRESTADOR}</span>
                         <span aria-hidden="true">▼</span>
                     </button>
-                    <div class="card-body-collapse" id="${bodyId}" style="display: none;">
+                    <div class="card-body-collapse" id="${bodyId}">
                         <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>
                         <div style="display: flex; gap: 10px;">
-                            ${item.FIJO ? `<a href="tel:${item.FIJO}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar</a>` : ''}
+                            ${item.FIJO ? `<a href="${item.FIJO}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}">Llamar</a>` : ''}
                             <a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>
                         </div>
                     </div>
@@ -137,15 +127,14 @@ function renderizarDatos(tipo, contenedorId) {
         });
 }
 
-// Buscador dinámico[cite: 13]
 function configurarBuscador() {
     const input = document.querySelector('.search-container input');
-    
+
     if (input) {
         input.addEventListener('input', (e) => {
             const filtro = e.target.value.toLowerCase();
             const tarjetas = document.querySelectorAll('.card');
-            
+
             tarjetas.forEach(card => {
                 const nombre = card.querySelector('.card-header span').textContent.toLowerCase();
                 card.style.display = nombre.includes(filtro) ? '' : 'none';
