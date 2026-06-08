@@ -46,5 +46,11 @@
     <!-- Navegación -->
     <div id="nav-placeholder"></div>
     <script src="app.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW:', err));
+            navigator.serviceWorker.addEventListener('controllerchange', () => location.reload());
+        }
+    </script>
 </body>
 </html>
