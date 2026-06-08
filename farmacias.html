@@ -106,7 +106,7 @@
                 </p>
             </div>
 
-            <!-- AQUÍ ES DONDE OCURRE LA MAGIA -->
+            <!-- Contenedor dinámico -->
             <div id="contenedor-cards"></div>
             
         </div>
@@ -115,24 +115,12 @@
     <!-- Navegación -->
     <div id="nav-placeholder"></div>
     <script src="app.js" defer></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW:', err));
-            navigator.serviceWorker.addEventListener('controllerchange', () => location.reload());
-        }
-    </script>
     <script defer>
       (function() {
         const TIPO_VISTA = 'FARMACIA';
         const CONTENEDOR_ID = 'contenedor-cards';
         let datosOriginales = [];
         const filtros = { texto: '', localidad: '', stock: false, inyectables: false, delivery: false, ooss: '' };
-
-        function esc(str) {
-          const d = document.createElement('div');
-          d.textContent = str ?? '';
-          return d.innerHTML;
-        }
 
         function renderCards(lista) {
           const contenedor = document.getElementById(CONTENEDOR_ID);
@@ -142,29 +130,33 @@
             contenedor.innerHTML = '<p style="padding: 16px;">No hay resultados para los filtros aplicados.</p>';
             return;
           }
+          
           const fragments = lista.map((item, index) => {
             const bodyId = `card-body-${TIPO_VISTA}-${index}`;
-            let linkTel = item.FIJO ? (item.FIJO.toLowerCase().startsWith('tel:') ? item.FIJO : 'tel:' + item.FIJO) : '';
-            let linkMovil = item.MOVIL ? (item.MOVIL.toLowerCase().startsWith('https://') || item.MOVIL.toLowerCase().startsWith('tel:') ? item.MOVIL : 'tel:' + item.MOVIL) : '';
+            const linkTel = item.FIJO ? (item.FIJO.toLowerCase().startsWith('tel:') ? item.FIJO : 'tel:' + item.FIJO) : '';
+            const linkMovil = item.MOVIL ? (item.MOVIL.toLowerCase().startsWith('https://') || item.MOVIL.toLowerCase().startsWith('tel:') ? item.MOVIL : 'tel:' + item.MOVIL) : '';
+            const telDisplay = item.FIJO ? item.FIJO.replace(/^tel:/i, '') : '';
+            const mapsUrl = window.safeMapsUrl ? window.safeMapsUrl(item.MAPS) : item.MAPS;
+
             return `
 <div class="card">
   <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
-    <span>${esc(item.PRESTADOR)}</span>
+    <span>${window.esc(item.PRESTADOR)}</span>
     <span aria-hidden="true">▼</span>
   </button>
   <div class="card-body-collapse" id="${bodyId}">
-    ${item.DOMICILIO ? `<p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${esc(item.DOMICILIO)}</p>` : ''}
-    ${item.LOCALIDAD ? `<p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${esc(item.LOCALIDAD)}</p>` : ''}
-    ${item.NIVEL ? `<p style="margin-bottom: 10px;"><strong>Nivel:</strong> ${esc(item.NIVEL)}</p>` : ''}
-    ${item.HORARIO ? `<p style="margin-bottom: 10px;"><strong>Horario:</strong> ${esc(item.HORARIO)}</p>` : ''}
-    ${item.STOCK ? `<p style="margin-bottom: 10px;"><strong>Stock:</strong> ${esc(item.STOCK)}</p>` : ''}
+    ${item.DOMICILIO ? `<p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${window.esc(item.DOMICILIO)}</p>` : ''}
+    ${item.LOCALIDAD ? `<p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${window.esc(item.LOCALIDAD)}</p>` : ''}
+    ${item.NIVEL ? `<p style="margin-bottom: 10px;"><strong>Nivel:</strong> ${window.esc(item.NIVEL)}</p>` : ''}
+    ${item.HORARIO ? `<p style="margin-bottom: 10px;"><strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>` : ''}
+    ${item.STOCK ? `<p style="margin-bottom: 10px;"><strong>Stock:</strong> ${window.esc(item.STOCK)}</p>` : ''}
     <p style="margin-bottom: 10px;"><strong>Inyectables:</strong> ${item.INYECTABLES ? 'Sí' : 'No'}</p>
     <p style="margin-bottom: 10px;"><strong>Delivery:</strong> ${item.DELIVERY ? 'Sí' : 'No'}</p>
-    ${item.OOSS ? `<p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${esc(item.OOSS)}</p>` : ''}
+    ${item.OOSS ? `<p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${window.esc(item.OOSS)}</p>` : ''}
     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-      ${linkTel ? `<a href="${esc(linkTel)}" class="btn btn-accent">Llamar</a>` : ''}
-      ${linkMovil ? `<a href="${esc(linkMovil)}" class="btn btn-accent">WhatsApp</a>` : ''}
-      ${item.MAPS ? `<a href="${esc(item.MAPS)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Mapa</a>` : ''}
+      ${linkTel ? `<a href="${window.esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${window.esc(item.PRESTADOR)}, ${window.esc(telDisplay)}">Llamar</a>` : ''}
+      ${linkMovil ? `<a href="${window.esc(linkMovil)}" class="btn btn-accent" aria-label="WhatsApp de ${window.esc(item.PRESTADOR)}">WhatsApp</a>` : ''}
+      ${mapsUrl ? `<a href="${window.esc(mapsUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${window.esc(item.PRESTADOR)} en Google Maps">Mapa</a>` : ''}
     </div>
   </div>
 </div>`;
@@ -260,19 +252,14 @@
           }
         }
 
-        // Bloqueo total de funciones conflictivas de app.js para esta vista
+        // Bloqueo total de funciones conflictivas de app.js
         window.renderizarDatos = function() {};
         window.configurarBuscador = function() {};
         
-        // Desactivar el buscador global de app.js si ya existe
-        const globalBuscador = document.querySelector('.search-container input:not(#buscador-live)');
-        if (globalBuscador) globalBuscador.style.display = 'none';
-
         if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', inicializar);
+          document.addEventListener('DOMContentLoaded', () => setTimeout(inicializar, 50));
         } else {
-          // Pequeño delay para asegurar que app.js ya se ejecutó y podemos sobrescribir sus efectos
-          setTimeout(inicializar, 100);
+          setTimeout(inicializar, 50);
         }
       })();
     </script>

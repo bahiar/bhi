@@ -55,14 +55,15 @@
     <!-- Navegación -->
     <div id="nav-placeholder"></div>
     <script src="app.js" defer></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW:', err));
-            navigator.serviceWorker.addEventListener('controllerchange', () => location.reload());
-        }
-    </script>
     <script defer>
-      document.addEventListener('DOMContentLoaded', () => renderizarDatos('GUARDIA', 'contenedor-cards'));
+      document.addEventListener('DOMContentLoaded', () => {
+          // Pequeño delay para asegurar que app.js ha cargado sus funciones globales
+          setTimeout(() => {
+              if (typeof renderizarDatos === 'function') {
+                  renderizarDatos('GUARDIA', 'contenedor-cards');
+              }
+          }, 50);
+      });
     </script>
 </body>
 </html>

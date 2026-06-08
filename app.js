@@ -1,12 +1,46 @@
+// Sanitización de texto para interpolación segura en innerHTML
+function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = str ?? '';
+    return d.innerHTML;
+}
+window.esc = esc; // Exponer globalmente
+
+// Validación de URL de Maps: solo acepta dominios de Google Maps
+function safeMapsUrl(url) {
+    if (!url) return null;
+    try {
+        const parsed = new URL(url);
+        if (parsed.hostname === 'maps.google.com' || parsed.hostname === 'www.google.com' || parsed.hostname === 'maps.app.goo.gl') {
+            return url;
+        }
+    } catch (_) {}
+    return null;
+}
+window.safeMapsUrl = safeMapsUrl; // Exponer globalmente
+
 // Cargar la navegación modular y activar buscador al iniciar
 document.addEventListener("DOMContentLoaded", function() {
+    // Registro centralizado del Service Worker
     if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('[SW] Registrado con éxito:', reg.scope))
+            .catch(err => console.warn('[SW] Error al registrar:', err));
+
         navigator.serviceWorker.addEventListener('message', (e) => {
             if (e.data && e.data.tipo === 'DATOS_EN_CACHE') {
                 console.info('[SW] Datos servidos desde caché offline.');
             }
             if (e.data && e.data.tipo === 'DATOS_FRESCOS') {
                 console.info('[SW] Datos actualizados desde la red.');
+            }
+        });
+
+        // Solo recargar si hay un nuevo controlador y no estamos en una página con lógica de filtrado pesado
+        // para evitar loops en medio de inicializaciones dinámicas.
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!document.getElementById('buscador-live')) {
+                location.reload();
             }
         });
     }
@@ -20,15 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     configurarBuscador();
-    activarAcordeon(); // Activamos la lógica de apertura/cierre
+    activarAcordeon(); 
 });
 
 // Lógica de apertura/cierre de las tarjetas (Delegación de eventos)
 function activarAcordeon() {
     document.addEventListener('click', function(e) {
-        // Buscamos si el clic ocurrió dentro de un botón de cabecera
         const header = e.target.closest('.card-header');
-        
         if (header) {
             const body = header.nextElementSibling;
             body.classList.toggle('open');
@@ -38,25 +70,7 @@ function activarAcordeon() {
     });
 }
 
-// Sanitización de texto para interpolación segura en innerHTML
-function esc(str) {
-    const d = document.createElement('div');
-    d.textContent = str ?? '';
-    return d.innerHTML;
-}
-
-// Validación de URL de Maps: solo acepta dominios de Google Maps
-function safeMapsUrl(url) {
-    try {
-        const parsed = new URL(url);
-        if (parsed.hostname === 'maps.google.com' || parsed.hostname === 'www.google.com') {
-            return url;
-        }
-    } catch (_) {}
-    return '#';
-}
-
-// Función dinámica para cargar datos
+// Función dinámica para cargar datos (Usada en Guardias e Index)
 function renderizarDatos(tipo, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
     if (!contenedor) return;
@@ -67,39 +81,39 @@ function renderizarDatos(tipo, contenedorId) {
             contenedor.innerHTML = '<p style="padding: 16px;">No hay datos disponibles.</p>';
             return;
         }
-        const fragments = [];
-        lista.forEach((item, index) => {
+        const fragments = lista.map((item, index) => {
             const bodyId = `card-body-${tipo}-${index}`;
-            let linkTel = item.FIJO ? item.FIJO : '';
-            if (linkTel && !linkTel.toLowerCase().startsWith('tel:')) {
-                linkTel = 'tel:' + linkTel;
-            }
-            let linkMovil = item.MOVIL ? item.MOVIL : '';
-            if (linkMovil && !linkMovil.toLowerCase().startsWith('https://') && !linkMovil.toLowerCase().startsWith('tel:')) {
-                linkMovil = 'tel:' + linkMovil;
-            }
-            fragments.push(`
+            
+            // Procesamiento de links de contacto
+            let linkTel = item.FIJO ? (item.FIJO.toLowerCase().startsWith('tel:') ? item.FIJO : 'tel:' + item.FIJO) : '';
+            let linkMovil = item.MOVIL ? (item.MOVIL.toLowerCase().startsWith('https://') || item.MOVIL.toLowerCase().startsWith('tel:') ? item.MOVIL : 'tel:' + item.MOVIL) : '';
+            
+            // Texto para aria-label (limpio de prefijos)
+            const telDisplay = item.FIJO ? item.FIJO.replace(/^tel:/i, '') : '';
+            const mapsUrl = safeMapsUrl(item.MAPS);
+
+            return `
             <div class="card">
                 <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
                     <span>${esc(item.PRESTADOR)}</span>
                     <span aria-hidden="true">▼</span>
                 </button>
                 <div class="card-body-collapse" id="${bodyId}">
-                    <p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${esc(item.DOMICILIO)}</p>
-                    <p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${esc(item.LOCALIDAD)}</p>
-                    <p style="margin-bottom: 10px;"><strong>Horario:</strong> ${esc(item.HORARIO)}</p>
-                    <p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${esc(item.OOSS)}</p>
-                    <p style="margin-bottom: 10px;"><strong>Nivel:</strong> ${esc(item.NIVEL)}</p>
-                    <p style="margin-bottom: 10px;"><strong>Stock:</strong> ${esc(item.STOCK)}</p>
-                    <p style="margin-bottom: 10px;"><strong>Inyectables:</strong> ${item.INYECTABLES ? 'Sí' : 'No'}</p>
-                    <p style="margin-bottom: 10px;"><strong>Delivery:</strong> ${item.DELIVERY ? 'Sí' : 'No'}</p>
-                    <div style="display: flex; gap: 10px;">
-                        ${item.FIJO ? `<a href="${esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${esc(item.PRESTADOR)}, ${esc(item.FIJO)}">Llamar</a>` : ''}
-                        ${item.MOVIL ? `<a href="${esc(linkMovil)}" class="btn btn-accent" aria-label="WhatsApp de ${esc(item.PRESTADOR)}">WhatsApp</a>` : ''}
-                        <a href="${safeMapsUrl(item.MAPS)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${esc(item.PRESTADOR)} en Google Maps">Mapa</a>
+                    ${item.DOMICILIO ? `<p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${esc(item.DOMICILIO)}</p>` : ''}
+                    ${item.LOCALIDAD ? `<p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${esc(item.LOCALIDAD)}</p>` : ''}
+                    ${item.HORARIO ? `<p style="margin-bottom: 10px;"><strong>Horario:</strong> ${esc(item.HORARIO)}</p>` : ''}
+                    ${item.OOSS ? `<p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${esc(item.OOSS)}</p>` : ''}
+                    ${item.NIVEL ? `<p style="margin-bottom: 10px;"><strong>Nivel:</strong> ${esc(item.NIVEL)}</p>` : ''}
+                    ${item.STOCK ? `<p style="margin-bottom: 10px;"><strong>Stock:</strong> ${esc(item.STOCK)}</p>` : ''}
+                    ${item.INYECTABLES !== undefined ? `<p style="margin-bottom: 10px;"><strong>Inyectables:</strong> ${item.INYECTABLES ? 'Sí' : 'No'}</p>` : ''}
+                    ${item.DELIVERY !== undefined ? `<p style="margin-bottom: 10px;"><strong>Delivery:</strong> ${item.DELIVERY ? 'Sí' : 'No'}</p>` : ''}
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                        ${linkTel ? `<a href="${esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${esc(item.PRESTADOR)}, ${esc(telDisplay)}">Llamar</a>` : ''}
+                        ${linkMovil ? `<a href="${esc(linkMovil)}" class="btn btn-accent" aria-label="WhatsApp de ${esc(item.PRESTADOR)}">WhatsApp</a>` : ''}
+                        ${mapsUrl ? `<a href="${esc(mapsUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${esc(item.PRESTADOR)} en Google Maps">Mapa</a>` : ''}
                     </div>
                 </div>
-            </div>`);
+            </div>`;
         });
         contenedor.innerHTML = fragments.join('');
     };
@@ -130,15 +144,13 @@ function renderizarDatos(tipo, contenedorId) {
     }
 }
 
-// Buscador dinámico
+// Buscador dinámico (Para páginas sin buscador-live especializado)
 function configurarBuscador() {
-    const input = document.querySelector('.search-container input');
-    
+    const input = document.querySelector('.search-container input:not(#buscador-live)');
     if (input) {
         input.addEventListener('input', (e) => {
             const filtro = e.target.value.toLowerCase();
             const tarjetas = document.querySelectorAll('.card');
-            
             tarjetas.forEach(card => {
                 const nombre = card.querySelector('.card-header span').textContent.toLowerCase();
                 card.style.display = nombre.includes(filtro) ? '' : 'none';
