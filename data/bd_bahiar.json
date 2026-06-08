@@ -1868,11 +1868,11 @@
       "MOVIL": "https://wa.me/5492915246760",
       "GRUPO": "",
       "NIVEL": "ESTANDART",
-      "STOCK": "",
+      "STOCK": "ASPIRINA",
       "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
-      "INYECTABLES": false,
+      "INYECTABLES": true,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "SWISS MEDICAL"
     },
     {
       "TIPO": "LABORATORIO",
@@ -1885,10 +1885,10 @@
       "MOVIL": "https://wa.me/5492915049548",
       "GRUPO": "",
       "NIVEL": "ESTANDART",
-      "STOCK": "",
+      "STOCK": "ATENOLOL",
       "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
       "INYECTABLES": false,
-      "DELIVERY": false,
+      "DELIVERY": true,
       "OOSS": ""
     },
     {
