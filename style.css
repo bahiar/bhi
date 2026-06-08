@@ -1,5 +1,14 @@
-/* 
- * =========================================================================
+/* ── 0. FUENTES PERSONALIZADAS ── */
+@font-face {
+    font-family: 'varela_roundregular';
+    src: url('varelaround-regular-webfont.woff2') format('woff2'),
+         url('varelaround-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Optimización para PWA */
+}
+
+/* * =========================================================================
  * PROYECTO: BAHI.ar - Sistema de Diseño Unificado
  * =========================================================================
  * Este archivo es la ÚNICA fuente de verdad. No crees estilos CSS en los HTML.
@@ -7,7 +16,6 @@
  */
 
 /* ── 1. CONFIGURACIÓN MAESTRA (Variables) ── */
-/* Cambia estos valores aquí y se actualizará en toda la PWA automáticamente */
 :root {
     /* Paleta de colores principal */
     --primary: #191971;          /* Azul corporativo */
@@ -15,32 +23,31 @@
     --bg-main: #F8FAFC;          /* Fondo de toda la app */
     --card-bg: #FFFFFF;          /* Fondo de las tarjetas */
     --text-main: #0F172A;        /* Color de texto principal */
-    --text-muted: #525E73;       /* Color para texto secundario — ratio 4.5:1 sobre blanco (WCAG AA) */
+    --text-muted: #525E73;       /* Color para texto secundario */
     --border-light: rgba(226, 232, 240, 0.8); /* Bordes suaves */
 
-    /* Paleta Naranja (Universal para botones y alertas) */
+    /* Paleta Naranja */
     --orange: #FF6B00;
     --orange-dark: #CC5500;
     --orange-light: rgba(255, 107, 0, 0.10);
     --orange-border: rgba(255, 107, 0, 0.25);
 
     /* Medidas y Estructura */
-    --radius-card: 16px;         /* Redondez de tarjetas */
-    --radius-btn: 12px;          /* Redondez de botones */
-    --shadow-soft: 0 2px 4px rgba(15, 23, 42, 0.05); /* Sombra suave */
+    --radius-card: 16px;
+    --radius-btn: 12px;
+    --shadow-soft: 0 2px 4px rgba(15, 23, 42, 0.05);
 }
 
-/* Reset básico para que los navegadores no agreguen márgenes extra */
+/* Reset básico */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body { 
-    font-family: 'Inter', sans-serif; 
+    font-family: 'varela_roundregular', sans-serif; 
     background-color: var(--bg-main); 
     color: var(--text-main); 
 }
 
 /* ── 2. BOTONES UNIVERSALES ── */
-/* Uso: <a class="btn btn-accent">Texto</a> */
 .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     height: 40px; padding: 0 16px; border-radius: var(--radius-btn);
@@ -48,19 +55,16 @@ body {
     transition: all 0.2s; text-decoration: none;
 }
 
-/* Botón principal color naranja */
 .btn-accent { background: var(--orange); color: #fff; }
 .btn-accent:hover { opacity: 0.9; }
 
-/* Botón secundario con borde (ideal para mapas) */
 .btn-outline { 
     background: var(--orange-light); 
     color: var(--orange-dark); 
     border: 1px solid var(--orange-border); 
 }
 
-/* ── 3. SISTEMA DE CARDS (Tarjetas Colapsables) ── */
-/* Todas las tarjetas usan esta estructura base */
+/* ── 3. SISTEMA DE CARDS ── */
 .card {
     background: var(--card-bg);
     border-radius: var(--radius-card);
@@ -70,14 +74,12 @@ body {
     overflow: hidden;
 }
 
-/* Cabecera de la tarjeta: el botón que abre/cierra */
 .card-header {
     padding: 16px; width: 100%; border: none; background: transparent;
     display: flex; align-items: center; justify-content: space-between;
-    cursor: pointer; text-align: left;
+    cursor: pointer; text-align: left; min-height: 44px;
 }
 
-/* Cuerpo de la tarjeta (oculto por defecto) */
 .card-body-collapse {
     max-height: 0; opacity: 0;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -85,7 +87,6 @@ body {
     padding: 0 16px;
 }
 
-/* Clase dinámica: cuando se añade 'open', se muestra el contenido */
 .card-body-collapse.open {
     max-height: 1000px; opacity: 1;
     padding: 0 16px 16px;
@@ -95,14 +96,12 @@ body {
 /* ── 4. UTILIDADES ── */
 .hidden { display: none; }
 
-/* Texto solo para lectores de pantalla (no visible, sí accesible) */
 .sr-only {
     position: absolute; width: 1px; height: 1px;
     padding: 0; margin: -1px; overflow: hidden;
     clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
 }
 
-/* Indicador de foco para navegación por teclado */
 .btn:focus-visible,
 .card-header:focus-visible,
 .nav-link:focus-visible {
@@ -110,12 +109,6 @@ body {
     outline-offset: 2px;
 }
 
-/* Target táctil mínimo para cabeceras de tarjeta */
-.card-header {
-    min-height: 44px;
-}
-
-/* Estilo del buscador */
 .search-container {
     position: relative;
     margin: 1rem 16px;
