@@ -74,6 +74,10 @@ function renderizarDatos(tipo, contenedorId) {
             if (linkTel && !linkTel.toLowerCase().startsWith('tel:')) {
                 linkTel = 'tel:' + linkTel;
             }
+            let linkMovil = item.MOVIL ? item.MOVIL : '';
+            if (linkMovil && !linkMovil.toLowerCase().startsWith('https://') && !linkMovil.toLowerCase().startsWith('tel:')) {
+                linkMovil = 'tel:' + linkMovil;
+            }
             fragments.push(`
             <div class="card">
                 <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
@@ -85,8 +89,13 @@ function renderizarDatos(tipo, contenedorId) {
                     <p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${esc(item.LOCALIDAD)}</p>
                     <p style="margin-bottom: 10px;"><strong>Horario:</strong> ${esc(item.HORARIO)}</p>
                     <p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${esc(item.OOSS)}</p>
+                    <p style="margin-bottom: 10px;"><strong>Nivel:</strong> ${esc(item.NIVEL)}</p>
+                    <p style="margin-bottom: 10px;"><strong>Stock:</strong> ${esc(item.STOCK)}</p>
+                    <p style="margin-bottom: 10px;"><strong>Inyectables:</strong> ${item.INYECTABLES ? 'Sí' : 'No'}</p>
+                    <p style="margin-bottom: 10px;"><strong>Delivery:</strong> ${item.DELIVERY ? 'Sí' : 'No'}</p>
                     <div style="display: flex; gap: 10px;">
                         ${item.FIJO ? `<a href="${esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${esc(item.PRESTADOR)}, ${esc(item.FIJO)}">Llamar</a>` : ''}
+                        ${item.MOVIL ? `<a href="${esc(linkMovil)}" class="btn btn-accent" aria-label="WhatsApp de ${esc(item.PRESTADOR)}">WhatsApp</a>` : ''}
                         <a href="${safeMapsUrl(item.MAPS)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${esc(item.PRESTADOR)} en Google Maps">Mapa</a>
                     </div>
                 </div>
