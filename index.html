@@ -39,12 +39,132 @@
 
     <!-- Contenido Principal -->
     <main class="app-view" id="content">
-        <!-- El contenido específico de cada pestaña irá aquí -->
-        <div id="main-content"></div>
+        <div id="main-content">
+            <div style="padding: 16px;">
+                <h2 id="titulo-home">Farmacias de Turno</h2>
+                <p id="info-turno" style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
+                    Cargando información de guardia...
+                </p>
+            </div>
+
+            <!-- Contenedor dinámico para las farmacias de turno -->
+            <div id="contenedor-cards"></div>
+        </div>
     </main>
 
     <!-- Navegación -->
     <div id="nav-placeholder"></div>
     <script src="app.js" defer></script>
+    <script defer>
+        /**
+         * Lógica de Farmacias de Turno integrada para BAHI.ar
+         * Ventana horaria: 08:30 hs. Zona horaria: ART.
+         */
+        (function() {
+            const CONFIG = {
+                TIMEZONE: 'America/Argentina/Buenos_Aires',
+                HORA_CAMBIO: 8,
+                MINUTO_CAMBIO: 30,
+                URL_TURNERO: 'data/turnero.json',
+                URL_PADRON: 'data/bd_bahiar.json'
+            };
+
+            function obtenerFechaOperativa() {
+                const ahora = new Intl.DateTimeFormat('en-CA', {
+                    timeZone: CONFIG.TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', hour12: false
+                }).formatToParts(new Date());
+
+                const p = {}; ahora.forEach(v => p[v.type] = v.value);
+                const h = parseInt(p.hour); const m = parseInt(p.minute);
+                const fecha = new Date(`${p.year}-${p.month}-${p.day}T12:00:00Z`);
+
+                if (h < CONFIG.HORA_CAMBIO || (h === CONFIG.HORA_CAMBIO && m < CONFIG.MINUTO_CAMBIO)) {
+                    fecha.setDate(fecha.getDate() - 1);
+                }
+                return fecha.toISOString().split('T')[0];
+            }
+
+            async function inicializarTurnos() {
+                const contenedor = document.getElementById('contenedor-cards');
+                const infoTurno = document.getElementById('info-turno');
+                if (!contenedor) return;
+
+                contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Calculando guardia...</div>';
+
+                try {
+                    const [resT, resP] = await Promise.all([fetch(CONFIG.URL_TURNERO), fetch(CONFIG.URL_PADRON)]);
+                    const turnero = await resT.json();
+                    const padron = await resP.json();
+
+                    const fechaOp = obtenerFechaOperativa();
+                    const entrada = turnero.find(t => t.fecha === fechaOp);
+                    
+                    if (!entrada) throw new Error("Fecha no encontrada en turnero");
+
+                    const grupo = entrada.grupo;
+                    infoTurno.textContent = `Grupo de Guardia: ${grupo} | Fecha: ${fechaOp.split('-').reverse().join('/')}`;
+
+                    // Filtrado: Grupo + Garantía Conectiva (FIJO o MOVIL)
+                    const deTurno = padron.prestadores.filter(f => 
+                        f.TIPO === 'FARMACIA' && f.grupo === grupo && (f.FIJO || f.MOVIL)
+                    );
+
+                    // Renderizado utilizando las funciones globales de app.js para consistencia
+                    if (typeof window.renderizarDatos === 'function') {
+                        // Inyectamos manualmente el array filtrado para no repetir la lógica de renderCards de app.js
+                        // Creamos un pequeño wrapper para usar la lógica de renderizado existente
+                        const contenedorOriginal = document.getElementById('contenedor-cards');
+                        
+                        const renderCards = (lista) => {
+                            contenedorOriginal.innerHTML = '';
+                            if (lista.length === 0) {
+                                contenedorOriginal.innerHTML = '<p style="padding: 16px;">No hay farmacias disponibles para este turno.</p>';
+                                return;
+                            }
+                            const fragments = lista.map((item, index) => {
+                                const bodyId = `card-body-TURNO-${index}`;
+                                let linkTel = item.FIJO ? (item.FIJO.toLowerCase().startsWith('tel:') ? item.FIJO : 'tel:' + item.FIJO) : '';
+                                let linkMovil = item.MOVIL ? (item.MOVIL.toLowerCase().startsWith('https://') || item.MOVIL.toLowerCase().startsWith('tel:') ? item.MOVIL : 'tel:' + item.MOVIL) : '';
+                                const telDisplay = item.FIJO ? item.FIJO.replace(/^tel:/i, '') : '';
+                                const mapsUrl = window.safeMapsUrl ? window.safeMapsUrl(item.MAPS) : item.MAPS;
+
+                                return `
+                                <div class="card">
+                                    <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
+                                        <span>${window.esc(item.PRESTADOR)}</span>
+                                        <span aria-hidden="true">▼</span>
+                                    </button>
+                                    <div class="card-body-collapse" id="${bodyId}">
+                                        ${item.DOMICILIO ? `<p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${window.esc(item.DOMICILIO)}</p>` : ''}
+                                        ${item.LOCALIDAD ? `<p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${window.esc(item.LOCALIDAD)}</p>` : ''}
+                                        ${item.HORARIO ? `<p style="margin-bottom: 10px;"><strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>` : ''}
+                                        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                                            ${linkTel ? `<a href="${window.esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${window.esc(item.PRESTADOR)}, ${window.esc(telDisplay)}">Llamar</a>` : ''}
+                                            ${linkMovil ? `<a href="${window.esc(linkMovil)}" class="btn btn-accent" aria-label="WhatsApp de ${window.esc(item.PRESTADOR)}">WhatsApp</a>` : ''}
+                                            ${mapsUrl ? `<a href="${window.esc(mapsUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${window.esc(item.PRESTADOR)} en Google Maps">Mapa</a>` : ''}
+                                        </div>
+                                    </div>
+                                </div>`;
+                            });
+                            contenedorOriginal.innerHTML = fragments.join('');
+                        };
+                        renderCards(deTurno);
+                    }
+                } catch (e) {
+                    console.error(e);
+                    contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar las farmacias de turno.</p>';
+                    infoTurno.textContent = "No se pudo cargar la información de guardia.";
+                }
+            }
+
+            // Esperar a que app.js esté listo para usar esc() y safeMapsUrl()
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => setTimeout(inicializarTurnos, 100));
+            } else {
+                setTimeout(inicializarTurnos, 100);
+            }
+        })();
+    </script>
 </body>
 </html>

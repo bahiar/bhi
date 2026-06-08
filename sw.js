@@ -1,13 +1,27 @@
-const CACHE_NAME = 'bahi-cache-v2.4';
-const DATA_CACHE_NAME = 'bahi-data-cache-v2.4';
+const CACHE_NAME = 'bahi-cache-v2.5';
+const DATA_CACHE_NAME = 'bahi-data-cache-v2.5';
 
 // Assets del shell de la app (Cache-first)
-const SHELL_ASSETS = ['./', './index.html', './style.css', './app.js', './nav.html', './farmacias.html', './guardias.html', './laboratorios.html'];
+const SHELL_ASSETS = [
+  './', 
+  './index.html', 
+  './style.css', 
+  './app.js', 
+  './nav.html', 
+  './farmacias.html', 
+  './guardias.html', 
+  './laboratorios.html',
+  './manifest.json'
+];
 
 // Assets de datos (Stale-While-Revalidate)
-const DATA_ASSETS = ['./data/bd_bahiar.json'];
+// Añadimos turnero.json para que las farmacias de turno funcionen offline
+const DATA_ASSETS = [
+  './data/bd_bahiar.json',
+  './data/turnero.json'
+];
 
-// Instalar: precachear el shell y los datos en sus cachés correspondientes
+// Instalar: precachear el shell y los datos
 self.addEventListener('install', (e) => {
   e.waitUntil(
     Promise.all([
@@ -17,7 +31,7 @@ self.addEventListener('install', (e) => {
   );
 });
 
-// Activar: limpiar cachés viejas y tomar control de clientes abiertos
+// Activar: limpiar cachés viejas
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) =>
@@ -30,26 +44,23 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-// Fetch: estrategia diferenciada por tipo de recurso
+// Fetch: estrategia diferenciada
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
 
-  // Stale-While-Revalidate para el JSON de datos
-  if (url.pathname.includes('bd_bahiar.json')) {
+  // Stale-While-Revalidate para archivos JSON (Datos)
+  if (url.pathname.endsWith('.json') && url.pathname.includes('/data/')) {
     e.respondWith(
       caches.open(DATA_CACHE_NAME).then((cache) => {
         return fetch(e.request)
           .then((networkResponse) => {
-            // Respuesta fresca de red: actualizar caché y marcar como fresca
             cache.put(e.request, networkResponse.clone());
-            // Notificar a los clientes que los datos son frescos
             self.clients.matchAll().then((clients) =>
               clients.forEach((c) => c.postMessage({ tipo: 'DATOS_FRESCOS' }))
             );
             return networkResponse;
           })
           .catch(() => {
-            // Sin red: servir desde caché y avisar que son datos guardados
             return cache.match(e.request).then((cached) => {
               if (cached) {
                 self.clients.matchAll().then((clients) =>
@@ -57,11 +68,6 @@ self.addEventListener('fetch', (e) => {
                 );
                 return cached;
               }
-              // Sin caché tampoco: respuesta de error legible
-              return new Response(
-                JSON.stringify({ error: 'Sin conexión y sin datos guardados.' }),
-                { headers: { 'Content-Type': 'application/json' } }
-              );
             });
           });
       })
@@ -69,15 +75,12 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // Cache-first para el resto de assets del shell
+  // Cache-first para el resto de assets
   e.respondWith(
-    caches.match(e.request).then((response) => response || fetch(e.request).catch(
-      () => new Response('Offline', { status: 503, statusText: 'Service Unavailable' })
-    ))
+    caches.match(e.request).then((response) => response || fetch(e.request))
   );
 });
 
-// Notificar a los clientes cuando hay una nueva versión esperando
 self.addEventListener('message', (e) => {
   if (e.data === 'SKIP_WAITING') self.skipWaiting();
 });
