@@ -64,6 +64,66 @@
         }
     </script>
     <script defer>
+      function renderizarDatos(tipo, contenedorId) {
+        const contenedor = document.getElementById(contenedorId);
+        if (!contenedor) return;
+
+        const renderCards = (lista) => {
+          contenedor.innerHTML = '';
+          if (lista.length === 0) {
+            contenedor.innerHTML = '<p style="padding: 16px;">No hay datos disponibles.</p>';
+            return;
+          }
+          lista.forEach((item, index) => {
+            const bodyId = `card-body-${tipo}-${index}`;
+            let linkTel = item.FIJO ? item.FIJO : '';
+            if (linkTel && !linkTel.startsWith('tel:')) {
+              linkTel = 'tel:' + linkTel;
+            }
+            let linkMov = item.MOVIL ? item.MOVIL : '';
+            if (linkMov && !linkMov.startsWith('tel:')) {
+              linkMov = 'tel:' + linkMov;
+            }
+            const card = `
+<div class="card">
+  <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
+    <span>${item.PRESTADOR || ''}</span>
+    <span aria-hidden="true">▼</span>
+  </button>
+  <div class="card-body-collapse" id="${bodyId}">
+    ${item.DOMICILIO ? `<p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${item.DOMICILIO}</p>` : ''}
+    ${item.LOCALIDAD ? `<p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${item.LOCALIDAD}</p>` : ''}
+    ${item.NIVEL ? `<p style="margin-bottom: 10px;"><strong>Nivel:</strong> ${item.NIVEL}</p>` : ''}
+    ${item.ESTANDART ? `<p style="margin-bottom: 10px;"><strong>Estándar:</strong> ${item.ESTANDART}</p>` : ''}
+    ${item.HORARIO ? `<p style="margin-bottom: 10px;"><strong>Horario:</strong> ${item.HORARIO}</p>` : ''}
+    ${item.STOCK ? `<p style="margin-bottom: 10px;"><strong>Stock:</strong> ${item.STOCK}</p>` : ''}
+    ${item.INYECTABLES ? `<p style="margin-bottom: 10px;"><strong>Inyectables:</strong> ${item.INYECTABLES}</p>` : ''}
+    ${item.DELIVERY ? `<p style="margin-bottom: 10px;"><strong>Delivery:</strong> ${item.DELIVERY}</p>` : ''}
+    ${item.OOSS ? `<p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${item.OOSS}</p>` : ''}
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      ${item.FIJO ? `<a href="${linkTel}" class="btn btn-accent" aria-label="Llamar a ${item.PRESTADOR}, ${item.FIJO}">Llamar (${item.FIJO})</a>` : ''}
+      ${item.MOVIL ? `<a href="${linkMov}" class="btn btn-accent" aria-label="Llamar al móvil de ${item.PRESTADOR}, ${item.MOVIL}">Móvil (${item.MOVIL})</a>` : ''}
+      ${item.MAPS ? `<a href="${item.MAPS}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${item.PRESTADOR} en Google Maps">Mapa</a>` : ''}
+    </div>
+  </div>
+</div>`;
+            contenedor.innerHTML += card;
+          });
+        };
+
+        contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando...</div>';
+        fetch('data/bd_bahiar.json')
+          .then(response => response.json())
+          .then(data => {
+            const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
+            renderCards(filtrados);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar datos.</p>';
+          });
+      }
+
       document.addEventListener('DOMContentLoaded', () => renderizarDatos('FARMACIA', 'contenedor-cards'));
     </script>
 </body>
