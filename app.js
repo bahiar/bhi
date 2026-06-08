@@ -14,8 +14,9 @@ window.safeMapsUrl = (url) => {
     if (!url) return null;
     try {
         const parsed = new URL(url);
-        const allowed = ['maps.google.com', 'www.google.com', 'maps.app.goo.gl'];
-        return allowed.includes(parsed.hostname) ? url : null;
+        const allowed = ['maps.google.com', 'www.google.com', 'maps.app.goo.gl', 'goo.gl'];
+        const isAllowed = allowed.some(domain => parsed.hostname.includes(domain));
+        return isAllowed ? url : null;
     } catch (_) { return null; }
 };
 
@@ -58,45 +59,41 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Carga de Navegación
-    const nav = document.getElementById('nav-placeholder');
-    if (nav) {
-        fetch('nav.html').then(r => r.text()).then(html => { nav.innerHTML = html; });
+    // Carga de Navegación Modular
+    const navPlaceholder = document.getElementById('nav-placeholder');
+    if (navPlaceholder) {
+        fetch('nav.html')
+            .then(r => r.text())
+            .then(html => {
+                // Inyectamos el HTML y forzamos el renderizado de los links como bloques
+                navPlaceholder.innerHTML = html;
+                // Pequeño fix para asegurar que los estilos se apliquen a los nuevos elementos
+                const links = navPlaceholder.querySelectorAll('.nav-link');
+                links.forEach(link => {
+                    if (window.location.pathname.includes(link.getAttribute('href'))) {
+                        link.classList.add('active');
+                    }
+                });
+            })
+            .catch(err => console.error('Error cargando nav:', err));
     }
 
-    // Acordeón Global
+    // Acordeón Global (Delegación de eventos)
     document.addEventListener('click', (e) => {
         const header = e.target.closest('.card-header');
         if (header) {
             const body = header.nextElementSibling;
-            const isOpen = body.classList.toggle('open');
-            header.setAttribute('aria-expanded', isOpen);
+            if (body && body.classList.contains('card-body-collapse')) {
+                const isOpen = body.classList.toggle('open');
+                header.setAttribute('aria-expanded', isOpen);
+            }
         }
     });
 
     configurarBuscador();
 });
 
-// 4. LÓGICA DE DATOS (Guardias e Index)
-function renderizarDatos(tipo, contenedorId) {
-    const contenedor = document.getElementById(contenedorId);
-    if (!contenedor) return;
-
-    if (tipo === 'GUARDIA') {
-        const estaticas = [
-            { PRESTADOR: "Hospital Municipal", DOMICILIO: "Estomba 968", FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464" },
-            { PRESTADOR: "Hospital Penna", DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385" }
-            // ... resto de hospitales se cargan igual
-        ];
-        contenedor.innerHTML = estaticas.map((item, i) => window.crearCardHTML(item, tipo, i)).join('');
-    } else {
-        fetch('data/bd_bahiar.json').then(r => r.json()).then(data => {
-            const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
-            contenedor.innerHTML = filtrados.map((item, i) => window.crearCardHTML(item, tipo, i)).join('');
-        });
-    }
-}
-
+// 4. BUSCADOR GLOBAL
 function configurarBuscador() {
     const input = document.querySelector('.search-container input:not(#buscador-live)');
     if (input) {

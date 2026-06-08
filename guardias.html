@@ -43,7 +43,7 @@
             <div style="padding: 16px;">
                 <h2>Guardias Médicas</h2>
                 <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
-                    Directorio de salud Bahía Blanca.
+                    Hospitales y Clínicas con atención 24 hs.
                 </p>
             </div>
 
@@ -56,13 +56,27 @@
     <div id="nav-placeholder"></div>
     <script src="app.js" defer></script>
     <script defer>
+      /**
+       * Renderizado de Guardias Médicas
+       * Lista completa de centros de salud de Bahía Blanca
+       */
       document.addEventListener('DOMContentLoaded', () => {
-          // Pequeño delay para asegurar que app.js ha cargado sus funciones globales
           setTimeout(() => {
-              if (typeof renderizarDatos === 'function') {
-                  renderizarDatos('GUARDIA', 'contenedor-cards');
-              }
-          }, 50);
+              const contenedor = document.getElementById('contenedor-cards');
+              if (!contenedor || typeof window.crearCardHTML !== 'function') return;
+
+              const guardiasEstaticas = [
+                  { PRESTADOR: "Hospital Municipal", DOMICILIO: "Estomba 968", FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464", HORARIO: "24 hs" },
+                  { PRESTADOR: "Hospital Penna", DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385", HORARIO: "24 hs" },
+                  { PRESTADOR: "Privado del Sur", DOMICILIO: "Las Heras 164", FIJO: "02914550270", MAPS: "https://maps.google.com/?cid=4096557740069257162", HORARIO: "24 hs" },
+                  { PRESTADOR: "HAM - Asociación Médica", DOMICILIO: "Patricios 347", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615", HORARIO: "24 hs" },
+                  { PRESTADOR: "Hospital Italiano", DOMICILIO: "Necochea 675", FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660", HORARIO: "24 hs" },
+                  { PRESTADOR: "Hospital Español", DOMICILIO: "Estomba 571", FIJO: "02914595555", MAPS: "https://maps.google.com/?cid=2064372742749592359", HORARIO: "24 hs" },
+                  { PRESTADOR: "Hospital Matera", DOMICILIO: "9 de Julio 461", FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647", HORARIO: "24 hs" }
+              ];
+
+              contenedor.innerHTML = guardiasEstaticas.map((item, i) => window.crearCardHTML(item, 'GUARDIA', i)).join('');
+          }, 150);
       });
     </script>
 </body>
