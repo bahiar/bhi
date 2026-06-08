@@ -198,46 +198,60 @@
 
             // Poblar Selects
             const selLoc = document.getElementById('chip-localidad');
-            [...new Set(datosOriginales.map(p => p.LOCALIDAD).filter(Boolean))].sort().forEach(l => {
-              const o = document.createElement('option'); o.value = l; o.textContent = l; selLoc.appendChild(o);
-            });
+            if (selLoc) {
+              const localidades = [...new Set(datosOriginales.map(p => p.LOCALIDAD).filter(Boolean))].sort();
+              localidades.forEach(l => {
+                const o = document.createElement('option'); o.value = l; o.textContent = l; selLoc.appendChild(o);
+              });
+            }
 
             const selOoss = document.getElementById('chip-ooss');
-            const oossSet = new Set();
-            datosOriginales.forEach(p => (p.OOSS || '').split(',').forEach(o => { const t = o.trim(); if(t) oossSet.add(t); }));
-            [...oossSet].sort().forEach(o => {
-              const opt = document.createElement('option'); opt.value = o; opt.textContent = o; selOoss.appendChild(opt);
-            });
+            if (selOoss) {
+              const oossSet = new Set();
+              datosOriginales.forEach(p => (p.OOSS || '').split(',').forEach(o => { const t = o.trim(); if(t) oossSet.add(t); }));
+              [...oossSet].sort().forEach(o => {
+                const opt = document.createElement('option'); opt.value = o; opt.textContent = o; selOoss.appendChild(opt);
+              });
+            }
 
             // Eventos
-            document.getElementById('buscador-live').addEventListener('input', (e) => {
-              e.stopImmediatePropagation();
-              filtros.texto = e.target.value;
-              aplicarFiltros();
-            });
+            const buscador = document.getElementById('buscador-live');
+            if (buscador) {
+              buscador.addEventListener('input', (e) => {
+                e.stopImmediatePropagation();
+                filtros.texto = e.target.value;
+                aplicarFiltros();
+              });
+            }
 
             ['chip-stock', 'chip-inyectables', 'chip-delivery'].forEach(id => {
               const btn = document.getElementById(id);
-              btn.addEventListener('click', () => {
-                const field = btn.getAttribute('data-field').toLowerCase();
-                filtros[field] = !filtros[field];
-                btn.classList.toggle('active', filtros[field]);
-                btn.setAttribute('aria-pressed', filtros[field]);
+              if (btn) {
+                btn.addEventListener('click', () => {
+                  const field = btn.getAttribute('data-field').toLowerCase();
+                  filtros[field] = !filtros[field];
+                  btn.classList.toggle('active', filtros[field]);
+                  btn.setAttribute('aria-pressed', filtros[field]);
+                  aplicarFiltros();
+                });
+              }
+            });
+
+            if (selLoc) {
+              selLoc.addEventListener('change', (e) => {
+                filtros.localidad = e.target.value;
+                selLoc.classList.toggle('active', !!e.target.value);
                 aplicarFiltros();
               });
-            });
+            }
 
-            selLoc.addEventListener('change', (e) => {
-              filtros.localidad = e.target.value;
-              selLoc.classList.toggle('active', !!e.target.value);
-              aplicarFiltros();
-            });
-
-            selOoss.addEventListener('change', (e) => {
-              filtros.ooss = e.target.value;
-              selOoss.classList.toggle('active', !!e.target.value);
-              aplicarFiltros();
-            });
+            if (selOoss) {
+              selOoss.addEventListener('change', (e) => {
+                filtros.ooss = e.target.value;
+                selOoss.classList.toggle('active', !!e.target.value);
+                aplicarFiltros();
+              });
+            }
 
             renderCards(datosOriginales);
           } catch (e) {
@@ -246,14 +260,19 @@
           }
         }
 
-        // Bloqueo de funciones conflictivas de app.js
-        window.renderizarDatos = function() { console.log('Renderizado gestionado localmente.'); };
-        window.configurarBuscador = function() { console.log('Buscador gestionado localmente.'); };
+        // Bloqueo total de funciones conflictivas de app.js para esta vista
+        window.renderizarDatos = function() {};
+        window.configurarBuscador = function() {};
+        
+        // Desactivar el buscador global de app.js si ya existe
+        const globalBuscador = document.querySelector('.search-container input:not(#buscador-live)');
+        if (globalBuscador) globalBuscador.style.display = 'none';
 
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', inicializar);
         } else {
-          inicializar();
+          // Pequeño delay para asegurar que app.js ya se ejecutó y podemos sobrescribir sus efectos
+          setTimeout(inicializar, 100);
         }
       })();
     </script>
