@@ -21,6 +21,52 @@
     <meta name="theme-color" content="#191971">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <style>
+      .filter-chips-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0 16px 12px 16px;
+      }
+      .filter-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 5px 12px;
+        border-radius: 16px;
+        border: 1.5px solid var(--accent, #4f46e5);
+        background: transparent;
+        color: var(--accent, #4f46e5);
+        font-size: 13px;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+        white-space: nowrap;
+      }
+      .filter-chip.active {
+        background: var(--accent, #4f46e5);
+        color: #fff;
+      }
+      .filter-chip-select {
+        border: 1.5px solid var(--accent, #4f46e5);
+        border-radius: 16px;
+        padding: 5px 10px;
+        font-size: 13px;
+        background: transparent;
+        color: var(--accent, #4f46e5);
+        cursor: pointer;
+        outline: none;
+        transition: background 0.15s, color 0.15s;
+      }
+      .filter-chip-select.active {
+        background: var(--accent, #4f46e5);
+        color: #fff;
+      }
+      .filter-chip-select option {
+        background: #fff;
+        color: #191971;
+      }
+    </style>
 </head>
 <body>
 
@@ -34,7 +80,20 @@
     <!-- Buscador Global -->
     <div class="search-container">
         <div class="search-icon" aria-hidden="true">🔍</div>
-        <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+        <input type="text" id="buscador-live" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+    </div>
+
+    <!-- Filter Chips -->
+    <div class="filter-chips-container" id="filter-chips-container">
+      <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por localidad">
+        <option value="">Todas las localidades</option>
+      </select>
+      <button class="filter-chip" id="chip-stock" data-field="STOCK" aria-pressed="false">Stock</button>
+      <button class="filter-chip" id="chip-inyectables" data-field="INYECTABLES" aria-pressed="false">Inyectables</button>
+      <button class="filter-chip" id="chip-delivery" data-field="DELIVERY" aria-pressed="false">Delivery</button>
+      <select class="filter-chip-select" id="chip-ooss" aria-label="Filtrar por Obra Social">
+        <option value="">Todas las OOSS</option>
+      </select>
     </div>
 
     <!-- Contenido Principal -->
@@ -115,8 +174,119 @@
         fetch('data/bd_bahiar.json')
           .then(response => response.json())
           .then(data => {
-            const filtrados = data.prestadores.filter(p => p.TIPO === tipo);
-            renderCards(filtrados);
+            const todosTipo = data.prestadores.filter(p => p.TIPO === tipo);
+
+            // Poblar select de LOCALIDAD
+            const selectLocalidad = document.getElementById('chip-localidad');
+            if (selectLocalidad) {
+              const localidades = [...new Set(todosTipo.map(p => p.LOCALIDAD).filter(Boolean))].sort();
+              localidades.forEach(loc => {
+                const opt = document.createElement('option');
+                opt.value = loc;
+                opt.textContent = loc;
+                selectLocalidad.appendChild(opt);
+              });
+            }
+
+            // Poblar select de OOSS
+            const selectOoss = document.getElementById('chip-ooss');
+            if (selectOoss) {
+              const oossSet = new Set();
+              todosTipo.forEach(p => {
+                if (p.OOSS) {
+                  p.OOSS.split(',').forEach(o => {
+                    const trimmed = o.trim();
+                    if (trimmed) oossSet.add(trimmed);
+                  });
+                }
+              });
+              [...oossSet].sort().forEach(ooss => {
+                const opt = document.createElement('option');
+                opt.value = ooss;
+                opt.textContent = ooss;
+                selectOoss.appendChild(opt);
+              });
+            }
+
+            // Estado de filtros
+            const filtros = {
+              texto: '',
+              localidad: '',
+              stock: false,
+              inyectables: false,
+              delivery: false,
+              ooss: ''
+            };
+
+            const aplicarFiltros = () => {
+              const texto = filtros.texto.toLowerCase();
+              const resultado = todosTipo.filter(item => {
+                // Búsqueda en vivo: PRESTADOR y DOMICILIO
+                if (texto) {
+                  const enPrestador = (item.PRESTADOR || '').toLowerCase().includes(texto);
+                  const enDomicilio = (item.DOMICILIO || '').toLowerCase().includes(texto);
+                  if (!enPrestador && !enDomicilio) return false;
+                }
+                // Chip LOCALIDAD
+                if (filtros.localidad && (item.LOCALIDAD || '') !== filtros.localidad) return false;
+                // Chip STOCK (booleano: tiene valor no vacío)
+                if (filtros.stock && !item.STOCK) return false;
+                // Chip INYECTABLES (booleano)
+                if (filtros.inyectables && !item.INYECTABLES) return false;
+                // Chip DELIVERY (booleano)
+                if (filtros.delivery && !item.DELIVERY) return false;
+                // Chip OOSS (contiene la obra social)
+                if (filtros.ooss) {
+                  const oossItem = (item.OOSS || '').toLowerCase();
+                  if (!oossItem.includes(filtros.ooss.toLowerCase())) return false;
+                }
+                return true;
+              });
+              renderCards(resultado);
+            };
+
+            // Evento búsqueda en vivo
+            const buscador = document.getElementById('buscador-live');
+            if (buscador) {
+              buscador.addEventListener('input', () => {
+                filtros.texto = buscador.value;
+                aplicarFiltros();
+              });
+            }
+
+            // Chips booleanos
+            ['chip-stock', 'chip-inyectables', 'chip-delivery'].forEach(id => {
+              const btn = document.getElementById(id);
+              if (!btn) return;
+              const field = btn.getAttribute('data-field').toLowerCase();
+              btn.addEventListener('click', () => {
+                filtros[field] = !filtros[field];
+                btn.classList.toggle('active', filtros[field]);
+                btn.setAttribute('aria-pressed', filtros[field]);
+                aplicarFiltros();
+              });
+            });
+
+            // Select LOCALIDAD
+            if (selectLocalidad) {
+              selectLocalidad.addEventListener('change', () => {
+                filtros.localidad = selectLocalidad.value;
+                selectLocalidad.classList.toggle('active', !!selectLocalidad.value);
+                aplicarFiltros();
+              });
+            }
+
+            // Select OOSS
+            if (selectOoss) {
+              selectOoss.addEventListener('change', () => {
+                filtros.ooss = selectOoss.value;
+                selectOoss.classList.toggle('active', !!selectOoss.value);
+                aplicarFiltros();
+              });
+            }
+
+            // Render inicial
+            renderCards(todosTipo);
           })
           .catch(error => {
             console.error('Error:', error);
