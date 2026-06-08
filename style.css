@@ -1,8 +1,8 @@
 /* ── 0. FUENTES PERSONALIZADAS ── */
 @font-face {
     font-family: 'varela_roundregular';
-    src: url('varelaround-regular-webfont.woff2') format('woff2'),
-         url('varelaround-regular-webfont.woff') format('woff');
+    src: url('assets/fonts/varelaround-regular-webfont.woff2') format('woff2'),
+         url('assets/fonts/varelaround-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap; /* Optimización para PWA */
@@ -128,4 +128,49 @@ body {
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
+}
+
+/* Estilos para los Filter Chips (Añadidos para consistencia) */
+.filter-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 16px 12px 16px;
+}
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    border-radius: 16px;
+    border: 1.5px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+.filter-chip.active {
+    background: var(--accent);
+    color: #fff;
+}
+.filter-chip-select {
+    border: 1.5px solid var(--accent);
+    border-radius: 16px;
+    padding: 5px 10px;
+    font-size: 13px;
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    outline: none;
+    transition: background 0.15s, color 0.15s;
+}
+.filter-chip-select.active {
+    background: var(--accent);
+    color: #fff;
+}
+.filter-chip-select option {
+    background: #fff;
+    color: var(--primary);
 }
