@@ -1,7 +1,6 @@
 // Cargar la navegación modular y activar buscador al iniciar
 document.addEventListener("DOMContentLoaded", function() {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js');
         navigator.serviceWorker.addEventListener('message', (e) => {
             if (e.data && e.data.tipo === 'DATOS_EN_CACHE') {
                 console.info('[SW] Datos servidos desde caché offline.');
