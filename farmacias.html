@@ -5,19 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BAHI.ar | Farmacias</title>
     
-    <!-- Meta SEO para indexación -->
     <meta name="description" content="Directorio de farmacias en Bahía Blanca.">
     <link rel="canonical" href="https://bahiar.github.io/bhi/farmacias.html">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="BAHI.ar | Farmacias">
     <meta property="og:description" content="Directorio de farmacias en Bahía Blanca.">
     <meta property="og:url" content="https://bahiar.github.io/bhi/farmacias.html">
     <meta property="og:type" content="website">
 
-    <!-- Metadatos PWA -->
     <meta name="theme-color" content="#191971">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -70,20 +67,26 @@
 </head>
 <body>
 
-    <!-- Header único -->
     <header class="main-header">
         <div class="header-content">
             <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
         </div>
     </header>
 
-    <!-- Buscador Global -->
     <div class="search-container">
         <div class="search-icon" aria-hidden="true">🔍</div>
         <input type="text" id="buscador-live" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
     </div>
 
-    <!-- Filter Chips -->
+    <nav class="sub-nav" aria-label="Accesos rápidos">
+        <ul class="sub-nav-list">
+            <li><a href="index.html" class="sub-nav-link">Turnos</a></li>
+            <li><a href="guardias.html" class="sub-nav-link">Guardias</a></li>
+            <li><a href="farmacias.html" class="sub-nav-link active">Farmacias</a></li>
+            <li><a href="laboratorios.html" class="sub-nav-link">Laboratorios</a></li>
+        </ul>
+    </nav>
+
     <div class="filter-chips-container" id="filter-chips-container">
       <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por localidad">
         <option value="">Todas las localidades</option>
@@ -96,7 +99,6 @@
       </select>
     </div>
 
-    <!-- Contenido Principal -->
     <main class="app-view" id="content">
         <div id="main-content">
             <div style="padding: 16px;">
@@ -106,13 +108,11 @@
                 </p>
             </div>
 
-            <!-- Contenedor dinámico -->
             <div id="contenedor-cards"></div>
             
         </div>
     </main>
 
-    <!-- Navegación -->
     <div id="nav-placeholder"></div>
     <script src="app.js" defer></script>
     <script defer>
