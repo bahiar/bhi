@@ -165,32 +165,7 @@ body {
     box-shadow: 0 0 0 3px var(--orange-light), var(--shadow-soft);
 }
 
-/* Badge de estado generado por CSS puro — cero JS, cero latencia */
-.card[data-estado="turno"] .card-badge::before {
-    content: "● De turno";
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--orange-dark);
-    background: var(--orange-light);
-    border: 1px solid var(--orange-border);
-    border-radius: 20px;
-    padding: 2px 9px;
-    margin-bottom: 4px;
-}
 
-.card[data-estado="24h"] .card-badge::before {
-    content: "24 h";
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    color: #0055CC;
-    background: rgba(31, 117, 254, 0.10);
-    border: 1px solid rgba(31, 117, 254, 0.25);
-    border-radius: 20px;
-    padding: 2px 9px;
-    margin-bottom: 4px;
-}
 
 .card-header {
     padding: 14px 16px;
