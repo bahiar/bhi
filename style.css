@@ -95,7 +95,58 @@ body {
     padding: 0 16px 16px;
     border-top: 1px solid var(--border-light);
 }
+/* ── 3.1. MODIFICADOR DE CARD: URGENCIA ── */
+.card--urgencia {
+  border: 2px solid var(--orange); /* Borde más prominente para urgencia */
+  box-shadow: 0 4px 8px rgba(255, 107, 0, 0.2); /* Sombra más pronunciada */
+  background-color: var(--orange-light); /* Fondo suave para destacar */
+}
 
+.card--urgencia .card-content {
+  padding: 16px; /* Asegurar padding consistente */
+}
+
+.card--urgencia .farmacia-nombre {
+  font-size: 1.2em; /* Nombre más grande */
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.card--urgencia .farmacia-direccion {
+  font-size: 0.95em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.card--urgencia .card-actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 16px;
+  justify-content: space-around; /* Distribuir botones */
+}
+
+.card--urgencia .card-actions .btn {
+  flex-grow: 1; /* Botones que ocupan el espacio disponible */
+  max-width: 50%; /* Limitar el ancho para evitar que sean demasiado grandes en pantallas anchas */
+}
+
+/* Ajustes para los botones existentes */
+.card--urgencia .btn-accent {
+  background: var(--orange); /* Reafirmar el color de acento */
+  color: #fff;
+}
+
+.card--urgencia .btn-outline {
+  background: transparent; /* Fondo transparente para el botón secundario */
+  border: 1px solid var(--orange); /* Borde del color de urgencia */
+  color: var(--orange); /* Texto del color de urgencia */
+}
+
+.card--urgencia .btn-outline:hover {
+  background: var(--orange); /* Invertir colores al pasar el ratón */
+  color: #fff;
+}
 /* ── 4. UTILIDADES ── */
 .hidden { display: none; }
 
