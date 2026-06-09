@@ -7,135 +7,313 @@
     <meta name="description" content="Directorio de salud, farmacias y guardias en Bahía Blanca.">
     <link rel="canonical" href="https://bahiar.github.io/bhi/">
     <link rel="manifest" href="manifest.json">
+
+    <!--
+        PRELOAD: Le dice al navegador que busque el CSS de forma
+        inmediata, sin esperar al parser HTML. Elimina el FOUC
+        (flash de texto sin estilo) especialmente notorio en 3G.
+    -->
+    <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Open Graph -->
     <meta property="og:title" content="BAHI.ar | Directorio de Salud">
     <meta property="og:description" content="Directorio de salud, farmacias y guardias en Bahía Blanca.">
     <meta property="og:url" content="https://bahiar.github.io/bhi/">
     <meta property="og:type" content="website">
+
+    <!-- PWA / iOS -->
     <meta name="theme-color" content="#191971">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
+
     <header class="main-header">
         <div class="header-content">
-            <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
+            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">BAHI<span>.ar</span></a>
         </div>
     </header>
+
     <div class="search-container">
         <div class="search-icon" aria-hidden="true">🔍</div>
-        <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+        <input
+            type="text"
+            placeholder="Buscar en BAHI.ar..."
+            aria-label="Buscar en BAHI.ar"
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+        >
     </div>
-    <nav class="sub-nav" aria-label="Accesos rápidos">
+
+    <nav class="sub-nav" aria-label="Secciones principales">
         <ul class="sub-nav-list">
-            <li><a href="index.html" class="sub-nav-link active">Inicio</a></li>
-            <li><a href="guardias.html" class="sub-nav-link">Guardias</a></li>
-            <li><a href="farmacias.html" class="sub-nav-link">Farmacias</a></li>
+            <li><a href="index.html"        class="sub-nav-link active" aria-current="page">Inicio</a></li>
+            <li><a href="guardias.html"     class="sub-nav-link">Guardias</a></li>
+            <li><a href="farmacias.html"    class="sub-nav-link">Farmacias</a></li>
             <li><a href="laboratorios.html" class="sub-nav-link">Laboratorios</a></li>
         </ul>
     </nav>
+
     <main class="app-view" id="content">
         <div id="main-content">
-            <div style="padding: 16px;">
+
+            <!--
+                PRIORIDAD DE CARGA:
+                1. Este bloque de texto (nombre de sección + leyenda) está en HTML
+                   estático → el navegador lo pinta en el PRIMER repaint, antes de
+                   que llegue cualquier JSON o se ejecute el JS.
+                2. El contenedor de cards empieza con skeletons visibles
+                   → el usuario ve "algo" aunque esté en 3G lento.
+                3. Los datos reales reemplazan los skeletons cuando llegan.
+            -->
+            <div class="section-header">
                 <h2 id="titulo-home">Farmacias de Turno</h2>
-                <p id="info-turno" style="color: var(--text-muted); font-size: 14px; margin-bottom: 4px;">
-                    Cargando información de guardia...
-                </p>
-                <p id="leyenda-horario" style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px; font-weight: 500;"></p>
+                <p id="info-turno">Buscando la farmacia de turno para hoy…</p>
+                <p id="leyenda-horario"></p>
             </div>
-            <div id="contenedor-cards"></div>
+
+            <!--
+                SKELETON LOADER:
+                Aparece instantáneamente (HTML puro, sin JS).
+                La animación shimmer le indica al usuario que la app
+                está cargando y no está congelada.
+                El JS lo reemplaza con las tarjetas reales al llegar los datos.
+            -->
+            <div id="contenedor-cards" aria-live="polite" aria-label="Farmacias de turno">
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
+    <!--
+        SCRIPTS AL FINAL DEL BODY:
+        - app.js (que define crearCardHTML) carga primero.
+        - El script inline espera a que crearCardHTML esté disponible.
+        - Ambos con defer: no bloquean el render del HTML/CSS.
+        - El usuario ya leyó el nombre + leyenda antes de que
+          arranque cualquier línea de JavaScript.
+    -->
     <script src="app.js" defer></script>
+
     <script defer>
         /**
-         * Lógica de Farmacias de Turno integrada para BAHI.ar
-         * Ventana horaria: 08:30 hs. Zona horaria: ART.
+         * Lógica de Farmacias de Turno — BAHI.ar
+         * Ventana horaria de cambio: 08:30 hs ART.
          */
-        (function() {
+        (function () {
+            'use strict';
+
             const CONFIG = {
-                TIMEZONE: 'America/Argentina/Buenos_Aires',
-                HORA_CAMBIO: 8,
-                MINUTO_CAMBIO: 30,
-                URL_TURNERO: 'data/turnero.json',
-                URL_PADRON: 'data/bd_bahiar.json'
+                TIMEZONE:       'America/Argentina/Buenos_Aires',
+                HORA_CAMBIO:    8,
+                MINUTO_CAMBIO:  30,
+                URL_TURNERO:    'data/turnero.json',
+                URL_PADRON:     'data/bd_bahiar.json',
+                /*
+                 * MAX_REINTENTOS: cuántas veces esperar a que crearCardHTML
+                 * esté disponible antes de mostrar error (100ms × 20 = 2s máx).
+                 */
+                MAX_REINTENTOS: 20
             };
 
+            /**
+             * Devuelve la fecha operativa en formato YYYY-MM-DD (ART).
+             * Antes de las 08:30 se usa la fecha del día anterior,
+             * porque el turno comenzó a las 08:30 de ayer.
+             */
             function obtenerFechaOperativa() {
-                const ahora = new Intl.DateTimeFormat('en-CA', {
-                    timeZone: CONFIG.TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit',
-                    hour: '2-digit', minute: '2-digit', hour12: false
+                const partes = new Intl.DateTimeFormat('en-CA', {
+                    timeZone:  CONFIG.TIMEZONE,
+                    year:      'numeric',
+                    month:     '2-digit',
+                    day:       '2-digit',
+                    hour:      '2-digit',
+                    minute:    '2-digit',
+                    hour12:    false
                 }).formatToParts(new Date());
-                const p = {}; ahora.forEach(v => p[v.type] = v.value);
-                const h = parseInt(p.hour); const m = parseInt(p.minute);
-                const fecha = new Date(`${p.year}-${p.month}-${p.day}T12:00:00Z`);
-                if (h < CONFIG.HORA_CAMBIO || (h === CONFIG.HORA_CAMBIO && m < CONFIG.MINUTO_CAMBIO)) {
+
+                const p = {};
+                partes.forEach(v => { p[v.type] = v.value; });
+
+                const hora   = parseInt(p.hour,   10);
+                const minuto = parseInt(p.minute, 10);
+                const fecha  = new Date(`${p.year}-${p.month}-${p.day}T12:00:00Z`);
+
+                const esMadrugada =
+                    hora < CONFIG.HORA_CAMBIO ||
+                    (hora === CONFIG.HORA_CAMBIO && minuto < CONFIG.MINUTO_CAMBIO);
+
+                if (esMadrugada) {
                     fecha.setDate(fecha.getDate() - 1);
                 }
+
                 return fecha.toISOString().split('T')[0];
             }
 
-            async function inicializarTurnos() {
-                const contenedor = document.getElementById('contenedor-cards');
-                const infoTurno = document.getElementById('info-turno');
+            /**
+             * Arma el texto de la leyenda de horario.
+             * Ej: "Atienden desde las 8:30 hs. de hoy (8 de junio)
+             *      hasta las 8:30 hs. de mañana (9 de junio)."
+             */
+            function armarLeyenda(fechaOp) {
+                const meses = [
+                    'enero','febrero','marzo','abril','mayo','junio',
+                    'julio','agosto','septiembre','octubre','noviembre','diciembre'
+                ];
+                const dInicio = new Date(fechaOp + 'T12:00:00Z');
+                const dFin    = new Date(dInicio);
+                dFin.setUTCDate(dFin.getUTCDate() + 1);
+
+                const hoyTxt    = `${dInicio.getUTCDate()} de ${meses[dInicio.getUTCMonth()]}`;
+                const mañanaTxt = `${dFin.getUTCDate()} de ${meses[dFin.getUTCMonth()]}`;
+
+                return `Atienden desde las 8:30 hs. de hoy (${hoyTxt}) hasta las 8:30 hs. de mañana (${mañanaTxt}).`;
+            }
+
+            /**
+             * Muestra el estado de error en el contenedor de cards.
+             * Reemplaza los skeletons con un mensaje claro y accionable.
+             */
+            function mostrarError(contenedor, infoTurno, mensaje) {
+                if (infoTurno) infoTurno.textContent = '';
+                contenedor.innerHTML = `
+                    <div class="error-state" role="alert">
+                        <div class="error-state-icon" aria-hidden="true">⚠️</div>
+                        <p class="error-state-title">No se pudo cargar la información</p>
+                        <p class="error-state-desc">${mensaje}<br>Revisá tu conexión e intentá de nuevo.</p>
+                    </div>`;
+            }
+
+            /**
+             * Carga turnero + padrón en paralelo, determina el grupo
+             * del día y renderiza las tarjetas.
+             *
+             * Si crearCardHTML todavía no está disponible (app.js aún
+             * no terminó de ejecutarse), reintenta hasta MAX_REINTENTOS.
+             */
+            async function inicializarTurnos(reintentos) {
+                reintentos = reintentos || 0;
+
+                const contenedor    = document.getElementById('contenedor-cards');
+                const infoTurno     = document.getElementById('info-turno');
                 const leyendaHorario = document.getElementById('leyenda-horario');
                 if (!contenedor) return;
 
                 try {
-                    const [resT, resP] = await Promise.all([fetch(CONFIG.URL_TURNERO), fetch(CONFIG.URL_PADRON)]);
-                    const turnero = await resT.json();
-                    const padron = await resP.json();
-                    const fechaOp = obtenerFechaOperativa();
-                    const entrada = turnero.find(t => t.fecha === fechaOp);
-                    
-                    if (!entrada) throw new Error("Fecha no encontrada en turnero");
-                    
-                    const grupoActual = entrada.grupo;
-                    infoTurno.textContent = `Grupo de Guardia: ${grupoActual} | Fecha: ${fechaOp.split('-').reverse().join('/')}`;
+                    /*
+                     * Promise.all: descarga turnero y padrón en paralelo.
+                     * En 3G (~1.5 Mbps) esto ahorra ~300-500 ms respecto
+                     * a hacerlo secuencial.
+                     */
+                    const [resT, resP] = await Promise.all([
+                        fetch(CONFIG.URL_TURNERO),
+                        fetch(CONFIG.URL_PADRON)
+                    ]);
 
-                    // Lógica para la leyenda de horario dinámica
-                    if (leyendaHorario) {
-                        const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
-                        const dInicio = new Date(fechaOp + 'T12:00:00Z');
-                        const hoyTxt = `${dInicio.getUTCDate()} de ${meses[dInicio.getUTCMonth()]}`;
-                        const dFin = new Date(dInicio);
-                        dFin.setUTCDate(dFin.getUTCDate() + 1);
-                        const mañanaTxt = `${dFin.getUTCDate()} de ${meses[dFin.getUTCMonth()]}`;
-                        
-                        leyendaHorario.textContent = `Las farmacias atienden desde las 8:30 hs. de hoy (${hoyTxt}) hasta las 8:30 hs. de mañana (${mañanaTxt}).`;
+                    if (!resT.ok || !resP.ok) {
+                        throw new Error('Error HTTP al descargar datos');
                     }
 
-                    const deTurno = padron.prestadores.filter(f => 
-                        f.TIPO === 'FARMACIA' && 
-                        f.GRUPO === grupoActual && 
+                    const turnero = await resT.json();
+                    const padron  = await resP.json();
+                    const fechaOp = obtenerFechaOperativa();
+                    const entrada = turnero.find(t => t.fecha === fechaOp);
+
+                    if (!entrada) {
+                        throw new Error(`Fecha ${fechaOp} no encontrada en el turnero`);
+                    }
+
+                    const grupoActual = entrada.grupo;
+
+                    /* Actualizar la leyenda informativa */
+                    if (infoTurno) {
+                        infoTurno.textContent = `Grupo de Guardia: ${grupoActual} · ${fechaOp.split('-').reverse().join('/')}`;
+                    }
+                    if (leyendaHorario) {
+                        leyendaHorario.textContent = armarLeyenda(fechaOp);
+                    }
+
+                    /* Filtrar farmacias del grupo con teléfono disponible */
+                    const deTurno = padron.prestadores.filter(f =>
+                        f.TIPO  === 'FARMACIA' &&
+                        f.GRUPO === grupoActual &&
                         (f.FIJO || f.MOVIL)
                     );
 
                     if (deTurno.length === 0) {
-                        contenedor.innerHTML = `<p style="padding: 16px;">No se encontraron farmacias registradas para el Grupo ${grupoActual}.</p>`;
+                        contenedor.innerHTML = `
+                            <div class="error-state">
+                                <div class="error-state-icon" aria-hidden="true">🔍</div>
+                                <p class="error-state-title">Sin farmacias registradas</p>
+                                <p class="error-state-desc">No hay farmacias registradas para el Grupo ${grupoActual} con teléfono disponible.</p>
+                            </div>`;
                         return;
                     }
 
-                    if (typeof window.crearCardHTML === 'function') {
-                        contenedor.innerHTML = deTurno.map((item, i) => window.crearCardHTML(item, 'TURNO', i)).join('');
-                    } else {
-                        contenedor.innerHTML = '<p style="padding: 16px;">Cargando interfaz...</p>';
-                        setTimeout(inicializarTurnos, 100);
+                    /*
+                     * crearCardHTML es definida en app.js (carga con defer).
+                     * Si aún no está lista, esperamos 100ms y reintentamos.
+                     * Límite: MAX_REINTENTOS para no quedarse colgado forever.
+                     */
+                    if (typeof window.crearCardHTML !== 'function') {
+                        if (reintentos >= CONFIG.MAX_REINTENTOS) {
+                            mostrarError(contenedor, infoTurno, 'La interfaz tardó demasiado en cargar.');
+                            return;
+                        }
+                        setTimeout(() => inicializarTurnos(reintentos + 1), 100);
+                        return;
                     }
+
+                    /* Renderizar todas las tarjetas de una vez (un solo reflow) */
+                    contenedor.innerHTML = deTurno
+                        .map((item, i) => window.crearCardHTML(item, 'TURNO', i))
+                        .join('');
+
                 } catch (e) {
-                    console.error(e);
-                    contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar las farmacias de turno.</p>';
-                    infoTurno.textContent = "No se pudo cargar la información de guardia.";
+                    console.error('[BAHI.ar] Error al cargar turnos:', e);
+                    mostrarError(
+                        contenedor,
+                        infoTurno,
+                        'No se pudo obtener la información de guardia.'
+                    );
                 }
             }
 
+            /* Arrancar cuando el DOM esté listo */
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', () => setTimeout(inicializarTurnos, 150));
+                document.addEventListener('DOMContentLoaded', () => inicializarTurnos(0));
             } else {
-                setTimeout(inicializarTurnos, 150);
+                inicializarTurnos(0);
             }
-        })();
+
+        }());
     </script>
+
 </body>
 </html>

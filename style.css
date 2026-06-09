@@ -1,5 +1,9 @@
 /* ── 0. FUENTES PERSONALIZADAS ── */
-/* Usamos rutas absolutas basadas en la estructura de GitHub Pages (/bhi/) */
+/*
+ * Varela Round se carga SOLO como fallback estético.
+ * El stack primario usa tipografías del sistema (cero latencia).
+ * font-display: swap evita texto invisible durante la carga.
+ */
 @font-face {
     font-family: 'varela_roundregular';
     src: url('/bhi/assets/fonts/varelaround-regular-webfont.woff2') format('woff2'),
@@ -9,24 +13,25 @@
     font-display: swap;
 }
 
-/* * =========================================================================
+/* =========================================================================
  * PROYECTO: BAHI.ar - Sistema de Diseño Unificado
  * =========================================================================
  * Este archivo es la ÚNICA fuente de verdad. No crees estilos CSS en los HTML.
+ * Si necesitas un estilo nuevo, añádelo aquí usando variables.
  */
 
 /* ── 1. CONFIGURACIÓN MAESTRA (Variables) ── */
 :root {
     /* Paleta de colores principal */
-    --primary: #191971;          /* Azul corporativo */
-    --accent: #1F75FE;           /* Azul claro de acento */
-    --bg-main: #F8FAFC;          /* Fondo de toda la app */
-    --card-bg: #FFFFFF;          /* Fondo de las tarjetas */
-    --text-main: #0F172A;        /* Color de texto principal */
-    --text-muted: #525E73;       /* Color para texto secundario */
-    --border-light: rgba(226, 232, 240, 0.8); /* Bordes suaves */
+    --primary: #191971;
+    --accent: #1F75FE;
+    --bg-main: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --text-main: #0F172A;
+    --text-muted: #525E73;
+    --border-light: rgba(226, 232, 240, 0.8);
 
-    /* Paleta Naranja */
+    /* Paleta Naranja (urgencia / acción primaria) */
     --orange: #FF6B00;
     --orange-dark: #CC5500;
     --orange-light: rgba(255, 107, 0, 0.10);
@@ -36,37 +41,114 @@
     --radius-card: 16px;
     --radius-btn: 12px;
     --shadow-soft: 0 2px 4px rgba(15, 23, 42, 0.05);
+
+    /*
+     * Stack tipográfico:
+     * 1. system-ui / -apple-system → Sans-serif nativa del SO (0ms de carga)
+     * 2. Varela Round → Carga asíncrona sin bloquear el render
+     * 3. Arial / sans-serif → Último fallback universal
+     *
+     * En iPhone se ve SF Pro, en Android Roboto, en Windows Segoe UI.
+     * Todos son óptimos para lectura rápida de información de urgencia.
+     */
+    --font-base: system-ui, -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-brand: 'varela_roundregular', var(--font-base);
 }
 
 /* Reset básico */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body { 
-    font-family: 'varela_roundregular', Arial, sans-serif; 
-    background-color: var(--bg-main); 
-    color: var(--text-main); 
+body {
+    font-family: var(--font-base);
+    background-color: var(--bg-main);
+    color: var(--text-main);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── 2. BOTONES UNIVERSALES ── */
+/* ── 2. HEADER ── */
+.main-header {
+    background: var(--primary);
+    padding: 0 16px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.brand-logo {
+    font-family: var(--font-brand);
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.brand-logo span {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── 3. BOTONES UNIVERSALES ── */
 .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    height: 40px; padding: 0 16px; border-radius: var(--radius-btn);
-    font-size: 13px; font-weight: 700; cursor: pointer; border: none;
-    transition: all 0.2s; text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* 44px: mínimo táctil recomendado por Apple HIG y WCAG 2.5.5 */
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: var(--radius-btn);
+    font-family: var(--font-base);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    /* Evita el zoom al doble-tap en iOS */
+    touch-action: manipulation;
+    transition: background 0.15s, opacity 0.15s;
+    text-decoration: none;
+    /* Aceleración por GPU para animaciones suaves */
+    will-change: opacity;
 }
 
-.btn-accent { background: var(--orange); color: #fff; }
-.btn-accent:hover { opacity: 0.9; }
-
-.btn-outline { 
-    background: var(--orange-light); 
-    color: var(--orange-dark); 
-    border: 1px solid var(--orange-border); 
+/* Llamar: naranja sólido — máxima visibilidad para acción urgente */
+.btn-accent {
+    background: var(--orange);
+    color: #fff;
 }
 
-/* ── 3. SISTEMA DE CARDS ── */
+/* Hover solo en dispositivos que lo soportan (evita estado stuck en móvil) */
+@media (hover: hover) {
+    .btn-accent:hover { background: var(--orange-dark); }
+    .btn-outline:hover { background: rgba(255, 107, 0, 0.18); }
+}
+
+/* Ver mapa: outline naranja — acción secundaria, misma importancia visual */
+.btn-outline {
+    background: var(--orange-light);
+    color: var(--orange-dark);
+    border: 1.5px solid var(--orange-border);
+}
+
+/* Indicador de foco para navegación por teclado (accesibilidad) */
+.btn:focus-visible,
+.card-header:focus-visible,
+.sub-nav-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ── 4. SISTEMA DE CARDS (Tarjetas Colapsables) ── */
 .card {
     background: var(--card-bg);
     border-radius: var(--radius-card);
@@ -76,41 +158,219 @@ body {
     overflow: hidden;
 }
 
+/* Tarjeta de TURNO: borde naranja + halo sutil para destacar en < 1 segundo */
+.card[data-estado="turno"] {
+    border-color: var(--orange-border);
+    border-width: 1.5px;
+    box-shadow: 0 0 0 3px var(--orange-light), var(--shadow-soft);
+}
+
+/* Badge de estado generado por CSS puro — cero JS, cero latencia */
+.card[data-estado="turno"] .card-badge::before {
+    content: "● De turno";
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange-dark);
+    background: var(--orange-light);
+    border: 1px solid var(--orange-border);
+    border-radius: 20px;
+    padding: 2px 9px;
+    margin-bottom: 4px;
+}
+
+.card[data-estado="24h"] .card-badge::before {
+    content: "24 h";
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0055CC;
+    background: rgba(31, 117, 254, 0.10);
+    border: 1px solid rgba(31, 117, 254, 0.25);
+    border-radius: 20px;
+    padding: 2px 9px;
+    margin-bottom: 4px;
+}
+
 .card-header {
-    padding: 16px; width: 100%; border: none; background: transparent;
-    display: flex; align-items: center; justify-content: space-between;
-    cursor: pointer; text-align: left; min-height: 44px;
-    font-family: 'varela_roundregular', sans-serif;
+    padding: 14px 16px;
+    width: 100%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    text-align: left;
+    /* 44px mínimo táctil */
+    min-height: 44px;
+    font-family: var(--font-base);
+    touch-action: manipulation;
+}
+
+/* Nombre de la farmacia: tamaño y peso para lectura < 1 segundo */
+.card-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.3;
+    margin: 0 0 2px;
+    /* Truncar en una línea si el nombre es muy largo */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-addr {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Área de CTAs (Llamar + Ver mapa) */
+.card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0 14px 14px;
+}
+
+.card-actions .btn {
+    width: 100%;
 }
 
 .card-body-collapse {
-    max-height: 0; opacity: 0;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
     overflow: hidden;
     padding: 0 16px;
 }
 
 .card-body-collapse.open {
-    max-height: 1000px; opacity: 1;
+    max-height: 1000px;
+    opacity: 1;
     padding: 0 16px 16px;
     border-top: 1px solid var(--border-light);
 }
 
-/* ── 4. UTILIDADES ── */
+/* Ícono decorativo de la farmacia (aparece después del texto en el DOM) */
+.card-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 9px;
+    background: var(--orange-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    /* margin-right para separar del texto en layout flex */
+    margin-right: 10px;
+}
+
+.card[data-estado="turno"] .card-icon {
+    background: var(--orange-light);
+}
+
+/* ── 5. SKELETON LOADER (Percepción de velocidad en 3G) ── */
+/*
+ * El skeleton aparece INMEDIATAMENTE (está en el HTML estático).
+ * El usuario ve "forma" antes de que lleguen los datos.
+ * Elimina el "página en blanco" que hace sentir que la app está rota.
+ */
+.skeleton-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border-light);
+    margin-bottom: 12px;
+    padding: 14px 16px;
+    overflow: hidden;
+}
+
+.skeleton-line {
+    border-radius: 6px;
+    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+.skeleton-line-title {
+    height: 18px;
+    width: 65%;
+    margin-bottom: 8px;
+}
+
+.skeleton-line-addr {
+    height: 13px;
+    width: 80%;
+    margin-bottom: 12px;
+}
+
+.skeleton-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.skeleton-btn {
+    height: 40px;
+    border-radius: var(--radius-btn);
+}
+
+@keyframes skeleton-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Respeta la preferencia del sistema de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    .skeleton-line { animation: none; }
+    .btn, .card-body-collapse { transition: none; }
+}
+
+/* ── 6. UTILIDADES ── */
 .hidden { display: none; }
 
+/* Texto solo para lectores de pantalla */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ── 7. BUSCADOR ── */
 .search-container {
     position: relative;
-    margin: 1rem 16px;
+    margin: 12px 16px;
 }
 
 .search-container input[type="text"] {
     width: 100%;
-    padding: 12px 12px 12px 40px;
+    padding: 11px 12px 11px 40px;
     border: 1px solid var(--border-light);
     border-radius: var(--radius-btn);
-    background: white;
-    font-family: 'varela_roundregular', sans-serif;
+    background: #fff;
+    font-family: var(--font-base);
+    font-size: 15px;
+    color: var(--text-main);
+    /* Evita zoom al enfocar en iOS (requiere font-size >= 16px en el input
+       o se puede suprimir con touch-action) */
+    touch-action: manipulation;
+    -webkit-appearance: none;
+}
+
+.search-container input[type="text"]:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+    border-color: transparent;
 }
 
 .search-icon {
@@ -119,66 +379,73 @@ body {
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
+    pointer-events: none;
+    font-size: 16px;
 }
 
-/* Estilos para los Filter Chips */
+/* ── 8. FILTER CHIPS ── */
 .filter-chips-container {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     padding: 0 16px 12px 16px;
 }
+
 .filter-chip {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 5px 12px;
-    border-radius: 16px;
+    padding: 6px 13px;
+    border-radius: 20px;
     border: 1.5px solid var(--accent);
     background: transparent;
     color: var(--accent);
     font-size: 13px;
+    font-family: var(--font-base);
     cursor: pointer;
+    touch-action: manipulation;
     transition: background 0.15s, color 0.15s;
     white-space: nowrap;
-    font-family: 'varela_roundregular', sans-serif;
 }
+
 .filter-chip.active {
     background: var(--accent);
     color: #fff;
 }
+
 .filter-chip-select {
     border: 1.5px solid var(--accent);
-    border-radius: 16px;
-    padding: 5px 10px;
+    border-radius: 20px;
+    padding: 6px 10px;
     font-size: 13px;
+    font-family: var(--font-base);
     background: transparent;
     color: var(--accent);
     cursor: pointer;
     outline: none;
     transition: background 0.15s, color 0.15s;
-    font-family: 'varela_roundregular', sans-serif;
+    -webkit-appearance: none;
 }
+
 .filter-chip-select.active {
     background: var(--accent);
     color: #fff;
 }
+
 .filter-chip-select option {
     background: #fff;
     color: var(--primary);
 }
 
-/* --- Sub-Navegación (Accesos Rápidos) --- */
+/* ── 9. SUB-NAVEGACIÓN ── */
 .sub-nav {
-    padding: 0 16px 16px 16px;
+    padding: 0 16px 14px 16px;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
-    scrollbar-width: none; /* Ocultar scroll en Firefox */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
 }
 
-.sub-nav::-webkit-scrollbar {
-    display: none; /* Ocultar scroll en Chrome/Safari */
-}
+.sub-nav::-webkit-scrollbar { display: none; }
 
 .sub-nav-list {
     display: flex;
@@ -193,23 +460,118 @@ body {
     padding: 7px 15px;
     border-radius: 20px;
     background-color: #f1f5f9;
-    color: #191971;
+    color: var(--primary);
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
     white-space: nowrap;
-    transition: all 0.2s ease;
     border: 1.5px solid transparent;
+    touch-action: manipulation;
+    transition: background 0.15s, color 0.15s;
 }
 
-.sub-nav-link:hover {
-    background-color: #e2e8f0;
+@media (hover: hover) {
+    .sub-nav-link:hover { background-color: #e2e8f0; }
 }
 
-/* Estado Activo (Página actual) */
 .sub-nav-link.active {
-    background-color: var(--accent, #4f46e5);
-    color: #ffffff;
-    border-color: var(--accent, #4f46e5);
-    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+    background-color: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 2px 6px rgba(31, 117, 254, 0.25);
+}
+
+/* ── 10. OFFLINE / UPDATE ── */
+#update-banner {
+    position: sticky;
+    top: 52px; /* Debajo del header */
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 14px;
+}
+
+#update-banner #btn-actualizar {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    background: #fff;
+    color: var(--primary);
+    border: none;
+    border-radius: var(--radius-btn);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    touch-action: manipulation;
+    font-family: var(--font-base);
+}
+
+.cache-indicator-warning {
+    margin: 0 16px 8px;
+    padding: 10px 14px;
+    background: var(--orange-light);
+    border: 1px solid var(--orange-border);
+    border-radius: var(--radius-btn);
+    color: var(--orange-dark);
+    font-size: 13px;
+}
+
+/* ── 11. ESTADO DE ERROR ── */
+.error-state {
+    padding: 24px 16px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.error-state-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.error-state-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.error-state-desc {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* ── 12. CONTENEDOR PRINCIPAL ── */
+.app-view {
+    padding-bottom: 32px;
+}
+
+#main-content {
+    /* El contenido de texto va primero en el HTML —
+       esta regla solo define el contexto de layout */
+}
+
+.section-header {
+    padding: 16px 16px 8px;
+}
+
+.section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    font-family: var(--font-brand);
+    margin-bottom: 4px;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#contenedor-cards {
+    padding: 0 16px;
 }
