@@ -1,17 +1,22 @@
 /**
  * BAHI.ar - Service Worker
- * Base: sw.js v2.5
+ * Base: sw.js v3.0
  *
- * Mejoras incorporadas desde service-worker.js:
- * - Promise.allSettled() en install: un asset fallido no aborta el precacheo completo.
- * - skipWaiting() al final del install, garantizando que el caché esté listo antes
- *   de tomar el control.
- * - Network-First para requests de navegación HTML (request.mode === 'navigate'):
- *   evita que el HTML shell quede atrapado en caché entre deploys.
- * - Respuesta 503 estructurada para datos JSON sin red ni caché.
- * - Notificación SW_UPDATED a todos los clientes al activarse.
- * - shouldHandle() para filtrar requests no-GET y orígenes externos.
- * - Manejo de mensaje 'skipWaiting' compatible con objeto {action} y string plano.
+ * Estrategias de caché:
+ * - Shell assets (HTML, CSS, JS, manifest, nav.html) → Cache-First en CACHE_NAME
+ * - Navegación HTML (request.mode === 'navigate')    → Network-First (evita HTML atrapado en caché entre deploys)
+ * - Datos JSON (/data/*.json)                        → Network-First en DATA_CACHE_NAME (caché separado)
+ * - Assets estáticos no precacheados                 → Cache-First con fallback a red
+ *
+ * Correcciones aplicadas:
+ * - install: shell y datos precacheados en sus respectivos cachés (CACHE_NAME / DATA_CACHE_NAME)
+ * - Promise.allSettled(): un asset fallido no aborta el install completo
+ * - skipWaiting() al final del install, con ambos cachés listos
+ * - Respuesta 503 estructurada para datos JSON sin red ni caché
+ * - Notificación SW_UPDATED a todos los clientes al activarse
+ * - shouldHandle(): filtra requests no-GET y orígenes externos
+ * - Manejo de mensaje skipWaiting compatible con {action} y string plano
+ * - turnero.json comentado hasta que el archivo exista en el repo
  */
 
 // ─── Versión ─────────────────────────────────────────────────────────────────
@@ -33,10 +38,10 @@ const SHELL_ASSETS = [
   './manifest.json',
 ];
 
-// ─── Datos (Network-First) ────────────────────────────────────────────────────
+// ─── Datos (Network-First con precacheo en DATA_CACHE_NAME) ──────────────────
 const DATA_FILES = [
   './data/bd_bahiar.json',
-  './data/turnero.json',
+  // './data/turnero.json',  // Descomentar cuando el archivo exista en el repo
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -73,18 +78,27 @@ self.addEventListener('install', (event) => {
   console.log(`[SW ${CACHE_VERSION}] install`);
   event.waitUntil(
     (async () => {
-      const cache = await caches.open(CACHE_NAME);
-
-      // allSettled: un asset fallido no aborta el install completo.
+      // Shell assets → CACHE_NAME
+      const shellCache = await caches.open(CACHE_NAME);
       await Promise.allSettled(
-        [...SHELL_ASSETS, ...DATA_FILES].map(asset =>
-          cache.add(asset).catch(err =>
-            console.warn(`[SW] No se pudo cachear "${asset}":`, err.message)
+        SHELL_ASSETS.map(asset =>
+          shellCache.add(asset).catch(err =>
+            console.warn(`[SW] No se pudo cachear shell "${asset}":`, err.message)
           )
         )
       );
 
-      // skipWaiting al final, con el caché ya listo.
+      // Data assets → DATA_CACHE_NAME (estrategia diferenciada)
+      const dataCache = await caches.open(DATA_CACHE_NAME);
+      await Promise.allSettled(
+        DATA_FILES.map(asset =>
+          dataCache.add(asset).catch(err =>
+            console.warn(`[SW] No se pudo cachear data "${asset}":`, err.message)
+          )
+        )
+      );
+
+      // skipWaiting al final, con ambos cachés listos.
       await self.skipWaiting();
       console.log(`[SW ${CACHE_VERSION}] install completo.`);
     })()
