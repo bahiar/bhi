@@ -58,26 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!document.getElementById('buscador-live')) location.reload();
         });
     }
-
-    // Carga de Navegación Modular
-    const navPlaceholder = document.getElementById('nav-placeholder');
-    if (navPlaceholder) {
-        fetch('nav.html')
-            .then(r => r.text())
-            .then(html => {
-                // Inyectamos el HTML y forzamos el renderizado de los links como bloques
-                navPlaceholder.innerHTML = html;
-                // Pequeño fix para asegurar que los estilos se apliquen a los nuevos elementos
-                const links = navPlaceholder.querySelectorAll('.nav-link');
-                links.forEach(link => {
-                    if (window.location.pathname.includes(link.getAttribute('href'))) {
-                        link.classList.add('active');
-                    }
-                });
-            })
-            .catch(err => console.error('Error cargando nav:', err));
-    }
-
+ 
     // Acordeón Global (Delegación de eventos)
     document.addEventListener('click', (e) => {
         const header = e.target.closest('.card-header');
