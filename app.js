@@ -115,8 +115,7 @@ window.crearCardHTML = (item, tipo, index) => {
             <h3 class="card-name">${window.esc(item.PRESTADOR)}</h3>
             ${direccion ? `<p class="card-addr">${direccion}</p>` : ''}
         </div>
-        <!-- Ícono decorativo: después del texto en el DOM -->
-        <div class="card-icon" aria-hidden="true">💊</div>
+
     </div>
 
     <!-- ZONA 2: Botones de acción principales (siempre visibles) -->
