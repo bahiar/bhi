@@ -103,7 +103,7 @@
                         dFin.setUTCDate(dFin.getUTCDate() + 1);
                         const mañanaTxt = `${dFin.getUTCDate()} de ${meses[dFin.getUTCMonth()]}`;
                         
-                        leyendaHorario.textContent = `Horario del turno: Las farmacias atienden desde las 8:30 hs. de hoy (${hoyTxt}) hasta las 8:30 hs. del día de mañana (${mañanaTxt}) (24 horas).`;
+                        leyendaHorario.textContent = `Las farmacias atienden desde las 8:30 hs. de hoy (${hoyTxt}) hasta las 8:30 hs. de mañana (${mañanaTxt}).`;
                     }
 
                     const deTurno = padron.prestadores.filter(f => 
