@@ -6,8 +6,10 @@
   "scope": "/bhi/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#F8FAFC",
+
+  "background_color": "#191971",
   "theme_color": "#191971",
+
   "icons": [
     {
       "src": "icon-192.png",
@@ -16,7 +18,7 @@
       "purpose": "any"
     },
     {
-      "src": "icon-192.png",
+      "src": "icon-192-maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
@@ -28,10 +30,26 @@
       "purpose": "any"
     },
     {
-      "src": "icon-512.png",
+      "src": "icon-512-maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+
+  "screenshots": [
+    {
+      "src": "screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Farmacias de turno en Bahía Blanca"
+    }
+  ],
+
+  "categories": ["health", "medical"],
+
+  "lang": "es-AR",
+
+  "prefer_related_applications": false
 }

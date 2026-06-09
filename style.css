@@ -255,7 +255,25 @@ body {
     border-top: 1px solid var(--border-light);
 }
 
-/* Ícono decorativo de la farmacia (aparece después del texto en el DOM) */
+/*
+ * Zona superior de la tarjeta: nombre + dirección a la izquierda,
+ * ícono decorativo a la derecha. El ícono está DESPUÉS del texto en
+ * el DOM para que el nombre sea lo primero que el parser procesa.
+ */
+.card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 14px 10px;
+}
+
+.card-info {
+    flex: 1;
+    min-width: 0; /* Permite text-overflow: ellipsis en hijos */
+}
+
+/* Ícono decorativo de la farmacia (después del texto en el DOM) */
 .card-icon {
     width: 36px;
     height: 36px;
@@ -266,12 +284,64 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    /* margin-right para separar del texto en layout flex */
-    margin-right: 10px;
 }
 
 .card[data-estado="turno"] .card-icon {
     background: var(--orange-light);
+}
+
+.card[data-estado="24h"] .card-icon {
+    background: rgba(31, 117, 254, 0.10);
+}
+
+/*
+ * Filas del cuerpo colapsable (info secundaria).
+ * Usa clases en lugar de style="" inline para mantener
+ * el CSS centralizado y no contaminar el JS con estilos.
+ */
+.card-detail-row {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.card-detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.card-detail-row strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/*
+ * Chevron del acordeón: rota 180° cuando el body está abierto.
+ * La animación es suave y no requiere JS adicional.
+ */
+.card-chevron {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-style: normal;
+}
+
+.card-header[aria-expanded="true"] .card-chevron {
+    transform: rotate(180deg);
+}
+
+/*
+ * Botón WhatsApp: verde propio del canal para diferenciarlo
+ * visualmente del botón "Llamar" (naranja).
+ * El usuario asocia el verde con WhatsApp de forma inmediata.
+ */
+.btn-whatsapp {
+    background: #25D366;
+    color: #fff;
+    border: none;
+}
+
+@media (hover: hover) {
+    .btn-whatsapp:hover { background: #1da851; }
 }
 
 /* ── 5. SKELETON LOADER (Percepción de velocidad en 3G) ── */
