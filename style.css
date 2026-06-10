@@ -192,9 +192,11 @@ body {
 }
 
 .logo-img {
-    height: 36px !important; /* !important para evitar que otras reglas lo pisen */
-    width: auto !important;
+    height: 36px;
+    width: auto;
+    max-width: 100%;
     display: block;
+    object-fit: contain;
 }
 
 /* ── 3. BOTONES UNIVERSALES ── */
