@@ -8,6 +8,7 @@
     <meta name="description" content="Directorio de farmacias en Bahía Blanca.">
     <link rel="canonical" href="https://bahiar.github.io/bhi/farmacias.html">
     <link rel="manifest" href="manifest.json">
+    <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
 
     <meta property="og:title" content="BAHI.ar | Farmacias">
@@ -18,59 +19,13 @@
     <meta name="theme-color" content="#191971">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <style>
-      .filter-chips-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        padding: 0 16px 12px 16px;
-      }
-      .filter-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        padding: 5px 12px;
-        border-radius: 16px;
-        border: 1.5px solid var(--accent, #4f46e5);
-        background: transparent;
-        color: var(--accent, #4f46e5);
-        font-size: 13px;
-        cursor: pointer;
-        transition: background 0.15s, color 0.15s;
-        white-space: nowrap;
-      }
-      .filter-chip.active {
-        background: var(--accent, #4f46e5);
-        color: #fff;
-      }
-      .filter-chip-select {
-        border: 1.5px solid var(--accent, #4f46e5);
-        border-radius: 16px;
-        padding: 5px 10px;
-        font-size: 13px;
-        background: transparent;
-        color: var(--accent, #4f46e5);
-        cursor: pointer;
-        outline: none;
-        transition: background 0.15s, color 0.15s;
-      }
-      .filter-chip-select.active {
-        background: var(--accent, #4f46e5);
-        color: #fff;
-      }
-      .filter-chip-select option {
-        background: #fff;
-        color: #191971;
-      }
-    </style>
 </head>
 <body>
 
     <header class="main-header">
         <div class="header-content">
             <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
-                <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img">
+                <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
             </a>
         </div>
     </header>
@@ -101,20 +56,41 @@
       </select>
     </div>
 
-    <div class="info-footer-text">
-        Información provista por el Colegio de Farmacéuticos de la Provincia de Buenos Aires - Filial Bahía Blanca
-    </div>
-
     <main class="app-view" id="content">
         <div id="main-content">
-            <div style="padding: 16px;">
-                <h2>Farmacias</h2>
-                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
-                    Encuentra farmacias de turno y ubicación.
-                </p>
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2>Farmacias</h2>
+                    <p class="section-header-meta">Directorio completo</p>
+                </div>
             </div>
 
-            <div id="contenedor-cards"></div>
+            <div id="contenedor-cards" aria-live="polite" aria-label="Listado de farmacias">
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
             
         </div>
     </main>
@@ -133,7 +109,7 @@
           if (!contenedor) return;
           contenedor.innerHTML = '';
           if (lista.length === 0) {
-            contenedor.innerHTML = '<p style="padding: 16px;">No hay resultados para los filtros aplicados.</p>';
+            contenedor.innerHTML = '<div class="error-state"><div class="error-state-icon" aria-hidden="true">🔍</div><p class="error-state-title">Sin resultados</p><p class="error-state-desc">No hay resultados para los filtros aplicados.</p></div>';
             return;
           }
           
@@ -187,7 +163,17 @@
         async function inicializar() {
           const contenedor = document.getElementById(CONTENEDOR_ID);
           if (!contenedor) return;
-          contenedor.innerHTML = '<div style="padding: 16px; color: var(--text-muted);">Cargando datos...</div>';
+          contenedor.innerHTML = `
+            <div class="skeleton-card" aria-hidden="true">
+              <div class="skeleton-line skeleton-line-title"></div>
+              <div class="skeleton-line skeleton-line-addr"></div>
+              <div class="skeleton-btns"><div class="skeleton-line skeleton-btn"></div><div class="skeleton-line skeleton-btn"></div></div>
+            </div>
+            <div class="skeleton-card" aria-hidden="true">
+              <div class="skeleton-line skeleton-line-title"></div>
+              <div class="skeleton-line skeleton-line-addr"></div>
+              <div class="skeleton-btns"><div class="skeleton-line skeleton-btn"></div><div class="skeleton-line skeleton-btn"></div></div>
+            </div>`;
           
           try {
             const response = await fetch('data/bd_bahiar.json');
@@ -254,7 +240,7 @@
             renderCards(datosOriginales);
           } catch (e) {
             console.error(e);
-            contenedor.innerHTML = '<p style="padding: 16px; color: red;">Error al cargar la base de datos.</p>';
+            contenedor.innerHTML = '<div class="error-state" role="alert"><div class="error-state-icon" aria-hidden="true">⚠️</div><p class="error-state-title">No se pudo cargar la información</p><p class="error-state-desc">Revisá tu conexión e intentá de nuevo.</p></div>';
           }
         }
 

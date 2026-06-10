@@ -8,6 +8,7 @@
     <meta name="description" content="Guardias médicas de urgencia en Bahía Blanca. Hospitales y clínicas con atención 24 horas.">
     <link rel="canonical" href="https://bahiar.github.io/bhi/guardias.html">
     <link rel="manifest" href="manifest.json">
+    <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
 
     <meta property="og:title" content="BAHI.ar | Guardias">
@@ -24,7 +25,7 @@
     <header class="main-header">
         <div class="header-content">
             <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
-                <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img">
+                <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
             </a>
         </div>
 
@@ -50,29 +51,52 @@
 
             <!-- ── SECCIÓN: EMERGENCIAS ── -->
             <div class="section-header">
-                <h2>Emergencias médicas</h2>
+                <div class="section-header-titles">
+                    <h2>Emergencias médicas</h2>
+                </div>
             </div>
-            <div id="contenedor-emergencias" style="padding: 0 16px 8px;"></div>
+            <div id="contenedor-emergencias"></div>
 
             <!-- Separador visual entre secciones -->
             <div class="section-divider"></div>
 
             <!-- ── SECCIÓN: AMBULANCIAS ── -->
             <div class="section-header">
-                <h2>Servicios de ambulancias</h2>
+                <div class="section-header-titles">
+                    <h2>Servicios de ambulancias</h2>
+                </div>
             </div>
-            <div id="contenedor-ambulancias" style="padding: 0 16px 8px;"></div>
+            <div id="contenedor-ambulancias"></div>
 
             <!-- Separador visual entre secciones -->
             <div class="section-divider"></div>
 
             <!-- ── SECCIÓN: GUARDIAS MÉDICAS ── -->
             <div class="section-header">
-                <h2>Guardias Médicas</h2>
-                <p class="section-header-meta">Atención 24 hs.</p>
+                <div class="section-header-titles">
+                    <h2>Guardias Médicas</h2>
+                    <p class="section-header-meta">Atención 24 hs.</p>
+                </div>
             </div>
 
-            <div id="contenedor-cards"></div>
+            <div id="contenedor-cards" aria-live="polite" aria-label="Guardias médicas">
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
