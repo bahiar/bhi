@@ -89,7 +89,7 @@ body {
     align-items: center;
     width: 100%;
     padding: 0 16px;
-    height: 52px;                /* la fila del logo mantiene su altura original */
+    height: 64px;                /* Aumentado de 52px a 64px para acomodar el logo más grande */
 }
 
 /*
@@ -192,7 +192,7 @@ body {
 }
 
 .logo-img {
-    height: 40px; /* Ajustado para que quepa bien en el header de 52px */
+    height: 56px; /* Aumentado un 40% (de 40px a 56px) */
     width: auto;
     display: block;
 }
