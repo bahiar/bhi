@@ -902,3 +902,82 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+/* ── 15. BANNER DE EMERGENCIA — eliminado ── */
+/*
+ * El banner rojo del header fue removido: duplicaba el 107 de la sección
+ * "Emergencias médicas" y competía con el propio contenido.
+ * La card del 107 (§16) con el sistema naranja del sitio es suficiente.
+ * Las clases .emergency-banner, .emergency-banner-label y .btn-emergency-call
+ * se conservan comentadas por si se necesitan en el futuro.
+ */
+
+/*
+.emergency-banner { ... }
+.emergency-banner-label { ... }
+.btn-emergency-call { ... }
+*/
+
+/* ── 16. CARD DESTACADA DE EMERGENCIA ── */
+/*
+ * La card del 107 usa el sistema naranja del sitio (--orange) en lugar
+ * de rojo independiente. El peso visual viene del tamaño del número (28px/800)
+ * y el borde izquierdo, no de un tercer color fuera del sistema.
+ * Coherente con las cards de turno y los botones de acción urgente.
+ */
+.card-emergencia {
+    border-left: 3px solid var(--orange);
+    border-top-color: var(--orange-border);
+    border-right-color: var(--orange-border);
+    border-bottom-color: var(--orange-border);
+    background: var(--orange-light);
+}
+
+.card-emergencia .card-name {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--orange-dark);
+    letter-spacing: -1px;
+}
+
+/* ── 17. TELÉFONO VISIBLE (Sugerencia 3) ── */
+/*
+ * Muestra el número principal de la card directamente,
+ * sin requerir que el usuario abra el acordeón.
+ * Hereda .card-addr con un leve acento de color para indicar
+ * que es un dato de contacto accionable.
+ */
+.card-phone-visible {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ── 18. ENLACE DE TELÉFONO DENTRO DEL ACORDEÓN ── */
+/*
+ * Los números alternativos en el body colapsable son enlaces clickeables.
+ * Color orange-dark: coherente con las acciones de llamada (naranja),
+ * diferenciado del azul --accent que se usa para mapa/navegación.
+ */
+.card-phone-link {
+    color: var(--orange-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@media (hover: hover) {
+    .card-phone-link:hover {
+        text-decoration: underline;
+    }
+}
+
+/* ── 19. SEPARADOR DE SECCIÓN ── */
+/*
+ * Línea divisoria entre bloques de contenido (Emergencias / Ambulancias / Guardias).
+ * Sutil pero funcional: el usuario entiende que cambia la categoría.
+ */
+.section-divider {
+    height: 1px;
+    background: var(--border-light);
+    margin: 8px 16px 4px;
+}
