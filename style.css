@@ -70,10 +70,15 @@ body {
 /* ── 2. HEADER ── */
 .main-header {
     background: var(--primary);
-    padding: 0 16px;
-    height: 52px;
+    padding: 0;                  /* REDISEÑO: padding gestionado por hijos */
+    /*
+     * REDISEÑO: height pasa de fijo a auto para acomodar el context strip.
+     * El header ahora tiene dos zonas: .header-content (logo) + .header-ctx-strip.
+     * position: sticky sigue funcionando igual.
+     */
+    height: auto;
     display: flex;
-    align-items: center;
+    flex-direction: column;      /* apila logo-row y ctx-strip verticalmente */
     position: sticky;
     top: 0;
     z-index: 50;
@@ -83,7 +88,101 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
+    padding: 0 16px;
+    height: 52px;                /* la fila del logo mantiene su altura original */
 }
+
+/*
+ * NUEVO — Context strip (banda de contexto bajo el logo)
+ * Muestra la info más urgente —cuántas farmacias de turno y hasta cuándo—
+ * ANTES de cualquier scroll, en HTML estático, sin depender de JS.
+ * Si JS no llega (red muy lenta o fallo), el usuario igual ve el dato.
+ *
+ * Uso en index.html:
+ *   <div class="header-ctx-strip" id="header-ctx-strip">
+ *     <span class="ctx-live-dot" aria-hidden="true"></span>
+ *     <span id="ctx-count">…</span>
+ *     <span class="ctx-sep" aria-hidden="true"></span>
+ *     <span id="ctx-horario">Hasta las 8:30 de mañana</span>
+ *   </div>
+ *
+ * El JS de index.html actualiza #ctx-count y #ctx-horario
+ * con los datos reales una vez que carga el turnero.
+ * Mientras tanto, el strip puede mostrar un placeholder estático.
+ */
+.header-ctx-strip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px 7px;
+    background: rgba(0, 0, 0, 0.28);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 12px;
+    line-height: 1;
+    /* Ocultar si está vacío (el JS lo muestra cuando tiene datos) */
+    min-height: 0;
+}
+
+/* Texto de recuento: "3 de turno" */
+.ctx-live {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+/*
+ * Punto pulsante que indica "en vivo / activo ahora".
+ * CSS puro, sin JS. Respeta prefers-reduced-motion.
+ */
+.ctx-live-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+    animation: ctx-pulse 1.5s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes ctx-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ctx-live-dot { animation: none; }
+}
+
+/* Separador visual entre grupos de datos del strip */
+.ctx-sep {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    flex-shrink: 0;
+}
+
+/* Texto secundario del strip: horario, fecha */
+.ctx-text {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*
+ * AJUSTE: el #update-banner se posiciona debajo del header.
+ * Como el header ahora es auto (logo 52px + strip ~29px ≈ 81px),
+ * se actualiza el top del banner.
+ * Nota: con height:auto en el header, sticky en el banner
+ * se calcula automáticamente. La regla top:52px era fija;
+ * la comentamos para no forzar un valor que ya no aplica.
+ */
 
 .brand-logo {
     font-family: var(--font-brand);
@@ -95,7 +194,13 @@ body {
 }
 
 .brand-logo span {
-    color: rgba(255, 255, 255, 0.65);
+    /*
+     * REDISEÑO: El sufijo ".ar" pasa de blanco semitransparente
+     * a --orange. Unifica el lenguaje de urgencia (naranja) con
+     * la identidad visual en el punto de mayor visibilidad: el logo.
+     * Un solo token, coherencia en toda la app.
+     */
+    color: var(--orange);
 }
 
 /* ── 3. BOTONES UNIVERSALES ── */
@@ -158,11 +263,31 @@ body {
     overflow: hidden;
 }
 
-/* Tarjeta de TURNO: borde naranja + halo sutil para destacar en < 1 segundo */
+/*
+ * REDISEÑO — Tarjeta de TURNO: border-left como señalización de estado.
+ *
+ * Antes: borde naranja perimetral + box-shadow halo de 3px.
+ *   → El borde completo leía como "decoración de la card" más que "estado".
+ *   → El halo de 3px añadía ruido visual cuando había 3+ cards juntas.
+ *
+ * Ahora: border-left de 3px + sin halo.
+ *   → El borde izquierdo es la convención de semáforo UI más reconocida
+ *     (usada en VS Code, GitHub, Notion, Linear para "estado activo").
+ *   → El ojo lo lee como indicador antes de leer el texto.
+ *   → Escala sin saturar cuando hay múltiples cards de turno.
+ *   → border-width en los 3 lados restantes vuelve a 1px base.
+ *
+ * El selector data-estado="turno" es generado por crearCardHTML()
+ * en app.js — no requiere cambios en JS.
+ */
 .card[data-estado="turno"] {
-    border-color: var(--orange-border);
-    border-width: 1.5px;
-    box-shadow: 0 0 0 3px var(--orange-light), var(--shadow-soft);
+    border-left-width: 3px;
+    border-left-color: var(--orange);
+    border-top-color: var(--orange-border);
+    border-right-color: var(--orange-border);
+    border-bottom-color: var(--orange-border);
+    /* Sin halo: elimina la distorsión del layout entre cards */
+    box-shadow: var(--shadow-soft);
 }
 
 
@@ -484,7 +609,7 @@ body {
 
 /* ── 9. SUB-NAVEGACIÓN ── */
 .sub-nav {
-    padding: 0 16px 14px 16px;
+    padding: 0 16px 10px 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -494,7 +619,7 @@ body {
 
 .sub-nav-list {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -502,8 +627,15 @@ body {
 
 .sub-nav-link {
     display: inline-block;
-    padding: 7px 15px;
-    border-radius: 20px;
+    padding: 7px 14px;
+    /*
+     * REDISEÑO: border-radius pasa de 20px (pill) a 8px (tab rectangular).
+     * Las pills redondeadas competían visualmente con los botones .btn-accent
+     * y .btn-outline dentro de las cards — el usuario no distinguía
+     * "navegación" de "acción" de un vistazo.
+     * 8px mantiene una esquina suave (no robótica) sin confundirse con CTAs.
+     */
+    border-radius: 8px;
     background-color: #f1f5f9;
     color: var(--primary);
     text-decoration: none;
@@ -520,17 +652,30 @@ body {
 }
 
 .sub-nav-link.active {
-    background-color: var(--accent);
+    background-color: var(--primary);  /* REDISEÑO: azul marino en vez de accent */
     color: #fff;
-    border-color: var(--accent);
-    box-shadow: 0 2px 6px rgba(31, 117, 254, 0.25);
+    border-color: var(--primary);
+    /*
+     * REDISEÑO: sombra eliminada en el estado activo.
+     * La sombra azul anterior (accent) se leía como "acción" igual que
+     * los botones de las cards. Sin sombra, el tab activo comunica
+     * "ubicación actual" sin competir con los CTAs.
+     */
+    box-shadow: none;
 }
 
 /* ── 10. OFFLINE / UPDATE ── */
 #update-banner {
     position: sticky;
-    top: 52px; /* Debajo del header */
-    z-index: 40;
+    /*
+     * AJUSTE: el header pasó de height:52px fijo a height:auto
+     * (logo 52px + context strip ~29px ≈ 81px).
+     * Usar top:0 con z-index menor que el header hace que el banner
+     * quede debajo naturalmente en el flujo sticky sin necesidad de
+     * un valor hardcodeado que se desincronizaría si el strip cambia.
+     */
+    top: 0;
+    z-index: 45;   /* < 50 del header → el banner queda debajo del header sticky */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -600,7 +745,19 @@ body {
 }
 
 .section-header {
-    padding: 16px 16px 8px;
+    /*
+     * REDISEÑO: padding-bottom reducido de 8px a 4px.
+     * El subtítulo de 2 líneas ("#info-turno / #leyenda-horario") se
+     * comprime en una sola línea de metadato via .section-header-meta.
+     * El espacio recuperado acerca las cards al título — menos scroll
+     * hasta la primera acción.
+     */
+    padding: 14px 16px 4px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2px 8px;
 }
 
 .section-header h2 {
@@ -608,13 +765,48 @@ body {
     font-weight: 700;
     color: var(--text-main);
     font-family: var(--font-brand);
-    margin-bottom: 4px;
+    margin-bottom: 0;            /* REDISEÑO: quitamos el margin-bottom; el gap del flex lo gestiona */
 }
 
 .section-header p {
     color: var(--text-muted);
     font-size: 13px;
     line-height: 1.5;
+}
+
+/*
+ * NUEVO — Metadato comprimido junto al título de sección.
+ * Reemplaza el bloque de 2 párrafos (#info-turno + #leyenda-horario)
+ * con una línea discreta a la derecha del h2.
+ *
+ * Uso en index.html:
+ *   <div class="section-header">
+ *     <h2 id="titulo-home">Farmacias de Turno</h2>
+ *     <p class="section-header-meta" id="leyenda-horario"></p>
+ *   </div>
+ *
+ * El JS escribe en #leyenda-horario el texto corto (ej: "Hasta 8:30 de mañana").
+ * El párrafo #info-turno ("Buscando…") puede eliminarse del HTML
+ * o quedar oculto mientras JS lo rellena.
+ */
+.section-header-meta {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange-dark);
+    background: var(--orange-light);
+    border: 0.5px solid var(--orange-border);
+    padding: 3px 9px;
+    border-radius: 5px;
+    white-space: nowrap;
+    /* Alinear al baseline del h2 */
+    align-self: center;
+    /* Ocultar si está vacío (antes de que JS lo rellene) */
+    display: none;
+}
+
+/* Mostrar solo cuando tiene contenido (JS asigna el texto) */
+.section-header-meta:not(:empty) {
+    display: inline-block;
 }
 
 #contenedor-cards {

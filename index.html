@@ -33,6 +33,23 @@
         <div class="header-content">
             <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">BAHI<span>.ar</span></a>
         </div>
+        <!--
+            CONTEXT STRIP: muestra la info más urgente antes de cualquier scroll.
+            Está en el HTML estático → se pinta en el primer repaint, sin esperar JS.
+            El script inline de abajo actualiza #ctx-count y #ctx-horario
+            con los datos reales. Mientras tanto muestra el estado "Cargando…".
+
+            aria-live="polite" → el lector de pantalla anuncia el cambio
+            cuando JS actualiza el texto, sin interrumpir la lectura actual.
+        -->
+        <div class="header-ctx-strip" id="header-ctx-strip" aria-live="polite">
+            <span class="ctx-live" aria-label="Farmacias de turno activas">
+                <span class="ctx-live-dot" aria-hidden="true"></span>
+                <span id="ctx-count">Cargando…</span>
+            </span>
+            <span class="ctx-sep" aria-hidden="true"></span>
+            <span class="ctx-text" id="ctx-horario"></span>
+        </div>
     </header>
 
     <div class="search-container">
@@ -70,8 +87,15 @@
             -->
             <div class="section-header">
                 <h2 id="titulo-home">Farmacias de Turno</h2>
-                <p id="info-turno">Buscando la farmacia de turno para hoy…</p>
-                <p id="leyenda-horario"></p>
+                <!--
+                    REDISEÑO: El texto largo de 2 líneas (#info-turno + #leyenda-horario)
+                    se reemplaza por un metadato comprimido alineado al título.
+                    El JS escribe en #leyenda-horario el texto corto (ej: "Hasta 8:30 de mañana").
+                    La clase .section-header-meta lo muestra como badge naranja
+                    junto al h2, liberando espacio vertical y acercando las cards
+                    a la primera acción del usuario.
+                -->
+                <p class="section-header-meta" id="leyenda-horario" aria-live="polite"></p>
             </div>
 
             <!--
@@ -177,31 +201,44 @@
             }
 
             /**
-             * Arma el texto de la leyenda de horario.
-             * Ej: "Atienden desde las 8:30 hs. de hoy (8 de junio)
-             *      hasta las 8:30 hs. de mañana (9 de junio)."
+             * Arma el texto comprimido del badge de sección y el context strip.
+             * REDISEÑO: en lugar de 2 líneas largas genera textos cortos:
+             *   badge:  "Hasta 8:30 de mañana (10 jun)"
+             *   strip:  "3 de turno" / "Hasta 8:30 de mañana"
              */
             function armarLeyenda(fechaOp) {
                 const meses = [
                     'enero','febrero','marzo','abril','mayo','junio',
                     'julio','agosto','septiembre','octubre','noviembre','diciembre'
                 ];
+                const mesesCortos = [
+                    'ene','feb','mar','abr','may','jun',
+                    'jul','ago','sep','oct','nov','dic'
+                ];
                 const dInicio = new Date(fechaOp + 'T12:00:00Z');
                 const dFin    = new Date(dInicio);
                 dFin.setUTCDate(dFin.getUTCDate() + 1);
 
-                const hoyTxt    = `${dInicio.getUTCDate()} de ${meses[dInicio.getUTCMonth()]}`;
-                const mañanaTxt = `${dFin.getUTCDate()} de ${meses[dFin.getUTCMonth()]}`;
+                const mañanaTxt      = `${dFin.getUTCDate()} de ${meses[dFin.getUTCMonth()]}`;
+                const mañanaCortoTxt = `${dFin.getUTCDate()} ${mesesCortos[dFin.getUTCMonth()]}`;
 
-                return `Atienden desde las 8:30 hs. de hoy (${hoyTxt}) hasta las 8:30 hs. de mañana (${mañanaTxt}).`;
+                return {
+                    /* Para el badge .section-header-meta junto al h2 */
+                    badge: `Hasta 8:30 de mañana (${mañanaTxt})`,
+                    /* Para el context strip del header */
+                    strip: `Hasta 8:30 de mañana · ${mañanaCortoTxt}`
+                };
             }
 
             /**
              * Muestra el estado de error en el contenedor de cards.
              * Reemplaza los skeletons con un mensaje claro y accionable.
              */
-            function mostrarError(contenedor, infoTurno, mensaje) {
-                if (infoTurno) infoTurno.textContent = '';
+            function mostrarError(contenedor, mensaje) {
+                /* Limpiar el context strip en caso de error */
+                const ctxCount = document.getElementById('ctx-count');
+                if (ctxCount) ctxCount.textContent = 'Sin datos';
+
                 contenedor.innerHTML = `
                     <div class="error-state" role="alert">
                         <div class="error-state-icon" aria-hidden="true">⚠️</div>
@@ -220,9 +257,10 @@
             async function inicializarTurnos(reintentos) {
                 reintentos = reintentos || 0;
 
-                const contenedor    = document.getElementById('contenedor-cards');
-                const infoTurno     = document.getElementById('info-turno');
+                const contenedor     = document.getElementById('contenedor-cards');
                 const leyendaHorario = document.getElementById('leyenda-horario');
+                const ctxCount       = document.getElementById('ctx-count');
+                const ctxHorario     = document.getElementById('ctx-horario');
                 if (!contenedor) return;
 
                 try {
@@ -251,20 +289,29 @@
 
                     const grupoActual = entrada.grupo;
 
-                    /* Actualizar la leyenda informativa */
-                    if (infoTurno) {
-                        infoTurno.textContent = '';
-                    }
-                    if (leyendaHorario) {
-                        leyendaHorario.textContent = armarLeyenda(fechaOp);
-                    }
-
                     /* Filtrar farmacias del grupo con teléfono disponible */
                     const deTurno = padron.prestadores.filter(f =>
                         f.TIPO  === 'FARMACIA' &&
                         f.GRUPO === grupoActual &&
                         (f.FIJO || f.MOVIL)
                     );
+
+                    /* ── Hidratar context strip del header ── */
+                    const leyenda = armarLeyenda(fechaOp);
+
+                    if (ctxCount) {
+                        ctxCount.textContent = deTurno.length > 0
+                            ? `${deTurno.length} de turno`
+                            : 'Sin turno registrado';
+                    }
+                    if (ctxHorario) {
+                        ctxHorario.textContent = leyenda.strip;
+                    }
+
+                    /* ── Hidratar badge junto al h2 ── */
+                    if (leyendaHorario) {
+                        leyendaHorario.textContent = leyenda.badge;
+                    }
 
                     if (deTurno.length === 0) {
                         contenedor.innerHTML = `
@@ -279,11 +326,10 @@
                     /*
                      * crearCardHTML es definida en app.js (carga con defer).
                      * Si aún no está lista, esperamos 100ms y reintentamos.
-                     * Límite: MAX_REINTENTOS para no quedarse colgado forever.
                      */
                     if (typeof window.crearCardHTML !== 'function') {
                         if (reintentos >= CONFIG.MAX_REINTENTOS) {
-                            mostrarError(contenedor, infoTurno, 'La interfaz tardó demasiado en cargar.');
+                            mostrarError(contenedor, 'La interfaz tardó demasiado en cargar.');
                             return;
                         }
                         setTimeout(() => inicializarTurnos(reintentos + 1), 100);
@@ -299,7 +345,6 @@
                     console.error('[BAHI.ar] Error al cargar turnos:', e);
                     mostrarError(
                         contenedor,
-                        infoTurno,
                         'No se pudo obtener la información de guardia.'
                     );
                 }
