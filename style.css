@@ -185,22 +185,16 @@ body {
  */
 
 .brand-logo {
-    font-family: var(--font-brand);
-    font-size: 22px;
-    font-weight: 700;
-    color: #fff;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    letter-spacing: -0.5px;
+    height: 100%;
 }
 
-.brand-logo span {
-    /*
-     * REDISEÑO: El sufijo ".ar" pasa de blanco semitransparente
-     * a --orange. Unifica el lenguaje de urgencia (naranja) con
-     * la identidad visual en el punto de mayor visibilidad: el logo.
-     * Un solo token, coherencia en toda la app.
-     */
-    color: var(--orange);
+.logo-img {
+    height: 40px; /* Ajustado para que quepa bien en el header de 52px */
+    width: auto;
+    display: block;
 }
 
 /* ── 3. BOTONES UNIVERSALES ── */
