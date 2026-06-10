@@ -192,8 +192,8 @@ body {
 }
 
 .logo-img {
-    height: 36px; /* Reducido de 56px: proporción correcta para header de directorio móvil */
-    width: auto;
+    height: 36px !important; /* !important para evitar que otras reglas lo pisen */
+    width: auto !important;
     display: block;
 }
 
@@ -259,20 +259,6 @@ body {
 
 /*
  * REDISEÑO — Tarjeta de TURNO: border-left como señalización de estado.
- *
- * Antes: borde naranja perimetral + box-shadow halo de 3px.
- *   → El borde completo leía como "decoración de la card" más que "estado".
- *   → El halo de 3px añadía ruido visual cuando había 3+ cards juntas.
- *
- * Ahora: border-left de 3px + sin halo.
- *   → El borde izquierdo es la convención de semáforo UI más reconocida
- *     (usada en VS Code, GitHub, Notion, Linear para "estado activo").
- *   → El ojo lo lee como indicador antes de leer el texto.
- *   → Escala sin saturar cuando hay múltiples cards de turno.
- *   → border-width en los 3 lados restantes vuelve a 1px base.
- *
- * El selector data-estado="turno" es generado por crearCardHTML()
- * en app.js — no requiere cambios en JS.
  */
 .card[data-estado="turno"] {
     border-left-width: 3px;
@@ -280,7 +266,6 @@ body {
     border-top-color: var(--orange-border);
     border-right-color: var(--orange-border);
     border-bottom-color: var(--orange-border);
-    /* Sin halo: elimina la distorsión del layout entre cards */
     box-shadow: var(--shadow-soft);
 }
 
@@ -294,20 +279,17 @@ body {
     justify-content: space-between;
     cursor: pointer;
     text-align: left;
-    /* 44px mínimo táctil */
     min-height: 44px;
     font-family: var(--font-base);
     touch-action: manipulation;
 }
 
-/* Nombre de la farmacia: tamaño y peso para lectura < 1 segundo */
 .card-name {
     font-size: 16px;
     font-weight: 600;
     color: var(--text-main);
     line-height: 1.3;
     margin: 0 0 2px;
-    /* Truncar en una línea si el nombre es muy largo */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -320,7 +302,6 @@ body {
     line-height: 1.4;
 }
 
-/* Área de CTAs (Llamar + Ver mapa) */
 .card-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -347,11 +328,6 @@ body {
     border-top: 1px solid var(--border-light);
 }
 
-/*
- * Zona superior de la tarjeta: nombre + dirección a la izquierda,
- * ícono decorativo a la derecha. El ícono está DESPUÉS del texto en
- * el DOM para que el nombre sea lo primero que el parser procesa.
- */
 .card-top {
     display: flex;
     align-items: flex-start;
@@ -362,10 +338,9 @@ body {
 
 .card-info {
     flex: 1;
-    min-width: 0; /* Permite text-overflow: ellipsis en hijos */
+    min-width: 0;
 }
 
-/* Ícono decorativo de la farmacia (después del texto en el DOM) */
 .card-icon {
     width: 36px;
     height: 36px;
@@ -386,11 +361,6 @@ body {
     background: rgba(31, 117, 254, 0.10);
 }
 
-/*
- * Filas del cuerpo colapsable (info secundaria).
- * Usa clases en lugar de style="" inline para mantener
- * el CSS centralizado y no contaminar el JS con estilos.
- */
 .card-detail-row {
     font-size: 13px;
     color: var(--text-muted);
@@ -407,10 +377,6 @@ body {
     font-weight: 600;
 }
 
-/*
- * Chevron del acordeón: rota 180° cuando el body está abierto.
- * La animación es suave y no requiere JS adicional.
- */
 .card-chevron {
     display: inline-block;
     transition: transform 0.3s ease;
@@ -421,11 +387,6 @@ body {
     transform: rotate(180deg);
 }
 
-/*
- * Botón WhatsApp: verde propio del canal para diferenciarlo
- * visualmente del botón "Llamar" (naranja).
- * El usuario asocia el verde con WhatsApp de forma inmediata.
- */
 .btn-whatsapp {
     background: #25D366;
     color: #fff;
@@ -436,12 +397,7 @@ body {
     .btn-whatsapp:hover { background: #1da851; }
 }
 
-/* ── 5. SKELETON LOADER (Percepción de velocidad en 3G) ── */
-/*
- * El skeleton aparece INMEDIATAMENTE (está en el HTML estático).
- * El usuario ve "forma" antes de que lleguen los datos.
- * Elimina el "página en blanco" que hace sentir que la app está rota.
- */
+/* ── 5. SKELETON LOADER ── */
 .skeleton-card {
     background: var(--card-bg);
     border-radius: var(--radius-card);
@@ -486,7 +442,6 @@ body {
     100% { background-position: -200% 0; }
 }
 
-/* Respeta la preferencia del sistema de movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
     .skeleton-line { animation: none; }
     .btn, .card-body-collapse { transition: none; }
@@ -495,7 +450,6 @@ body {
 /* ── 6. UTILIDADES ── */
 .hidden { display: none; }
 
-/* Texto solo para lectores de pantalla */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -523,85 +477,22 @@ body {
     font-family: var(--font-base);
     font-size: 15px;
     color: var(--text-main);
-    /* Evita zoom al enfocar en iOS (requiere font-size >= 16px en el input
-       o se puede suprimir con touch-action) */
     touch-action: manipulation;
-    -webkit-appearance: none;
-}
-
-.search-container input[type="text"]:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: -1px;
-    border-color: transparent;
 }
 
 .search-icon {
     position: absolute;
-    left: 12px;
+    left: 14px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
-    pointer-events: none;
     font-size: 16px;
+    pointer-events: none;
 }
 
-/* ── 8. FILTER CHIPS ── */
-.filter-chips-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 0 16px 12px 16px;
-}
-
-.filter-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 6px 13px;
-    border-radius: 20px;
-    border: 1.5px solid var(--accent);
-    background: transparent;
-    color: var(--accent);
-    font-size: 13px;
-    font-family: var(--font-base);
-    cursor: pointer;
-    touch-action: manipulation;
-    transition: background 0.15s, color 0.15s;
-    white-space: nowrap;
-}
-
-.filter-chip.active {
-    background: var(--accent);
-    color: #fff;
-}
-
-.filter-chip-select {
-    border: 1.5px solid var(--accent);
-    border-radius: 20px;
-    padding: 6px 10px;
-    font-size: 13px;
-    font-family: var(--font-base);
-    background: transparent;
-    color: var(--accent);
-    cursor: pointer;
-    outline: none;
-    transition: background 0.15s, color 0.15s;
-    -webkit-appearance: none;
-}
-
-.filter-chip-select.active {
-    background: var(--accent);
-    color: #fff;
-}
-
-.filter-chip-select option {
-    background: #fff;
-    color: var(--primary);
-}
-
-/* ── 9. SUB-NAVEGACIÓN ── */
+/* ── 8. NAVEGACIÓN SECUNDARIA (Tabs) ── */
 .sub-nav {
-    padding: 0 16px 10px 16px;
+    margin: 0 16px 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -611,171 +502,109 @@ body {
 
 .sub-nav-list {
     display: flex;
-    gap: 6px;
     list-style: none;
-    padding: 0;
-    margin: 0;
+    gap: 8px;
+    padding: 4px 2px;
 }
 
 .sub-nav-link {
-    display: inline-block;
-    padding: 7px 14px;
-    /*
-     * REDISEÑO: border-radius pasa de 20px (pill) a 8px (tab rectangular).
-     * Las pills redondeadas competían visualmente con los botones .btn-accent
-     * y .btn-outline dentro de las cards — el usuario no distinguía
-     * "navegación" de "acción" de un vistazo.
-     * 8px mantiene una esquina suave (no robótica) sin confundirse con CTAs.
-     */
-    border-radius: 8px;
-    background-color: #f1f5f9;
-    color: var(--primary);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
     white-space: nowrap;
-    border: 1.5px solid transparent;
-    touch-action: manipulation;
-    transition: background 0.15s, color 0.15s;
-}
-
-@media (hover: hover) {
-    .sub-nav-link:hover { background-color: #e2e8f0; }
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: #fff;
+    border: 1px solid var(--border-light);
+    transition: all 0.2s ease;
 }
 
 .sub-nav-link.active {
-    background-color: var(--primary);  /* REDISEÑO: azul marino en vez de accent */
-    color: #fff;
-    border-color: var(--primary);
-    /*
-     * REDISEÑO: sombra eliminada en el estado activo.
-     * La sombra azul anterior (accent) se leía como "acción" igual que
-     * los botones de las cards. Sin sombra, el tab activo comunica
-     * "ubicación actual" sin competir con los CTAs.
-     */
-    box-shadow: none;
-}
-
-/* ── 10. OFFLINE / UPDATE ── */
-#update-banner {
-    position: sticky;
-    /*
-     * AJUSTE: el header pasó de height:52px fijo a height:auto
-     * (logo 52px + context strip ~29px ≈ 81px).
-     * Usar top:0 con z-index menor que el header hace que el banner
-     * quede debajo naturalmente en el flujo sticky sin necesidad de
-     * un valor hardcodeado que se desincronizaría si el strip cambia.
-     */
-    top: 0;
-    z-index: 45;   /* < 50 del header → el banner queda debajo del header sticky */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 10px 16px;
     background: var(--primary);
     color: #fff;
-    font-size: 14px;
+    border-color: var(--primary);
 }
 
-#update-banner #btn-actualizar {
-    flex-shrink: 0;
-    padding: 6px 14px;
-    background: #fff;
-    color: var(--primary);
-    border: none;
-    border-radius: var(--radius-btn);
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    touch-action: manipulation;
-    font-family: var(--font-base);
-}
-
-.cache-indicator-warning {
-    margin: 0 16px 8px;
-    padding: 10px 14px;
-    background: var(--orange-light);
-    border: 1px solid var(--orange-border);
-    border-radius: var(--radius-btn);
-    color: var(--orange-dark);
-    font-size: 13px;
-}
-
-/* ── 11. ESTADO DE ERROR ── */
+/* ── 9. ESTADOS DE ERROR Y CARGA ── */
 .error-state {
-    padding: 24px 16px;
     text-align: center;
+    padding: 40px 20px;
     color: var(--text-muted);
 }
 
 .error-state-icon {
-    font-size: 36px;
-    margin-bottom: 12px;
+    font-size: 40px;
+    margin-bottom: 16px;
+    opacity: 0.5;
 }
 
 .error-state-title {
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--text-main);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .error-state-desc {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.5;
 }
 
-/* ── 12. LEYENDA INFORMATIVA ── */
-.info-footer-text {
-    padding: 4px 16px 12px;
-    font-size: 11px;
-    color: var(--text-muted);
+/* ── 10. BANNER DE ACTUALIZACIÓN (Update Banner) ── */
+#update-banner {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    position: sticky;
+    top: 52px;
+    z-index: 40;
+    box-shadow: 0 2px 8px rgba(31, 117, 254, 0.2);
+}
+
+#btn-actualizar {
+    background: #fff;
+    color: var(--accent);
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* ── 11. INDICADOR DE CACHÉ (Offline Mode) ── */
+.cache-indicator-warning {
+    background: #fff8e1;
+    color: #f57c00;
+    padding: 8px 16px;
+    margin: 0 16px 12px;
+    border-radius: var(--radius-btn);
+    border: 1px solid #ffe082;
+    font-size: 12px;
+    font-weight: 600;
     line-height: 1.4;
-    text-align: left;
-    font-style: italic;
+    text-align: center;
 }
 
-@media (min-width: 768px) {
-    .info-footer-text {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding-left: 0;
-        padding-right: 0;
-        text-align: center;
-    }
-}
-
-@media (min-width: 1100px) {
-    .info-footer-text {
-        max-width: 1200px;
-    }
-}
-
-/* ── 13. CONTENEDOR PRINCIPAL ── */
-.app-view {
-    padding-bottom: 32px;
-}
-
-#main-content {
-    /* El contenido de texto va primero en el HTML —
-       esta regla solo define el contexto de layout */
-}
-
+/* ── 12. SECCIONES Y ENCABEZADOS ── */
 .section-header {
-    /*
-     * REDISEÑO: padding-bottom reducido de 8px a 4px.
-     * El subtítulo de 2 líneas ("#info-turno / #leyenda-horario") se
-     * comprime en una sola línea de metadato via .section-header-meta.
-     * El espacio recuperado acerca las cards al título — menos scroll
-     * hasta la primera acción.
-     */
     padding: 14px 16px 4px;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 2px 8px;
+    gap: 12px;
+}
+
+.section-header-titles {
+    flex: 1;
+    min-width: 0;
 }
 
 .section-header h2 {
@@ -783,30 +612,9 @@ body {
     font-weight: 700;
     color: var(--text-main);
     font-family: var(--font-brand);
-    margin-bottom: 0;            /* REDISEÑO: quitamos el margin-bottom; el gap del flex lo gestiona */
+    margin-bottom: 4px;
 }
 
-.section-header p {
-    color: var(--text-muted);
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-/*
- * NUEVO — Metadato comprimido junto al título de sección.
- * Reemplaza el bloque de 2 párrafos (#info-turno + #leyenda-horario)
- * con una línea discreta a la derecha del h2.
- *
- * Uso en index.html:
- *   <div class="section-header">
- *     <h2 id="titulo-home">Farmacias de Turno</h2>
- *     <p class="section-header-meta" id="leyenda-horario"></p>
- *   </div>
- *
- * El JS escribe en #leyenda-horario el texto corto (ej: "Hasta 8:30 de mañana").
- * El párrafo #info-turno ("Buscando…") puede eliminarse del HTML
- * o quedar oculto mientras JS lo rellena.
- */
 .section-header-meta {
     font-size: 11px;
     font-weight: 600;
@@ -816,193 +624,14 @@ body {
     padding: 3px 9px;
     border-radius: 5px;
     white-space: nowrap;
-    /* Alinear al baseline del h2 */
-    align-self: center;
-    /* Ocultar si está vacío (antes de que JS lo rellene) */
     display: none;
 }
 
-/* Mostrar solo cuando tiene contenido (JS asigna el texto) */
 .section-header-meta:not(:empty) {
     display: inline-block;
 }
 
-#contenedor-cards {
-    padding: 0 16px;
-}
-
-/* ── 14. DISEÑO PARA ESCRITORIO (PC) ── */
-@media (min-width: 768px) {
-    /* Centrado y ancho máximo para los contenedores principales */
-    .header-content,
-    .search-container,
-    .sub-nav,
-    .section-header,
-    #contenedor-cards {
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Centrar el contenido de la banda de contexto */
-    .header-ctx-strip {
-        justify-content: center;
-    }
-
-    /* Mejorar el espaciado del buscador en pantallas grandes */
-    .search-container {
-        margin-top: 24px;
-        margin-bottom: 24px;
-    }
-
-    /* Convertir el listado de farmacias en una cuadrícula (Grid) */
-    #contenedor-cards {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding-top: 10px;
-    }
-
-    /* Eliminar el margen inferior de las tarjetas ya que ahora usamos el gap del grid */
-    .card, .skeleton-card {
-        margin-bottom: 0;
-    }
-
-    /* Centrar la navegación secundaria */
-    .sub-nav-list {
-        justify-content: center;
-        gap: 12px;
-    }
-
-    /* Ajustar el encabezado de sección */
-    .section-header {
-        padding-left: 0;
-        padding-right: 0;
-        margin-bottom: 16px;
-    }
-}
-
-@media (min-width: 1100px) {
-    /* En monitores más grandes, podemos permitir un poco más de ancho y 3 columnas */
-    .header-content,
-    .search-container,
-    .sub-nav,
-    .section-header,
-    #contenedor-cards {
-        max-width: 1200px;
-    }
-
-    #contenedor-cards {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* ── 15. BANNER DE EMERGENCIA — eliminado ── */
-/*
- * El banner rojo del header fue removido: duplicaba el 107 de la sección
- * "Emergencias médicas" y competía con el propio contenido.
- * La card del 107 (§16) con el sistema naranja del sitio es suficiente.
- * Las clases .emergency-banner, .emergency-banner-label y .btn-emergency-call
- * se conservan comentadas por si se necesitan en el futuro.
- */
-
-/*
-.emergency-banner { ... }
-.emergency-banner-label { ... }
-.btn-emergency-call { ... }
-*/
-
-/* ── 16. CARD DESTACADA DE EMERGENCIA ── */
-/*
- * La card del 107 usa el sistema naranja del sitio (--orange) en lugar
- * de rojo independiente. El peso visual viene del tamaño del número (28px/800)
- * y el borde izquierdo, no de un tercer color fuera del sistema.
- * Coherente con las cards de turno y los botones de acción urgente.
- */
-.card-emergencia {
-    border-left: 3px solid var(--orange);
-    border-top-color: var(--orange-border);
-    border-right-color: var(--orange-border);
-    border-bottom-color: var(--orange-border);
-    background: var(--orange-light);
-}
-
-.card-emergencia .card-name {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--orange-dark);
-    letter-spacing: -1px;
-}
-
-/* ── 17. TELÉFONO VISIBLE (Sugerencia 3) ── */
-/*
- * Muestra el número principal de la card directamente,
- * sin requerir que el usuario abra el acordeón.
- * Hereda .card-addr con un leve acento de color para indicar
- * que es un dato de contacto accionable.
- */
-.card-phone-visible {
-    color: var(--text-muted);
-    font-size: 13px;
-    font-weight: 500;
-}
-
-/* ── 18. ENLACE DE TELÉFONO DENTRO DEL ACORDEÓN ── */
-/*
- * Los números alternativos en el body colapsable son enlaces clickeables.
- * Color orange-dark: coherente con las acciones de llamada (naranja),
- * diferenciado del azul --accent que se usa para mapa/navegación.
- */
-.card-phone-link {
-    color: var(--orange-dark);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-@media (hover: hover) {
-    .card-phone-link:hover {
-        text-decoration: underline;
-    }
-}
-
-/* ── 19. SEPARADOR DE SECCIÓN ── */
-/*
- * Línea divisoria entre bloques de contenido (Emergencias / Ambulancias / Guardias).
- * Sutil pero funcional: el usuario entiende que cambia la categoría.
- */
-.section-divider {
-    height: 1px;
-    background: var(--border-light);
-    margin: 8px 16px 4px;
-}
-
-/* ── 20. BOTÓN INLINE EN CARD-TOP ── */
-/*
- * El botón "Llamar" de la card del 107 vive dentro de .card-top
- * (no en .card-actions), así que no debe heredar width:100% del grid.
- * flex-shrink:0 evita que se comprima si el nombre ocupa mucho espacio.
- */
-.card-top .btn {
-    width: auto;
-    flex-shrink: 0;
-    align-self: center;
-}
-
-/* ── 7. BOTÓN DE COMPARTIR WHATSAPP ─────────────────────────────────────────── */
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 16px 8px;
-}
-
-.section-header-titles {
-    flex: 1;
-    min-width: 0;
-}
-
+/* ── 13. BOTÓN DE COMPARTIR WHATSAPP ── */
 .btn-share-wa {
     display: inline-flex;
     align-items: center;
@@ -1019,7 +648,6 @@ body {
     box-shadow: var(--shadow-soft);
     font-family: var(--font-base);
     flex-shrink: 0;
-    /* 44px mínimo táctil */
     min-height: 38px;
 }
 
@@ -1037,10 +665,57 @@ body {
 }
 
 @media (max-width: 360px) {
-    .btn-share-wa span {
-        display: none;
+    .btn-share-wa span { display: none; }
+    .btn-share-wa { padding: 8px; }
+}
+
+/* ── 14. DISEÑO PARA ESCRITORIO (PC) ── */
+@media (min-width: 768px) {
+    .header-content,
+    .search-container,
+    .sub-nav,
+    .section-header,
+    #contenedor-cards {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
     }
-    .btn-share-wa {
-        padding: 8px;
+
+    .header-ctx-strip { justify-content: center; }
+
+    #contenedor-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding-top: 10px;
     }
+
+    .card, .skeleton-card { margin-bottom: 0; }
+
+    .sub-nav-list { justify-content: center; gap: 12px; }
+
+    .section-header {
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 16px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .header-content,
+    .search-container,
+    .sub-nav,
+    .section-header,
+    #contenedor-cards {
+        max-width: 1200px;
+    }
+
+    #contenedor-cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── 15. SEPARADOR DE SECCIÓN ── */
+.section-divider {
+    height: 1px;
+    background: var(--border-light);
+    margin: 8px 16px 4px;
 }
