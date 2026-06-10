@@ -987,3 +987,60 @@ body {
     flex-shrink: 0;
     align-self: center;
 }
+
+/* ── 7. BOTÓN DE COMPARTIR WHATSAPP ─────────────────────────────────────────── */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 16px 8px;
+}
+
+.section-header-titles {
+    flex: 1;
+    min-width: 0;
+}
+
+.btn-share-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    color: #25D366;
+    border: 1.5px solid #25D366;
+    padding: 6px 12px;
+    border-radius: var(--radius-btn);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-soft);
+    font-family: var(--font-base);
+    flex-shrink: 0;
+    /* 44px mínimo táctil */
+    min-height: 38px;
+}
+
+.btn-share-wa:active {
+    transform: scale(0.96);
+    background: rgba(37, 211, 102, 0.05);
+}
+
+@media (hover: hover) {
+    .btn-share-wa:hover {
+        background: #25D366;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+    }
+}
+
+@media (max-width: 360px) {
+    .btn-share-wa span {
+        display: none;
+    }
+    .btn-share-wa {
+        padding: 8px;
+    }
+}

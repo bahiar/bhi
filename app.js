@@ -259,3 +259,38 @@ function mostrarIndicadorCache() {
     aviso.textContent = 'Sin conexión — mostrando datos guardados. La información puede no estar actualizada.';
     contenedor.parentNode.insertBefore(aviso, contenedor);
 }
+
+// ── 7. COMPARTIR FARMACIAS POR WHATSAPP ──────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnCompartir = document.getElementById('btn-compartir-whatsapp');
+    
+    if (btnCompartir) {
+        btnCompartir.addEventListener('click', () => {
+            const cards = document.querySelectorAll('#contenedor-cards .card');
+            if (cards.length === 0) return;
+
+            const leyendaEl = document.getElementById('leyenda-horario');
+            const leyenda = leyendaEl ? leyendaEl.textContent : '';
+
+            let mensaje = `*Farmacias de Turno hoy en Bahía Blanca* 🏥\n`;
+            if (leyenda) mensaje += `_${leyenda}_\n`;
+            mensaje += `____________________________\n\n`;
+
+            cards.forEach((card) => {
+                const nombre = card.querySelector('.card-name')?.innerText || '';
+                const direccion = card.querySelector('.card-addr')?.innerText || '';
+                
+                if (nombre) {
+                    mensaje += `📍 *${nombre}*\n`;
+                    mensaje += `🏠 ${direccion}\n\n`;
+                }
+            });
+
+            mensaje += `Consulta más en: https://bahiar.github.io/bhi/`;
+
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        });
+    }
+});
