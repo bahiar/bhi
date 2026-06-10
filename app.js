@@ -220,8 +220,8 @@ function configurarBotonCompartir() {
             }
         });
 
-        mensaje += `🌐 *Ver mapa y más info en:*\n`;
-        mensaje += `https://bahiar.github.io/bhi/`;
+        mensaje += `🌐 *Más info en:*\n`;
+        mensaje += `www.bahi.ar`;
 
         const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
