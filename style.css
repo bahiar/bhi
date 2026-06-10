@@ -981,3 +981,15 @@ body {
     background: var(--border-light);
     margin: 8px 16px 4px;
 }
+
+/* ── 20. BOTÓN INLINE EN CARD-TOP ── */
+/*
+ * El botón "Llamar" de la card del 107 vive dentro de .card-top
+ * (no en .card-actions), así que no debe heredar width:100% del grid.
+ * flex-shrink:0 evita que se comprima si el nombre ocupa mucho espacio.
+ */
+.card-top .btn {
+    width: auto;
+    flex-shrink: 0;
+    align-self: center;
+}
