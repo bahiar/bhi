@@ -290,8 +290,6 @@ body {
     box-shadow: var(--shadow-soft);
 }
 
-
-
 .card-header {
     padding: 14px 16px;
     width: 100%;
@@ -734,7 +732,33 @@ body {
     line-height: 1.5;
 }
 
-/* ── 12. CONTENEDOR PRINCIPAL ── */
+/* ── 12. LEYENDA INFORMATIVA ── */
+.info-footer-text {
+    padding: 4px 16px 12px;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    text-align: left;
+    font-style: italic;
+}
+
+@media (min-width: 768px) {
+    .info-footer-text {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+}
+
+@media (min-width: 1100px) {
+    .info-footer-text {
+        max-width: 1200px;
+    }
+}
+
+/* ── 13. CONTENEDOR PRINCIPAL ── */
 .app-view {
     padding-bottom: 32px;
 }
@@ -813,7 +837,7 @@ body {
     padding: 0 16px;
 }
 
-/* ── 13. DISEÑO PARA ESCRITORIO (PC) ── */
+/* ── 14. DISEÑO PARA ESCRITORIO (PC) ── */
 @media (min-width: 768px) {
     /* Centrado y ancho máximo para los contenedores principales */
     .header-content,
