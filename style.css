@@ -1,23 +1,5 @@
-/* ── 0. FUENTES PERSONALIZADAS ── */
 /*
- * Plus Jakarta Sans: fuente de marca para titulares y nombres de card.
- * Solo pesos 600 y 700 (~14KB). font-display:swap viene por defecto
- * desde Google Fonts — el cuerpo nunca espera a esta fuente.
- * Varela Round se conserva como fallback local por compatibilidad con
- * activos ya cacheados por el SW.
- */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&display=swap');
-
-@font-face {
-    font-family: 'varela_roundregular';
-    src: url('/bhi/assets/fonts/varelaround-regular-webfont.woff2') format('woff2'),
-         url('/bhi/assets/fonts/varelaround-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* =========================================================================
+ * =========================================================================
  * PROYECTO: BAHI.ar - Sistema de Diseño Unificado
  * =========================================================================
  * Este archivo es la ÚNICA fuente de verdad. No crees estilos CSS en los HTML.
@@ -25,946 +7,197 @@
  */
 
 /* ── 1. CONFIGURACIÓN MAESTRA (Variables) ── */
+/* Cambia estos valores aquí y se actualizará en toda la PWA automáticamente */
 :root {
-    /* Paleta de colores principal */
-    --primary: #191971;
-    --navy:    #191971;          /* alias semántico para bottom-nav y tokens de categoría */
-    --accent: #1F75FE;
-    --bg-main: #EEF2F7;          /* FIX: más contrastado que #F8FAFC — cards blancas flotan mejor */
-    --card-bg: #FFFFFF;
-    --text-main: #0F172A;
-    --text-muted: #525E73;
-    --border-light: #E2E8F0;     /* FIX: sin alpha — más predecible y estable */
+  /* Paleta de colores principal */
+  --primary:      #191971;              /* Azul corporativo */
+  --accent:       #1F75FE;              /* Azul claro de acento */
+  --bg-main:      #F8FAFC;             /* Fondo de toda la app */
+  --card-bg:      #FFFFFF;             /* Fondo de las tarjetas */
+  --text-main:    #0F172A;             /* Color de texto principal */
+  --text-muted:   #525E73;             /* Color para texto secundario — ratio 4.5:1 sobre blanco (WCAG AA) */
+  --border-light: rgba(226, 232, 240, 0.8); /* Bordes suaves */
 
-    /* Paleta Naranja (urgencia / acción primaria) */
-    --orange: #FF6B00;
-    --orange-dark: #CC5500;
-    --orange-light: rgba(255, 107, 0, 0.10);
-    --orange-border: rgba(255, 107, 0, 0.25);
+  /* Paleta Naranja (Universal para botones y alertas) */
+  --orange:        #FF6B00;
+  --orange-dark:   #CC5500;
+  --orange-light:  rgba(255, 107, 0, 0.10);
+  --orange-border: rgba(255, 107, 0, 0.25);
 
-    /* Medidas y Estructura */
-    --radius-card: 16px;
-    --radius-btn: 12px;
-    /*
-     * FIX: sombra bicapa — reemplaza la sombra casi invisible (0 2px 4px opacity 5%).
-     * La capa corta (1px/3px) da definición, la larga (4px/12px) da profundidad.
-     * Las cards pasan de planas a objetos con peso visual sobre el fondo gris.
-     */
-    --shadow-soft: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.06);
+  /* Paleta WhatsApp */
+  --whatsapp:       #25D366;
+  --whatsapp-dark:  #128C4E;
+  --whatsapp-light: rgba(37, 211, 102, 0.10);
+  --whatsapp-border: rgba(37, 211, 102, 0.30);
 
-    /*
-     * Stack tipográfico:
-     * --font-brand: Plus Jakarta Sans para titulares, nombres de card y brand.
-     *   Solo pesos 600/700. Fallback a Varela Round (local) y luego system-ui.
-     * --font-base: system-ui para cuerpo de texto — 0ms de carga.
-     */
-    --font-base: system-ui, -apple-system, BlinkMacSystemFont,
-                 "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    --font-brand: 'Plus Jakarta Sans', 'varela_roundregular', var(--font-base);
-
-    /* ── Tokens de categoría (escalabilidad futura) ──
-     * Cada sección puede tener su propio acento sin salir de la paleta.
-     * Actualmente todos usan --orange. Al agregar nuevas secciones,
-     * se define --cat-X aquí y se aplica via data-categoria en el HTML.
-     */
-    --cat-farmacia:    var(--orange);
-    --cat-guardia:     #DC2626;
-    --cat-laboratorio: var(--accent);
+  /* Medidas y Estructura */
+  --radius-card: 16px;                 /* Redondez de tarjetas */
+  --radius-btn:  12px;                 /* Redondez de botones */
+  --shadow-soft: 0 2px 4px rgba(15, 23, 42, 0.05); /* Sombra suave */
 }
 
-/* Reset básico */
+/* Reset básico para que los navegadores no agreguen márgenes extra */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: var(--font-base);
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
 }
 
-/* ── 2. HEADER ── */
-.main-header {
-    /*
-     * FIX: gradiente diagonal sutil — añade profundidad sin salir del navy.
-     * #191971 → #1a2f8e: el destino es un azul ligeramente más profundo.
-     * El ojo lo percibe como dimensión, no como cambio de color.
-     */
-    background: linear-gradient(135deg, #191971 0%, #1a2f8e 100%);
-    padding: 0;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-}
-
-.header-content {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0 16px;
-    height: 52px;                /* Restaurado a 52px: el logo ya no requiere altura extra */
-}
-
-/*
- * NUEVO — Context strip (banda de contexto bajo el logo)
- * Muestra la info más urgente —cuántas farmacias de turno y hasta cuándo—
- * ANTES de cualquier scroll, en HTML estático, sin depender de JS.
- * Si JS no llega (red muy lenta o fallo), el usuario igual ve el dato.
- *
- * Uso en index.html:
- *   <div class="header-ctx-strip" id="header-ctx-strip">
- *     <span class="ctx-live-dot" aria-hidden="true"></span>
- *     <span id="ctx-count">…</span>
- *     <span class="ctx-sep" aria-hidden="true"></span>
- *     <span id="ctx-horario">Hasta las 8:30 de mañana</span>
- *   </div>
- *
- * El JS de index.html actualiza #ctx-count y #ctx-horario
- * con los datos reales una vez que carga el turnero.
- * Mientras tanto, el strip puede mostrar un placeholder estático.
- */
-.header-ctx-strip {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 16px 7px;
-    background: rgba(0, 0, 0, 0.28);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    font-size: 12px;
-    line-height: 1;
-    /* Ocultar si está vacío (el JS lo muestra cuando tiene datos) */
-    min-height: 0;
-}
-
-/* Texto de recuento: "3 de turno" */
-.ctx-live {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: var(--orange);
-    font-weight: 700;
-    font-size: 11px;
-    white-space: nowrap;
-}
-
-/*
- * Punto pulsante que indica "en vivo / activo ahora".
- * CSS puro, sin JS. Respeta prefers-reduced-motion.
- */
-.ctx-live-dot {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--orange);
-    animation: ctx-pulse 1.5s ease-in-out infinite;
-    flex-shrink: 0;
-}
-
-@keyframes ctx-pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.25; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .ctx-live-dot { animation: none; }
-}
-
-/* Separador visual entre grupos de datos del strip */
-.ctx-sep {
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.25);
-    flex-shrink: 0;
-}
-
-/* Texto secundario del strip: horario, fecha */
-.ctx-text {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 11px;
-    /*
-     * FIX: eliminado white-space:nowrap + overflow:hidden.
-     * En 320-360px el texto de horario quedaba recortado.
-     * Con overflow:hidden el usuario no veía cuándo vencía el turno.
-     */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-width: 0;
-}
-
-/*
- * AJUSTE: el #update-banner se posiciona debajo del header.
- * Como el header ahora es auto (logo 52px + strip ~29px ≈ 81px),
- * se actualiza el top del banner.
- * Nota: con height:auto en el header, sticky en el banner
- * se calcula automáticamente. La regla top:52px era fija;
- * la comentamos para no forzar un valor que ya no aplica.
- */
-
-.brand-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    height: 100%;
-}
-
-.logo-img {
-    height: 36px;
-    width: auto;
-    max-width: 100%;
-    display: block;
-    object-fit: contain;
-}
-
-/* ── 3. BOTONES UNIVERSALES ── */
+/* ── 2. BOTONES UNIVERSALES ── */
+/* Uso: <a class="btn btn-accent">Texto</a> */
 .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    /* 44px: mínimo táctil recomendado por Apple HIG y WCAG 2.5.5 */
-    min-height: 44px;
-    padding: 0 16px;
-    border-radius: var(--radius-btn);
-    font-family: var(--font-base);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    /* Evita el zoom al doble-tap en iOS */
-    touch-action: manipulation;
-    transition: background 0.15s, opacity 0.15s;
-    text-decoration: none;
-    /* Aceleración por GPU para animaciones suaves */
-    will-change: opacity;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 40px; padding: 0 16px; border-radius: var(--radius-btn);
+  font-size: 13px; font-weight: 700; cursor: pointer; border: none;
+  transition: all 0.2s; text-decoration: none;
 }
 
-/* Llamar: naranja sólido — máxima visibilidad para acción urgente */
-.btn-accent {
-    background: var(--orange);
-    color: #fff;
+/* Los SVG dentro de los botones heredan el color del botón */
+.btn svg {
+  flex-shrink: 0;
 }
 
-/* Hover solo en dispositivos que lo soportan (evita estado stuck en móvil) */
-@media (hover: hover) {
-    .btn-accent:hover { background: var(--orange-dark); }
-    .btn-outline:hover { background: rgba(255, 107, 0, 0.18); }
-}
+/* Botón principal color naranja — Llamar */
+.btn-accent { background: var(--orange); color: #fff; }
+.btn-accent:hover { opacity: 0.9; }
 
-/* Ver mapa: outline naranja — acción secundaria, misma importancia visual */
-.btn-outline {
-    background: var(--orange-light);
-    color: var(--orange-dark);
-    border: 1.5px solid var(--orange-border);
-}
-
-/* Indicador de foco para navegación por teclado (accesibilidad) */
-.btn:focus-visible,
-.card-header:focus-visible,
-.sub-nav-link:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
-/* ── 4. SISTEMA DE CARDS (Tarjetas Colapsables) ── */
-.card {
-    background: var(--card-bg);
-    border-radius: var(--radius-card);
-    border: 1px solid var(--border-light);
-    margin-bottom: 12px;
-    box-shadow: var(--shadow-soft);
-    overflow: hidden;
-}
-
-/*
- * REDISEÑO — Tarjeta de TURNO: border-left como señalización de estado.
- * Tinte naranja muy sutil en la zona izquierda — refuerza la urgencia
- * sin competir con el texto.
- */
-.card[data-estado="turno"] {
-    border-left-width: 3px;
-    border-left-color: var(--orange);
-    border-top-color: var(--orange-border);
-    border-right-color: var(--orange-border);
-    border-bottom-color: var(--orange-border);
-    box-shadow: var(--shadow-soft);
-    background: linear-gradient(to right, rgba(255, 107, 0, 0.03) 0px, transparent 52px), var(--card-bg);
-}
-
-/* Hover en desktop — comunica interactividad */
-@media (hover: hover) {
-    .card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(15, 23, 42, 0.10), 0 12px 28px rgba(15, 23, 42, 0.09);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-}
-
-/* Feedback táctil en móvil */
-.card:active {
-    background-color: rgba(15, 23, 42, 0.01);
-}
-
-.card-header {
-    padding: 14px 16px;
-    width: 100%;
-    border: none;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    text-align: left;
-    min-height: 44px;
-    font-family: var(--font-base);
-    touch-action: manipulation;
-}
-
-.card-name {
-    font-size: 16px;
-    font-weight: 700;            /* subido de 600 a 700 — más peso con Plus Jakarta Sans */
-    font-family: var(--font-brand);
-    color: var(--text-main);
-    line-height: 1.3;
-    margin: 0 0 2px;
-    letter-spacing: -0.01em;
-}
-
-.card-addr {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin: 0;
-    line-height: 1.4;
-}
-
-.card-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    /*
-     * FIX: padding horizontal alineado a 16px (igual que card-top).
-     * Antes era 14px, generando desalineación entre nombre y botones.
-     * padding-top: 2px absorbe el gap visual con card-top (que termina en 10px bottom).
-     */
-    padding: 2px 16px 14px;
-}
-
-.card-actions .btn {
-    width: 100%;
-}
-
-.card-body-collapse {
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-    overflow: hidden;
-    padding: 0 16px;
-}
-
-.card-body-collapse.open {
-    max-height: 1000px;
-    opacity: 1;
-    padding: 0 16px 16px;
-    border-top: 1px solid var(--border-light);
-}
-
-.card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-    /*
-     * FIX: padding horizontal unificado a 16px.
-     * Antes era 14px, generando desalineación respecto a card-body-collapse (16px).
-     */
-    padding: 14px 16px 10px;
-}
-
-.card-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.card-icon {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 9px;
-    background: var(--orange-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-}
-
-.card[data-estado="turno"] .card-icon {
-    background: var(--orange-light);
-}
-
-.card[data-estado="24h"] .card-icon {
-    background: rgba(31, 117, 254, 0.10);
-}
-
-.card-detail-row {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin-bottom: 6px;
-}
-
-.card-detail-row:last-child {
-    margin-bottom: 0;
-}
-
-.card-detail-row strong {
-    color: var(--text-main);
-    font-weight: 600;
-}
-
-.card-chevron {
-    display: inline-block;
-    transition: transform 0.3s ease;
-    font-style: normal;
-}
-
-.card-header[aria-expanded="true"] .card-chevron {
-    transform: rotate(180deg);
-}
-
+/* Botón WhatsApp — verde oficial */
 .btn-whatsapp {
-    background: #25D366;
-    color: #fff;
-    border: none;
+  background: var(--whatsapp);
+  color: #fff;
+}
+.btn-whatsapp:hover { opacity: 0.9; }
+
+/* Botón secundario con borde (ideal para mapas) */
+.btn-outline {
+  background: var(--orange-light);
+  color: var(--orange-dark);
+  border: 1px solid var(--orange-border);
 }
 
-@media (hover: hover) {
-    .btn-whatsapp:hover { background: #1da851; }
+/* ── 3. SISTEMA DE CARDS (Tarjetas Colapsables) ── */
+/* Todas las tarjetas usan esta estructura base */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-light);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
 }
 
-/* ── 5. SKELETON LOADER ── */
-.skeleton-card {
-    background: var(--card-bg);
-    border-radius: var(--radius-card);
-    border: 1px solid var(--border-light);
-    margin-bottom: 12px;
-    padding: 14px 16px;
-    overflow: hidden;
+/* Cabecera de la tarjeta: el botón que abre/cierra */
+.card-header {
+  padding: 16px; width: 100%; border: none; background: transparent;
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; text-align: left;
 }
 
-.skeleton-line {
-    border-radius: 6px;
-    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
-    background-size: 200% 100%;
-    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+/* Cuerpo de la tarjeta (oculto por defecto) */
+.card-body-collapse {
+  max-height: 0; opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  padding: 0 16px;
 }
 
-.skeleton-line-title {
-    height: 18px;
-    width: 65%;
-    margin-bottom: 8px;
+/* Clase dinámica: cuando se añade 'open', se muestra el contenido */
+.card-body-collapse.open {
+  max-height: 1000px; opacity: 1;
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border-light);
 }
 
-.skeleton-line-addr {
-    height: 13px;
-    width: 80%;
-    margin-bottom: 12px;
-}
-
-.skeleton-btns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-}
-
-.skeleton-btn {
-    height: 40px;
-    border-radius: var(--radius-btn);
-}
-
-@keyframes skeleton-shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .skeleton-line { animation: none; }
-    .btn, .card-body-collapse { transition: none; }
-}
-
-/* ── 6. UTILIDADES ── */
+/* ── 4. UTILIDADES ── */
 .hidden { display: none; }
 
+/* Texto solo para lectores de pantalla (no visible, sí accesible) */
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
 }
 
-/* ── 7. BUSCADOR ── */
+/* Indicador de foco para navegación por teclado */
+.btn:focus-visible,
+.card-header:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Target táctil mínimo para cabeceras de tarjeta */
+.card-header {
+  min-height: 44px;
+}
+
+/* Estilo del buscador */
 .search-container {
-    position: relative;
-    margin: 12px 16px;
+  position: relative;
+  margin: 1rem 16px;
 }
 
 .search-container input[type="text"] {
-    width: 100%;
-    padding: 11px 12px 11px 40px;
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-btn);
-    background: #fff;
-    font-family: var(--font-base);
-    font-size: 15px;
-    color: var(--text-main);
-    touch-action: manipulation;
-    outline: none;
+  width: 100%;
+  padding: 12px 12px 12px 42px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-btn);
+  background: white;
 }
 
-/*
- * FIX: estilo de foco explícito para el buscador.
- * Sin esto iOS Safari aplica su outline azul nativo,
- * que rompe la paleta naranja/azul del design system.
- */
-.search-container input[type="text"]:focus {
-    border-color: var(--orange);
-    box-shadow: 0 0 0 3px var(--orange-light);
-}
-
+/* Ícono SVG de la lupa — centrado verticalmente igual que el emoji anterior */
 .search-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    font-size: 16px;
-    pointer-events: none;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none; /* El SVG no interfiere con el click en el input */
+  display: block;
 }
 
-/* ── 8. NAVEGACIÓN SECUNDARIA (Tabs) ── */
-/*
- * En móvil la sub-nav se oculta — la navegación la provee la bottom-nav-bar (§17).
- * En desktop (≥768px) se reactiva centrada bajo el header.
- */
-.sub-nav {
-    margin: 0 16px 16px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    display: none;               /* oculta en móvil — ver §17 para bottom nav */
-}
-
-.sub-nav::-webkit-scrollbar { display: none; }
-
-.sub-nav-list {
-    display: flex;
-    list-style: none;
-    gap: 8px;
-    padding: 4px 2px;
-}
-
-.sub-nav-link {
-    white-space: nowrap;
-    padding: 8px 16px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-muted);
-    background: #fff;
-    border: 1px solid var(--border-light);
-    transition: all 0.2s ease;
-}
-
-.sub-nav-link.active {
-    background: var(--primary);
-    color: #fff;
-    border-color: var(--primary);
-}
-
-/* ── 9. ESTADOS DE ERROR Y CARGA ── */
-.error-state {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text-muted);
-}
-
-.error-state-icon {
-    font-size: 40px;
-    margin-bottom: 16px;
-    opacity: 0.5;
-}
-
-.error-state-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 8px;
-}
-
-.error-state-desc {
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-/* ── 10. BANNER DE ACTUALIZACIÓN (Update Banner) ── */
+/* ── 5. OFFLINE / UPDATE ── */
+/* Banner de nueva versión disponible */
 #update-banner {
-    background: var(--accent);
-    color: #fff;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 13px;
-    font-weight: 600;
-    position: sticky;
-    /*
-     * FIX: top corregido de 52px a 81px.
-     * El header pasó de height fijo a height:auto (logo 52px + ctx-strip ~29px ≈ 81px).
-     * Con top:52px el banner se solapaba 29px con el header.
-     */
-    top: 81px;
-    z-index: 40;
-    box-shadow: 0 2px 8px rgba(31, 117, 254, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
 }
 
-#btn-actualizar {
-    background: #fff;
-    color: var(--accent);
-    border: none;
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
+#update-banner #btn-actualizar {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  background: #fff;
+  color: var(--primary);
+  border: none;
+  border-radius: var(--radius-btn);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-/* ── 11. INDICADOR DE CACHÉ (Offline Mode) ── */
+#update-banner #btn-actualizar:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Indicador de datos en caché */
 .cache-indicator-warning {
-    background: #fff8e1;
-    color: #f57c00;
-    padding: 8px 16px;
-    margin: 0 16px 12px;
-    border-radius: var(--radius-btn);
-    border: 1px solid #ffe082;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.4;
-    text-align: center;
-}
-
-/* ── 12. SECCIONES Y ENCABEZADOS ── */
-.section-header {
-    padding: 14px 16px 4px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.section-header-titles {
-    flex: 1;
-    min-width: 0;
-}
-
-.section-header h2 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-main);
-    font-family: var(--font-brand);
-    letter-spacing: -0.02em;     /* Plus Jakarta Sans se lee mejor con tracking negativo en titulares */
-    margin-bottom: 4px;
-}
-
-.section-header-meta {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--orange-dark);
-    background: var(--orange-light);
-    border: 0.5px solid var(--orange-border);
-    padding: 3px 9px;
-    border-radius: 5px;
-    /*
-     * FIX: eliminado white-space:nowrap.
-     * En viewports <380px el badge desbordaba el contenedor del h2,
-     * rompiendo el layout del section-header.
-     */
-    display: none;
-}
-
-.section-header-meta:not(:empty) {
-    display: inline-block;
-}
-
-/* ── 13. BOTÓN DE COMPARTIR WHATSAPP ── */
-.btn-share-wa {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #ffffff;
-    color: #25D366;
-    border: 1.5px solid #25D366;
-    padding: 6px 12px;
-    border-radius: var(--radius-btn);
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: var(--shadow-soft);
-    font-family: var(--font-base);
-    flex-shrink: 0;
-    /*
-     * FIX: min-height corregido de 38px a 44px.
-     * 44px es el mínimo táctil WCAG 2.5.5 / Apple HIG.
-     * El resto de los botones del sitio ya usan 44px.
-     */
-    min-height: 44px;
-}
-
-.btn-share-wa:active {
-    transform: scale(0.96);
-    background: rgba(37, 211, 102, 0.05);
-}
-
-@media (hover: hover) {
-    .btn-share-wa:hover {
-        background: #25D366;
-        color: #ffffff;
-        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
-    }
-}
-
-@media (max-width: 360px) {
-    .btn-share-wa span { display: none; }
-    .btn-share-wa { padding: 8px; }
-}
-
-/* ── 14. DISEÑO PARA ESCRITORIO (PC) ── */
-
-/*
- * FIX MÓVIL: padding lateral y bottom para #contenedor-cards y .app-view.
- * Sin esto las cards tocaban el borde de pantalla en viewports <768px
- * y la última card quedaba bajo el home indicator de iOS.
- * Se aplica ANTES del media query de escritorio para que el breakpoint
- * pueda sobreescribir solo lo necesario.
- */
-#contenedor-cards {
-    padding: 0 16px 32px;
-    /*
-     * FIX: padding-bottom aumentado para que la última card no quede
-     * bajo la bottom-nav-bar (64px) + home indicator iOS (env safe-area).
-     */
-    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-}
-
-@media (min-width: 768px) {
-    .header-content,
-    .search-container,
-    .sub-nav,
-    .section-header,
-    #contenedor-cards {
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* En desktop la sub-nav se reactiva — no hay bottom nav */
-    .sub-nav { display: block; }
-
-    #contenedor-cards {
-        padding-left: 0;
-        padding-right: 0;
-        /* En desktop no hay bottom nav — se resetea el padding extra */
-        padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding-top: 10px;
-    }
-
-    .card, .skeleton-card { margin-bottom: 0; }
-
-    .sub-nav-list { justify-content: center; gap: 12px; }
-
-    .section-header {
-        padding-left: 0;
-        padding-right: 0;
-        margin-bottom: 16px;
-    }
-}
-
-@media (min-width: 1100px) {
-    .header-content,
-    .search-container,
-    .sub-nav,
-    .section-header,
-    #contenedor-cards {
-        max-width: 1200px;
-    }
-
-    #contenedor-cards { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* ── 15. SEPARADOR DE SECCIÓN ── */
-.section-divider {
-    height: 1px;
-    background: var(--border-light);
-    margin: 8px 16px 4px;
-}
-
-/* ── 16. CHIPS DE FILTRO (farmacias / laboratorios) ── */
-
-/*
- * Estas reglas fueron movidas aquí desde los <style> inline
- * de farmacias.html y laboratorios.html.
- * Fuente única de verdad: style.css.
- */
-.filter-chips-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 0 16px 12px;
-}
-
-.filter-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    /*
-     * FIX: padding vertical aumentado a 10px para alcanzar ~44px de altura
-     * total (10+10 padding + ~24px line-height) sin forzar min-height.
-     * min-height: 44px distorsionaba la forma píldora porque el border-radius
-     * de 16px quedaba pequeño para esa altura, haciendo los chips "cuadrados".
-     */
-    padding: 10px 14px;
-    border-radius: 20px;
-    border: 1.5px solid var(--accent);
-    background: transparent;
-    color: var(--accent);
-    font-size: 13px;
-    font-family: var(--font-base);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.15s, color 0.15s;
-    line-height: 1.2;
-}
-
-.filter-chip.active {
-    background: var(--accent);
-    color: #fff;
-}
-
-.filter-chip-select {
-    border: 1.5px solid var(--accent);
-    border-radius: 20px;
-    /*
-     * FIX: padding vertical aumentado a 10px — mismo criterio que .filter-chip.
-     * min-height: 44px en <select> nativo causa que iOS Safari recorte
-     * o distorsione el control, porque el SO renderiza su propio chrome
-     * por encima del estilo declarado.
-     */
-    padding: 10px 10px;
-    font-size: 13px;
-    font-family: var(--font-base);
-    background: transparent;
-    color: var(--accent);
-    cursor: pointer;
-    outline: none;
-    line-height: 1.2;
-    transition: background 0.15s, color 0.15s;
-    /* Evita que el <select> nativo de iOS aplique su propio border-radius */
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-.filter-chip-select:focus {
-    border-color: var(--orange);
-    box-shadow: 0 0 0 3px var(--orange-light);
-}
-
-.filter-chip-select.active {
-    background: var(--accent);
-    color: #fff;
-}
-
-.filter-chip-select option {
-    background: #fff;
-    color: var(--navy);
-}
-
-/* ── 17. BOTTOM NAVIGATION BAR ── */
-/*
- * Navegación principal en móvil. Reemplaza la sub-nav horizontal.
- * Patrón nativo iOS (UITabBar) y Material Design (NavigationBar).
- * Posición: zona de alcance natural del pulgar.
- * En desktop (≥768px) se oculta — la sub-nav retoma el rol.
- */
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    background: #fff;
-    border-top: 1px solid var(--border-light);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-    box-shadow: 0 -1px 0 rgba(15, 23, 42, 0.05),
-                0 -4px 16px rgba(15, 23, 42, 0.06);
-}
-
-.bottom-nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 8px 4px 10px;
-    text-decoration: none;
-    color: #94A3B8;
-    font-size: 10px;
-    font-weight: 700;
-    font-family: var(--font-brand);
-    letter-spacing: 0.02em;
-    transition: color 0.15s;
-    /* Área táctil mínima */
-    min-height: 56px;
-    touch-action: manipulation;
-    position: relative;
-}
-
-.bottom-nav-item.active {
-    color: var(--primary);
-}
-
-/* Pip indicador bajo el ítem activo */
-.bottom-nav-item.active::after {
-    content: '';
-    position: absolute;
-    bottom: 6px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--primary);
-}
-
-.bottom-nav-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-}
-
-/* Ocultar en desktop — la sub-nav toma el rol */
-@media (min-width: 768px) {
-    .bottom-nav { display: none; }
+  margin: 0 16px 8px;
+  padding: 10px 14px;
+  background: var(--orange-light);
+  border: 1px solid var(--orange-border);
+  border-radius: var(--radius-btn);
+  color: var(--orange-dark);
+  font-size: 13px;
 }
