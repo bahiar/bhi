@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BAHI.ar | Guardias</title>
+    
     <meta name="description" content="Guardias médicas de urgencia en Bahía Blanca. Hospitales y clínicas con atención 24 horas.">
     <link rel="canonical" href="https://bahiar.github.io/bhi/guardias.html">
     <link rel="manifest" href="manifest.json">
@@ -27,6 +28,8 @@
                 <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
             </a>
         </div>
+
+
     </header>
 
     <div class="search-container">
@@ -54,6 +57,7 @@
             </div>
             <div id="contenedor-emergencias"></div>
 
+            <!-- Separador visual entre secciones -->
             <div class="section-divider"></div>
 
             <!-- ── SECCIÓN: AMBULANCIAS ── -->
@@ -64,6 +68,7 @@
             </div>
             <div id="contenedor-ambulancias"></div>
 
+            <!-- Separador visual entre secciones -->
             <div class="section-divider"></div>
 
             <!-- ── SECCIÓN: GUARDIAS MÉDICAS ── -->
@@ -92,60 +97,96 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </main>
 
+  
     <script src="app.js" defer></script>
     <script defer>
-        (function() {
-            const URL_BD = './data/bd_bahiar.json';
-            const MAX_REINTENTOS = 5;
+      /**
+       * Renderizado de Guardias + Emergencias
+       */
+      document.addEventListener('DOMContentLoaded', () => {
+          setTimeout(() => {
+              // ── Guardias médicas ──
+              const contenedor = document.getElementById('contenedor-cards');
+              if (contenedor && typeof window.crearCardHTML === 'function') {
+                  const guardiasEstaticas = [
+                      { PRESTADOR: "Hospital Municipal Dr. Leónidas Lucero", DOMICILIO: "Estomba 968", FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Interzonal General Dr José Penna", DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Privado del Sur", DOMICILIO: "Las Heras 164", FIJO: "02914550270", MAPS: "https://maps.google.com/?cid=4096557740069257162", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital de la Asociación Médica Dr. Felipe Glasman", DOMICILIO: "Patricios 347", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Italiano Regional del Sur", DOMICILIO: "Necochea 675", FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Regional Español", DOMICILIO: "Estomba 571", FIJO: "02914595555", MAPS: "https://maps.google.com/?cid=2064372742749592359", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Dr. Raúl Matera", DOMICILIO: "9 de Julio 461", FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647", HORARIO: "24 hs" }
+                  ];
+                  contenedor.innerHTML = guardiasEstaticas.map((item, i) => window.crearCardHTML(item, 'GUARDIA', i)).join('');
+              }
 
-            async function inicializar(reintentos = 0) {
-                const contEmergencias = document.getElementById('contenedor-emergencias');
-                const contAmbulancias = document.getElementById('contenedor-ambulancias');
-                const contGuardias = document.getElementById('contenedor-cards');
+              // ── Emergencias médicas (107) ──
+              const contEmergencias = document.getElementById('contenedor-emergencias');
+              if (contEmergencias) {
+                  // Card especial para el 107: destacada con estado "urgencia"
+                  contEmergencias.innerHTML = `
+                  <article class="card card-emergencia" data-tipo="EMERGENCIA">
+                      <div class="card-top">
+                          <div class="card-info">
+                              <h3 class="card-name">107</h3>
+                              <p class="card-addr">Servicio de Emergencias Médicas</p>
+                          </div>
+                      </div>
+                      <div class="card-actions">
+                          <a href="tel:107" class="btn btn-accent" aria-label="Llamar al 107 - Emergencias médicas">📞 Llamar</a>
+                      </div>
+                  </article>`;
+              }
 
-                try {
-                    const res = await fetch(URL_BD);
-                    if (!res.ok) throw new Error('Error al cargar base de datos');
-                    const data = await res.json();
+              // ── Servicios de ambulancias ──
+              // SUGERENCIA 3: número visible directamente, sin requerir tap extra
+              const contAmbulancias = document.getElementById('contenedor-ambulancias');
+              if (contAmbulancias) {
+                  contAmbulancias.innerHTML = `
+                  <!-- SEM Emergencias Médicas -->
+                  <article class="card" data-tipo="AMBULANCIA">
+                      <div class="card-top">
+                          <div class="card-info">
+                              <h3 class="card-name">SEM Emergencias Médicas</h3>
+                              <p class="card-addr">(0291) 459-1919</p>
+                          </div>
+                      </div>
+                      <div class="card-actions">
+                          <a href="tel:02914591919" class="btn btn-accent" aria-label="Llamar a SEM Emergencias Médicas">📞 Llamar</a>
+                          <a href="https://wa.me/5492916492840" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de SEM Emergencias Médicas">WhatsApp</a>
+                      </div>
+                  </article>
 
-                    // SEGURIDAD: Verificar app.js
-                    if (typeof window.crearCardHTML !== 'function') {
-                        if (reintentos >= MAX_REINTENTOS) throw new Error('Sistema de renderizado no disponible');
-                        setTimeout(() => inicializar(reintentos + 1), 100);
-                        return;
-                    }
+                  <!-- Alerta Emergencias Médicas -->
+                  <article class="card" data-tipo="AMBULANCIA">
+                      <div class="card-top">
+                          <div class="card-info">
+                              <h3 class="card-name">Alerta Emergencias Médicas</h3>
+                              <p class="card-addr">(0291) 455-3388</p>
+                          </div>
+                      </div>
+                      <div class="card-actions">
+                          <a href="tel:02914553388" class="btn btn-accent" aria-label="Llamar a Alerta Emergencias Médicas - línea principal">📞 Llamar</a>
+                      </div>
+                      <button class="card-header" aria-expanded="false" aria-controls="alerta-alt-phones">
+                          <span>Más información</span>
+                          <span class="card-chevron" aria-hidden="true">▼</span>
+                      </button>
+                      <div class="card-body-collapse" id="alerta-alt-phones" role="region" aria-label="Teléfonos alternativos de Alerta Emergencias Médicas">
+                          <p class="card-detail-row"><strong>Alternativo:</strong> <a href="tel:02914560000" class="card-phone-link">(0291) 456-0000</a></p>
+                          <p class="card-detail-row"><strong>Alternativo:</strong> <a href="tel:02914562076" class="card-phone-link">(0291) 456-2076</a></p>
+                      </div>
+                  </article>`;
+              }
 
-                    // Renderizar Secciones
-                    contEmergencias.innerHTML = data
-                        .filter(i => i.TIPO === 'EMERGENCIA')
-                        .map((i, idx) => window.crearCardHTML(i, 'EMERGENCIA', idx))
-                        .join('');
-
-                    contAmbulancias.innerHTML = data
-                        .filter(i => i.TIPO === 'AMBULANCIA')
-                        .map((i, idx) => window.crearCardHTML(i, 'AMBULANCIA', idx))
-                        .join('');
-
-                    contGuardias.innerHTML = data
-                        .filter(i => i.TIPO === 'GUARDIA')
-                        .map((i, idx) => window.crearCardHTML(i, 'GUARDIA', idx))
-                        .join('');
-
-                } catch (err) {
-                    console.error('[BAHI.ar] Fallo en guardias:', err);
-                }
-            }
-
-            inicializar();
-        })();
-    </script>
-
-    <!-- ── BOTTOM NAVIGATION BAR ── -->
+          }, 150);
+      });
+    </script>    <!-- ── BOTTOM NAVIGATION BAR ── -->
     <nav class="bottom-nav" aria-label="Navegación principal">
+
         <a href="index.html" class="bottom-nav-item" aria-label="Inicio">
             <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="1.8"
@@ -186,6 +227,7 @@
             </svg>
             Labs
         </a>
+
     </nav>
 
 </body>
