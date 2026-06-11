@@ -1,13 +1,9 @@
 /* ── 0. FUENTES PERSONALIZADAS ── */
 /*
- * Plus Jakarta Sans: fuente de marca para titulares y nombres de card.
- * Solo pesos 600 y 700 (~14KB). font-display:swap viene por defecto
- * desde Google Fonts — el cuerpo nunca espera a esta fuente.
- * Varela Round se conserva como fallback local por compatibilidad con
- * activos ya cacheados por el SW.
+ * Varela Round se carga SOLO como fallback estético.
+ * El stack primario usa tipografías del sistema (cero latencia).
+ * font-display: swap evita texto invisible durante la carga.
  */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&display=swap');
-
 @font-face {
     font-family: 'varela_roundregular';
     src: url('/bhi/assets/fonts/varelaround-regular-webfont.woff2') format('woff2'),
@@ -28,13 +24,12 @@
 :root {
     /* Paleta de colores principal */
     --primary: #191971;
-    --navy:    #191971;          /* alias semántico para bottom-nav y tokens de categoría */
     --accent: #1F75FE;
-    --bg-main: #EEF2F7;          /* FIX: más contrastado que #F8FAFC — cards blancas flotan mejor */
+    --bg-main: #F8FAFC;
     --card-bg: #FFFFFF;
     --text-main: #0F172A;
     --text-muted: #525E73;
-    --border-light: #E2E8F0;     /* FIX: sin alpha — más predecible y estable */
+    --border-light: rgba(226, 232, 240, 0.8);
 
     /* Paleta Naranja (urgencia / acción primaria) */
     --orange: #FF6B00;
@@ -45,31 +40,20 @@
     /* Medidas y Estructura */
     --radius-card: 16px;
     --radius-btn: 12px;
-    /*
-     * FIX: sombra bicapa — reemplaza la sombra casi invisible (0 2px 4px opacity 5%).
-     * La capa corta (1px/3px) da definición, la larga (4px/12px) da profundidad.
-     * Las cards pasan de planas a objetos con peso visual sobre el fondo gris.
-     */
-    --shadow-soft: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.06);
+    --shadow-soft: 0 2px 4px rgba(15, 23, 42, 0.05);
 
     /*
      * Stack tipográfico:
-     * --font-brand: Plus Jakarta Sans para titulares, nombres de card y brand.
-     *   Solo pesos 600/700. Fallback a Varela Round (local) y luego system-ui.
-     * --font-base: system-ui para cuerpo de texto — 0ms de carga.
+     * 1. system-ui / -apple-system → Sans-serif nativa del SO (0ms de carga)
+     * 2. Varela Round → Carga asíncrona sin bloquear el render
+     * 3. Arial / sans-serif → Último fallback universal
+     *
+     * En iPhone se ve SF Pro, en Android Roboto, en Windows Segoe UI.
+     * Todos son óptimos para lectura rápida de información de urgencia.
      */
     --font-base: system-ui, -apple-system, BlinkMacSystemFont,
                  "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    --font-brand: 'Plus Jakarta Sans', 'varela_roundregular', var(--font-base);
-
-    /* ── Tokens de categoría (escalabilidad futura) ──
-     * Cada sección puede tener su propio acento sin salir de la paleta.
-     * Actualmente todos usan --orange. Al agregar nuevas secciones,
-     * se define --cat-X aquí y se aplica via data-categoria en el HTML.
-     */
-    --cat-farmacia:    var(--orange);
-    --cat-guardia:     #DC2626;
-    --cat-laboratorio: var(--accent);
+    --font-brand: 'varela_roundregular', var(--font-base);
 }
 
 /* Reset básico */
@@ -85,16 +69,16 @@ body {
 
 /* ── 2. HEADER ── */
 .main-header {
+    background: var(--primary);
+    padding: 0;                  /* REDISEÑO: padding gestionado por hijos */
     /*
-     * FIX: gradiente diagonal sutil — añade profundidad sin salir del navy.
-     * #191971 → #1a2f8e: el destino es un azul ligeramente más profundo.
-     * El ojo lo percibe como dimensión, no como cambio de color.
+     * REDISEÑO: height pasa de fijo a auto para acomodar el context strip.
+     * El header ahora tiene dos zonas: .header-content (logo) + .header-ctx-strip.
+     * position: sticky sigue funcionando igual.
      */
-    background: linear-gradient(135deg, #191971 0%, #1a2f8e 100%);
-    padding: 0;
     height: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;      /* apila logo-row y ctx-strip verticalmente */
     position: sticky;
     top: 0;
     z-index: 50;
@@ -282,8 +266,6 @@ body {
 
 /*
  * REDISEÑO — Tarjeta de TURNO: border-left como señalización de estado.
- * Tinte naranja muy sutil en la zona izquierda — refuerza la urgencia
- * sin competir con el texto.
  */
 .card[data-estado="turno"] {
     border-left-width: 3px;
@@ -292,21 +274,6 @@ body {
     border-right-color: var(--orange-border);
     border-bottom-color: var(--orange-border);
     box-shadow: var(--shadow-soft);
-    background: linear-gradient(to right, rgba(255, 107, 0, 0.03) 0px, transparent 52px), var(--card-bg);
-}
-
-/* Hover en desktop — comunica interactividad */
-@media (hover: hover) {
-    .card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(15, 23, 42, 0.10), 0 12px 28px rgba(15, 23, 42, 0.09);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-}
-
-/* Feedback táctil en móvil */
-.card:active {
-    background-color: rgba(15, 23, 42, 0.01);
 }
 
 .card-header {
@@ -326,12 +293,15 @@ body {
 
 .card-name {
     font-size: 16px;
-    font-weight: 700;            /* subido de 600 a 700 — más peso con Plus Jakarta Sans */
-    font-family: var(--font-brand);
+    font-weight: 600;
     color: var(--text-main);
     line-height: 1.3;
     margin: 0 0 2px;
-    letter-spacing: -0.01em;
+    /*
+     * FIX: eliminado white-space:nowrap + overflow:hidden + text-overflow:ellipsis.
+     * Nombres de farmacias o guardias largos quedaban cortados con "…"
+     * sin posibilidad de leerlos completos en móvil.
+     */
 }
 
 .card-addr {
@@ -550,16 +520,11 @@ body {
 }
 
 /* ── 8. NAVEGACIÓN SECUNDARIA (Tabs) ── */
-/*
- * En móvil la sub-nav se oculta — la navegación la provee la bottom-nav-bar (§17).
- * En desktop (≥768px) se reactiva centrada bajo el header.
- */
 .sub-nav {
     margin: 0 16px 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    display: none;               /* oculta en móvil — ver §17 para bottom nav */
 }
 
 .sub-nav::-webkit-scrollbar { display: none; }
@@ -681,7 +646,6 @@ body {
     font-weight: 700;
     color: var(--text-main);
     font-family: var(--font-brand);
-    letter-spacing: -0.02em;     /* Plus Jakarta Sans se lee mejor con tracking negativo en titulares */
     margin-bottom: 4px;
 }
 
@@ -759,11 +723,19 @@ body {
  */
 #contenedor-cards {
     padding: 0 16px 32px;
-    /*
-     * FIX: padding-bottom aumentado para que la última card no quede
-     * bajo la bottom-nav-bar (64px) + home indicator iOS (env safe-area).
-     */
-    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    /* env(safe-area-inset-bottom): respeta el home indicator de iOS */
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+}
+
+/*
+ * FIX: padding lateral para los contenedores de Guardias.
+ * #contenedor-emergencias y #contenedor-ambulancias no tenían padding propio —
+ * el inline style="padding: 0 16px 8px" fue eliminado en sesiones anteriores
+ * sin agregar la regla CSS equivalente, dejando las cards edge-to-edge en móvil.
+ */
+#contenedor-emergencias,
+#contenedor-ambulancias {
+    padding: 0 16px 8px;
 }
 
 @media (min-width: 768px) {
@@ -777,14 +749,16 @@ body {
         margin-right: auto;
     }
 
-    /* En desktop la sub-nav se reactiva — no hay bottom nav */
-    .sub-nav { display: block; }
-
+    /*
+     * FIX: en escritorio el padding lateral del contenedor se resetea a 0.
+     * El centrado lo maneja max-width + margin auto del bloque anterior.
+     * Se conserva el padding-bottom con safe-area por si el usuario
+     * accede desde un iPad en modo pantalla completa.
+     * grid y padding-top se definen aquí mismo para evitar duplicación.
+     */
     #contenedor-cards {
         padding-left: 0;
         padding-right: 0;
-        /* En desktop no hay bottom nav — se resetea el padding extra */
-        padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -899,72 +873,4 @@ body {
 .filter-chip-select option {
     background: #fff;
     color: var(--navy);
-}
-
-/* ── 17. BOTTOM NAVIGATION BAR ── */
-/*
- * Navegación principal en móvil. Reemplaza la sub-nav horizontal.
- * Patrón nativo iOS (UITabBar) y Material Design (NavigationBar).
- * Posición: zona de alcance natural del pulgar.
- * En desktop (≥768px) se oculta — la sub-nav retoma el rol.
- */
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    background: #fff;
-    border-top: 1px solid var(--border-light);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-    box-shadow: 0 -1px 0 rgba(15, 23, 42, 0.05),
-                0 -4px 16px rgba(15, 23, 42, 0.06);
-}
-
-.bottom-nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 8px 4px 10px;
-    text-decoration: none;
-    color: #94A3B8;
-    font-size: 10px;
-    font-weight: 700;
-    font-family: var(--font-brand);
-    letter-spacing: 0.02em;
-    transition: color 0.15s;
-    /* Área táctil mínima */
-    min-height: 56px;
-    touch-action: manipulation;
-    position: relative;
-}
-
-.bottom-nav-item.active {
-    color: var(--primary);
-}
-
-/* Pip indicador bajo el ítem activo */
-.bottom-nav-item.active::after {
-    content: '';
-    position: absolute;
-    bottom: 6px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--primary);
-}
-
-.bottom-nav-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-}
-
-/* Ocultar en desktop — la sub-nav toma el rol */
-@media (min-width: 768px) {
-    .bottom-nav { display: none; }
 }
