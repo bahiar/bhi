@@ -24,7 +24,8 @@
 
 // ─── Versión ──────────────────────────────────────────────────────────────────
 // ⚠ Incrementar en cada deploy para invalidar el caché y forzar install.
-const CACHE_VERSION   = 'v4.2';
+// v4.3: bottom-nav añadida a los 4 HTML + Plus Jakarta Sans en style.css.
+const CACHE_VERSION   = 'v4.3';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
@@ -35,7 +36,6 @@ const SHELL_ASSETS = [
     './farmacias.html',
     './guardias.html',
     './laboratorios.html',
-    './nav.html',
     './style.css',
     './app.js',
     './manifest.json',
