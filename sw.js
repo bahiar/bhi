@@ -24,8 +24,8 @@
 
 // ─── Versión ──────────────────────────────────────────────────────────────────
 // ⚠ Incrementar en cada deploy para invalidar el caché y forzar install.
-// v4.3: bottom-nav añadida a los 4 HTML + Plus Jakarta Sans en style.css.
-const CACHE_VERSION   = 'v4.3';
+// v4.4: estructura de cards en guardias.html alineada con crearCardHTML.
+const CACHE_VERSION   = 'v4.4';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
