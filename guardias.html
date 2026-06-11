@@ -28,8 +28,6 @@
                 <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
             </a>
         </div>
-
-
     </header>
 
     <div class="search-container">
@@ -49,24 +47,18 @@
     <main class="app-view" id="content">
         <div id="main-content">
 
-            <!-- ── SECCIÓN: EMERGENCIAS ── -->
+            <!-- ── SECCIÓN: EMERGENCIAS + AMBULANCIAS (grilla unificada) ── -->
             <div class="section-header">
                 <div class="section-header-titles">
-                    <h2>Emergencias médicas</h2>
+                    <h2>Emergencias y ambulancias</h2>
                 </div>
             </div>
-            <div id="contenedor-emergencias" class="cards-grid"></div>
-
-            <!-- Separador visual entre secciones -->
-            <div class="section-divider"></div>
-
-            <!-- ── SECCIÓN: AMBULANCIAS ── -->
-            <div class="section-header">
-                <div class="section-header-titles">
-                    <h2>Servicios de ambulancias</h2>
-                </div>
-            </div>
-            <div id="contenedor-ambulancias" class="cards-grid"></div>
+            <!--
+                Un único contenedor para emergencias + ambulancias.
+                En desktop entran en grilla side-by-side (107 | SEM | Alerta).
+                En móvil se apilan verticalmente como antes.
+            -->
+            <div id="contenedor-urgencias" class="cards-grid" aria-live="polite" aria-label="Servicios de emergencia y ambulancias"></div>
 
             <!-- Separador visual entre secciones -->
             <div class="section-divider"></div>
@@ -100,52 +92,47 @@
         </div>
     </main>
 
-  
     <script src="app.js" defer></script>
     <script defer>
       /**
-       * Renderizado de Guardias + Emergencias
+       * Renderizado de Guardias + Emergencias + Ambulancias
        */
       document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => {
+
               // ── Guardias médicas ──
               const contenedor = document.getElementById('contenedor-cards');
               if (contenedor && typeof window.crearCardHTML === 'function') {
                   const guardiasEstaticas = [
-                      { PRESTADOR: "Hospital Municipal Dr. Leónidas Lucero", DOMICILIO: "Estomba 968", FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464", HORARIO: "24 hs" },
-                      { PRESTADOR: "Hospital Interzonal General Dr José Penna", DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385", HORARIO: "24 hs" },
-                      { PRESTADOR: "Hospital Privado del Sur", DOMICILIO: "Las Heras 164", FIJO: "02914550270", MAPS: "https://maps.google.com/?cid=4096557740069257162", HORARIO: "24 hs" },
-                      { PRESTADOR: "Hospital de la Asociación Médica Dr. Felipe Glasman", DOMICILIO: "Patricios 347", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615", HORARIO: "24 hs" },
-                      { PRESTADOR: "Hospital Italiano Regional del Sur", DOMICILIO: "Necochea 675", FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660", HORARIO: "24 hs" },
-                      { PRESTADOR: "Hospital Regional Español", DOMICILIO: "Estomba 571", FIJO: "02914595555", MAPS: "https://maps.google.com/?cid=2064372742749592359", HORARIO: "24 hs" },
-                      { PRESTADOR: "Hospital Dr. Raúl Matera", DOMICILIO: "9 de Julio 461", FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647", HORARIO: "24 hs" }
+                      { PRESTADOR: "Hospital Municipal Dr. Leónidas Lucero",           DOMICILIO: "Estomba 968",      FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Interzonal General Dr José Penna",        DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Privado del Sur",                          DOMICILIO: "Las Heras 164",   FIJO: "02914550270", MAPS: "https://maps.google.com/?cid=4096557740069257162",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital de la Asociación Médica Dr. Felipe Glasman", DOMICILIO: "Patricios 347", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Italiano Regional del Sur",               DOMICILIO: "Necochea 675",    FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Regional Español",                        DOMICILIO: "Estomba 571",     FIJO: "02914595555", MAPS: "https://maps.google.com/?cid=2064372742749592359",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Dr. Raúl Matera",                        DOMICILIO: "9 de Julio 461",  FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647", HORARIO: "24 hs" }
                   ];
                   contenedor.innerHTML = guardiasEstaticas.map((item, i) => window.crearCardHTML(item, 'GUARDIA', i)).join('');
               }
 
-              // ── Emergencias médicas (107) ──
-              const contEmergencias = document.getElementById('contenedor-emergencias');
-              if (contEmergencias) {
-                  // Card especial para el 107: destacada con estado "urgencia"
-                  contEmergencias.innerHTML = `
-                  <article class="card card-emergencia" data-tipo="EMERGENCIA">
+              // ── Emergencias médicas (107) + Ambulancias en un solo contenedor ──
+              const contUrgencias = document.getElementById('contenedor-urgencias');
+              if (contUrgencias) {
+                  contUrgencias.innerHTML = `
+                  <!-- 107: card de emergencia destacada -->
+                  <article class="card card-emergencia" data-tipo="EMERGENCIA" data-estado="turno">
                       <div class="card-top">
                           <div class="card-info">
                               <h3 class="card-name">107</h3>
-                              <p class="card-addr">Servicio de Emergencias Médicas</p>
+                              <p class="card-addr">Emergencias Médicas — gratuito 24 hs</p>
                           </div>
+                          <div class="card-icon" aria-hidden="true">🚨</div>
                       </div>
-                      <div class="card-actions">
-                          <a href="tel:107" class="btn btn-accent" aria-label="Llamar al 107 - Emergencias médicas">📞 Llamar</a>
+                      <div class="card-actions card-actions--single">
+                          <a href="tel:107" class="btn btn-accent" aria-label="Llamar al 107 - Emergencias médicas">📞 Llamar al 107</a>
                       </div>
-                  </article>`;
-              }
+                  </article>
 
-              // ── Servicios de ambulancias ──
-              // SUGERENCIA 3: número visible directamente, sin requerir tap extra
-              const contAmbulancias = document.getElementById('contenedor-ambulancias');
-              if (contAmbulancias) {
-                  contAmbulancias.innerHTML = `
                   <!-- SEM Emergencias Médicas -->
                   <article class="card" data-tipo="AMBULANCIA">
                       <div class="card-top">
@@ -153,6 +140,7 @@
                               <h3 class="card-name">SEM Emergencias Médicas</h3>
                               <p class="card-addr">(0291) 459-1919</p>
                           </div>
+                          <div class="card-icon" aria-hidden="true">🚑</div>
                       </div>
                       <div class="card-actions">
                           <a href="tel:02914591919" class="btn btn-accent" aria-label="Llamar a SEM Emergencias Médicas">📞 Llamar</a>
@@ -167,9 +155,10 @@
                               <h3 class="card-name">Alerta Emergencias Médicas</h3>
                               <p class="card-addr">(0291) 455-3388</p>
                           </div>
+                          <div class="card-icon" aria-hidden="true">🚑</div>
                       </div>
-                      <div class="card-actions">
-                          <a href="tel:02914553388" class="btn btn-accent" aria-label="Llamar a Alerta Emergencias Médicas - línea principal">📞 Llamar</a>
+                      <div class="card-actions card-actions--single">
+                          <a href="tel:02914553388" class="btn btn-accent" aria-label="Llamar a Alerta Emergencias Médicas">📞 Llamar</a>
                       </div>
                       <button class="card-header" aria-expanded="false" aria-controls="alerta-alt-phones">
                           <span>Más información</span>
@@ -184,7 +173,9 @@
 
           }, 150);
       });
-    </script>    <!-- ── BOTTOM NAVIGATION BAR ── -->
+    </script>
+
+    <!-- ── BOTTOM NAVIGATION BAR ── -->
     <nav class="bottom-nav" aria-label="Navegación principal">
 
         <a href="index.html" class="bottom-nav-item" aria-label="Inicio">

@@ -353,6 +353,17 @@ body {
     padding: 2px 16px 14px;
 }
 
+/*
+ * Modificador para cards con un solo botón de acción.
+ * Sin esto el botón único toma las 2 columnas del grid y se estira
+ * al ancho completo de la card — un problema visual en desktop.
+ * Con este modificador el botón tiene ancho natural (auto) y queda
+ * alineado a la izquierda como el resto de los elementos de la card.
+ */
+.card-actions--single {
+    grid-template-columns: auto;
+}
+
 .card-actions .btn {
     width: 100%;
 }
@@ -757,7 +768,14 @@ body {
  * Se aplica ANTES del media query de escritorio para que el breakpoint
  * pueda sobreescribir solo lo necesario.
  */
-#contenedor-cards {
+/*
+ * .cards-grid: clase reutilizable equivalente a #contenedor-cards.
+ * Usarla en páginas con múltiples secciones (ej: guardias.html)
+ * donde existen varios contenedores de cards independientes.
+ * En móvil: lista vertical con padding. En desktop: grilla de 2 o 3 col.
+ */
+#contenedor-cards,
+.cards-grid {
     padding: 0 16px 32px;
     /*
      * FIX: padding-bottom aumentado para que la última card no quede
@@ -771,7 +789,9 @@ body {
     .search-container,
     .sub-nav,
     .section-header,
-    #contenedor-cards {
+    #contenedor-cards,
+    .cards-grid,
+    .section-divider {
         max-width: 1000px;
         margin-left: auto;
         margin-right: auto;
@@ -780,7 +800,8 @@ body {
     /* En desktop la sub-nav se reactiva — no hay bottom nav */
     .sub-nav { display: block; }
 
-    #contenedor-cards {
+    #contenedor-cards,
+    .cards-grid {
         padding-left: 0;
         padding-right: 0;
         /* En desktop no hay bottom nav — se resetea el padding extra */
@@ -800,6 +821,11 @@ body {
         padding-right: 0;
         margin-bottom: 16px;
     }
+
+    .section-divider {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 @media (min-width: 1100px) {
@@ -807,11 +833,14 @@ body {
     .search-container,
     .sub-nav,
     .section-header,
-    #contenedor-cards {
+    #contenedor-cards,
+    .cards-grid,
+    .section-divider {
         max-width: 1200px;
     }
 
-    #contenedor-cards { grid-template-columns: repeat(3, 1fr); }
+    #contenedor-cards,
+    .cards-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ── 15. SEPARADOR DE SECCIÓN ── */
