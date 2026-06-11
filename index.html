@@ -1,52 +1,412 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BAHI.ar | Directorio de Salud</title>
-  <!-- Meta SEO para indexación -->
-  <meta name="description" content="Directorio de salud, farmacias y guardias en Bahía Blanca.">
-  <link rel="canonical" href="https://bahiar.github.io/bhi/">
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
-  <!-- Metadatos PWA -->
-  <meta name="theme-color" content="#191971">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAHI.ar | Directorio de Salud</title>
+    <meta name="description" content="Directorio de salud, farmacias y guardias en Bahía Blanca.">
+    <link rel="canonical" href="https://bahiar.github.io/bhi/">
+    <link rel="manifest" href="manifest.json">
+
+    <!--
+        PRELOAD: Le dice al navegador que busque el CSS de forma
+        inmediata, sin esperar al parser HTML. Elimina el FOUC
+        (flash de texto sin estilo) especialmente notorio en 3G.
+    -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="BAHI.ar | Directorio de Salud">
+    <meta property="og:description" content="Directorio de salud, farmacias y guardias en Bahía Blanca.">
+    <meta property="og:url" content="https://bahiar.github.io/bhi/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://bahiar.github.io/bhi/assets/images/logoweb.png">
+
+    <!-- PWA / iOS -->
+    <meta name="theme-color" content="#191971">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
-  <!-- Header único -->
-  <header class="main-header">
-    <div class="header-content">
-      <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
+                <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
+            </a>
+        </div>
+        <!--
+            CONTEXT STRIP: muestra la info más urgente antes de cualquier scroll.
+            Está en el HTML estático → se pinta en el primer repaint, sin esperar JS.
+            El script inline de abajo actualiza #ctx-count y #ctx-horario
+            con los datos reales. Mientras tanto muestra el estado "Cargando…".
+
+            aria-live="polite" → el lector de pantalla anuncia el cambio
+            cuando JS actualiza el texto, sin interrumpir la lectura actual.
+        -->
+        <div class="header-ctx-strip" id="header-ctx-strip" aria-live="polite">
+            <span class="ctx-live" aria-label="Farmacias de turno activas">
+                <span class="ctx-live-dot" aria-hidden="true"></span>
+                <span id="ctx-count">Cargando…</span>
+            </span>
+            <span class="ctx-sep" aria-hidden="true"></span>
+            <span class="ctx-text" id="ctx-horario"></span>
+        </div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-icon" aria-hidden="true">🔍</div>
+        <input
+            type="text"
+            placeholder="Buscar en BAHI.ar..."
+            aria-label="Buscar en BAHI.ar"
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+        >
     </div>
-  </header>
 
-  <!-- Buscador Global -->
-  <div class="search-container">
-    <!-- Ícono lupa SVG (reemplaza el emoji 🔍) -->
-    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-      <circle cx="11" cy="11" r="8"/>
-      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-    <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
-  </div>
+    <nav class="sub-nav" aria-label="Secciones principales">
+        <ul class="sub-nav-list">
+            <li><a href="index.html"        class="sub-nav-link active" aria-current="page">Inicio</a></li>
+            <li><a href="guardias.html"     class="sub-nav-link">Guardias</a></li>
+            <li><a href="farmacias.html"    class="sub-nav-link">Farmacias</a></li>
+            <li><a href="laboratorios.html" class="sub-nav-link">Laboratorios</a></li>
+        </ul>
+    </nav>
 
-  <!-- Contenido Principal -->
-  <main class="app-view" id="content">
-    <!-- El contenido específico de cada pestaña irá aquí -->
-    <div id="main-content"></div>
-  </main>
+    <main class="app-view" id="content">
+        <div id="main-content">
 
-  <!-- Navegación -->
-  <div id="nav-placeholder"></div>
+            <!--
+                PRIORIDAD DE CARGA:
+                1. Este bloque de texto (nombre de sección + leyenda) está en HTML
+                   estático → el navegador lo pinta en el PRIMER repaint, antes de
+                   que llegue cualquier JSON o se ejecute el JS.
+                2. El contenedor de cards empieza con skeletons visibles
+                   → el usuario ve "algo" aunque esté en 3G lento.
+                3. Los datos reales reemplazan los skeletons cuando llegan.
+            -->
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2 id="titulo-home">Farmacias de Turno</h2>
+                    <!--
+                        REDISEÑO: El texto largo de 2 líneas (#info-turno + #leyenda-horario)
+                        se reemplaza por un metadato comprimido alineado al título.
+                        El JS escribe en #leyenda-horario el texto corto (ej: "Hasta 8:30 de mañana").
+                        La clase .section-header-meta lo muestra como badge naranja
+                        junto al h2, liberando espacio vertical y acercando las cards
+                        a la primera acción del usuario.
+                    -->
+                    <p class="section-header-meta" id="leyenda-horario" aria-live="polite"></p>
+                </div>
+                <button id="btn-compartir-whatsapp" class="btn-share-wa" aria-label="Compartir farmacias por WhatsApp">
+                    <svg width="18" height="18" viewBox="0 0 448 512" fill="currentColor">
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                    </svg>
+                    <span>Compartir</span>
+                </button>
+            </div>
 
-  <script src="app.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-    }
-  </script>
+            <!--
+                SKELETON LOADER:
+                Aparece instantáneamente (HTML puro, sin JS).
+                La animación shimmer le indica al usuario que la app
+                está cargando y no está congelada.
+                El JS lo reemplaza con las tarjetas reales al llegar los datos.
+            -->
+            <div id="contenedor-cards" aria-live="polite" aria-label="Farmacias de turno">
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!--
+        SCRIPTS AL FINAL DEL BODY:
+        - app.js (que define crearCardHTML) carga primero.
+        - El script inline espera a que crearCardHTML esté disponible.
+        - Ambos con defer: no bloquean el render del HTML/CSS.
+        - El usuario ya leyó el nombre + leyenda antes de que
+          arranque cualquier línea de JavaScript.
+    -->
+    <script src="app.js" defer></script>
+
+    <script defer>
+        /**
+         * Lógica de Farmacias de Turno — BAHI.ar
+         * Ventana horaria de cambio: 08:30 hs ART.
+         */
+        (function () {
+            'use strict';
+
+            const CONFIG = {
+                TIMEZONE:       'America/Argentina/Buenos_Aires',
+                HORA_CAMBIO:    8,
+                MINUTO_CAMBIO:  30,
+                URL_TURNERO:    'data/turnero.json',
+                URL_PADRON:     'data/bd_bahiar.json',
+                /*
+                 * MAX_REINTENTOS: cuántas veces esperar a que crearCardHTML
+                 * esté disponible antes de mostrar error (100ms × 20 = 2s máx).
+                 */
+                MAX_REINTENTOS: 20
+            };
+
+            /**
+             * Devuelve la fecha operativa en formato YYYY-MM-DD (ART).
+             * Antes de las 08:30 se usa la fecha del día anterior,
+             * porque el turno comenzó a las 08:30 de ayer.
+             */
+            function obtenerFechaOperativa() {
+                const partes = new Intl.DateTimeFormat('en-CA', {
+                    timeZone:  CONFIG.TIMEZONE,
+                    year:      'numeric',
+                    month:     '2-digit',
+                    day:       '2-digit',
+                    hour:      '2-digit',
+                    minute:    '2-digit',
+                    hour12:    false
+                }).formatToParts(new Date());
+
+                const p = {};
+                partes.forEach(v => { p[v.type] = v.value; });
+
+                const hora   = parseInt(p.hour,   10);
+                const minuto = parseInt(p.minute, 10);
+                const fecha  = new Date(`${p.year}-${p.month}-${p.day}T12:00:00Z`);
+
+                const esMadrugada =
+                    hora < CONFIG.HORA_CAMBIO ||
+                    (hora === CONFIG.HORA_CAMBIO && minuto < CONFIG.MINUTO_CAMBIO);
+
+                if (esMadrugada) {
+                    fecha.setDate(fecha.getDate() - 1);
+                }
+
+                return fecha.toISOString().split('T')[0];
+            }
+
+            /**
+             * Arma el texto comprimido del badge de sección y el context strip.
+             * REDISEÑO: en lugar de 2 líneas largas genera textos cortos:
+             *   badge:  "Hasta 8:30 de mañana (10 jun)"
+             *   strip:  "3 de turno" / "Hasta 8:30 de mañana"
+             */
+            function armarLeyenda(fechaOp) {
+                const meses = [
+                    'enero','febrero','marzo','abril','mayo','junio',
+                    'julio','agosto','septiembre','octubre','noviembre','diciembre'
+                ];
+                const mesesCortos = [
+                    'ene','feb','mar','abr','may','jun',
+                    'jul','ago','sep','oct','nov','dic'
+                ];
+                const dInicio = new Date(fechaOp + 'T12:00:00Z');
+                const dFin    = new Date(dInicio);
+                dFin.setUTCDate(dFin.getUTCDate() + 1);
+
+                const mañanaTxt      = `${dFin.getUTCDate()} de ${meses[dFin.getUTCMonth()]}`;
+                const mañanaCortoTxt = `${dFin.getUTCDate()} ${mesesCortos[dFin.getUTCMonth()]}`;
+
+                return {
+                    /* Para el badge .section-header-meta junto al h2 */
+                    badge: `Hasta 8:30 de mañana (${mañanaTxt})`,
+                    /* Para el context strip del header */
+                    strip: `Hasta 8:30 de mañana · ${mañanaCortoTxt}`
+                };
+            }
+
+            /**
+             * Muestra el estado de error en el contenedor de cards.
+             * Reemplaza los skeletons con un mensaje claro y accionable.
+             */
+            function mostrarError(contenedor, mensaje) {
+                /* Limpiar el context strip en caso de error */
+                const ctxCount = document.getElementById('ctx-count');
+                if (ctxCount) ctxCount.textContent = 'Sin datos';
+
+                contenedor.innerHTML = `
+                    <div class="error-state" role="alert">
+                        <div class="error-state-icon" aria-hidden="true">⚠️</div>
+                        <p class="error-state-title">No se pudo cargar la información</p>
+                        <p class="error-state-desc">${mensaje}<br>Revisá tu conexión e intentá de nuevo.</p>
+                    </div>`;
+            }
+
+            /**
+             * Carga turnero + padrón en paralelo, determina el grupo
+             * del día y renderiza las tarjetas.
+             *
+             * Si crearCardHTML todavía no está disponible (app.js aún
+             * no terminó de ejecutarse), reintenta hasta MAX_REINTENTOS.
+             */
+            async function inicializarTurnos(reintentos) {
+                reintentos = reintentos || 0;
+
+                const contenedor     = document.getElementById('contenedor-cards');
+                const leyendaHorario = document.getElementById('leyenda-horario');
+                const ctxCount       = document.getElementById('ctx-count');
+                const ctxHorario     = document.getElementById('ctx-horario');
+                if (!contenedor) return;
+
+                try {
+                    /*
+                     * Promise.all: descarga turnero y padrón en paralelo.
+                     * En 3G (~1.5 Mbps) esto ahorra ~300-500 ms respecto
+                     * a hacerlo secuencial.
+                     */
+                    const [resT, resP] = await Promise.all([
+                        fetch(CONFIG.URL_TURNERO),
+                        fetch(CONFIG.URL_PADRON)
+                    ]);
+
+                    if (!resT.ok || !resP.ok) {
+                        throw new Error('Error HTTP al descargar datos');
+                    }
+
+                    const turnero = await resT.json();
+                    const padron  = await resP.json();
+                    const fechaOp = obtenerFechaOperativa();
+                    const entrada = turnero.find(t => t.fecha === fechaOp);
+
+                    if (!entrada) {
+                        throw new Error(`Fecha ${fechaOp} no encontrada en el turnero`);
+                    }
+
+                    const grupoActual = entrada.grupo;
+
+                    /* Filtrar farmacias del grupo con teléfono disponible */
+                    const deTurno = padron.prestadores.filter(f =>
+                        f.TIPO  === 'FARMACIA' &&
+                        f.GRUPO === grupoActual &&
+                        (f.FIJO || f.MOVIL)
+                    );
+
+                    /* ── Hidratar context strip del header ── */
+                    const leyenda = armarLeyenda(fechaOp);
+
+                    if (ctxCount) {
+                        ctxCount.textContent = deTurno.length > 0
+                            ? `${deTurno.length} de turno`
+                            : 'Sin turno registrado';
+                    }
+                    if (ctxHorario) {
+                        ctxHorario.textContent = leyenda.strip;
+                    }
+
+                    /* ── Hidratar badge junto al h2 ── */
+                    if (leyendaHorario) {
+                        leyendaHorario.textContent = leyenda.badge;
+                    }
+
+                    if (deTurno.length === 0) {
+                        contenedor.innerHTML = `
+                            <div class="error-state">
+                                <div class="error-state-icon" aria-hidden="true">🔍</div>
+                                <p class="error-state-title">Sin farmacias registradas</p>
+                                <p class="error-state-desc">No hay farmacias registradas para el Grupo ${grupoActual} con teléfono disponible.</p>
+                            </div>`;
+                        return;
+                    }
+
+                    /*
+                     * crearCardHTML es definida en app.js (carga con defer).
+                     * Si aún no está lista, esperamos 100ms y reintentamos.
+                     */
+                    if (typeof window.crearCardHTML !== 'function') {
+                        if (reintentos >= CONFIG.MAX_REINTENTOS) {
+                            throw new Error('crearCardHTML no disponible tras reintentos');
+                        }
+                        setTimeout(() => inicializarTurnos(reintentos + 1), 100);
+                        return;
+                    }
+
+                    /* Renderizar cards */
+                    contenedor.innerHTML = deTurno
+                        .map((f, i) => window.crearCardHTML(f, 'TURNO', i))
+                        .join('');
+
+                } catch (err) {
+                    console.error('[BAHI.ar] Fallo al inicializar turnos:', err);
+                    mostrarError(contenedor, err.message);
+                }
+            }
+
+            /* Iniciar carga */
+            inicializarTurnos();
+
+        })();
+    </script>
+    <!-- ── BOTTOM NAVIGATION BAR ── -->
+    <nav class="bottom-nav" aria-label="Navegación principal">
+
+        <a href="index.html" class="bottom-nav-item active" aria-current="page" aria-label="Inicio">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+                <line x1="12" y1="11" x2="12" y2="16"/>
+                <line x1="9.5" y1="13.5" x2="14.5" y2="13.5"/>
+            </svg>
+            Inicio
+        </a>
+
+        <a href="guardias.html" class="bottom-nav-item" aria-label="Guardias médicas">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="2 12 6 12 9 3 15 21 18 12 22 12"/>
+            </svg>
+            Guardias
+        </a>
+
+        <a href="farmacias.html" class="bottom-nav-item" aria-label="Farmacias">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10.5 20.5L3.5 13.5a5 5 0 017.07-7.07l7 7a5 5 0 01-7.07 7.07z"/>
+                <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
+            </svg>
+            Farmacias
+        </a>
+
+        <a href="laboratorios.html" class="bottom-nav-item" aria-label="Laboratorios">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 3h6v8l3.5 6.5A1 1 0 0117.6 19H6.4a1 1 0 01-.9-1.5L9 11V3z"/>
+                <line x1="9" y1="3" x2="15" y2="3"/>
+                <line x1="7.5" y1="14" x2="16.5" y2="14"/>
+            </svg>
+            Labs
+        </a>
+
+    </nav>
+
 </body>
 </html>
