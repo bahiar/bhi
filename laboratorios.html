@@ -1,304 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAHI.ar | Laboratorios</title>
-    
-    <meta name="description" content="Directorio de laboratorios de análisis clínicos en Bahía Blanca.">
-    <link rel="canonical" href="https://bahiar.github.io/bhi/laboratorios.html">
-    <link rel="manifest" href="manifest.json">
-    <link rel="preload" href="style.css" as="style">
-    <link rel="stylesheet" href="style.css">
-
-    <meta property="og:title" content="BAHI.ar | Laboratorios">
-    <meta property="og:description" content="Directorio de laboratorios de análisis clínicos en Bahía Blanca.">
-    <meta property="og:url" content="https://bahiar.github.io/bhi/laboratorios.html">
-    <meta property="og:type" content="website">
-
-    <meta name="theme-color" content="#191971">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BAHI.ar | Laboratorios</title>
+  <meta name="description" content="Directorio de laboratorios de análisis clínicos en Bahía Blanca.">
+  <link rel="canonical" href="https://bahiar.github.io/bhi/">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#191971">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="header-content">
-            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
-                <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
-            </a>
-        </div>
-    </header>
-
-    <div class="search-container">
-        <div class="search-icon" aria-hidden="true">🔍</div>
-        <input type="text" id="buscador-live" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+  <header class="main-header">
+    <div class="header-content">
+      <a href="index.html" class="brand-logo">BAHI<span>.ar</span></a>
     </div>
+  </header>
 
-    <nav class="sub-nav" aria-label="Accesos rápidos">
-        <ul class="sub-nav-list">
-            <li><a href="index.html" class="sub-nav-link">Inicio</a></li>
-            <li><a href="guardias.html" class="sub-nav-link">Guardias</a></li>
-            <li><a href="farmacias.html" class="sub-nav-link">Farmacias</a></li>
-            <li><a href="laboratorios.html" class="sub-nav-link active">Laboratorios</a></li>
-        </ul>
-    </nav>
-
-    <div class="filter-chips-container" id="filter-chips-container">
-      <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por localidad">
-        <option value="">Todas las localidades</option>
-      </select>
-      <button class="filter-chip" id="chip-stock" data-field="STOCK" aria-pressed="false">Stock</button>
-      <button class="filter-chip" id="chip-inyectables" data-field="INYECTABLES" aria-pressed="false">Inyectables</button>
-      <button class="filter-chip" id="chip-delivery" data-field="DELIVERY" aria-pressed="false">Delivery</button>
-      <select class="filter-chip-select" id="chip-ooss" aria-label="Filtrar por Obra Social">
-        <option value="">Todas las OOSS</option>
-      </select>
-    </div>
-
-    <main class="app-view" id="content">
-        <div id="main-content">
-            <div class="section-header">
-                <div class="section-header-titles">
-                    <h2>Laboratorios</h2>
-                    <p class="section-header-meta">Análisis clínicos y bioquímicos</p>
-                </div>
-            </div>
-
-            <div id="contenedor-cards" aria-live="polite" aria-label="Listado de laboratorios">
-                <div class="skeleton-card" aria-hidden="true">
-                    <div class="skeleton-line skeleton-line-title"></div>
-                    <div class="skeleton-line skeleton-line-addr"></div>
-                    <div class="skeleton-btns">
-                        <div class="skeleton-line skeleton-btn"></div>
-                        <div class="skeleton-line skeleton-btn"></div>
-                    </div>
-                </div>
-                <div class="skeleton-card" aria-hidden="true">
-                    <div class="skeleton-line skeleton-line-title"></div>
-                    <div class="skeleton-line skeleton-line-addr"></div>
-                    <div class="skeleton-btns">
-                        <div class="skeleton-line skeleton-btn"></div>
-                        <div class="skeleton-line skeleton-btn"></div>
-                    </div>
-                </div>
-                <div class="skeleton-card" aria-hidden="true">
-                    <div class="skeleton-line skeleton-line-title"></div>
-                    <div class="skeleton-line skeleton-line-addr"></div>
-                    <div class="skeleton-btns">
-                        <div class="skeleton-line skeleton-btn"></div>
-                        <div class="skeleton-line skeleton-btn"></div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </main>
-
-    
-    <script src="app.js" defer></script>
-    <script defer>
-      (function() {
-        const TIPO_VISTA = 'LABORATORIO';
-        const CONTENEDOR_ID = 'contenedor-cards';
-        let datosOriginales = [];
-        const filtros = { texto: '', localidad: '', stock: false, inyectables: false, delivery: false, ooss: '' };
-
-        function renderCards(lista) {
-          const contenedor = document.getElementById(CONTENEDOR_ID);
-          if (!contenedor) return;
-          contenedor.innerHTML = '';
-          if (lista.length === 0) {
-            contenedor.innerHTML = '<div class="error-state"><div class="error-state-icon" aria-hidden="true">🔍</div><p class="error-state-title">Sin resultados</p><p class="error-state-desc">No hay resultados para los filtros aplicados.</p></div>';
-            return;
-          }
-          
-          const fragments = lista.map((item, index) => {
-            const bodyId = `card-body-${TIPO_VISTA}-${index}`;
-            const linkTel = item.FIJO ? (item.FIJO.toLowerCase().startsWith('tel:') ? item.FIJO : 'tel:' + item.FIJO) : '';
-            const linkMovil = item.MOVIL ? (item.MOVIL.toLowerCase().startsWith('https://') || item.MOVIL.toLowerCase().startsWith('tel:') ? item.MOVIL : 'tel:' + item.MOVIL) : '';
-            const telDisplay = item.FIJO ? item.FIJO.replace(/^tel:/i, '') : '';
-            const mapsUrl = window.safeMapsUrl ? window.safeMapsUrl(item.MAPS) : item.MAPS;
-
-            return `
-<div class="card">
-  <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
-    <span>${window.esc(item.PRESTADOR)}</span>
-    <span aria-hidden="true">▼</span>
-  </button>
-  <div class="card-body-collapse" id="${bodyId}">
-    ${item.DOMICILIO ? `<p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${window.esc(item.DOMICILIO)}</p>` : ''}
-    ${item.LOCALIDAD ? `<p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${window.esc(item.LOCALIDAD)}</p>` : ''}
-    ${item.NIVEL ? `<p style="margin-bottom: 10px;"><strong>Nivel:</strong> ${window.esc(item.NIVEL)}</p>` : ''}
-    ${item.HORARIO ? `<p style="margin-bottom: 10px;"><strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>` : ''}
-    ${item.STOCK ? `<p style="margin-bottom: 10px;"><strong>Stock:</strong> ${window.esc(item.STOCK)}</p>` : ''}
-    <p style="margin-bottom: 10px;"><strong>Inyectables:</strong> ${item.INYECTABLES ? 'Sí' : 'No'}</p>
-    <p style="margin-bottom: 10px;"><strong>Delivery:</strong> ${item.DELIVERY ? 'Sí' : 'No'}</p>
-    ${item.OOSS ? `<p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${window.esc(item.OOSS)}</p>` : ''}
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-      ${linkTel ? `<a href="${window.esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${window.esc(item.PRESTADOR)}, ${window.esc(telDisplay)}">Llamar</a>` : ''}
-      ${linkMovil ? `<a href="${window.esc(linkMovil)}" class="btn btn-accent" aria-label="WhatsApp de ${window.esc(item.PRESTADOR)}">WhatsApp</a>` : ''}
-      ${mapsUrl ? `<a href="${window.esc(mapsUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${window.esc(item.PRESTADOR)} en Google Maps">Mapa</a>` : ''}
-    </div>
+  <div class="search-container">
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
   </div>
-</div>`;
-          });
-          contenedor.innerHTML = fragments.join('');
-        }
 
-        function aplicarFiltros() {
-          const texto = filtros.texto.toLowerCase();
-          const resultado = datosOriginales.filter(item => {
-            if (texto && !((item.PRESTADOR || '').toLowerCase().includes(texto) || (item.DOMICILIO || '').toLowerCase().includes(texto))) return false;
-            if (filtros.localidad && item.LOCALIDAD !== filtros.localidad) return false;
-            if (filtros.stock && !item.STOCK) return false;
-            if (filtros.inyectables && !item.INYECTABLES) return false;
-            if (filtros.delivery && !item.DELIVERY) return false;
-            if (filtros.ooss && !(item.OOSS || '').toLowerCase().includes(filtros.ooss.toLowerCase())) return false;
-            return true;
-          });
-          renderCards(resultado);
-        }
+  <main class="app-view" id="content">
+    <div id="main-content">
+      <div style="padding: 16px;">
+        <h2>Laboratorios</h2>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
+          Análisis clínicos y bioquímicos en la ciudad.
+        </p>
+      </div>
+      <div id="contenedor-cards"></div>
+    </div>
+  </main>
 
-        async function inicializar() {
-          const contenedor = document.getElementById(CONTENEDOR_ID);
-          if (!contenedor) return;
-          contenedor.innerHTML = `
-            <div class="skeleton-card" aria-hidden="true">
-              <div class="skeleton-line skeleton-line-title"></div>
-              <div class="skeleton-line skeleton-line-addr"></div>
-              <div class="skeleton-btns"><div class="skeleton-line skeleton-btn"></div><div class="skeleton-line skeleton-btn"></div></div>
-            </div>
-            <div class="skeleton-card" aria-hidden="true">
-              <div class="skeleton-line skeleton-line-title"></div>
-              <div class="skeleton-line skeleton-line-addr"></div>
-              <div class="skeleton-btns"><div class="skeleton-line skeleton-btn"></div><div class="skeleton-line skeleton-btn"></div></div>
-            </div>`;
-          
-          try {
-            const response = await fetch('data/bd_bahiar.json');
-            const data = await response.json();
-            datosOriginales = data.prestadores.filter(p => p.TIPO === TIPO_VISTA);
+  <div id="nav-placeholder"></div>
 
-            // Poblar Selects
-            const selLoc = document.getElementById('chip-localidad');
-            if (selLoc) {
-              const localidades = [...new Set(datosOriginales.map(p => p.LOCALIDAD).filter(Boolean))].sort();
-              localidades.forEach(l => {
-                const o = document.createElement('option'); o.value = l; o.textContent = l; selLoc.appendChild(o);
-              });
-            }
-
-            const selOoss = document.getElementById('chip-ooss');
-            if (selOoss) {
-              const oossSet = new Set();
-              datosOriginales.forEach(p => (p.OOSS || '').split(',').forEach(o => { const t = o.trim(); if(t) oossSet.add(t); }));
-              [...oossSet].sort().forEach(o => {
-                const opt = document.createElement('option'); opt.value = o; opt.textContent = o; selOoss.appendChild(opt);
-              });
-            }
-
-            // Eventos
-            const buscador = document.getElementById('buscador-live');
-            if (buscador) {
-              buscador.addEventListener('input', (e) => {
-                e.stopImmediatePropagation();
-                filtros.texto = e.target.value;
-                aplicarFiltros();
-              });
-            }
-
-            ['chip-stock', 'chip-inyectables', 'chip-delivery'].forEach(id => {
-              const btn = document.getElementById(id);
-              if (btn) {
-                btn.addEventListener('click', () => {
-                  const field = btn.getAttribute('data-field').toLowerCase();
-                  filtros[field] = !filtros[field];
-                  btn.classList.toggle('active', filtros[field]);
-                  btn.setAttribute('aria-pressed', filtros[field]);
-                  aplicarFiltros();
-                });
-              }
-            });
-
-            if (selLoc) {
-              selLoc.addEventListener('change', (e) => {
-                filtros.localidad = e.target.value;
-                selLoc.classList.toggle('active', !!e.target.value);
-                aplicarFiltros();
-              });
-            }
-
-            if (selOoss) {
-              selOoss.addEventListener('change', (e) => {
-                filtros.ooss = e.target.value;
-                selOoss.classList.toggle('active', !!e.target.value);
-                aplicarFiltros();
-              });
-            }
-
-            renderCards(datosOriginales);
-          } catch (e) {
-            console.error(e);
-            contenedor.innerHTML = '<div class="error-state" role="alert"><div class="error-state-icon" aria-hidden="true">⚠️</div><p class="error-state-title">No se pudo cargar la información</p><p class="error-state-desc">Revisá tu conexión e intentá de nuevo.</p></div>';
-          }
-        }
-
-        // Bloqueo total de funciones conflictivas de app.js
-        window.renderizarDatos = function() {};
-        window.configurarBuscador = function() {};
-        
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', () => setTimeout(inicializar, 50));
-        } else {
-          setTimeout(inicializar, 50);
-        }
-      })();
-    </script>    <!-- ── BOTTOM NAVIGATION BAR ── -->
-    <nav class="bottom-nav" aria-label="Navegación principal">
-
-        <a href="index.html" class="bottom-nav-item" aria-label="Inicio">
-            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.8"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
-                <line x1="12" y1="11" x2="12" y2="16"/>
-                <line x1="9.5" y1="13.5" x2="14.5" y2="13.5"/>
-            </svg>
-            Inicio
-        </a>
-
-        <a href="guardias.html" class="bottom-nav-item" aria-label="Guardias médicas">
-            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.8"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="2 12 6 12 9 3 15 21 18 12 22 12"/>
-            </svg>
-            Guardias
-        </a>
-
-        <a href="farmacias.html" class="bottom-nav-item" aria-label="Farmacias">
-            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.8"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M10.5 20.5L3.5 13.5a5 5 0 017.07-7.07l7 7a5 5 0 01-7.07 7.07z"/>
-                <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
-            </svg>
-            Farmacias
-        </a>
-
-        <a href="laboratorios.html" class="bottom-nav-item active" aria-current="page" aria-label="Laboratorios">
-            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.8"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M9 3h6v8l3.5 6.5A1 1 0 0117.6 19H6.4a1 1 0 01-.9-1.5L9 11V3z"/>
-                <line x1="9" y1="3" x2="15" y2="3"/>
-                <line x1="7.5" y1="14" x2="16.5" y2="14"/>
-            </svg>
-            Labs
-        </a>
-
-    </nav>
-
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+    renderizarDatos('LABORATORIO', 'contenedor-cards');
+  </script>
 </body>
 </html>

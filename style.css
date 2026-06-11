@@ -10,12 +10,12 @@
 /* Cambia estos valores aquí y se actualizará en toda la PWA automáticamente */
 :root {
   /* Paleta de colores principal */
-  --primary:      #191971;              /* Azul corporativo */
-  --accent:       #1F75FE;              /* Azul claro de acento */
-  --bg-main:      #F8FAFC;             /* Fondo de toda la app */
-  --card-bg:      #FFFFFF;             /* Fondo de las tarjetas */
-  --text-main:    #0F172A;             /* Color de texto principal */
-  --text-muted:   #525E73;             /* Color para texto secundario — ratio 4.5:1 sobre blanco (WCAG AA) */
+  --primary:      #191971;               /* Azul corporativo */
+  --accent:       #1F75FE;               /* Azul claro de acento */
+  --bg-main:      #F8FAFC;              /* Fondo de toda la app */
+  --card-bg:      #FFFFFF;              /* Fondo de las tarjetas */
+  --text-main:    #0F172A;              /* Color de texto principal */
+  --text-muted:   #525E73;              /* Color para texto secundario — ratio 4.5:1 sobre blanco (WCAG AA) */
   --border-light: rgba(226, 232, 240, 0.8); /* Bordes suaves */
 
   /* Paleta Naranja (Universal para botones y alertas) */
@@ -25,14 +25,14 @@
   --orange-border: rgba(255, 107, 0, 0.25);
 
   /* Paleta WhatsApp */
-  --whatsapp:       #25D366;
-  --whatsapp-dark:  #128C4E;
-  --whatsapp-light: rgba(37, 211, 102, 0.10);
+  --whatsapp:        #25D366;
+  --whatsapp-dark:   #128C4E;
+  --whatsapp-light:  rgba(37, 211, 102, 0.10);
   --whatsapp-border: rgba(37, 211, 102, 0.30);
 
   /* Medidas y Estructura */
-  --radius-card: 16px;                 /* Redondez de tarjetas */
-  --radius-btn:  12px;                 /* Redondez de botones */
+  --radius-card: 16px;                  /* Redondez de tarjetas */
+  --radius-btn:  12px;                  /* Redondez de botones */
   --shadow-soft: 0 2px 4px rgba(15, 23, 42, 0.05); /* Sombra suave */
 }
 
@@ -54,7 +54,7 @@ body {
   transition: all 0.2s; text-decoration: none;
 }
 
-/* Los SVG dentro de los botones heredan el color del botón */
+/* Los SVG dentro de los botones heredan el color y no se achican */
 .btn svg {
   flex-shrink: 0;
 }
@@ -133,7 +133,7 @@ body {
   min-height: 44px;
 }
 
-/* Estilo del buscador */
+/* ── 5. BUSCADOR ── */
 .search-container {
   position: relative;
   margin: 1rem 16px;
@@ -145,21 +145,102 @@ body {
   border: 1px solid var(--border-light);
   border-radius: var(--radius-btn);
   background: white;
+  font-size: 15px;
+  color: var(--text-main);
 }
 
-/* Ícono SVG de la lupa — centrado verticalmente igual que el emoji anterior */
+/* Funciona tanto con el SVG (nuevo) como con el div emoji (legacy) */
 .search-icon {
   position: absolute;
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
-  pointer-events: none; /* El SVG no interfiere con el click en el input */
-  display: block;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
-/* ── 5. OFFLINE / UPDATE ── */
-/* Banner de nueva versión disponible */
+/* ── 6. HEADER ── */
+.main-header {
+  background: var(--primary);
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(25, 25, 113, 0.3);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.brand-logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.brand-logo span {
+  color: var(--accent);
+}
+
+/* ── 7. NAVEGACIÓN INFERIOR ── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  z-index: 50;
+  box-shadow: 0 -2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 16px;
+  border-radius: 10px;
+  transition: color 0.2s;
+  min-width: 64px;
+}
+
+.nav-link svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--primary);
+}
+
+/* ── 8. VISTA PRINCIPAL ── */
+.app-view {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+  padding-bottom: 90px; /* espacio para la nav inferior */
+}
+
+/* ── 9. OFFLINE / UPDATE ── */
 #update-banner {
   position: sticky;
   top: 0;
