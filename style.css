@@ -802,8 +802,14 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 5px 12px;
-    border-radius: 16px;
+    /*
+     * FIX: padding vertical aumentado a 10px para alcanzar ~44px de altura
+     * total (10+10 padding + ~24px line-height) sin forzar min-height.
+     * min-height: 44px distorsionaba la forma píldora porque el border-radius
+     * de 16px quedaba pequeño para esa altura, haciendo los chips "cuadrados".
+     */
+    padding: 10px 14px;
+    border-radius: 20px;
     border: 1.5px solid var(--accent);
     background: transparent;
     color: var(--accent);
@@ -812,9 +818,7 @@ body {
     cursor: pointer;
     white-space: nowrap;
     transition: background 0.15s, color 0.15s;
-    /* Mínimo táctil WCAG 2.5.5 */
-    min-height: 44px;
-    min-width: 44px;
+    line-height: 1.2;
 }
 
 .filter-chip.active {
@@ -824,17 +828,25 @@ body {
 
 .filter-chip-select {
     border: 1.5px solid var(--accent);
-    border-radius: 16px;
-    padding: 5px 10px;
+    border-radius: 20px;
+    /*
+     * FIX: padding vertical aumentado a 10px — mismo criterio que .filter-chip.
+     * min-height: 44px en <select> nativo causa que iOS Safari recorte
+     * o distorsione el control, porque el SO renderiza su propio chrome
+     * por encima del estilo declarado.
+     */
+    padding: 10px 10px;
     font-size: 13px;
     font-family: var(--font-base);
     background: transparent;
     color: var(--accent);
     cursor: pointer;
     outline: none;
+    line-height: 1.2;
     transition: background 0.15s, color 0.15s;
-    /* Mínimo táctil WCAG 2.5.5 */
-    min-height: 44px;
+    /* Evita que el <select> nativo de iOS aplique su propio border-radius */
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .filter-chip-select:focus {
