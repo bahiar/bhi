@@ -783,3 +783,71 @@ body {
     background: var(--border-light);
     margin: 8px 16px 4px;
 }
+
+/* ── 16. CHIPS DE FILTRO (farmacias / laboratorios) ── */
+
+/*
+ * Estas reglas fueron movidas aquí desde los <style> inline
+ * de farmacias.html y laboratorios.html.
+ * Fuente única de verdad: style.css.
+ */
+.filter-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 16px 12px;
+}
+
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    border-radius: 16px;
+    border: 1.5px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-size: 13px;
+    font-family: var(--font-base);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+    /* Mínimo táctil WCAG 2.5.5 */
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.filter-chip.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.filter-chip-select {
+    border: 1.5px solid var(--accent);
+    border-radius: 16px;
+    padding: 5px 10px;
+    font-size: 13px;
+    font-family: var(--font-base);
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    outline: none;
+    transition: background 0.15s, color 0.15s;
+    /* Mínimo táctil WCAG 2.5.5 */
+    min-height: 44px;
+}
+
+.filter-chip-select:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px var(--orange-light);
+}
+
+.filter-chip-select.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.filter-chip-select option {
+    background: #fff;
+    color: var(--navy);
+}
