@@ -16,11 +16,10 @@
     <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
     <!--
-        --header-h: alto del header en index (logo 52px + ctx-strip ~29px + search ~52px ≈ 133px).
-        El #update-banner usa esta variable para posicionarse correctamente
-        sin solaparse con el header extendido.
+        --header-h: alto del header en index (logo 52px + search ~52px ≈ 104px).
+        El #update-banner usa esta variable para posicionarse sin solaparse.
     -->
-    <style>:root { --header-h: 133px; }</style>
+    <style>:root { --header-h: 104px; }</style>
 
     <!-- Open Graph -->
     <meta property="og:title" content="BAHI.ar | Directorio de Salud">
@@ -41,23 +40,6 @@
             <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
                 <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
             </a>
-        </div>
-        <!--
-            CONTEXT STRIP: muestra la info más urgente antes de cualquier scroll.
-            Está en el HTML estático → se pinta en el primer repaint, sin esperar JS.
-            El script inline de abajo actualiza #ctx-count y #ctx-horario
-            con los datos reales. Mientras tanto muestra el estado "Cargando…".
-
-            aria-live="polite" → el lector de pantalla anuncia el cambio
-            cuando JS actualiza el texto, sin interrumpir la lectura actual.
-        -->
-        <div class="header-ctx-strip" id="header-ctx-strip" aria-live="polite">
-            <span class="ctx-live" aria-label="Farmacias de turno activas">
-                <span class="ctx-live-dot" aria-hidden="true"></span>
-                <span id="ctx-count">Cargando…</span>
-            </span>
-            <span class="ctx-sep" aria-hidden="true"></span>
-            <span class="ctx-text" id="ctx-horario"></span>
         </div>
         <!-- Buscador integrado en el hero navy -->
         <div class="search-container search-container--hero">
@@ -252,10 +234,6 @@
              * Reemplaza los skeletons con un mensaje claro y accionable.
              */
             function mostrarError(contenedor, mensaje) {
-                /* Limpiar el context strip en caso de error */
-                const ctxCount = document.getElementById('ctx-count');
-                if (ctxCount) ctxCount.textContent = 'Sin datos';
-
                 contenedor.innerHTML = `
                     <div class="error-state" role="alert">
                         <div class="error-state-icon" aria-hidden="true">⚠️</div>
@@ -276,8 +254,6 @@
 
                 const contenedor     = document.getElementById('contenedor-cards');
                 const leyendaHorario = document.getElementById('leyenda-horario');
-                const ctxCount       = document.getElementById('ctx-count');
-                const ctxHorario     = document.getElementById('ctx-horario');
                 if (!contenedor) return;
 
                 try {
@@ -313,19 +289,8 @@
                         (f.FIJO || f.MOVIL)
                     );
 
-                    /* ── Hidratar context strip del header ── */
-                    const leyenda = armarLeyenda(fechaOp);
-
-                    if (ctxCount) {
-                        ctxCount.textContent = deTurno.length > 0
-                            ? `${deTurno.length} de turno`
-                            : 'Sin turno registrado';
-                    }
-                    if (ctxHorario) {
-                        ctxHorario.textContent = leyenda.strip;
-                    }
-
                     /* ── Hidratar badge junto al h2 ── */
+                    const leyenda = armarLeyenda(fechaOp);
                     if (leyendaHorario) {
                         leyendaHorario.textContent = leyenda.badge;
                     }
