@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BAHI.ar | Farmacias</title>
-    
-    <meta name="description" content="Directorio de farmacias en Bahía Blanca.">
+
+    <meta name="description" content="Farmacias de turno y directorio completo en Bahía Blanca. Buscá por localidad, obra social, delivery e inyectables.">
     <link rel="canonical" href="https://bahiar.github.io/bhi/farmacias.html">
     <link rel="manifest" href="manifest.json">
     <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
 
-    <meta property="og:title" content="BAHI.ar | Farmacias">
-    <meta property="og:description" content="Directorio de farmacias en Bahía Blanca.">
+    <meta property="og:title" content="BAHI.ar | Farmacias de turno en Bahía Blanca">
+    <meta property="og:description" content="Farmacias de turno y directorio completo en Bahía Blanca. Buscá por localidad, obra social, delivery e inyectables.">
     <meta property="og:url" content="https://bahiar.github.io/bhi/farmacias.html">
     <meta property="og:type" content="website">
 
@@ -32,40 +32,47 @@
 
     <div class="search-container">
         <div class="search-icon" aria-hidden="true">🔍</div>
-        <input type="text" id="buscador-live" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+        <!--
+            id="buscador-live": app.js excluye este input de su buscador global
+            (selector :not(#buscador-live)) — el filtrado lo maneja el script propio.
+        -->
+        <input type="text" id="buscador-live" placeholder="Buscar farmacia o dirección..." aria-label="Buscar farmacia o dirección">
     </div>
 
     <nav class="sub-nav" aria-label="Accesos rápidos">
         <ul class="sub-nav-list">
             <li><a href="index.html" class="sub-nav-link">Inicio</a></li>
             <li><a href="guardias.html" class="sub-nav-link">Guardias</a></li>
-            <li><a href="farmacias.html" class="sub-nav-link active">Farmacias</a></li>
+            <li><a href="farmacias.html" class="sub-nav-link active" aria-current="page">Farmacias</a></li>
             <li><a href="laboratorios.html" class="sub-nav-link">Laboratorios</a></li>
         </ul>
     </nav>
 
-    <div class="filter-chips-container" id="filter-chips-container">
-      <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por localidad">
-        <option value="">Todas las localidades</option>
-      </select>
-      <button class="filter-chip" id="chip-stock" data-field="STOCK" aria-pressed="false">Stock</button>
-      <button class="filter-chip" id="chip-inyectables" data-field="INYECTABLES" aria-pressed="false">Inyectables</button>
-      <button class="filter-chip" id="chip-delivery" data-field="DELIVERY" aria-pressed="false">Delivery</button>
-      <select class="filter-chip-select" id="chip-ooss" aria-label="Filtrar por Obra Social">
-        <option value="">Todas las OOSS</option>
-      </select>
+    <!-- Filtros: centrado en desktop via CSS (.filter-chips-container en media query) -->
+    <div class="filter-chips-container" id="filter-chips-container" role="group" aria-label="Filtros de búsqueda">
+        <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por localidad">
+            <option value="">Todas las localidades</option>
+        </select>
+        <button class="filter-chip" id="chip-stock"       data-field="stock"       aria-pressed="false">Stock</button>
+        <button class="filter-chip" id="chip-inyectables" data-field="inyectables" aria-pressed="false">Inyectables</button>
+        <button class="filter-chip" id="chip-delivery"    data-field="delivery"    aria-pressed="false">Delivery</button>
+        <select class="filter-chip-select" id="chip-ooss" aria-label="Filtrar por Obra Social">
+            <option value="">Todas las OOSS</option>
+        </select>
     </div>
 
     <main class="app-view" id="content">
         <div id="main-content">
+
             <div class="section-header">
                 <div class="section-header-titles">
                     <h2>Farmacias</h2>
-                    <p class="section-header-meta">Directorio completo</p>
+                    <p class="section-header-meta" id="header-meta-count">Directorio completo</p>
                 </div>
             </div>
 
-            <div id="contenedor-cards" aria-live="polite" aria-label="Listado de farmacias">
+            <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Listado de farmacias">
+                <!-- Skeleton inicial: 3 placeholders mientras carga el JSON -->
                 <div class="skeleton-card" aria-hidden="true">
                     <div class="skeleton-line skeleton-line-title"></div>
                     <div class="skeleton-line skeleton-line-addr"></div>
@@ -91,138 +98,154 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </main>
 
-    
     <script src="app.js" defer></script>
     <script defer>
-      (function() {
-        const TIPO_VISTA = 'FARMACIA';
+      /**
+       * Módulo de Farmacias — lógica de filtros y renderizado.
+       *
+       * Usa window.crearCardHTML (definido en app.js) para generar cards
+       * con el design system unificado. El accordion y el SW ya están
+       * gestionados globalmente por app.js.
+       */
+      (function () {
+        'use strict';
+
+        const TIPO_VISTA   = 'FARMACIA';
         const CONTENEDOR_ID = 'contenedor-cards';
+
         let datosOriginales = [];
-        const filtros = { texto: '', localidad: '', stock: false, inyectables: false, delivery: false, ooss: '' };
+        const filtros = {
+          texto:      '',
+          localidad:  '',
+          stock:      false,
+          inyectables: false,
+          delivery:   false,
+          ooss:       ''
+        };
+
+        // ── Renderizado ────────────────────────────────────────────────────────
 
         function renderCards(lista) {
           const contenedor = document.getElementById(CONTENEDOR_ID);
           if (!contenedor) return;
-          contenedor.innerHTML = '';
+
+          const metaCount = document.getElementById('header-meta-count');
+
           if (lista.length === 0) {
-            contenedor.innerHTML = '<div class="error-state"><div class="error-state-icon" aria-hidden="true">🔍</div><p class="error-state-title">Sin resultados</p><p class="error-state-desc">No hay resultados para los filtros aplicados.</p></div>';
+            contenedor.innerHTML = `
+              <div class="error-state" role="status">
+                <div class="error-state-icon" aria-hidden="true">🔍</div>
+                <p class="error-state-title">Sin resultados</p>
+                <p class="error-state-desc">No hay farmacias para los filtros aplicados.</p>
+              </div>`;
+            if (metaCount) metaCount.textContent = 'Sin resultados';
             return;
           }
-          
-          const fragments = lista.map((item, index) => {
-            const bodyId = `card-body-${TIPO_VISTA}-${index}`;
-            const linkTel = item.FIJO ? (item.FIJO.toLowerCase().startsWith('tel:') ? item.FIJO : 'tel:' + item.FIJO) : '';
-            const linkMovil = item.MOVIL ? (item.MOVIL.toLowerCase().startsWith('https://') || item.MOVIL.toLowerCase().startsWith('tel:') ? item.MOVIL : 'tel:' + item.MOVIL) : '';
-            const telDisplay = item.FIJO ? item.FIJO.replace(/^tel:/i, '') : '';
-            const mapsUrl = window.safeMapsUrl ? window.safeMapsUrl(item.MAPS) : item.MAPS;
 
-            return `
-<div class="card">
-  <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
-    <span>${window.esc(item.PRESTADOR)}</span>
-    <span aria-hidden="true">▼</span>
-  </button>
-  <div class="card-body-collapse" id="${bodyId}">
-    ${item.DOMICILIO ? `<p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${window.esc(item.DOMICILIO)}</p>` : ''}
-    ${item.LOCALIDAD ? `<p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${window.esc(item.LOCALIDAD)}</p>` : ''}
-    ${item.NIVEL ? `<p style="margin-bottom: 10px;"><strong>Nivel:</strong> ${window.esc(item.NIVEL)}</p>` : ''}
-    ${item.HORARIO ? `<p style="margin-bottom: 10px;"><strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>` : ''}
-    ${item.STOCK ? `<p style="margin-bottom: 10px;"><strong>Stock:</strong> ${window.esc(item.STOCK)}</p>` : ''}
-    <p style="margin-bottom: 10px;"><strong>Inyectables:</strong> ${item.INYECTABLES ? 'Sí' : 'No'}</p>
-    <p style="margin-bottom: 10px;"><strong>Delivery:</strong> ${item.DELIVERY ? 'Sí' : 'No'}</p>
-    ${item.OOSS ? `<p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${window.esc(item.OOSS)}</p>` : ''}
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-      ${linkTel ? `<a href="${window.esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${window.esc(item.PRESTADOR)}, ${window.esc(telDisplay)}">Llamar</a>` : ''}
-      ${linkMovil ? `<a href="${window.esc(linkMovil)}" class="btn btn-accent" aria-label="WhatsApp de ${window.esc(item.PRESTADOR)}">WhatsApp</a>` : ''}
-      ${mapsUrl ? `<a href="${window.esc(mapsUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${window.esc(item.PRESTADOR)} en Google Maps">Mapa</a>` : ''}
-    </div>
-  </div>
-</div>`;
-          });
-          contenedor.innerHTML = fragments.join('');
+          // crearCardHTML viene de app.js (defer garantiza que ya está disponible)
+          contenedor.innerHTML = lista
+            .map((item, i) => window.crearCardHTML(item, TIPO_VISTA, i))
+            .join('');
+
+          if (metaCount) {
+            metaCount.textContent = `${lista.length} farmacia${lista.length !== 1 ? 's' : ''}`;
+          }
         }
+
+        // ── Filtrado ───────────────────────────────────────────────────────────
 
         function aplicarFiltros() {
           const texto = filtros.texto.toLowerCase();
           const resultado = datosOriginales.filter(item => {
-            if (texto && !((item.PRESTADOR || '').toLowerCase().includes(texto) || (item.DOMICILIO || '').toLowerCase().includes(texto))) return false;
-            if (filtros.localidad && item.LOCALIDAD !== filtros.localidad) return false;
-            if (filtros.stock && !item.STOCK) return false;
+            if (texto && !(
+              (item.PRESTADOR || '').toLowerCase().includes(texto) ||
+              (item.DOMICILIO  || '').toLowerCase().includes(texto)
+            )) return false;
+            if (filtros.localidad   && item.LOCALIDAD !== filtros.localidad) return false;
+            if (filtros.stock       && !item.STOCK)       return false;
             if (filtros.inyectables && !item.INYECTABLES) return false;
-            if (filtros.delivery && !item.DELIVERY) return false;
+            if (filtros.delivery    && !item.DELIVERY)    return false;
             if (filtros.ooss && !(item.OOSS || '').toLowerCase().includes(filtros.ooss.toLowerCase())) return false;
             return true;
           });
           renderCards(resultado);
         }
 
+        // ── Inicialización ─────────────────────────────────────────────────────
+
         async function inicializar() {
           const contenedor = document.getElementById(CONTENEDOR_ID);
           if (!contenedor) return;
-          contenedor.innerHTML = `
-            <div class="skeleton-card" aria-hidden="true">
-              <div class="skeleton-line skeleton-line-title"></div>
-              <div class="skeleton-line skeleton-line-addr"></div>
-              <div class="skeleton-btns"><div class="skeleton-line skeleton-btn"></div><div class="skeleton-line skeleton-btn"></div></div>
-            </div>
-            <div class="skeleton-card" aria-hidden="true">
-              <div class="skeleton-line skeleton-line-title"></div>
-              <div class="skeleton-line skeleton-line-addr"></div>
-              <div class="skeleton-btns"><div class="skeleton-line skeleton-btn"></div><div class="skeleton-line skeleton-btn"></div></div>
-            </div>`;
-          
+
           try {
             const response = await fetch('data/bd_bahiar.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
             datosOriginales = data.prestadores.filter(p => p.TIPO === TIPO_VISTA);
 
-            // Poblar Selects
+            // Poblar select de localidades
             const selLoc = document.getElementById('chip-localidad');
             if (selLoc) {
-              const localidades = [...new Set(datosOriginales.map(p => p.LOCALIDAD).filter(Boolean))].sort();
+              const localidades = [...new Set(
+                datosOriginales.map(p => p.LOCALIDAD).filter(Boolean)
+              )].sort();
               localidades.forEach(l => {
-                const o = document.createElement('option'); o.value = l; o.textContent = l; selLoc.appendChild(o);
+                const opt = document.createElement('option');
+                opt.value = l;
+                opt.textContent = l;
+                selLoc.appendChild(opt);
               });
             }
 
+            // Poblar select de obras sociales
             const selOoss = document.getElementById('chip-ooss');
             if (selOoss) {
               const oossSet = new Set();
-              datosOriginales.forEach(p => (p.OOSS || '').split(',').forEach(o => { const t = o.trim(); if(t) oossSet.add(t); }));
+              datosOriginales.forEach(p =>
+                (p.OOSS || '').split(',').forEach(o => {
+                  const t = o.trim();
+                  if (t) oossSet.add(t);
+                })
+              );
               [...oossSet].sort().forEach(o => {
-                const opt = document.createElement('option'); opt.value = o; opt.textContent = o; selOoss.appendChild(opt);
+                const opt = document.createElement('option');
+                opt.value = o;
+                opt.textContent = o;
+                selOoss.appendChild(opt);
               });
             }
 
-            // Eventos
+            // Eventos de filtros
             const buscador = document.getElementById('buscador-live');
             if (buscador) {
-              buscador.addEventListener('input', (e) => {
-                e.stopImmediatePropagation();
-                filtros.texto = e.target.value;
-                aplicarFiltros();
+              let debounce;
+              buscador.addEventListener('input', e => {
+                clearTimeout(debounce);
+                debounce = setTimeout(() => {
+                  filtros.texto = e.target.value.trim();
+                  aplicarFiltros();
+                }, 150);
               });
             }
 
             ['chip-stock', 'chip-inyectables', 'chip-delivery'].forEach(id => {
               const btn = document.getElementById(id);
-              if (btn) {
-                btn.addEventListener('click', () => {
-                  const field = btn.getAttribute('data-field').toLowerCase();
-                  filtros[field] = !filtros[field];
-                  btn.classList.toggle('active', filtros[field]);
-                  btn.setAttribute('aria-pressed', filtros[field]);
-                  aplicarFiltros();
-                });
-              }
+              if (!btn) return;
+              btn.addEventListener('click', () => {
+                const field = btn.dataset.field;  // ya en minúsculas en el HTML
+                filtros[field] = !filtros[field];
+                btn.classList.toggle('active', filtros[field]);
+                btn.setAttribute('aria-pressed', String(filtros[field]));
+                aplicarFiltros();
+              });
             });
 
             if (selLoc) {
-              selLoc.addEventListener('change', (e) => {
+              selLoc.addEventListener('change', e => {
                 filtros.localidad = e.target.value;
                 selLoc.classList.toggle('active', !!e.target.value);
                 aplicarFiltros();
@@ -230,7 +253,7 @@
             }
 
             if (selOoss) {
-              selOoss.addEventListener('change', (e) => {
+              selOoss.addEventListener('change', e => {
                 filtros.ooss = e.target.value;
                 selOoss.classList.toggle('active', !!e.target.value);
                 aplicarFiltros();
@@ -238,23 +261,29 @@
             }
 
             renderCards(datosOriginales);
-          } catch (e) {
-            console.error(e);
-            contenedor.innerHTML = '<div class="error-state" role="alert"><div class="error-state-icon" aria-hidden="true">⚠️</div><p class="error-state-title">No se pudo cargar la información</p><p class="error-state-desc">Revisá tu conexión e intentá de nuevo.</p></div>';
+
+          } catch (err) {
+            console.error('[BAHI.ar] Error al cargar farmacias:', err);
+            const contenedor = document.getElementById(CONTENEDOR_ID);
+            if (contenedor) {
+              contenedor.innerHTML = `
+                <div class="error-state" role="alert">
+                  <div class="error-state-icon" aria-hidden="true">⚠️</div>
+                  <p class="error-state-title">No se pudo cargar la información</p>
+                  <p class="error-state-desc">Revisá tu conexión e intentá de nuevo.</p>
+                </div>`;
+            }
           }
         }
 
-        // Bloqueo total de funciones conflictivas de app.js
-        window.renderizarDatos = function() {};
-        window.configurarBuscador = function() {};
-        
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', () => setTimeout(inicializar, 50));
-        } else {
-          setTimeout(inicializar, 50);
-        }
-      })();
-    </script>    <!-- ── BOTTOM NAVIGATION BAR ── -->
+        // app.js se carga con defer antes que este script (mismo atributo, orden DOM).
+        // DOMContentLoaded ya disparó cuando defer ejecuta — llamamos directo.
+        inicializar();
+
+      }());
+    </script>
+
+    <!-- ── BOTTOM NAVIGATION BAR ── -->
     <nav class="bottom-nav" aria-label="Navegación principal">
 
         <a href="index.html" class="bottom-nav-item" aria-label="Inicio">
