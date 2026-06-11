@@ -95,168 +95,121 @@
         </div>
     </main>
 
-    
     <script src="app.js" defer></script>
     <script defer>
+      /**
+       * Lógica específica para la vista de Farmacias.
+       * Ahora utiliza window.crearCardHTML de app.js para unificar el estilo visual.
+       */
       (function() {
         const TIPO_VISTA = 'FARMACIA';
         const CONTENEDOR_ID = 'contenedor-cards';
         let datosOriginales = [];
         const filtros = { texto: '', localidad: '', stock: false, inyectables: false, delivery: false, ooss: '' };
 
-        function renderCards(lista) {
-          const contenedor = document.getElementById(CONTENEDOR_ID);
-          if (!contenedor) return;
-          contenedor.innerHTML = '';
-          if (lista.length === 0) {
-            contenedor.innerHTML = '<div class="error-state"><div class="error-state-icon" aria-hidden="true">🔍</div><p class="error-state-title">Sin resultados</p><p class="error-state-desc">No hay resultados para los filtros aplicados.</p></div>';
-            return;
-          }
-          
-          const fragments = lista.map((item, index) => {
-            const bodyId = `card-body-${TIPO_VISTA}-${index}`;
-            const linkTel = item.FIJO ? (item.FIJO.toLowerCase().startsWith('tel:') ? item.FIJO : 'tel:' + item.FIJO) : '';
-            const linkMovil = item.MOVIL ? (item.MOVIL.toLowerCase().startsWith('https://') || item.MOVIL.toLowerCase().startsWith('tel:') ? item.MOVIL : 'tel:' + item.MOVIL) : '';
-            const telDisplay = item.FIJO ? item.FIJO.replace(/^tel:/i, '') : '';
-            const mapsUrl = window.safeMapsUrl ? window.safeMapsUrl(item.MAPS) : item.MAPS;
-
-            return `
-<div class="card">
-  <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
-    <span>${window.esc(item.PRESTADOR)}</span>
-    <span aria-hidden="true">▼</span>
-  </button>
-  <div class="card-body-collapse" id="${bodyId}">
-    ${item.DOMICILIO ? `<p style="margin-bottom: 10px;"><strong>Dirección:</strong> ${window.esc(item.DOMICILIO)}</p>` : ''}
-    ${item.LOCALIDAD ? `<p style="margin-bottom: 10px;"><strong>Localidad:</strong> ${window.esc(item.LOCALIDAD)}</p>` : ''}
-    ${item.NIVEL ? `<p style="margin-bottom: 10px;"><strong>Nivel:</strong> ${window.esc(item.NIVEL)}</p>` : ''}
-    ${item.HORARIO ? `<p style="margin-bottom: 10px;"><strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>` : ''}
-    ${item.STOCK ? `<p style="margin-bottom: 10px;"><strong>Stock:</strong> ${window.esc(item.STOCK)}</p>` : ''}
-    <p style="margin-bottom: 10px;"><strong>Inyectables:</strong> ${item.INYECTABLES ? 'Sí' : 'No'}</p>
-    <p style="margin-bottom: 10px;"><strong>Delivery:</strong> ${item.DELIVERY ? 'Sí' : 'No'}</p>
-    ${item.OOSS ? `<p style="margin-bottom: 10px;"><strong>OOSS:</strong> ${window.esc(item.OOSS)}</p>` : ''}
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-      ${linkTel ? `<a href="${window.esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${window.esc(item.PRESTADOR)}, ${window.esc(telDisplay)}">Llamar</a>` : ''}
-      ${linkMovil ? `<a href="${window.esc(linkMovil)}" class="btn btn-accent" aria-label="WhatsApp de ${window.esc(item.PRESTADOR)}">WhatsApp</a>` : ''}
-      ${mapsUrl ? `<a href="${window.esc(mapsUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Ver ${window.esc(item.PRESTADOR)} en Google Maps">Mapa</a>` : ''}
-    </div>
-  </div>
-</div>`;
-          });
-          contenedor.innerHTML = fragments.join('');
-        }
-
-        function aplicarFiltros() {
-          const texto = filtros.texto.toLowerCase();
-          const resultado = datosOriginales.filter(item => {
-            if (texto && !((item.PRESTADOR || '').toLowerCase().includes(texto) || (item.DOMICILIO || '').toLowerCase().includes(texto))) return false;
-            if (filtros.localidad && item.LOCALIDAD !== filtros.localidad) return false;
-            if (filtros.stock && !item.STOCK) return false;
-            if (filtros.inyectables && !item.INYECTABLES) return false;
-            if (filtros.delivery && !item.DELIVERY) return false;
-            if (filtros.ooss && !(item.OOSS || '').toLowerCase().includes(filtros.ooss.toLowerCase())) return false;
-            return true;
-          });
-          renderCards(resultado);
-        }
-
         async function inicializar() {
           const contenedor = document.getElementById(CONTENEDOR_ID);
-          if (!contenedor) return;
-          contenedor.innerHTML = `
-            <div class="skeleton-card" aria-hidden="true">
-              <div class="skeleton-line skeleton-line-title"></div>
-              <div class="skeleton-line skeleton-line-addr"></div>
-              <div class="skeleton-btns"><div class="skeleton-line skeleton-btn"></div><div class="skeleton-line skeleton-btn"></div></div>
-            </div>
-            <div class="skeleton-card" aria-hidden="true">
-              <div class="skeleton-line skeleton-line-title"></div>
-              <div class="skeleton-line skeleton-line-addr"></div>
-              <div class="skeleton-btns"><div class="skeleton-line skeleton-btn"></div><div class="skeleton-line skeleton-btn"></div></div>
-            </div>`;
-          
           try {
-            const response = await fetch('data/bd_bahiar.json');
-            const data = await response.json();
-            datosOriginales = data.prestadores.filter(p => p.TIPO === TIPO_VISTA);
-
-            // Poblar Selects
-            const selLoc = document.getElementById('chip-localidad');
-            if (selLoc) {
-              const localidades = [...new Set(datosOriginales.map(p => p.LOCALIDAD).filter(Boolean))].sort();
-              localidades.forEach(l => {
-                const o = document.createElement('option'); o.value = l; o.textContent = l; selLoc.appendChild(o);
-              });
-            }
-
-            const selOoss = document.getElementById('chip-ooss');
-            if (selOoss) {
-              const oossSet = new Set();
-              datosOriginales.forEach(p => (p.OOSS || '').split(',').forEach(o => { const t = o.trim(); if(t) oossSet.add(t); }));
-              [...oossSet].sort().forEach(o => {
-                const opt = document.createElement('option'); opt.value = o; opt.textContent = o; selOoss.appendChild(opt);
-              });
-            }
-
-            // Eventos
-            const buscador = document.getElementById('buscador-live');
-            if (buscador) {
-              buscador.addEventListener('input', (e) => {
-                e.stopImmediatePropagation();
-                filtros.texto = e.target.value;
-                aplicarFiltros();
-              });
-            }
-
-            ['chip-stock', 'chip-inyectables', 'chip-delivery'].forEach(id => {
-              const btn = document.getElementById(id);
-              if (btn) {
-                btn.addEventListener('click', () => {
-                  const field = btn.getAttribute('data-field').toLowerCase();
-                  filtros[field] = !filtros[field];
-                  btn.classList.toggle('active', filtros[field]);
-                  btn.setAttribute('aria-pressed', filtros[field]);
-                  aplicarFiltros();
-                });
-              }
+            const res = await fetch('./data/bd_bahiar.json');
+            if (!res.ok) throw new Error('Error al cargar datos');
+            const data = await res.json();
+            
+            // Filtrar solo farmacias del padrón
+            datosOriginales = data.filter(item => item.TIPO === 'FARMACIA');
+            
+            // Configurar select de localidades
+            const localidades = [...new Set(datosOriginales.map(i => i.LOCALIDAD).filter(Boolean))].sort();
+            const selLocalidad = document.getElementById('chip-localidad');
+            localidades.forEach(loc => {
+              const opt = document.createElement('option');
+              opt.value = loc;
+              opt.textContent = loc;
+              selLocalidad.appendChild(opt);
             });
 
-            if (selLoc) {
-              selLoc.addEventListener('change', (e) => {
-                filtros.localidad = e.target.value;
-                selLoc.classList.toggle('active', !!e.target.value);
+            // Configurar select de OOSS
+            const oossList = [...new Set(datosOriginales.map(i => i.OOSS).filter(Boolean))].sort();
+            const selOoss = document.getElementById('chip-ooss');
+            oossList.forEach(ooss => {
+              const opt = document.createElement('option');
+              opt.value = ooss;
+              opt.textContent = ooss;
+              selOoss.appendChild(opt);
+            });
+
+            // Eventos de Filtros
+            document.getElementById('buscador-live').addEventListener('input', (e) => {
+              filtros.texto = e.target.value;
+              aplicarFiltros();
+            });
+
+            selLocalidad.addEventListener('change', (e) => {
+              filtros.localidad = e.target.value;
+              selLocalidad.classList.toggle('active', !!e.target.value);
+              aplicarFiltros();
+            });
+
+            ['stock', 'inyectables', 'delivery'].forEach(f => {
+              const btn = document.getElementById(`chip-${f}`);
+              btn.addEventListener('click', () => {
+                filtros[f] = !filtros[f];
+                btn.classList.toggle('active', filtros[f]);
+                btn.setAttribute('aria-pressed', filtros[f]);
                 aplicarFiltros();
               });
-            }
+            });
 
-            if (selOoss) {
-              selOoss.addEventListener('change', (e) => {
-                filtros.ooss = e.target.value;
-                selOoss.classList.toggle('active', !!e.target.value);
-                aplicarFiltros();
-              });
-            }
+            selOoss.addEventListener('change', (e) => {
+              filtros.ooss = e.target.value;
+              selOoss.classList.toggle('active', !!e.target.value);
+              aplicarFiltros();
+            });
 
-            renderCards(datosOriginales);
+            renderizar();
           } catch (e) {
             console.error(e);
             contenedor.innerHTML = '<div class="error-state" role="alert"><div class="error-state-icon" aria-hidden="true">⚠️</div><p class="error-state-title">No se pudo cargar la información</p><p class="error-state-desc">Revisá tu conexión e intentá de nuevo.</p></div>';
           }
         }
 
-        // Bloqueo total de funciones conflictivas de app.js
-        window.renderizarDatos = function() {};
-        window.configurarBuscador = function() {};
-        
+        function aplicarFiltros() {
+          renderizar();
+        }
+
+        function renderizar() {
+          const contenedor = document.getElementById(CONTENEDOR_ID);
+          const texto = filtros.texto.toLowerCase();
+          
+          const filtrados = datosOriginales.filter(item => {
+            if (texto && !((item.PRESTADOR || '').toLowerCase().includes(texto) || (item.DOMICILIO || '').toLowerCase().includes(texto))) return false;
+            if (filtros.localidad && item.LOCALIDAD !== filtros.localidad) return false;
+            if (filtros.stock && !item.STOCK) return false;
+            if (filtros.inyectables && !item.INYECTABLES) return false;
+            if (filtros.delivery && !item.DELIVERY) return false;
+            if (filtros.ooss && item.OOSS !== filtros.ooss) return false;
+            return true;
+          });
+
+          if (filtrados.length === 0) {
+            contenedor.innerHTML = '<div class="error-state"><div class="error-state-icon" aria-hidden="true">🔍</div><p class="error-state-title">Sin resultados</p><p class="error-state-desc">No hay resultados para los filtros aplicados.</p></div>';
+            return;
+          }
+
+          // Uso del renderizador unificado de app.js
+          contenedor.innerHTML = filtrados.map((item, i) => window.crearCardHTML(item, TIPO_VISTA, i)).join('');
+        }
+
+        // Inicialización segura
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', () => setTimeout(inicializar, 50));
         } else {
           setTimeout(inicializar, 50);
         }
       })();
-    </script>    <!-- ── BOTTOM NAVIGATION BAR ── -->
-    <nav class="bottom-nav" aria-label="Navegación principal">
+    </script>
 
+    <!-- ── BOTTOM NAVIGATION BAR ── -->
+    <nav class="bottom-nav" aria-label="Navegación principal">
         <a href="index.html" class="bottom-nav-item" aria-label="Inicio">
             <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="1.8"
@@ -297,7 +250,6 @@
             </svg>
             Labs
         </a>
-
     </nav>
 
 </body>
