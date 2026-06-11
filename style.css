@@ -560,6 +560,54 @@ body {
     pointer-events: none;
 }
 
+/* ── 7b. BUSCADOR HERO (solo index.html — integrado en el header navy) ── */
+/*
+ * .search-container--hero sobreescribe el buscador estándar
+ * para integrarse visualmente en el fondo navy del header.
+ * El input usa fondo semi-transparente blanco con texto oscuro
+ * para mantener legibilidad sobre el gradiente.
+ * El margen superior e inferior crean respiro dentro del header.
+ */
+.search-container--hero {
+    margin: 0 16px 10px;
+}
+
+.search-container--hero input[type="text"] {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 15px;
+}
+
+.search-container--hero input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.search-container--hero input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
+}
+
+.search-container--hero .search-icon {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+@media (min-width: 768px) {
+    .search-container--hero {
+        /* En desktop el buscador hero se centra igual que el resto del header */
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .search-container--hero { max-width: 1200px; }
+}
+
 /* ── 8. NAVEGACIÓN SECUNDARIA (Tabs) ── */
 /*
  * En móvil la sub-nav se oculta — la navegación la provee la bottom-nav-bar (§17).
@@ -642,7 +690,7 @@ body {
      * El header pasó de height fijo a height:auto (logo 52px + ctx-strip ~29px ≈ 81px).
      * Con top:52px el banner se solapaba 29px con el header.
      */
-    top: 81px;
+    top: var(--header-h, 81px);
     z-index: 40;
     box-shadow: 0 2px 8px rgba(31, 117, 254, 0.2);
 }

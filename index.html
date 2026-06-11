@@ -15,6 +15,12 @@
     -->
     <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
+    <!--
+        --header-h: alto del header en index (logo 52px + ctx-strip ~29px + search ~52px ≈ 133px).
+        El #update-banner usa esta variable para posicionarse correctamente
+        sin solaparse con el header extendido.
+    -->
+    <style>:root { --header-h: 133px; }</style>
 
     <!-- Open Graph -->
     <meta property="og:title" content="BAHI.ar | Directorio de Salud">
@@ -53,19 +59,19 @@
             <span class="ctx-sep" aria-hidden="true"></span>
             <span class="ctx-text" id="ctx-horario"></span>
         </div>
+        <!-- Buscador integrado en el hero navy -->
+        <div class="search-container search-container--hero">
+            <div class="search-icon" aria-hidden="true">🔍</div>
+            <input
+                type="text"
+                placeholder="Buscar en BAHI.ar..."
+                aria-label="Buscar en BAHI.ar"
+                autocomplete="off"
+                autocorrect="off"
+                spellcheck="false"
+            >
+        </div>
     </header>
-
-    <div class="search-container">
-        <div class="search-icon" aria-hidden="true">🔍</div>
-        <input
-            type="text"
-            placeholder="Buscar en BAHI.ar..."
-            aria-label="Buscar en BAHI.ar"
-            autocomplete="off"
-            autocorrect="off"
-            spellcheck="false"
-        >
-    </div>
 
     <nav class="sub-nav" aria-label="Secciones principales">
         <ul class="sub-nav-list">
@@ -116,7 +122,7 @@
                 está cargando y no está congelada.
                 El JS lo reemplaza con las tarjetas reales al llegar los datos.
             -->
-            <div id="contenedor-cards" aria-live="polite" aria-label="Farmacias de turno">
+            <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Farmacias de turno">
                 <div class="skeleton-card" aria-hidden="true">
                     <div class="skeleton-line skeleton-line-title"></div>
                     <div class="skeleton-line skeleton-line-addr"></div>
