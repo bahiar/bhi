@@ -642,18 +642,31 @@ body {
 }
 
 @media (min-width: 768px) {
+    /*
+     * FIX: en desktop el header pasa de columna a fila.
+     * Logo y buscador quedan en la misma línea horizontal.
+     * El buscador se limita a 400px y queda pegado al logo por la izquierda.
+     * padding-right da respiro al borde derecho del header.
+     */
+    .main-header {
+        flex-direction: row;
+        align-items: center;
+        padding-right: 16px;
+    }
+
+    .header-content {
+        flex-shrink: 0;
+        width: auto;
+    }
+
     .search-container--hero {
-        /*
-         * FIX: alineado a la izquierda en desktop.
-         * margin-left: 0 lo pega al borde izquierdo del área de contenido.
-         * max-width: 480px limita el ancho — un buscador full-width de 1000px
-         * en desktop se ve desproporcionado y difícil de usar.
-         */
-        max-width: 480px;
-        margin-left: 0;
-        margin-right: auto;
+        max-width: 400px;
+        width: 100%;
+        margin-left: 16px;
+        margin-right: 0;
+        margin-bottom: 0;
         padding: 0;
-        margin-bottom: 12px;
+        flex-shrink: 1;
     }
 }
 
