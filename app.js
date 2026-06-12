@@ -25,9 +25,7 @@ window.crearCardHTML = function(p, modo = 'BUSQUEDA', index = 0) {
                     <h3 class="card-name">${p.PRESTADOR}</h3>
                     <p class="card-addr">${p.DOMICILIO} · ${p.LOCALIDAD}</p>
                 </div>
-                <div class="card-icon" aria-hidden="true">
-                    ${isTurno ? '💊' : (p.TIPO === 'FARMACIA' ? '🏥' : '🔬')}
-                </div>
+
             </div>
             
             <div class="card-actions">
@@ -159,14 +157,30 @@ window.crearCardHTML = function(p, modo = 'BUSQUEDA', index = 0) {
         }
     }
 
-    // Eventos
+    // Funcionalidad de Compartir por WhatsApp
+    const btnCompartir = document.getElementById('btn-compartir-whatsapp');
+    if (btnCompartir) {
+        btnCompartir.addEventListener('click', () => {
+            const contenedor = document.getElementById('contenedor-cards');
+            const cards = contenedor.querySelectorAll('.card');
+            let mensaje = "*Farmacias de Turno - BAHI.ar*\n\n";
+            
+            cards.forEach(card => {
+                const nombre = card.querySelector('.card-name').textContent;
+                const direccion = card.querySelector('.card-addr').textContent;
+                mensaje += `📍 *${nombre}*\n🏠 ${direccion}\n\n`;
+            });
+            
+            mensaje += "Consultá más en: https://bahiar.github.io/bhi/";
+            const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        });
+    }
+
+    // Eventos del buscador
     if (searchInput) {
         searchInput.addEventListener('input', (e) => realizarBusqueda(e.target.value));
-        // También escuchar el evento 'keyup' por si acaso
         searchInput.addEventListener('keyup', (e) => realizarBusqueda(e.target.value));
-        console.log('BAHI.ar: Buscador vinculado correctamente');
-    } else {
-        console.error('BAHI.ar: No se encontró el elemento #search-input');
     }
 
     // Cargar datos al inicio
