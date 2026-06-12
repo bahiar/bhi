@@ -144,10 +144,20 @@ window.crearCardHTML = function(p, modo = 'BUSQUEDA', index = 0) {
 
         if (filtrados.length === 0) {
             contenedor.innerHTML = `
-                <div class="error-state">
-                    <div class="error-state-icon">🔍</div>
-                    <p class="error-state-title">No hay resultados</p>
-                    <p class="error-state-desc">No encontramos nada que coincida con "${query}"</p>
+                <div class="card" style="padding: 0; overflow: hidden; border-top: 4px solid var(--orange); animation: fadeInCard 0.4s ease forwards;">
+                    <div style="padding: 32px 20px; text-align: center;">
+                        <div style="margin-bottom: 20px; color: var(--orange);">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        <h3 class="card-name" style="color: var(--orange-dark); margin-bottom: 8px;">¿No encontrás lo que buscás?</h3>
+                        <p class="card-addr" style="margin: 10px 0;">No hay resultados para "<strong>${query}</strong>". Asegurate de que el nombre esté bien escrito o buscá por calle o localidad.</p>
+                        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                            <span style="background: var(--orange-light); color: var(--orange-dark); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">Tip: Usá términos más generales</span>
+                        </div>
+                    </div>
                 </div>
             `;
         } else {

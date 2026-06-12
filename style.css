@@ -603,8 +603,9 @@ body {
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
-    font-size: 16px;
     pointer-events: none;
+    display: flex;
+    align-items: center;
 }
 
 /* ── 7b. BUSCADOR HERO (solo index.html — integrado en el header navy) ── */
