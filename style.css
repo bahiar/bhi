@@ -108,6 +108,57 @@ body {
     height: 52px;                /* Restaurado a 52px: el logo ya no requiere altura extra */
 }
 
+/* ── Botón "Reportar error" en el header ── */
+.header-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.15);
+    margin-left: auto;
+    margin-right: 14px;
+    flex-shrink: 0;
+}
+
+.btn-bug-report {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 11.5px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    transition: color 0.15s ease;
+}
+
+.btn-bug-report:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-bug-report:hover .btn-bug-report__bubble {
+    background: rgba(37, 211, 102, 0.28);
+}
+
+.btn-bug-report__bubble {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(37, 211, 102, 0.18);
+    flex-shrink: 0;
+    transition: background 0.15s ease;
+}
+
+@media (max-width: 359px) {
+    .btn-bug-report span { display: none; }
+    .header-divider { margin-right: 10px; }
+}
+
 /*
  * NUEVO — Context strip (banda de contexto bajo el logo)
  * Muestra la info más urgente —cuántas farmacias de turno y hasta cuándo—
