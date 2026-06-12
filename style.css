@@ -244,21 +244,30 @@ body {
 }
 
 /* Llamar: naranja sólido — máxima visibilidad para acción urgente */
-.btn-accent {
-    background: var(--orange);
-    color: #fff;
-}
-
-/* Icono SVG dentro de botones */
+/* ── Iconos SVG en botones ───────────────────────────────────── */
 .btn-icon {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     flex-shrink: 0;
     display: inline-block;
     vertical-align: middle;
-    overflow: visible;
     position: relative;
     top: -1px;
+    overflow: visible;
+    color: inherit;
+}
+.btn-icon--lg {
+    width: 20px;
+    height: 20px;
+}
+/* Maps: no hereda currentColor — es multicolor */
+.btn-icon--maps {
+    color: unset;
+}
+
+.btn-accent {
+    background: var(--orange);
+    color: #fff;
 }
 
 /* Hover solo en dispositivos que lo soportan (evita estado stuck en móvil) */
