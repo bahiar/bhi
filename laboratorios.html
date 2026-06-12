@@ -30,7 +30,12 @@
         </div>
         <!-- Buscador integrado en el hero navy -->
         <div class="search-container search-container--hero">
-            <div class="search-icon" aria-hidden="true">🔍</div>
+            <div class="search-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
             <input type="text" id="buscador-live" placeholder="Buscar laboratorio o dirección..." aria-label="Buscar laboratorio o dirección">
         </div>
     </header>
@@ -130,7 +135,12 @@
           if (lista.length === 0) {
             contenedor.innerHTML = `
               <div class="error-state" role="status">
-                <div class="error-state-icon" aria-hidden="true">🔍</div>
+                <div class="error-state-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
                 <p class="error-state-title">Sin resultados</p>
                 <p class="error-state-desc">No hay laboratorios para los filtros aplicados.</p>
               </div>`;
