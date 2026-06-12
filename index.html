@@ -332,6 +332,54 @@
                     </div>`;
             }
 
+            /* Padrón completo — se llena tras el fetch, lo usa el buscador */
+            let padronCompleto = [];
+
+            /**
+             * Buscador del index — busca en TODO el padrón (farmacias +
+             * laboratorios + guardias) y muestra resultados con startsWith.
+             * Se activa solo cuando hay texto; al borrar vuelve a las farmacias de turno.
+             */
+            function configurarBuscadorIndex() {
+                const input = document.getElementById('search-input');
+                const contenedor = document.getElementById('contenedor-cards');
+                if (!input || !contenedor) return;
+
+                let debounce;
+                input.addEventListener('input', (e) => {
+                    clearTimeout(debounce);
+                    debounce = setTimeout(() => {
+                        const filtro = e.target.value.trim().toLowerCase();
+
+                        /* Sin texto → restaurar farmacias de turno */
+                        if (!filtro) {
+                            inicializarTurnos();
+                            return;
+                        }
+
+                        /* Buscar en todo el padrón con startsWith */
+                        if (!padronCompleto.length) return;
+                        const resultado = padronCompleto.filter(p =>
+                            (p.PRESTADOR || '').toLowerCase().startsWith(filtro)
+                        );
+
+                        if (!resultado.length) {
+                            contenedor.innerHTML = `
+                                <div class="error-state" role="status">
+                                    <div class="error-state-icon" aria-hidden="true">🔍</div>
+                                    <p class="error-state-title">Sin resultados</p>
+                                    <p class="error-state-desc">No hay prestadores que comiencen con "${window.esc(e.target.value.trim())}".</p>
+                                </div>`;
+                            return;
+                        }
+
+                        contenedor.innerHTML = resultado
+                            .map((p, i) => window.crearCardHTML(p, p.TIPO || 'PRESTADOR', i))
+                            .join('');
+                    }, 150);
+                });
+            }
+
             /**
              * Carga turnero + padrón en paralelo, determina el grupo
              * del día y renderiza las tarjetas.
@@ -347,11 +395,6 @@
                 if (!contenedor) return;
 
                 try {
-                    /*
-                     * Promise.all: descarga turnero y padrón en paralelo.
-                     * En 3G (~1.5 Mbps) esto ahorra ~300-500 ms respecto
-                     * a hacerlo secuencial.
-                     */
                     const [resT, resP] = await Promise.all([
                         fetch(CONFIG.URL_TURNERO),
                         fetch(CONFIG.URL_PADRON)
@@ -363,6 +406,10 @@
 
                     const turnero = await resT.json();
                     const padron  = await resP.json();
+
+                    /* Exponer el padrón completo al buscador */
+                    padronCompleto = padron.prestadores || [];
+
                     const fechaOp = obtenerFechaOperativa();
                     const entrada = turnero.find(t => t.fecha === fechaOp);
 
@@ -395,10 +442,6 @@
                         return;
                     }
 
-                    /*
-                     * crearCardHTML es definida en app.js (carga con defer).
-                     * Si aún no está lista, esperamos 100ms y reintentamos.
-                     */
                     if (typeof window.crearCardHTML !== 'function') {
                         if (reintentos >= CONFIG.MAX_REINTENTOS) {
                             throw new Error('crearCardHTML no disponible tras reintentos');
@@ -418,8 +461,9 @@
                 }
             }
 
-            /* Iniciar carga */
+            /* Iniciar carga y activar buscador */
             inicializarTurnos();
+            configurarBuscadorIndex();
 
         })();
     </script>
