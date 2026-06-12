@@ -49,6 +49,13 @@
     </nav>
 
     <!-- Filtros: centrado en desktop via CSS (.filter-chips-container en media query) -->
+    <div class="section-header">
+        <div class="section-header-titles">
+            <h2>Farmacias</h2>
+            <p class="section-header-meta" id="header-meta-count">Directorio completo</p>
+        </div>
+    </div>
+
     <div class="filter-chips-container" id="filter-chips-container" role="group" aria-label="Filtros de búsqueda">
         <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por localidad">
             <option value="">Todas las localidades</option>
@@ -63,13 +70,6 @@
 
     <main class="app-view" id="content">
         <div id="main-content">
-
-            <div class="section-header">
-                <div class="section-header-titles">
-                    <h2>Farmacias</h2>
-                    <p class="section-header-meta" id="header-meta-count">Directorio completo</p>
-                </div>
-            </div>
 
             <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Listado de farmacias">
                 <!-- Skeleton inicial: 3 placeholders mientras carga el JSON -->
