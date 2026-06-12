@@ -886,7 +886,6 @@ body {
 
 @media (min-width: 768px) {
     .header-content,
-    .search-container,
     .sub-nav,
     .section-header,
     .filter-chips-container,
@@ -895,6 +894,25 @@ body {
     .section-divider {
         max-width: 1000px;
         margin-left: auto;
+        margin-right: auto;
+    }
+
+    /*
+     * FIX: el buscador se alinea a la izquierda en desktop.
+     * Se saca del bloque de centrado (margin: auto) y recibe
+     * max-width propio + margin-left: 0 para pegarse al borde
+     * izquierdo del área de contenido, igual que las cards.
+     * En móvil no cambia nada — estas reglas solo aplican ≥768px.
+     */
+    .search-container {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .search-container:not(.search-container--hero) {
+        max-width: 480px;
+        margin-left: 0;
         margin-right: auto;
     }
 
@@ -931,7 +949,6 @@ body {
 
 @media (min-width: 1100px) {
     .header-content,
-    .search-container,
     .sub-nav,
     .section-header,
     .filter-chips-container,
@@ -940,6 +957,8 @@ body {
     .section-divider {
         max-width: 1200px;
     }
+
+    .search-container { max-width: 1200px; }
 
     #contenedor-cards,
     .cards-grid { grid-template-columns: repeat(3, 1fr); }
