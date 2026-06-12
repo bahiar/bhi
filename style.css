@@ -934,21 +934,22 @@ body {
  */
 .filter-chips-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
-    padding: 12px 16px 12px;
+    padding: 8px 16px 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.filter-chips-container::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-chip {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    /*
-     * FIX: padding vertical aumentado a 10px para alcanzar ~44px de altura
-     * total (10+10 padding + ~24px line-height) sin forzar min-height.
-     * min-height: 44px distorsionaba la forma píldora porque el border-radius
-     * de 16px quedaba pequeño para esa altura, haciendo los chips "cuadrados".
-     */
     padding: 10px 14px;
     border-radius: 20px;
     border: 1.5px solid var(--accent);
@@ -958,6 +959,7 @@ body {
     font-family: var(--font-base);
     cursor: pointer;
     white-space: nowrap;
+    flex-shrink: 0;
     transition: background 0.15s, color 0.15s;
     line-height: 1.2;
 }
@@ -970,12 +972,6 @@ body {
 .filter-chip-select {
     border: 1.5px solid var(--accent);
     border-radius: 20px;
-    /*
-     * FIX: padding vertical aumentado a 10px — mismo criterio que .filter-chip.
-     * min-height: 44px en <select> nativo causa que iOS Safari recorte
-     * o distorsione el control, porque el SO renderiza su propio chrome
-     * por encima del estilo declarado.
-     */
     padding: 10px 10px;
     font-size: 13px;
     font-family: var(--font-base);
@@ -984,8 +980,8 @@ body {
     cursor: pointer;
     outline: none;
     line-height: 1.2;
+    flex-shrink: 0;
     transition: background 0.15s, color 0.15s;
-    /* Evita que el <select> nativo de iOS aplique su propio border-radius */
     -webkit-appearance: none;
     appearance: none;
 }
@@ -1071,118 +1067,4 @@ body {
 /* Ocultar en desktop — la sub-nav toma el rol */
 @media (min-width: 768px) {
     .bottom-nav { display: none; }
-}
-
-/* ── 18. BANNER DE INSTALACIÓN PWA ── */
-/*
- * Banner que aparece en la primera visita desde móvil
- * cuando el evento beforeinstallprompt está disponible.
- * Se posiciona sobre la bottom-nav (64px + safe-area).
- * En desktop (≥768px) se fuerza oculto: el navegador
- * ofrece su propio mecanismo en la barra de dirección.
- */
-#pwa-install-banner {
-    display: none;
-    position: fixed;
-    bottom: calc(64px + env(safe-area-inset-bottom, 0px));
-    left: 12px;
-    right: 12px;
-    z-index: 200;
-    background: var(--card-bg);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-card);
-    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.14), 0 1px 4px rgba(15, 23, 42, 0.08);
-    padding: 14px 16px;
-    gap: 12px;
-    align-items: center;
-    animation: pwa-slide-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-#pwa-install-banner.visible {
-    display: flex;
-}
-
-@keyframes pwa-slide-up {
-    from { transform: translateY(20px); opacity: 0; }
-    to   { transform: translateY(0);    opacity: 1; }
-}
-
-.pwa-banner-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    flex-shrink: 0;
-    object-fit: contain;
-    background: linear-gradient(135deg, #191971 0%, #1a2f8e 100%);
-}
-
-.pwa-banner-text {
-    flex: 1;
-    min-width: 0;
-}
-
-.pwa-banner-title {
-    font-family: var(--font-brand);
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-main);
-    line-height: 1.3;
-    margin-bottom: 2px;
-}
-
-.pwa-banner-desc {
-    font-size: 11px;
-    color: var(--text-muted);
-    line-height: 1.4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.pwa-banner-actions {
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
-    align-items: center;
-}
-
-.pwa-btn-install {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius-btn);
-    font-family: var(--font-base);
-    font-size: 13px;
-    font-weight: 700;
-    padding: 0 14px;
-    height: 38px;
-    cursor: pointer;
-    white-space: nowrap;
-    touch-action: manipulation;
-    transition: opacity 0.15s;
-}
-
-.pwa-btn-install:active { opacity: 0.85; }
-
-.pwa-btn-dismiss {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 22px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 4px;
-    touch-action: manipulation;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-}
-
-.pwa-btn-dismiss:active { background: var(--border-light); }
-
-@media (min-width: 768px) {
-    #pwa-install-banner { display: none !important; }
 }
