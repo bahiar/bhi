@@ -442,6 +442,9 @@ body {
 }
 
 .card-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-size: 13px;
     color: var(--text-muted);
     line-height: 1.5;
@@ -455,6 +458,20 @@ body {
 .card-detail-row strong {
     color: var(--text-main);
     font-weight: 600;
+}
+
+.detail-icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
+    max-width: 14px;
+    max-height: 14px;
+    stroke: var(--color-accent);
+    fill: none;
+    display: block;
+    overflow: visible;
 }
 
 .card-chevron {

@@ -24,8 +24,8 @@
 
 // ─── Versión ──────────────────────────────────────────────────────────────────
 // ⚠ Incrementar en cada deploy para invalidar el caché y forzar install.
-// v4.4: estructura de cards en guardias.html alineada con crearCardHTML.
-const CACHE_VERSION   = 'v4.4';
+// v4.6: fix tamaño íconos de detalle (width/height explícitos en SVG).
+const CACHE_VERSION   = 'v4.6';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
