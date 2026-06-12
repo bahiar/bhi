@@ -94,11 +94,21 @@ window.crearCardHTML = function(p, modo = 'BUSQUEDA', index = 0) {
 
     async function cargarDatos() {
         try {
-            const res = await fetch('bd_bahiar.json');
+            // Intentar cargar desde diferentes rutas posibles
+            const rutas = ['bd_bahiar.json', 'data/bd_bahiar.json', './bd_bahiar.json'];
+            let res;
+            for (const ruta of rutas) {
+                res = await fetch(ruta);
+                if (res.ok) break;
+            }
+            
+            if (!res || !res.ok) throw new Error('No se pudo encontrar el archivo JSON');
+            
             const data = await res.json();
             prestadores = data.prestadores;
+            console.log('BAHI.ar: Datos cargados correctamente para búsqueda');
         } catch (e) {
-            console.error('Error cargando prestadores para búsqueda:', e);
+            console.error('BAHI.ar: Error cargando prestadores:', e);
         }
     }
 
@@ -152,6 +162,11 @@ window.crearCardHTML = function(p, modo = 'BUSQUEDA', index = 0) {
     // Eventos
     if (searchInput) {
         searchInput.addEventListener('input', (e) => realizarBusqueda(e.target.value));
+        // También escuchar el evento 'keyup' por si acaso
+        searchInput.addEventListener('keyup', (e) => realizarBusqueda(e.target.value));
+        console.log('BAHI.ar: Buscador vinculado correctamente');
+    } else {
+        console.error('BAHI.ar: No se encontró el elemento #search-input');
     }
 
     // Cargar datos al inicio
