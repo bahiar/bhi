@@ -19,7 +19,24 @@
     <meta name="theme-color" content="#191971">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
+    <style>
+        /* ── Bug-report button: flex layout for .header-content ────────────────
+           Inherits all visual styles (.btn .btn-share-wa) from style.css.
+           Only adds the flex positioning needed to place button beside logo.
+        ─────────────────────────────────────────────────────────────────────── */
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+        .btn-bug-report {
+            margin-left: auto;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+        @media (max-width: 359px) {
+            .btn-bug-report span { display: none; }
+        }
+    </style>
 
 </head>
 <body>
@@ -29,9 +46,6 @@
             <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
                 <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
             </a>
-            <!-- ── VARIANTE C: separador + botón sin borde ────────────────────────
-                 El divisor empuja el botón a la derecha via margin-left: auto.
-            ─────────────────────────────────────────────────────────────────────── -->
             <div class="header-divider" aria-hidden="true"></div>
             <a
                 href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20"
