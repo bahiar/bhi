@@ -379,5 +379,121 @@
 
     </nav>
 
+    <!-- ── BANNER DE INSTALACIÓN PWA ── -->
+    <!--
+        Solo visible en móvil (<768px) y solo cuando:
+          · Es la primera visita (localStorage.hasVisitedBefore no existía)
+          · El navegador dispara beforeinstallprompt (Chrome/Edge Android)
+          · El usuario no dismisseó ni aceptó previamente
+        En iOS Safari el banner nunca aparece (no soporta beforeinstallprompt).
+    -->
+    <div id="pwa-install-banner" role="complementary" aria-label="Instalar BAHI.ar">
+        <img
+            src="assets/images/logoweb.png"
+            alt=""
+            class="pwa-banner-icon"
+            width="44"
+            height="44"
+            aria-hidden="true"
+            loading="lazy"
+        >
+        <div class="pwa-banner-text">
+            <p class="pwa-banner-title">Instalar BAHI.ar</p>
+            <p class="pwa-banner-desc">Acceso rápido sin abrir el navegador</p>
+        </div>
+        <div class="pwa-banner-actions">
+            <button id="pwa-btn-install" class="pwa-btn-install" type="button"
+                    aria-label="Instalar la aplicación BAHI.ar">
+                Instalar
+            </button>
+            <button id="pwa-btn-dismiss" class="pwa-btn-dismiss" type="button"
+                    aria-label="Cerrar banner de instalación">
+                ×
+            </button>
+        </div>
+    </div>
+
+    <script defer>
+        /**
+         * BAHI.ar — Módulo de Instalación PWA
+         * ─────────────────────────────────────
+         * localStorage keys:
+         *   hasVisitedBefore  — se crea en la primera visita.
+         *   installDismissed  — usuario cerró el banner con × o rechazó el diálogo.
+         *   installAccepted   — usuario aceptó, o la app se instaló por otra vía.
+         */
+        'use strict';
+
+        (function () {
+            const LS_VISITED   = 'hasVisitedBefore';
+            const LS_DISMISSED = 'installDismissed';
+            const LS_ACCEPTED  = 'installAccepted';
+
+            let deferredPrompt = null;
+
+            function debesMostrarBanner() {
+                return (
+                    !localStorage.getItem(LS_DISMISSED) &&
+                    !localStorage.getItem(LS_ACCEPTED)
+                );
+            }
+
+            function getBanner() {
+                return document.getElementById('pwa-install-banner');
+            }
+
+            function mostrarBanner() {
+                const b = getBanner();
+                if (b) b.classList.add('visible');
+            }
+
+            function ocultarBanner() {
+                const b = getBanner();
+                if (b) b.classList.remove('visible');
+            }
+
+            /* 1. Marca primera visita */
+            if (!localStorage.getItem(LS_VISITED)) {
+                localStorage.setItem(LS_VISITED, '1');
+            }
+
+            /* 2. Captura beforeinstallprompt */
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                if (!debesMostrarBanner()) return;
+                deferredPrompt = e;
+                /* Delay de 1.5s para que el usuario vea el contenido primero */
+                setTimeout(mostrarBanner, 1500);
+            });
+
+            /* 3. Botón Instalar */
+            document.addEventListener('click', async (e) => {
+                if (!e.target.closest('#pwa-btn-install')) return;
+                if (!deferredPrompt) return;
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                localStorage.setItem(outcome === 'accepted' ? LS_ACCEPTED : LS_DISMISSED, '1');
+                deferredPrompt = null;
+                ocultarBanner();
+            });
+
+            /* 4. Botón × (dismiss) */
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#pwa-btn-dismiss')) return;
+                localStorage.setItem(LS_DISMISSED, '1');
+                deferredPrompt = null;
+                ocultarBanner();
+            });
+
+            /* 5. Instalación completada por cualquier vía */
+            window.addEventListener('appinstalled', () => {
+                localStorage.setItem(LS_ACCEPTED, '1');
+                deferredPrompt = null;
+                ocultarBanner();
+            });
+
+        }());
+    </script>
+
 </body>
 </html>
