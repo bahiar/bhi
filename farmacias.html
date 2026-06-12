@@ -19,24 +19,7 @@
     <meta name="theme-color" content="#191971">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <style>
-        /* ── Bug-report button: flex layout for .header-content ────────────────
-           Inherits all visual styles (.btn .btn-share-wa) from style.css.
-           Only adds the flex positioning needed to place button beside logo.
-        ─────────────────────────────────────────────────────────────────────── */
-        .header-content {
-            display: flex;
-            align-items: center;
-        }
-        .btn-bug-report {
-            margin-left: auto;
-            flex-shrink: 0;
-            text-decoration: none;
-        }
-        @media (max-width: 359px) {
-            .btn-bug-report span { display: none; }
-        }
-    </style>
+
 
 </head>
 <body>
@@ -56,9 +39,6 @@
                 rel="noopener noreferrer"
                 class="btn-bug-report"
                 aria-label="Reportar un error por WhatsApp"
-                style="color: rgba(255,255,255,0.6); text-decoration: none;"
-                onmouseover="this.style.color='rgba(255,255,255,0.9)'"
-                onmouseout="this.style.color='rgba(255,255,255,0.6)'"
             >
                 <span class="btn-bug-report__bubble">
                     <svg width="12" height="12" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true">
