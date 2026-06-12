@@ -754,6 +754,10 @@ body {
 .section-header-titles {
     flex: 1;
     min-width: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .section-header h2 {
@@ -762,7 +766,7 @@ body {
     color: var(--text-main);
     font-family: var(--font-brand);
     letter-spacing: -0.02em;     /* Plus Jakarta Sans se lee mejor con tracking negativo en titulares */
-    margin-bottom: 4px;
+    margin-bottom: 0;
 }
 
 .section-header-meta {
