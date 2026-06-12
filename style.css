@@ -494,6 +494,15 @@ body {
     .btn-whatsapp:hover { background: #1da851; }
 }
 
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeInCard 0.4s ease forwards;
+}
+
 /* ── 5. SKELETON LOADER ── */
 .skeleton-card {
     background: var(--card-bg);
@@ -650,17 +659,9 @@ body {
 /*
  * En móvil la sub-nav se oculta — la navegación la provee la bottom-nav-bar (§17).
  * En desktop (≥768px) se reactiva centrada bajo el header.
- *
- * FIX corte de pills en desktop:
- * - Eliminado margin lateral (0 16px) — en desktop el contenedor ya tiene
- *   max-width + auto margins desde el media query; el margen lateral extra
- *   provocaba que overflow-x: auto recortara los pills en viewports anchos.
- * - overflow-x eliminado en desktop via media query (los pills caben siempre).
- * - sub-nav-list: padding simétrico 4px 8px + justify-content: center
- *   para que los pills queden centrados y con respiro dentro del contenedor.
  */
 .sub-nav {
-    margin: 0 0 16px;            /* FIX: sin márgenes laterales — el centramieto lo da max-width en desktop */
+    margin: 0 16px 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -673,7 +674,7 @@ body {
     display: flex;
     list-style: none;
     gap: 8px;
-    padding: 4px 8px;            /* FIX: padding lateral mínimo para que los pills no toquen el borde */
+    padding: 4px 2px;
 }
 
 .sub-nav-link {
@@ -897,16 +898,13 @@ body {
     }
 
     /* En desktop la sub-nav se reactiva — no hay bottom nav */
-    .sub-nav {
-        display: block;
-        overflow: visible;
-        margin-bottom: 16px;
-    }
+    .sub-nav { display: block; }
 
     #contenedor-cards,
     .cards-grid {
         padding-left: 0;
         padding-right: 0;
+        /* En desktop no hay bottom nav — se resetea el padding extra */
         padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -916,7 +914,7 @@ body {
 
     .card, .skeleton-card { margin-bottom: 0; }
 
-    .sub-nav-list { justify-content: center; gap: 12px; padding: 4px 0; }
+    .sub-nav-list { justify-content: center; gap: 12px; }
 
     .section-header {
         padding-left: 0;
