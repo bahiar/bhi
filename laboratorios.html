@@ -13,31 +13,13 @@
 
     <meta property="og:title" content="BAHI.ar | Laboratorios de análisis clínicos en Bahía Blanca">
     <meta property="og:description" content="Laboratorios de análisis clínicos en Bahía Blanca. Buscá por localidad, obra social, domicilio e inyectables.">
+    <meta property="og:image" content="https://bahiar.github.io/bhi/assets/images/whatsapp.png">
     <meta property="og:url" content="https://bahiar.github.io/bhi/laboratorios.html">
     <meta property="og:type" content="website">
 
     <meta name="theme-color" content="#191971">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <style>
-        /* ── Bug-report button: flex layout for .header-content ────────────────
-           Inherits all visual styles (.btn .btn-share-wa) from style.css.
-           Only adds the flex positioning needed to place button beside logo.
-        ─────────────────────────────────────────────────────────────────────── */
-        .header-content {
-            display: flex;
-            align-items: center;
-        }
-        .btn-bug-report {
-            margin-left: auto;
-            flex-shrink: 0;
-            text-decoration: none;
-        }
-        @media (max-width: 359px) {
-            .btn-bug-report span { display: none; }
-        }
-    </style>
-
 </head>
 <body>
 
@@ -46,30 +28,10 @@
             <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
                 <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
             </a>
-            <div class="header-divider" aria-hidden="true"></div>
-            <a
-                href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-bug-report"
-                aria-label="Reportar un error por WhatsApp"
-            >
-                <span class="btn-bug-report__bubble">
-                    <svg width="12" height="12" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true">
-                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-                    </svg>
-                </span>
-                <span>Reportar error</span>
-            </a>
         </div>
         <!-- Buscador integrado en el hero navy -->
         <div class="search-container search-container--hero">
-            <div class="search-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </div>
+            <div class="search-icon" aria-hidden="true">🔍</div>
             <input type="text" id="buscador-live" placeholder="Buscar laboratorio o dirección..." aria-label="Buscar laboratorio o dirección">
         </div>
     </header>
@@ -83,26 +45,26 @@
         </ul>
     </nav>
 
-    <div class="section-header">
-        <div class="section-header-titles">
-            <h2>Laboratorios</h2>
-            <p class="section-header-meta" id="header-meta-count">Análisis clínicos y bioquímicos</p>
-        </div>
-    </div>
-
     <div class="filter-chips-container" id="filter-chips-container" role="group" aria-label="Filtros de búsqueda">
-        <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por zona">
-            <option value="">Zona</option>
+        <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por localidad">
+            <option value="">Todas las localidades</option>
         </select>
         <button class="filter-chip" id="chip-inyectables" data-field="inyectables" aria-pressed="false">Inyectables</button>
-        <button class="filter-chip" id="chip-delivery"    data-field="delivery"    aria-pressed="false">Con envío</button>
+        <button class="filter-chip" id="chip-delivery"    data-field="delivery"    aria-pressed="false">Domicilio</button>
         <select class="filter-chip-select" id="chip-ooss" aria-label="Filtrar por Obra Social">
-            <option value="">Obras sociales</option>
+            <option value="">Todas las OOSS</option>
         </select>
     </div>
 
     <main class="app-view" id="content">
         <div id="main-content">
+
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2>Laboratorios</h2>
+                    <p class="section-header-meta" id="header-meta-count">Análisis clínicos y bioquímicos</p>
+                </div>
+            </div>
 
             <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Listado de laboratorios">
                 <div class="skeleton-card" aria-hidden="true">
@@ -169,12 +131,7 @@
           if (lista.length === 0) {
             contenedor.innerHTML = `
               <div class="error-state" role="status">
-                <div class="error-state-icon" aria-hidden="true">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </div>
+                <div class="error-state-icon" aria-hidden="true">🔍</div>
                 <p class="error-state-title">Sin resultados</p>
                 <p class="error-state-desc">No hay laboratorios para los filtros aplicados.</p>
               </div>`;
@@ -322,8 +279,9 @@
             <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="1.8"
                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
-                <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+                <line x1="12" y1="11" x2="12" y2="16"/>
+                <line x1="9.5" y1="13.5" x2="14.5" y2="13.5"/>
             </svg>
             Inicio
         </a>
@@ -332,7 +290,7 @@
             <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="1.8"
                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a1 1 0 0 1 1 1v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4a1 1 0 0 1 1-1h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4a1 1 0 0 1-1-1V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4a1 1 0 0 1-1 1z"/>
+                <polyline points="2 12 6 12 9 3 15 21 18 12 22 12"/>
             </svg>
             Emergencia
         </a>
@@ -341,8 +299,8 @@
             <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="1.8"
                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
-                <path d="m8.5 8.5 7 7"/>
+                <path d="M10.5 20.5L3.5 13.5a5 5 0 017.07-7.07l7 7a5 5 0 01-7.07 7.07z"/>
+                <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
             </svg>
             Farmacias
         </a>
@@ -351,9 +309,9 @@
             <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="1.8"
                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/>
-                <path d="M6.453 15h11.094"/>
-                <path d="M8.5 2h7"/>
+                <path d="M9 3h6v8l3.5 6.5A1 1 0 0117.6 19H6.4a1 1 0 01-.9-1.5L9 11V3z"/>
+                <line x1="9" y1="3" x2="15" y2="3"/>
+                <line x1="7.5" y1="14" x2="16.5" y2="14"/>
             </svg>
             Laboratorios
         </a>
