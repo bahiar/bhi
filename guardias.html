@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAHI.ar | Guardias</title>
+    
+    <meta name="description" content="Guardias médicas de urgencia en Bahía Blanca. Hospitales y clínicas con atención 24 horas.">
+    <link rel="canonical" href="https://bahiar.github.io/bhi/guardias.html">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+
+    <meta property="og:title" content="BAHI.ar | Guardias">
+    <meta property="og:description" content="Guardias médicas de urgencia en Bahía Blanca. Hospitales y clínicas con atención 24 horas.">
+    <meta property="og:url" content="https://bahiar.github.io/bhi/guardias.html">
+    <meta property="og:type" content="website">
+
+    <meta name="theme-color" content="#191971">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        /* ── Bug-report button: flex layout for .header-content ────────────────
+           Inherits all visual styles (.btn .btn-share-wa) from style.css.
+           Only adds the flex positioning needed to place button beside logo.
+        ─────────────────────────────────────────────────────────────────────── */
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+        .btn-bug-report {
+            margin-left: auto;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+        @media (max-width: 359px) {
+            .btn-bug-report span { display: none; }
+        }
+    </style>
+
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
+                <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
+            </a>
+            <div class="header-divider" aria-hidden="true"></div>
+            <a
+                href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-bug-report"
+                aria-label="Reportar un error por WhatsApp"
+            >
+                <span class="btn-bug-report__bubble">
+                    <svg width="12" height="12" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true">
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                    </svg>
+                </span>
+                <span>Reportar error</span>
+            </a>
+        </div>
+        <!-- Buscador integrado en el hero navy -->
+        <div class="search-container search-container--hero">
+            <div class="search-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+            <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+        </div>
+    </header>
+
+    <nav class="sub-nav" aria-label="Accesos rápidos">
+        <ul class="sub-nav-list">
+            <li><a href="index.html" class="sub-nav-link">Inicio</a></li>
+            <li><a href="guardias.html" class="sub-nav-link active">Emergencia</a></li>
+            <li><a href="farmacias.html" class="sub-nav-link">Farmacias</a></li>
+            <li><a href="laboratorios.html" class="sub-nav-link">Laboratorios</a></li>
+        </ul>
+    </nav>
+
+    <main class="app-view" id="content">
+        <div id="main-content">
+
+            <!-- ── SECCIÓN: EMERGENCIAS + AMBULANCIAS (grilla unificada) ── -->
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2>Emergencias y ambulancias</h2>
+                </div>
+            </div>
+            <!--
+                Un único contenedor para emergencias + ambulancias.
+                En desktop entran en grilla side-by-side (107 | SEM | Alerta).
+                En móvil se apilan verticalmente como antes.
+            -->
+            <div id="contenedor-urgencias" class="cards-grid" aria-live="polite" aria-label="Servicios de emergencia y ambulancias"></div>
+
+            <!-- Separador visual entre secciones -->
+            <div class="section-divider"></div>
+
+            <!-- ── SECCIÓN: GUARDIAS MÉDICAS ── -->
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2>Emergencia</h2>
+                    <p class="section-header-meta">Atención 24 hs.</p>
+                </div>
+            </div>
+
+            <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Guardias médicas">
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js" defer></script>
+    <script defer>
+      /**
+       * Renderizado de Guardias + Emergencias + Ambulancias
+       */
+      document.addEventListener('DOMContentLoaded', () => {
+          setTimeout(() => {
+
+              // ── Guardias médicas ──
+              const contenedor = document.getElementById('contenedor-cards');
+              if (contenedor && typeof window.crearCardHTML === 'function') {
+                  const guardiasEstaticas = [
+                      { PRESTADOR: "Hospital Municipal Dr. Leónidas Lucero",           DOMICILIO: "Estomba 968",      FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Interzonal General Dr José Penna",        DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Privado del Sur",                          DOMICILIO: "Las Heras 164",   FIJO: "02914550270", MAPS: "https://maps.google.com/?cid=4096557740069257162",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital de la Asociación Médica Dr. Felipe Glasman", DOMICILIO: "Patricios 347", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Italiano Regional del Sur",               DOMICILIO: "Necochea 675",    FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Regional Español",                        DOMICILIO: "Estomba 571",     FIJO: "02914595555", MAPS: "https://maps.google.com/?cid=2064372742749592359",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Dr. Raúl Matera",                        DOMICILIO: "9 de Julio 461",  FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647", HORARIO: "24 hs" }
+                  ];
+                  contenedor.innerHTML = guardiasEstaticas.map((item, i) => window.crearCardHTML(item, 'GUARDIA', i)).join('');
+              }
+
+              // SVGs reutilizables (idénticos a los de app.js)
+              const SVG_LLAMAR    = `<svg class="btn-icon btn-icon--lg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M43.2 39.6c-1.5-1.5-3.4-1.5-4.9 0l-2.3 2.3c-.3-.2-.6-.3-.9-.5-1-.6-2.4-1.4-3.9-2.9-1.5-1.5-2.3-2.9-2.9-3.9-.2-.3-.3-.6-.5-.9l1.6-1.6.7-.7c1.5-1.5 1.5-3.4 0-4.9l-2.3-2.3c-.3-.3-.6-.6-.9-.9-.6-.6-1.3-1.3-2-1.9-1.5-1.4-3.4-1.4-4.9.1l-2.4 2.4c-.6.6-1 1.4-1.1 2.3-.1 1.6.3 3.1.7 4.1 1 2.7 2.6 5.2 4.9 7.8 2.9 3.3 6.4 5.9 10.2 7.6 1.5.6 3.5 1.4 5.6 1.5h.4c1.3 0 2.4-.5 3.2-1.4l.1-.1c.3-.4.6-.7.9-1 .5-.5.9-1 1.4-1.5 1.5-1.6 1.5-3.5 0-5l-2.7-2.6z"/></svg>`;
+              const SVG_WHATSAPP  = `<svg class="btn-icon" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>`;
+
+              // ── Emergencias médicas (107) + Ambulancias en un solo contenedor ──
+              const contUrgencias = document.getElementById('contenedor-urgencias');
+              if (contUrgencias) {
+                  contUrgencias.innerHTML = `
+                  <!-- 107: card de emergencia destacada -->
+                  <article class="card card-emergencia" data-tipo="EMERGENCIA" data-estado="turno">
+                      <div class="card-top">
+                          <div class="card-info">
+                              <h3 class="card-name">107</h3>
+                              <p class="card-addr">Emergencias Médicas — gratuito 24 hs</p>
+                          </div>
+                      </div>
+                      <div class="card-actions card-actions--single">
+                          <a href="tel:107" class="btn btn-accent" aria-label="Llamar al 107 - Emergencias médicas">${SVG_LLAMAR} Llamar al 107</a>
+                      </div>
+                  </article>
+
+                  <!-- SEM Emergencias Médicas -->
+                  <article class="card" data-tipo="AMBULANCIA">
+                      <div class="card-top">
+                          <div class="card-info">
+                              <h3 class="card-name">SEM Emergencias Médicas</h3>
+                              <p class="card-addr">(0291) 459-1919</p>
+                          </div>
+                      </div>
+                      <div class="card-actions">
+                          <a href="tel:02914591919" class="btn btn-accent" aria-label="Llamar a SEM Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
+                          <a href="https://wa.me/5492916492840" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de SEM Emergencias Médicas">${SVG_WHATSAPP} WhatsApp</a>
+                      </div>
+                  </article>
+
+                  <!-- Alerta Emergencias Médicas -->
+                  <article class="card" data-tipo="AMBULANCIA">
+                      <div class="card-top">
+                          <div class="card-info">
+                              <h3 class="card-name">Alerta Emergencias Médicas</h3>
+                              <p class="card-addr">(0291) 455-3388</p>
+                          </div>
+                      </div>
+                      <div class="card-actions card-actions--single">
+                          <a href="tel:02914553388" class="btn btn-accent" aria-label="Llamar a Alerta Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
+                      </div>
+                      <button class="card-header" aria-expanded="false" aria-controls="alerta-alt-phones">
+                          <span>Más información</span>
+                          <span class="card-chevron" aria-hidden="true">▼</span>
+                      </button>
+                      <div class="card-body-collapse" id="alerta-alt-phones" role="region" aria-label="Teléfonos alternativos de Alerta Emergencias Médicas">
+                          <p class="card-detail-row"><strong>Alternativo:</strong> <a href="tel:02914560000" class="card-phone-link">(0291) 456-0000</a></p>
+                          <p class="card-detail-row"><strong>Alternativo:</strong> <a href="tel:02914562076" class="card-phone-link">(0291) 456-2076</a></p>
+                      </div>
+                  </article>`;
+              }
+
+          }, 150);
+      });
+    </script>
+
+    <!-- ── BOTTOM NAVIGATION BAR ── -->
+    <nav class="bottom-nav" aria-label="Navegación principal">
+
+        <a href="index.html" class="bottom-nav-item" aria-label="Inicio">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+                <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            </svg>
+            Inicio
+        </a>
+
+        <a href="guardias.html" class="bottom-nav-item active" aria-current="page" aria-label="Emergencia">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a1 1 0 0 1 1 1v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4a1 1 0 0 1 1-1h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4a1 1 0 0 1-1-1V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4a1 1 0 0 1-1 1z"/>
+            </svg>
+            Emergencia
+        </a>
+
+        <a href="farmacias.html" class="bottom-nav-item" aria-label="Farmacias">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+                <path d="m8.5 8.5 7 7"/>
+            </svg>
+            Farmacias
+        </a>
+
+        <a href="laboratorios.html" class="bottom-nav-item" aria-label="Laboratorios">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/>
+                <path d="M6.453 15h11.094"/>
+                <path d="M8.5 2h7"/>
+            </svg>
+            Laboratorios
+        </a>
+
+    </nav>
+
+</body>
+</html>
