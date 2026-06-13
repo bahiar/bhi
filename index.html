@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAHI.ar | Directorio de Salud</title>
+    <meta name="description" content="Directorio de salud, farmacias y guardias en Bahía Blanca.">
+    <link rel="canonical" href="https://bahiar.github.io/bhi/">
+    <link rel="manifest" href="manifest.json">
+
+    <!--
+        PRELOAD: Le dice al navegador que busque el CSS de forma
+        inmediata, sin esperar al parser HTML. Elimina el FOUC
+        (flash de texto sin estilo) especialmente notorio en 3G.
+    -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+    <!--
+        --header-h: alto del header en index (logo 52px + search ~52px ≈ 104px).
+        El #update-banner usa esta variable para posicionarse sin solaparse.
+    -->
+    <style>
+        :root { --header-h: 104px; }
+
+        /* ── Variante C: split con separador vertical ───────────────────────────
+           .header-content se convierte en flex row. El separador y el botón
+           se posicionan a la derecha via margin-left: auto en el divisor.
+           Sin borde ni fondo en el botón — el peso visual queda en el logo.
+           En pantallas < 360px se oculta el texto y queda solo el bubble WA.
+        ─────────────────────────────────────────────────────────────────────── */
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.15);
+            margin-left: auto;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+
+        .btn-bug-report {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            flex-shrink: 0;
+            text-decoration: none;
+            background: none;
+            border: none;
+            padding: 0;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 11.5px;
+            letter-spacing: 0.01em;
+            line-height: 1;
+            transition: color 0.15s ease;
+        }
+
+        .btn-bug-report:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-bug-report:hover .btn-bug-report__bubble {
+            background: rgba(37, 211, 102, 0.28);
+        }
+
+        .btn-bug-report__bubble {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(37, 211, 102, 0.18);
+            flex-shrink: 0;
+            transition: background 0.15s ease;
+        }
+
+        @media (max-width: 359px) {
+            .btn-bug-report span {
+                display: none;
+            }
+            .header-divider {
+                margin-right: 10px;
+            }
+        }
+    </style>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="BAHI.ar | Directorio de Salud">
+    <meta property="og:description" content="Directorio de salud, farmacias y guardias en Bahía Blanca.">
+    <meta property="og:url" content="https://bahiar.github.io/bhi/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://bahiar.github.io/bhi/assets/images/logoweb.png">
+
+    <!-- PWA / iOS -->
+    <meta name="theme-color" content="#191971">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
+                <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
+            </a>
+            <div class="header-divider" aria-hidden="true"></div>
+            <a
+                href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-bug-report"
+                aria-label="Reportar un error por WhatsApp"
+            >
+                <span class="btn-bug-report__bubble">
+                    <svg width="12" height="12" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true">
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                    </svg>
+                </span>
+                <span>Reportar error</span>
+            </a>
+        </div>
+        <!-- Buscador integrado en el hero navy -->
+        <div class="search-container search-container--hero">
+            <div class="search-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+            <input
+                id="search-input"
+                type="text"
+                placeholder="Buscar en BAHI.ar..."
+                aria-label="Buscar en BAHI.ar"
+                autocomplete="off"
+                autocorrect="off"
+                spellcheck="false"
+            >
+        </div>
+    </header>
+
+    <nav class="sub-nav" aria-label="Secciones principales">
+        <ul class="sub-nav-list">
+            <li><a href="index.html"        class="sub-nav-link active" aria-current="page">Inicio</a></li>
+            <li><a href="guardias.html"     class="sub-nav-link">Emergencia</a></li>
+            <li><a href="farmacias.html"    class="sub-nav-link">Farmacias</a></li>
+            <li><a href="laboratorios.html" class="sub-nav-link">Laboratorios</a></li>
+        </ul>
+    </nav>
+
+    <main class="app-view" id="content">
+        <div id="main-content">
+
+            <!--
+                PRIORIDAD DE CARGA:
+                1. Este bloque de texto (nombre de sección + leyenda) está en HTML
+                   estático → el navegador lo pinta en el PRIMER repaint, antes de
+                   que llegue cualquier JSON o se ejecute el JS.
+                2. El contenedor de cards empieza con skeletons visibles
+                   → el usuario ve "algo" aunque esté en 3G lento.
+                3. Los datos reales reemplazan los skeletons cuando llegan.
+            -->
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2 id="titulo-home">Farmacias de Turno</h2>
+                    <!--
+                        REDISEÑO: El texto largo de 2 líneas (#info-turno + #leyenda-horario)
+                        se reemplaza por un metadato comprimido alineado al título.
+                        El JS escribe en #leyenda-horario el texto corto (ej: "Hasta 8:30 de mañana").
+                        La clase .section-header-meta lo muestra como badge naranja
+                        junto al h2, liberando espacio vertical y acercando las cards
+                        a la primera acción del usuario.
+                    -->
+                    <p class="section-header-meta" id="leyenda-horario" aria-live="polite"></p>
+                </div>
+                <button id="btn-compartir-whatsapp" class="btn-bug-report" aria-label="Compartir farmacias por WhatsApp">
+                    <span class="btn-bug-report__bubble">
+                        <svg width="12" height="12" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true">
+                            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                        </svg>
+                    </span>
+                    <span style="color: #25D366;">Compartir farmacias</span>
+                </button>
+            </div>
+
+            <!--
+                SKELETON LOADER:
+                Aparece instantáneamente (HTML puro, sin JS).
+                La animación shimmer le indica al usuario que la app
+                está cargando y no está congelada.
+                El JS lo reemplaza con las tarjetas reales al llegar los datos.
+            -->
+            <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Farmacias de turno">
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!--
+        SCRIPTS AL FINAL DEL BODY:
+        - app.js (que define crearCardHTML) carga primero.
+        - El script inline espera a que crearCardHTML esté disponible.
+        - Ambos con defer: no bloquean el render del HTML/CSS.
+        - El usuario ya leyó el nombre + leyenda antes de que
+          arranque cualquier línea de JavaScript.
+    -->
+    <script src="app.js" defer></script>
+
+    <script defer>
+        /**
+         * Lógica de Farmacias de Turno — BAHI.ar
+         * Ventana horaria de cambio: 08:30 hs ART.
+         */
+        (function () {
+            'use strict';
+
+            const CONFIG = {
+                TIMEZONE:       'America/Argentina/Buenos_Aires',
+                HORA_CAMBIO:    8,
+                MINUTO_CAMBIO:  30,
+                URL_TURNERO:    'data/turnero.json',
+                URL_PADRON:     'data/bd_bahiar.json',
+                /*
+                 * MAX_REINTENTOS: cuántas veces esperar a que crearCardHTML
+                 * esté disponible antes de mostrar error (100ms × 20 = 2s máx).
+                 */
+                MAX_REINTENTOS: 20
+            };
+
+            /**
+             * Devuelve la fecha operativa en formato YYYY-MM-DD (ART).
+             * Antes de las 08:30 se usa la fecha del día anterior,
+             * porque el turno comenzó a las 08:30 de ayer.
+             */
+            function obtenerFechaOperativa() {
+                const partes = new Intl.DateTimeFormat('en-CA', {
+                    timeZone:  CONFIG.TIMEZONE,
+                    year:      'numeric',
+                    month:     '2-digit',
+                    day:       '2-digit',
+                    hour:      '2-digit',
+                    minute:    '2-digit',
+                    hour12:    false
+                }).formatToParts(new Date());
+
+                const p = {};
+                partes.forEach(v => { p[v.type] = v.value; });
+
+                const hora   = parseInt(p.hour,   10);
+                const minuto = parseInt(p.minute, 10);
+                const fecha  = new Date(`${p.year}-${p.month}-${p.day}T12:00:00Z`);
+
+                const esMadrugada =
+                    hora < CONFIG.HORA_CAMBIO ||
+                    (hora === CONFIG.HORA_CAMBIO && minuto < CONFIG.MINUTO_CAMBIO);
+
+                if (esMadrugada) {
+                    fecha.setDate(fecha.getDate() - 1);
+                }
+
+                return fecha.toISOString().split('T')[0];
+            }
+
+            /**
+             * Arma el texto comprimido del badge de sección y el context strip.
+             * REDISEÑO: en lugar de 2 líneas largas genera textos cortos:
+             *   badge:  "Hasta 8:30 de mañana (10 jun)"
+             *   strip:  "3 de turno" / "Hasta 8:30 de mañana"
+             */
+            function armarLeyenda(fechaOp) {
+                const meses = [
+                    'enero','febrero','marzo','abril','mayo','junio',
+                    'julio','agosto','septiembre','octubre','noviembre','diciembre'
+                ];
+                const mesesCortos = [
+                    'ene','feb','mar','abr','may','jun',
+                    'jul','ago','sep','oct','nov','dic'
+                ];
+                const dInicio = new Date(fechaOp + 'T12:00:00Z');
+                const dFin    = new Date(dInicio);
+                dFin.setUTCDate(dFin.getUTCDate() + 1);
+
+                const mañanaTxt      = `${dFin.getUTCDate()} de ${meses[dFin.getUTCMonth()]}`;
+                const mañanaCortoTxt = `${dFin.getUTCDate()} ${mesesCortos[dFin.getUTCMonth()]}`;
+
+                return {
+                    /* Para el badge .section-header-meta junto al h2 */
+                    badge: `Hasta las 8:30 horas de mañana`,
+                    /* Para el context strip del header */
+                    strip: `Hasta las 8:30 horas de mañana`
+                };
+            }
+
+            /**
+             * Muestra el estado de error en el contenedor de cards.
+             * Reemplaza los skeletons con un mensaje claro y accionable.
+             */
+            function mostrarError(contenedor, mensaje) {
+                contenedor.innerHTML = `
+                    <div class="error-state" role="alert">
+                        <div class="error-state-icon" aria-hidden="true">⚠️</div>
+                        <p class="error-state-title">No se pudo cargar la información</p>
+                        <p class="error-state-desc">${mensaje}<br>Revisá tu conexión e intentá de nuevo.</p>
+                    </div>`;
+            }
+
+            /* Padrón completo — se llena tras el fetch, lo usa el buscador */
+            let padronCompleto = [];
+
+            /**
+             * Buscador del index — busca en TODO el padrón (farmacias +
+             * laboratorios + guardias) y muestra resultados con startsWith.
+             * Se activa solo cuando hay texto; al borrar vuelve a las farmacias de turno.
+             */
+            function configurarBuscadorIndex() {
+                const input = document.getElementById('search-input');
+                const contenedor = document.getElementById('contenedor-cards');
+                if (!input || !contenedor) return;
+
+                let debounce;
+                input.addEventListener('input', (e) => {
+                    clearTimeout(debounce);
+                    debounce = setTimeout(() => {
+                        const filtro = e.target.value.trim().toLowerCase();
+
+                        /* Sin texto → restaurar farmacias de turno */
+                        if (!filtro) {
+                            inicializarTurnos();
+                            return;
+                        }
+
+                        /* Buscar en todo el padrón con startsWith */
+                        if (!padronCompleto.length) return;
+                        const resultado = padronCompleto.filter(p =>
+                            (p.PRESTADOR || '').toLowerCase().startsWith(filtro)
+                        );
+
+                        if (!resultado.length) {
+                            contenedor.innerHTML = `
+                                <div class="error-state" role="status">
+                                    <div class="error-state-icon" aria-hidden="true">🔍</div>
+                                    <p class="error-state-title">Sin resultados</p>
+                                    <p class="error-state-desc">No hay prestadores que comiencen con "${window.esc(e.target.value.trim())}".</p>
+                                </div>`;
+                            return;
+                        }
+
+                        contenedor.innerHTML = resultado
+                            .map((p, i) => window.crearCardHTML(p, p.TIPO || 'PRESTADOR', i))
+                            .join('');
+                    }, 150);
+                });
+            }
+
+            /**
+             * Carga turnero + padrón en paralelo, determina el grupo
+             * del día y renderiza las tarjetas.
+             *
+             * Si crearCardHTML todavía no está disponible (app.js aún
+             * no terminó de ejecutarse), reintenta hasta MAX_REINTENTOS.
+             */
+            async function inicializarTurnos(reintentos) {
+                reintentos = reintentos || 0;
+
+                const contenedor     = document.getElementById('contenedor-cards');
+                const leyendaHorario = document.getElementById('leyenda-horario');
+                if (!contenedor) return;
+
+                try {
+                    const [resT, resP] = await Promise.all([
+                        fetch(CONFIG.URL_TURNERO),
+                        fetch(CONFIG.URL_PADRON)
+                    ]);
+
+                    if (!resT.ok || !resP.ok) {
+                        throw new Error('Error HTTP al descargar datos');
+                    }
+
+                    const turnero = await resT.json();
+                    const padron  = await resP.json();
+
+                    /* Exponer el padrón completo al buscador */
+                    padronCompleto = padron.prestadores || [];
+
+                    const fechaOp = obtenerFechaOperativa();
+                    const entrada = turnero.find(t => t.fecha === fechaOp);
+
+                    if (!entrada) {
+                        throw new Error(`Fecha ${fechaOp} no encontrada en el turnero`);
+                    }
+
+                    const grupoActual = entrada.grupo;
+
+                    /* Filtrar farmacias del grupo con teléfono disponible */
+                    const deTurno = padron.prestadores.filter(f =>
+                        f.TIPO  === 'FARMACIA' &&
+                        f.GRUPO === grupoActual &&
+                        (f.FIJO || f.MOVIL)
+                    );
+
+                    /* ── Hidratar badge junto al h2 ── */
+                    const leyenda = armarLeyenda(fechaOp);
+                    if (leyendaHorario) {
+                        leyendaHorario.textContent = leyenda.badge;
+                    }
+
+                    if (deTurno.length === 0) {
+                        contenedor.innerHTML = `
+                            <div class="error-state">
+                                <div class="error-state-icon" aria-hidden="true">🔍</div>
+                                <p class="error-state-title">Sin farmacias registradas</p>
+                                <p class="error-state-desc">No hay farmacias registradas para el Grupo ${grupoActual} con teléfono disponible.</p>
+                            </div>`;
+                        return;
+                    }
+
+                    if (typeof window.crearCardHTML !== 'function') {
+                        if (reintentos >= CONFIG.MAX_REINTENTOS) {
+                            throw new Error('crearCardHTML no disponible tras reintentos');
+                        }
+                        setTimeout(() => inicializarTurnos(reintentos + 1), 100);
+                        return;
+                    }
+
+                    /* Renderizar cards */
+                    contenedor.innerHTML = deTurno
+                        .map((f, i) => window.crearCardHTML(f, 'TURNO', i))
+                        .join('');
+
+                } catch (err) {
+                    console.error('[BAHI.ar] Fallo al inicializar turnos:', err);
+                    mostrarError(contenedor, err.message);
+                }
+            }
+
+            /* Iniciar carga y activar buscador */
+            inicializarTurnos();
+            configurarBuscadorIndex();
+
+        })();
+    </script>
+    <!-- ── BOTTOM NAVIGATION BAR ── -->
+    <nav class="bottom-nav" aria-label="Navegación principal">
+
+        <a href="index.html" class="bottom-nav-item active" aria-current="page" aria-label="Inicio">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+                <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            </svg>
+            Inicio
+        </a>
+
+        <a href="guardias.html" class="bottom-nav-item" aria-label="Emergencia">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a1 1 0 0 1 1 1v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4a1 1 0 0 1 1-1h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4a1 1 0 0 1-1-1V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4a1 1 0 0 1-1 1z"/>
+            </svg>
+            Emergencia
+        </a>
+
+        <a href="farmacias.html" class="bottom-nav-item" aria-label="Farmacias">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+                <path d="m8.5 8.5 7 7"/>
+            </svg>
+            Farmacias
+        </a>
+
+        <a href="laboratorios.html" class="bottom-nav-item" aria-label="Laboratorios">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/>
+                <path d="M6.453 15h11.094"/>
+                <path d="M8.5 2h7"/>
+            </svg>
+            Laboratorios
+        </a>
+
+    </nav>
+
+    <!-- ── BANNER DE INSTALACIÓN PWA ── -->
+    <!--
+        Solo visible en móvil (<768px) y solo cuando:
+          · Es la primera visita (localStorage.hasVisitedBefore no existía)
+          · El navegador dispara beforeinstallprompt (Chrome/Edge Android)
+          · El usuario no dismisseó ni aceptó previamente
+        En iOS Safari el banner nunca aparece (no soporta beforeinstallprompt).
+    -->
+    <div id="pwa-install-banner" role="complementary" aria-label="Instalar BAHI.ar">
+        <img
+            src="assets/images/logoweb.png"
+            alt=""
+            class="pwa-banner-icon"
+            width="44"
+            height="44"
+            aria-hidden="true"
+            loading="lazy"
+        >
+        <div class="pwa-banner-text">
+            <p class="pwa-banner-title">Instalar BAHI.ar</p>
+            <p class="pwa-banner-desc">Acceso rápido sin abrir el navegador</p>
+        </div>
+        <div class="pwa-banner-actions">
+            <button id="pwa-btn-install" class="pwa-btn-install" type="button"
+                    aria-label="Instalar la aplicación BAHI.ar">
+                Instalar
+            </button>
+            <button id="pwa-btn-dismiss" class="pwa-btn-dismiss" type="button"
+                    aria-label="Cerrar banner de instalación">
+                ×
+            </button>
+        </div>
+    </div>
+
+    <script defer>
+        /**
+         * BAHI.ar — Módulo de Instalación PWA
+         * ─────────────────────────────────────
+         * localStorage keys:
+         *   hasVisitedBefore  — se crea en la primera visita.
+         *   installDismissed  — usuario cerró el banner con × o rechazó el diálogo.
+         *   installAccepted   — usuario aceptó, o la app se instaló por otra vía.
+         */
+        'use strict';
+
+        (function () {
+            const LS_VISITED   = 'hasVisitedBefore';
+            const LS_DISMISSED = 'installDismissed';
+            const LS_ACCEPTED  = 'installAccepted';
+
+            let deferredPrompt = null;
+
+            function debesMostrarBanner() {
+                return (
+                    !localStorage.getItem(LS_DISMISSED) &&
+                    !localStorage.getItem(LS_ACCEPTED)
+                );
+            }
+
+            function getBanner() {
+                return document.getElementById('pwa-install-banner');
+            }
+
+            function mostrarBanner() {
+                const b = getBanner();
+                if (b) b.classList.add('visible');
+            }
+
+            function ocultarBanner() {
+                const b = getBanner();
+                if (b) b.classList.remove('visible');
+            }
+
+            /* 1. Marca primera visita */
+            if (!localStorage.getItem(LS_VISITED)) {
+                localStorage.setItem(LS_VISITED, '1');
+            }
+
+            /* 2. Captura beforeinstallprompt */
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                if (!debesMostrarBanner()) return;
+                deferredPrompt = e;
+                /* Delay de 1.5s para que el usuario vea el contenido primero */
+                setTimeout(mostrarBanner, 1500);
+            });
+
+            /* 3. Botón Instalar */
+            document.addEventListener('click', async (e) => {
+                if (!e.target.closest('#pwa-btn-install')) return;
+                if (!deferredPrompt) return;
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                localStorage.setItem(outcome === 'accepted' ? LS_ACCEPTED : LS_DISMISSED, '1');
+                deferredPrompt = null;
+                ocultarBanner();
+            });
+
+            /* 4. Botón × (dismiss) */
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#pwa-btn-dismiss')) return;
+                localStorage.setItem(LS_DISMISSED, '1');
+                deferredPrompt = null;
+                ocultarBanner();
+            });
+
+            /* 5. Instalación completada por cualquier vía */
+            window.addEventListener('appinstalled', () => {
+                localStorage.setItem(LS_ACCEPTED, '1');
+                deferredPrompt = null;
+                ocultarBanner();
+            });
+
+        }());
+    </script>
+
+</body>
+</html>
