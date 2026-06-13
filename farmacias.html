@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAHI.ar | Farmacias</title>
+
+    <meta name="description" content="Farmacias de turno y directorio completo en Bahía Blanca. Buscá por localidad, obra social, delivery e inyectables.">
+    <link rel="canonical" href="https://bahiar.github.io/bhi/farmacias.html">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+
+    <meta property="og:title" content="BAHI.ar | Farmacias de turno en Bahía Blanca">
+    <meta property="og:description" content="Farmacias de turno y directorio completo en Bahía Blanca. Buscá por localidad, obra social, delivery e inyectables.">
+    <meta property="og:url" content="https://bahiar.github.io/bhi/farmacias.html">
+    <meta property="og:type" content="website">
+
+    <meta name="theme-color" content="#191971">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        /* ── Bug-report button: flex layout for .header-content ────────────────
+           Inherits all visual styles (.btn .btn-share-wa) from style.css.
+           Only adds the flex positioning needed to place button beside logo.
+        ─────────────────────────────────────────────────────────────────────── */
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+        .btn-bug-report {
+            margin-left: auto;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+        @media (max-width: 359px) {
+            .btn-bug-report span { display: none; }
+        }
+    </style>
+
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
+                <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
+            </a>
+            <div class="header-divider" aria-hidden="true"></div>
+            <a
+                href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-bug-report"
+                aria-label="Reportar un error por WhatsApp"
+            >
+                <span class="btn-bug-report__bubble">
+                    <svg width="12" height="12" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true">
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                    </svg>
+                </span>
+                <span>Reportar error</span>
+            </a>
+        </div>
+        <!-- Buscador integrado en el hero navy -->
+        <div class="search-container search-container--hero">
+            <div class="search-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+            <!--
+                id="buscador-live": app.js excluye este input de su buscador global
+                (selector :not(#buscador-live)) — el filtrado lo maneja el script propio.
+            -->
+            <input type="text" id="buscador-live" placeholder="Buscar farmacia o dirección..." aria-label="Buscar farmacia o dirección">
+        </div>
+    </header>
+
+    <nav class="sub-nav" aria-label="Accesos rápidos">
+        <ul class="sub-nav-list">
+            <li><a href="index.html" class="sub-nav-link">Inicio</a></li>
+            <li><a href="guardias.html" class="sub-nav-link">Emergencia</a></li>
+            <li><a href="farmacias.html" class="sub-nav-link active" aria-current="page">Farmacias</a></li>
+            <li><a href="laboratorios.html" class="sub-nav-link">Laboratorios</a></li>
+        </ul>
+    </nav>
+
+    <!-- Filtros: centrado en desktop via CSS (.filter-chips-container en media query) -->
+    <div class="section-header">
+        <div class="section-header-titles">
+            <h2>Farmacias</h2>
+            <p class="section-header-meta" id="header-meta-count">Directorio completo</p>
+        </div>
+    </div>
+
+    <div class="filter-chips-container" id="filter-chips-container" role="group" aria-label="Filtros de búsqueda">
+        <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por zona">
+            <option value="">Zona</option>
+        </select>
+        <button class="filter-chip" id="chip-stock"       data-field="stock"       aria-pressed="false">Stock</button>
+        <button class="filter-chip" id="chip-inyectables" data-field="inyectables" aria-pressed="false">Inyectables</button>
+        <button class="filter-chip" id="chip-delivery"    data-field="delivery"    aria-pressed="false">Con envío</button>
+        <select class="filter-chip-select" id="chip-ooss" aria-label="Filtrar por Obra Social">
+            <option value="">Obras sociales</option>
+        </select>
+    </div>
+
+    <main class="app-view" id="content">
+        <div id="main-content">
+
+            <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Listado de farmacias">
+                <!-- Skeleton inicial: 3 placeholders mientras carga el JSON -->
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="app.js" defer></script>
+    <script defer>
+      /**
+       * Módulo de Farmacias — lógica de filtros y renderizado.
+       *
+       * Usa window.crearCardHTML (definido en app.js) para generar cards
+       * con el design system unificado. El accordion y el SW ya están
+       * gestionados globalmente por app.js.
+       */
+      (function () {
+        'use strict';
+
+        const TIPO_VISTA   = 'FARMACIA';
+        const CONTENEDOR_ID = 'contenedor-cards';
+
+        let datosOriginales = [];
+        const filtros = {
+          texto:      '',
+          localidad:  '',
+          stock:      false,
+          inyectables: false,
+          delivery:   false,
+          ooss:       ''
+        };
+
+        // ── Renderizado ────────────────────────────────────────────────────────
+
+        function renderCards(lista) {
+          const contenedor = document.getElementById(CONTENEDOR_ID);
+          if (!contenedor) return;
+
+          const metaCount = document.getElementById('header-meta-count');
+
+          if (lista.length === 0) {
+            contenedor.innerHTML = `
+              <div class="error-state" role="status">
+                <div class="error-state-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+                <p class="error-state-title">Sin resultados</p>
+                <p class="error-state-desc">No hay farmacias para los filtros aplicados.</p>
+              </div>`;
+            if (metaCount) metaCount.textContent = 'Sin resultados';
+            return;
+          }
+
+          // crearCardHTML viene de app.js (defer garantiza que ya está disponible)
+          contenedor.innerHTML = lista
+            .map((item, i) => window.crearCardHTML(item, TIPO_VISTA, i))
+            .join('');
+
+          if (metaCount) {
+            metaCount.textContent = `${lista.length} farmacia${lista.length !== 1 ? 's' : ''}`;
+          }
+        }
+
+        // ── Filtrado ───────────────────────────────────────────────────────────
+
+        function aplicarFiltros() {
+          const texto = filtros.texto.toLowerCase();
+          const resultado = datosOriginales.filter(item => {
+            if (texto && !(
+              (item.PRESTADOR || '').toLowerCase().includes(texto) ||
+              (item.DOMICILIO  || '').toLowerCase().includes(texto)
+            )) return false;
+            if (filtros.localidad   && item.LOCALIDAD !== filtros.localidad) return false;
+            if (filtros.stock       && !item.STOCK)       return false;
+            if (filtros.inyectables && !item.INYECTABLES) return false;
+            if (filtros.delivery    && !item.DELIVERY)    return false;
+            if (filtros.ooss && !(item.OOSS || '').toLowerCase().includes(filtros.ooss.toLowerCase())) return false;
+            return true;
+          });
+          renderCards(resultado);
+        }
+
+        // ── Inicialización ─────────────────────────────────────────────────────
+
+        async function inicializar() {
+          const contenedor = document.getElementById(CONTENEDOR_ID);
+          if (!contenedor) return;
+
+          try {
+            const response = await fetch('data/bd_bahiar.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            datosOriginales = data.prestadores.filter(p => p.TIPO === TIPO_VISTA);
+
+            // Poblar select de localidades
+            const selLoc = document.getElementById('chip-localidad');
+            if (selLoc) {
+              const localidades = [...new Set(
+                datosOriginales.map(p => p.LOCALIDAD).filter(Boolean)
+              )].sort();
+              localidades.forEach(l => {
+                const opt = document.createElement('option');
+                opt.value = l;
+                opt.textContent = l;
+                selLoc.appendChild(opt);
+              });
+            }
+
+            // Poblar select de obras sociales
+            const selOoss = document.getElementById('chip-ooss');
+            if (selOoss) {
+              const oossSet = new Set();
+              datosOriginales.forEach(p =>
+                (p.OOSS || '').split(',').forEach(o => {
+                  const t = o.trim();
+                  if (t) oossSet.add(t);
+                })
+              );
+              [...oossSet].sort().forEach(o => {
+                const opt = document.createElement('option');
+                opt.value = o;
+                opt.textContent = o;
+                selOoss.appendChild(opt);
+              });
+            }
+
+            // Eventos de filtros
+            const buscador = document.getElementById('buscador-live');
+            if (buscador) {
+              let debounce;
+              buscador.addEventListener('input', e => {
+                clearTimeout(debounce);
+                debounce = setTimeout(() => {
+                  filtros.texto = e.target.value.trim();
+                  aplicarFiltros();
+                }, 150);
+              });
+            }
+
+            ['chip-stock', 'chip-inyectables', 'chip-delivery'].forEach(id => {
+              const btn = document.getElementById(id);
+              if (!btn) return;
+              btn.addEventListener('click', () => {
+                const field = btn.dataset.field;  // ya en minúsculas en el HTML
+                filtros[field] = !filtros[field];
+                btn.classList.toggle('active', filtros[field]);
+                btn.setAttribute('aria-pressed', String(filtros[field]));
+                aplicarFiltros();
+              });
+            });
+
+            if (selLoc) {
+              selLoc.addEventListener('change', e => {
+                filtros.localidad = e.target.value;
+                selLoc.classList.toggle('active', !!e.target.value);
+                aplicarFiltros();
+              });
+            }
+
+            if (selOoss) {
+              selOoss.addEventListener('change', e => {
+                filtros.ooss = e.target.value;
+                selOoss.classList.toggle('active', !!e.target.value);
+                aplicarFiltros();
+              });
+            }
+
+            renderCards(datosOriginales);
+
+          } catch (err) {
+            console.error('[BAHI.ar] Error al cargar farmacias:', err);
+            const contenedor = document.getElementById(CONTENEDOR_ID);
+            if (contenedor) {
+              contenedor.innerHTML = `
+                <div class="error-state" role="alert">
+                  <div class="error-state-icon" aria-hidden="true">⚠️</div>
+                  <p class="error-state-title">No se pudo cargar la información</p>
+                  <p class="error-state-desc">Revisá tu conexión e intentá de nuevo.</p>
+                </div>`;
+            }
+          }
+        }
+
+        // app.js se carga con defer antes que este script (mismo atributo, orden DOM).
+        // DOMContentLoaded ya disparó cuando defer ejecuta — llamamos directo.
+        inicializar();
+
+      }());
+    </script>
+
+    <!-- ── BOTTOM NAVIGATION BAR ── -->
+    <nav class="bottom-nav" aria-label="Navegación principal">
+
+        <a href="index.html" class="bottom-nav-item" aria-label="Inicio">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+                <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            </svg>
+            Inicio
+        </a>
+
+        <a href="guardias.html" class="bottom-nav-item" aria-label="Emergencia">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a1 1 0 0 1 1 1v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4a1 1 0 0 1 1-1h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4a1 1 0 0 1-1-1V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4a1 1 0 0 1-1 1z"/>
+            </svg>
+            Emergencia
+        </a>
+
+        <a href="farmacias.html" class="bottom-nav-item active" aria-current="page" aria-label="Farmacias">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+                <path d="m8.5 8.5 7 7"/>
+            </svg>
+            Farmacias
+        </a>
+
+        <a href="laboratorios.html" class="bottom-nav-item" aria-label="Laboratorios">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/>
+                <path d="M6.453 15h11.094"/>
+                <path d="M8.5 2h7"/>
+            </svg>
+            Laboratorios
+        </a>
+
+    </nav>
+
+</body>
+</html>
