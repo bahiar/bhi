@@ -1052,9 +1052,11 @@ body {
  * de farmacias.html y laboratorios.html.
  * Fuente única de verdad: style.css.
  */
-/* ── Barra de filtros compacta unificada (Propuesta D) ── */
 .filter-chips-container {
-    padding: 10px 16px 12px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 8px 16px 12px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -1064,79 +1066,53 @@ body {
     display: none;
 }
 
-/* La barra como único elemento inline-flex */
-.filter-chips-container > * {
-    /* los hijos directos se renderizan dentro del wrapper de la barra */
-}
-
-/* Wrapper interno generado en el HTML */
-.filter-bar {
-    display: inline-flex;
-    align-items: stretch;
-    background: var(--color-bg, #fff);
-    border: 0.5px solid rgba(0,0,0,0.15);
-    border-radius: 10px;
-    overflow: hidden;
-    min-width: 100%;
-    box-sizing: border-box;
-}
-
 .filter-chip {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 9px 15px;
+    gap: 4px;
+    padding: 10px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
     font-size: 13px;
     font-family: var(--font-base);
-    font-weight: 500;
     cursor: pointer;
     white-space: nowrap;
     flex-shrink: 0;
-    background: transparent;
-    color: var(--accent);
-    border: none;
-    border-right: 0.5px solid rgba(0,0,0,0.12);
     transition: background 0.15s, color 0.15s;
     line-height: 1.2;
 }
 
-.filter-chip:last-child {
-    border-right: none;
-}
-
 .filter-chip.active {
-    background: var(--navy);
+    background: var(--accent);
     color: #fff;
 }
 
 .filter-chip-select {
-    padding: 9px 12px;
+    border: 1.5px solid var(--accent);
+    border-radius: 20px;
+    padding: 10px 10px;
     font-size: 13px;
     font-family: var(--font-base);
-    font-weight: 500;
     background: transparent;
     color: var(--accent);
-    border: none;
-    border-right: 0.5px solid rgba(0,0,0,0.12);
     cursor: pointer;
     outline: none;
     line-height: 1.2;
     flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
     -webkit-appearance: none;
     appearance: none;
-    transition: background 0.15s, color 0.15s;
-}
-
-.filter-chip-select:last-child {
-    border-right: none;
 }
 
 .filter-chip-select:focus {
-    background: rgba(31, 117, 254, 0.06);
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px var(--orange-light);
 }
 
 .filter-chip-select.active {
-    background: var(--navy);
+    background: var(--accent);
     color: #fff;
 }
 
