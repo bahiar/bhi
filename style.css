@@ -513,6 +513,28 @@ body {
     font-weight: 600;
 }
 
+.card-field-icon {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    color: var(--primary);
+    vertical-align: -0.125em;
+    margin-right: 2px;
+}
+
+.card-detail-row a {
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+}
+
+.card-detail-row a:hover {
+    border-bottom-color: var(--primary);
+}
+
 .detail-icon {
     flex-shrink: 0;
     width: 14px;

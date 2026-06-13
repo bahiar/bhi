@@ -5,6 +5,22 @@
 
 'use strict';
 
+// ── SVGs REPRESENTATIVOS PARA CAMPOS DE LA BASE DE DATOS ─────────────────────────
+
+window.SVG_CAMPOS = {
+    DOMICILIO: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>`,
+    LOCALIDAD: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg>`,
+    MAPS: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>`,
+    FIJO: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2a9 9 0 0 1 9 9"/><path d="M13 6a5 5 0 0 1 5 5"/><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>`,
+    MOVIL: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2a9 9 0 0 1 9 9"/><path d="M13 6a5 5 0 0 1 5 5"/><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>`,
+    NIVEL: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>`,
+    STOCK: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 21V10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v11"/><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 1.132-1.803l7.95-3.974a2 2 0 0 1 1.837 0l7.948 3.974A2 2 0 0 1 22 8z"/><path d="M6 13h12"/><path d="M6 17h12"/></svg>`,
+    HORARIO: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+    INYECTABLES: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg>`,
+    DELIVERY: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 14-1-3"/><path d="m3 9 6 2a2 2 0 0 1 2-2h2a2 2 0 0 1 1.99 1.81"/><path d="M8 17h3a1 1 0 0 0 1-1 6 6 0 0 1 6-6 1 1 0 0 0 1-1v-.75A5 5 0 0 0 17 5"/><circle cx="19" cy="17" r="3"/><circle cx="5" cy="17" r="3"/></svg>`,
+    OOSS: `<svg class="card-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 1 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 1 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M9 9h.01"/><path d="m15 9-6 6"/><path d="M15 15h.01"/></svg>`
+};
+
 // ── 1. UTILIDADES GLOBALES DE SEGURIDAD ───────────────────────────────────────
 
 /**
@@ -50,9 +66,11 @@ window.crearCardHTML = (item, tipo, index) => {
 
     const estado = tipo === 'TURNO' ? 'turno' : (item.HORARIO_TIPO === '24h' ? '24h' : '');
 
-    const direccion = [item.DOMICILIO, item.LOCALIDAD]
+    const direccion = [
+        item.DOMICILIO ? `${window.SVG_CAMPOS.DOMICILIO} ${window.esc(item.DOMICILIO)}` : null,
+        item.LOCALIDAD ? `${window.SVG_CAMPOS.LOCALIDAD} ${window.esc(item.LOCALIDAD)}` : null
+    ]
         .filter(Boolean)
-        .map(window.esc)
         .join(' · ');
 
     const SVG_LLAMAR = `<svg class="btn-icon btn-icon--lg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M43.2 39.6c-1.5-1.5-3.4-1.5-4.9 0l-2.3 2.3c-.3-.2-.6-.3-.9-.5-1-.6-2.4-1.4-3.9-2.9-1.5-1.5-2.3-2.9-2.9-3.9-.2-.3-.3-.6-.5-.9l1.6-1.6.7-.7c1.5-1.5 1.5-3.4 0-4.9l-2.3-2.3c-.3-.3-.6-.6-.9-.9-.6-.6-1.3-1.3-2-1.9-1.5-1.4-3.4-1.4-4.9.1l-2.4 2.4c-.6.6-1 1.4-1.1 2.3-.1 1.6.3 3.1.7 4.1 1 2.7 2.6 5.2 4.9 7.8 2.9 3.3 6.4 5.9 10.2 7.6 1.5.6 3.5 1.4 5.6 1.5h.4c1.3 0 2.4-.5 3.2-1.4l.1-.1c.3-.4.6-.7.9-1 .5-.5.9-1 1.4-1.5 1.5-1.6 1.5-3.5 0-5l-2.7-2.6z"/></svg>`;
@@ -82,9 +100,16 @@ window.crearCardHTML = (item, tipo, index) => {
     ].filter(Boolean).join('');
 
     const filasCuerpo = [
-        item.HORARIO && `<p class="card-detail-row"><strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>`,
-        item.OOSS    && `<p class="card-detail-row"><strong>Obra social:</strong> ${window.esc(item.OOSS)}</p>`,
-        item.STOCK   && `<p class="card-detail-row"><strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`
+        item.DOMICILIO && `<p class="card-detail-row">${window.SVG_CAMPOS.DOMICILIO}<strong>Domicilio:</strong> ${window.esc(item.DOMICILIO)}</p>`,
+        item.LOCALIDAD && `<p class="card-detail-row">${window.SVG_CAMPOS.LOCALIDAD}<strong>Localidad:</strong> ${window.esc(item.LOCALIDAD)}</p>`,
+        item.FIJO && `<p class="card-detail-row">${window.SVG_CAMPOS.FIJO}<strong>Teléfono:</strong> <a href="${window.esc(linkTel)}">${window.esc(item.FIJO)}</a></p>`,
+        item.MOVIL && `<p class="card-detail-row">${window.SVG_CAMPOS.MOVIL}<strong>Móvil:</strong> <a href="${window.esc(linkMovil)}">${window.esc(item.MOVIL)}</a></p>`,
+        item.HORARIO && `<p class="card-detail-row">${window.SVG_CAMPOS.HORARIO}<strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>`,
+        item.NIVEL && `<p class="card-detail-row">${window.SVG_CAMPOS.NIVEL}<strong>Nivel:</strong> ${window.esc(item.NIVEL)}</p>`,
+        item.STOCK && `<p class="card-detail-row">${window.SVG_CAMPOS.STOCK}<strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`,
+        item.INYECTABLES && `<p class="card-detail-row">${window.SVG_CAMPOS.INYECTABLES}<strong>Inyectables:</strong> ${item.INYECTABLES ? 'Sí' : 'No'}</p>`,
+        item.DELIVERY && `<p class="card-detail-row">${window.SVG_CAMPOS.DELIVERY}<strong>Delivery:</strong> ${item.DELIVERY ? 'Sí' : 'No'}</p>`,
+        item.OOSS && `<p class="card-detail-row">${window.SVG_CAMPOS.OOSS}<strong>Obra social:</strong> ${window.esc(item.OOSS)}</p>`
     ].filter(Boolean).join('');
 
     return `
