@@ -108,6 +108,22 @@
                 <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
             </a>
             <div class="header-divider" aria-hidden="true"></div>
+            <button
+                onclick="document.getElementById('faq-modal-overlay').style.display='flex'"
+                class="btn-bug-report"
+                aria-label="Preguntas frecuentes"
+                style="margin-right: 14px;"
+            >
+                <span class="btn-bug-report__bubble" style="background:rgba(255,255,255,0.12);">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </span>
+                <span>Ayuda</span>
+            </button>
+            <div class="header-divider" aria-hidden="true" style="margin-left:0;"></div>
             <a
                 href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20"
                 target="_blank"
@@ -607,6 +623,75 @@
             });
 
         }());
+    </script>
+
+    <!-- ── FAQ MODAL ───────────────────────────────────────────────────────── -->
+    <div id="faq-modal-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,40,0.65);align-items:flex-end;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+      <div style="background:var(--bg-card,#fff);width:100%;max-width:480px;border-radius:20px 20px 0 0;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;">
+
+        <div style="background:#191971;padding:16px 20px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+          <div>
+            <div style="font-size:19px;font-weight:500;color:#fff;letter-spacing:-0.5px;">BAHI<span style="color:#FF6B00;">.ar</span></div>
+            <div style="font-size:11.5px;color:rgba(255,255,255,0.65);margin-top:1px;">Preguntas frecuentes</div>
+          </div>
+          <button onclick="document.getElementById('faq-modal-overlay').style.display='none'" style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;" aria-label="Cerrar">✕</button>
+        </div>
+
+        <div style="overflow-y:auto;flex:1;" id="faq-body">
+
+          <div style="padding:14px 20px 4px;">
+            <span style="display:inline-block;background:#191971;color:#fff;font-size:10px;font-weight:500;padding:2px 10px;border-radius:999px;letter-spacing:0.04em;">General</span>
+          </div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Qué es BAHI.ar?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Es una guía médica digital para los vecinos de Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Reúne farmacias de turno, guardias, laboratorios y emergencias — todo desde el celular, con llamada directa y mapa. <a href="https://www.bahi.ar/" target="_blank" rel="noopener" style="color:#1F75FE;">www.bahi.ar</a></div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Tiene algún costo?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans"><span style="display:inline-flex;align-items:center;gap:4px;background:#EEEDFE;color:#3C3489;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:500;">♥ 100% gratuita</span><br><br>No se cobra ningún arancel. Si el servicio le resulta útil y desea colaborar, puede hacer una contribución voluntaria vía <a href="https://link.mercadopago.com.ar/bahiar" target="_blank" rel="noopener" style="color:#1F75FE;">Mercado Pago</a>. Toda colaboración es muy valorada.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Con qué frecuencia se actualiza la información?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Las farmacias de turno se actualizan <strong>diariamente</strong>. El directorio de guardias y laboratorios se revisa de forma periódica. Si encontrás un dato desactualizado, usá el botón <a href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" style="color:#1F75FE;">"Reportar error"</a> en el encabezado.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Cómo sé qué farmacia está de turno hoy?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Al ingresar a la pantalla de inicio verás las farmacias del día con dirección y teléfono. El listado se actualiza automáticamente a las <strong>8:30 hs</strong>. También podés compartirlo con el botón <strong>"Compartir farmacias"</strong> en la página principal.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Puedo filtrar por zona?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Sí. En las secciones de Farmacias y Laboratorios podés filtrar por zona, obra social y otros criterios según lo que necesités.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Funciona sin conexión a internet?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Sí, de forma parcial. Una vez visitada con conexión, el contenido queda guardado en el dispositivo. Para farmacias de turno sí recomendamos ingresar con internet, ya que cambian todos los días.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿BAHI.ar guarda mis datos personales?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">No. No se requieren registros, usuarios ni contraseñas. Solo guarda una preferencia mínima en tu dispositivo para no repetir el aviso de instalación.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Cómo reporto un error o dato incorrecto?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Usá el botón <a href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" style="color:#1F75FE;">"Reportar error"</a> del encabezado — abre directamente WhatsApp. Revisamos cada reporte y respondemos dentro de las <strong>48 horas hábiles</strong>.</div></div>
+
+          <div class="faq-i" style="border-bottom:none;"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Los datos publicados son oficiales?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Sí. Toda la información es oficial y actualizada, provista directamente por las entidades médicas que representan a cada prestador de la ciudad.</div></div>
+
+        </div>
+
+        <div style="padding:12px 20px;border-top:0.5px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg-card,#fff);">
+          <span style="font-size:12px;color:#888;">¿No encontraste tu respuesta?</span>
+          <a href="https://wa.me/542914661177" target="_blank" rel="noopener" style="font-size:12px;color:#1F75FE;display:flex;align-items:center;gap:5px;text-decoration:none;">
+            <svg width="14" height="14" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            Escribinos
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <style>
+      .faq-i{border-bottom:0.5px solid rgba(0,0,0,0.08);}
+      .faq-btn{width:100%;background:none;border:none;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;text-align:left;font-size:13.5px;font-weight:500;color:#1a1a2e;font-family:inherit;}
+      .faq-chv{flex-shrink:0;color:#888;transition:transform 0.2s;}
+      .faq-ans{display:none;padding:0 20px 13px;font-size:13px;color:#555;line-height:1.65;}
+      .faq-i.open .faq-chv{transform:rotate(180deg);}
+      .faq-i.open .faq-ans{display:block;}
+    </style>
+    <script>
+      function faqToggle(btn){
+        var item=btn.closest('.faq-i');
+        var isOpen=item.classList.contains('open');
+        document.querySelectorAll('.faq-i.open').forEach(function(i){i.classList.remove('open');});
+        if(!isOpen) item.classList.add('open');
+      }
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'){var o=document.getElementById('faq-modal-overlay');if(o)o.style.display='none';}
+      });
     </script>
 
 </body>
