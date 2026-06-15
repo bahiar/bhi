@@ -108,7 +108,7 @@
                 <img src="assets/images/logoweb.png" alt="BAHI.ar" class="logo-img" width="120" height="36">
             </a>
             <button onclick="document.getElementById('faq-modal-overlay').style.display='flex'" class="btn-bug-report" aria-label="Preguntas frecuentes" style="margin-right:14px;"><span class="btn-bug-report__bubble" style="background:rgba(255,255,255,0.12);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><span>Ayuda</span></button>
-            <div class="header-divider" aria-hidden="true"></div>
+            <div class="header-divider" aria-hidden="true" style="margin-left:0;"></div>
             <a
                 href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20"
                 target="_blank"
@@ -223,6 +223,18 @@
             </div>
 
         </div>
+
+        <!-- ── CAFECITO ─────────────────────────────────────────────────────── -->
+        <div style="text-align:center;padding:24px 0 32px;">
+            <a href="https://cafecito.app/bahiar" rel="noopener" target="_blank">
+                <img
+                    srcset="https://cdn.cafecito.app/imgs/buttons/button_5.png 1x, https://cdn.cafecito.app/imgs/buttons/button_5_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_5_3.75x.png 3.75x"
+                    src="https://cdn.cafecito.app/imgs/buttons/button_5.png"
+                    alt="Invitame un café en cafecito.app"
+                />
+            </a>
+        </div>
+
     </main>
 
     <!--
@@ -667,17 +679,6 @@
       .faq-i.open .faq-chv{transform:rotate(180deg);}
       .faq-i.open .faq-ans{display:block;}
     </style>
-    <!-- ── CAFECITO ───────────────────────────────────────────────────────── -->
-    <div style="text-align:center;padding:24px 0 8px;">
-        <a href="https://cafecito.app/bahiar" rel="noopener" target="_blank">
-            <img
-                srcset="https://cdn.cafecito.app/imgs/buttons/button_5.png 1x, https://cdn.cafecito.app/imgs/buttons/button_5_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_5_3.75x.png 3.75x"
-                src="https://cdn.cafecito.app/imgs/buttons/button_5.png"
-                alt="Invitame un café en cafecito.app"
-            />
-        </a>
-    </div>
-
     <script>
       function faqToggle(btn){
         var item=btn.closest('.faq-i');
