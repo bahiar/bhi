@@ -30,7 +30,39 @@ window.safeMapsUrl = (url) => {
     } catch (_e) { return null; }
 };
 
-// ── 2. RENDERIZADO UNIVERSAL DE TARJETAS ──────────────────────────────────────
+// ── 2. MAPEO DE SVGs POR CAMPO ───────────────────────────────────────────────
+
+/**
+ * Mapeo de campos a nombres de archivos SVG
+ * Ubicación: https://raw.githubusercontent.com/bahiar/bhi/main/assets/cuadros/{NOMBRE}.svg
+ */
+const CAMPO_SVG_MAP = {
+    'DOMICILIO': 'HOME',
+    'LOCALIDAD': 'LOCATION',
+    'MAPS': 'MAP',
+    'FIJO': 'FIJO',
+    'MOVIL': 'CELLPHONE',
+    'GRUPO': 'GRUPO',
+    'NIVEL': 'NIVEL',
+    'STOCK': 'STOCK',
+    'HORARIO': 'CLOCK',
+    'OOSS': 'OOSS'
+};
+
+/**
+ * Genera un SVG inline para un campo específico
+ * Usa clase .card-field-svg para estilos consistentes
+ * @param {string} campo - nombre del campo (ej: 'HORARIO', 'STOCK')
+ * @returns {string} - SVG como etiqueta <img>
+ */
+window.getSvgIcon = (campo) => {
+    const svgName = CAMPO_SVG_MAP[campo];
+    if (!svgName) return '';
+    const url = `https://raw.githubusercontent.com/bahiar/bhi/main/assets/cuadros/${svgName}.svg`;
+    return `<img class="card-field-svg" src="${url}" alt="${campo}" loading="lazy" onerror="this.style.display='none'">`;
+};
+
+// ── 3. RENDERIZADO UNIVERSAL DE TARJETAS ──────────────────────────────────────
 
 /**
  * Genera el HTML de una tarjeta colapsable para un prestador.
@@ -82,9 +114,9 @@ window.crearCardHTML = (item, tipo, index) => {
     ].filter(Boolean).join('');
 
     const filasCuerpo = [
-        item.HORARIO && `<p class="card-detail-row"><strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>`,
-        item.OOSS    && `<p class="card-detail-row"><strong>Obra social:</strong> ${window.esc(item.OOSS)}</p>`,
-        item.STOCK   && `<p class="card-detail-row"><strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`
+        item.HORARIO && `<p class="card-detail-row">${window.getSvgIcon('HORARIO')}<strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>`,
+        item.OOSS    && `<p class="card-detail-row">${window.getSvgIcon('OOSS')}<strong>Obra social:</strong> ${window.esc(item.OOSS)}</p>`,
+        item.STOCK   && `<p class="card-detail-row">${window.getSvgIcon('STOCK')}<strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`
     ].filter(Boolean).join('');
 
     return `
@@ -107,7 +139,7 @@ window.crearCardHTML = (item, tipo, index) => {
 </article>`;
 };
 
-// ── 3. INICIALIZACIÓN DE LA APP ────────────────────────────────────────────────
+// ── 4. INICIALIZACIÓN DE LA APP ────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
     if ('serviceWorker' in navigator) {
@@ -140,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     configurarBotonCompartir();
 });
 
-// ── 4. BUSCADOR GLOBAL ────────────────────────────────────────────────────────
+// ── 5. BUSCADOR GLOBAL ────────────────────────────────────────────────────────
 
 function configurarBuscador() {
     const input = document.querySelector('.search-container input:not(#buscador-live)');
@@ -160,7 +192,7 @@ function configurarBuscador() {
     });
 }
 
-// ── 5. BANNER DE ACTUALIZACIÓN ────────────────────────────────────────────────
+// ── 6. BANNER DE ACTUALIZACIÓN ────────────────────────────────────────────────
 
 function mostrarBannerActualizacion(version) {
     let banner = document.getElementById('update-banner');
@@ -185,7 +217,7 @@ function configurarBannerActualizacion() {
     });
 }
 
-// ── 6. INDICADOR DE DATOS EN CACHÉ ───────────────────────────────────────────
+// ── 7. INDICADOR DE DATOS EN CACHÉ ───────────────────────────────────────────
 
 function mostrarIndicadorCache() {
     const contenedor = document.getElementById('contenedor-cards');
@@ -197,7 +229,7 @@ function mostrarIndicadorCache() {
     contenedor.parentNode.insertBefore(aviso, contenedor);
 }
 
-// ── 7. COMPARTIR FARMACIAS POR WHATSAPP ──────────────────────────────────────
+// ── 8. COMPARTIR FARMACIAS POR WHATSAPP ──────────────────────────────────────
 
 function configurarBotonCompartir() {
     const btnCompartir = document.getElementById('btn-compartir-whatsapp');
