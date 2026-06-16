@@ -120,7 +120,9 @@ window.crearCardHTML = (item, tipo, index) => {
     ].filter(Boolean).join('');
 
     return `
-<article class="card" data-estado="${window.esc(estado)}" data-tipo="${window.esc(tipo)}">
+<article class="card" data-estado="${window.esc(estado)}" data-tipo="${window.esc(tipo)}"
+    data-domicilio="${window.esc(item.DOMICILIO || '')}" data-localidad="${window.esc(item.LOCALIDAD || '')}"
+    data-fijo="${window.esc(item.FIJO || '')}" data-movil="${window.esc(item.MOVIL || '')}">
     <div class="card-top">
         <div class="card-info">
             <h3 class="card-name">${window.esc(item.PRESTADOR)}</h3>
@@ -231,6 +233,22 @@ function mostrarIndicadorCache() {
 
 // ── 8. COMPARTIR FARMACIAS POR WHATSAPP ──────────────────────────────────────
 
+/**
+ * Limpia un valor de teléfono (FIJO/MOVIL) para mostrarlo como texto plano.
+ * Soporta valores guardados como 'tel:...', URLs de WhatsApp (wa.me, api.whatsapp.com)
+ * o el número crudo tal cual viene en el padrón.
+ */
+function limpiarTelefono(valor) {
+    if (!valor) return '';
+    const v = valor.trim();
+    if (/^tel:/i.test(v)) return v.replace(/^tel:/i, '');
+    if (/^https?:\/\//i.test(v)) {
+        const match = v.match(/(\d{6,})/);
+        return match ? match[1] : v;
+    }
+    return v;
+}
+
 function configurarBotonCompartir() {
     const btnCompartir = document.getElementById('btn-compartir-whatsapp');
     if (!btnCompartir) return;
@@ -244,24 +262,36 @@ function configurarBotonCompartir() {
 
         // Construcción del mensaje con formato enriquecido para WhatsApp.
         // La URL va PRIMERO para que WhatsApp genere el preview con imagen (og:image).
-        let mensaje = `https://bahiar.github.io/bhi/\n\n`;
-        mensaje += `🏥 *FARMACIAS DE TURNO*\n`;
+        // OJO: la imagen del preview la define el <meta property="og:image"> de ESA
+        // URL (no se puede "adjuntar" desde acá). Tiene que apuntar a un archivo de
+        // imagen servido directo, ej: https://bahiar.github.io/bhi/assets/images/whatsapp.png
+        // La URL de GitHub (.../blob/main/...) NO sirve como og:image: es una página
+        // HTML de GitHub, no la imagen en sí.
+        let mensaje = `https://bahi.ar\n\n`;
+        mensaje += `⚕️ *FARMACIAS DE TURNO*\n`;
         mensaje += `Bahía Blanca • BAHI.ar\n`;
         if (leyenda) mensaje += `_${leyenda}_\n`;
         mensaje += `\n`;
 
         cards.forEach((card) => {
             const nombre = card.querySelector('.card-name')?.innerText || '';
-            const direccion = card.querySelector('.card-addr')?.innerText || '';
-            
-            if (nombre) {
-                mensaje += `🟢 *${nombre.toUpperCase()}*\n`;
-                mensaje += `📍 ${direccion}\n\n`;
-            }
+            if (!nombre) return;
+
+            const domicilio = card.dataset.domicilio || '';
+            const localidad = card.dataset.localidad || '';
+            const fijo = limpiarTelefono(card.dataset.fijo);
+            const movil = limpiarTelefono(card.dataset.movil);
+
+            mensaje += `⚕️ *${nombre.toUpperCase()}*\n`;
+            if (domicilio) mensaje += `📌 ${domicilio}\n`;
+            if (localidad) mensaje += `🏙 ${localidad}\n`;
+            if (fijo)      mensaje += `📞 ${fijo}\n`;
+            if (movil)     mensaje += `📱 ${movil}\n`;
+            mensaje += `\n`;
         });
 
         mensaje += `🌐 *Más info en:*\n`;
-        mensaje += `www.bahi.ar`;
+        mensaje += `https://www.bahi.ar`;
 
         const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
