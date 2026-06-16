@@ -16,7 +16,7 @@
       "GRUPO": "D",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -33,7 +33,7 @@
       "GRUPO": "D",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -50,7 +50,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -67,7 +67,7 @@
       "GRUPO": "G",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -84,7 +84,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -101,7 +101,7 @@
       "GRUPO": "I",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -118,7 +118,7 @@
       "GRUPO": "B",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -135,7 +135,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -152,7 +152,7 @@
       "GRUPO": "L",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -169,7 +169,7 @@
       "GRUPO": "B",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -186,7 +186,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -201,12 +201,12 @@
       "FIJO": "tel:+542914546009",
       "MOVIL": "https://wa.me/5492915773669",
       "GRUPO": "A",
-      "NIVEL": "PREMIUM",
-      "STOCK": "OZEMPIC",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
-      "INYECTABLES": true,
-      "DELIVERY": true,
-      "OOSS": "OSDE, PAMI"
+      "NIVEL": "",
+      "STOCK": "",
+      "HORARIO"",
+      "INYECTABLES": false,
+      "DELIVERY": false,
+      "OOSS": ""
     },
     {
       "TIPO": "FARMACIA",
@@ -220,7 +220,7 @@
       "GRUPO": "J",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -237,7 +237,7 @@
       "GRUPO": "K",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -254,7 +254,7 @@
       "GRUPO": "H",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -271,7 +271,7 @@
       "GRUPO": "E",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -288,7 +288,7 @@
       "GRUPO": "F",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -305,7 +305,7 @@
       "GRUPO": "F",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -322,7 +322,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -339,7 +339,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -356,7 +356,7 @@
       "GRUPO": "J",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -373,7 +373,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -390,7 +390,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -407,7 +407,7 @@
       "GRUPO": "F",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -424,7 +424,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -441,7 +441,7 @@
       "GRUPO": "D",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -458,7 +458,7 @@
       "GRUPO": "G",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -475,7 +475,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -492,7 +492,7 @@
       "GRUPO": "I",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -509,7 +509,7 @@
       "GRUPO": "D",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -526,7 +526,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -543,7 +543,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -560,7 +560,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -577,7 +577,7 @@
       "GRUPO": "C",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -594,7 +594,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -611,7 +611,7 @@
       "GRUPO": "C",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -628,7 +628,7 @@
       "GRUPO": "K",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -645,7 +645,7 @@
       "GRUPO": "I",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -662,7 +662,7 @@
       "GRUPO": "H",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -679,7 +679,7 @@
       "GRUPO": "K",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -696,7 +696,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -713,7 +713,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -730,7 +730,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -747,7 +747,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -764,7 +764,7 @@
       "GRUPO": "I",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -781,7 +781,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -798,7 +798,7 @@
       "GRUPO": "C",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -815,7 +815,7 @@
       "GRUPO": "C",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -832,7 +832,7 @@
       "GRUPO": "G",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -849,7 +849,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -866,7 +866,7 @@
       "GRUPO": "B",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -883,7 +883,7 @@
       "GRUPO": "K",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -900,7 +900,7 @@
       "GRUPO": "F",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -917,7 +917,7 @@
       "GRUPO": "I",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -934,7 +934,7 @@
       "GRUPO": "J",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -951,7 +951,7 @@
       "GRUPO": "A",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -968,7 +968,7 @@
       "GRUPO": "E",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -985,7 +985,7 @@
       "GRUPO": "J",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1002,7 +1002,7 @@
       "GRUPO": "A",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1019,7 +1019,7 @@
       "GRUPO": "J",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1036,7 +1036,7 @@
       "GRUPO": "A",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1053,7 +1053,7 @@
       "GRUPO": "K",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1070,7 +1070,7 @@
       "GRUPO": "L",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1087,7 +1087,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1104,7 +1104,7 @@
       "GRUPO": "E",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1121,7 +1121,7 @@
       "GRUPO": "H",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1138,7 +1138,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1155,7 +1155,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1172,7 +1172,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1189,7 +1189,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1206,7 +1206,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1223,7 +1223,7 @@
       "GRUPO": "B",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1240,7 +1240,7 @@
       "GRUPO": "F",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1257,7 +1257,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1274,7 +1274,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1291,7 +1291,7 @@
       "GRUPO": "E",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1308,7 +1308,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1325,7 +1325,7 @@
       "GRUPO": "J",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1342,7 +1342,7 @@
       "GRUPO": "G",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1359,7 +1359,7 @@
       "GRUPO": "L",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1376,7 +1376,7 @@
       "GRUPO": "E",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1393,7 +1393,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1410,7 +1410,7 @@
       "GRUPO": "K",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1427,7 +1427,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1444,7 +1444,7 @@
       "GRUPO": "D",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1461,7 +1461,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1478,7 +1478,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1495,7 +1495,7 @@
       "GRUPO": "C",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1512,7 +1512,7 @@
       "GRUPO": "H",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1529,7 +1529,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1546,7 +1546,7 @@
       "GRUPO": "D",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1563,7 +1563,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1580,7 +1580,7 @@
       "GRUPO": "L",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1597,7 +1597,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1614,7 +1614,7 @@
       "GRUPO": "H",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1631,7 +1631,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1648,7 +1648,7 @@
       "GRUPO": "I",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1665,7 +1665,7 @@
       "GRUPO": "F",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1682,7 +1682,7 @@
       "GRUPO": "L",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1699,7 +1699,7 @@
       "GRUPO": "A",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1716,7 +1716,7 @@
       "GRUPO": "G",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1733,7 +1733,7 @@
       "GRUPO": "G",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1750,7 +1750,7 @@
       "GRUPO": "C",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1767,7 +1767,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1784,7 +1784,7 @@
       "GRUPO": "B",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1801,7 +1801,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1818,7 +1818,7 @@
       "GRUPO": "L",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1835,7 +1835,7 @@
       "GRUPO": "B",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1852,7 +1852,7 @@
       "GRUPO": "E",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1869,10 +1869,10 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "ASPIRINA",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
-      "INYECTABLES": true,
+      "HORARIO"",
+      "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": "SWISS MEDICAL"
+      "OOSS": ""
     },
     {
       "TIPO": "LABORATORIO",
@@ -1886,9 +1886,9 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "ATENOLOL",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
-      "DELIVERY": true,
+      "DELIVERY": false,
       "OOSS": ""
     },
     {
@@ -1903,7 +1903,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1920,7 +1920,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1937,7 +1937,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1954,7 +1954,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1971,7 +1971,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -1988,7 +1988,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2005,7 +2005,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2022,7 +2022,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2039,7 +2039,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2056,7 +2056,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2073,7 +2073,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2090,7 +2090,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2107,7 +2107,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2124,7 +2124,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2141,7 +2141,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2158,7 +2158,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2175,7 +2175,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2192,7 +2192,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2209,7 +2209,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2226,7 +2226,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2243,7 +2243,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2260,7 +2260,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2277,7 +2277,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2294,7 +2294,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2311,7 +2311,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2328,7 +2328,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2345,7 +2345,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2362,7 +2362,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2379,7 +2379,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2396,7 +2396,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2413,7 +2413,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2430,7 +2430,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2447,7 +2447,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2464,7 +2464,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2481,7 +2481,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2498,7 +2498,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2515,7 +2515,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2532,7 +2532,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2549,7 +2549,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2566,7 +2566,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2583,7 +2583,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2600,7 +2600,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2617,7 +2617,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2634,7 +2634,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2651,7 +2651,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2668,7 +2668,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
@@ -2685,7 +2685,7 @@
       "GRUPO": "",
       "NIVEL": "ESTANDART",
       "STOCK": "",
-      "HORARIO": "LU / VI * 8:00 - 16:00 hs.",
+      "HORARIO"",
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": ""
