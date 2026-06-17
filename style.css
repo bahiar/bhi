@@ -812,34 +812,48 @@ body {
  * En desktop (≥768px) se reactiva centrada bajo el header.
  */
 .sub-nav {
-    margin: 0 16px 16px;
+    margin: 0;
+    padding: 0 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     display: none;               /* oculta en móvil — ver §17 para bottom nav */
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    border-bottom: 1px solid var(--border-light);
 }
 
 .sub-nav::-webkit-scrollbar { display: none; }
 
 .sub-nav-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     list-style: none;
     gap: 8px;
-    padding: 4px 2px;
+    padding: 8px 16px;
+    margin: 0 auto;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .sub-nav-link {
     white-space: nowrap;
-    padding: 8px 16px;
+    padding: 8px 18px;
     border-radius: 20px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--text-muted);
     background: #fff;
     border: 1px solid var(--border-light);
     transition: all 0.2s ease;
+    flex-shrink: 0;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .sub-nav-link.active {
@@ -1050,9 +1064,18 @@ body {
     }
 
     /* En desktop la sub-nav se reactiva — no hay bottom nav */
-    .sub-nav { display: block; }
-
-    #contenedor-cards,
+    .sub-nav { 
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        padding: 0 16px;
+    }
+    
+    .sub-nav-list {
+        justify-content: center;
+        gap: 12px;
+        max-width: 1200px;
+    }
     .cards-grid {
         padding-left: 0;
         padding-right: 0;
