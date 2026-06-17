@@ -838,6 +838,13 @@ body {
     box-sizing: border-box;
 }
 
+.sub-nav-list li {
+    display: flex;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+}
+
 .sub-nav-link {
     white-space: nowrap;
     padding: 8px 18px;
