@@ -312,794 +312,357 @@ body {
 .btn-icon--lg {
     width: 20px;
     height: 20px;
-}
-/* Maps: no hereda currentColor — es multicolor */
-.btn-icon--maps {
-    color: unset;
+    top: -2px;
 }
 
-.btn-accent {
+.btn-primary {
     background: var(--orange);
-    color: #fff;
+    color: white;
 }
 
-/* Hover solo en dispositivos que lo soportan (evita estado stuck en móvil) */
-@media (hover: hover) {
-    .btn-accent:hover { background: var(--orange-dark); }
-    .btn-outline:hover { background: rgba(255, 107, 0, 0.18); }
+.btn-primary:hover {
+    background: var(--orange-dark);
 }
 
-/* Ver mapa: outline naranja — acción secundaria, misma importancia visual */
+.btn-primary:active {
+    opacity: 0.92;
+}
+
+.btn-secondary {
+    background: #f5f5f5;
+    color: #525E73;
+    border: 0.5px solid #D1D5DB;
+}
+
+.btn-secondary:hover {
+    background: #efefef;
+}
+
+.btn-secondary:active {
+    opacity: 0.92;
+}
+
 .btn-outline {
+    background: white;
+    color: var(--orange);
+    border: 1px solid var(--orange);
+}
+
+.btn-outline:hover {
     background: var(--orange-light);
-    color: var(--orange-dark);
-    border: 1.5px solid var(--orange-border);
 }
 
-/* Indicador de foco para navegación por teclado (accesibilidad) */
-.btn:focus-visible,
-.card-header:focus-visible,
-.sub-nav-link:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+.btn-outline:active {
+    opacity: 0.92;
 }
 
-/* ── 4. SISTEMA DE CARDS (Tarjetas Colapsables) ── */
-.card {
-    background: var(--card-bg);
-    border-radius: var(--radius-card);
-    border: 1px solid var(--border-light);
-    margin-bottom: 12px;
-    box-shadow: var(--shadow-soft);
-    overflow: hidden;
+.btn-link {
+    background: none;
+    color: var(--accent);
+    padding: 0;
+    min-height: auto;
 }
 
-/*
- * REDISEÑO — Tarjeta de TURNO: border-left como señalización de estado.
- * Tinte naranja muy sutil en la zona izquierda — refuerza la urgencia
- * sin competir con el texto.
- */
-.card[data-estado="turno"] {
-    border-left-width: 3px;
-    border-left-color: var(--orange);
-    border-top-color: var(--orange-border);
-    border-right-color: var(--orange-border);
-    border-bottom-color: var(--orange-border);
-    box-shadow: var(--shadow-soft);
-    background: linear-gradient(to right, rgba(255, 107, 0, 0.03) 0px, transparent 52px), var(--card-bg);
+.btn-link:hover {
+    text-decoration: underline;
 }
 
-/* Hover en desktop — comunica interactividad */
-@media (hover: hover) {
-    .card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(15, 23, 42, 0.10), 0 12px 28px rgba(15, 23, 42, 0.09);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+.btn-green {
+    background: #25D366;
+    color: white;
+}
+
+.btn-green:hover {
+    background: #1BA853;
+}
+
+.btn-green:active {
+    opacity: 0.92;
+}
+
+/* ── 4. LAYOUT: MAIN CONTAINER ── */
+.main-container {
+    /*
+     * FIX: máximo ancho responsivo para desktop.
+     * - Mobile (< 768px): ancho 100% con padding lateral
+     * - Desktop (≥ 768px): máximo 1200px centrado
+     */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .main-container {
+        padding: 0 24px;
     }
 }
 
-/* Feedback táctil en móvil */
-.card:active {
-    background-color: rgba(15, 23, 42, 0.01);
+/* ── 5. NAVEGACIÓN ── */
+.sub-nav {
+    display: none;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border-light);
+    padding: 0;
 }
 
-.card-header {
-    padding: 14px 16px;
-    width: 100%;
-    border: none;
+.sub-nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 12px 8px;
     background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
     cursor: pointer;
-    text-align: left;
-    min-height: 44px;
+    transition: background 0.15s, color 0.15s;
+    text-decoration: none;
     font-family: var(--font-base);
-    touch-action: manipulation;
+    border-bottom: 3px solid transparent;
 }
 
-.card-name {
-    font-size: 16px;
-    font-weight: 700;            /* subido de 600 a 700 — más peso con Plus Jakarta Sans */
-    font-family: var(--font-brand);
+.sub-nav-item:hover {
     color: var(--text-main);
-    line-height: 1.3;
-    margin: 0 0 2px;
+}
+
+.sub-nav-item.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+/* En desktop, mostrar sub-nav horizontal */
+@media (min-width: 768px) {
+    .sub-nav {
+        display: flex;
+    }
+}
+
+.search-container {
+    width: 100%;
+    padding: 12px 16px;
+    background: #f5f5f5;
+}
+
+.search-container--hero {
+    background: var(--navy);
+    padding: 12px 16px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: var(--font-base);
+}
+
+.search-container--hero .search-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.search-container--hero .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── 6. SECCIONES ── */
+.section {
+    padding: 20px 16px;
+    margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: 28px 24px;
+        margin-bottom: 20px;
+    }
+}
+
+.section-title {
+    font-family: var(--font-brand);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 12px;
     letter-spacing: -0.01em;
 }
 
-.card-addr {
-    font-size: 13px;
+.section-subtitle {
+    font-size: 12px;
     color: var(--text-muted);
-    margin: 0;
-    line-height: 1.4;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 12px;
 }
 
-.card-actions {
+/* ── 7. CARDS EN GRID ── */
+.cards-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    /*
-     * FIX: padding horizontal alineado a 16px (igual que card-top).
-     * Antes era 14px, generando desalineación entre nombre y botones.
-     * padding-top: 2px absorbe el gap visual con card-top (que termina en 10px bottom).
-     */
-    padding: 2px 16px 14px;
-}
-
-/*
- * Modificador para cards con un solo botón de acción.
- * Sin esto el botón único toma las 2 columnas del grid y se estira
- * al ancho completo de la card — un problema visual en desktop.
- * Con este modificador el botón tiene ancho natural (auto) y queda
- * alineado a la izquierda como el resto de los elementos de la card.
- */
-.card-actions--single {
-    grid-template-columns: auto;
-}
-
-.card-actions .btn {
+    grid-template-columns: 1fr;
+    gap: 12px;
     width: 100%;
 }
 
-.card-body-collapse {
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+/* Tablet: 2 columnas */
+@media (min-width: 480px) and (max-width: 767px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+
+/* Desktop: 3 columnas responsive con ancho máximo */
+@media (min-width: 768px) {
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+}
+
+/* Extra grande: permitir más columnas si hay espacio */
+@media (min-width: 1400px) {
+    .cards-grid {
+        gap: 20px;
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
     overflow: hidden;
-    padding: 0 16px;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    /* Pequeño lifting al hover en desktop */
+    @media (hover: hover) {
+        &:hover {
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12), 0 8px 16px rgba(15, 23, 42, 0.12);
+            transform: translateY(-2px);
+        }
+    }
 }
 
-.card-body-collapse.open {
-    max-height: 1000px;
-    opacity: 1;
-    padding: 0 16px 16px;
-    border-top: 1px solid var(--border-light);
+@media (hover: none) {
+    .card:active {
+        opacity: 0.92;
+    }
 }
 
+/* ── Left accent bar (borde izquierdo de color) ── */
+.card--accent-left {
+    border-left: 4px solid;
+}
+
+.card--accent-left.farmacia {
+    border-left-color: var(--cat-farmacia);
+}
+
+.card--accent-left.guardia {
+    border-left-color: var(--cat-guardia);
+}
+
+.card--accent-left.laboratorio {
+    border-left-color: var(--cat-laboratorio);
+}
+
+/* ── Header de card (fijo en blanco, con ícono de categoría) ── */
 .card-top {
+    padding: 16px 20px 12px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 10px;
-    /*
-     * FIX: padding horizontal unificado a 16px.
-     * Antes era 14px, generando desalineación respecto a card-body-collapse (16px).
-     */
-    padding: 14px 16px 10px;
+    background: var(--card-bg);
 }
 
-.card-info {
+.card-title {
     flex: 1;
-    min-width: 0;
+    font-family: var(--font-brand);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .card-icon {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 9px;
-    background: var(--orange-light);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-left: 8px;
+    opacity: 0.5;
+}
+
+/* ── Detalles de card (mapa de campo → valor) ── */
+.card-detail {
+    padding: 0 20px 12px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-}
-
-.card[data-estado="turno"] .card-icon {
-    background: var(--orange-light);
-}
-
-.card[data-estado="24h"] .card-icon {
-    background: rgba(31, 117, 254, 0.10);
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
 }
 
 .card-detail-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 6px;
     font-size: 13px;
     color: var(--text-muted);
     line-height: 1.5;
-    margin-bottom: 6px;
 }
 
-.card-detail-row:last-child {
-    margin-bottom: 0;
-}
-
-.card-detail-row strong {
-    color: var(--text-main);
+.card-detail-label {
     font-weight: 600;
-}
-
-.card-field-icon {
-    display: inline-block;
-    flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    min-width: 16px;
-    color: var(--primary);
-    vertical-align: -0.125em;
-    margin-right: 2px;
-}
-
-/**
- * SVG icons en filas de detalle de cards (campos HORARIO, STOCK, OOSS, etc.)
- * Similar a .card-field-icon pero para imágenes SVG externas
- * Tamaño: 16px (consistente con .card-field-icon)
- * Inherita color del texto: var(--text-muted)
- */
-.card-field-svg {
-    display: inline-block;
-    flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    min-width: 16px;
-    vertical-align: -2px;
-    margin-right: 4px;
-    opacity: 0.85;
-}
-
-.card-detail-row a {
-    color: var(--primary);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.15s ease;
-}
-
-.card-detail-row a:hover {
-    border-bottom-color: var(--primary);
-}
-
-.detail-icon {
-    flex-shrink: 0;
-    width: 14px;
-    height: 14px;
-    min-width: 14px;
-    min-height: 14px;
-    max-width: 14px;
-    max-height: 14px;
-    stroke: var(--color-accent);
-    fill: none;
-    display: block;
-    overflow: visible;
-}
-
-.card-chevron {
-    display: inline-block;
-    transition: transform 0.3s ease;
-    font-style: normal;
-}
-
-.card-header[aria-expanded="true"] .card-chevron {
-    transform: rotate(180deg);
-}
-
-.btn-whatsapp {
-    background: #25D366;
-    color: #fff;
-    border: none;
-}
-
-@media (hover: hover) {
-    .btn-whatsapp:hover { background: #1da851; }
-}
-
-@keyframes fadeInCard {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.card {
-    animation: fadeInCard 0.4s ease forwards;
-}
-
-/* ── 5. SKELETON LOADER ── */
-.skeleton-card {
-    background: var(--card-bg);
-    border-radius: var(--radius-card);
-    border: 1px solid var(--border-light);
-    margin-bottom: 12px;
-    padding: 14px 16px;
-    overflow: hidden;
-}
-
-.skeleton-line {
-    border-radius: 6px;
-    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
-    background-size: 200% 100%;
-    animation: skeleton-shimmer 1.4s ease-in-out infinite;
-}
-
-.skeleton-line-title {
-    height: 18px;
-    width: 65%;
-    margin-bottom: 8px;
-}
-
-.skeleton-line-addr {
-    height: 13px;
-    width: 80%;
-    margin-bottom: 12px;
-}
-
-.skeleton-btns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-}
-
-.skeleton-btn {
-    height: 40px;
-    border-radius: var(--radius-btn);
-}
-
-@keyframes skeleton-shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .skeleton-line { animation: none; }
-    .btn, .card-body-collapse { transition: none; }
-}
-
-/* ── 6. UTILIDADES ── */
-.hidden { display: none; }
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    color: var(--text-main);
     white-space: nowrap;
-    border-width: 0;
+    flex-shrink: 0;
 }
 
-/* ── 7. BUSCADOR ── */
-.search-container {
-    position: relative;
-    margin: 12px 16px;
-}
-
-.search-container input[type="text"] {
-    width: 100%;
-    padding: 11px 12px 11px 40px;
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-btn);
-    background: #fff;
-    font-family: var(--font-base);
-    font-size: 15px;
-    color: var(--text-main);
-    touch-action: manipulation;
-    outline: none;
-}
-
-/*
- * FIX: estilo de foco explícito para el buscador.
- * Sin esto iOS Safari aplica su outline azul nativo,
- * que rompe la paleta naranja/azul del design system.
- */
-.search-container input[type="text"]:focus {
-    border-color: var(--orange);
-    box-shadow: 0 0 0 3px var(--orange-light);
-}
-
-.search-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-}
-
-/* ── 7b. BUSCADOR HERO (solo index.html — integrado en el header navy) ── */
-/*
- * .search-container--hero sobreescribe el buscador estándar
- * para integrarse visualmente en el fondo navy del header.
- * El input usa fondo semi-transparente blanco con texto oscuro
- * para mantener legibilidad sobre el gradiente.
- * El margen superior e inferior crean respiro dentro del header.
- */
-.search-container--hero {
-    margin: 0 16px 10px;
-}
-
-.search-container--hero input[type="text"] {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.25);
-    color: #fff;
-    font-size: 15px;
-}
-
-.search-container--hero input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.55);
-}
-
-.search-container--hero input[type="text"]:focus {
-    background: rgba(255, 255, 255, 0.22);
-    border-color: rgba(255, 255, 255, 0.55);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
-}
-
-.search-container--hero .search-icon {
-    color: rgba(255, 255, 255, 0.65);
-}
-
-@media (min-width: 768px) {
-    /*
-     * FIX: en desktop el header pasa de columna a fila.
-     * Logo y buscador quedan en la misma línea horizontal.
-     * El buscador se limita a 400px y queda pegado al logo por la izquierda.
-     * padding-right da respiro al borde derecho del header.
-     *
-     * El fondo navy (.main-header) sigue ocupando el 100% del ancho de
-     * pantalla — NO se le pone max-width acá, porque eso recortaría el
-     * fondo y dejaría gris a los costados. Lo que se centra es el
-     * contenido interno (logo + buscador) vía padding simétrico.
-     */
-    .main-header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding-right: 16px;
-    }
-
-    .header-content {
-        flex-shrink: 0;
-        width: auto;
-    }
-
-    .search-container--hero {
-        max-width: 400px;
-        width: 100%;
-        margin-left: 16px;
-        margin-right: 0;
-        margin-bottom: 0;
-        padding: 0;
-        flex-shrink: 1;
-    }
-}
-
-@media (min-width: 1300px) {
-    /*
-     * En pantallas muy grandes el conjunto logo+buscador (que tiene un
-     * ancho natural acotado) se centra dentro de un riel de 1200px,
-     * igual que el resto del contenido (cards, sub-nav). Esto evita que
-     * el buscador termine pegado al borde derecho de un monitor 1920px.
-     */
-    .main-header > .header-content,
-    .main-header > .search-container--hero {
-        flex-basis: auto;
-    }
-
-    .main-header {
-        padding-left: calc((100% - 1200px) / 2);
-        padding-right: calc((100% - 1200px) / 2);
-        justify-content: flex-start;
-    }
-}
-
-/* (el ancho del buscador en pantallas grandes ya queda resuelto arriba,
-   en los bloques de 768px y 1300px — no se necesita un override extra) */
-
-/* ── 8. NAVEGACIÓN SECUNDARIA (Tabs) ── */
-/*
- * En móvil la sub-nav se oculta — la navegación la provee la bottom-nav-bar (§17).
- * En desktop (≥768px) se reactiva centrada bajo el header.
- */
-.sub-nav {
-    margin: 0 16px 16px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    display: none;               /* oculta en móvil — ver §17 para bottom nav */
-}
-
-.sub-nav::-webkit-scrollbar { display: none; }
-
-.sub-nav-list {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    gap: 8px;
-    padding: 4px 2px;
-}
-
-.sub-nav-link {
-    white-space: nowrap;
-    padding: 8px 16px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-muted);
-    background: #fff;
-    border: 1px solid var(--border-light);
-    transition: all 0.2s ease;
-}
-
-.sub-nav-link.active {
-    background: var(--primary);
-    color: #fff;
-    border-color: var(--primary);
-}
-
-/* ── 9. ESTADOS DE ERROR Y CARGA ── */
-.error-state {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text-muted);
-}
-
-.error-state-icon {
-    font-size: 40px;
-    margin-bottom: 16px;
-    opacity: 0.5;
-}
-
-.error-state-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 8px;
-}
-
-.error-state-desc {
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-/* ── 10. BANNER DE ACTUALIZACIÓN (Update Banner) ── */
-#update-banner {
-    background: var(--accent);
-    color: #fff;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 13px;
-    font-weight: 600;
-    position: sticky;
-    /*
-     * FIX: top corregido de 52px a 81px.
-     * El header pasó de height fijo a height:auto (logo 52px + ctx-strip ~29px ≈ 81px).
-     * Con top:52px el banner se solapaba 29px con el header.
-     */
-    top: var(--header-h, 81px);
-    z-index: 40;
-    box-shadow: 0 2px 8px rgba(31, 117, 254, 0.2);
-}
-
-#btn-actualizar {
-    background: #fff;
-    color: var(--accent);
-    border: none;
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-/* ── 11. INDICADOR DE CACHÉ (Offline Mode) ── */
-.cache-indicator-warning {
-    background: #fff8e1;
-    color: #f57c00;
-    padding: 8px 16px;
-    margin: 0 16px 12px;
-    border-radius: var(--radius-btn);
-    border: 1px solid #ffe082;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.4;
-    text-align: center;
-}
-
-/* ── 12. SECCIONES Y ENCABEZADOS ── */
-.section-header {
-    padding: 14px 16px 4px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.section-header-titles {
+.card-detail-value {
     flex: 1;
-    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ── Acciones al pie de card ── */
+.card-actions {
+    padding: 4px 20px 18px;
     display: flex;
-    align-items: baseline;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.section-header h2 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-main);
-    font-family: var(--font-brand);
-    letter-spacing: -0.02em;     /* Plus Jakarta Sans se lee mejor con tracking negativo en titulares */
-    margin-bottom: 0;
-}
-
-.section-header-meta {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--orange-dark);
-    background: var(--orange-light);
-    border: 0.5px solid var(--orange-border);
-    padding: 3px 9px;
-    border-radius: 5px;
-    /*
-     * FIX: eliminado white-space:nowrap.
-     * En viewports <380px el badge desbordaba el contenedor del h2,
-     * rompiendo el layout del section-header.
-     */
-    display: none;
-}
-
-.section-header-meta:not(:empty) {
-    display: inline-block;
-}
-
-/* ── 13. BOTÓN DE COMPARTIR WHATSAPP ── */
-.btn-share-wa {
-    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: #ffffff;
-    color: #25D366;
-    border: 1.5px solid #25D366;
-    padding: 6px 12px;
-    border-radius: var(--radius-btn);
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: var(--shadow-soft);
-    font-family: var(--font-base);
-    flex-shrink: 0;
-    /*
-     * FIX: min-height corregido de 38px a 44px.
-     * 44px es el mínimo táctil WCAG 2.5.5 / Apple HIG.
-     * El resto de los botones del sitio ya usan 44px.
-     */
-    min-height: 44px;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
 }
 
-.btn-share-wa:active {
-    transform: scale(0.96);
-    background: rgba(37, 211, 102, 0.05);
+.card-actions .btn {
+    flex: 1;
+    min-width: 120px;
 }
 
-@media (hover: hover) {
-    .btn-share-wa:hover {
-        background: #25D366;
-        color: #ffffff;
-        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
-    }
+.card-actions .btn-secondary {
+    flex: 1;
+    min-width: 100px;
 }
 
-@media (max-width: 360px) {
-    .btn-share-wa span { display: none; }
-    .btn-share-wa { padding: 8px; }
+/* Responsive: ajustar tamaños de card en mobile */
+@media (max-width: 479px) {
+    .card-top { padding: 16px 18px 12px; }
+    .card-detail { padding: 0 18px 12px; }
+    .card-actions { padding: 4px 18px 16px; }
+    .card-title { font-size: 15px; }
+    .card-detail-row { font-size: 12.5px; }
 }
 
-/* ── 14. DISEÑO PARA ESCRITORIO (PC) ── */
-
-/*
- * FIX MÓVIL: padding lateral y bottom para #contenedor-cards y .app-view.
- * Sin esto las cards tocaban el borde de pantalla en viewports <768px
- * y la última card quedaba bajo el home indicator de iOS.
- * Se aplica ANTES del media query de escritorio para que el breakpoint
- * pueda sobreescribir solo lo necesario.
- */
-/*
- * .cards-grid: clase reutilizable equivalente a #contenedor-cards.
- * Usarla en páginas con múltiples secciones (ej: guardias.html)
- * donde existen varios contenedores de cards independientes.
- * En móvil: lista vertical con padding. En desktop: grilla de 2 o 3 col.
- */
-#contenedor-cards,
-.cards-grid {
-    padding: 0 16px 32px;
-    /*
-     * FIX: padding-bottom aumentado para que la última card no quede
-     * bajo la bottom-nav-bar (64px) + home indicator iOS (env safe-area).
-     */
-    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-}
-
-@media (min-width: 768px) {
-    .header-content,
-    .search-container,
-    .sub-nav,
-    .section-header,
-    .filter-chips-container,
-    #contenedor-cards,
-    .cards-grid,
-    .section-divider {
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* En desktop la sub-nav se reactiva — no hay bottom nav */
-    .sub-nav { display: block; }
-
-    #contenedor-cards,
-    .cards-grid {
-        padding-left: 0;
-        padding-right: 0;
-        /* En desktop no hay bottom nav — se resetea el padding extra */
-        padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding-top: 10px;
-    }
-
-    .card, .skeleton-card { margin-bottom: 0; }
-
-    .sub-nav-list { justify-content: center; gap: 12px; }
-
-    .section-header {
-        padding-left: 0;
-        padding-right: 0;
-        margin-bottom: 16px;
-    }
-
-    .section-divider {
-        margin-left: 0;
-        margin-right: 0;
-    }
-}
-
-@media (min-width: 1100px) {
-    /*
-     * FIX: antes max-width: 1200px con 3 columnas dejaba cada card en
-     * ~387px de ancho — demasiado para el poco contenido que tiene cada
-     * una (nombre, dirección de 1 línea, 2 botones), generando esa
-     * sensación de "card vacía" que se ve en la auditoría visual.
-     * Se baja a 980px: cada card queda en ~313px, una proporción mucho
-     * más cercana al contenido real. El espacio que se libera a los
-     * costados es intencional — es el "aire" que le faltaba al layout
-     * general, no espacio perdido dentro de cada card.
-     */
-    .header-content,
-    .search-container,
-    .sub-nav,
-    .section-header,
-    .filter-chips-container,
-    #contenedor-cards,
-    .cards-grid,
-    .section-divider {
-        max-width: 980px;
-    }
-
-    #contenedor-cards,
-    .cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
-    }
-
-    /*
-     * Tipografía y padding interno de la card ligeramente más generosos
-     * que en móvil — antes quedaban idénticos a los de un viewport de
-     * 360px dentro de una card 2-3x más ancha, lo que acentuaba el
-     * vacío visual.
-     */
-    .card-name { font-size: 17px; }
-    .card-addr { font-size: 13.5px; }
+@media (max-width: 767px) {
     .card-top { padding: 18px 20px 12px; }
     .card-actions { padding: 4px 20px 18px; }
     .card-detail-row { font-size: 13.5px; }
