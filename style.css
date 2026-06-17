@@ -739,10 +739,16 @@ body {
      * Logo y buscador quedan en la misma línea horizontal.
      * El buscador se limita a 400px y queda pegado al logo por la izquierda.
      * padding-right da respiro al borde derecho del header.
+     *
+     * El fondo navy (.main-header) sigue ocupando el 100% del ancho de
+     * pantalla — NO se le pone max-width acá, porque eso recortaría el
+     * fondo y dejaría gris a los costados. Lo que se centra es el
+     * contenido interno (logo + buscador) vía padding simétrico.
      */
     .main-header {
         flex-direction: row;
         align-items: center;
+        justify-content: center;
         padding-right: 16px;
     }
 
@@ -762,9 +768,27 @@ body {
     }
 }
 
-@media (min-width: 1100px) {
-    .search-container--hero { max-width: 1200px; }
+@media (min-width: 1300px) {
+    /*
+     * En pantallas muy grandes el conjunto logo+buscador (que tiene un
+     * ancho natural acotado) se centra dentro de un riel de 1200px,
+     * igual que el resto del contenido (cards, sub-nav). Esto evita que
+     * el buscador termine pegado al borde derecho de un monitor 1920px.
+     */
+    .main-header > .header-content,
+    .main-header > .search-container--hero {
+        flex-basis: auto;
+    }
+
+    .main-header {
+        padding-left: calc((100% - 1200px) / 2);
+        padding-right: calc((100% - 1200px) / 2);
+        justify-content: flex-start;
+    }
 }
+
+/* (el ancho del buscador en pantallas grandes ya queda resuelto arriba,
+   en los bloques de 768px y 1300px — no se necesita un override extra) */
 
 /* ── 8. NAVEGACIÓN SECUNDARIA (Tabs) ── */
 /*
@@ -1040,6 +1064,16 @@ body {
 }
 
 @media (min-width: 1100px) {
+    /*
+     * FIX: antes max-width: 1200px con 3 columnas dejaba cada card en
+     * ~387px de ancho — demasiado para el poco contenido que tiene cada
+     * una (nombre, dirección de 1 línea, 2 botones), generando esa
+     * sensación de "card vacía" que se ve en la auditoría visual.
+     * Se baja a 980px: cada card queda en ~313px, una proporción mucho
+     * más cercana al contenido real. El espacio que se libera a los
+     * costados es intencional — es el "aire" que le faltaba al layout
+     * general, no espacio perdido dentro de cada card.
+     */
     .header-content,
     .search-container,
     .sub-nav,
@@ -1048,11 +1082,26 @@ body {
     #contenedor-cards,
     .cards-grid,
     .section-divider {
-        max-width: 1200px;
+        max-width: 980px;
     }
 
     #contenedor-cards,
-    .cards-grid { grid-template-columns: repeat(3, 1fr); }
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    /*
+     * Tipografía y padding interno de la card ligeramente más generosos
+     * que en móvil — antes quedaban idénticos a los de un viewport de
+     * 360px dentro de una card 2-3x más ancha, lo que acentuaba el
+     * vacío visual.
+     */
+    .card-name { font-size: 17px; }
+    .card-addr { font-size: 13.5px; }
+    .card-top { padding: 18px 20px 12px; }
+    .card-actions { padding: 4px 20px 18px; }
+    .card-detail-row { font-size: 13.5px; }
 }
 
 /* ── 15. SEPARADOR DE SECCIÓN ── */
@@ -1305,6 +1354,13 @@ body {
     color: rgba(255, 255, 255, 0.4);
     font-family: var(--font-base);
     margin-top: 10px;
+}
+
+/* Ajustes Desktop — sin bottom-nav, no hace falta el padding-bottom extra de 120px pensado para móvil */
+@media (min-width: 768px) {
+    .social-footer {
+        padding: 60px 20px 60px;
+    }
 }
 
 /* Ajustes Mobile */
