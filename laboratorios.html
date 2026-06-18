@@ -6,7 +6,7 @@
     <title>Laboratorios de Análisis Clínicos en Bahía Blanca | BAHI.ar</title>
 
     <meta name="description" content="Laboratorios de análisis clínicos en Bahía Blanca. Buscá por localidad, obra social, domicilio e inyectables.">
-    <link rel="canonical" href="https://bahiar.github.io/bhi/laboratorios.html">
+    <link rel="canonical" href="https://www.bahi.ar/laboratorios.html">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/images/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -76,9 +76,93 @@
 
     <meta property="og:title" content="Laboratorios de Análisis Clínicos en Bahía Blanca | BAHI.ar">
     <meta property="og:description" content="Laboratorios de análisis clínicos en Bahía Blanca. Buscá por localidad, obra social, domicilio e inyectables.">
-    <meta property="og:image" content="https://bahiar.github.io/bhi/assets/images/whatsapp.png">
-    <meta property="og:url" content="https://bahiar.github.io/bhi/laboratorios.html">
+    <meta property="og:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+    <meta property="og:url" content="https://www.bahi.ar/laboratorios.html">
     <meta property="og:type" content="website">
+
+    <!-- Geo Meta / SEO Local -->
+    <meta name="geo.region" content="AR-B">
+    <meta name="geo.placename" content="Bahía Blanca, Buenos Aires, Argentina">
+    <meta name="geo.position" content="-38.7183;-62.2661">
+    <meta name="ICBM" content="-38.7183, -62.2661">
+
+    <!-- Schema.org / Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bahi.ar/#website",
+          "url": "https://www.bahi.ar/",
+          "name": "BAHI.ar",
+          "description": "Directorio de salud para Bahía Blanca: farmacias de turno, guardias médicas y laboratorios.",
+          "inLanguage": "es-AR",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.bahi.ar/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://www.bahi.ar/#business",
+          "name": "BAHI.ar",
+          "url": "https://www.bahi.ar/",
+          "description": "Guía médica digital para Bahía Blanca, Ingeniero White, Cabildo y Cerri. Farmacias de turno, guardias 24hs y laboratorios clínicos.",
+          "areaServed": {
+            "@type": "City",
+            "name": "Bahía Blanca",
+            "containedInPlace": {
+              "@type": "State",
+              "name": "Buenos Aires",
+              "containedInPlace": {
+                "@type": "Country",
+                "name": "Argentina"
+              }
+            }
+          },
+          "telephone": "+542914661177",
+          "sameAs": [
+            "https://www.facebook.com/guiabahiar/",
+            "https://www.instagram.com/guiabahiar"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Qué es BAHI.ar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Es una guía médica digital para los vecinos de Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Reúne farmacias de turno, guardias, laboratorios y emergencias."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Con qué frecuencia se actualizan las farmacias de turno?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Las farmacias de turno se actualizan diariamente a las 8:30 hs."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Funciona sin conexión a internet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, de forma parcial. Una vez visitada con conexión, el contenido queda guardado en el dispositivo."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <meta name="theme-color" content="#191971">
     <meta name="apple-mobile-web-app-capable" content="yes">
