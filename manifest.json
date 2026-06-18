@@ -1,15 +1,16 @@
 {
   "name": "BAHI.ar",
   "short_name": "BAHI.ar",
-  "description": "Directorio de salud, farmacias y guardias en Bahía Blanca.",
-  "start_url": "/bhi/index.html",
-  "scope": "/bhi/",
+  "description": Guía de salud, farmacias y guardias en Bahía Blanca.",
+  "start_url": "/index.html?utm_source=pwa&utm_medium=homescreen",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-
   "background_color": "#191971",
   "theme_color": "#191971",
-
+  "lang": "es-AR",
+  "categories": ["health", "medical", "local"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "icon-192.png",
@@ -36,7 +37,6 @@
       "purpose": "maskable"
     }
   ],
-
   "screenshots": [
     {
       "src": "screenshot-mobile.png",
@@ -45,11 +45,5 @@
       "form_factor": "narrow",
       "label": "Farmacias de turno en Bahía Blanca"
     }
-  ],
-
-  "categories": ["health", "medical"],
-
-  "lang": "es-AR",
-
-  "prefer_related_applications": false
+  ]
 }
