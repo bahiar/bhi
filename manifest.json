@@ -1,37 +1,51 @@
 {
-  "name": "BAHI.ar",
+  "name": "BAHI.ar — Salud en Bahía Blanca",
   "short_name": "BAHI.ar",
-  "description": Guía de salud, farmacias y guardias en Bahía Blanca.",
-  "start_url": "/index.html?utm_source=pwa&utm_medium=homescreen",
+  "description": "Farmacias de turno, guardias médicas 24hs y laboratorios en Bahía Blanca, Argentina.",
+  "start_url": "/?utm_source=pwa&utm_medium=homescreen",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#191971",
   "theme_color": "#191971",
+  "background_color": "#191971",
   "lang": "es-AR",
+  "dir": "ltr",
   "categories": ["health", "medical", "local"],
   "prefer_related_applications": false,
+  "related_applications": [],
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "/assets/icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icon-192-maskable.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "icon-512.png",
+      "src": "/assets/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icon-512-maskable.png",
+      "src": "/assets/icons/icon-maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -39,11 +53,41 @@
   ],
   "screenshots": [
     {
-      "src": "screenshot-mobile.png",
+      "src": "/assets/screenshots/farmacias-mobile.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Farmacias de turno en Bahía Blanca"
+    },
+    {
+      "src": "/assets/screenshots/guardias-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Guardias médicas 24hs"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Farmacias de Turno",
+      "short_name": "Turno",
+      "description": "Ver farmacias de turno de hoy",
+      "url": "/farmacias.html",
+      "icons": [{ "src": "/assets/icons/shortcut-farmacias.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Guardias Médicas",
+      "short_name": "Guardias",
+      "description": "Guardias y emergencias 24hs",
+      "url": "/guardias.html",
+      "icons": [{ "src": "/assets/icons/shortcut-guardias.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Laboratorios",
+      "short_name": "Labs",
+      "description": "Laboratorios clínicos con análisis de sangre",
+      "url": "/laboratorios.html",
+      "icons": [{ "src": "/assets/icons/shortcut-labs.png", "sizes": "96x96" }]
     }
   ]
 }
