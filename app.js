@@ -5,6 +5,34 @@
 
 'use strict';
 
+// ── 0. INSTALACIÓN PWA — CAPTURA TEMPRANA DEL EVENTO ──────────────────────────
+//
+// 'beforeinstallprompt' puede dispararse ANTES de 'DOMContentLoaded', así que
+// el listener se registra acá arriba (no dentro del bloque de inicialización)
+// para no correr el riesgo de perderlo.
+
+let deferredInstallPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+    // Evita que el navegador muestre su mini-banner de instalación nativo.
+    event.preventDefault();
+
+    // Si el usuario ya descartó el banner en esta sesión, no insistimos.
+    if (sessionStorage.getItem('bahi_install_dismissed') === 'true') return;
+
+    // Guardamos el evento para dispararlo después, desde nuestro propio botón.
+    deferredInstallPrompt = event;
+
+    mostrarBannerInstalacion();
+});
+
+window.addEventListener('appinstalled', () => {
+    ocultarBannerInstalacion();
+    deferredInstallPrompt = null;
+    console.log('[BAHI.ar] PWA instalada correctamente.');
+    localStorage.setItem('bahi_pwa_installed', 'true');
+});
+
 // ── 1. UTILIDADES GLOBALES DE SEGURIDAD ───────────────────────────────────────
 
 /**
@@ -172,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     configurarBuscador();
     configurarBannerActualizacion();
     configurarBotonCompartir();
+    configurarInstalacionPWA();
 });
 
 // ── 5. BUSCADOR GLOBAL ────────────────────────────────────────────────────────
@@ -295,5 +324,80 @@ function configurarBotonCompartir() {
 
         const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
+    });
+}
+
+// ── 9. INSTALACIÓN PWA PERSONALIZADA ─────────────────────────────────────────
+//
+// El evento 'beforeinstallprompt' y 'appinstalled' ya se escuchan arriba
+// (sección 0), antes de DOMContentLoaded. Acá solo va el manejo del banner
+// (crear/mostrar/ocultar) y el click del botón "Instalar".
+
+/** Crea (si no existe) y muestra el banner flotante de instalación. */
+function mostrarBannerInstalacion() {
+    let banner = document.getElementById('pwa-install-banner');
+    if (banner) {
+        banner.hidden = false;
+        requestAnimationFrame(() => banner.classList.add('is-visible'));
+        return;
+    }
+
+    banner = document.createElement('div');
+    banner.id = 'pwa-install-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-live', 'polite');
+    banner.setAttribute('aria-label', 'Instalar aplicación');
+    banner.innerHTML = `
+        <div class="pwa-install-banner__text">
+            <strong>Instalá BAHI.ar</strong>
+            Accedé más rápido, incluso sin conexión.
+        </div>
+        <div class="pwa-install-banner__actions">
+            <button id="btn-pwa-instalar" class="pwa-install-banner__btn pwa-install-banner__btn--install" type="button">Instalar</button>
+            <button id="btn-pwa-descartar" class="pwa-install-banner__btn pwa-install-banner__btn--dismiss" type="button" aria-label="Cerrar">Ahora no</button>
+        </div>`;
+    document.body.appendChild(banner);
+
+    // Forzamos un reflow antes de agregar la clase para que la transición CSS
+    // (definida en style.css) se dispare correctamente.
+    requestAnimationFrame(() => banner.classList.add('is-visible'));
+}
+
+/** Oculta el banner sin destruirlo del DOM (se reutiliza si vuelve a hacer falta). */
+function ocultarBannerInstalacion() {
+    const banner = document.getElementById('pwa-install-banner');
+    if (!banner) return;
+    banner.classList.remove('is-visible');
+}
+
+/** Configura los listeners de click de los botones del banner de instalación. */
+function configurarInstalacionPWA() {
+    document.addEventListener('click', async (e) => {
+        // Click en "Instalar"
+        if (e.target.id === 'btn-pwa-instalar') {
+            if (!deferredInstallPrompt) {
+                console.warn('[BAHI.ar] No hay prompt de instalación disponible.');
+                ocultarBannerInstalacion();
+                return;
+            }
+            try {
+                deferredInstallPrompt.prompt();
+                const { outcome } = await deferredInstallPrompt.userChoice;
+                console.log(`[BAHI.ar] Resultado de instalación: ${outcome}`);
+            } catch (err) {
+                console.error('[BAHI.ar] Error al mostrar el prompt de instalación:', err);
+            } finally {
+                // El evento solo puede usarse una vez.
+                deferredInstallPrompt = null;
+                ocultarBannerInstalacion();
+            }
+            return;
+        }
+
+        // Click en "Ahora no"
+        if (e.target.id === 'btn-pwa-descartar') {
+            ocultarBannerInstalacion();
+            sessionStorage.setItem('bahi_install_dismissed', 'true');
+        }
     });
 }

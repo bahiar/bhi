@@ -1453,3 +1453,96 @@ body {
         height: 22px;
     }
 }
+
+/* ── 13. BANNER DE INSTALACIÓN PWA (Install Prompt) ──
+ * Banner flotante personalizado mostrado cuando el navegador dispara
+ * 'beforeinstallprompt' (ver app.js, sección 0 y 9).
+ * Estructura análoga a #update-banner pero flotante (no sticky), ya que
+ * no compite por espacio con el contenido — aparece sobre todo lo demás.
+ */
+#pwa-install-banner {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%) translateY(120%);
+    width: min(420px, calc(100% - 32px));
+    background: var(--primary);
+    color: #fff;
+    border-radius: var(--radius-card);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-soft), 0 8px 24px rgba(25, 25, 113, 0.35);
+    z-index: 1000;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#pwa-install-banner.is-visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.pwa-install-banner__text {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.35;
+    font-family: var(--font-base);
+}
+
+.pwa-install-banner__text strong {
+    display: block;
+    font-family: var(--font-brand);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.pwa-install-banner__actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.pwa-install-banner__btn {
+    border: none;
+    border-radius: var(--radius-btn);
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    /* Mínimo táctil reducido en altura porque es un botón secundario dentro
+     * de un banner compacto; el ancho compensa el área de toque. */
+    min-height: 36px;
+}
+
+.pwa-install-banner__btn--install {
+    background: #fff;
+    color: var(--primary);
+}
+
+.pwa-install-banner__btn--install:hover {
+    background: var(--bg-main);
+}
+
+.pwa-install-banner__btn--dismiss {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    opacity: 0.85;
+}
+
+.pwa-install-banner__btn--dismiss:hover {
+    opacity: 1;
+}
+
+/* En pantallas muy chicas, apilamos texto y acciones para que no se compriman */
+@media (max-width: 360px) {
+    #pwa-install-banner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .pwa-install-banner__actions {
+        justify-content: flex-end;
+    }
+}
