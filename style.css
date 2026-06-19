@@ -10,36 +10,26 @@
 }
 
 :root {
-    
     --primary: #191971;
-    --navy:    #191971;          
+    --navy: #191971;
     --accent: #1F75FE;
-    --bg-main: #EEF2F7;          
+    --bg-main: #EEF2F7;
     --card-bg: #FFFFFF;
     --text-main: #0F172A;
     --text-muted: #525E73;
-    --border-light: #E2E8F0;     
-
-    
+    --border-light: #E2E8F0;
     --orange: #FF6B00;
     --orange-dark: #CC5500;
     --orange-light: rgba(255, 107, 0, 0.10);
     --orange-border: rgba(255, 107, 0, 0.25);
-
-    
     --radius-card: 16px;
     --radius-btn: 12px;
-    
     --shadow-soft: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.06);
-
-    
     --font-base: system-ui, -apple-system, BlinkMacSystemFont,
                  "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     --font-brand: 'Plus Jakarta Sans', 'varela_roundregular', var(--font-base);
-
-    
-    --cat-farmacia:    var(--orange);
-    --cat-guardia:     #DC2626;
+    --cat-farmacia: var(--orange);
+    --cat-guardia: #DC2626;
     --cat-laboratorio: var(--accent);
 }
 
@@ -68,7 +58,6 @@ body {
 }
 
 .main-header {
-    
     background: linear-gradient(135deg, #191971 0%, #1a2f8e 100%);
     padding: 0;
     height: auto;
@@ -84,7 +73,7 @@ body {
     align-items: center;
     width: 100%;
     padding: 0 16px;
-    height: 52px;                
+    height: 52px;
 }
 
 .header-divider {
@@ -148,8 +137,6 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 12px;
     line-height: 1;
-    
-    min-height: 0;
 }
 
 .ctx-live {
@@ -174,7 +161,7 @@ body {
 
 @keyframes ctx-pulse {
     0%, 100% { opacity: 1; }
-    50%       { opacity: 0.25; }
+    50% { opacity: 0.25; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -192,7 +179,6 @@ body {
 .ctx-text {
     color: rgba(255, 255, 255, 0.65);
     font-size: 11px;
-    
     overflow: hidden;
     text-overflow: ellipsis;
     min-width: 0;
@@ -218,7 +204,6 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    
     min-height: 44px;
     padding: 0 16px;
     border-radius: var(--radius-btn);
@@ -227,11 +212,9 @@ body {
     font-weight: 600;
     cursor: pointer;
     border: none;
-    
     touch-action: manipulation;
     transition: background 0.15s, opacity 0.15s;
     text-decoration: none;
-    
     will-change: opacity;
 }
 
@@ -246,13 +229,10 @@ body {
     overflow: visible;
     color: inherit;
 }
+
 .btn-icon--lg {
     width: 20px;
     height: 20px;
-}
-
-.btn-icon--maps {
-    color: unset;
 }
 
 .btn-accent {
@@ -326,7 +306,7 @@ body {
 
 .card-name {
     font-size: 16px;
-    font-weight: 700;            
+    font-weight: 700;
     font-family: var(--font-brand);
     color: var(--text-main);
     line-height: 1.3;
@@ -345,7 +325,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
-    
     padding: 2px 16px 14px;
 }
 
@@ -377,7 +356,6 @@ body {
     align-items: flex-start;
     justify-content: space-between;
     gap: 10px;
-    
     padding: 14px 16px 10px;
 }
 
@@ -541,7 +519,7 @@ body {
 }
 
 @keyframes skeleton-shimmer {
-    0%   { background-position: 200% 0; }
+    0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
 }
 
@@ -600,7 +578,7 @@ body {
 
 .search-container--hero {
     margin: 0 16px 10px;
-    max-width: 280px;   
+    max-width: 280px;
 }
 
 .search-container--hero input[type="text"] {
@@ -625,7 +603,6 @@ body {
 }
 
 @media (min-width: 768px) {
-    
     .main-header {
         flex-direction: row;
         align-items: center;
@@ -650,7 +627,6 @@ body {
 }
 
 @media (min-width: 1300px) {
-    
     .main-header > .header-content,
     .main-header > .search-container--hero {
         flex-basis: auto;
@@ -669,7 +645,7 @@ body {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    display: none;               
+    display: none;
     width: 100%;
     box-sizing: border-box;
     background: #fff;
@@ -755,7 +731,6 @@ body {
     font-size: 13px;
     font-weight: 600;
     position: sticky;
-    
     top: var(--header-h, 81px);
     z-index: 40;
     box-shadow: 0 2px 8px rgba(31, 117, 254, 0.2);
@@ -855,7 +830,6 @@ body {
     box-shadow: var(--shadow-soft);
     font-family: var(--font-base);
     flex-shrink: 0;
-    
     min-height: 44px;
 }
 
@@ -880,7 +854,6 @@ body {
 #contenedor-cards,
 .cards-grid {
     padding: 0 16px 32px;
-    
     padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
 }
 
@@ -898,23 +871,22 @@ body {
         margin-right: auto;
     }
 
-    
-    .sub-nav { 
+    .sub-nav {
         display: flex;
         width: 100%;
         justify-content: center;
         padding: 0 16px;
     }
-    
+
     .sub-nav-list {
         justify-content: center;
         gap: 12px;
         max-width: 1200px;
     }
+
     .cards-grid {
         padding-left: 0;
         padding-right: 0;
-        
         padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -939,7 +911,6 @@ body {
 }
 
 @media (min-width: 1100px) {
-    
     .header-content,
     .search-container,
     .sub-nav,
@@ -957,7 +928,6 @@ body {
         gap: 18px;
     }
 
-    
     .card-name { font-size: 17px; }
     .card-addr { font-size: 13.5px; }
     .card-top { padding: 18px 20px 12px; }
@@ -980,10 +950,6 @@ body {
 
 .filter-chips-container::-webkit-scrollbar {
     display: none;
-}
-
-.filter-chips-container > * {
-    
 }
 
 .filter-bar {
@@ -1118,7 +1084,6 @@ body {
     font-family: var(--font-brand);
     letter-spacing: 0.02em;
     transition: color 0.15s;
-    
     min-height: 56px;
     touch-action: manipulation;
     position: relative;
@@ -1151,7 +1116,7 @@ body {
 .social-footer {
     background-color: var(--navy);
     color: white;
-    padding: 60px 20px 120px; 
+    padding: 60px 20px 120px;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 40px;
@@ -1233,11 +1198,11 @@ body {
     .social-footer {
         padding: 40px 16px 110px;
     }
-    
+
     .social-title {
         font-size: 17px;
     }
-    
+
     .social-icon-link {
         width: 46px;
         height: 46px;
@@ -1301,7 +1266,6 @@ body {
     font-size: 12px;
     font-weight: 700;
     cursor: pointer;
-    
     min-height: 36px;
 }
 
