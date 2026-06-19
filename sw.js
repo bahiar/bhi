@@ -1,6 +1,6 @@
 /**
  * BAHI.ar - Service Worker
- * v4.6
+ * v4.0
  *
  * Estrategias de caché:
  * ┌─────────────────────────────────┬──────────────────────────────────────────┐
@@ -8,16 +8,28 @@
  * ├─────────────────────────────────┼──────────────────────────────────────────┤
  * │ Navegación HTML (mode=navigate) │ Network-First → evita HTML atrapado      │
  * │ /data/turnero.json              │ Stale-While-Revalidate → urgencia: dato  │
+ * │                                 │ disponible al instante, actualiza en BG  │
  * │ /data/*.json (resto)            │ Network-First → padrón siempre fresco    │
  * │ Shell (CSS, JS, manifest)       │ Cache-First → carga instantánea          │
  * │ Assets estáticos sin precachear │ Cache-First con fallback a red           │
  * └─────────────────────────────────┴──────────────────────────────────────────┘
+ *
+ * Cambios respecto a v3.0:
+ * - turnero.json → estrategia Stale-While-Revalidate (crítico para urgencias)
+ * - turnero.json agregado a DATA_FILES (precacheado en install)
+ * - CACHE_VERSION bumped a v4.0 para forzar ciclo install→activate
+ * - Separación explícita de isTurneroRequest() para la estrategia SWR
+ * - Mensaje DATOS_EN_CACHE diferenciado para turnero vs padrón
  */
 
-const CACHE_VERSION = 'v4.6';
-const CACHE_NAME = `bahi-static-${CACHE_VERSION}`;
+// ─── Versión ──────────────────────────────────────────────────────────────────
+// ⚠ Incrementar en cada deploy para invalidar el caché y forzar install.
+// v4.6: fix tamaño íconos de detalle (width/height explícitos en SVG).
+const CACHE_VERSION   = 'v4.6';
+const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
+// ─── Shell assets → Cache-First ───────────────────────────────────────────────
 const SHELL_ASSETS = [
     './',
     './index.html',
@@ -29,11 +41,15 @@ const SHELL_ASSETS = [
     './manifest.json',
 ];
 
+// ─── Datos → precacheados en DATA_CACHE_NAME ──────────────────────────────────
 const DATA_FILES = [
     './data/bd_bahiar.json',
-    './data/turnero.json',
+    './data/turnero.json',   // Crítico: determina la farmacia de turno del día
 ];
 
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+/** Filtra requests que no deben interceptarse (no-GET, externos, el propio SW). */
 function shouldHandle(request) {
     if (request.method !== 'GET') return false;
     const url = new URL(request.url);
@@ -42,33 +58,46 @@ function shouldHandle(request) {
     return true;
 }
 
+/** Devuelve true para requests de navegación de página completa. */
 function isNavigationRequest(request) {
     return request.mode === 'navigate';
 }
 
+/**
+ * Devuelve true para turnero.json.
+ * Este archivo cambia cada día → usa Stale-While-Revalidate:
+ * responde con caché inmediatamente y actualiza en segundo plano.
+ * El usuario ve datos al instante aunque esté en 3G.
+ */
 function isTurneroRequest(url) {
     return url.pathname.endsWith('turnero.json');
 }
 
+/** Devuelve true para cualquier JSON en /data/ (excepto turnero). */
 function isDataRequest(url) {
     return url.pathname.endsWith('.json') && url.pathname.includes('/data/');
 }
 
+/** Guarda en caché solo respuestas básicas con status 200. */
 async function putInCache(cacheName, request, response) {
     if (!response || response.status !== 200 || response.type === 'opaque') return;
     const cache = await caches.open(cacheName);
     await cache.put(request, response.clone());
 }
 
+/** Notifica a todos los clientes con ventana abierta. */
 async function notificarClientes(payload) {
     const clients = await self.clients.matchAll({ type: 'window' });
     clients.forEach(client => client.postMessage(payload));
 }
 
+// ─── INSTALL ──────────────────────────────────────────────────────────────────
+
 self.addEventListener('install', (event) => {
     console.log(`[SW ${CACHE_VERSION}] install`);
     event.waitUntil(
         (async () => {
+            // Shell → CACHE_NAME
             const shellCache = await caches.open(CACHE_NAME);
             await Promise.allSettled(
                 SHELL_ASSETS.map(asset =>
@@ -78,6 +107,7 @@ self.addEventListener('install', (event) => {
                 )
             );
 
+            // Datos → DATA_CACHE_NAME
             const dataCache = await caches.open(DATA_CACHE_NAME);
             await Promise.allSettled(
                 DATA_FILES.map(asset =>
@@ -92,6 +122,8 @@ self.addEventListener('install', (event) => {
         })()
     );
 });
+
+// ─── ACTIVATE ─────────────────────────────────────────────────────────────────
 
 self.addEventListener('activate', (event) => {
     console.log(`[SW ${CACHE_VERSION}] activate — limpiando cachés viejos`);
@@ -110,16 +142,22 @@ self.addEventListener('activate', (event) => {
             await self.clients.claim();
             console.log(`[SW ${CACHE_VERSION}] activate completo.`);
 
+            // Notifica a los clientes abiertos que hay una versión nueva.
+            // app.js mostrará el banner de actualización.
             await notificarClientes({ type: 'SW_UPDATED', version: CACHE_VERSION });
         })()
     );
 });
+
+// ─── FETCH ────────────────────────────────────────────────────────────────────
 
 self.addEventListener('fetch', (event) => {
     if (!shouldHandle(event.request)) return;
 
     const url = new URL(event.request.url);
 
+    // ── 1. Network-First para navegación HTML ────────────────────────────────
+    // Garantiza que el HTML sea siempre el más reciente tras un deploy.
     if (isNavigationRequest(event.request)) {
         event.respondWith(
             (async () => {
@@ -139,21 +177,41 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // ── 2. Stale-While-Revalidate para turnero.json ──────────────────────────
+    //
+    // Por qué SWR para el turnero:
+    //   - Es el archivo MÁS CRÍTICO (determina qué farmacia atiende hoy).
+    //   - Cambia cada día → la caché se vuelve obsoleta diariamente.
+    //   - En 3G la descarga puede tardar 1-3 segundos.
+    //
+    // Con SWR el flujo es:
+    //   a) Responde INMEDIATAMENTE con la versión en caché (0ms percibido).
+    //   b) En paralelo descarga la versión actualizada en segundo plano.
+    //   c) Guarda el nuevo turnero en caché para el próximo acceso.
+    //   d) Notifica al cliente con TURNERO_ACTUALIZADO para que recargue
+    //      si los datos cambiaron (opcional: app.js puede ignorarlo).
+    //
+    // Degradación offline: si no hay red ni caché → 503 estructurado.
     if (isTurneroRequest(url)) {
         event.respondWith(
             (async () => {
                 const cached = await caches.match(event.request);
 
+                // Lanzar la actualización en segundo plano (no await aquí)
                 const networkPromise = fetch(event.request).then(async (response) => {
                     await putInCache(DATA_CACHE_NAME, event.request, response.clone());
                     await notificarClientes({ tipo: 'TURNERO_ACTUALIZADO' });
                     return response;
-                }).catch(() => {});
+                }).catch(() => {
+                    // Sin red en segundo plano: silencioso, ya tenemos el caché
+                });
 
                 if (cached) {
+                    // Respuesta inmediata desde caché
                     return cached;
                 }
 
+                // Sin caché → esperar la red (primera carga o caché limpio)
                 try {
                     return await networkPromise || new Response(
                         JSON.stringify({ error: 'Sin datos de turno disponibles.' }),
@@ -170,6 +228,8 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // ── 3. Network-First para el resto de datos JSON ─────────────────────────
+    // bd_bahiar.json se actualiza menos frecuentemente, pero queremos datos frescos.
     if (isDataRequest(url)) {
         event.respondWith(
             (async () => {
@@ -195,6 +255,8 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // ── 4. Cache-First para assets estáticos (CSS, JS, imágenes, fuentes) ────
+    // Carga instantánea desde caché; solo va a la red si no está cacheado.
     event.respondWith(
         (async () => {
             const cached = await caches.match(event.request);
@@ -212,7 +274,10 @@ self.addEventListener('fetch', (event) => {
     );
 });
 
+// ─── MENSAJES ─────────────────────────────────────────────────────────────────
+
 self.addEventListener('message', (event) => {
+    // Compatible con {action: 'skipWaiting'} y string plano 'SKIP_WAITING'
     if (
         event.data?.action === 'skipWaiting' ||
         event.data === 'SKIP_WAITING'
@@ -221,45 +286,3 @@ self.addEventListener('message', (event) => {
         self.skipWaiting();
     }
 });
-
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * AUDITORÍA Y OPTIMIZACIÓN — RESUMEN DE CAMBIOS
- * ═══════════════════════════════════════════════════════════════════════════
- *
- * ✓ ELIMINACIÓN DE RESIDUOS:
- *   • Removidos 35+ comentarios explicativos sobre estrategias de caché
- *   • Eliminados comentarios de sección (── X ──) que duplicaban código
- *   • Removidos comentarios detallados sobre flujos Stale-While-Revalidate
- *   • Eliminados comentarios de explicación de variables globales
- *   • Removidos comentarios sobre degradación offline y errores
- *   • Conservada licencia y tabla de estrategias de caché (documentación técnica)
- *
- * ✓ OPTIMIZACIONES APLICADAS:
- *   • Reducción de espacios en blanco innecesarios en bloques de código
- *   • Consolidación de secciones sin cambiar lógica funcional
- *   • Mantenimiento de estructura modular (install → activate → fetch → message)
- *   • Preservación de todos los event listeners y su orden crítico
- *
- * ✓ FUNCIONALIDAD COMPLETAMENTE PRESERVADA:
- *   • Estrategia Network-First para HTML (evita HTML atrapado en caché)
- *   • Estrategia Stale-While-Revalidate para turnero.json (dato crítico diario)
- *   • Estrategia Network-First para bd_bahiar.json (padrón de servicios)
- *   • Estrategia Cache-First para shell assets (CSS, JS, manifest)
- *   • Cache-First fallback para assets estáticos sin precachear
- *
- * ✓ CICLO PWA ÍNTEGRO:
- *   • INSTALL: precaché de shell y datos con manejo de errores robusto
- *   • ACTIVATE: limpieza de cachés antiguos y notificación SW_UPDATED
- *   • FETCH: cuatro estrategias distintas según tipo de request
- *   • MESSAGE: soporte para skipWaiting manual y comunicación app.js ↔ SW
- *
- * ✓ CÓDIGO CRÍTICO VERIFICADO:
- *   • shouldHandle() valida origin y descarta no-GET correctamente
- *   • putInCache() filtra opaque responses y status !== 200
- *   • notificarClientes() usa matchAll({ type: 'window' }) para precisión
- *   • Flujo SWR de turnero: cached || networkPromise fallback sin await
- *   • Mensajes TURNERO_ACTUALIZADO, DATOS_FRESCOS, DATOS_EN_CACHE intactos
- *
- * ═══════════════════════════════════════════════════════════════════════════
- */
