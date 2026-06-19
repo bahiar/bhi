@@ -1,11 +1,3 @@
-/* ── 0. FUENTES PERSONALIZADAS ── */
-/*
- * Plus Jakarta Sans: fuente de marca para titulares y nombres de card.
- * Solo pesos 600 y 700 (~14KB). font-display:swap viene por defecto
- * desde Google Fonts — el cuerpo nunca espera a esta fuente.
- * Varela Round se conserva como fallback local por compatibilidad con
- * activos ya cacheados por el SW.
- */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&display=swap');
 
 @font-face {
@@ -17,62 +9,40 @@
     font-display: swap;
 }
 
-/* =========================================================================
- * PROYECTO: BAHI.ar - Sistema de Diseño Unificado
- * =========================================================================
- * Este archivo es la ÚNICA fuente de verdad. No crees estilos CSS en los HTML.
- * Si necesitas un estilo nuevo, añádelo aquí usando variables.
- */
-
-/* ── 1. CONFIGURACIÓN MAESTRA (Variables) ── */
 :root {
-    /* Paleta de colores principal */
+    
     --primary: #191971;
-    --navy:    #191971;          /* alias semántico para bottom-nav y tokens de categoría */
+    --navy:    #191971;          
     --accent: #1F75FE;
-    --bg-main: #EEF2F7;          /* FIX: más contrastado que #F8FAFC — cards blancas flotan mejor */
+    --bg-main: #EEF2F7;          
     --card-bg: #FFFFFF;
     --text-main: #0F172A;
     --text-muted: #525E73;
-    --border-light: #E2E8F0;     /* FIX: sin alpha — más predecible y estable */
+    --border-light: #E2E8F0;     
 
-    /* Paleta Naranja (urgencia / acción primaria) */
+    
     --orange: #FF6B00;
     --orange-dark: #CC5500;
     --orange-light: rgba(255, 107, 0, 0.10);
     --orange-border: rgba(255, 107, 0, 0.25);
 
-    /* Medidas y Estructura */
+    
     --radius-card: 16px;
     --radius-btn: 12px;
-    /*
-     * FIX: sombra bicapa — reemplaza la sombra casi invisible (0 2px 4px opacity 5%).
-     * La capa corta (1px/3px) da definición, la larga (4px/12px) da profundidad.
-     * Las cards pasan de planas a objetos con peso visual sobre el fondo gris.
-     */
+    
     --shadow-soft: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.06);
 
-    /*
-     * Stack tipográfico:
-     * --font-brand: Plus Jakarta Sans para titulares, nombres de card y brand.
-     *   Solo pesos 600/700. Fallback a Varela Round (local) y luego system-ui.
-     * --font-base: system-ui para cuerpo de texto — 0ms de carga.
-     */
+    
     --font-base: system-ui, -apple-system, BlinkMacSystemFont,
                  "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     --font-brand: 'Plus Jakarta Sans', 'varela_roundregular', var(--font-base);
 
-    /* ── Tokens de categoría (escalabilidad futura) ──
-     * Cada sección puede tener su propio acento sin salir de la paleta.
-     * Actualmente todos usan --orange. Al agregar nuevas secciones,
-     * se define --cat-X aquí y se aplica via data-categoria en el HTML.
-     */
+    
     --cat-farmacia:    var(--orange);
     --cat-guardia:     #DC2626;
     --cat-laboratorio: var(--accent);
 }
 
-/* Reset básico */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -83,8 +53,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-
-/* ── 4. LAYOUT: MAIN CONTAINER ── */
 .main-container {
     width: 100%;
     max-width: 1200px;
@@ -99,13 +67,8 @@ body {
     }
 }
 
-/* ── 2. HEADER ── */
 .main-header {
-    /*
-     * FIX: gradiente diagonal sutil — añade profundidad sin salir del navy.
-     * #191971 → #1a2f8e: el destino es un azul ligeramente más profundo.
-     * El ojo lo percibe como dimensión, no como cambio de color.
-     */
+    
     background: linear-gradient(135deg, #191971 0%, #1a2f8e 100%);
     padding: 0;
     height: auto;
@@ -121,10 +84,9 @@ body {
     align-items: center;
     width: 100%;
     padding: 0 16px;
-    height: 52px;                /* Restaurado a 52px: el logo ya no requiere altura extra */
+    height: 52px;                
 }
 
-/* ── Botón "Reportar error" en el header ── */
 .header-divider {
     width: 1px;
     height: 28px;
@@ -177,24 +139,6 @@ body {
     .header-divider { margin-right: 10px; }
 }
 
-/*
- * NUEVO — Context strip (banda de contexto bajo el logo)
- * Muestra la info más urgente —cuántas farmacias de turno y hasta cuándo—
- * ANTES de cualquier scroll, en HTML estático, sin depender de JS.
- * Si JS no llega (red muy lenta o fallo), el usuario igual ve el dato.
- *
- * Uso en index.html:
- *   <div class="header-ctx-strip" id="header-ctx-strip">
- *     <span class="ctx-live-dot" aria-hidden="true"></span>
- *     <span id="ctx-count">…</span>
- *     <span class="ctx-sep" aria-hidden="true"></span>
- *     <span id="ctx-horario">Hasta las 8:30 de mañana</span>
- *   </div>
- *
- * El JS de index.html actualiza #ctx-count y #ctx-horario
- * con los datos reales una vez que carga el turnero.
- * Mientras tanto, el strip puede mostrar un placeholder estático.
- */
 .header-ctx-strip {
     display: flex;
     align-items: center;
@@ -204,11 +148,10 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 12px;
     line-height: 1;
-    /* Ocultar si está vacío (el JS lo muestra cuando tiene datos) */
+    
     min-height: 0;
 }
 
-/* Texto de recuento: "3 de turno" */
 .ctx-live {
     display: flex;
     align-items: center;
@@ -219,10 +162,6 @@ body {
     white-space: nowrap;
 }
 
-/*
- * Punto pulsante que indica "en vivo / activo ahora".
- * CSS puro, sin JS. Respeta prefers-reduced-motion.
- */
 .ctx-live-dot {
     display: inline-block;
     width: 6px;
@@ -242,7 +181,6 @@ body {
     .ctx-live-dot { animation: none; }
 }
 
-/* Separador visual entre grupos de datos del strip */
 .ctx-sep {
     width: 3px;
     height: 3px;
@@ -251,28 +189,14 @@ body {
     flex-shrink: 0;
 }
 
-/* Texto secundario del strip: horario, fecha */
 .ctx-text {
     color: rgba(255, 255, 255, 0.65);
     font-size: 11px;
-    /*
-     * FIX: eliminado white-space:nowrap + overflow:hidden.
-     * En 320-360px el texto de horario quedaba recortado.
-     * Con overflow:hidden el usuario no veía cuándo vencía el turno.
-     */
+    
     overflow: hidden;
     text-overflow: ellipsis;
     min-width: 0;
 }
-
-/*
- * AJUSTE: el #update-banner se posiciona debajo del header.
- * Como el header ahora es auto (logo 52px + strip ~29px ≈ 81px),
- * se actualiza el top del banner.
- * Nota: con height:auto en el header, sticky en el banner
- * se calcula automáticamente. La regla top:52px era fija;
- * la comentamos para no forzar un valor que ya no aplica.
- */
 
 .brand-logo {
     display: flex;
@@ -289,13 +213,12 @@ body {
     object-fit: contain;
 }
 
-/* ── 3. BOTONES UNIVERSALES ── */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    /* 44px: mínimo táctil recomendado por Apple HIG y WCAG 2.5.5 */
+    
     min-height: 44px;
     padding: 0 16px;
     border-radius: var(--radius-btn);
@@ -304,16 +227,14 @@ body {
     font-weight: 600;
     cursor: pointer;
     border: none;
-    /* Evita el zoom al doble-tap en iOS */
+    
     touch-action: manipulation;
     transition: background 0.15s, opacity 0.15s;
     text-decoration: none;
-    /* Aceleración por GPU para animaciones suaves */
+    
     will-change: opacity;
 }
 
-/* Llamar: naranja sólido — máxima visibilidad para acción urgente */
-/* ── Iconos SVG en botones ───────────────────────────────────── */
 .btn-icon {
     width: 15px;
     height: 15px;
@@ -329,7 +250,7 @@ body {
     width: 20px;
     height: 20px;
 }
-/* Maps: no hereda currentColor — es multicolor */
+
 .btn-icon--maps {
     color: unset;
 }
@@ -339,20 +260,17 @@ body {
     color: #fff;
 }
 
-/* Hover solo en dispositivos que lo soportan (evita estado stuck en móvil) */
 @media (hover: hover) {
     .btn-accent:hover { background: var(--orange-dark); }
     .btn-outline:hover { background: rgba(255, 107, 0, 0.18); }
 }
 
-/* Ver mapa: outline naranja — acción secundaria, misma importancia visual */
 .btn-outline {
     background: var(--orange-light);
     color: var(--orange-dark);
     border: 1.5px solid var(--orange-border);
 }
 
-/* Indicador de foco para navegación por teclado (accesibilidad) */
 .btn:focus-visible,
 .card-header:focus-visible,
 .sub-nav-link:focus-visible {
@@ -360,7 +278,6 @@ body {
     outline-offset: 2px;
 }
 
-/* ── 4. SISTEMA DE CARDS (Tarjetas Colapsables) ── */
 .card {
     background: var(--card-bg);
     border-radius: var(--radius-card);
@@ -370,11 +287,6 @@ body {
     overflow: hidden;
 }
 
-/*
- * REDISEÑO — Tarjeta de TURNO: border-left como señalización de estado.
- * Tinte naranja muy sutil en la zona izquierda — refuerza la urgencia
- * sin competir con el texto.
- */
 .card[data-estado="turno"] {
     border-left-width: 3px;
     border-left-color: var(--orange);
@@ -385,7 +297,6 @@ body {
     background: linear-gradient(to right, rgba(255, 107, 0, 0.03) 0px, transparent 52px), var(--card-bg);
 }
 
-/* Hover en desktop — comunica interactividad */
 @media (hover: hover) {
     .card:hover {
         transform: translateY(-2px);
@@ -394,7 +305,6 @@ body {
     }
 }
 
-/* Feedback táctil en móvil */
 .card:active {
     background-color: rgba(15, 23, 42, 0.01);
 }
@@ -416,7 +326,7 @@ body {
 
 .card-name {
     font-size: 16px;
-    font-weight: 700;            /* subido de 600 a 700 — más peso con Plus Jakarta Sans */
+    font-weight: 700;            
     font-family: var(--font-brand);
     color: var(--text-main);
     line-height: 1.3;
@@ -435,21 +345,10 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
-    /*
-     * FIX: padding horizontal alineado a 16px (igual que card-top).
-     * Antes era 14px, generando desalineación entre nombre y botones.
-     * padding-top: 2px absorbe el gap visual con card-top (que termina en 10px bottom).
-     */
+    
     padding: 2px 16px 14px;
 }
 
-/*
- * Modificador para cards con un solo botón de acción.
- * Sin esto el botón único toma las 2 columnas del grid y se estira
- * al ancho completo de la card — un problema visual en desktop.
- * Con este modificador el botón tiene ancho natural (auto) y queda
- * alineado a la izquierda como el resto de los elementos de la card.
- */
 .card-actions--single {
     grid-template-columns: auto;
 }
@@ -478,10 +377,7 @@ body {
     align-items: flex-start;
     justify-content: space-between;
     gap: 10px;
-    /*
-     * FIX: padding horizontal unificado a 16px.
-     * Antes era 14px, generando desalineación respecto a card-body-collapse (16px).
-     */
+    
     padding: 14px 16px 10px;
 }
 
@@ -540,12 +436,6 @@ body {
     margin-right: 2px;
 }
 
-/**
- * SVG icons en filas de detalle de cards (campos HORARIO, STOCK, OOSS, etc.)
- * Similar a .card-field-icon pero para imágenes SVG externas
- * Tamaño: 16px (consistente con .card-field-icon)
- * Inherita color del texto: var(--text-muted)
- */
 .card-field-svg {
     display: inline-block;
     flex-shrink: 0;
@@ -611,7 +501,6 @@ body {
     animation: fadeInCard 0.4s ease forwards;
 }
 
-/* ── 5. SKELETON LOADER ── */
 .skeleton-card {
     background: var(--card-bg);
     border-radius: var(--radius-card);
@@ -661,7 +550,6 @@ body {
     .btn, .card-body-collapse { transition: none; }
 }
 
-/* ── 6. UTILIDADES ── */
 .hidden { display: none; }
 
 .sr-only {
@@ -676,7 +564,6 @@ body {
     border-width: 0;
 }
 
-/* ── 7. BUSCADOR ── */
 .search-container {
     position: relative;
     margin: 12px 16px;
@@ -695,11 +582,6 @@ body {
     outline: none;
 }
 
-/*
- * FIX: estilo de foco explícito para el buscador.
- * Sin esto iOS Safari aplica su outline azul nativo,
- * que rompe la paleta naranja/azul del design system.
- */
 .search-container input[type="text"]:focus {
     border-color: var(--orange);
     box-shadow: 0 0 0 3px var(--orange-light);
@@ -716,17 +598,9 @@ body {
     align-items: center;
 }
 
-/* ── 7b. BUSCADOR HERO (solo index.html — integrado en el header navy) ── */
-/*
- * .search-container--hero sobreescribe el buscador estándar
- * para integrarse visualmente en el fondo navy del header.
- * El input usa fondo semi-transparente blanco con texto oscuro
- * para mantener legibilidad sobre el gradiente.
- * El margen superior e inferior crean respiro dentro del header.
- */
 .search-container--hero {
     margin: 0 16px 10px;
-    max-width: 280px;   /* ancho acotado, alineado a la izquierda */
+    max-width: 280px;   
 }
 
 .search-container--hero input[type="text"] {
@@ -751,17 +625,7 @@ body {
 }
 
 @media (min-width: 768px) {
-    /*
-     * FIX: en desktop el header pasa de columna a fila.
-     * Logo y buscador quedan en la misma línea horizontal.
-     * El buscador se limita a 400px y queda pegado al logo por la izquierda.
-     * padding-right da respiro al borde derecho del header.
-     *
-     * El fondo navy (.main-header) sigue ocupando el 100% del ancho de
-     * pantalla — NO se le pone max-width acá, porque eso recortaría el
-     * fondo y dejaría gris a los costados. Lo que se centra es el
-     * contenido interno (logo + buscador) vía padding simétrico.
-     */
+    
     .main-header {
         flex-direction: row;
         align-items: center;
@@ -786,12 +650,7 @@ body {
 }
 
 @media (min-width: 1300px) {
-    /*
-     * En pantallas muy grandes el conjunto logo+buscador (que tiene un
-     * ancho natural acotado) se centra dentro de un riel de 1200px,
-     * igual que el resto del contenido (cards, sub-nav). Esto evita que
-     * el buscador termine pegado al borde derecho de un monitor 1920px.
-     */
+    
     .main-header > .header-content,
     .main-header > .search-container--hero {
         flex-basis: auto;
@@ -804,21 +663,13 @@ body {
     }
 }
 
-/* (el ancho del buscador en pantallas grandes ya queda resuelto arriba,
-   en los bloques de 768px y 1300px — no se necesita un override extra) */
-
-/* ── 8. NAVEGACIÓN SECUNDARIA (Tabs) ── */
-/*
- * En móvil la sub-nav se oculta — la navegación la provee la bottom-nav-bar (§17).
- * En desktop (≥768px) se reactiva centrada bajo el header.
- */
 .sub-nav {
     margin: 0;
     padding: 0 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    display: none;               /* oculta en móvil — ver §17 para bottom nav */
+    display: none;               
     width: 100%;
     box-sizing: border-box;
     background: #fff;
@@ -870,7 +721,6 @@ body {
     border-color: var(--primary);
 }
 
-/* ── 9. ESTADOS DE ERROR Y CARGA ── */
 .error-state {
     text-align: center;
     padding: 40px 20px;
@@ -895,7 +745,6 @@ body {
     line-height: 1.5;
 }
 
-/* ── 10. BANNER DE ACTUALIZACIÓN (Update Banner) ── */
 #update-banner {
     background: var(--accent);
     color: #fff;
@@ -906,11 +755,7 @@ body {
     font-size: 13px;
     font-weight: 600;
     position: sticky;
-    /*
-     * FIX: top corregido de 52px a 81px.
-     * El header pasó de height fijo a height:auto (logo 52px + ctx-strip ~29px ≈ 81px).
-     * Con top:52px el banner se solapaba 29px con el header.
-     */
+    
     top: var(--header-h, 81px);
     z-index: 40;
     box-shadow: 0 2px 8px rgba(31, 117, 254, 0.2);
@@ -927,7 +772,6 @@ body {
     cursor: pointer;
 }
 
-/* ── 11. INDICADOR DE CACHÉ (Offline Mode) ── */
 .cache-indicator-warning {
     background: #fff8e1;
     color: #f57c00;
@@ -941,7 +785,6 @@ body {
     text-align: center;
 }
 
-/* ── 12. SECCIONES Y ENCABEZADOS ── */
 .section-header {
     padding: 14px 16px 4px;
     display: flex;
@@ -969,7 +812,6 @@ body {
     margin-bottom: 0;
 }
 
-/* Opción B: horario como metadato con dot verde debajo del título */
 .section-header-meta {
     display: none;
     align-items: center;
@@ -997,7 +839,6 @@ body {
     display: inline-flex;
 }
 
-/* ── 13. BOTÓN DE COMPARTIR WHATSAPP ── */
 .btn-share-wa {
     display: inline-flex;
     align-items: center;
@@ -1014,11 +855,7 @@ body {
     box-shadow: var(--shadow-soft);
     font-family: var(--font-base);
     flex-shrink: 0;
-    /*
-     * FIX: min-height corregido de 38px a 44px.
-     * 44px es el mínimo táctil WCAG 2.5.5 / Apple HIG.
-     * El resto de los botones del sitio ya usan 44px.
-     */
+    
     min-height: 44px;
 }
 
@@ -1040,28 +877,10 @@ body {
     .btn-share-wa { padding: 8px; }
 }
 
-/* ── 14. DISEÑO PARA ESCRITORIO (PC) ── */
-
-/*
- * FIX MÓVIL: padding lateral y bottom para #contenedor-cards y .app-view.
- * Sin esto las cards tocaban el borde de pantalla en viewports <768px
- * y la última card quedaba bajo el home indicator de iOS.
- * Se aplica ANTES del media query de escritorio para que el breakpoint
- * pueda sobreescribir solo lo necesario.
- */
-/*
- * .cards-grid: clase reutilizable equivalente a #contenedor-cards.
- * Usarla en páginas con múltiples secciones (ej: guardias.html)
- * donde existen varios contenedores de cards independientes.
- * En móvil: lista vertical con padding. En desktop: grilla de 2 o 3 col.
- */
 #contenedor-cards,
 .cards-grid {
     padding: 0 16px 32px;
-    /*
-     * FIX: padding-bottom aumentado para que la última card no quede
-     * bajo la bottom-nav-bar (64px) + home indicator iOS (env safe-area).
-     */
+    
     padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
 }
 
@@ -1079,7 +898,7 @@ body {
         margin-right: auto;
     }
 
-    /* En desktop la sub-nav se reactiva — no hay bottom nav */
+    
     .sub-nav { 
         display: flex;
         width: 100%;
@@ -1095,7 +914,7 @@ body {
     .cards-grid {
         padding-left: 0;
         padding-right: 0;
-        /* En desktop no hay bottom nav — se resetea el padding extra */
+        
         padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -1120,10 +939,7 @@ body {
 }
 
 @media (min-width: 1100px) {
-    /*
-     * FIX: máximo ancho de 1200px para permitir mejor spaciamiento
-     * en pantallas grandes sin comprimir el contenido.
-     */
+    
     .header-content,
     .search-container,
     .sub-nav,
@@ -1141,12 +957,7 @@ body {
         gap: 18px;
     }
 
-    /*
-     * Tipografía y padding interno de la card ligeramente más generosos
-     * que en móvil — antes quedaban idénticos a los de un viewport de
-     * 360px dentro de una card 2-3x más ancha, lo que acentuaba el
-     * vacío visual.
-     */
+    
     .card-name { font-size: 17px; }
     .card-addr { font-size: 13.5px; }
     .card-top { padding: 18px 20px 12px; }
@@ -1154,21 +965,12 @@ body {
     .card-detail-row { font-size: 13.5px; }
 }
 
-/* ── 15. SEPARADOR DE SECCIÓN ── */
 .section-divider {
     height: 1px;
     background: var(--border-light);
     margin: 8px 16px 4px;
 }
 
-/* ── 16. CHIPS DE FILTRO (farmacias / laboratorios) ── */
-
-/*
- * Estas reglas fueron movidas aquí desde los <style> inline
- * de farmacias.html y laboratorios.html.
- * Fuente única de verdad: style.css.
- */
-/* ── Barra de filtros compacta unificada (Propuesta D) ── */
 .filter-chips-container {
     padding: 10px 16px 12px;
     overflow-x: auto;
@@ -1180,12 +982,10 @@ body {
     display: none;
 }
 
-/* La barra como único elemento inline-flex */
 .filter-chips-container > * {
-    /* los hijos directos se renderizan dentro del wrapper de la barra */
+    
 }
 
-/* Wrapper interno generado en el HTML */
 .filter-bar {
     display: inline-flex;
     align-items: stretch;
@@ -1197,7 +997,6 @@ body {
     box-sizing: border-box;
 }
 
-/* En desktop, permitir que los filtros se adapten sin corte */
 @media (min-width: 768px) {
     .filter-bar {
         display: flex;
@@ -1290,13 +1089,6 @@ body {
     color: var(--navy);
 }
 
-/* ── 17. BOTTOM NAVIGATION BAR ── */
-/*
- * Navegación principal en móvil. Reemplaza la sub-nav horizontal.
- * Patrón nativo iOS (UITabBar) y Material Design (NavigationBar).
- * Posición: zona de alcance natural del pulgar.
- * En desktop (≥768px) se oculta — la sub-nav retoma el rol.
- */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -1326,7 +1118,7 @@ body {
     font-family: var(--font-brand);
     letter-spacing: 0.02em;
     transition: color 0.15s;
-    /* Área táctil mínima */
+    
     min-height: 56px;
     touch-action: manipulation;
     position: relative;
@@ -1336,7 +1128,6 @@ body {
     color: var(--primary);
 }
 
-/* Pip indicador bajo el ítem activo */
 .bottom-nav-item.active::after {
     content: '';
     position: absolute;
@@ -1353,16 +1144,14 @@ body {
     flex-shrink: 0;
 }
 
-/* Ocultar en desktop — la sub-nav toma el rol */
 @media (min-width: 768px) {
     .bottom-nav { display: none; }
 }
 
-/* ── SECCIÓN REDES SOCIALES (FOOTER) ── */
 .social-footer {
     background-color: var(--navy);
     color: white;
-    padding: 60px 20px 120px; /* Padding extra para no tapar la bottom-nav */
+    padding: 60px 20px 120px; 
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 40px;
@@ -1412,7 +1201,6 @@ body {
     transition: transform 0.25s ease;
 }
 
-/* Efectos de Hover (Desktop) */
 @media (hover: hover) {
     .social-icon-link:hover {
         background: var(--orange);
@@ -1435,14 +1223,12 @@ body {
     margin-top: 10px;
 }
 
-/* Ajustes Desktop — sin bottom-nav, no hace falta el padding-bottom extra de 120px pensado para móvil */
 @media (min-width: 768px) {
     .social-footer {
         padding: 60px 20px 60px;
     }
 }
 
-/* Ajustes Mobile */
 @media (max-width: 480px) {
     .social-footer {
         padding: 40px 16px 110px;
@@ -1463,12 +1249,6 @@ body {
     }
 }
 
-/* ── 13. BANNER DE INSTALACIÓN PWA (Install Prompt) ──
- * Banner flotante personalizado mostrado cuando el navegador dispara
- * 'beforeinstallprompt' (ver app.js, sección 0 y 9).
- * Estructura análoga a #update-banner pero flotante (no sticky), ya que
- * no compite por espacio con el contenido — aparece sobre todo lo demás.
- */
 #pwa-install-banner {
     position: fixed;
     left: 50%;
@@ -1521,8 +1301,7 @@ body {
     font-size: 12px;
     font-weight: 700;
     cursor: pointer;
-    /* Mínimo táctil reducido en altura porque es un botón secundario dentro
-     * de un banner compacto; el ancho compensa el área de toque. */
+    
     min-height: 36px;
 }
 
@@ -1545,7 +1324,6 @@ body {
     opacity: 1;
 }
 
-/* En pantallas muy chicas, apilamos texto y acciones para que no se compriman */
 @media (max-width: 360px) {
     #pwa-install-banner {
         flex-direction: column;
