@@ -5,12 +5,24 @@
 
 'use strict';
 
+// ── 0. INSTALACIÓN PWA — CAPTURA TEMPRANA DEL EVENTO ──────────────────────────
+//
+// 'beforeinstallprompt' puede dispararse ANTES de 'DOMContentLoaded', así que
+// el listener se registra acá arriba (no dentro del bloque de inicialización)
+// para no correr el riesgo de perderlo.
+
 let deferredInstallPrompt = null;
 
 window.addEventListener('beforeinstallprompt', (event) => {
+    // Evita que el navegador muestre su mini-banner de instalación nativo.
     event.preventDefault();
+
+    // Si el usuario ya descartó el banner en esta sesión, no insistimos.
     if (sessionStorage.getItem('bahi_install_dismissed') === 'true') return;
+
+    // Guardamos el evento para dispararlo después, desde nuestro propio botón.
     deferredInstallPrompt = event;
+
     mostrarBannerInstalacion();
 });
 
@@ -21,23 +33,37 @@ window.addEventListener('appinstalled', () => {
     localStorage.setItem('bahi_pwa_installed', 'true');
 });
 
+// ── 1. UTILIDADES GLOBALES DE SEGURIDAD ───────────────────────────────────────
+
+/**
+ * Escapa caracteres HTML para prevenir XSS.
+ * Usado en todo el renderizado dinámico de datos del padrón.
+ */
 window.esc = (str) => {
     const d = document.createElement('div');
     d.textContent = str ?? '';
     return d.innerHTML;
 };
 
+/**
+ * Valida que una URL de Google Maps sea de un dominio permitido.
+ * Previene que datos maliciosos en el JSON inyecten URLs arbitrarias.
+ */
 window.safeMapsUrl = (url) => {
     if (!url) return null;
     try {
         const parsed = new URL(url);
         const allowed = ['maps.google.com', 'www.google.com', 'maps.app.goo.gl', 'goo.gl'];
         return allowed.some(domain => parsed.hostname.includes(domain)) ? url : null;
-    } catch (_e) {
-        return null;
-    }
+    } catch (_e) { return null; }
 };
 
+// ── 2. MAPEO DE SVGs POR CAMPO ───────────────────────────────────────────────
+
+/**
+ * Mapeo de campos a nombres de archivos SVG
+ * Ubicación: https://raw.githubusercontent.com/bahiar/bhi/main/assets/cuadros/{NOMBRE}.svg
+ */
 const CAMPO_SVG_MAP = {
     'DOMICILIO': 'HOME',
     'LOCALIDAD': 'LOCATION',
@@ -51,6 +77,12 @@ const CAMPO_SVG_MAP = {
     'OOSS': 'OOSS'
 };
 
+/**
+ * Genera un SVG inline para un campo específico
+ * Usa clase .card-field-svg para estilos consistentes
+ * @param {string} campo - nombre del campo (ej: 'HORARIO', 'STOCK')
+ * @returns {string} - SVG como etiqueta <img>
+ */
 window.getSvgIcon = (campo) => {
     const svgName = CAMPO_SVG_MAP[campo];
     if (!svgName) return '';
@@ -58,6 +90,11 @@ window.getSvgIcon = (campo) => {
     return `<img class="card-field-svg" src="${url}" alt="${campo}" loading="lazy" onerror="this.style.display='none'">`;
 };
 
+// ── 3. RENDERIZADO UNIVERSAL DE TARJETAS ──────────────────────────────────────
+
+/**
+ * Genera el HTML de una tarjeta colapsable para un prestador.
+ */
 window.crearCardHTML = (item, tipo, index) => {
     const bodyId = `card-body-${tipo}-${index}`;
 
@@ -86,22 +123,28 @@ window.crearCardHTML = (item, tipo, index) => {
 
     const botonesAccion = [
         linkTel
-            ? `<a href="${window.esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${window.esc(item.PRESTADOR)}">${SVG_LLAMAR} Llamar</a>`
+            ? `<a href="${window.esc(linkTel)}" class="btn btn-accent"
+                  aria-label="Llamar a ${window.esc(item.PRESTADOR)}">${SVG_LLAMAR} Llamar</a>`
             : '',
         linkMovil && linkMovil.startsWith('https://')
-            ? `<a href="${window.esc(linkMovil)}" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de ${window.esc(item.PRESTADOR)}">${SVG_WHATSAPP} WhatsApp</a>`
+            ? `<a href="${window.esc(linkMovil)}" class="btn btn-whatsapp"
+                  target="_blank" rel="noopener noreferrer"
+                  aria-label="WhatsApp de ${window.esc(item.PRESTADOR)}">${SVG_WHATSAPP} WhatsApp</a>`
             : (linkMovil
-                ? `<a href="${window.esc(linkMovil)}" class="btn btn-accent" aria-label="Llamar a ${window.esc(item.PRESTADOR)}">${SVG_LLAMAR} Llamar</a>`
+                ? `<a href="${window.esc(linkMovil)}" class="btn btn-accent"
+                      aria-label="Llamar a ${window.esc(item.PRESTADOR)}">${SVG_LLAMAR} Llamar</a>`
                 : ''),
         mapsUrl
-            ? `<a href="${window.esc(mapsUrl)}" class="btn btn-outline" target="_blank" rel="noopener noreferrer" aria-label="Ver mapa de ${window.esc(item.PRESTADOR)}">${SVG_MAPA} Mapa</a>`
+            ? `<a href="${window.esc(mapsUrl)}" class="btn btn-outline"
+                  target="_blank" rel="noopener noreferrer"
+                  aria-label="Ver mapa de ${window.esc(item.PRESTADOR)}">${SVG_MAPA} Mapa</a>`
             : ''
     ].filter(Boolean).join('');
 
     const filasCuerpo = [
         item.HORARIO && `<p class="card-detail-row">${window.getSvgIcon('HORARIO')}<strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>`,
-        item.OOSS && `<p class="card-detail-row">${window.getSvgIcon('OOSS')}<strong>Obra social:</strong> ${window.esc(item.OOSS)}</p>`,
-        item.STOCK && `<p class="card-detail-row">${window.getSvgIcon('STOCK')}<strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`
+        item.OOSS    && `<p class="card-detail-row">${window.getSvgIcon('OOSS')}<strong>Obra social:</strong> ${window.esc(item.OOSS)}</p>`,
+        item.STOCK   && `<p class="card-detail-row">${window.getSvgIcon('STOCK')}<strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`
     ].filter(Boolean).join('');
 
     return `
@@ -125,6 +168,8 @@ window.crearCardHTML = (item, tipo, index) => {
     </div>` : ''}
 </article>`;
 };
+
+// ── 4. INICIALIZACIÓN DE LA APP ────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
     if ('serviceWorker' in navigator) {
@@ -158,6 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
     configurarInstalacionPWA();
 });
 
+// ── 5. BUSCADOR GLOBAL ────────────────────────────────────────────────────────
+
 function configurarBuscador() {
     const input = document.querySelector('.search-container input:not(#buscador-live)');
     if (!input) return;
@@ -175,6 +222,8 @@ function configurarBuscador() {
         }, 150);
     });
 }
+
+// ── 6. BANNER DE ACTUALIZACIÓN ────────────────────────────────────────────────
 
 function mostrarBannerActualizacion(version) {
     let banner = document.getElementById('update-banner');
@@ -199,6 +248,8 @@ function configurarBannerActualizacion() {
     });
 }
 
+// ── 7. INDICADOR DE DATOS EN CACHÉ ───────────────────────────────────────────
+
 function mostrarIndicadorCache() {
     const contenedor = document.getElementById('contenedor-cards');
     if (!contenedor || document.querySelector('.cache-indicator-warning')) return;
@@ -209,6 +260,13 @@ function mostrarIndicadorCache() {
     contenedor.parentNode.insertBefore(aviso, contenedor);
 }
 
+// ── 8. COMPARTIR FARMACIAS POR WHATSAPP ──────────────────────────────────────
+
+/**
+ * Limpia un valor de teléfono (FIJO/MOVIL) para mostrarlo como texto plano.
+ * Soporta valores guardados como 'tel:...', URLs de WhatsApp (wa.me, api.whatsapp.com)
+ * o el número crudo tal cual viene en el padrón.
+ */
 function limpiarTelefono(valor) {
     if (!valor) return '';
     const v = valor.trim();
@@ -231,6 +289,13 @@ function configurarBotonCompartir() {
         const leyendaEl = document.getElementById('leyenda-horario');
         const leyenda = leyendaEl ? leyendaEl.textContent : '';
 
+        // Construcción del mensaje con formato enriquecido para WhatsApp.
+        // La URL va PRIMERO para que WhatsApp genere el preview con imagen (og:image).
+        // OJO: la imagen del preview la define el <meta property="og:image"> de ESA
+        // URL (no se puede "adjuntar" desde acá). Tiene que apuntar a un archivo de
+        // imagen servido directo, ej: https://bahiar.github.io/bhi/assets/images/whatsapp.png
+        // La URL de GitHub (.../blob/main/...) NO sirve como og:image: es una página
+        // HTML de GitHub, no la imagen en sí.
         let mensaje = `https://bahi.ar\n\n`;
         mensaje += `⚕️ *FARMACIAS DE TURNO*\n`;
         mensaje += `Bahía Blanca • BAHI.ar\n`;
@@ -249,8 +314,8 @@ function configurarBotonCompartir() {
             mensaje += `⚕️ *${nombre.toUpperCase()}*\n`;
             if (domicilio) mensaje += `📌 ${domicilio}\n`;
             if (localidad) mensaje += `🏙 ${localidad}\n`;
-            if (fijo) mensaje += `📞 ${fijo}\n`;
-            if (movil) mensaje += `📱 ${movil}\n`;
+            if (fijo)      mensaje += `📞 ${fijo}\n`;
+            if (movil)     mensaje += `📱 ${movil}\n`;
             mensaje += `\n`;
         });
 
@@ -262,6 +327,13 @@ function configurarBotonCompartir() {
     });
 }
 
+// ── 9. INSTALACIÓN PWA PERSONALIZADA ─────────────────────────────────────────
+//
+// El evento 'beforeinstallprompt' y 'appinstalled' ya se escuchan arriba
+// (sección 0), antes de DOMContentLoaded. Acá solo va el manejo del banner
+// (crear/mostrar/ocultar) y el click del botón "Instalar".
+
+/** Crea (si no existe) y muestra el banner flotante de instalación. */
 function mostrarBannerInstalacion() {
     let banner = document.getElementById('pwa-install-banner');
     if (banner) {
@@ -286,17 +358,22 @@ function mostrarBannerInstalacion() {
         </div>`;
     document.body.appendChild(banner);
 
+    // Forzamos un reflow antes de agregar la clase para que la transición CSS
+    // (definida en style.css) se dispare correctamente.
     requestAnimationFrame(() => banner.classList.add('is-visible'));
 }
 
+/** Oculta el banner sin destruirlo del DOM (se reutiliza si vuelve a hacer falta). */
 function ocultarBannerInstalacion() {
     const banner = document.getElementById('pwa-install-banner');
     if (!banner) return;
     banner.classList.remove('is-visible');
 }
 
+/** Configura los listeners de click de los botones del banner de instalación. */
 function configurarInstalacionPWA() {
     document.addEventListener('click', async (e) => {
+        // Click en "Instalar"
         if (e.target.id === 'btn-pwa-instalar') {
             if (!deferredInstallPrompt) {
                 console.warn('[BAHI.ar] No hay prompt de instalación disponible.');
@@ -310,52 +387,17 @@ function configurarInstalacionPWA() {
             } catch (err) {
                 console.error('[BAHI.ar] Error al mostrar el prompt de instalación:', err);
             } finally {
+                // El evento solo puede usarse una vez.
                 deferredInstallPrompt = null;
                 ocultarBannerInstalacion();
             }
             return;
         }
 
+        // Click en "Ahora no"
         if (e.target.id === 'btn-pwa-descartar') {
             ocultarBannerInstalacion();
             sessionStorage.setItem('bahi_install_dismissed', 'true');
         }
     });
 }
-
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * AUDITORÍA Y OPTIMIZACIÓN — RESUMEN DE CAMBIOS
- * ═══════════════════════════════════════════════════════════════════════════
- *
- * ✓ ELIMINACIÓN DE RESIDUOS:
- *   • Removidos 40+ comentarios explicativos y bloques de documentación
- *   • Eliminados comentarios de secciones numeradas (── 0-9 ──)
- *   • Removidos comentarios JSDoc redundantes (funcionalidad clara del código)
- *   • Eliminados comentarios inline que duplicaban información del código
- *   • Conservada únicamente licencia legal/atribución inicial
- *
- * ✓ OPTIMIZACIONES APLICADAS:
- *   • Compresión de espacios en blanco innecesarios en la mayoría de funciones
- *   • Refactorización de lógica ternaria en crearCardHTML (mismo comportamiento)
- *   • Mantenimiento de estructura modular sin cambios funcionales
- *   • Preservación de todas las características: PWA, búsqueda, compartir, etc.
- *
- * ✓ CÓDIGO LIMPIO:
- *   • No hay variables no utilizadas (todas las declaraciones se usan)
- *   • No hay funciones muertas (cada función es invocada)
- *   • No hay estilos CSS muertos (fuera de este archivo, pero estructura preservada)
- *   • Estructura de eventos y listeners verificada y optimizada
- *
- * ✓ MANTENIMIENTO DE FUNCIONALIDAD:
- *   • Seguridad XSS preservada (window.esc)
- *   • Validación de URLs Google Maps intacta (window.safeMapsUrl)
- *   • PWA beforeinstallprompt capturado en el lugar correcto (antes de DOMContentLoaded)
- *   • Service Worker messaging y caché indicator funcionando
- *   • Búsqueda global con debounce intacta
- *   • Renderizado de tarjetas dinámicas (criarCardHTML)
- *   • Compartir por WhatsApp con formato enriquecido
- *   • Banners de instalación y actualización operativos
- *
- * ═══════════════════════════════════════════════════════════════════════════
- */
