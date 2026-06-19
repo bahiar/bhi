@@ -726,6 +726,7 @@ body {
  */
 .search-container--hero {
     margin: 0 16px 10px;
+    max-width: 280px;   /* ancho acotado, alineado a la izquierda */
 }
 
 .search-container--hero input[type="text"] {
