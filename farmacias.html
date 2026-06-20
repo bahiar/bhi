@@ -125,32 +125,20 @@
             <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
                 <!-- Logo SVG -->
                 <img src="https://raw.githubusercontent.com/bahiar/bhi/refs/heads/main/assets/images/mask-icon.svg" alt="" aria-hidden="true" width="36" height="36" style="flex-shrink:0;border-radius:9px;">
-                <span style="display:flex;flex-direction:column;margin-left:8px;">
-                    <span style="font-size:20px;font-weight:700;line-height:1;letter-spacing:-0.3px;color:#fff;font-family:'Plus Jakarta Sans','varela_roundregular',system-ui,sans-serif;">BAHI<span style="color:#FF6B00;">.ar</span></span>
-                    <span style="font-size:9px;color:rgba(255,255,255,0.65);margin-top:2px;letter-spacing:0.01em;font-family:'Plus Jakarta Sans','varela_roundregular',system-ui,sans-serif;">guía médica de Bahía Blanca</span>
+                <span class="brand-logo__wordmark">
+                    <span class="brand-logo__name">BAHI<span class="brand-logo__name--accent">.ar</span></span>
+                    <span class="brand-logo__tagline">guía médica de Bahía Blanca</span>
                 </span>
             </a>
-            <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
+            <div class="header-actions">
                 <button
                     onclick="document.getElementById('faq-modal-overlay').style.display='flex'"
                     aria-label="Preguntas frecuentes"
-                    style="display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:20px;background:rgba(255,255,255,0.13);border:none;color:rgba(255,255,255,0.9);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;letter-spacing:0.01em;"
-                    onmouseover="this.style.background='rgba(255,255,255,0.22)'" onmouseout="this.style.background='rgba(255,255,255,0.13)'"
+                    class="header-btn"
                 >
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                     Ayuda
                 </button>
-                <a
-                    href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Reportar un error por WhatsApp"
-                    style="display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:20px;background:#25D366;color:#fff;font-size:12px;font-weight:500;text-decoration:none;font-family:inherit;letter-spacing:0.01em;"
-                    onmouseover="this.style.background='#1fbb57'" onmouseout="this.style.background='#25D366'"
-                >
-                    <svg width="12" height="12" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-                    Reportar
-                </a>
             </div>
         </div>
         <!-- Buscador integrado en el hero navy -->
@@ -442,8 +430,8 @@
 
         <div style="background:#191971;padding:16px 20px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
           <div>
-            <div style="font-size:19px;font-weight:500;color:#fff;letter-spacing:-0.5px;">BAHI<span style="color:#FF6B00;">.ar</span></div>
-            <div style="font-size:11.5px;color:rgba(255,255,255,0.65);margin-top:1px;">Preguntas frecuentes</div>
+            <div class="brand-logo__name" style="font-size:19px;font-weight:500;letter-spacing:-0.5px;">BAHI<span class="brand-logo__name--accent">.ar</span></div>
+            <div class="brand-logo__tagline" style="margin-top:1px;">Preguntas frecuentes</div>
           </div>
           <button onclick="document.getElementById('faq-modal-overlay').style.display='none'" style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;" aria-label="Cerrar">✕</button>
         </div>
@@ -474,11 +462,11 @@
 
         </div>
 
-        <div style="padding:12px 20px;border-top:0.5px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg-card,#fff);">
-          <span style="font-size:12px;color:#888;">¿No encontraste tu respuesta?</span>
-          <a href="https://wa.me/542914661177" target="_blank" rel="noopener" style="font-size:12px;color:#1F75FE;display:flex;align-items:center;gap:5px;text-decoration:none;">
+        <div class="faq-report-row">
+          <span class="faq-report-row__label">¿No encontraste tu respuesta?</span>
+          <a href="https://wa.me/542914661177?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" class="faq-report-link">
             <svg width="14" height="14" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-            Escribinos
+            Reportar error
           </a>
         </div>
 
