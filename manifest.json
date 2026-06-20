@@ -53,18 +53,25 @@
   ],
   "screenshots": [
     {
-      "src": "/assets/screenshots/farmacias-mobile.png",
+      "src": "/assets/screenshots/home.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Farmacias de turno en Bahía Blanca"
     },
     {
-      "src": "/assets/screenshots/guardias-mobile.png",
+      "src": "/assets/screenshots/labs.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Guardias médicas 24hs"
+      "label": "Laboratorios clínicos en Bahía Blanca"
+    },
+    {
+      "src": "/assets/screenshots/guardias.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Guardias médicas y emergencias 24hs"
     }
   ],
   "shortcuts": [
