@@ -761,7 +761,7 @@ body {
 }
 
 .section-header {
-    padding: 14px 16px 4px;
+    padding: 14px 0 4px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -853,7 +853,7 @@ body {
 
 #contenedor-cards,
 .cards-grid {
-    padding: 0 16px 32px;
+    padding: 0 0 32px;
     padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
 }
 
