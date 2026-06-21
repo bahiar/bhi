@@ -151,6 +151,15 @@
             <input type="text" id="buscador-live" placeholder="Buscar farmacia o dirección..." aria-label="Buscar farmacia o dirección">
         </div>
     </header>
+    <div class="search-bar-below">
+        <div class="search-container">
+            <div class="search-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+        </div>
+    </div>
+
 
     <nav class="sub-nav" aria-label="Accesos rápidos">
         <ul class="sub-nav-list">
@@ -250,25 +259,35 @@
 
           const metaCount = document.getElementById('header-meta-count');
 
-          if (lista.length === 0) {
-            contenedor.innerHTML = `
-              <div class="error-state" role="status">
-                <div class="error-state-icon" aria-hidden="true">🔍</div>
-                <p class="error-state-title">Sin resultados</p>
-                <p class="error-state-desc">No hay farmacias para los filtros aplicados.</p>
-              </div>`;
-            if (metaCount) metaCount.textContent = 'Sin resultados';
-            return;
-          }
+          contenedor.classList.add('cards-grid--filtering');
+          contenedor.classList.remove('cards-grid--visible');
 
-          // crearCardHTML viene de app.js (defer garantiza que ya está disponible)
-          contenedor.innerHTML = lista
-            .map((item, i) => window.crearCardHTML(item, TIPO_VISTA, i))
-            .join('');
-
-          if (metaCount) {
-            metaCount.textContent = `${lista.length} farmacia${lista.length !== 1 ? 's' : ''}`;
-          }
+          setTimeout(() => {
+            if (lista.length === 0) {
+              contenedor.innerHTML = `
+                <div class="error-state" role="status">
+                  <div class="error-state-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke-width="2" stroke-linecap="round"/><path d="M8 11h6M11 8v6" stroke-width="2" stroke-linecap="round"/></svg>
+                  </div>
+                  <p class="error-state-title">Sin resultados</p>
+                  <p class="error-state-desc">No hay farmacias para los filtros aplicados.<br>Probá con otra localidad u obra social.</p>
+                  <button class="error-state-action" onclick="document.querySelectorAll('.filter-chip').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false')});document.querySelectorAll('.filter-chip-select').forEach(s=>s.value='');aplicarFiltros();">
+                    Limpiar filtros
+                  </button>
+                </div>`;
+              if (metaCount) metaCount.textContent = 'Sin resultados';
+            } else {
+              // crearCardHTML viene de app.js (defer garantiza que ya está disponible)
+              contenedor.innerHTML = lista
+                .map((item, i) => window.crearCardHTML(item, TIPO_VISTA, i))
+                .join('');
+              if (metaCount) {
+                metaCount.textContent = `${lista.length} farmacia${lista.length !== 1 ? 's' : ''}`;
+              }
+            }
+            contenedor.classList.remove('cards-grid--filtering');
+            contenedor.classList.add('cards-grid--visible');
+          }, 110);
         }
 
         // ── Filtrado ───────────────────────────────────────────────────────────
