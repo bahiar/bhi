@@ -104,6 +104,8 @@ window.crearCardHTML = (item, tipo, index) => {
         item.STOCK && `<p class="card-detail-row">${window.getSvgIcon('STOCK')}<strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`
     ].filter(Boolean).join('');
 
+    const mostrarExpansion = filasCuerpo && tipo !== 'GUARDIA';
+
     return `
 <article class="card" data-estado="${window.esc(estado)}" data-tipo="${window.esc(tipo)}"
     data-domicilio="${window.esc(item.DOMICILIO || '')}" data-localidad="${window.esc(item.LOCALIDAD || '')}"
@@ -115,7 +117,7 @@ window.crearCardHTML = (item, tipo, index) => {
         </div>
     </div>
     ${botonesAccion ? `<div class="card-actions">${botonesAccion}</div>` : ''}
-    ${filasCuerpo ? `
+    ${mostrarExpansion ? `
     <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
         <span>Más información</span>
         <span class="card-chevron" aria-hidden="true">▼</span>
