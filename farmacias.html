@@ -170,19 +170,6 @@
         </ul>
     </nav>
 
-    <!-- Filtros: centrado en desktop via CSS (.filter-chips-container en media query) -->
-    <div class="filter-chips-container" id="filter-chips-container" role="group" aria-label="Filtros de búsqueda">
-        <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por localidad">
-            <option value="">Localidad</option>
-        </select>
-        <button class="filter-chip" id="chip-stock"       data-field="stock"       aria-pressed="false">¿Tienen...?</button>
-        <button class="filter-chip" id="chip-inyectables" data-field="inyectables" aria-pressed="false">Inyectables</button>
-        <button class="filter-chip" id="chip-delivery"    data-field="delivery"    aria-pressed="false">Cadete</button>
-        <select class="filter-chip-select" id="chip-ooss" aria-label="Filtrar por Obra Social">
-            <option value="">Obra social</option>
-        </select>
-    </div>
-
     <main class="app-view" id="content">
         <div class="main-container" id="main-content">
 
@@ -193,6 +180,19 @@
                     <h2>Farmacias</h2>
                     <p class="section-header-meta" id="header-meta-count">Directorio completo</p>
                 </div>
+            </div>
+
+            <!-- Filtros: centrado en desktop via CSS (.filter-chips-container en media query) -->
+            <div class="filter-chips-container" id="filter-chips-container" role="group" aria-label="Filtros de búsqueda">
+                <select class="filter-chip-select" id="chip-localidad" aria-label="Filtrar por localidad">
+                    <option value="">Localidad</option>
+                </select>
+                <button class="filter-chip" id="chip-stock"       data-field="stock"       aria-pressed="false">¿Tienen...?</button>
+                <button class="filter-chip" id="chip-inyectables" data-field="inyectables" aria-pressed="false">Inyectables</button>
+                <button class="filter-chip" id="chip-delivery"    data-field="delivery"    aria-pressed="false">Cadete</button>
+                <select class="filter-chip-select" id="chip-ooss" aria-label="Filtrar por Obra Social">
+                    <option value="">Obra social</option>
+                </select>
             </div>
 
             <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Listado de farmacias">
