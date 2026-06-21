@@ -104,8 +104,6 @@ window.crearCardHTML = (item, tipo, index) => {
         item.STOCK && `<p class="card-detail-row">${window.getSvgIcon('STOCK')}<strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`
     ].filter(Boolean).join('');
 
-    const mostrarExpansion = filasCuerpo && tipo !== 'GUARDIA';
-
     return `
 <article class="card" data-estado="${window.esc(estado)}" data-tipo="${window.esc(tipo)}"
     data-domicilio="${window.esc(item.DOMICILIO || '')}" data-localidad="${window.esc(item.LOCALIDAD || '')}"
@@ -117,7 +115,7 @@ window.crearCardHTML = (item, tipo, index) => {
         </div>
     </div>
     ${botonesAccion ? `<div class="card-actions">${botonesAccion}</div>` : ''}
-    ${mostrarExpansion ? `
+    ${filasCuerpo ? `
     <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
         <span>Más información</span>
         <span class="card-chevron" aria-hidden="true">▼</span>
@@ -169,15 +167,23 @@ function configurarBuscador() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
             const filtro = e.target.value.trim().toLowerCase();
-            
-            // Buscar en cards locales (para páginas específicas)
-            document.querySelectorAll('.card').forEach(card => {
+            const cards = document.querySelectorAll('.card');
+            let visibles = 0;
+
+            cards.forEach(card => {
                 const nameEl = card.querySelector('.card-name') || card.querySelector('.card-header span');
                 const texto = nameEl ? nameEl.textContent.toLowerCase() : '';
-                card.hidden = filtro.length > 0 && !texto.includes(filtro);
+                const coincide = filtro.length === 0 || texto.includes(filtro);
+                card.hidden = !coincide;
+                if (coincide) visibles++;
             });
 
-            // Búsqueda global en index.html
+            if (filtro.length > 0 && visibles === 0) {
+                mostrarSinResultados();
+            } else {
+                ocultarSinResultados();
+            }
+
             const contenedorGlobal = document.getElementById('contenedor-busqueda-global');
             if (contenedorGlobal && filtro.length > 0) {
                 buscarGlobal(filtro, contenedorGlobal);
@@ -189,59 +195,29 @@ function configurarBuscador() {
     });
 }
 
-async function buscarGlobal(filtro, contenedor) {
-    try {
-        const response = await fetch('data/bd_bahiar.json');
-        if (!response.ok) throw new Error('No se pudo cargar los datos');
-        
-        const datos = await response.json();
-        const prestadores = datos.prestadores || [];
-        
-        // Buscar en farmacias y laboratorios
-        const resultados = prestadores.filter(item => {
-            const nombre = (item.PRESTADOR || '').toLowerCase();
-            const domicilio = (item.DOMICILIO || '').toLowerCase();
-            return nombre.includes(filtro) || domicilio.includes(filtro);
-        });
-
-        // Determinar tipo de cada resultado
-        const conTipo = resultados.map(item => ({
-            ...item,
-            tipo: item.TIPO || 'FARMACIA'
-        }));
-
-        // Mostrar resultados
-        if (conTipo.length === 0) {
-            contenedor.innerHTML = '<div class="busqueda-sin-resultados">Sin resultados</div>';
-            contenedor.hidden = false;
-            return;
-        }
-
-        const html = conTipo.slice(0, 10).map((item, i) => 
-            `<div class="resultado-busqueda" data-index="${i}" data-tipo="${window.esc(item.tipo)}" data-nombre="${window.esc(item.PRESTADOR)}">
-                <div>
-                    <div class="resultado-nombre">${window.esc(item.PRESTADOR)}</div>
-                    <div class="resultado-ubicacion">${window.esc(item.DOMICILIO || '')}</div>
-                </div>
-                <div class="resultado-tipo">${item.tipo === 'FARMACIA' ? '💊' : '🧪'}</div>
-            </div>`
-        ).join('');
-
-        contenedor.innerHTML = html;
-        contenedor.hidden = false;
-
-        // Agregar event listeners
-        document.querySelectorAll('.resultado-busqueda').forEach((el, i) => {
-            el.addEventListener('click', () => {
-                const tipo = el.dataset.tipo;
-                const nombre = el.dataset.nombre;
-                const url = tipo === 'FARMACIA' ? 'farmacias.html' : 'laboratorios.html';
-                window.location.href = `${url}?buscar=${encodeURIComponent(nombre)}`;
-            });
-        });
-    } catch (err) {
-        console.error('Error en búsqueda global:', err);
+function mostrarSinResultados() {
+    let estado = document.getElementById('busqueda-sin-resultados');
+    if (estado) {
+        estado.hidden = false;
+        return;
     }
+    const contenedor = document.getElementById('contenedor-cards');
+    if (!contenedor) return;
+
+    estado = document.createElement('div');
+    estado.id = 'busqueda-sin-resultados';
+    estado.className = 'error-state';
+    estado.setAttribute('role', 'status');
+    estado.innerHTML = `
+        <div class="error-state-icon" aria-hidden="true">🔍</div>
+        <p class="error-state-title">Sin resultados</p>
+        <p class="error-state-desc">No encontramos lo que buscas. Probá con otro término.</p>`;
+    contenedor.parentNode.insertBefore(estado, contenedor);
+}
+
+function ocultarSinResultados() {
+    const estado = document.getElementById('busqueda-sin-resultados');
+    if (estado) estado.hidden = true;
 }
 
 function mostrarBannerActualizacion(version) {
