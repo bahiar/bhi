@@ -307,7 +307,7 @@ body {
 
 .card-emergencia .btn-accent {
     background: #fff;
-    color: #DC2626;
+    color: #DC2626 !important;
     font-weight: 700;
 }
 
