@@ -296,13 +296,13 @@ body {
 }
 
 .card-emergencia .card-name {
-    color: #fff;
+    color: #DC2626;
     font-size: 28px;
     letter-spacing: -0.03em;
 }
 
 .card-emergencia .card-addr {
-    color: rgba(255, 255, 255, 0.8);
+    color: #DC2626;
 }
 
 .card-emergencia .btn-accent {
