@@ -169,13 +169,79 @@ function configurarBuscador() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
             const filtro = e.target.value.trim().toLowerCase();
+            
+            // Buscar en cards locales (para páginas específicas)
             document.querySelectorAll('.card').forEach(card => {
                 const nameEl = card.querySelector('.card-name') || card.querySelector('.card-header span');
                 const texto = nameEl ? nameEl.textContent.toLowerCase() : '';
                 card.hidden = filtro.length > 0 && !texto.includes(filtro);
             });
+
+            // Búsqueda global en index.html
+            const contenedorGlobal = document.getElementById('contenedor-busqueda-global');
+            if (contenedorGlobal && filtro.length > 0) {
+                buscarGlobal(filtro, contenedorGlobal);
+            } else if (contenedorGlobal) {
+                contenedorGlobal.innerHTML = '';
+                contenedorGlobal.hidden = true;
+            }
         }, 150);
     });
+}
+
+async function buscarGlobal(filtro, contenedor) {
+    try {
+        const response = await fetch('data/bd_bahiar.json');
+        if (!response.ok) throw new Error('No se pudo cargar los datos');
+        
+        const datos = await response.json();
+        const prestadores = datos.prestadores || [];
+        
+        // Buscar en farmacias y laboratorios
+        const resultados = prestadores.filter(item => {
+            const nombre = (item.PRESTADOR || '').toLowerCase();
+            const domicilio = (item.DOMICILIO || '').toLowerCase();
+            return nombre.includes(filtro) || domicilio.includes(filtro);
+        });
+
+        // Determinar tipo de cada resultado
+        const conTipo = resultados.map(item => ({
+            ...item,
+            tipo: item.TIPO || 'FARMACIA'
+        }));
+
+        // Mostrar resultados
+        if (conTipo.length === 0) {
+            contenedor.innerHTML = '<div class="busqueda-sin-resultados">Sin resultados</div>';
+            contenedor.hidden = false;
+            return;
+        }
+
+        const html = conTipo.slice(0, 10).map((item, i) => 
+            `<div class="resultado-busqueda" data-index="${i}" data-tipo="${window.esc(item.tipo)}" data-nombre="${window.esc(item.PRESTADOR)}">
+                <div>
+                    <div class="resultado-nombre">${window.esc(item.PRESTADOR)}</div>
+                    <div class="resultado-ubicacion">${window.esc(item.DOMICILIO || '')}</div>
+                </div>
+                <div class="resultado-tipo">${item.tipo === 'FARMACIA' ? '💊' : '🧪'}</div>
+            </div>`
+        ).join('');
+
+        contenedor.innerHTML = html;
+        contenedor.hidden = false;
+
+        // Agregar event listeners
+        document.querySelectorAll('.resultado-busqueda').forEach((el, i) => {
+            el.addEventListener('click', () => {
+                const tipo = el.dataset.tipo;
+                const nombre = el.dataset.nombre;
+                const url = tipo === 'FARMACIA' ? 'farmacias.html' : 'laboratorios.html';
+                window.location.href = `${url}?buscar=${encodeURIComponent(nombre)}`;
+            });
+        });
+    } catch (err) {
+        console.error('Error en búsqueda global:', err);
+    }
 }
 
 function mostrarBannerActualizacion(version) {

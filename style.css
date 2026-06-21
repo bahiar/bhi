@@ -306,19 +306,72 @@ body {
 }
 
 .card-emergencia .btn-accent {
-    background: #fff;
-    color: #DC2626 !important;
+    background: #DC2626;
+    color: #fff;
     font-weight: 700;
 }
 
 @media (hover: hover) {
     .card-emergencia .btn-accent:hover {
-        background: rgba(255, 255, 255, 0.9);
+        background: #b91c1c;
     }
 }
 
 .card-emergencia .btn-accent:active {
-    background: rgba(255, 255, 255, 0.82);
+    background: #991b1b;
+}
+
+/* ── Búsqueda Global ────────────────────────────────────────────────────────── */
+.busqueda-global-resultados {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-top: none;
+    border-radius: 0 0 var(--radius-card) var(--radius-card);
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: var(--shadow-soft);
+    z-index: 100;
+}
+
+.resultado-busqueda {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-light);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.resultado-busqueda:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.resultado-nombre {
+    font-weight: 500;
+    color: #1a1a2e;
+    font-size: 14px;
+}
+
+.resultado-ubicacion {
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
+}
+
+.resultado-tipo {
+    font-size: 16px;
+}
+
+.busqueda-sin-resultados {
+    padding: 16px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
 }
 
 /* ── Badge emergencia ── */
