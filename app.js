@@ -169,24 +169,13 @@ function configurarBuscador() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
             const filtro = e.target.value.trim().toLowerCase();
-            const cards = document.querySelectorAll('.card');
-            let visibles = 0;
             
             // Buscar en cards locales (para páginas específicas)
-            cards.forEach(card => {
+            document.querySelectorAll('.card').forEach(card => {
                 const nameEl = card.querySelector('.card-name') || card.querySelector('.card-header span');
                 const texto = nameEl ? nameEl.textContent.toLowerCase() : '';
-                const coincide = filtro.length === 0 || texto.includes(filtro);
-                card.hidden = !coincide;
-                if (coincide) visibles++;
+                card.hidden = filtro.length > 0 && !texto.includes(filtro);
             });
-
-            // Mostrar/ocultar aviso sin resultados
-            if (filtro.length > 0 && visibles === 0) {
-                mostrarAvisoSinResultados();
-            } else {
-                ocultarAvisoSinResultados();
-            }
 
             // Búsqueda global en index.html
             const contenedorGlobal = document.getElementById('contenedor-busqueda-global');
@@ -198,27 +187,6 @@ function configurarBuscador() {
             }
         }, 150);
     });
-}
-
-function mostrarAvisoSinResultados() {
-    let aviso = document.getElementById('aviso-sin-resultados');
-    if (aviso) {
-        aviso.hidden = false;
-        return;
-    }
-    const contenedor = document.getElementById('contenedor-cards');
-    if (!contenedor) return;
-    aviso = document.createElement('div');
-    aviso.id = 'aviso-sin-resultados';
-    aviso.className = 'error-state';
-    aviso.setAttribute('role', 'status');
-    aviso.innerHTML = '<div class="error-state-icon" aria-hidden="true">🔍</div><p class="error-state-title">Sin resultados</p><p class="error-state-desc">No encontramos lo que buscas.</p>';
-    contenedor.parentNode.insertBefore(aviso, contenedor);
-}
-
-function ocultarAvisoSinResultados() {
-    const aviso = document.getElementById('aviso-sin-resultados');
-    if (aviso) aviso.hidden = true;
 }
 
 async function buscarGlobal(filtro, contenedor) {
