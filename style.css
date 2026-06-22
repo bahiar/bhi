@@ -1567,13 +1567,13 @@ body {
     width: 100%;
 }
 
-/* ── Action strip: Compartir + Cafecito agrupados ── */
+/* ── Action strip: Compartir ── */
 .action-strip {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0;
-    padding: 20px 16px 0;
+    padding: 20px 16px 32px;
     width: 100%;
     max-width: 1200px;
     margin-left: auto;
@@ -1593,22 +1593,6 @@ body {
     }
 }
 
-.action-strip__divider {
-    width: 40px;
-    height: 1px;
-    background: var(--border-light);
-    margin: 16px 0;
-}
-
-.action-strip__cafecito {
-    display: block;
-    opacity: 0.9;
-    transition: opacity 0.2s ease;
-}
-
-.action-strip__cafecito:hover {
-    opacity: 1;
-}
 
 /* ── Reportar — dentro del modal FAQ ── */
 .faq-report-row {
