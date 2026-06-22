@@ -1313,10 +1313,10 @@ body {
 .social-footer {
     background-color: var(--navy);
     color: white;
-    padding: 24px 20px 40px;
+    padding: 60px 20px 120px;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 20px;
+    margin-top: 40px;
     width: 100%;
     position: relative;
     z-index: 10;
@@ -1325,17 +1325,16 @@ body {
 .social-container {
     max-width: 1200px;
     margin: 0 auto;
-    text-align: center;
+    width: 100%;
 }
 
 .social-title {
     font-family: var(--font-brand);
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 28px;
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: -0.01em;
-    text-align: center;
 }
 
 .social-links {
@@ -1343,25 +1342,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 24px;
-    margin-bottom: 16px;
-}
-
-.social-copy {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.5);
-    font-family: var(--font-base);
-    margin-top: 16px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    text-align: center;
-}
-
-.social-cafecito {
-    padding: 8px 16px 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 32px;
 }
 
 .social-icon-link {
@@ -1410,22 +1391,17 @@ body {
 
 @media (min-width: 768px) {
     .social-footer {
-        padding: 40px 20px 40px;
+        padding: 60px 20px 60px;
     }
 }
 
 @media (max-width: 480px) {
     .social-footer {
-        padding: 20px 16px calc(72px + env(safe-area-inset-bottom, 0px));
+        padding: 40px 16px calc(72px + env(safe-area-inset-bottom, 0px));
     }
 
     .social-title {
         font-size: 17px;
-        margin-bottom: 12px;
-    }
-
-    .social-links {
-        margin-bottom: 12px;
     }
 
     .social-icon-link {
@@ -1599,6 +1575,12 @@ body {
     gap: 0;
     padding: 20px 16px 0;
     width: 100%;
+}
+
+@media (max-width: 767px) {
+    .action-strip {
+        padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    }
 }
 
 .action-strip__divider {
