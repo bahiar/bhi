@@ -30,23 +30,29 @@
         .social-container {
             padding: 0 16px !important;
             margin: 0 !important;
+            text-align: center;
         }
         
         .social-title {
             margin: 0 0 12px 0 !important;
             padding: 0 !important;
             font-size: 14px !important;
+            text-align: center;
         }
         
         .social-links {
             margin: 0 0 12px 0 !important;
             padding: 0 !important;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
         }
         
         .social-copy {
             margin: 12px 0 0 0 !important;
             padding: 0 16px !important;
             font-size: 11px !important;
+            text-align: center;
         }
         
         /* Estilos para el botón cafecito */
@@ -55,15 +61,21 @@
             margin: 0 !important;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: auto;
         }
         
         .social-cafecito a {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            max-width: calc(100% - 32px);
         }
         
         .social-cafecito img {
             max-width: 100%;
+            width: auto;
             height: auto;
+            display: block;
         }
     </style>
 
