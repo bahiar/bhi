@@ -144,7 +144,14 @@
         <!-- Buscador integrado en el hero navy -->
         <div class="search-container search-container--hero">
             <div class="search-icon" aria-hidden="true">🔍</div>
-            <input type="text" id="buscador-live" placeholder="Buscar laboratorio o dirección..." aria-label="Buscar laboratorio o dirección">
+            <!--
+                class="search-input-local": app.js excluye estos inputs de su
+                buscador genérico (selector :not(.search-input-local)) — el
+                filtrado lo maneja el script propio de esta página. La misma
+                clase va también en el input mobile de abajo para que ambos
+                queden sincronizados.
+            -->
+            <input type="text" id="buscador-live" class="search-input-local" placeholder="Buscar laboratorio o dirección..." aria-label="Buscar laboratorio o dirección">
         </div>
     </header>
     <div class="search-bar-below">
@@ -152,7 +159,7 @@
             <div class="search-icon" aria-hidden="true">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
-            <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+            <input type="text" id="buscador-live-mobile" class="search-input-local" placeholder="Buscar laboratorio o dirección..." aria-label="Buscar laboratorio o dirección">
         </div>
     </div>
 
@@ -263,7 +270,7 @@
                   </div>
                   <p class="error-state-title">Sin resultados</p>
                   <p class="error-state-desc">No hay laboratorios para los filtros aplicados.<br>Probá con otra localidad u obra social.</p>
-                  <button class="error-state-action" onclick="document.querySelectorAll('.filter-chip').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false')});document.querySelectorAll('.filter-chip-select').forEach(s=>s.value='');aplicarFiltros();">
+                  <button class="error-state-action" onclick="window.limpiarFiltrosLaboratorios()">
                     Limpiar filtros
                   </button>
                 </div>`;
@@ -298,6 +305,22 @@
           });
           renderCards(resultado);
         }
+
+        function limpiarFiltros() {
+          document.querySelectorAll('.filter-chip').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          document.querySelectorAll('.filter-chip-select').forEach(s => { s.value = ''; s.classList.remove('active'); });
+          document.querySelectorAll('.search-input-local').forEach(i => { i.value = ''; });
+          filtros.texto = '';
+          filtros.localidad = '';
+          filtros.inyectables = false;
+          filtros.delivery = false;
+          filtros.ooss = '';
+          aplicarFiltros();
+        }
+        window.limpiarFiltrosLaboratorios = limpiarFiltros;
 
         // ── Inicialización ─────────────────────────────────────────────────────
 
@@ -344,15 +367,19 @@
             }
 
             // Eventos de filtros
-            const buscador = document.getElementById('buscador-live');
-            if (buscador) {
+            const buscadores = document.querySelectorAll('.search-input-local');
+            if (buscadores.length) {
               let debounce;
-              buscador.addEventListener('input', e => {
-                clearTimeout(debounce);
-                debounce = setTimeout(() => {
-                  filtros.texto = e.target.value.trim();
-                  aplicarFiltros();
-                }, 150);
+              buscadores.forEach(buscador => {
+                buscador.addEventListener('input', e => {
+                  const valor = e.target.value;
+                  buscadores.forEach(otro => { if (otro !== e.target) otro.value = valor; });
+                  clearTimeout(debounce);
+                  debounce = setTimeout(() => {
+                    filtros.texto = valor.trim();
+                    aplicarFiltros();
+                  }, 150);
+                });
               });
             }
 

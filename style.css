@@ -374,6 +374,12 @@ body {
     font-size: 14px;
 }
 
+.busqueda-sin-resultados-icon {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
 /* ── Badge emergencia ── */
 .card-badge {
     display: inline-flex;
@@ -1062,6 +1068,10 @@ body {
 
 .cards-grid--no-pad {
     padding-bottom: 0;
+}
+
+.cards-grid .error-state {
+    grid-column: 1 / -1;
 }
 
 @media (min-width: 768px) {

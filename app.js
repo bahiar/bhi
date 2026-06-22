@@ -161,31 +161,81 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function configurarBuscador() {
-    const input = document.querySelector('.search-container input:not(#buscador-live)');
-    if (!input) return;
+    // Hay dos inputs por página (uno para mobile, otro para desktop) que se
+    // muestran/ocultan según el viewport. Los dos deben quedar sincronizados
+    // y disparar la misma búsqueda, sin importar cuál esté visible.
+    const inputs = document.querySelectorAll('.search-container input:not(.search-input-local)');
+    if (!inputs.length) return;
 
     let debounceTimer;
-    input.addEventListener('input', (e) => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            const filtro = e.target.value.trim().toLowerCase();
-            
-            // Buscar en cards locales (para páginas específicas)
-            document.querySelectorAll('.card').forEach(card => {
-                const nameEl = card.querySelector('.card-name') || card.querySelector('.card-header span');
-                const texto = nameEl ? nameEl.textContent.toLowerCase() : '';
-                card.hidden = filtro.length > 0 && !texto.includes(filtro);
-            });
 
-            // Búsqueda global en index.html
-            const contenedorGlobal = document.getElementById('contenedor-busqueda-global');
-            if (contenedorGlobal && filtro.length > 0) {
-                buscarGlobal(filtro, contenedorGlobal);
-            } else if (contenedorGlobal) {
-                contenedorGlobal.innerHTML = '';
-                contenedorGlobal.hidden = true;
-            }
-        }, 150);
+    const ejecutarBusqueda = (valor) => {
+        const filtro = valor.trim().toLowerCase();
+        aplicarFiltroCards(filtro);
+
+        const contenedorGlobal = document.getElementById('contenedor-busqueda-global');
+        if (contenedorGlobal && filtro.length > 0) {
+            buscarGlobal(filtro, contenedorGlobal);
+        } else if (contenedorGlobal) {
+            contenedorGlobal.innerHTML = '';
+            contenedorGlobal.hidden = true;
+        }
+    };
+
+    inputs.forEach(input => {
+        input.addEventListener('input', (e) => {
+            const valor = e.target.value;
+            inputs.forEach(otro => { if (otro !== e.target) otro.value = valor; });
+
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => ejecutarBusqueda(valor), 150);
+        });
+    });
+}
+
+function aplicarFiltroCards(filtro) {
+    const contenedores = new Set();
+
+    document.querySelectorAll('.card').forEach(card => {
+        const nameEl = card.querySelector('.card-name') || card.querySelector('.card-header span');
+        const texto = nameEl ? nameEl.textContent.toLowerCase() : '';
+        card.hidden = filtro.length > 0 && !texto.includes(filtro);
+        if (card.parentElement) contenedores.add(card.parentElement);
+    });
+
+    contenedores.forEach(contenedor => mostrarEstadoVacioBusqueda(contenedor, filtro));
+}
+
+function mostrarEstadoVacioBusqueda(contenedor, filtro) {
+    const hayVisibles = !!contenedor.querySelector('.card:not([hidden])');
+    let vacio = contenedor.querySelector('.search-empty-state');
+
+    if (hayVisibles || filtro.length === 0) {
+        if (vacio) vacio.remove();
+        return;
+    }
+    if (vacio) return;
+
+    vacio = document.createElement('div');
+    vacio.className = 'error-state search-empty-state';
+    vacio.setAttribute('role', 'status');
+    vacio.innerHTML = `
+        <div class="error-state-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 11h6M11 8v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <p class="error-state-title">No se encontraron resultados</p>
+        <p class="error-state-desc">Probá con otra palabra o revisá la ortografía.</p>
+        <button type="button" class="error-state-action">Limpiar búsqueda</button>`;
+    contenedor.appendChild(vacio);
+
+    vacio.querySelector('.error-state-action').addEventListener('click', () => {
+        document.querySelectorAll('.search-container input:not(.search-input-local)').forEach(i => { i.value = ''; });
+        aplicarFiltroCards('');
+        const contenedorGlobal = document.getElementById('contenedor-busqueda-global');
+        if (contenedorGlobal) {
+            contenedorGlobal.innerHTML = '';
+            contenedorGlobal.hidden = true;
+        }
     });
 }
 
@@ -212,7 +262,11 @@ async function buscarGlobal(filtro, contenedor) {
 
         // Mostrar resultados
         if (conTipo.length === 0) {
-            contenedor.innerHTML = '<div class="busqueda-sin-resultados">Sin resultados</div>';
+            contenedor.innerHTML = `
+                <div class="busqueda-sin-resultados">
+                    <span class="busqueda-sin-resultados-icon" aria-hidden="true">🔍</span>
+                    No encontramos resultados para tu búsqueda
+                </div>`;
             contenedor.hidden = false;
             return;
         }
@@ -241,6 +295,12 @@ async function buscarGlobal(filtro, contenedor) {
         });
     } catch (err) {
         console.error('Error en búsqueda global:', err);
+        contenedor.innerHTML = `
+            <div class="busqueda-sin-resultados">
+                <span class="busqueda-sin-resultados-icon" aria-hidden="true">⚠️</span>
+                No se pudo completar la búsqueda
+            </div>`;
+        contenedor.hidden = false;
     }
 }
 
@@ -426,4 +486,20 @@ function configurarInstalacionPWA() {
  *   • Banners de instalación y actualización operativos
  *
  * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * ✓ FIX — ESTADO "SIN RESULTADOS" EN BUSCADORES (este cambio):
+ *   • Cada página tiene 2 inputs de búsqueda (uno mobile, otro desktop) que
+ *     se muestran/ocultan por CSS según el viewport. Solo uno tenía listener
+ *     real; en mobile se escribía en un input "mudo" y la grilla quedaba en
+ *     blanco al no haber coincidencias. Ahora ambos quedan sincronizados.
+ *   • configurarBuscador() pasó de operar sobre 1 input a una NodeList,
+ *     reflejando el valor entre ambos inputs de cada página.
+ *   • Nueva función aplicarFiltroCards(): agrupa las cards por su
+ *     contenedor real (sirve para páginas con más de una grilla, como
+ *     guardias.html) y delega el estado vacío a mostrarEstadoVacioBusqueda().
+ *   • Nueva función mostrarEstadoVacioBusqueda(): inserta/quita un bloque
+ *     "No se encontraron resultados" (mismo componente .error-state que ya
+ *     usan farmacias.html y laboratorios.html) con botón "Limpiar búsqueda".
+ *   • buscarGlobal(): el dropdown de sugerencias de index.html ahora también
+ *     muestra un mensaje claro tanto en "sin resultados" como en error de red.
  */
