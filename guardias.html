@@ -492,7 +492,7 @@
 
         // Interceptar clicks en tel: dentro de contenedor-urgencias
         document.addEventListener('click', function (e) {
-          const link = e.target.closest('#contenedor-urgencias a[href^="tel:"]');
+          const link = e.target.closest('a[aria-label="Llamar al 107 - Emergencias médicas"]');
           if (!link) return;
           e.preventDefault();
 
