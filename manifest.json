@@ -5,14 +5,17 @@
   "start_url": "/?utm_source=pwa&utm_medium=homescreen",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "theme_color": "#191971",
   "background_color": "#191971",
   "lang": "es-AR",
   "dir": "ltr",
-  "categories": ["health", "medical", "local"],
+  "categories": [
+    "health",
+    "medical",
+    "local"
+  ],
   "prefer_related_applications": false,
-  "related_applications": [],
   "icons": [
     {
       "src": "/assets/icons/icon-72.png",
@@ -80,21 +83,36 @@
       "short_name": "Turno",
       "description": "Ver farmacias de turno de hoy",
       "url": "/farmacias.html",
-      "icons": [{ "src": "/assets/icons/shortcut-farmacias.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-farmacias.png",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "Guardias Médicas",
       "short_name": "Guardias",
       "description": "Guardias y emergencias 24hs",
       "url": "/guardias.html",
-      "icons": [{ "src": "/assets/icons/shortcut-guardias.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-guardias.png",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "Laboratorios",
       "short_name": "Labs",
       "description": "Laboratorios clínicos con análisis de sangre",
       "url": "/laboratorios.html",
-      "icons": [{ "src": "/assets/icons/shortcut-labs.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-labs.png",
+          "sizes": "96x96"
+        }
+      ]
     }
   ]
 }

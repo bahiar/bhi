@@ -17,7 +17,6 @@ window.addEventListener('beforeinstallprompt', (event) => {
 window.addEventListener('appinstalled', () => {
     ocultarBannerInstalacion();
     deferredInstallPrompt = null;
-    console.log('[BAHI.ar] PWA instalada correctamente.');
     localStorage.setItem('bahi_pwa_installed', 'true');
 });
 
@@ -138,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (event.data?.type === 'SW_UPDATED') {
                 mostrarBannerActualizacion(event.data.version);
             }
-            if (event.data?.tipo === 'DATOS_EN_CACHE') {
+            if (event.data?.type === 'DATOS_EN_CACHE') {
                 mostrarIndicadorCache();
             }
         });
@@ -250,46 +249,17 @@ function aplicarFiltroCards(filtro) {
     }
 }
 
-function mostrarEstadoVacioBusqueda(contenedor, filtro) {
-    const hayVisibles = !!contenedor.querySelector('.card:not([hidden])');
-    let vacio = contenedor.querySelector('.search-empty-state');
 
-    if (hayVisibles || filtro.length === 0) {
-        if (vacio) vacio.remove();
-        return;
-    }
-    if (vacio) return;
-
-    vacio = document.createElement('div');
-    vacio.className = 'error-state search-empty-state';
-    vacio.setAttribute('role', 'status');
-    vacio.innerHTML = `
-        <div class="error-state-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 11h6M11 8v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <p class="error-state-title">No se encontraron resultados</p>
-        <p class="error-state-desc">Probá con otra palabra o revisá la ortografía.</p>
-        <button type="button" class="error-state-action">Limpiar búsqueda</button>`;
-    contenedor.appendChild(vacio);
-
-    vacio.querySelector('.error-state-action').addEventListener('click', () => {
-        document.querySelectorAll('.search-container input:not(.search-input-local)').forEach(i => { i.value = ''; });
-        aplicarFiltroCards('');
-        const contenedorGlobal = document.getElementById('contenedor-busqueda-global');
-        if (contenedorGlobal) {
-            contenedorGlobal.innerHTML = '';
-            contenedorGlobal.hidden = true;
-        }
-    });
-}
+let _bdCache = null;
 
 async function buscarGlobal(filtro, contenedor) {
     try {
-        const response = await fetch('data/bd_bahiar.json');
-        if (!response.ok) throw new Error('No se pudo cargar los datos');
-        
-        const datos = await response.json();
-        const prestadores = datos.prestadores || [];
+        if (!_bdCache) {
+            const response = await fetch('data/bd_bahiar.json');
+            if (!response.ok) throw new Error('No se pudo cargar los datos');
+            _bdCache = await response.json();
+        }
+        const prestadores = _bdCache.prestadores || [];
         
         // Buscar en farmacias, laboratorios y unidades sanitarias
         const resultados = prestadores.filter(item => {
@@ -500,56 +470,3 @@ function configurarInstalacionPWA() {
         }
     });
 }
-
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * AUDITORÍA Y OPTIMIZACIÓN — RESUMEN DE CAMBIOS
- * ═══════════════════════════════════════════════════════════════════════════
- *
- * ✓ ELIMINACIÓN DE RESIDUOS:
- *   • Removidos 40+ comentarios explicativos y bloques de documentación
- *   • Eliminados comentarios de secciones numeradas (── 0-9 ──)
- *   • Removidos comentarios JSDoc redundantes (funcionalidad clara del código)
- *   • Eliminados comentarios inline que duplicaban información del código
- *   • Conservada únicamente licencia legal/atribución inicial
- *
- * ✓ OPTIMIZACIONES APLICADAS:
- *   • Compresión de espacios en blanco innecesarios en la mayoría de funciones
- *   • Refactorización de lógica ternaria en crearCardHTML (mismo comportamiento)
- *   • Mantenimiento de estructura modular sin cambios funcionales
- *   • Preservación de todas las características: PWA, búsqueda, compartir, etc.
- *
- * ✓ CÓDIGO LIMPIO:
- *   • No hay variables no utilizadas (todas las declaraciones se usan)
- *   • No hay funciones muertas (cada función es invocada)
- *   • No hay estilos CSS muertos (fuera de este archivo, pero estructura preservada)
- *   • Estructura de eventos y listeners verificada y optimizada
- *
- * ✓ MANTENIMIENTO DE FUNCIONALIDAD:
- *   • Seguridad XSS preservada (window.esc)
- *   • Validación de URLs Google Maps intacta (window.safeMapsUrl)
- *   • PWA beforeinstallprompt capturado en el lugar correcto (antes de DOMContentLoaded)
- *   • Service Worker messaging y caché indicator funcionando
- *   • Búsqueda global con debounce intacta
- *   • Renderizado de tarjetas dinámicas (criarCardHTML)
- *   • Compartir por WhatsApp con formato enriquecido
- *   • Banners de instalación y actualización operativos
- *
- * ═══════════════════════════════════════════════════════════════════════════
- *
- * ✓ FIX — ESTADO "SIN RESULTADOS" EN BUSCADORES (este cambio):
- *   • Cada página tiene 2 inputs de búsqueda (uno mobile, otro desktop) que
- *     se muestran/ocultan por CSS según el viewport. Solo uno tenía listener
- *     real; en mobile se escribía en un input "mudo" y la grilla quedaba en
- *     blanco al no haber coincidencias. Ahora ambos quedan sincronizados.
- *   • configurarBuscador() pasó de operar sobre 1 input a una NodeList,
- *     reflejando el valor entre ambos inputs de cada página.
- *   • Nueva función aplicarFiltroCards(): agrupa las cards por su
- *     contenedor real (sirve para páginas con más de una grilla, como
- *     guardias.html) y delega el estado vacío a mostrarEstadoVacioBusqueda().
- *   • Nueva función mostrarEstadoVacioBusqueda(): inserta/quita un bloque
- *     "No se encontraron resultados" (mismo componente .error-state que ya
- *     usan farmacias.html y laboratorios.html) con botón "Limpiar búsqueda".
- *   • buscarGlobal(): el dropdown de sugerencias de index.html ahora también
- *     muestra un mensaje claro tanto en "sin resultados" como en error de red.
- */

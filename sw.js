@@ -13,13 +13,6 @@
  * │ Shell (CSS, JS, manifest)       │ Cache-First → carga instantánea          │
  * │ Assets estáticos sin precachear │ Cache-First con fallback a red           │
  * └─────────────────────────────────┴──────────────────────────────────────────┘
- *
- * Cambios respecto a v3.0:
- * - turnero.json → estrategia Stale-While-Revalidate (crítico para urgencias)
- * - turnero.json agregado a DATA_FILES (precacheado en install)
- * - CACHE_VERSION bumped a v4.0 para forzar ciclo install→activate
- * - Separación explícita de isTurneroRequest() para la estrategia SWR
- * - Mensaje DATOS_EN_CACHE diferenciado para turnero vs padrón
  */
 
 // ─── Versión ──────────────────────────────────────────────────────────────────
@@ -94,7 +87,6 @@ async function notificarClientes(payload) {
 // ─── INSTALL ──────────────────────────────────────────────────────────────────
 
 self.addEventListener('install', (event) => {
-    console.log(`[SW ${CACHE_VERSION}] install`);
     event.waitUntil(
         (async () => {
             // Shell → CACHE_NAME
@@ -117,16 +109,13 @@ self.addEventListener('install', (event) => {
                 )
             );
 
-            await self.skipWaiting();
-            console.log(`[SW ${CACHE_VERSION}] install completo.`);
-        })()
+            await self.skipWaiting();        })()
     );
 });
 
 // ─── ACTIVATE ─────────────────────────────────────────────────────────────────
 
 self.addEventListener('activate', (event) => {
-    console.log(`[SW ${CACHE_VERSION}] activate — limpiando cachés viejos`);
     event.waitUntil(
         (async () => {
             const allCaches = await caches.keys();
@@ -134,14 +123,11 @@ self.addEventListener('activate', (event) => {
                 allCaches
                     .filter(name => name !== CACHE_NAME && name !== DATA_CACHE_NAME)
                     .map(name => {
-                        console.log(`[SW] Borrando caché viejo: ${name}`);
                         return caches.delete(name);
                     })
             );
 
             await self.clients.claim();
-            console.log(`[SW ${CACHE_VERSION}] activate completo.`);
-
             // Notifica a los clientes abiertos que hay una versión nueva.
             // app.js mostrará el banner de actualización.
             await notificarClientes({ type: 'SW_UPDATED', version: CACHE_VERSION });
@@ -178,20 +164,6 @@ self.addEventListener('fetch', (event) => {
     }
 
     // ── 2. Stale-While-Revalidate para turnero.json ──────────────────────────
-    //
-    // Por qué SWR para el turnero:
-    //   - Es el archivo MÁS CRÍTICO (determina qué farmacia atiende hoy).
-    //   - Cambia cada día → la caché se vuelve obsoleta diariamente.
-    //   - En 3G la descarga puede tardar 1-3 segundos.
-    //
-    // Con SWR el flujo es:
-    //   a) Responde INMEDIATAMENTE con la versión en caché (0ms percibido).
-    //   b) En paralelo descarga la versión actualizada en segundo plano.
-    //   c) Guarda el nuevo turnero en caché para el próximo acceso.
-    //   d) Notifica al cliente con TURNERO_ACTUALIZADO para que recargue
-    //      si los datos cambiaron (opcional: app.js puede ignorarlo).
-    //
-    // Degradación offline: si no hay red ni caché → 503 estructurado.
     if (isTurneroRequest(url)) {
         event.respondWith(
             (async () => {
@@ -200,7 +172,7 @@ self.addEventListener('fetch', (event) => {
                 // Lanzar la actualización en segundo plano (no await aquí)
                 const networkPromise = fetch(event.request).then(async (response) => {
                     await putInCache(DATA_CACHE_NAME, event.request, response.clone());
-                    await notificarClientes({ tipo: 'TURNERO_ACTUALIZADO' });
+                    await notificarClientes({ type: 'TURNERO_ACTUALIZADO' });
                     return response;
                 }).catch(() => {
                     // Sin red en segundo plano: silencioso, ya tenemos el caché
@@ -236,13 +208,13 @@ self.addEventListener('fetch', (event) => {
                 try {
                     const response = await fetch(event.request);
                     await putInCache(DATA_CACHE_NAME, event.request, response.clone());
-                    await notificarClientes({ tipo: 'DATOS_FRESCOS' });
+                    await notificarClientes({ type: 'DATOS_FRESCOS' });
                     return response;
                 } catch {
                     console.warn('[SW] Sin red para datos, usando caché.');
                     const cached = await caches.match(event.request);
                     if (cached) {
-                        await notificarClientes({ tipo: 'DATOS_EN_CACHE' });
+                        await notificarClientes({ type: 'DATOS_EN_CACHE' });
                         return cached;
                     }
                     return new Response(
@@ -282,7 +254,6 @@ self.addEventListener('message', (event) => {
         event.data?.action === 'skipWaiting' ||
         event.data === 'SKIP_WAITING'
     ) {
-        console.log('[SW] skipWaiting manual solicitado.');
         self.skipWaiting();
     }
 });
