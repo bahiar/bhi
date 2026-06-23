@@ -194,51 +194,60 @@ function configurarBuscador() {
 }
 
 function aplicarFiltroCards(filtro) {
-    const contenedores = new Set();
+    const hayFiltro = filtro.length > 0;
 
+    // Filtrar cards
     document.querySelectorAll('.card').forEach(card => {
         const nameEl = card.querySelector('.card-name') || card.querySelector('.card-header span');
         const texto = nameEl ? nameEl.textContent.toLowerCase() : '';
-        card.hidden = filtro.length > 0 && !texto.includes(filtro);
-        if (card.parentElement) contenedores.add(card.parentElement);
+        card.hidden = hayFiltro && !texto.includes(filtro);
     });
 
-    contenedores.forEach(contenedor => {
-        const hayVisibles = !!contenedor.querySelector('.card:not([hidden])');
-
-        // Limpiar estado vacío previo
-        const vacio = contenedor.querySelector('.search-empty-state');
-        if (vacio) vacio.remove();
-
-        // En guardias.html las secciones no usan <section> sino que cada grilla
-        // tiene section-header y section-divider como hermanos sueltos. Los
-        // ocultamos todos juntos para evitar títulos huérfanos y mensajes ruidosos.
-        const bloque = obtenerBloqueSeccion(contenedor);
-        if (bloque.length > 0) {
-            const ocultar = filtro.length > 0 && !hayVisibles;
-            bloque.forEach(el => { el.hidden = ocultar; });
-            contenedor.hidden = ocultar;
-        } else {
-            // Fallback para páginas con una sola grilla sin bloques hermanos
-            mostrarEstadoVacioBusqueda(contenedor, filtro);
-        }
+    // En modo busqueda: ocultar titulos y separadores de seccion para que
+    // los resultados queden compactos y sin ruido visual entre ellos.
+    document.querySelectorAll('.section-header, .section-divider').forEach(el => {
+        el.hidden = hayFiltro;
     });
-}
 
-// Devuelve los elementos hermanos anteriores (section-header, section-divider)
-// que forman el encabezado de sección de una grilla de cards.
-function obtenerBloqueSeccion(grilla) {
-    const hermanos = [];
-    let el = grilla.previousElementSibling;
-    while (el) {
-        if (el.classList.contains('section-header') || el.classList.contains('section-divider')) {
-            hermanos.unshift(el);
-            el = el.previousElementSibling;
-        } else {
-            break;
+    const mainContainer = document.getElementById('main-content') || document.querySelector('.main-container');
+    let btnLimpiar = document.getElementById('search-clear-banner');
+
+    if (hayFiltro) {
+        const hayResultados = !!document.querySelector('.card:not([hidden])');
+
+        // Boton unico "Limpiar busqueda" al tope del contenedor
+        if (!btnLimpiar && mainContainer) {
+            btnLimpiar = document.createElement('div');
+            btnLimpiar.id = 'search-clear-banner';
+            btnLimpiar.style.cssText = 'padding:8px 16px 0;';
+            btnLimpiar.innerHTML = '<button type="button" class="error-state-action" style="margin:0 auto;display:block;">Limpiar busqueda</button>';
+            mainContainer.insertBefore(btnLimpiar, mainContainer.firstChild);
+            btnLimpiar.querySelector('button').addEventListener('click', () => {
+                document.querySelectorAll('.search-container input:not(.search-input-local)').forEach(i => { i.value = ''; });
+                aplicarFiltroCards('');
+                const cg = document.getElementById('contenedor-busqueda-global');
+                if (cg) { cg.innerHTML = ''; cg.hidden = true; }
+            });
         }
+
+        // Mensaje global si no hay ningun resultado
+        if (!hayResultados && mainContainer) {
+            if (!document.getElementById('search-no-results')) {
+                const sinRes = document.createElement('div');
+                sinRes.id = 'search-no-results';
+                sinRes.className = 'error-state';
+                sinRes.setAttribute('role', 'status');
+                sinRes.innerHTML = '<div class="error-state-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><p class="error-state-title">No se encontraron resultados</p><p class="error-state-desc">Proba con otra palabra o revisa la ortografia.</p>';
+                mainContainer.appendChild(sinRes);
+            }
+        } else {
+            document.getElementById('search-no-results')?.remove();
+        }
+    } else {
+        // Sin filtro: restaurar todo
+        btnLimpiar?.remove();
+        document.getElementById('search-no-results')?.remove();
     }
-    return hermanos;
 }
 
 function mostrarEstadoVacioBusqueda(contenedor, filtro) {
