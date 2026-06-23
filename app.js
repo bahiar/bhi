@@ -210,17 +210,35 @@ function aplicarFiltroCards(filtro) {
         const vacio = contenedor.querySelector('.search-empty-state');
         if (vacio) vacio.remove();
 
-        // Si el contenedor está dentro de una <section>, ocultar la sección
-        // completa cuando no hay resultados (evita el "No se encontraron
-        // resultados" ruidoso en secciones que el usuario no estaba buscando)
-        const seccion = contenedor.closest('section');
-        if (seccion) {
-            seccion.hidden = filtro.length > 0 && !hayVisibles;
+        // En guardias.html las secciones no usan <section> sino que cada grilla
+        // tiene section-header y section-divider como hermanos sueltos. Los
+        // ocultamos todos juntos para evitar títulos huérfanos y mensajes ruidosos.
+        const bloque = obtenerBloqueSeccion(contenedor);
+        if (bloque.length > 0) {
+            const ocultar = filtro.length > 0 && !hayVisibles;
+            bloque.forEach(el => { el.hidden = ocultar; });
+            contenedor.hidden = ocultar;
         } else {
-            // Fallback para páginas con una sola grilla sin <section> padre
+            // Fallback para páginas con una sola grilla sin bloques hermanos
             mostrarEstadoVacioBusqueda(contenedor, filtro);
         }
     });
+}
+
+// Devuelve los elementos hermanos anteriores (section-header, section-divider)
+// que forman el encabezado de sección de una grilla de cards.
+function obtenerBloqueSeccion(grilla) {
+    const hermanos = [];
+    let el = grilla.previousElementSibling;
+    while (el) {
+        if (el.classList.contains('section-header') || el.classList.contains('section-divider')) {
+            hermanos.unshift(el);
+            el = el.previousElementSibling;
+        } else {
+            break;
+        }
+    }
+    return hermanos;
 }
 
 function mostrarEstadoVacioBusqueda(contenedor, filtro) {
