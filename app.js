@@ -203,7 +203,24 @@ function aplicarFiltroCards(filtro) {
         if (card.parentElement) contenedores.add(card.parentElement);
     });
 
-    contenedores.forEach(contenedor => mostrarEstadoVacioBusqueda(contenedor, filtro));
+    contenedores.forEach(contenedor => {
+        const hayVisibles = !!contenedor.querySelector('.card:not([hidden])');
+
+        // Limpiar estado vacío previo
+        const vacio = contenedor.querySelector('.search-empty-state');
+        if (vacio) vacio.remove();
+
+        // Si el contenedor está dentro de una <section>, ocultar la sección
+        // completa cuando no hay resultados (evita el "No se encontraron
+        // resultados" ruidoso en secciones que el usuario no estaba buscando)
+        const seccion = contenedor.closest('section');
+        if (seccion) {
+            seccion.hidden = filtro.length > 0 && !hayVisibles;
+        } else {
+            // Fallback para páginas con una sola grilla sin <section> padre
+            mostrarEstadoVacioBusqueda(contenedor, filtro);
+        }
+    });
 }
 
 function mostrarEstadoVacioBusqueda(contenedor, filtro) {
