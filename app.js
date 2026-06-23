@@ -247,7 +247,7 @@ async function buscarGlobal(filtro, contenedor) {
         const datos = await response.json();
         const prestadores = datos.prestadores || [];
         
-        // Buscar en farmacias y laboratorios
+        // Buscar en farmacias, laboratorios y unidades sanitarias
         const resultados = prestadores.filter(item => {
             const nombre = (item.PRESTADOR || '').toLowerCase();
             const domicilio = (item.DOMICILIO || '').toLowerCase();
@@ -271,15 +271,19 @@ async function buscarGlobal(filtro, contenedor) {
             return;
         }
 
-        const html = conTipo.slice(0, 10).map((item, i) => 
-            `<div class="resultado-busqueda" data-index="${i}" data-tipo="${window.esc(item.tipo)}" data-nombre="${window.esc(item.PRESTADOR)}">
+        const html = conTipo.slice(0, 10).map((item, i) => {
+            let emoji = '💊';
+            if (item.tipo === 'LABORATORIO') emoji = '🧪';
+            else if (item.tipo === 'UNIDAD SANITARIA') emoji = '🏥';
+            
+            return `<div class="resultado-busqueda" data-index="${i}" data-tipo="${window.esc(item.tipo)}" data-nombre="${window.esc(item.PRESTADOR)}">
                 <div>
                     <div class="resultado-nombre">${window.esc(item.PRESTADOR)}</div>
                     <div class="resultado-ubicacion">${window.esc(item.DOMICILIO || '')}</div>
                 </div>
-                <div class="resultado-tipo">${item.tipo === 'FARMACIA' ? '💊' : '🧪'}</div>
-            </div>`
-        ).join('');
+                <div class="resultado-tipo">${emoji}</div>
+            </div>`;
+        }).join('');
 
         contenedor.innerHTML = html;
         contenedor.hidden = false;
@@ -289,7 +293,9 @@ async function buscarGlobal(filtro, contenedor) {
             el.addEventListener('click', () => {
                 const tipo = el.dataset.tipo;
                 const nombre = el.dataset.nombre;
-                const url = tipo === 'FARMACIA' ? 'farmacias.html' : 'laboratorios.html';
+                let url = 'farmacias.html';
+                if (tipo === 'LABORATORIO') url = 'laboratorios.html';
+                else if (tipo === 'UNIDAD SANITARIA') url = 'guardias.html';
                 window.location.href = `${url}?buscar=${encodeURIComponent(nombre)}`;
             });
         });
