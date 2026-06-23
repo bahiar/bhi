@@ -222,6 +222,20 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Separador visual entre secciones -->
+            <div class="section-divider"></div>
+
+            <!-- ── SECCIÓN: UNIDADES SANITARIAS ── -->
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2>Unidades sanitarias</h2>
+                    <p class="section-header-meta">Atención primaria de salud</p>
+                </div>
+            </div>
+
+            <div id="contenedor-unidades-sanitarias" class="cards-grid" aria-live="polite" aria-label="Unidades sanitarias"></div>
+
         </div>
     </main>
 
@@ -246,6 +260,13 @@
                       { PRESTADOR: "Hospital Dr. Raúl Matera",                        DOMICILIO: "9 de Julio 461",  FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647", HORARIO: "24 hs" }
                   ];
                   contenedor.innerHTML = guardiasEstaticas.map((item, i) => window.crearCardHTML(item, 'GUARDIA', i)).join('');
+              }
+
+              // ── Unidades Sanitarias ──
+              const contUS = document.getElementById('contenedor-unidades-sanitarias');
+              if (contUS && typeof window.crearCardHTML === 'function' && typeof window.BD_BAHIAR !== 'undefined') {
+                  const unidades = window.BD_BAHIAR.filter(p => p.TIPO === 'UNIDAD SANITARIA');
+                  contUS.innerHTML = unidades.map((item, i) => window.crearCardHTML(item, 'UNIDAD SANITARIA', i)).join('');
               }
 
               // SVGs tomados de app.js de producción
