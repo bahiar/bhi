@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardias Médicas y Emergencias en Bahía Blanca | BAHI.ar</title>
+    
+    <meta name="description" content="Guardias médicas de urgencia en Bahía Blanca. Hospitales y clínicas con atención 24 horas.">
+    <link rel="canonical" href="https://www.bahi.ar/guardias.html">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+
+    <meta property="og:title" content="Guardias Médicas y Emergencias en Bahía Blanca | BAHI.ar">
+    <meta property="og:description" content="Guardias médicas de urgencia en Bahía Blanca. Hospitales y clínicas con atención 24 horas.">
+    <meta property="og:url" content="https://www.bahi.ar/guardias.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Geo Meta / SEO Local -->
+    <meta name="geo.region" content="AR-B">
+    <meta name="geo.placename" content="Bahía Blanca, Buenos Aires, Argentina">
+    <meta name="geo.position" content="-38.7183;-62.2661">
+    <meta name="ICBM" content="-38.7183, -62.2661">
+
+    <!-- Schema.org / Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bahi.ar/#website",
+          "url": "https://www.bahi.ar/",
+          "name": "BAHI.ar",
+          "description": "Directorio de salud para Bahía Blanca: farmacias de turno, guardias médicas y laboratorios.",
+          "inLanguage": "es-AR",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.bahi.ar/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://www.bahi.ar/#business",
+          "name": "BAHI.ar",
+          "url": "https://www.bahi.ar/",
+          "description": "Guía médica digital para Bahía Blanca, Ingeniero White, Cabildo y Cerri. Farmacias de turno, guardias 24hs y laboratorios clínicos.",
+          "areaServed": {
+            "@type": "City",
+            "name": "Bahía Blanca",
+            "containedInPlace": {
+              "@type": "State",
+              "name": "Buenos Aires",
+              "containedInPlace": {
+                "@type": "Country",
+                "name": "Argentina"
+              }
+            }
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bahía Blanca",
+            "addressRegion": "Buenos Aires",
+            "addressCountry": "AR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -38.7183,
+            "longitude": -62.2661
+          },
+          "telephone": "+542915658189",
+          "sameAs": [
+            "https://www.facebook.com/guiabahiar/",
+            "https://www.instagram.com/guiabahiar"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Qué es BAHI.ar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Es una guía médica digital para los vecinos de Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Reúne farmacias de turno, guardias, laboratorios y emergencias."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Con qué frecuencia se actualizan las farmacias de turno?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Las farmacias de turno se actualizan diariamente a las 8:30 hs."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Funciona sin conexión a internet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, de forma parcial. Una vez visitada con conexión, el contenido queda guardado en el dispositivo."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <meta name="theme-color" content="#191971">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
+                <!-- Logo SVG -->
+                <img src="https://raw.githubusercontent.com/bahiar/bhi/refs/heads/main/assets/images/mask-icon.svg" alt="" aria-hidden="true" width="36" height="36" style="flex-shrink:0;border-radius:9px;">
+                <span class="brand-logo__wordmark">
+                    <span class="brand-logo__name">BAHI<span class="brand-logo__name--accent">.ar</span></span>
+                    <span class="brand-logo__tagline">guía médica de Bahía Blanca</span>
+                </span>
+            </a>
+            <div class="header-actions">
+                <button
+                    onclick="document.getElementById('faq-modal-overlay').style.display='flex'"
+                    aria-label="Preguntas frecuentes"
+                    class="header-btn"
+                >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Ayuda
+                </button>
+            </div>
+        </div>
+        <!-- Buscador integrado en el hero navy -->
+        <div class="search-container search-container--hero">
+            <div class="search-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+            <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+        </div>
+    </header>
+    <div class="search-bar-below">
+        <div class="search-container">
+            <div class="search-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <input type="text" placeholder="Buscar en BAHI.ar..." aria-label="Buscar en BAHI.ar">
+        </div>
+    </div>
+
+
+    <nav class="sub-nav" aria-label="Accesos rápidos">
+        <ul class="sub-nav-list">
+            <li><a href="index.html" class="sub-nav-link">Inicio</a></li>
+            <li><a href="guardias.html" class="sub-nav-link active">Emergencia</a></li>
+            <li><a href="farmacias.html" class="sub-nav-link">Farmacias</a></li>
+            <li><a href="laboratorios.html" class="sub-nav-link">Laboratorios</a></li>
+        </ul>
+    </nav>
+
+    <main class="app-view" id="content">
+        <div class="main-container" id="main-content">
+
+            <h1 class="sr-only">Guardias Médicas y Emergencias en Bahía Blanca</h1>
+
+            <!-- ── SECCIÓN: EMERGENCIAS + AMBULANCIAS (grilla unificada) ── -->
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2>Emergencias y ambulancias</h2>
+                </div>
+            </div>
+            <!--
+                Un único contenedor para emergencias + ambulancias.
+                En desktop entran en grilla side-by-side (107 | SEM | Alerta).
+                En móvil se apilan verticalmente como antes.
+            -->
+            <div id="contenedor-urgencias" class="cards-grid cards-grid--no-pad" aria-live="polite" aria-label="Servicios de emergencia y ambulancias"></div>
+
+            <!-- Separador visual entre secciones -->
+            <div class="section-divider"></div>
+
+            <!-- ── SECCIÓN: GUARDIAS MÉDICAS ── -->
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2>Hospitales de guardia</h2>
+                    <p class="section-header-meta">Atención 24 hs.</p>
+                </div>
+            </div>
+
+            <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Guardias médicas">
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-addr"></div>
+                    <div class="skeleton-btns">
+                        <div class="skeleton-line skeleton-btn"></div>
+                        <div class="skeleton-line skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Separador visual entre secciones -->
+            <div class="section-divider"></div>
+
+            <!-- ── SECCIÓN: UNIDADES SANITARIAS ── -->
+            <div class="section-header">
+                <div class="section-header-titles">
+                    <h2>Unidades sanitarias</h2>
+                    <p class="section-header-meta">Atención primaria de salud</p>
+                </div>
+            </div>
+
+            <div id="contenedor-unidades-sanitarias" class="cards-grid" aria-live="polite" aria-label="Unidades sanitarias"></div>
+
+        </div>
+    </main>
+
+    <script src="app.js" defer></script>
+    <script defer>
+      /**
+       * Renderizado de Guardias + Emergencias + Ambulancias
+       */
+      document.addEventListener('DOMContentLoaded', () => {
+          setTimeout(() => {
+
+              // ── Guardias médicas ──
+              const contenedor = document.getElementById('contenedor-cards');
+              if (contenedor && typeof window.crearCardHTML === 'function') {
+                  const guardiasEstaticas = [
+                      { PRESTADOR: "Hospital Municipal Dr. Leónidas Lucero",           DOMICILIO: "Estomba 968",      FIJO: "02914598484", MAPS: "https://maps.google.com/?cid=16810520313590473464", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Interzonal General Dr José Penna",        DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385", HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Privado del Sur",                          DOMICILIO: "Las Heras 164",   FIJO: "02914550270", MAPS: "https://maps.google.com/?cid=4096557740069257162",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital de la Asociación Médica", DOMICILIO: "Patricios 347", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Italiano Regional del Sur",               DOMICILIO: "Necochea 675",    FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Regional Español",                        DOMICILIO: "Estomba 571",     FIJO: "02914595555", MAPS: "https://maps.google.com/?cid=2064372742749592359",  HORARIO: "24 hs" },
+                      { PRESTADOR: "Hospital Dr. Raúl Matera",                        DOMICILIO: "9 de Julio 461",  FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647", HORARIO: "24 hs" }
+                  ];
+                  contenedor.innerHTML = guardiasEstaticas.map((item, i) => window.crearCardHTML(item, 'GUARDIA', i)).join('');
+              }
+
+              // ── Unidades Sanitarias ──
+              const contUS = document.getElementById('contenedor-unidades-sanitarias');
+              if (contUS && typeof window.crearCardHTML === 'function' && typeof window.BD_BAHIAR !== 'undefined') {
+                  const unidades = window.BD_BAHIAR.filter(p => p.TIPO === 'UNIDAD SANITARIA');
+                  contUS.innerHTML = unidades.map((item, i) => window.crearCardHTML(item, 'UNIDAD SANITARIA', i)).join('');
+              }
+
+              // SVGs tomados de app.js de producción
+              const SVG_LLAMAR   = `<svg class="btn-icon btn-icon--lg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path opacity="0.5" d="M14.5562 15.5477L14.1007 16.0272C14.1007 16.0272 13.0181 17.167 10.0631 14.0559C7.10812 10.9448 8.1907 9.80507 8.1907 9.80507L8.47752 9.50311C9.18407 8.75924 9.25068 7.56497 8.63424 6.6931L7.37326 4.90961C6.61028 3.8305 5.13596 3.68795 4.26145 4.60864L2.69185 6.26114C2.25823 6.71766 1.96765 7.30945 2.00289 7.96594C2.09304 9.64546 2.81071 13.259 6.81536 17.4752C11.0621 21.9462 15.0468 22.1239 16.6763 21.9631C17.1917 21.9122 17.6399 21.6343 18.0011 21.254L19.4217 19.7584C20.3806 18.7489 20.1102 17.0182 18.8833 16.312L16.9728 15.2123C16.1672 14.7486 15.1858 14.8848 14.5562 15.5477Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M22 7C22 9.76142 19.7614 12 17 12C16.2002 12 15.4442 11.8122 14.7738 11.4783C14.5956 11.3895 14.392 11.36 14.1997 11.4114L13.0867 11.7092C12.6035 11.8385 12.1615 11.3965 12.2908 10.9133L12.5886 9.80031C12.64 9.60803 12.6105 9.4044 12.5217 9.22624C12.1878 8.55582 12 7.79984 12 7C12 4.23858 14.2386 2 17 2C19.7614 2 22 4.23858 22 7ZM17 4.8125C17.5178 4.8125 17.9375 5.23223 17.9375 5.75V6.0625H18.25C18.7678 6.0625 19.1875 6.48223 19.1875 7C19.1875 7.51777 18.7678 7.9375 18.25 7.9375H17.9375V8.25C17.9375 8.76777 17.5178 9.1875 17 9.1875C16.4822 9.1875 16.0625 8.76777 16.0625 8.25V7.9375H15.75C15.2322 7.9375 14.8125 7.51777 14.8125 7C14.8125 6.48223 15.2322 6.0625 15.75 6.0625H16.0625V5.75C16.0625 5.23223 16.4822 4.8125 17 4.8125Z" fill="currentColor"/></svg>`;
+              const SVG_WHATSAPP = `<svg class="btn-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M26.576 5.363c-2.69-2.69-6.406-4.354-10.511-4.354-8.209 0-14.865 6.655-14.865 14.865 0 2.732 0.737 5.291 2.022 7.491l-0.038-0.070-2.109 7.702 7.879-2.067c2.051 1.139 4.498 1.809 7.102 1.809h0.006c8.209-0.003 14.862-6.659 14.862-14.868 0-4.103-1.662-7.817-4.349-10.507l0 0zM16.062 28.228h-0.005c-0 0-0.001 0-0.001 0-2.319 0-4.489-0.64-6.342-1.753l0.056 0.031-0.451-0.267-4.675 1.227 1.247-4.559-0.294-0.467c-1.185-1.862-1.889-4.131-1.889-6.565 0-6.822 5.531-12.353 12.353-12.353s12.353 5.531 12.353 12.353c0 6.822-5.53 12.353-12.353 12.353h-0zM22.838 18.977c-0.371-0.186-2.197-1.083-2.537-1.208-0.341-0.124-0.589-0.185-0.837 0.187-0.246 0.371-0.958 1.207-1.175 1.455-0.216 0.249-0.434 0.279-0.805 0.094-1.15-0.466-2.138-1.087-2.997-1.852l0.010 0.009c-0.799-0.74-1.484-1.587-2.037-2.521l-0.028-0.052c-0.216-0.371-0.023-0.572 0.162-0.757 0.167-0.166 0.372-0.434 0.557-0.65 0.146-0.179 0.271-0.384 0.366-0.604l0.006-0.017c0.043-0.087 0.068-0.188 0.068-0.296 0-0.131-0.037-0.253-0.101-0.357l0.002 0.003c-0.094-0.186-0.836-2.014-1.145-2.758-0.302-0.724-0.609-0.625-0.836-0.637-0.216-0.010-0.464-0.012-0.712-0.012-0.395 0.010-0.746 0.188-0.988 0.463l-0.001 0.002c-0.802 0.761-1.3 1.834-1.3 3.023 0 0.026 0 0.053 0.001 0.079l-0-0.004c0.131 1.467 0.681 2.784 1.527 3.857l-0.012-0.015c1.604 2.379 3.742 4.282 6.251 5.564l0.094 0.043c0.548 0.248 1.25 0.513 1.968 0.74l0.149 0.041c0.442 0.14 0.951 0.221 1.479 0.221 0.303 0 0.601-0.027 0.889-0.078l-0.031 0.004c1.069-0.223 1.956-0.868 2.497-1.749l0.009-0.017c0.165-0.366 0.261-0.793 0.261-1.242 0-0.185-0.016-0.366-0.047-0.542l0.003 0.019c-0.092-0.155-0.34-0.247-0.712-0.434z"/></svg>`;
+              const SVG_MAPA     = `<svg class="btn-icon btn-icon--maps" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg>`;
+
+              // ── Emergencias médicas (107) + Ambulancias en un solo contenedor ──
+              const contUrgencias = document.getElementById('contenedor-urgencias');
+              if (contUrgencias) {
+                  contUrgencias.innerHTML = `
+                  <!-- 107: card de emergencia destacada -->
+                  <article class="card card-emergencia" data-tipo="EMERGENCIA" data-estado="turno">
+                      <div class="card-top">
+                          <div class="card-info">
+                              <span class="card-badge card-badge--emergencia">● Emergencia gratuita</span>
+                              <h3 class="card-name">107</h3>
+                              <p class="card-addr">Emergencias Médicas · 24 hs</p>
+                          </div>
+                      </div>
+                      <div class="card-actions card-actions--single">
+                          <a href="tel:107" class="btn btn-accent" aria-label="Llamar al 107 - Emergencias médicas">${SVG_LLAMAR} Llamar al 107</a>
+                      </div>
+                  </article>
+
+                  <!-- SEM Emergencias Médicas -->
+                  <article class="card" data-tipo="AMBULANCIA">
+                      <div class="card-top">
+                          <div class="card-info">
+                              <span class="card-badge card-badge--ambulancia">Ambulancia</span>
+                              <h3 class="card-name">SEM Emergencias Médicas</h3>
+                              <p class="card-addr">(0291) 459-1919</p>
+                          </div>
+                      </div>
+                      <div class="card-actions">
+                          <a href="tel:02914591919" class="btn btn-accent" aria-label="Llamar a SEM Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
+                          <a href="https://wa.me/5492916492840" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de SEM Emergencias Médicas">${SVG_WHATSAPP} WhatsApp</a>
+                      </div>
+                  </article>
+
+                  <!-- Alerta Emergencias Médicas -->
+                  <article class="card" data-tipo="AMBULANCIA">
+                      <div class="card-top">
+                          <div class="card-info">
+                              <span class="card-badge card-badge--ambulancia">Ambulancia</span>
+                              <h3 class="card-name">Alerta Emergencias Médicas</h3>
+                              <p class="card-addr">(0291) 455-3388</p>
+                          </div>
+                      </div>
+                      <div class="card-actions card-actions--single">
+                          <a href="tel:02914553388" class="btn btn-accent" aria-label="Llamar a Alerta Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
+                      </div>
+                      <button class="card-header" aria-expanded="false" aria-controls="alerta-alt-phones">
+                          <span>Más información</span>
+                          <span class="card-chevron" aria-hidden="true">▼</span>
+                      </button>
+                      <div class="card-body-collapse" id="alerta-alt-phones" role="region" aria-label="Teléfonos alternativos de Alerta Emergencias Médicas">
+                          <p class="card-detail-row"><strong>Alternativo:</strong> <a href="tel:02914560000" class="card-phone-link">(0291) 456-0000</a></p>
+                          <p class="card-detail-row"><strong>Alternativo:</strong> <a href="tel:02914562076" class="card-phone-link">(0291) 456-2076</a></p>
+                      </div>
+                  </article>`;
+              }
+
+          }, 150);
+      });
+    </script>
+
+    <!-- ── BOTTOM NAVIGATION BAR ── -->
+
+    <nav class="bottom-nav" aria-label="Navegación principal">
+
+        <a href="index.html" class="bottom-nav-item" aria-label="Inicio">
+            <svg class="bottom-nav-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0L0 6V8H1V15H4V10H7V15H15V8H16V6L14 4.5V1H11V2.25L8 0ZM9 10H12V13H9V10Z" fill="currentColor"/></svg>
+            Inicio
+        </a>
+
+        <a href="guardias.html" class="bottom-nav-item active" aria-current="page" aria-label="Emergencia">
+            <svg class="bottom-nav-icon" viewBox="0 0 207.464 207.464" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M200.037,116.548l-0.489-0.454c-0.299-0.275-0.598-0.551-0.886-0.839l-46.604-46.591c-0.102-0.102-0.208-0.199-0.319-0.292c-2.315-1.945-5.018-3.347-7.898-4.138V52.82c0-2.762-2.239-5-5-5h-22.667c-2.761,0-5,2.238-5,5v10.666H14.774C6.627,63.486,0,70.114,0,78.26v88.515c0,2.762,2.239,5,5,5h13.06c2.278,9.934,11.183,17.369,21.799,17.369s19.521-7.435,21.799-17.369h85.696c2.278,9.934,11.183,17.369,21.798,17.369c10.626,0,19.539-7.45,21.806-17.399c9.153-0.318,16.506-7.843,16.506-17.072v-20.966C207.464,127.233,204.757,120.979,200.037,116.548z M121.175,57.82h12.667v5.666h-12.667V57.82z M39.858,179.144c-6.82,0-12.369-5.549-12.369-12.369s5.549-12.369,12.369-12.369s12.369,5.549,12.369,12.369S46.679,179.144,39.858,179.144z M65.58,107.433c0,2.762-2.239,5-5,5h-8.114v8.114c0,2.762-2.239,5-5,5H37.8c-2.761,0-5-2.238-5-5v-8.114h-8.114c-2.761,0-5-2.238-5-5v-9.666c0-2.762,2.239-5,5-5H32.8v-8.114c0-2.762,2.239-5,5-5h9.667c2.761,0,5,2.238,5,5v8.114h8.114c2.761,0,5,2.238,5,5V107.433z M126.51,112.297c-2.429,0-4.404-1.976-4.404-4.404V84.294c0-1.353,1.1-2.452,2.453-2.452h15.745c1.555,0,3.017,0.605,4.117,1.705l24.056,24.057c1.172,1.172,0.807,2.485,0.596,2.996c-0.211,0.51-0.882,1.697-2.541,1.697H126.51z M169.152,179.144c-6.82,0-12.369-5.549-12.369-12.369s5.548-12.369,12.369-12.369s12.369,5.549,12.369,12.369S175.972,179.144,169.152,179.144z M127.508,42.32c-2.761,0-5-2.238-5-5v-14c0-2.762,2.239-5,5-5s5,2.238,5,5v14C132.508,40.082,130.27,42.32,127.508,42.32z M151.783,46.57c-1.28,0-2.559-0.488-3.536-1.465c-1.953-1.952-1.953-5.118,0-7.07l8.821-8.821c1.952-1.953,5.118-1.953,7.071,0c1.953,1.952,1.953,5.118,0,7.07l-8.821,8.821C154.343,46.082,153.063,46.57,151.783,46.57z M105.585,46.57c-1.28,0-2.559-0.488-3.536-1.465l-8.821-8.821c-1.953-1.952-1.953-5.118,0-7.07c1.953-1.953,5.118-1.953,7.071,0l8.821,8.821c1.953,1.952,1.953,5.118,0,7.07C108.145,46.082,106.865,46.57,105.585,46.57z"/></svg>
+            Emergencia
+        </a>
+
+        <a href="farmacias.html" class="bottom-nav-item" aria-label="Farmacias">
+            <svg class="bottom-nav-icon" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M471.199,231.069L271.6,33.725l0.044,0.093C249.149,11.271,219.501-0.05,189.995,0c-29.463-0.05-59.112,11.271-81.609,33.818c-22.54,22.49-33.857,52.092-33.815,81.609c-0.042,29.502,11.274,59.147,33.815,81.645l47.106,46.6c-1.42-0.043-2.842-0.043-4.259-0.043c-38.632,0-73.726,9.714-99.984,26.161c-13.106,8.245-24.057,18.189-31.846,29.782c-7.832,11.55-12.417,24.835-12.417,38.858v78.719c0,14.016,4.585,27.308,12.417,38.858c11.732,17.364,30.377,31.15,53.107,40.83c22.773,9.664,49.762,15.113,78.723,15.163c38.579-0.05,73.676-9.758,99.93-26.211c13.149-8.202,24.054-18.188,31.89-29.781c7.793-11.55,12.374-24.842,12.374-38.858v-35.144l12.554,12.425l-0.043-0.1c22.494,22.54,52.143,33.868,81.648,33.818c29.466,0.05,59.112-11.278,81.612-33.768c22.54-22.548,33.814-52.143,33.814-81.659C505.013,283.212,493.739,253.609,471.199,231.069z M141.473,148.686c-19.106-19.149-19.106-50.63,0.272-70.009c9.346-9.349,21.809-14.525,35.102-14.525L141.473,148.686z M29.896,338.43c0.043-9.026,2.839-17.637,8.482-26.075c4.95-7.37,12.231-14.432,21.347-20.705l175.312,102.594c-3.986,2.194-8.201,4.259-12.65,6.137c-20.113,8.567-44.672,13.608-71.152,13.608c-35.38,0.05-67.27-9.026-89.764-23.186c-11.27-7.097-20.16-15.4-26.118-24.283c-2.205-3.305-4.033-6.645-5.456-10.08V338.43z M272.518,417.15c0,9.026-2.842,17.644-8.474,26.068c-8.438,12.56-23.418,24.196-43.074,32.542c-19.612,8.338-43.715,13.335-69.736,13.335c-34.735,0-66.029-8.94-87.792-22.684c-10.908-6.832-19.433-14.848-25.064-23.193c-5.642-8.424-8.439-17.042-8.482-26.068v-32.484c11.087,12.274,26.211,22.498,44.034,30.054c22.268,9.449,48.798,14.854,77.304,14.854c37.983,0,72.44-9.586,98.005-25.623c8.98-5.586,16.816-12.045,23.279-19.243V417.15z M272.518,356.44c-0.272,0.688-0.552,1.326-0.918,2.014c-1.233,2.753-2.749,5.406-4.538,8.065c-3.847,5.772-9.026,11.228-15.164,16.311L78.329,281.29c1.054-0.459,2.065-1.011,3.116-1.42c19.611-8.338,43.715-13.335,69.79-13.335c10.26,0,20.208,0.781,29.689,2.251c22.637,3.434,42.704,10.762,58.054,20.382c1.878,1.147,3.667,2.388,5.359,3.628c8.294,5.908,14.847,12.46,19.475,19.293c0.093,0.086,0.183,0.179,0.233,0.265c5.632,8.438,8.474,17.049,8.474,26.075V356.44z M451.77,374.9c-17.228,17.192-39.639,25.752-62.183,25.752c-22.588,0-44.991-8.524-62.223-25.752l-0.046-0.043l-31.89-31.524v-4.903c0-14.024-4.581-27.309-12.374-38.858c-9.801-14.432-24.326-26.39-42.016-35.553c2.201-5.728,4.994-11.966,8.432-18.368c9.714-18.246,24.286-38.041,43.578-53.247c19.196-15.17,42.798-25.982,71.984-27.638l86.692,85.731h0.046c17.182,17.228,25.749,39.683,25.749,62.223C477.519,335.268,468.952,357.723,451.77,374.9z"/></svg>
+            Farmacias
+        </a>
+
+        <a href="laboratorios.html" class="bottom-nav-item" aria-label="Laboratorios">
+            <svg class="bottom-nav-icon" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M317.418,48.457c-8.281-8.281-21.703-8.281-29.984,0s-8.281,21.703,0,29.984l9.141,9.125L137.559,246.582c-18.766,18.734-28.156,43.391-28.156,67.922c0,14.141,3.141,28.344,9.375,41.391l-27.719,27.719c-2.594,2.578-4.625,5.531-6.047,8.734c-1.391,3.172-2.219,6.609-2.219,10.172c0,2.5,0.406,5.094,1.359,7.578c0.813,2.172,2.094,4.266,3.719,6.125l-87.875,87.844H31.73l72-71.984c1.844,1.609,3.938,2.891,6.109,3.703c2.5,0.953,5.094,1.359,7.563,1.359c3.594,0,7-0.828,10.203-2.219c3.188-1.422,6.125-3.453,8.734-6.047l27.719-27.703c13.031,6.234,27.234,9.391,41.375,9.391c24.547,0,49.203-9.422,67.922-28.156l159.016-159.031l9.125,9.125c8.281,8.281,21.703,8.281,29.984,0s8.281-21.719,0-29.969L317.418,48.457z M120.449,413.02c-0.656,0.656-1.375,1.125-1.953,1.375c-0.219,0.109-0.422,0.141-0.594,0.203l-12.547-12.578c0.047-0.141,0.094-0.359,0.188-0.578c0.25-0.578,0.703-1.297,1.375-1.938l24.172-24.188c2,2.453,4.125,4.813,6.391,7.063v0.031c0.125,0.094,0.25,0.203,0.359,0.344l0.063,0.031c2.156,2.141,4.391,4.172,6.719,6.063L120.449,413.02z M257.496,366.52c-14.422,14.391-33.172,21.547-52.063,21.578c-18.859-0.031-37.609-7.156-52.016-21.531c-7.203-7.188-12.594-15.484-16.188-24.344c-3.594-8.844-5.391-18.25-5.391-27.719c0.031-18.875,7.188-37.641,21.578-52.063l159.016-159l104.063,104.063L257.496,366.52z"/><path fill="currentColor" d="M505.793,95.691l-81.547-81.547c-8.281-8.281-21.703-8.281-29.984,0c-8.281,8.297-8.281,21.703,0,29.984l26.063,26.094l-28.5,28.5l29.391,29.406l28.516-28.516l26.078,26.078c8.281,8.281,21.703,8.281,29.984,0S514.074,103.973,505.793,95.691z"/><polygon fill="currentColor" points="363.949,186.129 333.824,156.004 326.762,163.051 356.887,193.176"/><polygon fill="currentColor" points="285.027,204.801 315.137,234.91 322.199,227.879 292.074,197.738"/><path fill="currentColor" d="M253.215,227.926c-6.047-6.047-9.688-11.219-12.234-15.984l-69.047,69.031c-18.484,18.5-18.484,48.563-0.031,67.047c18.484,18.484,48.578,18.469,67.078-0.016l76.984-77c-2.047-2.719-4.531-5.625-7.672-8.781C285.949,239.879,275.559,250.254,253.215,227.926z"/></svg>
+            Laboratorios
+        </a>
+
+    </nav>
+
+    <!-- ── FAQ MODAL ───────────────────────────────────────────────────────── -->
+    <div id="faq-modal-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,40,0.65);align-items:flex-end;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+      <div style="background:var(--bg-card,#fff);width:100%;max-width:480px;border-radius:20px 20px 0 0;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;">
+
+        <div style="background:#191971;padding:16px 20px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+          <div>
+            <div class="brand-logo__name" style="font-size:19px;font-weight:500;letter-spacing:-0.5px;">BAHI<span class="brand-logo__name--accent">.ar</span></div>
+            <div class="brand-logo__tagline" style="margin-top:1px;">Preguntas frecuentes</div>
+          </div>
+          <button onclick="document.getElementById('faq-modal-overlay').style.display='none'" style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;" aria-label="Cerrar">✕</button>
+        </div>
+
+        <div style="overflow-y:auto;flex:1;" id="faq-body">
+
+          <div style="padding:14px 20px 4px;">
+            <span style="display:inline-block;background:#191971;color:#fff;font-size:10px;font-weight:500;padding:2px 10px;border-radius:999px;letter-spacing:0.04em;">General</span>
+          </div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Qué es BAHI.ar?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Es tu guía médica digital y de bolsillo para Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Te permite encontrar rápido farmacias de turno, guardias, laboratorios y números de emergencia. Vas a poder llamar directamente o ver cómo llegar en el mapa desde tu celular. ¡Y es muy fácil de usar!</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Hay que pagar para usarla?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans"><span style="display:inline-flex;align-items:center;gap:4px;background:#EEEDFE;color:#3C3489;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:500;">♥ 100% gratuita</span><br><br>Nunca te vamos a cobrar nada. Si la página te resulta útil y tenés ganas de darnos una mano, podés hacer un aporte voluntario por <a href="https://link.mercadopago.com.ar/mpbahiar" target="_blank" rel="noopener" style="color:#1F75FE;">Mercado Pago</a>, pero es totalmente opcional.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿La información está actualizada?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Sí. Las farmacias de turno se actualizan todos los días, y los datos de las guardias y los laboratorios se revisan constantemente. Si llegás a ver algún dato viejo, nos podés avisar fácil con el botón <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" style="color:#1F75FE;">"Reportar error"</a> que está arriba de todo en la pantalla.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Cómo busco las farmacias de turno de hoy?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Apenas entrás a la página vas a ver las farmacias del día con su dirección y teléfono. Esta lista cambia automáticamente todos los días a las <strong>8:30 de la mañana</strong>. Además, tenés un botón de <strong>"Compartir farmacias"</strong> por si se la querés mandar por WhatsApp a un familiar o amigo que lo necesite.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Puedo buscar por mi barrio u obra social?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">¡Sí! En las secciones de Farmacias y Laboratorios vas a encontrar filtros. Podés buscar por la zona donde estás, por tu obra social o por lo que necesités en ese momento.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Anda si me quedo sin internet o sin datos?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Sí, pero a medias. Una vez que entraste a la página con internet, mucha información queda guardada en tu celular y la podés seguir viendo. Ojo: para ver las farmacias de turno, te recomendamos siempre tener internet, porque los turnos cambian todos los días.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Me tengo que registrar? ¿Guardan mis datos personales?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Para nada. No hace falta crear ningún usuario, ni poner contraseñas, ni dejar tus datos. La página solo guarda un archivito mínimo en tu celular para no estar preguntándote a cada rato si querés instalar la aplicación. Tu privacidad está asegurada.</div></div>
+
+          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Qué hago si encuentro un número o dirección que está mal?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Tocá el botón <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" style="color:#1F75FE;">"Reportar error"</a> en la parte de arriba de la página. Eso te va a abrir un chat de WhatsApp directo con nosotros. Leemos todos los mensajes y te respondemos en menos de <strong>48 horas hábiles</strong>. ¡Tu ayuda nos sirve un montón para mejorar!</div></div>
+
+          <div class="faq-i" style="border-bottom:none;"><button class="faq-btn" onclick="faqToggle(this)"><span>¿De dónde sacan la información? ¿Es confiable?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">¡Sí, es 100% confiable! Todos los datos que publicamos son oficiales. Nos los pasan directamente los colegios y entidades médicas que representan a los profesionales y centros de salud de la ciudad.</div></div>
+
+        </div>
+
+        <div class="faq-report-row">
+          <span class="faq-report-row__label">¿No encontraste tu respuesta?</span>
+          <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" class="faq-report-link">
+            <svg width="14" height="14" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            Reportar error
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <style>
+      .faq-i{border-bottom:0.5px solid rgba(0,0,0,0.08);}
+      .faq-btn{width:100%;background:none;border:none;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;text-align:left;font-size:13.5px;font-weight:500;color:#1a1a2e;font-family:inherit;}
+      .faq-chv{flex-shrink:0;color:#888;transition:transform 0.2s;}
+      .faq-ans{display:none;padding:0 20px 13px;font-size:13px;color:#555;line-height:1.65;}
+      .faq-i.open .faq-chv{transform:rotate(180deg);}
+      .faq-i.open .faq-ans{display:block;}
+    </style>
+    <script>
+      function faqToggle(btn){
+        var item=btn.closest('.faq-i');
+        var isOpen=item.classList.contains('open');
+        document.querySelectorAll('.faq-i.open').forEach(function(i){i.classList.remove('open');});
+        if(!isOpen) item.classList.add('open');
+      }
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'){var o=document.getElementById('faq-modal-overlay');if(o)o.style.display='none';}
+      });
+    </script>
+
+</body>
+</html>
