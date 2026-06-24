@@ -11,6 +11,14 @@ window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
     if (sessionStorage.getItem('bahi_install_dismissed') === 'true') return;
     deferredInstallPrompt = event;
+    
+    // 📊 Enviar evento a Google Tag Manager
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': 'pwa_event',
+        'pwa_action': 'banner_mostrado'
+    });
+    
     mostrarBannerInstalacion();
 });
 
@@ -18,6 +26,13 @@ window.addEventListener('appinstalled', () => {
     ocultarBannerInstalacion();
     deferredInstallPrompt = null;
     localStorage.setItem('bahi_pwa_installed', 'true');
+    
+    // 📊 Enviar evento a Google Tag Manager
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': 'pwa_event',
+        'pwa_action': 'instalacion_aceptada'
+    });
 });
 
 window.esc = (str) => {
@@ -454,6 +469,14 @@ function configurarInstalacionPWA() {
             try {
                 deferredInstallPrompt.prompt();
                 const { outcome } = await deferredInstallPrompt.userChoice;
+                
+                // 📊 Enviar resultado a Google Tag Manager
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'pwa_event',
+                    'pwa_action': outcome === 'accepted' ? 'instalacion_aceptada' : 'instalacion_rechazada'
+                });
+                
                 console.log(`[BAHI.ar] Resultado de instalación: ${outcome}`);
             } catch (err) {
                 console.error('[BAHI.ar] Error al mostrar el prompt de instalación:', err);
