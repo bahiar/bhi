@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Prestadores | BAHI.ar</title>
+    <meta name="description" content="Mapa interactivo de farmacias, laboratorios, hospitales y unidades sanitarias en Bahía Blanca.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+
+    <meta name="theme-color" content="#191971">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <style>
+        /* ── Layout general ── */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* el mapa ocupa toda la pantalla disponible */
+        }
+
+        /* El header de BAHI.ar tiene position:sticky; acá lo dejamos estático
+           para que el mapa ocupe el resto del viewport */
+        .main-header {
+            position: relative !important;
+            z-index: 400;
+        }
+
+        /* Ocultar buscador global y barra secundaria — no aplican en esta página */
+        .search-container--hero,
+        .busqueda-global-resultados,
+        .search-bar-below,
+        .sub-nav {
+            display: none !important;
+        }
+
+        /* ── Contenedor del mapa ── */
+        #mapa-wrapper {
+            position: relative;
+            /* Altura = 100vh menos header (~64px) menos bottom-nav (~64px) */
+            height: calc(100dvh - 64px - 64px);
+        }
+
+        #mapa {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ── Panel de filtros (sobre el mapa) ── */
+        #filtros-panel {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 500;
+            background: var(--bg-card, #fff);
+            border-radius: 14px;
+            padding: 10px 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-width: calc(100vw - 24px);
+            width: max-content;
+        }
+
+        .filtro-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 5px 11px 5px 8px;
+            transition: opacity 0.15s, border-color 0.15s;
+            user-select: none;
+            line-height: 1;
+        }
+
+        .filtro-chip input[type="checkbox"] {
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            border: 2px solid currentColor;
+            flex-shrink: 0;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .filtro-chip input[type="checkbox"]:checked {
+            background: currentColor;
+        }
+
+        .filtro-chip input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: -1px;
+            width: 6px;
+            height: 9px;
+            border: 2px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg);
+        }
+
+        .filtro-chip--farmacias  { color: #1565C0; background: #e8f0fe; border-color: #1565C0; }
+        .filtro-chip--laboratorios { color: #2E7D32; background: #e8f5e9; border-color: #2E7D32; }
+        .filtro-chip--hospitales { color: #C62828; background: #fce8e8; border-color: #C62828; }
+        .filtro-chip--sanitarias { color: #E65100; background: #fff3e0; border-color: #E65100; }
+
+        .filtro-chip.inactivo {
+            opacity: 0.4;
+            border-color: #ccc;
+            background: #f5f5f5;
+        }
+
+        /* ── Botón "Mi ubicación" ── */
+        #btn-ubicacion {
+            position: absolute;
+            bottom: 16px;
+            right: 12px;
+            z-index: 500;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-card, #fff);
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #191971;
+            transition: background 0.15s;
+        }
+
+        #btn-ubicacion:active { background: #f0f0f0; }
+
+        /* ── Toast de estado ── */
+        #mapa-toast {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 500;
+            background: rgba(25,25,113,0.9);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+
+        #mapa-toast.visible { opacity: 1; }
+
+        /* ── Popup de Leaflet — ajuste de fuente ── */
+        .leaflet-popup-content {
+            font-family: inherit;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 10px 14px;
+        }
+
+        .leaflet-popup-content strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .popup-tipo {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-radius: 10px;
+            padding: 2px 7px;
+            margin-bottom: 4px;
+        }
+
+        .popup-tipo--FARMACIA    { background:#e8f0fe; color:#1565C0; }
+        .popup-tipo--LABORATORIO { background:#e8f5e9; color:#2E7D32; }
+        .popup-tipo--HOSPITAL    { background:#fce8e8; color:#C62828; }
+        .popup-tipo--SANITARIA   { background:#fff3e0; color:#E65100; }
+
+        .popup-dir { color: #555; font-size: 12px; margin-top: 2px; }
+
+        /* ── Sin datos ── */
+        #mapa-sin-datos {
+            position: absolute;
+            inset: 0;
+            z-index: 450;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.85);
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #mapa-sin-datos svg { color: #bbb; }
+        #mapa-sin-datos p { margin: 0; font-weight: 600; color: #333; }
+        #mapa-sin-datos span { font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <!-- ── HEADER (idéntico al resto del sitio) ── -->
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
+                <img src="https://raw.githubusercontent.com/bahiar/bhi/refs/heads/main/assets/images/mask-icon.svg"
+                     alt="" aria-hidden="true" width="36" height="36" style="flex-shrink:0;border-radius:9px;">
+                <span class="brand-logo__wordmark">
+                    <span class="brand-logo__name">BAHI<span class="brand-logo__name--accent">.ar</span></span>
+                    <span class="brand-logo__tagline">Mapa de prestadores</span>
+                </span>
+            </a>
+            <div class="header-actions">
+                <a href="index.html" class="header-btn" aria-label="Volver al inicio">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                    Volver
+                </a>
+            </div>
+        </div>
+        <!-- Placeholders necesarios para que app.js no falle -->
+        <div class="search-container search-container--hero" aria-hidden="true" style="display:none">
+            <input type="text" aria-hidden="true" tabindex="-1">
+        </div>
+        <div id="contenedor-busqueda-global" hidden></div>
+    </header>
+
+    <!-- ── MAPA + CONTROLES ── -->
+    <div id="mapa-wrapper">
+
+        <!-- Mapa Leaflet -->
+        <div id="mapa" role="application" aria-label="Mapa de prestadores de salud en Bahía Blanca"></div>
+
+        <!-- Panel de filtros -->
+        <div id="filtros-panel" role="group" aria-label="Filtrar prestadores">
+            <label class="filtro-chip filtro-chip--farmacias">
+                <input type="checkbox" data-tipo="FARMACIA" checked>
+                Farmacias
+            </label>
+            <label class="filtro-chip filtro-chip--laboratorios">
+                <input type="checkbox" data-tipo="LABORATORIO" checked>
+                Laboratorios
+            </label>
+            <label class="filtro-chip filtro-chip--hospitales">
+                <input type="checkbox" data-tipo="HOSPITAL" checked>
+                Hospitales
+            </label>
+            <label class="filtro-chip filtro-chip--sanitarias">
+                <input type="checkbox" data-tipo="SANITARIA" checked>
+                Unidades San.
+            </label>
+        </div>
+
+        <!-- Mensaje sin datos visibles -->
+        <div id="mapa-sin-datos" hidden>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <p>Ningún tipo seleccionado</p>
+            <span>Activá al menos un filtro para ver prestadores en el mapa.</span>
+        </div>
+
+        <!-- Botón mi ubicación -->
+        <button id="btn-ubicacion" aria-label="Centrar en mi ubicación" title="Mi ubicación">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+                <circle cx="12" cy="12" r="9" stroke-dasharray="2 3"/>
+            </svg>
+        </button>
+
+        <!-- Toast -->
+        <div id="mapa-toast" role="status" aria-live="polite"></div>
+
+    </div>
+
+    <!-- ── BOTTOM NAV ── -->
+    <nav class="bottom-nav" aria-label="Navegación principal">
+        <a href="index.html" class="bottom-nav-item" aria-label="Inicio">
+            <svg class="bottom-nav-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0L0 6V8H1V15H4V10H7V15H15V8H16V6L14 4.5V1H11V2.25L8 0ZM9 10H12V13H9V10Z" fill="currentColor"/>
+            </svg>
+            <span class="bottom-nav-label">Inicio</span>
+        </a>
+        <a href="guardias.html" class="bottom-nav-item" aria-label="Emergencia">
+            <svg class="bottom-nav-icon" viewBox="0 0 207.464 207.464" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M200.037,116.548l-0.489-0.454c-0.299-0.275-0.598-0.551-0.886-0.839l-46.604-46.591c-0.102-0.102-0.208-0.199-0.319-0.292c-2.315-1.945-5.018-3.347-7.898-4.138V52.82c0-2.762-2.239-5-5-5h-22.667c-2.761,0-5,2.238-5,5v10.666H14.774C6.627,63.486,0,70.114,0,78.26v88.515c0,2.762,2.239,5,5,5h13.06c2.278,9.934,11.183,17.369,21.799,17.369s19.521-7.435,21.799-17.369h85.696c2.278,9.934,11.183,17.369,21.798,17.369c10.626,0,19.539-7.45,21.806-17.399c9.153-0.318,16.506-7.843,16.506-17.072v-20.966C207.464,127.233,204.757,120.979,200.037,116.548z M121.175,57.82h12.667v5.666h-12.667V57.82z M39.858,179.144c-6.82,0-12.369-5.549-12.369-12.369s5.549-12.369,12.369-12.369s12.369,5.549,12.369,12.369S46.679,179.144,39.858,179.144z M65.58,107.433c0,2.762-2.239,5-5,5h-8.114v8.114c0,2.762-2.239,5-5,5H37.8c-2.761,0-5-2.238-5-5v-8.114h-8.114c-2.761,0-5-2.238-5-5v-9.666c0-2.762,2.239-5,5-5H32.8v-8.114c0-2.762,2.239-5,5-5h9.667c2.761,0,5,2.238,5,5v8.114h8.114c2.761,0,5,2.238,5,5V107.433z M126.51,112.297c-2.429,0-4.404-1.976-4.404-4.404V84.294c0-1.353,1.1-2.452,2.453-2.452h15.745c1.555,0,3.017,0.605,4.117,1.705l24.056,24.057c1.172,1.172,0.807,2.485,0.596,2.996c-0.211,0.51-0.882,1.697-2.541,1.697H126.51z M169.152,179.144c-6.82,0-12.369-5.549-12.369-12.369s5.548-12.369,12.369-12.369s12.369,5.549,12.369,12.369S175.972,179.144,169.152,179.144z"/></svg>
+            <span class="bottom-nav-label">Emergencia</span>
+        </a>
+        <a href="farmacias.html" class="bottom-nav-item" aria-label="Farmacias">
+            <svg class="bottom-nav-icon" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M471.199,231.069L271.6,33.725l0.044,0.093C249.149,11.271,219.501-0.05,189.995,0c-29.463-0.05-59.112,11.271-81.609,33.818c-22.54,22.49-33.857,52.092-33.815,81.609c-0.042,29.502,11.274,59.147,33.815,81.645l47.106,46.6c-1.42-0.043-2.842-0.043-4.259-0.043c-38.632,0-73.726,9.714-99.984,26.161c-13.106,8.245-24.057,18.189-31.846,29.782c-7.832,11.55-12.417,24.835-12.417,38.858v78.719c0,14.016,4.585,27.308,12.417,38.858c11.732,17.364,30.377,31.15,53.107,40.83c22.773,9.664,49.762,15.113,78.723,15.163c38.579-0.05,73.676-9.758,99.93-26.211c13.149-8.202,24.054-18.188,31.89-29.781c7.793-11.55,12.374-24.842,12.374-38.858v-35.144l12.554,12.425l-0.043-0.1c22.494,22.54,52.143,33.868,81.648,33.818c29.466,0.05,59.112-11.278,81.612-33.768c22.54-22.548,33.814-52.143,33.814-81.659C505.013,283.212,493.739,253.609,471.199,231.069z"/></svg>
+            <span class="bottom-nav-label">Farmacias</span>
+        </a>
+        <a href="laboratorios.html" class="bottom-nav-item" aria-label="Laboratorios">
+            <svg class="bottom-nav-icon" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M317.418,48.457c-8.281-8.281-21.703-8.281-29.984,0s-8.281,21.703,0,29.984l9.141,9.125L137.559,246.582c-18.766,18.734-28.156,43.391-28.156,67.922c0,14.141,3.141,28.344,9.375,41.391l-27.719,27.719c-2.594,2.578-4.625,5.531-6.047,8.734c-1.391,3.172-2.219,6.609-2.219,10.172c0,2.5,0.406,5.094,1.359,7.578c0.813,2.172,2.094,4.266,3.719,6.125l-87.875,87.844H31.73l72-71.984c1.844,1.609,3.938,2.891,6.109,3.703c2.5,0.953,5.094,1.359,7.563,1.359c3.594,0,7-0.828,10.203-2.219c3.188-1.422,6.125-3.453,8.734-6.047l27.719-27.703c13.031,6.234,27.234,9.391,41.375,9.391c24.547,0,49.203-9.422,67.922-28.156l159.016-159.031l9.125,9.125c8.281,8.281,21.703,8.281,29.984,0s8.281-21.719,0-29.969L317.418,48.457z"/><path fill="currentColor" d="M505.793,95.691l-81.547-81.547c-8.281-8.281-21.703-8.281-29.984,0c-8.281,8.297-8.281,21.703,0,29.984l26.063,26.094l-28.5,28.5l29.391,29.406l28.516-28.516l26.078,26.078c8.281,8.281,21.703,8.281,29.984,0S514.074,103.973,505.793,95.691z"/></svg>
+            <span class="bottom-nav-label">Laboratorios</span>
+        </a>
+    </nav>
+
+    <!-- Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+    <script>
+    (function () {
+        'use strict';
+
+        // ── Colores por tipo ──────────────────────────────────────────────
+        const COLORES = {
+            FARMACIA:    '#1565C0',
+            LABORATORIO: '#2E7D32',
+            HOSPITAL:    '#C62828',
+            GUARDIA:     '#C62828',
+            CLINICA:     '#C62828',
+            SANITARIA:   '#E65100',
+        };
+
+        // Normaliza el tipo del JSON al tipo de filtro
+        function tipoFiltro(tipo) {
+            if (!tipo) return null;
+            const t = tipo.toUpperCase();
+            if (t === 'FARMACIA')    return 'FARMACIA';
+            if (t === 'LABORATORIO') return 'LABORATORIO';
+            if (t === 'HOSPITAL' || t === 'GUARDIA' || t === 'CLINICA') return 'HOSPITAL';
+            if (t === 'SANITARIA')   return 'SANITARIA';
+            return null;
+        }
+
+        // ── Icono SVG de pin personalizado ───────────────────────────────
+        function crearIcono(tipo) {
+            const color = COLORES[tipo] || '#191971';
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36">
+                <path d="M14 0C6.268 0 0 6.268 0 14c0 9.333 14 22 14 22S28 23.333 28 14C28 6.268 21.732 0 14 0z"
+                      fill="${color}" stroke="#fff" stroke-width="1.5"/>
+                <circle cx="14" cy="14" r="5" fill="#fff"/>
+            </svg>`;
+            return L.divIcon({
+                html: svg,
+                className: '',
+                iconSize: [28, 36],
+                iconAnchor: [14, 36],
+                popupAnchor: [0, -38],
+            });
+        }
+
+        // ── Inicializar mapa ──────────────────────────────────────────────
+        const mapa = L.map('mapa', {
+            center: [-38.7183, -62.2661], // Bahía Blanca
+            zoom: 13,
+            zoomControl: true,
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            maxZoom: 19,
+        }).addTo(mapa);
+
+        // Mover los controles de zoom a la derecha para no chocar con el panel
+        mapa.zoomControl.setPosition('bottomright');
+
+        // ── Estado ───────────────────────────────────────────────────────
+        let todosLosMarcadores = []; // [{ marker, tipo }]
+        let filtrosActivos = new Set(['FARMACIA', 'LABORATORIO', 'HOSPITAL', 'SANITARIA']);
+
+        // ── Cargar BD ─────────────────────────────────────────────────────
+        // IMPORTANTE: la BD necesita coordenadas lat/lng en cada prestador.
+        // Formato esperado en bd_bahiar.json:
+        //   { "ID": "FAR-001", "NOMBRE": "...", "TIPO": "FARMACIA",
+        //     "DOMICILIO": "...", "lat": -38.71, "lng": -62.27, ... }
+        //
+        // Los prestadores sin lat/lng se ignoran en el mapa (no se plotean).
+
+        // ── Geocodificación con Nominatim desde el browser ──────────────
+        // Caché en sessionStorage para no repetir requests en la misma sesión.
+        const GEO_CACHE_KEY = 'bahiar_geo_cache';
+
+        function getCacheGeo() {
+            try { return JSON.parse(sessionStorage.getItem(GEO_CACHE_KEY) || '{}'); }
+            catch { return {}; }
+        }
+
+        function setCacheGeo(cache) {
+            try { sessionStorage.setItem(GEO_CACHE_KEY, JSON.stringify(cache)); }
+            catch {}
+        }
+
+        async function geocodificar(domicilio, localidad) {
+            const key = `${domicilio}|${localidad}`;
+            const cache = getCacheGeo();
+            if (cache[key]) return cache[key];
+
+            const q = encodeURIComponent(`${domicilio}, ${localidad}, Buenos Aires, Argentina`);
+            const url = `https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1&countrycodes=ar`;
+
+            try {
+                const r = await fetch(url, { headers: { 'Accept-Language': 'es' } });
+                const data = await r.json();
+                if (data.length > 0) {
+                    const coords = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+                    cache[key] = coords;
+                    setCacheGeo(cache);
+                    return coords;
+                }
+            } catch {}
+            return null;
+        }
+
+        function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+        async function cargarPrestadores() {
+            let bd;
+            try {
+                const r = await fetch('bd_bahiar.json');
+                bd = await r.json();
+            } catch {
+                mostrarToast('No se pudo cargar la base de datos', 5000);
+                return;
+            }
+
+            const prestadores = Array.isArray(bd) ? bd : (bd.prestadores || []);
+            const total = prestadores.length;
+            let procesados = 0, geocodificados = 0, fallidos = 0;
+
+            mostrarToast(`Cargando ${total} prestadores…`, 60000);
+
+            for (const p of prestadores) {
+                const tipo = tipoFiltro(p.TIPO);
+                if (!tipo) { procesados++; continue; }
+
+                let lat = p.lat, lng = p.lng;
+
+                // Si no tiene coords, geocodificar
+                if (!lat || !lng) {
+                    const coords = await geocodificar(p.DOMICILIO || '', p.LOCALIDAD || 'Bahia Blanca');
+                    if (coords) { lat = coords.lat; lng = coords.lng; geocodificados++; }
+                    else { fallidos++; procesados++; continue; }
+                    await sleep(1100); // respetar rate limit de Nominatim
+                }
+
+                const marker = L.marker([lat, lng], { icon: crearIcono(p.TIPO?.toUpperCase() || tipo) });
+                const nombre = p.PRESTADOR || p.NOMBRE || '—';
+                const domicilio = p.DOMICILIO || '';
+                const tipoLabel = p.TIPO || tipo;
+
+                marker.bindPopup(`
+                    <span class="popup-tipo popup-tipo--${tipo}">${tipoLabel}</span>
+                    <strong>${nombre}</strong>
+                    ${domicilio ? `<div class="popup-dir">📍 ${domicilio}</div>` : ''}
+                `);
+
+                todosLosMarcadores.push({ marker, tipo });
+                procesados++;
+
+                // Ir mostrando marcadores a medida que se geocodifican
+                aplicarFiltros();
+
+                // Actualizar toast cada 10 registros
+                if (procesados % 10 === 0) {
+                    mostrarToast(`Cargando… ${procesados}/${total}`, 60000);
+                }
+            }
+
+            aplicarFiltros();
+
+            const msg = fallidos > 0
+                ? `${todosLosMarcadores.length} prestadores cargados · ${fallidos} sin ubicación`
+                : `${todosLosMarcadores.length} prestadores cargados`;
+            mostrarToast(msg, 4000);
+        }
+
+        cargarPrestadores();
+
+        // ── Aplicar filtros ───────────────────────────────────────────────
+        function aplicarFiltros() {
+            let visibles = 0;
+
+            todosLosMarcadores.forEach(({ marker, tipo }) => {
+                if (filtrosActivos.has(tipo)) {
+                    marker.addTo(mapa);
+                    visibles++;
+                } else {
+                    marker.remove();
+                }
+            });
+
+            document.getElementById('mapa-sin-datos').hidden = visibles > 0 || todosLosMarcadores.length === 0;
+        }
+
+        // ── Checkboxes ────────────────────────────────────────────────────
+        document.querySelectorAll('#filtros-panel input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', function () {
+                const tipo = this.dataset.tipo;
+                if (this.checked) {
+                    filtrosActivos.add(tipo);
+                } else {
+                    filtrosActivos.delete(tipo);
+                }
+                // Actualizar apariencia del chip
+                this.closest('.filtro-chip').classList.toggle('inactivo', !this.checked);
+                aplicarFiltros();
+            });
+        });
+
+        // ── Mi ubicación ─────────────────────────────────────────────────
+        document.getElementById('btn-ubicacion').addEventListener('click', function () {
+            if (!navigator.geolocation) {
+                mostrarToast('Geolocalización no disponible', 3000);
+                return;
+            }
+            mostrarToast('Buscando tu ubicación…', 3000);
+            navigator.geolocation.getCurrentPosition(
+                pos => {
+                    const { latitude: lat, longitude: lng } = pos.coords;
+                    mapa.setView([lat, lng], 15);
+
+                    // Marcador de posición del usuario
+                    if (window._marcadorUsuario) window._marcadorUsuario.remove();
+                    window._marcadorUsuario = L.circleMarker([lat, lng], {
+                        radius: 8,
+                        fillColor: '#191971',
+                        color: '#fff',
+                        weight: 2,
+                        fillOpacity: 1,
+                    }).addTo(mapa).bindPopup('Tu ubicación');
+
+                    mostrarToast('Ubicación encontrada', 2000);
+                },
+                () => mostrarToast('No se pudo obtener la ubicación', 3000)
+            );
+        });
+
+        // ── Toast helper ─────────────────────────────────────────────────
+        function mostrarToast(msg, duracion) {
+            const t = document.getElementById('mapa-toast');
+            t.textContent = msg;
+            t.classList.add('visible');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => t.classList.remove('visible'), duracion || 3000);
+        }
+
+    })();
+    </script>
+
+</body>
+</html>
