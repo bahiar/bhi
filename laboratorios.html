@@ -141,28 +141,9 @@
                 </button>
             </div>
         </div>
-        <!-- Buscador integrado en el hero navy -->
-        <div class="search-container search-container--hero">
-            <div class="search-icon" aria-hidden="true">🔍</div>
-            <!--
-                class="search-input-local": app.js excluye estos inputs de su
-                buscador genérico (selector :not(.search-input-local)) — el
-                filtrado lo maneja el script propio de esta página. La misma
-                clase va también en el input mobile de abajo para que ambos
-                queden sincronizados.
-            -->
-            <input type="text" id="buscador-live" class="search-input-local" placeholder="Buscar laboratorio o dirección..." aria-label="Buscar laboratorio o dirección">
-        </div>
-    </header>
-    <div class="search-bar-below">
-        <div class="search-container">
-            <div class="search-icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </div>
-            <input type="text" id="buscador-live-mobile" class="search-input-local" placeholder="Buscar laboratorio o dirección..." aria-label="Buscar laboratorio o dirección">
-        </div>
-    </div>
 
+        <div id="contenedor-busqueda-global" class="busqueda-global-resultados" hidden></div>
+    </header>
 
     <nav class="sub-nav" aria-label="Accesos rápidos">
         <ul class="sub-nav-list">
@@ -177,6 +158,23 @@
         <div class="main-container" id="main-content">
 
             <h1 class="sr-only">Laboratorios de Análisis Clínicos en Bahía Blanca</h1>
+
+            <div class="search-bar-main">
+                <div class="search-container search-container--main">
+                    <div class="search-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <input
+                        id="search-input"
+                        type="text"
+                        placeholder="Buscar laboratorio o dirección..."
+                        aria-label="Buscar laboratorio o dirección"
+                        autocomplete="off"
+                        autocorrect="off"
+                        spellcheck="false"
+                    >
+                </div>
+            </div>
 
             <div class="section-header">
                 <div class="section-header-titles">
