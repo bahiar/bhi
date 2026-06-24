@@ -439,7 +439,7 @@
         async function cargarPrestadores() {
             let bd;
             try {
-                const r = await fetch('bd_bahiar.json');
+                const r = await fetch('data/bd_bahiar.json');
                 bd = await r.json();
             } catch {
                 mostrarToast('No se pudo cargar la base de datos', 5000);
