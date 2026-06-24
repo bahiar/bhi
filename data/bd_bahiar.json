@@ -19,7 +19,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7063075,
+      "lng": -62.263994
     },
     {
       "TIPO": "FARMACIA",
@@ -36,7 +38,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7305912,
+      "lng": -62.2639972
     },
     {
       "TIPO": "FARMACIA",
@@ -53,7 +57,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.725095,
+      "lng": -62.2705588
     },
     {
       "TIPO": "FARMACIA",
@@ -70,7 +76,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7112921,
+      "lng": -62.2557265
     },
     {
       "TIPO": "FARMACIA",
@@ -87,7 +95,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6851023,
+      "lng": -62.2319446
     },
     {
       "TIPO": "FARMACIA",
@@ -104,7 +114,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7004254,
+      "lng": -62.293944
     },
     {
       "TIPO": "FARMACIA",
@@ -121,7 +133,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7299134,
+      "lng": -62.250252
     },
     {
       "TIPO": "FARMACIA",
@@ -138,7 +152,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7121102,
+      "lng": -62.2897588
     },
     {
       "TIPO": "FARMACIA",
@@ -155,7 +171,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7073066,
+      "lng": -62.2852685
     },
     {
       "TIPO": "FARMACIA",
@@ -172,7 +190,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6988384,
+      "lng": -62.2730777
     },
     {
       "TIPO": "FARMACIA",
@@ -189,7 +209,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7227009,
+      "lng": -62.2672589
     },
     {
       "TIPO": "FARMACIA",
@@ -206,7 +228,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7080668,
+      "lng": -62.2555411
     },
     {
       "TIPO": "FARMACIA",
@@ -223,7 +247,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.69741,
+      "lng": -62.22854
     },
     {
       "TIPO": "FARMACIA",
@@ -240,7 +266,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7290214,
+      "lng": -62.2853031
     },
     {
       "TIPO": "FARMACIA",
@@ -257,7 +285,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7248754,
+      "lng": -62.2744125
     },
     {
       "TIPO": "FARMACIA",
@@ -274,7 +304,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7363583,
+      "lng": -62.2744982
     },
     {
       "TIPO": "FARMACIA",
@@ -291,7 +323,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7126117,
+      "lng": -62.2615503
     },
     {
       "TIPO": "FARMACIA",
@@ -308,7 +342,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7012942,
+      "lng": -62.2761258
     },
     {
       "TIPO": "FARMACIA",
@@ -325,7 +361,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7187737,
+      "lng": -62.2697059
     },
     {
       "TIPO": "FARMACIA",
@@ -342,7 +380,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.4832992,
+      "lng": -61.8926349
     },
     {
       "TIPO": "FARMACIA",
@@ -359,7 +399,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7290716,
+      "lng": -62.2680105
     },
     {
       "TIPO": "FARMACIA",
@@ -376,7 +418,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7195039,
+      "lng": -62.2649537
     },
     {
       "TIPO": "FARMACIA",
@@ -393,7 +437,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7334251,
+      "lng": -62.2777993
     },
     {
       "TIPO": "FARMACIA",
@@ -410,7 +456,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7279031,
+      "lng": -62.2597572
     },
     {
       "TIPO": "FARMACIA",
@@ -427,7 +475,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.715402,
+      "lng": -62.2566021
     },
     {
       "TIPO": "FARMACIA",
@@ -444,7 +494,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.724539,
+      "lng": -62.2342971
     },
     {
       "TIPO": "FARMACIA",
@@ -461,7 +513,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.732141,
+      "lng": -62.2334111
     },
     {
       "TIPO": "FARMACIA",
@@ -478,7 +532,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7144977,
+      "lng": -62.2656907
     },
     {
       "TIPO": "FARMACIA",
@@ -495,7 +551,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7061113,
+      "lng": -62.2537422
     },
     {
       "TIPO": "FARMACIA",
@@ -512,7 +570,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6912089,
+      "lng": -62.2814715
     },
     {
       "TIPO": "FARMACIA",
@@ -529,7 +589,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7204082,
+      "lng": -62.2721208
     },
     {
       "TIPO": "FARMACIA",
@@ -546,7 +608,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.71804,
+      "lng": -62.24716
     },
     {
       "TIPO": "FARMACIA",
@@ -563,7 +627,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7220277,
+      "lng": -62.2685594
     },
     {
       "TIPO": "FARMACIA",
@@ -580,7 +646,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7348948,
+      "lng": -62.2368419
     },
     {
       "TIPO": "FARMACIA",
@@ -597,7 +665,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7132109,
+      "lng": -62.2732102
     },
     {
       "TIPO": "FARMACIA",
@@ -614,7 +684,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7168632,
+      "lng": -62.3007178
     },
     {
       "TIPO": "FARMACIA",
@@ -631,7 +703,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7146816,
+      "lng": -62.248388
     },
     {
       "TIPO": "FARMACIA",
@@ -648,7 +722,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7117213,
+      "lng": -62.2670686
     },
     {
       "TIPO": "FARMACIA",
@@ -665,7 +741,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7546623,
+      "lng": -62.2680469
     },
     {
       "TIPO": "FARMACIA",
@@ -682,7 +760,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7010108,
+      "lng": -62.2854645
     },
     {
       "TIPO": "FARMACIA",
@@ -699,7 +779,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7205456,
+      "lng": -62.2603937
     },
     {
       "TIPO": "FARMACIA",
@@ -716,7 +798,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7208747,
+      "lng": -62.2672611
     },
     {
       "TIPO": "FARMACIA",
@@ -733,7 +817,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7131685,
+      "lng": -62.2775915
     },
     {
       "TIPO": "FARMACIA",
@@ -750,7 +836,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7144327,
+      "lng": -62.259629
     },
     {
       "TIPO": "FARMACIA",
@@ -767,7 +855,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7342317,
+      "lng": -62.262273
     },
     {
       "TIPO": "FARMACIA",
@@ -784,7 +874,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7218053,
+      "lng": -62.2574558
     },
     {
       "TIPO": "FARMACIA",
@@ -801,7 +893,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7074669,
+      "lng": -62.2689961
     },
     {
       "TIPO": "FARMACIA",
@@ -818,7 +912,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7498526,
+      "lng": -62.2602362
     },
     {
       "TIPO": "FARMACIA",
@@ -835,7 +931,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7151514,
+      "lng": -62.2935093
     },
     {
       "TIPO": "FARMACIA",
@@ -852,7 +950,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.71964,
+      "lng": -62.2614892
     },
     {
       "TIPO": "FARMACIA",
@@ -869,7 +969,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.78426,
+      "lng": -62.27435
     },
     {
       "TIPO": "FARMACIA",
@@ -886,7 +988,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7046342,
+      "lng": -62.2623068
     },
     {
       "TIPO": "FARMACIA",
@@ -903,7 +1007,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.77583,
+      "lng": -62.26429
     },
     {
       "TIPO": "FARMACIA",
@@ -920,7 +1026,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7331554,
+      "lng": -62.2471088
     },
     {
       "TIPO": "FARMACIA",
@@ -937,7 +1045,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7039267,
+      "lng": -62.2794381
     },
     {
       "TIPO": "FARMACIA",
@@ -954,7 +1064,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7041343,
+      "lng": -62.2854224
     },
     {
       "TIPO": "FARMACIA",
@@ -971,7 +1083,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7342321,
+      "lng": -62.2443567
     },
     {
       "TIPO": "FARMACIA",
@@ -988,7 +1102,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7535805,
+      "lng": -62.2656631
     },
     {
       "TIPO": "FARMACIA",
@@ -1005,7 +1121,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7269918,
+      "lng": -62.2474167
     },
     {
       "TIPO": "FARMACIA",
@@ -1022,7 +1140,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7229343,
+      "lng": -62.2478087
     },
     {
       "TIPO": "FARMACIA",
@@ -1039,7 +1159,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7438487,
+      "lng": -62.2107508
     },
     {
       "TIPO": "FARMACIA",
@@ -1056,7 +1178,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.729007,
+      "lng": -62.2472888
     },
     {
       "TIPO": "FARMACIA",
@@ -1073,7 +1197,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7038058,
+      "lng": -62.2688677
     },
     {
       "TIPO": "FARMACIA",
@@ -1090,7 +1216,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7239453,
+      "lng": -62.2588159
     },
     {
       "TIPO": "FARMACIA",
@@ -1107,7 +1235,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7085609,
+      "lng": -62.2651121
     },
     {
       "TIPO": "FARMACIA",
@@ -1124,7 +1254,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7100858,
+      "lng": -62.2583811
     },
     {
       "TIPO": "FARMACIA",
@@ -1141,7 +1273,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7227481,
+      "lng": -62.26444
     },
     {
       "TIPO": "FARMACIA",
@@ -1158,7 +1292,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.717385,
+      "lng": -62.2779819
     },
     {
       "TIPO": "FARMACIA",
@@ -1175,7 +1311,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7149152,
+      "lng": -62.2904239
     },
     {
       "TIPO": "FARMACIA",
@@ -1192,7 +1330,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.71691,
+      "lng": -62.26189
     },
     {
       "TIPO": "FARMACIA",
@@ -1209,7 +1349,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7133681,
+      "lng": -62.2695442
     },
     {
       "TIPO": "FARMACIA",
@@ -1226,7 +1368,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7062974,
+      "lng": -62.3043185
     },
     {
       "TIPO": "FARMACIA",
@@ -1243,7 +1387,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7346212,
+      "lng": -62.231362
     },
     {
       "TIPO": "FARMACIA",
@@ -1260,7 +1406,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7156708,
+      "lng": -62.2806038
     },
     {
       "TIPO": "FARMACIA",
@@ -1277,7 +1425,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7106073,
+      "lng": -62.2762158
     },
     {
       "TIPO": "FARMACIA",
@@ -1294,7 +1444,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7106853,
+      "lng": -62.2865141
     },
     {
       "TIPO": "FARMACIA",
@@ -1311,7 +1463,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7123769,
+      "lng": -62.2831297
     },
     {
       "TIPO": "FARMACIA",
@@ -1328,7 +1482,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7193487,
+      "lng": -62.3107316
     },
     {
       "TIPO": "FARMACIA",
@@ -1345,7 +1501,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.740059,
+      "lng": -62.2697087
     },
     {
       "TIPO": "FARMACIA",
@@ -1362,7 +1520,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7261423,
+      "lng": -62.2412387
     },
     {
       "TIPO": "FARMACIA",
@@ -1379,7 +1539,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7089487,
+      "lng": -62.2529403
     },
     {
       "TIPO": "FARMACIA",
@@ -1396,7 +1558,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7199031,
+      "lng": -62.266921
     },
     {
       "TIPO": "FARMACIA",
@@ -1413,7 +1577,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7444732,
+      "lng": -62.2639383
     },
     {
       "TIPO": "FARMACIA",
@@ -1430,7 +1596,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.715944,
+      "lng": -62.2661338
     },
     {
       "TIPO": "FARMACIA",
@@ -1447,7 +1615,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.78455,
+      "lng": -62.26915
     },
     {
       "TIPO": "FARMACIA",
@@ -1464,7 +1634,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7193077,
+      "lng": -62.255168
     },
     {
       "TIPO": "FARMACIA",
@@ -1481,7 +1653,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.72142,
+      "lng": -62.2761029
     },
     {
       "TIPO": "FARMACIA",
@@ -1498,7 +1672,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7166832,
+      "lng": -62.2730908
     },
     {
       "TIPO": "FARMACIA",
@@ -1515,7 +1691,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7365568,
+      "lng": -62.2270697
     },
     {
       "TIPO": "FARMACIA",
@@ -1532,7 +1710,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.714908,
+      "lng": -62.2630376
     },
     {
       "TIPO": "FARMACIA",
@@ -1549,7 +1729,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7230236,
+      "lng": -62.2891615
     },
     {
       "TIPO": "FARMACIA",
@@ -1566,7 +1748,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7168199,
+      "lng": -62.2602857
     },
     {
       "TIPO": "FARMACIA",
@@ -1583,7 +1767,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7267479,
+      "lng": -62.2641573
     },
     {
       "TIPO": "FARMACIA",
@@ -1600,7 +1786,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7175085,
+      "lng": -62.2635267
     },
     {
       "TIPO": "FARMACIA",
@@ -1617,7 +1805,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7169342,
+      "lng": -62.251421
     },
     {
       "TIPO": "FARMACIA",
@@ -1634,7 +1824,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7180066,
+      "lng": -62.2635203
     },
     {
       "TIPO": "FARMACIA",
@@ -1651,7 +1843,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7234358,
+      "lng": -62.2925977
     },
     {
       "TIPO": "FARMACIA",
@@ -1668,7 +1862,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7301811,
+      "lng": -62.2814025
     },
     {
       "TIPO": "FARMACIA",
@@ -1685,7 +1881,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7201714,
+      "lng": -62.2906695
     },
     {
       "TIPO": "FARMACIA",
@@ -1702,7 +1900,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6958337,
+      "lng": -62.2758667
     },
     {
       "TIPO": "FARMACIA",
@@ -1719,7 +1919,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7292962,
+      "lng": -62.256136
     },
     {
       "TIPO": "FARMACIA",
@@ -1736,7 +1938,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.705918,
+      "lng": -62.2724432
     },
     {
       "TIPO": "FARMACIA",
@@ -1753,7 +1957,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6993765,
+      "lng": -62.2118373
     },
     {
       "TIPO": "FARMACIA",
@@ -1770,7 +1976,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.71975,
+      "lng": -62.283728
     },
     {
       "TIPO": "FARMACIA",
@@ -1787,7 +1995,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7249235,
+      "lng": -62.2617944
     },
     {
       "TIPO": "FARMACIA",
@@ -1804,7 +2014,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.717135,
+      "lng": -62.2676624
     },
     {
       "TIPO": "FARMACIA",
@@ -1821,7 +2033,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7146695,
+      "lng": -62.1882738
     },
     {
       "TIPO": "FARMACIA",
@@ -1838,7 +2052,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7286878,
+      "lng": -62.2294812
     },
     {
       "TIPO": "FARMACIA",
@@ -1855,7 +2071,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6969739,
+      "lng": -62.2809044
     },
     {
       "TIPO": "LABORATORIO",
@@ -1872,7 +2090,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7259543,
+      "lng": -62.2458294
     },
     {
       "TIPO": "LABORATORIO",
@@ -1889,7 +2109,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7119113,
+      "lng": -62.2709999
     },
     {
       "TIPO": "LABORATORIO",
@@ -1906,7 +2128,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7128604,
+      "lng": -62.2577424
     },
     {
       "TIPO": "LABORATORIO",
@@ -1923,7 +2147,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7078717,
+      "lng": -62.2696412
     },
     {
       "TIPO": "LABORATORIO",
@@ -1940,7 +2166,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7051311,
+      "lng": -62.2714298
     },
     {
       "TIPO": "LABORATORIO",
@@ -1957,7 +2185,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7169129,
+      "lng": -62.2726236
     },
     {
       "TIPO": "LABORATORIO",
@@ -1974,7 +2204,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7227886,
+      "lng": -62.2690085
     },
     {
       "TIPO": "LABORATORIO",
@@ -1991,7 +2223,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7272176,
+      "lng": -62.265301
     },
     {
       "TIPO": "LABORATORIO",
@@ -2008,7 +2242,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.78544,
+      "lng": -62.27118
     },
     {
       "TIPO": "LABORATORIO",
@@ -2025,7 +2261,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7348752,
+      "lng": -62.2697423
     },
     {
       "TIPO": "LABORATORIO",
@@ -2042,7 +2280,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7191586,
+      "lng": -62.2853988
     },
     {
       "TIPO": "LABORATORIO",
@@ -2059,7 +2299,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7139097,
+      "lng": -62.2784833
     },
     {
       "TIPO": "LABORATORIO",
@@ -2076,7 +2318,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7541476,
+      "lng": -62.2626365
     },
     {
       "TIPO": "LABORATORIO",
@@ -2093,7 +2337,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7112637,
+      "lng": -62.2930026
     },
     {
       "TIPO": "LABORATORIO",
@@ -2110,7 +2356,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7253531,
+      "lng": -62.2662181
     },
     {
       "TIPO": "LABORATORIO",
@@ -2127,7 +2375,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7183463,
+      "lng": -62.2553806
     },
     {
       "TIPO": "LABORATORIO",
@@ -2144,7 +2394,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6794666,
+      "lng": -62.2187877
     },
     {
       "TIPO": "LABORATORIO",
@@ -2161,7 +2413,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7095228,
+      "lng": -62.259778
     },
     {
       "TIPO": "LABORATORIO",
@@ -2178,7 +2432,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7173805,
+      "lng": -62.2640117
     },
     {
       "TIPO": "LABORATORIO",
@@ -2195,7 +2451,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7271001,
+      "lng": -62.2476706
     },
     {
       "TIPO": "LABORATORIO",
@@ -2212,7 +2470,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7018807,
+      "lng": -62.2919706
     },
     {
       "TIPO": "LABORATORIO",
@@ -2229,7 +2489,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.78401,
+      "lng": -62.26814
     },
     {
       "TIPO": "LABORATORIO",
@@ -2246,7 +2508,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.70112,
+      "lng": -62.23594
     },
     {
       "TIPO": "LABORATORIO",
@@ -2263,7 +2527,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7017791,
+      "lng": -62.2771355
     },
     {
       "TIPO": "LABORATORIO",
@@ -2280,7 +2546,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7244626,
+      "lng": -62.2785778
     },
     {
       "TIPO": "LABORATORIO",
@@ -2297,7 +2565,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7132296,
+      "lng": -62.2721117
     },
     {
       "TIPO": "LABORATORIO",
@@ -2314,7 +2584,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7074232,
+      "lng": -62.2553062
     },
     {
       "TIPO": "LABORATORIO",
@@ -2331,7 +2603,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7241311,
+      "lng": -62.2604011
     },
     {
       "TIPO": "LABORATORIO",
@@ -2348,7 +2622,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7188002,
+      "lng": -62.2581629
     },
     {
       "TIPO": "LABORATORIO",
@@ -2365,7 +2641,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6963744,
+      "lng": -62.2766115
     },
     {
       "TIPO": "LABORATORIO",
@@ -2382,7 +2660,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7267739,
+      "lng": -62.2612432
     },
     {
       "TIPO": "LABORATORIO",
@@ -2399,7 +2679,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7095778,
+      "lng": -62.2666317
     },
     {
       "TIPO": "LABORATORIO",
@@ -2416,7 +2698,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7545474,
+      "lng": -62.26362
     },
     {
       "TIPO": "LABORATORIO",
@@ -2433,7 +2717,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7233712,
+      "lng": -62.2926829
     },
     {
       "TIPO": "LABORATORIO",
@@ -2450,7 +2736,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7171435,
+      "lng": -62.2788369
     },
     {
       "TIPO": "LABORATORIO",
@@ -2467,7 +2755,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7213928,
+      "lng": -62.2798507
     },
     {
       "TIPO": "LABORATORIO",
@@ -2484,7 +2774,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7122649,
+      "lng": -62.2660193
     },
     {
       "TIPO": "LABORATORIO",
@@ -2501,7 +2793,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7186679,
+      "lng": -62.2610919
     },
     {
       "TIPO": "LABORATORIO",
@@ -2518,7 +2812,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7333019,
+      "lng": -62.2338939
     },
     {
       "TIPO": "LABORATORIO",
@@ -2535,7 +2831,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.69999,
+      "lng": -62.24148
     },
     {
       "TIPO": "LABORATORIO",
@@ -2552,7 +2850,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.69815,
+      "lng": -62.25338
     },
     {
       "TIPO": "LABORATORIO",
@@ -2569,7 +2869,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7266363,
+      "lng": -62.2879992
     },
     {
       "TIPO": "LABORATORIO",
@@ -2586,7 +2888,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7105687,
+      "lng": -62.2961725
     },
     {
       "TIPO": "LABORATORIO",
@@ -2603,7 +2907,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.74087,
+      "lng": -62.25102
     },
     {
       "TIPO": "LABORATORIO",
@@ -2620,7 +2926,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7099904,
+      "lng": -62.2822019
     },
     {
       "TIPO": "LABORATORIO",
@@ -2637,7 +2945,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7157365,
+      "lng": -62.2619943
     },
     {
       "TIPO": "LABORATORIO",
@@ -2654,7 +2964,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.71536,
+      "lng": -62.23412
     },
     {
       "TIPO": "LABORATORIO",
@@ -2671,7 +2983,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7135493,
+      "lng": -62.2665653
     },
     {
       "TIPO": "LABORATORIO",
@@ -2688,7 +3002,9 @@
       "HORARIO": "",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.4920017,
+      "lng": -61.8926001
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2705,7 +3021,9 @@
       "HORARIO": "8 a 18 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7651,
+      "lng": -62.40248
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2722,7 +3040,9 @@
       "HORARIO": "8 a 18 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.71424,
+      "lng": -62.29654
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2739,7 +3059,9 @@
       "HORARIO": "8 a 18 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6985119,
+      "lng": -62.2977693
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2756,7 +3078,9 @@
       "HORARIO": "8 a 16 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.71077,
+      "lng": -62.20311
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2773,7 +3097,9 @@
       "HORARIO": "8 a 18 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.72415,
+      "lng": -62.22238
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2790,7 +3116,9 @@
       "HORARIO": "8 a 16 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.78891,
+      "lng": -62.25916
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2807,7 +3135,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.4920017,
+      "lng": -61.8926001
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2824,7 +3154,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7087219,
+      "lng": -62.2372237
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2841,7 +3173,9 @@
       "HORARIO": "8 a 16 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7361141,
+      "lng": -62.2925028
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2858,7 +3192,9 @@
       "HORARIO": "8 a 17 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7546821,
+      "lng": -62.2531026
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2875,7 +3211,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7244698,
+      "lng": -62.2376152
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2892,7 +3230,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.69048,
+      "lng": -62.2933751
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2909,7 +3249,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7355623,
+      "lng": -62.2443918
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2926,7 +3268,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7150267,
+      "lng": -62.2492615
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2943,7 +3287,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7478761,
+      "lng": -62.2858372
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2960,7 +3306,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7081833,
+      "lng": -62.2997504
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2977,7 +3325,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7031646,
+      "lng": -62.3051978
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -2994,7 +3344,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7205622,
+      "lng": -62.2933169
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3011,7 +3363,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7270331,
+      "lng": -62.2897046
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3028,7 +3382,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7353268,
+      "lng": -62.2632353
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3045,7 +3401,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7393154,
+      "lng": -62.2458672
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3062,7 +3420,9 @@
       "HORARIO": "8 a 13 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7046414,
+      "lng": -62.2579795
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3079,7 +3439,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6995888,
+      "lng": -62.2540894
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3096,7 +3458,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6960366,
+      "lng": -62.3508934
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3113,7 +3477,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7470868,
+      "lng": -62.2381074
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3130,7 +3496,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6854025,
+      "lng": -62.2721071
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3147,7 +3515,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7178342,
+      "lng": -62.191108
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3164,7 +3534,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7106853,
+      "lng": -62.2865141
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3181,7 +3553,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7426993,
+      "lng": -62.2719143
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3198,7 +3572,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.755863,
+      "lng": -62.261379
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3215,7 +3591,9 @@
       "HORARIO": "8 a 13 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7176522,
+      "lng": -62.2654871
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3232,7 +3610,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6903245,
+      "lng": -62.3038962
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3249,7 +3629,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.69634,
+      "lng": -62.19941
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3266,7 +3648,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.6842576,
+      "lng": -62.213565
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3283,7 +3667,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.72204,
+      "lng": -62.2507833
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3300,7 +3686,9 @@
       "HORARIO": "8 a 14 hs.",
       "INYECTABLES": false,
       "DELIVERY": false,
-      "OOSS": ""
+      "OOSS": "",
+      "lat": -38.7393154,
+      "lng": -62.2458672
     }
   ]
 }
