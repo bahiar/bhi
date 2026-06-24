@@ -1,0 +1,46 @@
+{
+  "faq": [
+    {
+      "category": "General",
+      "items": [
+        {
+          "question": "¿Qué es BAHI.ar?",
+          "answer": "Es tu guía médica digital y de bolsillo para Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Te permite encontrar rápido farmacias de turno, guardias, laboratorios y números de emergencia. Vas a poder llamar directamente o ver cómo llegar en el mapa desde tu celular. ¡Y es muy fácil de usar!"
+        },
+        {
+          "question": "¿Hay que pagar para usarla?",
+          "answer": "Nunca te vamos a cobrar nada. Si la página te resulta útil y tenés ganas de darnos una mano, podés hacer un aporte voluntario por <a href=\"https://link.mercadopago.com.ar/mpbahiar\" target=\"_blank\" rel=\"noopener\" style=\"color:#1F75FE;\">Mercado Pago</a>, pero es totalmente opcional.",
+          "badge": "♥ 100% gratuita"
+        },
+        {
+          "question": "¿La información está actualizada?",
+          "answer": "Sí. Las farmacias de turno se actualizan todos los días, y los datos de las guardias y los laboratorios se revisan constantemente. Si llegás a ver algún dato viejo, nos podés avisar fácil con el botón <a href=\"https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20\" target=\"_blank\" rel=\"noopener\" style=\"color:#1F75FE;\">\"Reportar error\"</a> que está arriba de todo en la pantalla."
+        },
+        {
+          "question": "¿Cómo busco las farmacias de turno de hoy?",
+          "answer": "Apenas entrás a la página vas a ver las farmacias del día con su dirección y teléfono. Esta lista cambia automáticamente todos los días a las <strong>8:30 de la mañana</strong>. Además, tenés un botón de <strong>\"Compartir farmacias\"</strong> por si se la querés mandar por WhatsApp a un familiar o amigo que lo necesite."
+        },
+        {
+          "question": "¿Puedo buscar por mi barrio u obra social?",
+          "answer": "¡Sí! En las secciones de Farmacias y Laboratorios vas a encontrar filtros. Podés buscar por la zona donde estás, por tu obra social o por lo que necesités en ese momento."
+        },
+        {
+          "question": "¿Anda si me quedo sin internet o sin datos?",
+          "answer": "Sí, pero a medias. Una vez que entraste a la página con internet, mucha información queda guardada en tu celular y la podés seguir viendo. Ojo: para ver las farmacias de turno, te recomendamos siempre tener internet, porque los turnos cambian todos los días."
+        },
+        {
+          "question": "¿Me tengo que registrar? ¿Guardan mis datos personales?",
+          "answer": "Para nada. No hace falta crear ningún usuario, ni poner contraseñas, ni dejar tus datos. La página solo guarda un archivito mínimo en tu celular para no estar preguntándote a cada rato si querés instalar la aplicación. Tu privacidad está asegurada."
+        },
+        {
+          "question": "¿Qué hago si encuentro un número o dirección que está mal?",
+          "answer": "Tocá el botón <a href=\"https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20\" target=\"_blank\" rel=\"noopener\" style=\"color:#1F75FE;\">\"Reportar error\"</a> en la parte de arriba de la página. Eso te va a abrir un chat de WhatsApp directo con nosotros. Leemos todos los mensajes y te respondemos en menos de <strong>48 horas hábiles</strong>. ¡Tu ayuda nos sirve un montón para mejorar!"
+        },
+        {
+          "question": "¿De dónde sacan la información? ¿Es confiable?",
+          "answer": "¡Sí, es 100% confiable! Todos los datos que publicamos son oficiales. Nos los pasan directamente los colegios y entidades médicas que representan a los profesionales y centros de salud de la ciudad."
+        }
+      ]
+    }
+  ]
+}
