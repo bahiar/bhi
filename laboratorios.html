@@ -237,6 +237,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </main>
 
     <script src="app.js" defer></script>
+    <script src="faq.js" defer></script>
     <script defer>
       /**
        * Módulo de Laboratorios — lógica de filtros y renderizado.
@@ -481,29 +482,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div style="overflow-y:auto;flex:1;" id="faq-body">
-
-          <div style="padding:14px 20px 4px;">
-            <span style="display:inline-block;background:#191971;color:#fff;font-size:10px;font-weight:500;padding:2px 10px;border-radius:999px;letter-spacing:0.04em;">General</span>
-          </div>
-
-          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Qué es BAHI.ar?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Es tu guía médica digital y de bolsillo para Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Te permite encontrar rápido farmacias de turno, guardias, laboratorios y números de emergencia. Vas a poder llamar directamente o ver cómo llegar en el mapa desde tu celular. ¡Y es muy fácil de usar!</div></div>
-
-          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Hay que pagar para usarla?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans"><span style="display:inline-flex;align-items:center;gap:4px;background:#EEEDFE;color:#3C3489;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:500;">♥ 100% gratuita</span><br><br>Nunca te vamos a cobrar nada. Si la página te resulta útil y tenés ganas de darnos una mano, podés hacer un aporte voluntario por <a href="https://link.mercadopago.com.ar/mpbahiar" target="_blank" rel="noopener" style="color:#1F75FE;">Mercado Pago</a>, pero es totalmente opcional.</div></div>
-
-          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿La información está actualizada?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Sí. Las farmacias de turno se actualizan todos los días, y los datos de las guardias y los laboratorios se revisan constantemente. Si llegás a ver algún dato viejo, nos podés avisar fácil con el botón <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" style="color:#1F75FE;">"Reportar error"</a> que está arriba de todo en la pantalla.</div></div>
-
-          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Cómo busco las farmacias de turno de hoy?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Apenas entrás a la página vas a ver las farmacias del día con su dirección y teléfono. Esta lista cambia automáticamente todos los días a las <strong>8:30 de la mañana</strong>. Además, tenés un botón de <strong>"Compartir farmacias"</strong> por si se la querés mandar por WhatsApp a un familiar o amigo que lo necesite.</div></div>
-
-          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Puedo buscar por mi barrio u obra social?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">¡Sí! En las secciones de Farmacias y Laboratorios vas a encontrar filtros. Podés buscar por la zona donde estás, por tu obra social o por lo que necesités en ese momento.</div></div>
-
-          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Anda si me quedo sin internet o sin datos?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Sí, pero a medias. Una vez que entraste a la página con internet, mucha información queda guardada en tu celular y la podés seguir viendo. Ojo: para ver las farmacias de turno, te recomendamos siempre tener internet, porque los turnos cambian todos los días.</div></div>
-
-          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Me tengo que registrar? ¿Guardan mis datos personales?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Para nada. No hace falta crear ningún usuario, ni poner contraseñas, ni dejar tus datos. La página solo guarda un archivito mínimo en tu celular para no estar preguntándote a cada rato si querés instalar la aplicación. Tu privacidad está asegurada.</div></div>
-
-          <div class="faq-i"><button class="faq-btn" onclick="faqToggle(this)"><span>¿Qué hago si encuentro un número o dirección que está mal?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">Tocá el botón <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" style="color:#1F75FE;">"Reportar error"</a> en la parte de arriba de la página. Eso te va a abrir un chat de WhatsApp directo con nosotros. Leemos todos los mensajes y te respondemos en menos de <strong>48 horas hábiles</strong>. ¡Tu ayuda nos sirve un montón para mejorar!</div></div>
-
-          <div class="faq-i" style="border-bottom:none;"><button class="faq-btn" onclick="faqToggle(this)"><span>¿De dónde sacan la información? ¿Es confiable?</span><svg class="faq-chv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-ans">¡Sí, es 100% confiable! Todos los datos que publicamos son oficiales. Nos los pasan directamente los colegios y entidades médicas que representan a los profesionales y centros de salud de la ciudad.</div></div>
-
+          <!-- El contenido se cargará aquí desde faq-data.json -->
         </div>
 
         <div class="faq-report-row">
