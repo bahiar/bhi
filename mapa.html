@@ -351,7 +351,7 @@
             if (t === 'FARMACIA')    return 'FARMACIA';
             if (t === 'LABORATORIO') return 'LABORATORIO';
             if (t === 'HOSPITAL' || t === 'GUARDIA' || t === 'CLINICA') return 'HOSPITAL';
-            if (t === 'SANITARIA')   return 'SANITARIA';
+            if (t === 'SANITARIA' || t === 'UNIDAD SANITARIA') return 'SANITARIA';
             return null;
         }
 
@@ -467,7 +467,7 @@
                 }
 
                 const marker = L.marker([lat, lng], { icon: crearIcono(p.TIPO?.toUpperCase() || tipo) });
-                const nombre = p.PRESTADOR || p.NOMBRE || '—';
+                const nombre = p.PRESTADOR || p.NOMBRE || p.nombre || '—';
                 const domicilio = p.DOMICILIO || '';
                 const tipoLabel = p.TIPO || tipo;
 
