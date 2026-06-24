@@ -21,7 +21,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7063075,
-      "lng": -62.263994
+      "lng": -62.263994,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -40,7 +41,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7305912,
-      "lng": -62.2639972
+      "lng": -62.2639972,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -59,7 +61,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.725095,
-      "lng": -62.2705588
+      "lng": -62.2705588,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -78,7 +81,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7112921,
-      "lng": -62.2557265
+      "lng": -62.2557265,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -97,7 +101,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6851023,
-      "lng": -62.2319446
+      "lng": -62.2319446,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -116,7 +121,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7004254,
-      "lng": -62.293944
+      "lng": -62.293944,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -135,7 +141,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7299134,
-      "lng": -62.250252
+      "lng": -62.250252,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -154,7 +161,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7121102,
-      "lng": -62.2897588
+      "lng": -62.2897588,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -173,7 +181,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7073066,
-      "lng": -62.2852685
+      "lng": -62.2852685,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -192,7 +201,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6988384,
-      "lng": -62.2730777
+      "lng": -62.2730777,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -211,7 +221,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7227009,
-      "lng": -62.2672589
+      "lng": -62.2672589,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -230,7 +241,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7080668,
-      "lng": -62.2555411
+      "lng": -62.2555411,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -249,7 +261,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.69741,
-      "lng": -62.22854
+      "lng": -62.22854,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -268,7 +281,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7290214,
-      "lng": -62.2853031
+      "lng": -62.2853031,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -287,7 +301,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7248754,
-      "lng": -62.2744125
+      "lng": -62.2744125,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -306,7 +321,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7363583,
-      "lng": -62.2744982
+      "lng": -62.2744982,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -325,7 +341,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7126117,
-      "lng": -62.2615503
+      "lng": -62.2615503,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -344,7 +361,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7012942,
-      "lng": -62.2761258
+      "lng": -62.2761258,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -363,7 +381,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7187737,
-      "lng": -62.2697059
+      "lng": -62.2697059,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -382,7 +401,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.4832992,
-      "lng": -61.8926349
+      "lng": -61.8926349,
+      "CP": "8118"
     },
     {
       "TIPO": "FARMACIA",
@@ -401,7 +421,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7290716,
-      "lng": -62.2680105
+      "lng": -62.2680105,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -420,7 +441,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7195039,
-      "lng": -62.2649537
+      "lng": -62.2649537,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -439,7 +461,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7334251,
-      "lng": -62.2777993
+      "lng": -62.2777993,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -458,7 +481,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7279031,
-      "lng": -62.2597572
+      "lng": -62.2597572,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -477,7 +501,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.715402,
-      "lng": -62.2566021
+      "lng": -62.2566021,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -496,7 +521,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.724539,
-      "lng": -62.2342971
+      "lng": -62.2342971,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -515,7 +541,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.732141,
-      "lng": -62.2334111
+      "lng": -62.2334111,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -534,7 +561,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7144977,
-      "lng": -62.2656907
+      "lng": -62.2656907,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -553,7 +581,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7061113,
-      "lng": -62.2537422
+      "lng": -62.2537422,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -572,7 +601,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6912089,
-      "lng": -62.2814715
+      "lng": -62.2814715,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -591,7 +621,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7204082,
-      "lng": -62.2721208
+      "lng": -62.2721208,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -609,8 +640,9 @@
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": "",
-      "lat": -38.71804,
-      "lng": -62.24716
+      "lat": -38.7202613227754,
+      "lng": -62.39432447138212,
+      "CP": "8105"
     },
     {
       "TIPO": "FARMACIA",
@@ -629,7 +661,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7220277,
-      "lng": -62.2685594
+      "lng": -62.2685594,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -648,7 +681,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7348948,
-      "lng": -62.2368419
+      "lng": -62.2368419,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -667,7 +701,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7132109,
-      "lng": -62.2732102
+      "lng": -62.2732102,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -686,7 +721,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7168632,
-      "lng": -62.3007178
+      "lng": -62.3007178,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -705,7 +741,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7146816,
-      "lng": -62.248388
+      "lng": -62.248388,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -724,7 +761,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7117213,
-      "lng": -62.2670686
+      "lng": -62.2670686,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -743,7 +781,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7546623,
-      "lng": -62.2680469
+      "lng": -62.2680469,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -762,7 +801,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7010108,
-      "lng": -62.2854645
+      "lng": -62.2854645,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -781,7 +821,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7205456,
-      "lng": -62.2603937
+      "lng": -62.2603937,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -800,7 +841,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7208747,
-      "lng": -62.2672611
+      "lng": -62.2672611,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -819,7 +861,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7131685,
-      "lng": -62.2775915
+      "lng": -62.2775915,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -838,7 +881,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7144327,
-      "lng": -62.259629
+      "lng": -62.259629,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -857,7 +901,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7342317,
-      "lng": -62.262273
+      "lng": -62.262273,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -876,7 +921,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7218053,
-      "lng": -62.2574558
+      "lng": -62.2574558,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -895,7 +941,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7074669,
-      "lng": -62.2689961
+      "lng": -62.2689961,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -914,7 +961,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7498526,
-      "lng": -62.2602362
+      "lng": -62.2602362,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -933,7 +981,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7151514,
-      "lng": -62.2935093
+      "lng": -62.2935093,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -952,7 +1001,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.71964,
-      "lng": -62.2614892
+      "lng": -62.2614892,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -971,7 +1021,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.78426,
-      "lng": -62.27435
+      "lng": -62.27435,
+      "CP": "8103"
     },
     {
       "TIPO": "FARMACIA",
@@ -990,7 +1041,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7046342,
-      "lng": -62.2623068
+      "lng": -62.2623068,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1009,7 +1061,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.77583,
-      "lng": -62.26429
+      "lng": -62.26429,
+      "CP": "8103"
     },
     {
       "TIPO": "FARMACIA",
@@ -1028,7 +1081,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7331554,
-      "lng": -62.2471088
+      "lng": -62.2471088,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1047,7 +1101,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7039267,
-      "lng": -62.2794381
+      "lng": -62.2794381,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1066,7 +1121,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7041343,
-      "lng": -62.2854224
+      "lng": -62.2854224,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1085,7 +1141,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7342321,
-      "lng": -62.2443567
+      "lng": -62.2443567,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1104,7 +1161,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7535805,
-      "lng": -62.2656631
+      "lng": -62.2656631,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1123,7 +1181,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7269918,
-      "lng": -62.2474167
+      "lng": -62.2474167,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1142,7 +1201,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7229343,
-      "lng": -62.2478087
+      "lng": -62.2478087,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1161,7 +1221,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7438487,
-      "lng": -62.2107508
+      "lng": -62.2107508,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1180,7 +1241,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.729007,
-      "lng": -62.2472888
+      "lng": -62.2472888,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1199,7 +1261,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7038058,
-      "lng": -62.2688677
+      "lng": -62.2688677,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1218,7 +1281,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7239453,
-      "lng": -62.2588159
+      "lng": -62.2588159,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1237,7 +1301,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7085609,
-      "lng": -62.2651121
+      "lng": -62.2651121,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1256,7 +1321,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7100858,
-      "lng": -62.2583811
+      "lng": -62.2583811,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1275,7 +1341,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7227481,
-      "lng": -62.26444
+      "lng": -62.26444,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1294,7 +1361,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.717385,
-      "lng": -62.2779819
+      "lng": -62.2779819,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1313,7 +1381,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7149152,
-      "lng": -62.2904239
+      "lng": -62.2904239,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1331,8 +1400,9 @@
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": "",
-      "lat": -38.71691,
-      "lng": -62.26189
+      "lat": -38.72044094522015,
+      "lng": -62.39291656315434,
+      "CP": "8105"
     },
     {
       "TIPO": "FARMACIA",
@@ -1351,7 +1421,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7133681,
-      "lng": -62.2695442
+      "lng": -62.2695442,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1370,7 +1441,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7062974,
-      "lng": -62.3043185
+      "lng": -62.3043185,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1389,7 +1461,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7346212,
-      "lng": -62.231362
+      "lng": -62.231362,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1408,7 +1481,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7156708,
-      "lng": -62.2806038
+      "lng": -62.2806038,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1427,7 +1501,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7106073,
-      "lng": -62.2762158
+      "lng": -62.2762158,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1446,7 +1521,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7106853,
-      "lng": -62.2865141
+      "lng": -62.2865141,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1465,7 +1541,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7123769,
-      "lng": -62.2831297
+      "lng": -62.2831297,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1484,7 +1561,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7193487,
-      "lng": -62.3107316
+      "lng": -62.3107316,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1503,7 +1581,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.740059,
-      "lng": -62.2697087
+      "lng": -62.2697087,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1522,7 +1601,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7261423,
-      "lng": -62.2412387
+      "lng": -62.2412387,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1541,7 +1621,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7089487,
-      "lng": -62.2529403
+      "lng": -62.2529403,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1560,7 +1641,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7199031,
-      "lng": -62.266921
+      "lng": -62.266921,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1579,7 +1661,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7444732,
-      "lng": -62.2639383
+      "lng": -62.2639383,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1598,7 +1681,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.715944,
-      "lng": -62.2661338
+      "lng": -62.2661338,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1617,7 +1701,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.78455,
-      "lng": -62.26915
+      "lng": -62.26915,
+      "CP": "8103"
     },
     {
       "TIPO": "FARMACIA",
@@ -1636,7 +1721,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7193077,
-      "lng": -62.255168
+      "lng": -62.255168,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1655,7 +1741,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.72142,
-      "lng": -62.2761029
+      "lng": -62.2761029,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1674,7 +1761,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7166832,
-      "lng": -62.2730908
+      "lng": -62.2730908,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1693,7 +1781,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7365568,
-      "lng": -62.2270697
+      "lng": -62.2270697,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1712,7 +1801,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.714908,
-      "lng": -62.2630376
+      "lng": -62.2630376,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1731,7 +1821,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7230236,
-      "lng": -62.2891615
+      "lng": -62.2891615,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1750,7 +1841,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7168199,
-      "lng": -62.2602857
+      "lng": -62.2602857,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1769,7 +1861,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7267479,
-      "lng": -62.2641573
+      "lng": -62.2641573,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1788,7 +1881,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7175085,
-      "lng": -62.2635267
+      "lng": -62.2635267,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1807,7 +1901,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7169342,
-      "lng": -62.251421
+      "lng": -62.251421,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1826,7 +1921,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7180066,
-      "lng": -62.2635203
+      "lng": -62.2635203,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1845,7 +1941,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7234358,
-      "lng": -62.2925977
+      "lng": -62.2925977,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1864,7 +1961,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7301811,
-      "lng": -62.2814025
+      "lng": -62.2814025,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1883,7 +1981,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7201714,
-      "lng": -62.2906695
+      "lng": -62.2906695,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1902,7 +2001,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6958337,
-      "lng": -62.2758667
+      "lng": -62.2758667,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1921,7 +2021,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7292962,
-      "lng": -62.256136
+      "lng": -62.256136,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1940,7 +2041,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.705918,
-      "lng": -62.2724432
+      "lng": -62.2724432,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1959,7 +2061,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6993765,
-      "lng": -62.2118373
+      "lng": -62.2118373,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1978,7 +2081,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.71975,
-      "lng": -62.283728
+      "lng": -62.283728,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -1997,7 +2101,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7249235,
-      "lng": -62.2617944
+      "lng": -62.2617944,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -2016,7 +2121,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.717135,
-      "lng": -62.2676624
+      "lng": -62.2676624,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -2035,7 +2141,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7146695,
-      "lng": -62.1882738
+      "lng": -62.1882738,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -2054,7 +2161,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7286878,
-      "lng": -62.2294812
+      "lng": -62.2294812,
+      "CP": "8000"
     },
     {
       "TIPO": "FARMACIA",
@@ -2073,7 +2181,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6969739,
-      "lng": -62.2809044
+      "lng": -62.2809044,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2092,7 +2201,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7259543,
-      "lng": -62.2458294
+      "lng": -62.2458294,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2111,7 +2221,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7119113,
-      "lng": -62.2709999
+      "lng": -62.2709999,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2130,7 +2241,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7128604,
-      "lng": -62.2577424
+      "lng": -62.2577424,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2149,7 +2261,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7078717,
-      "lng": -62.2696412
+      "lng": -62.2696412,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2168,7 +2281,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7051311,
-      "lng": -62.2714298
+      "lng": -62.2714298,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2187,7 +2301,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7169129,
-      "lng": -62.2726236
+      "lng": -62.2726236,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2206,7 +2321,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7227886,
-      "lng": -62.2690085
+      "lng": -62.2690085,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2225,7 +2341,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7272176,
-      "lng": -62.265301
+      "lng": -62.265301,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2244,7 +2361,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.78544,
-      "lng": -62.27118
+      "lng": -62.27118,
+      "CP": "8103"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2263,7 +2381,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7348752,
-      "lng": -62.2697423
+      "lng": -62.2697423,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2282,7 +2401,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7191586,
-      "lng": -62.2853988
+      "lng": -62.2853988,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2301,7 +2421,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7139097,
-      "lng": -62.2784833
+      "lng": -62.2784833,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2320,7 +2441,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7541476,
-      "lng": -62.2626365
+      "lng": -62.2626365,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2339,7 +2461,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7112637,
-      "lng": -62.2930026
+      "lng": -62.2930026,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2358,7 +2481,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7253531,
-      "lng": -62.2662181
+      "lng": -62.2662181,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2377,7 +2501,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7183463,
-      "lng": -62.2553806
+      "lng": -62.2553806,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2396,7 +2521,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6794666,
-      "lng": -62.2187877
+      "lng": -62.2187877,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2415,7 +2541,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7095228,
-      "lng": -62.259778
+      "lng": -62.259778,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2434,7 +2561,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7173805,
-      "lng": -62.2640117
+      "lng": -62.2640117,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2453,7 +2581,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7271001,
-      "lng": -62.2476706
+      "lng": -62.2476706,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2472,7 +2601,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7018807,
-      "lng": -62.2919706
+      "lng": -62.2919706,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2491,7 +2621,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.78401,
-      "lng": -62.26814
+      "lng": -62.26814,
+      "CP": "8103"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2509,8 +2640,9 @@
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": "",
-      "lat": -38.70112,
-      "lng": -62.23594
+      "lat": -38.721296671534475, 
+      "lng": -62.39253387389198,
+      "CP": "8105"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2529,7 +2661,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7017791,
-      "lng": -62.2771355
+      "lng": -62.2771355,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2548,7 +2681,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7244626,
-      "lng": -62.2785778
+      "lng": -62.2785778,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2567,7 +2701,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7132296,
-      "lng": -62.2721117
+      "lng": -62.2721117,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2586,7 +2721,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7074232,
-      "lng": -62.2553062
+      "lng": -62.2553062,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2605,7 +2741,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7241311,
-      "lng": -62.2604011
+      "lng": -62.2604011,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2624,7 +2761,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7188002,
-      "lng": -62.2581629
+      "lng": -62.2581629,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2643,7 +2781,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6963744,
-      "lng": -62.2766115
+      "lng": -62.2766115,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2662,7 +2801,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7267739,
-      "lng": -62.2612432
+      "lng": -62.2612432,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2681,7 +2821,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7095778,
-      "lng": -62.2666317
+      "lng": -62.2666317,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2700,7 +2841,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7545474,
-      "lng": -62.26362
+      "lng": -62.26362,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2719,7 +2861,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7233712,
-      "lng": -62.2926829
+      "lng": -62.2926829,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2738,7 +2881,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7171435,
-      "lng": -62.2788369
+      "lng": -62.2788369,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2757,7 +2901,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7213928,
-      "lng": -62.2798507
+      "lng": -62.2798507,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2776,7 +2921,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7122649,
-      "lng": -62.2660193
+      "lng": -62.2660193,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2795,7 +2941,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7186679,
-      "lng": -62.2610919
+      "lng": -62.2610919,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2814,7 +2961,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7333019,
-      "lng": -62.2338939
+      "lng": -62.2338939,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2833,7 +2981,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.69999,
-      "lng": -62.24148
+      "lng": -62.24148,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2851,8 +3000,9 @@
       "INYECTABLES": false,
       "DELIVERY": false,
       "OOSS": "",
-      "lat": -38.69815,
-      "lng": -62.25338
+      "lat": -38.71183644204017, 
+      "lng": -62.3866418664082,
+      "CP": "8105"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2871,7 +3021,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7266363,
-      "lng": -62.2879992
+      "lng": -62.2879992,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2890,7 +3041,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7105687,
-      "lng": -62.2961725
+      "lng": -62.2961725,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2909,7 +3061,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.74087,
-      "lng": -62.25102
+      "lng": -62.25102,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2928,7 +3081,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7099904,
-      "lng": -62.2822019
+      "lng": -62.2822019,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2947,7 +3101,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7157365,
-      "lng": -62.2619943
+      "lng": -62.2619943,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2966,7 +3121,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.71536,
-      "lng": -62.23412
+      "lng": -62.23412,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -2985,7 +3141,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7135493,
-      "lng": -62.2665653
+      "lng": -62.2665653,
+      "CP": "8000"
     },
     {
       "TIPO": "LABORATORIO",
@@ -3004,7 +3161,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.4920017,
-      "lng": -61.8926001
+      "lng": -61.8926001,
+      "CP": "8118"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3023,7 +3181,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7651,
-      "lng": -62.40248
+      "lng": -62.40248,
+      "CP": "8105"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3042,7 +3201,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.71424,
-      "lng": -62.29654
+      "lng": -62.29654,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3061,7 +3221,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6985119,
-      "lng": -62.2977693
+      "lng": -62.2977693,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3080,7 +3241,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.71077,
-      "lng": -62.20311
+      "lng": -62.20311,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3099,7 +3261,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.72415,
-      "lng": -62.22238
+      "lng": -62.22238,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3118,7 +3281,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.78891,
-      "lng": -62.25916
+      "lng": -62.25916,
+      "CP": "8103"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3137,7 +3301,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.4920017,
-      "lng": -61.8926001
+      "lng": -61.8926001,
+      "CP": "8118"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3156,7 +3321,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7087219,
-      "lng": -62.2372237
+      "lng": -62.2372237,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3175,7 +3341,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7361141,
-      "lng": -62.2925028
+      "lng": -62.2925028,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3194,7 +3361,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7546821,
-      "lng": -62.2531026
+      "lng": -62.2531026,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3213,7 +3381,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7244698,
-      "lng": -62.2376152
+      "lng": -62.2376152,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3232,7 +3401,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.69048,
-      "lng": -62.2933751
+      "lng": -62.2933751,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3251,7 +3421,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7355623,
-      "lng": -62.2443918
+      "lng": -62.2443918,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3270,7 +3441,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7150267,
-      "lng": -62.2492615
+      "lng": -62.2492615,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3289,7 +3461,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7478761,
-      "lng": -62.2858372
+      "lng": -62.2858372,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3308,7 +3481,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7081833,
-      "lng": -62.2997504
+      "lng": -62.2997504,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3327,7 +3501,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7031646,
-      "lng": -62.3051978
+      "lng": -62.3051978,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3346,7 +3521,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7205622,
-      "lng": -62.2933169
+      "lng": -62.2933169,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3365,7 +3541,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7270331,
-      "lng": -62.2897046
+      "lng": -62.2897046,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3384,7 +3561,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7353268,
-      "lng": -62.2632353
+      "lng": -62.2632353,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3403,7 +3581,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7393154,
-      "lng": -62.2458672
+      "lng": -62.2458672,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3422,7 +3601,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7046414,
-      "lng": -62.2579795
+      "lng": -62.2579795,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3441,7 +3621,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6995888,
-      "lng": -62.2540894
+      "lng": -62.2540894,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3460,7 +3641,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6960366,
-      "lng": -62.3508934
+      "lng": -62.3508934,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3479,7 +3661,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7470868,
-      "lng": -62.2381074
+      "lng": -62.2381074,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3498,7 +3681,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6854025,
-      "lng": -62.2721071
+      "lng": -62.2721071,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3517,7 +3701,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7178342,
-      "lng": -62.191108
+      "lng": -62.191108,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3536,7 +3721,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7106853,
-      "lng": -62.2865141
+      "lng": -62.2865141,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3555,7 +3741,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7426993,
-      "lng": -62.2719143
+      "lng": -62.2719143,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3574,7 +3761,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.755863,
-      "lng": -62.261379
+      "lng": -62.261379,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3593,7 +3781,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.750512,
-      "lng": -62.24719
+      "lng": -62.24719,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3612,7 +3801,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6903245,
-      "lng": -62.3038962
+      "lng": -62.3038962,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3631,7 +3821,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.69634,
-      "lng": -62.19941
+      "lng": -62.19941,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3650,7 +3841,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.6842576,
-      "lng": -62.213565
+      "lng": -62.213565,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3669,7 +3861,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.72204,
-      "lng": -62.2507833
+      "lng": -62.2507833,
+      "CP": "8000"
     },
     {
       "TIPO": "UNIDAD SANITARIA",
@@ -3688,7 +3881,8 @@
       "DELIVERY": false,
       "OOSS": "",
       "lat": -38.7393154,
-      "lng": -62.2458672
+      "lng": -62.2458672,
+      "CP": "8000"
     }
   ]
 }
