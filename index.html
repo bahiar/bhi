@@ -170,6 +170,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="contenedor-busqueda-global" class="busqueda-global-resultados" hidden></div>
     </header>
 
+    <!-- Modal de instrucciones para instalación en desktop -->
+    <div id="install-instructions-modal" class="install-modal" hidden role="dialog" aria-labelledby="install-modal-title">
+        <div class="install-modal__overlay" id="install-modal-close"></div>
+        <div class="install-modal__content">
+            <button class="install-modal__close" id="install-modal-close-btn" aria-label="Cerrar">×</button>
+            <h2 id="install-modal-title" class="install-modal__title">Instalá BAHI.ar</h2>
+            <p class="install-modal__subtitle">Accedé más rápido, incluso sin conexión</p>
+            
+            <div class="install-modal__instructions">
+                <div class="install-instruction" id="chrome-instructions">
+                    <h3 class="install-instruction__title">
+                        <svg class="install-instruction__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#EA4335"/><circle cx="12" cy="12" r="6" fill="#fff" opacity="0.3"/></svg>
+                        Chrome / Brave / Edge
+                    </h3>
+                    <ol class="install-instruction__steps">
+                        <li>Presioná <strong>⋮ (menú)</strong> en la esquina superior derecha</li>
+                        <li>Buscá <strong>"Instalar aplicación"</strong></li>
+                        <li>Presioná <strong>Instalar</strong></li>
+                    </ol>
+                </div>
+
+                <div class="install-instruction" id="firefox-instructions">
+                    <h3 class="install-instruction__title">
+                        <svg class="install-instruction__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#FF7139"/></svg>
+                        Firefox
+                    </h3>
+                    <ol class="install-instruction__steps">
+                        <li>Presioná <strong>≡ (menú)</strong> en la esquina superior derecha</li>
+                        <li>Buscá <strong>"Instalar sitio web"</strong></li>
+                        <li>Presioná <strong>Instalar</strong></li>
+                    </ol>
+                </div>
+
+                <div class="install-instruction" id="safari-instructions">
+                    <h3 class="install-instruction__title">
+                        <svg class="install-instruction__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#0071E3"/></svg>
+                        Safari (Mac/iPhone)
+                    </h3>
+                    <ol class="install-instruction__steps">
+                        <li>Presioná <strong>Compartir</strong> (↑ o ⬆)</li>
+                        <li>Buscá <strong>"Agregar a pantalla de inicio"</strong></li>
+                        <li>Presioná <strong>Agregar</strong></li>
+                    </ol>
+                </div>
+            </div>
+
+            <button class="install-modal__btn-close" id="install-modal-btn-close">Entendido</button>
+        </div>
+    </div>
 
     <nav class="sub-nav" aria-label="Secciones principales">
         <ul class="sub-nav-list">
