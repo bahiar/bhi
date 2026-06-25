@@ -459,7 +459,7 @@ function configurarBotonCompartir() {
 
         let mensaje = '';
         mensaje += MENSAJE_WHATSAPP_HEADER;
-        if (leyenda) mensaje += `⏱ ${leyenda}\n`;
+        if (leyenda) mensaje += `◷ ${leyenda}\n`;
         mensaje += `\n`;
 
         cards.forEach((card) => {
@@ -471,7 +471,7 @@ function configurarBotonCompartir() {
             const movil = limpiarTelefono(card.dataset.movil);
 
             mensaje += `⛨ ${nombre.toUpperCase()}\n`;
-            if (domicilio) mensaje += `🏠︎ ${domicilio}\n`;
+            if (domicilio) mensaje += `⌂ ${domicilio}\n`;
             if (fijo) mensaje += `✆ ${fijo}\n`;
             if (movil) mensaje += `✆ ${movil}\n`;
             mensaje += `\n`;
