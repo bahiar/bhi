@@ -1561,6 +1561,10 @@ body {
     border-color: var(--orange-dark);
 }
 
+#btn-instalar-app[hidden] {
+    display: none;
+}
+
 .share-footer {
     display: flex;
     justify-content: center;
