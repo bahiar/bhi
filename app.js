@@ -16,8 +16,8 @@ const MAX_SEARCH_RESULTS = 10;
 const BASE_URL = 'https://bahi.ar';
 const BASE_URL_WWW = 'https://www.bahi.ar';
 
-const MENSAJE_WHATSAPP_HEADER = '⚕️ *FARMACIAS DE TURNO*\nBahía Blanca • BAHI.ar\n';
-const MENSAJE_WHATSAPP_FOOTER = '🌐 *Más info en:*\nhttps://www.bahi.ar';
+const MENSAJE_WHATSAPP_HEADER = '⚕ *FARMACIAS DE TURNO* ⚕\nBahía Blanca • BAHI.ar\n';
+const MENSAJE_WHATSAPP_FOOTER = '☞ https://www.bahi.ar';
 
 const CAMPO_SVG_MAP = {
     'DOMICILIO': 'HOME',
@@ -457,9 +457,9 @@ function configurarBotonCompartir() {
         const leyendaEl = document.getElementById('leyenda-horario');
         const leyenda = leyendaEl ? leyendaEl.textContent : '';
 
-        let mensaje = `${BASE_URL}\n\n`;
+        let mensaje = '';
         mensaje += MENSAJE_WHATSAPP_HEADER;
-        if (leyenda) mensaje += `_${leyenda}_\n`;
+        if (leyenda) mensaje += `⏱ _${leyenda}_\n`;
         mensaje += `\n`;
 
         cards.forEach((card) => {
@@ -467,15 +467,13 @@ function configurarBotonCompartir() {
             if (!nombre) return;
 
             const domicilio = card.dataset.domicilio || '';
-            const localidad = card.dataset.localidad || '';
             const fijo = limpiarTelefono(card.dataset.fijo);
             const movil = limpiarTelefono(card.dataset.movil);
 
-            mensaje += `⚕️ *${nombre.toUpperCase()}*\n`;
-            if (domicilio) mensaje += `📌 ${domicilio}\n`;
-            if (localidad) mensaje += `🏙 ${localidad}\n`;
-            if (fijo) mensaje += `📞 ${fijo}\n`;
-            if (movil) mensaje += `📱 ${movil}\n`;
+            mensaje += `⛨ *${nombre.toUpperCase()}*\n`;
+            if (domicilio) mensaje += `🏠︎ ${domicilio}\n`;
+            if (fijo) mensaje += `✆ ${fijo}\n`;
+            if (movil) mensaje += `✆ ${movil}\n`;
             mensaje += `\n`;
         });
 
