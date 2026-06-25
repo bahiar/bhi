@@ -1,1 +1,39 @@
+name: Bump SW version
 
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'sw.js'          # evita loop: no se activa cuando el Action mismo modifica sw.js
+      - '.github/**'     # cambios en workflows no disparan el bump
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write    # necesario para hacer git push
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Bump CACHE_VERSION en sw.js
+        run: node bump-sw.js
+
+      - name: Commit y push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sw.js
+          git diff --cached --quiet && echo "Sin cambios en sw.js" && exit 0
+          git commit -m "chore: bump SW [skip ci]"
+          git push
