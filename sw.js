@@ -17,8 +17,8 @@
 
 // ─── Versión ──────────────────────────────────────────────────────────────────
 // ⚠ Incrementar en cada deploy para invalidar el caché y forzar install.
-// v4.7: nuevo formato mensaje WhatsApp compartir.
-const CACHE_VERSION   = 'v4.7';
+// v4.8: texto mensaje WhatsApp compartir sin markdown.
+const CACHE_VERSION   = 'v4.8';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 

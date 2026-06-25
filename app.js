@@ -16,7 +16,7 @@ const MAX_SEARCH_RESULTS = 10;
 const BASE_URL = 'https://bahi.ar';
 const BASE_URL_WWW = 'https://www.bahi.ar';
 
-const MENSAJE_WHATSAPP_HEADER = '⚕ *FARMACIAS DE TURNO* ⚕\nBahía Blanca • BAHI.ar\n';
+const MENSAJE_WHATSAPP_HEADER = '⚕ FARMACIAS DE TURNO ⚕\n';
 const MENSAJE_WHATSAPP_FOOTER = '☞ https://www.bahi.ar';
 
 const CAMPO_SVG_MAP = {
@@ -459,7 +459,7 @@ function configurarBotonCompartir() {
 
         let mensaje = '';
         mensaje += MENSAJE_WHATSAPP_HEADER;
-        if (leyenda) mensaje += `⏱ _${leyenda}_\n`;
+        if (leyenda) mensaje += `⏱ ${leyenda}\n`;
         mensaje += `\n`;
 
         cards.forEach((card) => {
@@ -470,7 +470,7 @@ function configurarBotonCompartir() {
             const fijo = limpiarTelefono(card.dataset.fijo);
             const movil = limpiarTelefono(card.dataset.movil);
 
-            mensaje += `⛨ *${nombre.toUpperCase()}*\n`;
+            mensaje += `⛨ ${nombre.toUpperCase()}\n`;
             if (domicilio) mensaje += `🏠︎ ${domicilio}\n`;
             if (fijo) mensaje += `✆ ${fijo}\n`;
             if (movil) mensaje += `✆ ${movil}\n`;
