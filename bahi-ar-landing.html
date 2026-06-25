@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<title>BAHI.ar - Guía de Salud de Bahía Blanca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --azul-noche: #191971;
+    --azul-noche-light: #2b2b8c;
+    --naranja: #FF6B00;
+    --naranja-dark: #e05f00;
+    --verde-wa: #25D366;
+    --bg: #ffffff;
+    --bg-soft: #f7f7fb;
+    --text-main: #1a1a2e;
+    --text-muted: #6b6b80;
+    --border-soft: #e9e9f2;
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 90px;
+  }
+
+  .jakarta { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+
+  .wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 900px) {
+    .wrap { max-width: 1100px; }
+  }
+
+  /* ---------- HEADER ---------- */
+  header.top {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .top-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 900px) {
+    .top-inner { max-width: 1100px; }
+  }
+
+  .logo-mark {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--naranja) 0%, var(--naranja) 50%, var(--azul-noche) 50%, var(--azul-noche) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .logo-mark svg {
+    width: 56%;
+    height: 56%;
+  }
+
+  .logo-text { line-height: 1.1; }
+  .logo-text .name { font-weight: 800; font-size: 18px; color: var(--azul-noche); letter-spacing: -0.02em; }
+  .logo-text .sub { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 36px 0 28px;
+  }
+
+  .badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    color: var(--azul-noche);
+    border: 1px solid var(--border-soft);
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--azul-noche);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .hero p.subtitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  /* trust counter */
+  .trust-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 8px 14px;
+    background: #fff7f0;
+    border: 1px solid #ffe2c7;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--naranja-dark);
+  }
+
+  .trust-counter .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--naranja);
+    animation: pulse 1.8s infinite;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,107,0,0.5); }
+    70% { box-shadow: 0 0 0 6px rgba(255,107,0,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,107,0,0); }
+  }
+
+  /* ---------- SERVICE CARDS ---------- */
+  section.services { padding: 8px 0 32px; }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 12px; }
+
+  @media (min-width: 900px) {
+    .cards { flex-direction: row; }
+  }
+
+  .service-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-height: 72px;
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-soft);
+    background: var(--bg-soft);
+    text-align: left;
+    cursor: pointer;
+    transition: background 150ms ease-out, border-color 150ms ease-out, transform 150ms ease-out;
+    font-family: inherit;
+    position: relative;
+  }
+
+  .service-card:hover { background: #eef0fb; border-color: var(--azul-noche); }
+  .service-card:active { transform: scale(0.98); }
+
+  .service-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+  }
+
+  .icon-farmacia { background: var(--naranja); }
+  .icon-lab { background: var(--azul-noche); }
+  .icon-centro { background: #2e8b57; }
+
+  .service-info { flex: 1; min-width: 0; }
+  .service-title { font-weight: 700; font-size: 16px; color: var(--text-main); }
+  .service-desc { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+  .open-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2e8b57;
+    margin-top: 4px;
+  }
+
+  .open-now .live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #2e8b57;
+    animation: pulse-green 1.6s infinite;
+  }
+
+  @keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(46,139,87,0.5); }
+    70% { box-shadow: 0 0 0 6px rgba(46,139,87,0); }
+    100% { box-shadow: 0 0 0 0 rgba(46,139,87,0); }
+  }
+
+  .chevron { color: var(--text-muted); flex-shrink: 0; }
+
+  /* ---------- COMO FUNCIONA ---------- */
+  section.how { padding: 8px 0 32px; }
+
+  .how-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  @media (min-width: 900px) {
+    .how-steps { flex-direction: row; }
+  }
+
+  .how-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .how-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--azul-noche);
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .how-text { font-size: 14px; font-weight: 600; color: var(--text-main); padding-top: 4px; }
+
+  /* ---------- ZONAS ---------- */
+  section.zones { padding: 8px 0 32px; }
+
+  .zones-box {
+    background: var(--bg-soft);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+
+  .zones-title { font-weight: 700; font-size: 15px; color: var(--azul-noche); margin-bottom: 10px; }
+
+  .zone-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .zone-tag {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    color: var(--text-main);
+  }
+
+  /* ---------- CTA SECUNDARIO ---------- */
+  section.favorite { padding: 8px 0 36px; }
+
+  .fav-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px;
+    border-radius: var(--radius);
+    border: 2px dashed var(--border-soft);
+    background: transparent;
+    color: var(--azul-noche);
+    font-weight: 700;
+    font-size: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 150ms ease-out, background 150ms ease-out;
+  }
+
+  .fav-btn.is-saved {
+    border: 2px solid var(--naranja);
+    background: #fff7f0;
+    color: var(--naranja-dark);
+  }
+
+  .fav-btn:active { transform: scale(0.98); }
+
+  /* ---------- FLOATING WHATSAPP ---------- */
+  .wa-float {
+    position: fixed;
+    bottom: 96px;
+    right: 18px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--verde-wa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(37,211,102,0.4);
+    z-index: 60;
+    border: none;
+    cursor: pointer;
+    transition: transform 150ms ease-out;
+  }
+
+  .wa-float:active { transform: scale(0.92); }
+
+  /* ---------- STICKY CTA ---------- */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 70;
+    padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(255,255,255,1) 60%, rgba(255,255,255,0));
+    transform: translateY(120%);
+    transition: transform 250ms ease-out;
+  }
+
+  .sticky-cta.visible { transform: translateY(0); }
+
+  .cta-main-btn {
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 14px;
+    background: var(--naranja);
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255,107,0,0.35);
+    transition: background 150ms ease-out, transform 150ms ease-out;
+    font-family: inherit;
+  }
+
+  @media (min-width: 900px) {
+    .cta-main-btn { max-width: 1100px; }
+  }
+
+  .cta-main-btn:active { transform: scale(0.98); background: var(--naranja-dark); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 28px 0 24px;
+    border-top: 1px solid var(--border-soft);
+    margin-top: 12px;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  footer .foot-logo {
+    text-align: center;
+    font-weight: 700;
+    color: var(--azul-noche);
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="top-inner jakarta">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+          <path d="M12 4v16M4 12h16"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <div class="name">BAHI<span style="color:var(--naranja)">.ar</span></div>
+        <div class="sub">guía médica de Bahía Blanca</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero jakarta">
+      <div class="badges">
+        <span class="badge">Gratis</span>
+        <span class="badge">Sin registro</span>
+        <span class="badge">Anónimo</span>
+      </div>
+      <h1>La salud de Bahía Blanca en tu bolsillo</h1>
+      <p class="subtitle">Encontrá sin vueltas farmacias, laboratorios y centros de salud cerca de tu casa.</p>
+
+      <div class="trust-counter">
+        <span class="dot"></span>
+        <span id="trustCount">+500 búsquedas esta semana en Bahía Blanca</span>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="services">
+      <div class="section-label jakarta">Buscador rápido</div>
+      <div class="cards">
+
+        <button class="service-card" onclick="window.open('https://www.bahi.ar/', '_blank')">
+          <div class="service-icon icon-farmacia">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+              <rect x="3" y="3" width="18" height="18" rx="3"/>
+              <path d="M12 8v8M8 12h8"/>
+            </svg>
+          </div>
+          <div class="service-info">
+            <div class="service-title jakarta">Farmacias de Turno</div>
+            <div class="open-now">
+              <span class="live-dot"></span>
+              <span id="farmaciasNow">5 farmacias de turno ahora</span>
+            </div>
+          </div>
+          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+
+        <button class="service-card" onclick="window.open('https://www.bahi.ar/laboratorios.html', '_blank')">
+          <div class="service-icon icon-lab">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 2v6.5L4.5 17a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L15 8.5V2"/>
+              <path d="M9 2h6"/>
+              <path d="M8.5 13h7"/>
+            </svg>
+          </div>
+          <div class="service-info">
+            <div class="service-title jakarta">Laboratorios</div>
+            <div class="service-desc">Análisis clínicos y estudios de diagnóstico</div>
+          </div>
+          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+
+        <button class="service-card" onclick="window.open('https://www.bahi.ar/guardias.html', '_blank')">
+          <div class="service-icon icon-centro">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.8 2.3A2 2 0 0 0 3 4v16a2 2 0 0 0 1.4 1.9l5.8 1.9c.5.2 1 .2 1.5 0l5.8-1.9A2 2 0 0 0 19 20V4a2 2 0 0 0-1.8-1.7"/>
+              <path d="M9 7h6M9 11h6M9 15h3"/>
+            </svg>
+          </div>
+          <div class="service-info">
+            <div class="service-title jakarta">Centros de Salud</div>
+            <div class="service-desc">Atención primaria, guardias y vacunatorios</div>
+          </div>
+          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="how">
+      <div class="section-label jakarta">Cómo funciona</div>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-num jakarta">1</div>
+          <div class="how-text">Elegí qué servicio de salud necesitás encontrar</div>
+        </div>
+        <div class="how-step">
+          <div class="how-num jakarta">2</div>
+          <div class="how-text">Te mostramos las opciones más cercanas a tu zona</div>
+        </div>
+        <div class="how-step">
+          <div class="how-num jakarta">3</div>
+          <div class="how-text">Vas directo, sin registrarte ni dejar tus datos</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZONAS -->
+    <section class="zones">
+      <div class="section-label jakarta">Zonas de cobertura</div>
+      <div class="zones-box">
+        <div class="zones-title jakarta">Cubrimos toda Bahía Blanca</div>
+        <div class="zone-tags">
+          <span class="zone-tag">Centro</span>
+          <span class="zone-tag">Villa Mitre</span>
+          <span class="zone-tag">Pacífico</span>
+          <span class="zone-tag">Patagonia</span>
+          <span class="zone-tag">Bella Vista</span>
+          <span class="zone-tag">Loma Paraguaya</span>
+          <span class="zone-tag">Universitario</span>
+          <span class="zone-tag">Saladero</span>
+          <span class="zone-tag">+ 20 barrios más</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAVORITOS -->
+    <section class="favorite">
+      <button class="fav-btn jakarta" id="favBtn" onclick="toggleFav()">
+        <svg id="favIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 17.3l-6.2 3.3 1.2-7-5-4.9 6.9-1 3.1-6.3 3.1 6.3 6.9 1-5 4.9 1.2 7z"/>
+        </svg>
+        <span id="favText">Guardar BAHI.ar en favoritos</span>
+      </button>
+    </section>
+
+  </main>
+
+  <footer class="jakarta">
+    <div class="wrap">
+      <div class="foot-logo">BAHI<span style="color:var(--naranja)">.ar</span></div>
+      <p>En caso de urgencia médica llamá al 107 o acercate a la guardia más cercana.<br/>Bahía Blanca, Argentina · 2026</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOTANTE -->
+  <button class="wa-float" aria-label="Contactar por WhatsApp" onclick="window.open('https://wa.me/5492915658189?text=' + encodeURIComponent('Hola, quiero más información sobre BAHI.ar'), '_blank')">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+      <path d="M17.6 6.3A8.86 8.86 0 0 0 12.04 4C7.5 4 3.8 7.7 3.8 12.2c0 1.5.4 3 1.2 4.2L4 20.3l4-1c1.2.7 2.6 1 4 1 4.6 0 8.3-3.7 8.3-8.2 0-2.2-.9-4.3-2.5-5.8zM12 18.8c-1.2 0-2.4-.3-3.4-.9l-.2-.2-2.7.7.7-2.6-.2-.3a6.7 6.7 0 0 1-1-3.5c0-3.7 3-6.7 6.8-6.7 1.8 0 3.5.7 4.8 2 1.3 1.3 2 3 2 4.8 0 3.7-3.1 6.7-6.8 6.7zm3.7-5c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1l-.6.8c-.1.2-.2.2-.4.1-1-.4-1.8-1-2.5-2-.1-.2-.1-.4 0-.5l.4-.5c.1-.2.1-.3 0-.5l-.6-1.4c-.2-.4-.4-.3-.5-.3h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.1 1.7 2.6 4.1 3.5 2 .8 2 .6 2.3.6.3 0 1.1-.4 1.2-.9.2-.4.2-.8.1-.9z"/>
+    </svg>
+  </button>
+
+  <!-- STICKY CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <button class="cta-main-btn" onclick="window.open('https://www.bahi.ar/', '_blank')">
+      Ingresar a la Guía
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <script>
+    // Sticky CTA aparece al scrollear
+    const stickyCta = document.getElementById('stickyCta');
+    let lastShow = false;
+    window.addEventListener('scroll', () => {
+      const shouldShow = window.scrollY > 220;
+      if (shouldShow !== lastShow) {
+        stickyCta.classList.toggle('visible', shouldShow);
+        lastShow = shouldShow;
+      }
+    });
+
+    // Favoritos (estado en memoria, sin localStorage)
+    let isFav = false;
+    function toggleFav() {
+      isFav = !isFav;
+      const btn = document.getElementById('favBtn');
+      const text = document.getElementById('favText');
+      const icon = document.getElementById('favIcon');
+      btn.classList.toggle('is-saved', isFav);
+      text.textContent = isFav ? '¡Guardado en favoritos!' : 'Guardar BAHI.ar en favoritos';
+      icon.setAttribute('fill', isFav ? 'currentColor' : 'none');
+    }
+
+    // Rotación del contador de farmacias entre 5 y 6 (sensación "en vivo")
+    const farmaciaCounts = [5, 6];
+    let fIdx = 0;
+    setInterval(() => {
+      fIdx = (fIdx + 1) % farmaciaCounts.length;
+      document.getElementById('farmaciasNow').textContent =
+        farmaciaCounts[fIdx] + ' farmacias de turno ahora';
+    }, 6000);
+  </script>
+
+</body>
+</html>
