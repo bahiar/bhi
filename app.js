@@ -161,14 +161,17 @@ window.crearCardHTML = (item, tipo, index) => {
 
 window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
-    if (sessionStorage.getItem('bahi_install_dismissed') === 'true') return;
     deferredInstallPrompt = event;
+    mostrarBotonInstalarHeader();
+
+    if (sessionStorage.getItem('bahi_install_dismissed') === 'true') return;
     pushGTM('pwa_event', 'banner_mostrado');
     mostrarBannerInstalacion();
 });
 
 window.addEventListener('appinstalled', () => {
     ocultarBannerInstalacion();
+    ocultarBotonInstalarHeader();
     deferredInstallPrompt = null;
     localStorage.setItem('bahi_pwa_installed', 'true');
     pushGTM('pwa_event', 'instalacion_aceptada');
@@ -431,6 +434,16 @@ function ocultarBannerInstalacion() {
     banner.classList.remove('is-visible');
 }
 
+function mostrarBotonInstalarHeader() {
+    const btn = document.getElementById('btn-instalar-app');
+    if (btn) btn.hidden = false;
+}
+
+function ocultarBotonInstalarHeader() {
+    const btn = document.getElementById('btn-instalar-app');
+    if (btn) btn.hidden = true;
+}
+
 // ═════════════════════════════════════════════════════════════════════════════
 // COMPARTIR Y TELÉFONOS
 // ═════════════════════════════════════════════════════════════════════════════
@@ -490,10 +503,12 @@ function configurarBotonCompartir() {
 
 function configurarInstalacionPWA() {
     document.addEventListener('click', async (e) => {
-        if (e.target.id === 'btn-pwa-instalar') {
+        const btnInstalar = e.target.closest('#btn-pwa-instalar, #btn-instalar-app');
+        if (btnInstalar) {
             if (!deferredInstallPrompt) {
                 console.warn('[BAHI.ar] No hay prompt de instalación disponible.');
                 ocultarBannerInstalacion();
+                ocultarBotonInstalarHeader();
                 return;
             }
             try {
@@ -506,6 +521,7 @@ function configurarInstalacionPWA() {
             } finally {
                 deferredInstallPrompt = null;
                 ocultarBannerInstalacion();
+                ocultarBotonInstalarHeader();
             }
             return;
         }

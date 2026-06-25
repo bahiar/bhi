@@ -1550,6 +1550,17 @@ body {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
+.header-btn--instalar {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
+}
+
+.header-btn--instalar:hover {
+    background: var(--orange-dark);
+    border-color: var(--orange-dark);
+}
+
 .share-footer {
     display: flex;
     justify-content: center;
