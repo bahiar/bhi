@@ -17,8 +17,8 @@
 
 // ─── Versión ──────────────────────────────────────────────────────────────────
 // ⚠ Incrementar en cada deploy para invalidar el caché y forzar install.
-// v4.6: fix tamaño íconos de detalle (width/height explícitos en SVG).
-const CACHE_VERSION   = 'v4.6';
+// v4.7: nuevo formato mensaje WhatsApp compartir.
+const CACHE_VERSION   = 'v4.7';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
