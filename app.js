@@ -211,17 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
     configurarBannerActualizacion();
     configurarBotonCompartir();
     configurarInstalacionPWA();
-
-    // Mostrar botón de instalación después de 2s si no se disparó beforeinstallprompt
-    setTimeout(() => {
-        if (!deferredInstallPrompt) {
-            const btn = document.getElementById('btn-instalar-app');
-            if (btn) {
-                btn.hidden = false;
-                btn.classList.add('is-visible');
-            }
-        }
-    }, 2000);
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -447,28 +436,12 @@ function ocultarBannerInstalacion() {
 
 function mostrarBotonInstalarHeader() {
     const btn = document.getElementById('btn-instalar-app');
-    if (btn) {
-        btn.hidden = false;
-        btn.classList.add('is-visible');
-    }
+    if (btn) btn.hidden = false;
 }
 
 function ocultarBotonInstalarHeader() {
     const btn = document.getElementById('btn-instalar-app');
     if (btn) btn.hidden = true;
-}
-
-function mostrarModalInstrucciones() {
-    const modal = document.getElementById('install-instructions-modal');
-    if (!modal) return;
-    modal.hidden = false;
-    requestAnimationFrame(() => modal.classList.add('is-visible'));
-}
-
-function ocultarModalInstrucciones() {
-    const modal = document.getElementById('install-instructions-modal');
-    if (!modal) return;
-    modal.classList.remove('is-visible');
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -532,14 +505,12 @@ function configurarInstalacionPWA() {
     document.addEventListener('click', async (e) => {
         const btnInstalar = e.target.closest('#btn-pwa-instalar, #btn-instalar-app');
         if (btnInstalar) {
-            // Si no hay deferredInstallPrompt, mostrar modal de instrucciones
             if (!deferredInstallPrompt) {
-                mostrarModalInstrucciones();
-                pushGTM('pwa_event', 'instrucciones_mostradas_desktop');
+                console.warn('[BAHI.ar] No hay prompt de instalación disponible.');
+                ocultarBannerInstalacion();
+                ocultarBotonInstalarHeader();
                 return;
             }
-
-            // Si hay prompt, usarlo (móvil)
             try {
                 deferredInstallPrompt.prompt();
                 const { outcome } = await deferredInstallPrompt.userChoice;
@@ -552,14 +523,6 @@ function configurarInstalacionPWA() {
                 ocultarBannerInstalacion();
                 ocultarBotonInstalarHeader();
             }
-            return;
-        }
-
-        // Cerrar modal
-        if (e.target.id === 'install-modal-close' || 
-            e.target.id === 'install-modal-close-btn' || 
-            e.target.id === 'install-modal-btn-close') {
-            ocultarModalInstrucciones();
             return;
         }
 
