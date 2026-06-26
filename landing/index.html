@@ -1,1 +1,1012 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BAHI.ar — Guía médica de Bahía Blanca</title>
+  <meta name="description" content="Farmacias de turno, guardias médicas y laboratorios en Bahía Blanca. Información oficial, gratuita y actualizada a diario." />
+  
+  <!-- Open Graph para redes y WhatsApp -->
+  <meta property="og:title" content="BAHI.ar — Guía médica de Bahía Blanca" />
+  <meta property="og:description" content="Farmacias de turno, guardias médicas y laboratorios en Bahía Blanca. Información oficial, gratuita y actualizada a diario." />
+  <meta property="og:image" content="https://www.bahi.ar/og-image.png" />
+  <meta property="og:url" content="https://www.bahi.ar/" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Canonical, tema y manifest -->
+  <link rel="canonical" href="https://www.bahi.ar/" />
+  <meta name="theme-color" content="#191971" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V98EGFSRQS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V98EGFSRQS');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #191971;
+      --navy-d:  #111155;
+      --navy-l:  #2a2a99;
+      --white:   #ffffff;
+      --offwhite:#F0F4FF;
+      --gray-bg: #f9fafb;
+      --green-bg:#eef2fa;
+      --green:   #2d4a8a;
+      --gold:    #FF6B00;
+      --gold-d:  #e05f00;
+      --text:    #1a1a2e;
+      --muted:   #5a5a7a;
+      --border:  #d8ddf0;
+      --radius:  14px;
+      --shadow:  0 4px 24px rgba(25,25,113,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(25,25,113,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(16px, 5vw, 60px);
+      height: 72px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-logo {
+      width: 44px;
+      height: 44px;
+    }
+
+    .nav-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.45rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .nav-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.01em;
+      display: block;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-nav {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .btn-nav-ghost {
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-nav-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.5); }
+
+    .btn-nav-primary {
+      background: var(--gold);
+      color: var(--navy-d);
+    }
+    .btn-nav-primary:hover { background: var(--gold-d); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: clamp(56px, 10vw, 96px) clamp(20px, 8vw, 80px) clamp(56px, 10vw, 96px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 0%, rgba(100,120,255,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 100%, rgba(255,107,0,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(255,107,0,0.12);
+      border: 1px solid rgba(255,107,0,0.25);
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: rgba(255,255,255,0.72);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-main {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      background: var(--gold);
+      color: var(--navy-d);
+      text-decoration: none;
+      transition: all 0.18s ease;
+      box-shadow: 0 4px 20px rgba(255,107,0,0.3);
+    }
+    .btn-hero-main:hover { background: var(--gold-d); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(255,107,0,0.4); }
+
+    .btn-hero-ghost {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      border: 1.5px solid rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .btn-hero-ghost:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
+
+    /* ── STAT STRIP ── */
+    .stats {
+      background: var(--offwhite);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      flex: 1 1 160px;
+      padding: 28px 24px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3.5vw, 2rem);
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.4;
+      max-width: 140px;
+      margin: 0 auto;
+    }
+
+    /* ── SECTION STYLES ── */
+    section {
+      padding: clamp(56px, 10vw, 96px) clamp(20px, 8vw, 80px);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section:nth-child(odd) {
+      background: var(--white);
+    }
+
+    section:nth-child(even) {
+      background: var(--gray-bg);
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      max-width: 600px;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    /* ── CARDS ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .card {
+      padding: 32px 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(25,25,113,0.05);
+    }
+
+    section:nth-child(even) .card {
+      background: var(--white);
+    }
+
+    section:nth-child(odd) .card {
+      background: var(--offwhite);
+    }
+
+    .card:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 2.8rem;
+      line-height: 1;
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-icon svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--navy);
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex-grow: 1;
+    }
+
+    .card-link {
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin-top: 8px;
+      transition: all 0.18s ease;
+    }
+
+    .card:hover .card-link {
+      color: var(--gold-d);
+      transform: translateX(4px);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-wrap {
+      background: var(--gray-bg);
+      padding: clamp(56px, 10vw, 96px) clamp(20px, 8vw, 80px);
+    }
+
+    .how-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 56px;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-icon {
+      font-size: 3.2rem;
+      line-height: 1;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 64px;
+    }
+
+    .step-icon svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .step-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .step-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── FREE ── */
+    .free-wrap {
+      background: var(--white);
+      padding: clamp(56px, 10vw, 96px) clamp(20px, 8vw, 80px);
+    }
+
+    .free-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .free-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--navy);
+    }
+
+    .free-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .free-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--gray-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .pill-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    /* ── INSTALL ── */
+    .install-wrap {
+      background: var(--gray-bg);
+      padding: clamp(56px, 10vw, 96px) clamp(20px, 8vw, 80px);
+    }
+
+    .install-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .install-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--navy);
+    }
+
+    .install-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 520px;
+      margin: 0 auto 48px;
+    }
+
+    .install-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .install-card {
+      padding: 32px 28px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(25,25,113,0.05);
+    }
+
+    .install-os {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .install-inst {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .btn-install {
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      background: var(--gold);
+      color: var(--navy-d);
+      text-decoration: none;
+      transition: all 0.18s ease;
+      box-shadow: 0 4px 20px rgba(255,107,0,0.3);
+    }
+    .btn-install:hover { background: var(--gold-d); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(255,107,0,0.4); }
+
+    /* ── DONATE ── */
+    .donate-wrap {
+      background: var(--white);
+      padding: clamp(56px, 10vw, 96px) clamp(20px, 8vw, 80px);
+    }
+
+    .donate-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .donate-heart {
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+
+    .donate-heart svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .donate-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--navy);
+    }
+
+    .donate-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .btn-donate {
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      background: var(--gold);
+      color: var(--navy-d);
+      text-decoration: none;
+      transition: all 0.18s ease;
+      box-shadow: 0 4px 20px rgba(255,107,0,0.3);
+    }
+    .btn-donate:hover { background: var(--gold-d); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(255,107,0,0.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      padding: 48px clamp(20px, 8vw, 80px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      font-size: 0.95rem;
+    }
+
+    .footer-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+
+    footer a:hover { color: var(--white); }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      transition: all 0.18s ease;
+    }
+    .social-btn:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+      .nav-cta .btn-nav-ghost { display: none; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .free-inner { grid-template-columns: 1fr; }
+      .footer-social { margin-left: 0; }
+    }
+  </style>
+  <!-- Google Analytics 4 (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V98EGFSRQS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // Configuración base para bahi.ar
+  gtag('config', 'G-V98EGFSRQS', {
+    'send_page_view': true
+  });
+</script>
+</head>
+<body>
+
+
+  <nav>
+    <a href="https://www.bahi.ar" class="nav-brand">
+      <svg aria-hidden="true" class="nav-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FF6B00"/>
+            <stop offset="50%" stop-color="#FF6B00"/>
+            <stop offset="50%" stop-color="#191971"/>
+            <stop offset="100%" stop-color="#191971"/>
+          </linearGradient>
+          <clipPath id="logo-clip">
+            <rect width="32" height="32" rx="8"/>
+          </clipPath>
+        </defs>
+        <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+        <g clip-path="url(#logo-clip)">
+          <line x1="16" y1="7" x2="16" y2="25" stroke="white" stroke-width="3.2" stroke-linecap="round"/>
+          <line x1="7" y1="16" x2="25" y2="16" stroke="white" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <span class="nav-brand-text"><span class="nav-name">BAHI.ar</span><span class="nav-sub">guía médica de Bahía Blanca</span></span>
+    </a>
+    <div class="nav-cta">
+      <a href="https://www.bahi.ar/guardias.html" class="btn-nav btn-nav-ghost">Emergencias</a>
+      <a href="https://www.bahi.ar/index.html" class="btn-nav btn-nav-primary">Ver guía →</a>
+    </div>
+  </nav>
+
+
+  <div class="hero">
+    <h1 class="hero-title">La guía de salud de los <span>bahienses</span></h1>
+    <p class="hero-sub">Encontrá farmacias de turno, guardias las 24 horas y laboratorios bioquímicos. Conectá al instante y ubícalos en el mapa. Datos oficiales (*) actualizados y en tiempo real.</p>
+    <div class="hero-actions">
+      <a href="https://www.bahi.ar/index.html" class="btn-hero-main">Ver farmacias de turno hoy →</a>
+      <a href="https://www.bahi.ar/guardias.html" class="btn-hero-ghost"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#FF6B00" style="vertical-align: middle; margin-right: 4px;"><circle fill="none" cx="6.5" cy="17.5" r="1.5"/><path fill="none" d="M15 9v3h4.233l-1.799-3z"/><circle fill="none" cx="16.5" cy="17.5" r="1.5"/><path fill="none" d="M10 7H8v2H6v2h2v2h2v-2h2V9h-2z"/><path d="M21.857 12.485 19.148 7.97A2.01 2.01 0 0 0 17.434 7H15V5a1 1 0 0 0-1-1H4c-1.103 0-2 .897-2 2v10c0 .746.416 1.391 1.023 1.734C3.147 19.553 4.65 21 6.5 21c1.759 0 3.204-1.309 3.449-3h3.102c.245 1.691 1.69 3 3.449 3s3.204-1.309 3.449-3H20c1.103 0 2-.897 2-2v-3a.995.995 0 0 0-.143-.515zM6.5 19c-.827 0-1.5-.673-1.5-1.5S5.673 16 6.5 16s1.5.673 1.5 1.5S7.327 19 6.5 19zm5.5-8h-2v2H8v-2H6V9h2V7h2v2h2v2zm4.5 8c-.827 0-1.5-.673-1.5-1.5s.673-1.5 1.5-1.5 1.5.673 1.5 1.5-.673 1.5-1.5 1.5zM15 12V9h2.434l1.8 3H15z"/></svg> Emergencias</a>
+    </div>
+  </div>
+
+
+  <div class="stats">
+    <div class="stat-item reveal">
+      <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:40px; height:40px; margin-bottom:10px; color:var(--gold);"><path d="M18 9H4V8h14zm-5 3H4v1h9zm8-8v9h-1V5H2v13h9v1H1V4zm2.07 11.637l-.707-.707-5.863 5.863-2.863-2.863-.707.707 3.57 3.57z"/><path fill="none" d="M0 0h24v24H0z"/></svg>
+      <span class="stat-num">+150</span>
+      <span class="stat-label">servicios registrados</span>
+    </div>
+    <div class="stat-item reveal">
+      <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:40px; height:40px; margin-bottom:10px; color:var(--gold);"><path d="M12,3A9,9,0,0,0,6,5.32V3A1,1,0,0,0,4,3V8a1,1,0,0,0,.92,1H10a1,1,0,0,0,0-2H7.11A7,7,0,0,1,19,12a1,1,0,0,0,2,0A9,9,0,0,0,12,3Z"></path><path d="M19.08,15H14a1,1,0,0,0,0,2h2.89A7,7,0,0,1,5,12a1,1,0,0,0-2,0,9,9,0,0,0,15,6.68V21a1,1,0,0,0,2,0V16A1,1,0,0,0,19.08,15Z"></path></svg>
+      <span class="stat-num" style="font-size:clamp(1.4rem,4vw,2rem)">24 horas</span>
+      <span class="stat-label">Actualización en tiempo real</span>
+    </div>
+    <div class="stat-item reveal">
+      <svg aria-hidden="true" fill="currentColor" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" style="width:40px; height:40px; margin-bottom:10px; color:var(--gold);"><path d="M15 5 A 1.0001 1.0001 0 0 0 14 6L14 25L7 25 A 1.0001 1.0001 0 0 0 6 26L6 29.716797L0.048828125 43.605469 A 1.0001 1.0001 0 0 0 0.96679688 45L49.140625 45 A 1.0001 1.0001 0 0 0 50.046875 43.576172L44 30.621094L44 22 A 1.0001 1.0001 0 0 0 43 21L37 21L37 14 A 1.0001 1.0001 0 0 0 36 13L29 13L29 6 A 1.0001 1.0001 0 0 0 28 5L15 5 z M 16 7L27 7L27 13L23 13 A 1.0001 1.0001 0 0 0 22 14L22 25L16 25L16 7 z M 18 9L18 11L20 11L20 9L18 9 z M 23 9L23 11L25 11L25 9L23 9 z M 18 13L18 15L20 15L20 13L18 13 z M 24 15L35 15L35 21L31 21 A 1.0001 1.0001 0 0 0 30 22L30 39L24 39L24 26L24 15 z M 18 17L18 19L20 19L20 17L18 17 z M 26 17L26 19L28 19L28 17L26 17 z M 31 17L31 19L33 19L33 17L31 17 z M 18 21L18 23L20 23L20 21L18 21 z M 26 21L26 23L28 23L28 21L26 21 z M 32 23L42 23L42 39L34 39L32 39L32 23 z M 26 25L26 27L28 27L28 25L26 25 z M 34 25L34 27L36 27L36 25L34 25 z M 38 25L38 27L40 27L40 25L38 25 z M 8 27L22 27L22 39L8 39L8 27 z M 10 29L10 31L12 31L12 29L10 29 z M 14 29L14 31L16 31L16 29L14 29 z M 18 29L18 31L20 31L20 29L18 29 z M 26 29L26 31L28 31L28 29L26 29 z M 34 29L34 31L36 31L36 29L34 29 z M 38 29L38 31L40 31L40 29L38 29 z M 10 33L10 35L12 35L12 33L10 33 z M 14 33L14 35L16 35L16 33L14 33 z M 18 33L18 35L20 35L20 33L18 33 z M 26 33L26 35L28 35L28 33L26 33 z M 34 33L34 35L36 35L36 33L34 33 z M 38 33L38 35L40 35L40 33L38 33 z M 6 34.796875L6 40 A 1.0001 1.0001 0 0 0 7 41L23 41L34 41L43 41 A 1.0001 1.0001 0 0 0 44 40L44 35.349609L47.570312 43L2.484375 43L6 34.796875 z"/></svg>
+      <span class="stat-num" style="font-size:clamp(1.2rem,3.5vw,1.8rem);letter-spacing:-0.02em">Por zona</span>
+      <span class="stat-label">Todos los barrios de Bahía, Ingeniero White, Gral. Daniel Cerri y Cabildo</span>
+    </div>
+    <div class="stat-item reveal">
+      <svg aria-hidden="true" fill="none" viewBox="-0.5 0 25 25" xmlns="http://www.w3.org/2000/svg" style="width:40px; height:40px; margin-bottom:10px; color:var(--gold);"><path d="M12.7003 17.1099V18.22C12.7003 18.308 12.6829 18.395 12.6492 18.4763C12.6156 18.5576 12.5662 18.6316 12.504 18.6938C12.4418 18.7561 12.3679 18.8052 12.2867 18.8389C12.2054 18.8725 12.1182 18.8899 12.0302 18.8899C11.9423 18.8899 11.8551 18.8725 11.7738 18.8389C11.6925 18.8052 11.6187 18.7561 11.5565 18.6938C11.4943 18.6316 11.4449 18.5576 11.4113 18.4763C11.3776 18.395 11.3602 18.308 11.3602 18.22V17.0801C10.9165 17.0072 10.4917 16.8468 10.1106 16.6082C9.72943 16.3695 9.39958 16.0573 9.14023 15.6899C9.04577 15.57 8.99311 15.4226 8.99023 15.27C8.99148 15.1842 9.00997 15.0995 9.04459 15.021C9.0792 14.9425 9.12927 14.8718 9.19177 14.813C9.25428 14.7542 9.32794 14.7087 9.40842 14.679C9.4889 14.6492 9.57455 14.6359 9.66025 14.6399C9.74504 14.6401 9.82883 14.6582 9.90631 14.6926C9.98379 14.7271 10.0532 14.7773 10.1102 14.8401C10.4326 15.2576 10.8657 15.5763 11.3602 15.76V13.21C10.0302 12.69 9.36023 11.9099 9.36023 10.8999C9.38027 10.3592 9.5928 9.84343 9.9595 9.44556C10.3262 9.04769 10.8229 8.79397 11.3602 8.72998V7.62988C11.3602 7.5419 11.3776 7.45482 11.4113 7.37354C11.4449 7.29225 11.4943 7.21847 11.5565 7.15625C11.6187 7.09403 11.6925 7.04466 11.7738 7.01099C11.8551 6.97732 11.9423 6.95996 12.0302 6.95996C12.1182 6.95996 12.2054 6.97732 12.2867 7.01099C12.3679 7.04466 12.4418 7.09403 12.504 7.15625C12.5662 7.21847 12.6156 7.29225 12.6492 7.37354C12.6829 7.45482 12.7003 7.5419 12.7003 7.62988V8.71997C13.0724 8.77828 13.4289 8.91103 13.7485 9.11035C14.0681 9.30967 14.3442 9.57137 14.5602 9.87988C14.6555 9.99235 14.7117 10.1329 14.7202 10.28C14.7229 10.3662 14.7084 10.4519 14.6776 10.5325C14.6467 10.613 14.6002 10.6867 14.5406 10.749C14.481 10.8114 14.4096 10.8613 14.3306 10.8958C14.2516 10.9303 14.1665 10.9487 14.0802 10.95C13.99 10.9475 13.9013 10.9257 13.8202 10.886C13.7391 10.8463 13.6675 10.7897 13.6102 10.72C13.3718 10.4221 13.0575 10.1942 12.7003 10.0601V12.3101L12.9503 12.4099C14.2203 12.9099 15.0103 13.63 15.0103 14.77C14.9954 15.3808 14.7481 15.9629 14.3189 16.3977C13.8897 16.8325 13.3108 17.0871 12.7003 17.1099ZM11.3602 11.73V10.0999C11.1988 10.1584 11.0599 10.2662 10.963 10.408C10.8662 10.5497 10.8162 10.7183 10.8203 10.8899C10.8173 11.0676 10.8669 11.2424 10.963 11.3918C11.0591 11.5413 11.1973 11.6589 11.3602 11.73ZM13.5502 14.8C13.5502 14.32 13.2203 14.03 12.7003 13.8V15.8C12.9387 15.7639 13.1561 15.6427 13.3123 15.459C13.4685 15.2752 13.553 15.0412 13.5502 14.8Z" fill="currentColor"/><path d="M18 3.96997H6C4.93913 3.96997 3.92172 4.39146 3.17157 5.1416C2.42142 5.89175 2 6.9091 2 7.96997V17.97C2 19.0308 2.42142 20.0482 3.17157 20.7983C3.92172 21.5485 4.93913 21.97 6 21.97H18C19.0609 21.97 20.0783 21.5485 20.8284 20.7983C21.5786 20.0482 22 19.0308 22 17.97V7.96997C22 6.9091 21.5786 5.89175 20.8284 5.1416C20.0783 4.39146 19.0609 3.96997 18 3.96997Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="stat-num">100%</span>
+      <span class="stat-label">gratis para los vecinos</span>
+    </div>
+  </div>
+
+
+  <section>
+    <p class="section-eyebrow reveal">Qué encontrás</p>
+    <h2 class="section-title reveal">Todo lo que necesitás, sin buscar en otro lado.</h2>
+    <p class="section-sub reveal">Te ofrecemos cuatro secciones pensadas para acceder rápido desde el celular.</p>
+    <div class="cards">
+      <a href="https://www.bahi.ar/index.html" class="card reveal">
+        <div class="card-icon">
+          <svg aria-hidden="true" fill="#FF6B00" width="48" height="48" viewBox="0 0 32 32" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M9.966,9.784l0.006,1.192c0.002,0.262 -0.102,0.514 -0.287,0.7c-0.185,0.186 -0.436,0.291 -0.699,0.291l-0.002,-0l0,-0c-0.796,-0 -1.559,0.316 -2.122,0.878c-0.564,0.563 -0.88,1.326 -0.88,2.122c-0,3.076 -0,8.936 -0,12.013c-0,0.796 0.316,1.559 0.88,2.122c0.563,0.562 1.326,0.878 2.122,0.878c3.464,-0 10.532,-0 13.995,-0c0.796,-0 1.56,-0.316 2.123,-0.878c0.563,-0.563 0.88,-1.326 0.88,-2.122c-0,-3.077 -0,-8.937 -0,-12.013c-0,-0.796 -0.317,-1.559 -0.88,-2.122c-0.563,-0.562 -1.327,-0.878 -2.123,-0.878l-0.001,-0c-0.55,-0 -0.997,-0.446 -0.998,-0.996l-0.002,-1.193c0.412,-0.148 0.792,-0.386 1.108,-0.702c0.562,-0.563 0.878,-1.326 0.878,-2.121l0,-1.974c0,-0.796 -0.316,-1.559 -0.878,-2.122c-0.563,-0.562 -1.326,-0.878 -2.122,-0.878l-10,-0c-0.795,-0 -1.558,0.316 -2.121,0.878c-0.563,0.563 -0.879,1.326 -0.879,2.122c0,0.635 0,1.338 0,1.974c0,0.795 0.316,1.558 0.879,2.121c0.32,0.32 0.704,0.56 1.123,0.708Zm13.012,4.183l0.001,-0c0.266,-0 0.521,0.105 0.709,0.293c0.188,0.188 0.294,0.442 0.294,0.707l-0,12.013c-0,0.265 -0.106,0.519 -0.294,0.706c-0.188,0.188 -0.443,0.294 -0.709,0.294l-13.995,-0c-0.266,-0 -0.521,-0.106 -0.709,-0.294c-0.188,-0.187 -0.293,-0.441 -0.293,-0.706l-0,-12.013c-0,-0.265 0.105,-0.519 0.293,-0.707c0.188,-0.188 0.443,-0.293 0.709,-0.293l0.002,-0c0.795,-0 1.557,-0.317 2.117,-0.88c0.56,-0.564 0.873,-1.327 0.869,-2.122l-0.005,-0.985c0,-0 8.011,-0 8.011,-0c-0,-0 0.002,0.995 0.002,0.995c0.003,1.653 1.345,2.992 2.998,2.992Zm-1.014,-8.986l0,1.974c0,0.265 -0.105,0.519 -0.293,0.707c-0.187,0.187 -0.441,0.293 -0.707,0.293c0,-0 -10,-0 -10,-0c-0.265,-0 -0.519,-0.106 -0.707,-0.293c-0.187,-0.188 -0.293,-0.442 -0.293,-0.707l0,-1.974c0,-0.266 0.106,-0.52 0.293,-0.707c0.188,-0.188 0.442,-0.293 0.707,-0.293c0,-0 10,-0 10,-0c0.266,-0 0.52,0.105 0.707,0.293c0.188,0.187 0.293,0.441 0.293,0.707Z"/><path d="M14.982,17.98l-2.012,-0c-0.552,-0 -1,0.448 -1,1c0,0.552 0.448,1 1,1l2.012,-0l-0,2.011c-0,0.552 0.448,1 1,1c0.552,0 1,-0.448 1,-1l-0,-2.011l2.011,-0c0.552,-0 1,-0.448 1,-1c0,-0.552 -0.448,-1 -1,-1l-2.011,-0l-0,-2.012c-0,-0.552 -0.448,-1 -1,-1c-0.552,0 -1,0.448 -1,1l-0,2.012Z"/></svg>
+        </div>
+        <div class="card-title">Farmacias de turno</div>
+        <div class="card-desc">Listado del día con dirección, teléfono y ubicación en mapa. Se actualiza todos los días a las 8:30 hs.</div>
+        <span class="card-link">Ver hoy ↗</span>
+      </a>
+      <a href="https://www.bahi.ar/guardias.html" class="card reveal">
+        <div class="card-icon">
+          <svg aria-hidden="true" fill="#FF6B00" width="48" height="48" viewBox="0 0 32 32" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M7.003,28.013l18,-0c0.796,-0 1.559,-0.316 2.122,-0.879c0.562,-0.562 0.878,-1.325 0.878,-2.121c0,-3.466 0,-10.547 0,-14.013c0,-0.796 -0.316,-1.559 -0.878,-2.121c-0.563,-0.563 -1.326,-0.879 -2.122,-0.879l-1,-0l0,-1.01c0,-1.656 -1.343,-3 -3,-3l-10,0c-1.656,0 -3,1.344 -3,3l0,1.01l-1,-0c-1.656,0 -3,1.343 -3,3c0,3.466 0,10.547 0,14.013c0,0.796 0.317,1.559 0.879,2.121c0.563,0.563 1.326,0.879 2.121,0.879Zm17,-18.013l0,16.013l1,-0c0.266,-0 0.52,-0.105 0.708,-0.293c0.187,-0.188 0.292,-0.442 0.292,-0.707c0,-3.466 0,-10.547 0,-14.013c0,-0.265 -0.105,-0.52 -0.292,-0.707c-0.188,-0.188 -0.442,-0.293 -0.708,-0.293l-1,-0Zm-4.006,16.013l2.006,-0l0,-19.023c0,-0.552 -0.447,-1 -1,-1c0,0 -10,0 -10,0c-0.552,0 -1,0.448 -1,1l0,19.023l1.994,-0l0,-5.001c0,-0.795 0.316,-1.558 0.879,-2.121c0.563,-0.563 1.326,-0.879 2.121,-0.879l2,0c0.796,0 1.559,0.316 2.122,0.879c0.562,0.563 0.878,1.326 0.878,2.121l0,5.001Zm-11.994,-16.013l-1,0c-0.552,0 -1,0.448 -1,1c0,3.466 0,10.547 0,14.013c0,0.265 0.106,0.519 0.293,0.707c0.188,0.188 0.442,0.293 0.707,0.293l1,-0l0,-16.013Zm9.994,16.013l-4,-0l0,-5.001c0,-0.265 0.106,-0.519 0.293,-0.707c0.188,-0.187 0.442,-0.293 0.707,-0.293c0,0 2,0 2,0c0.266,0 0.52,0.106 0.707,0.293c0.188,0.188 0.293,0.442 0.293,0.707l0,5.001Z"/><path d="M14.999,10l-1.008,0c-0.552,0 -1,0.448 -1,1c0,0.552 0.448,1 1,1l1.005,0l-0.002,1.005c-0.001,0.552 0.447,1 0.999,1.001c0.552,0.001 1,-0.446 1.001,-0.998l0.002,-1.008l1.007,0c0.552,0 1,-0.448 1,-1c0,-0.552 -0.448,-1 -1,-1l-1.004,0l0.001,-1.005c0.001,-0.552 -0.446,-1 -0.998,-1.001c-0.552,-0.001 -1.001,0.446 -1.002,0.998l-0.001,1.008Z"/></svg>
+        </div>
+        <div class="card-title">Guardias médicas</div>
+        <div class="card-desc">Hospitales y clínicas con atención de urgencias las 24 horas, más números de emergencias y ambulancias.</div>
+        <span class="card-link">Ver guardias ↗</span>
+      </a>
+      <a href="https://www.bahi.ar/laboratorios.html" class="card reveal">
+        <div class="card-icon">
+          <svg aria-hidden="true" fill="#FF6B00" width="48" height="48" viewBox="0 0 32 32" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M10.998,4l0,21.079c0,2.76 2.241,5 5,5c2.76,0 5,-2.24 5,-5l0,-21.079l2.002,0c0.552,-0 1,-0.448 1,-1c-0,-0.552 -0.448,-1 -1,-1l-14,0c-0.552,-0 -1,0.448 -1,1c-0,0.552 0.448,1 1,1l1.998,0Zm8,5.758c-0.363,0.126 -0.773,0.196 -1.22,0.161c-0.725,-0.058 -1.568,-0.361 -2.458,-1.186c-0.93,-0.864 -1.854,-0.517 -2.322,-0.234l0,2.483l2.011,0.018c0.552,0.005 0.996,0.457 0.991,1.009c-0.005,0.552 -0.457,0.996 -1.009,0.991l-1.993,-0.018l0,1.997l2.011,0.018c0.552,0.005 0.996,0.457 0.991,1.009c-0.005,0.552 -0.457,0.996 -1.009,0.991l-1.993,-0.018l0,1.997l2.011,0.018c0.552,0.005 0.996,0.457 0.991,1.009c-0.005,0.552 -0.457,0.996 -1.009,0.991l-1.993,-0.018l0,1.997l2.011,0.018c0.552,0.005 0.996,0.457 0.991,1.009c-0.005,0.552 -0.457,0.996 -1.009,0.991l-1.993,-0.018l0,0.106c0,1.656 1.345,3 3,3c1.656,0 3,-1.344 3,-3l0,-15.321Zm0,-2.18l0,-3.578l-6,-0l0,2.326c1.003,-0.31 2.339,-0.306 3.683,0.941c0.462,0.429 0.879,0.628 1.256,0.658c0.466,0.037 0.838,-0.172 1.061,-0.347Z"/></svg>
+        </div>
+        <div class="card-title">Laboratorios</div>
+        <div class="card-desc">Encontrá laboratorios de análisis clínicos y filtrá por obra social, zona, servicio a domicilio e inyectables.</div>
+        <span class="card-link">Ver laboratorios ↗</span>
+      </a>
+      <a href="https://www.bahi.ar/mapa.html" class="card reveal">
+        <div class="card-icon">
+          <svg aria-hidden="true" fill="#FF6B00" width="48" height="48" viewBox="0 0 32 32" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M15.392,24.804c0.35,0.254 0.824,0.254 1.174,-0-0,-0 3.007,-2.178 5.412,-5.403c1.665,-2.233 3.021,-4.961 3.021,-7.811c0,-5.315 -3.463,-9.596 -9.02,-9.596c-5.557,0 -9.021,4.281 -9.021,9.596c0,2.85 1.357,5.578 3.022,7.811c2.405,3.225 5.412,5.403 5.412,5.403Zm0.587,-2.076c-0.932,-0.754 -2.806,-2.391 -4.396,-4.523c-1.415,-1.897 -2.625,-4.193 -2.625,-6.615c0,-4.174 2.657,-7.596 7.021,-7.596c4.364,0 7.02,3.422 7.02,7.596c0,2.422 -1.209,4.718 -2.624,6.615c-1.59,2.132 -3.464,3.769 -4.396,4.523l-0,-0Z"/><path d="M22.502,23.412c0.803,0.46 1.382,0.955 1.382,1.582c-0,0.591 -0.525,1.064 -1.254,1.507c-1.518,0.921 -3.973,1.493 -6.734,1.493c-2.761,0 -5.216,-0.572 -6.733,-1.493c-0.73,-0.443 -1.254,-0.916 -1.254,-1.507c-0,-0.266 0.128,-0.512 0.325,-0.747c0.288,-0.347 0.713,-0.656 1.235,-0.934c0.487,-0.259 0.673,-0.865 0.413,-1.352c-0.259,-0.488 -0.865,-0.673 -1.352,-0.413c-1.708,0.909 -2.621,2.17 -2.621,3.446c-0,1.177 0.762,2.334 2.216,3.217c1.754,1.065 4.58,1.783 7.771,1.783c3.192,0 6.017,-0.718 7.771,-1.783c1.454,-0.883 2.217,-2.04 2.217,-3.217c-0,-1.22 -0.826,-2.422 -2.387,-3.317c-0.479,-0.274 -1.091,-0.109 -1.365,0.37c-0.275,0.479 -0.109,1.091 0.37,1.365Z"/><path d="M14.999,9.994l-2,0c-0.551,0 -1,0.448 -1,1c0,0.552 0.449,1 1,1l2,0l-0.001,2c-0,0.552 0.448,1 1,1c0.552,0 1,-0.448 1,-1l0.001,-2l2,0c0.552,0 1,-0.448 1,-1c0,-0.552 -0.448,-1 -1,-1l-2,0l0,-2c0.001,-0.551 -0.447,-1 -0.999,-1c-0.552,0 -1,0.448 -1.001,1l0,2Z"/></svg>
+        </div>
+        <div class="card-title">Mapa interactivo</div>
+        <div class="card-desc">Encontrá el prestador más cercano a tu ubicación actual con un solo toque.</div>
+        <span class="card-link">Abrir mapa ↗</span>
+      </a>
+    </div>
+  </section>
+
+
+  <div class="how-wrap">
+    <div class="how-inner">
+      <p class="section-eyebrow reveal">Cómo funciona</p>
+      <h2 class="section-title reveal">En tres toques tenés lo que necesitás</h2>
+      <p class="section-sub reveal">Sin registros, sin formularios, sin vueltas.</p>
+            <div class="steps">
+        <div class="step reveal">
+          <div class="step-icon"><svg aria-hidden="true" fill="#FF6B00" width="48" height="48" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7,13.022H11V22C8.894,21.093,7.227,17.419,7,13.022Zm6,0V22c2.1-.907,3.768-4.581,3.994-8.978ZM11,2C8.894,2.907,7.227,6.581,7,10.978H11Zm5.848,1.05a16.925,16.925,0,0,1,2.164,7.928H22A10.222,10.222,0,0,0,16.843,3.05Zm0,17.9A10.222,10.222,0,0,0,22,13.022H19.007A16.925,16.925,0,0,1,16.843,20.95ZM13.005,2v8.978H17C16.773,6.581,15.106,2.907,13.005,2ZM7.157,20.95a16.925,16.925,0,0,1-2.164-7.928H2A10.222,10.222,0,0,0,7.157,20.95Zm0-17.9A10.222,10.222,0,0,0,2,10.978H4.993A16.925,16.925,0,0,1,7.157,3.05Z"/></svg></div>
+          <div class="step-title">Entrás al sitio</div>
+          <div class="step-desc">Desde cualquier celular o computadora. Si querés, podés sumarla a tu pantalla como una app más.</div>
+        </div>
+        <div class="step reveal">
+          <div class="step-icon"><svg aria-hidden="true" fill="#FF6B00" width="48" height="48" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.034,18.069a7.982,7.982,0,0,0,3.939-1.035l3.332,3.332a2.164,2.164,0,0,0,3.061-3.061L17.031,13.97a8.026,8.026,0,1,0-7,4.1ZM5.768,5.768A6.033,6.033,0,1,1,4,10.035,5.988,5.988,0,0,1,5.768,5.768Zm-.7,4.267a1.015,1.015,0,0,1,1-1.018.985.985,0,0,1,1,.983v.035A2.968,2.968,0,0,0,10.035,13a1,1,0,0,1,0,2A4.972,4.972,0,0,1,5.069,10.035Z"/></svg></div>
+          <div class="step-title">Buscás lo que necesitás</div>
+          <div class="step-desc">Filtrá por zona o servicio. La información está siempre actualizada.</div>
+        </div>
+        <div class="step reveal">
+          <div class="step-icon"><svg aria-hidden="true" fill="#FF6B00" width="48" height="48" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.384,17.752a2.108,2.108,0,0,1-.522,3.359,7.543,7.543,0,0,1-5.476.642C10.5,20.523,3.477,13.5,2.247,8.614a7.543,7.543,0,0,1,.642-5.476,2.108,2.108,0,0,1,3.359-.522L8.333,4.7a2.094,2.094,0,0,1,.445,2.328A3.877,3.877,0,0,1,8,8.2c-2.384,2.384,5.417,10.185,7.8,7.8a3.877,3.877,0,0,1,1.173-.781,2.092,2.092,0,0,1,2.328.445Z"/></svg></div>
+          <div class="step-title">Llamás directo</div>
+          <div class="step-desc">Un toque y ya estás hablando. tambien podes enviales Whatsapp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="free-wrap">
+    <div class="free-inner">
+      <div>
+        <h2 class="free-title reveal">Gratis. Sin registro o suscripciones.</h2>
+        <p class="free-sub reveal">BAHI.ar es un proyecto independiente pensado para los vecinos. No te cobra y no te pide tus datos para usarlo.</p>
+      </div>
+      <div class="free-pills">
+        <div class="pill reveal">
+          <span class="pill-icon"><svg aria-hidden="true" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 512 512" xml:space="preserve" style="vertical-align: middle; margin-right: 8px;"><style type="text/css">.st0{fill:#FF6B00;}</style><g><path class="st0" d="M342.906,0H69.063c-6.578,0-11.906,5.344-11.906,11.906v488.188c0,6.578,5.328,11.906,11.906,11.906h373.875c6.563,0,11.906-5.328,11.906-11.906V111.938L342.906,0z M339.344,36.844l81.031,81.031h-81.031V36.844z M426.266,483.422H85.734V28.578h229.797v89.938c0,6.359,2.625,12.234,6.797,16.391c4.141,4.172,10.016,6.781,16.391,6.781h87.547V483.422z"/><rect x="145.281" y="185.75" class="st0" width="209.563" height="23.813"/><rect x="145.281" y="269.094" class="st0" width="208.359" height="23.813"/><rect x="145.281" y="352.438" class="st0" width="111.906" height="23.828"/><path class="st0" d="M311.031,340.219c-8.594,8.563-13.938,20.563-13.938,33.656s5.344,25.094,13.938,33.672l0.125,0.125l-20.031,32.906l22.156,0.297l10.469,19.563l20.953-34.469l20.953,34.469l10.5-19.563l22.141-0.297l-20.047-32.906l0.141-0.125c8.578-8.578,13.938-20.578,13.938-33.672s-5.359-25.094-13.938-33.656c-8.578-8.609-20.578-13.969-33.688-13.969S319.594,331.609,311.031,340.219z M363.75,373.875c0,3.672-1,7.047-2.797,9.938c-0.766,1.281-1.703,2.453-2.766,3.547c-3.188,3.141-7.344,5.188-12.094,5.516c-0.453,0.031-0.906,0.063-1.391,0.063s-0.922-0.031-1.359-0.063c-4.75-0.328-8.938-2.375-12.125-5.516c-1.063-1.094-2-2.266-2.75-3.547c-1.813-2.891-2.813-6.266-2.813-9.938c0-5.313,2.094-9.969,5.563-13.469c3.5-3.469,8.188-5.563,13.484-5.563c5.313,0,9.984,2.094,13.484,5.563C361.641,363.906,363.75,368.563,363.75,373.875z"/></g></svg></span>
+          Información oficial provista por entidades de Bahía Blanca (*)
+        </div>
+        <div class="pill reveal">
+          <span class="pill-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;"><path d="M12.5 8.5V7.5C12.5 6.94772 12.0523 6.5 11.5 6.5H1.5C0.947715 6.5 0.5 6.94772 0.5 7.5V13.5C0.5 14.0523 0.947715 14.5 1.5 14.5H11.5C12.0523 14.5 12.5 14.0523 12.5 13.5V12.5M12.5 8.5H8.5C7.39543 8.5 6.5 9.39543 6.5 10.5C6.5 11.6046 7.39543 12.5 8.5 12.5H12.5M12.5 8.5C13.6046 8.5 14.5 9.39543 14.5 10.5C14.5 11.6046 13.6046 12.5 12.5 12.5M3.5 6.5V3.5C3.5 1.84315 4.84315 0.5 6.5 0.5C8.15685 0.5 9.5 1.84315 9.5 3.5V6.5M12 10.5H13M10 10.5H11M8 10.5H9" stroke="#FF6B00"/></svg></span>
+          Sin registro ni contraseña — entrás y la usás.
+        </div>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--muted); margin-top: 16px; line-height: 1.4;">
+        <strong>(*) Fuentes:</strong> Colegio de Farmacéuticos de la Provincia de Buenos Aires (Filial Bahía Blanca) • Municipalidad de Bahía Blanca • Centro de Analistas Clínicos del Distrito X.
+      </p>
+    </div>
+  </div>
+
+
+  <div class="install-wrap">
+    <div class="install-inner">
+      <h2 class="install-title reveal">Instálala en tu celular</h2>
+      <p class="install-sub reveal">BAHI.ar es una Progressive Web App: se instala en la pantalla de inicio como cualquier app, sin pasar por las tiendas de aplicaciones.</p>
+      <div class="install-steps">
+        <div class="install-card reveal">
+          <div class="install-os" style="display:flex; align-items:center; gap:8px;"><div style="width:24px;height:24px;"><svg aria-hidden="true" fill="currentColor" viewBox="0 0 97.82 97.82" xmlns="http://www.w3.org/2000/svg"><g><path d="M72.24,97.82H25.58c-3.492,0-6.333-2.842-6.333-6.333V6.333C19.247,2.841,22.088,0,25.58,0h46.66c3.491,0,6.333,2.841,6.333,6.333v85.154C78.573,94.979,75.731,97.82,72.24,97.82z M25.58,1c-2.94,0-5.333,2.393-5.333,5.333v85.154c0,2.94,2.392,5.333,5.333,5.333h46.66c2.94,0,5.333-2.393,5.333-5.333V6.333C77.573,3.393,75.181,1,72.24,1H25.58z M48.91,94.54c-1.24,0-2.25-1.01-2.25-2.25c0-1.239,1.009-2.25,2.25-2.25s2.25,1.011,2.25,2.25C51.16,93.53,50.15,94.54,48.91,94.54z M48.91,91.04c-0.689,0-1.25,0.562-1.25,1.25s0.561,1.25,1.25,1.25c0.688,0,1.25-0.562,1.25-1.25S49.599,91.04,48.91,91.04z M73.907,89.219H23.913V8.602h49.994V89.219z M24.913,88.219h47.994V9.602H24.913V88.219z M54.904,6.036h-9.04c-0.54,0-0.979-0.439-0.979-0.979s0.439-0.979,0.979-0.979h9.04c0.54,0,0.979,0.439,0.979,0.979S55.444,6.036,54.904,6.036z M45.864,4.577c-0.264,0-0.479,0.215-0.479,0.479s0.215,0.479,0.479,0.479h9.04c0.264,0,0.479-0.215,0.479-0.479s-0.216-0.479-0.479-0.479H45.864z M43.061,6.063c-0.62,0-1.125-0.505-1.125-1.125c0-0.62,0.505-1.125,1.125-1.125s1.125,0.505,1.125,1.125C44.186,5.558,43.681,6.063,43.061,6.063z M43.061,4.313c-0.345,0-0.625,0.28-0.625,0.625c0,0.345,0.28,0.625,0.625,0.625c0.345,0,0.625-0.28,0.625-0.625C43.686,4.593,43.406,4.313,43.061,4.313z"/></g></svg></div> Android</div>
+          <div class="install-inst">Abrí el sitio en Chrome → tocá los tres puntos del menú → "Añadir a pantalla de inicio".</div>
+        </div>
+        <div class="install-card reveal">
+          <div class="install-os" style="display:flex; align-items:center; gap:8px;"><div style="width:24px;height:24px;"><svg aria-hidden="true" fill="currentColor" viewBox="0 0 91.358 91.357" xmlns="http://www.w3.org/2000/svg"><g><path d="M58.512,91.357l-35-0.024c-2.481,0-4.5-2.019-4.5-4.5V4.5c0-2.481,2.019-4.5,4.5-4.5h44.333c2.481,0,4.5,2.019,4.5,4.5v82.333c0,2.481-2.019,4.5-4.5,4.5L58.512,91.357z M57.012,90.357l10.833-0.024c1.931,0,3.5-1.569,3.5-3.5V4.5c0-1.93-1.569-3.5-3.5-3.5H23.512c-1.93,0-3.5,1.57-3.5,3.5v82.333c0,1.931,1.57,3.5,3.5,3.5l10.833,0.024v-6.523h22.666L57.012,90.357L57.012,90.357z M35.346,90.107h20.666v-5.273H35.346V90.107z M44.137,36.082c-1.043,0-1.703-0.955-2.14-1.586c-1.101-1.59-1.723-4.23-0.708-5.992c0.561-0.976,1.583-1.592,2.667-1.609h0.035c0.434,0,0.832,0.141,1.164,0.271c-0.045-0.758,0.327-1.481,0.707-1.922c0.483-0.566,1.269-0.966,1.955-0.994l0.465-0.02l0.051,0.465c0.08,0.721-0.166,1.488-0.674,2.104c-0.019,0.021-0.037,0.043-0.055,0.063c0.092,0.002,0.182,0.003,0.271,0.012c0.431,0.016,1.585,0.179,2.344,1.287l0.287,0.42l-0.424,0.28c-0.239,0.149-0.954,0.673-0.945,1.642c0.012,1.232,1.025,1.684,1.141,1.732l0.438,0.18l-0.153,0.449c-0.083,0.266-0.33,0.957-0.809,1.657c-0.467,0.683-1.049,1.53-2.062,1.549c0,0,0,0-0.002,0c-0.479,0-0.779-0.13-1.043-0.244c-0.24-0.104-0.431-0.187-0.752-0.187c-0.342,0-0.544,0.086-0.799,0.195s-0.545,0.232-0.955,0.248C44.138,36.082,44.137,36.082,44.137,36.082z M43.991,27.395l-0.018,0.5c-0.735,0.012-1.431,0.436-1.817,1.107c-0.86,1.494-0.129,3.779,0.664,4.925c0.404,0.585,0.835,1.157,1.262,1.157c0.244-0.01,0.41-0.08,0.62-0.17c0.287-0.123,0.645-0.275,1.191-0.275c0.528,0,0.873,0.149,1.148,0.27c0.218,0.094,0.375,0.162,0.607,0.162c0.485-0.01,0.834-0.468,1.278-1.115c0.256-0.374,0.433-0.744,0.546-1.022c-0.516-0.334-1.326-1.073-1.338-2.422c-0.01-1.042,0.516-1.743,0.945-2.14c-0.469-0.418-1.025-0.491-1.277-0.502c-0.072-0.006-0.113-0.008-0.152-0.008c-0.359,0-0.736,0.148-1.07,0.279c-0.634,0.252-1.115,0.224-1.687-0.002c-0.302-0.12-0.614-0.244-0.905-0.244v-0.5H43.991z M47.284,25.404c-0.252,0.117-0.494,0.292-0.664,0.49c-0.16,0.187-0.328,0.461-0.414,0.76c0.261-0.1,0.498-0.271,0.681-0.493C47.075,25.933,47.211,25.67,47.284,25.404z"/></g></svg></div> iPhone / iPad</div>
+          <div class="install-inst">Abrí el sitio en Safari → tocá el botón de compartir → "Añadir a la pantalla de inicio".</div>
+        </div>
+      </div>
+      <a href="https://www.bahi.ar/index.html" class="btn-install reveal" onclick="gtag('event', 'cta_principal', { 'button': 'abrir_bahi', 'section': 'landing_page' });">Abrir BAHI.ar →</a>
+    </div>
+  </div>
+
+
+  <div class="donate-wrap">
+    <div class="donate-inner">
+
+      <h2 class="donate-title reveal">¿Te resultó útil? Apoyá el proyecto</h2>
+      <p class="donate-sub reveal">BAHI.ar se mantiene con dedicación y sin fines de lucro. Si querés que siga creciendo y actualizándose, cualquier contribución voluntaria es muy valorada.</p>
+      <a href="https://link.mercadopago.com.ar/mpbahiar" class="btn-donate reveal" style="display:inline-flex; align-items:center; justify-content:center;" onclick="gtag('event', 'donation_click', { 'platform': 'mercado_pago', 'section': 'landing_page' });"><svg aria-hidden="true" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="width:24px; height:24px; color:var(--navy-d); vertical-align: middle; margin-right: 8px;"><path d="M40.9763,30.6458a5.2763,5.2763,0,0,1-2.1726-2.0337,54.6611,54.6611,0,0,1-8.7476,1.0169c-3.701,0-6.6869-.1757-5.4673-3.6243s4.4579-10.5561,5.5934-11.986,2.6859-3.239,3.4486-3.1542c.9463.1051,2.7152,1.2834,2.5166,2.0333-.1892.715-1.1287,2.2774-2.7471,1.1649" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M32.8639,14.8392a8.1339,8.1339,0,0,1,1.2926-1.6406" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M35.9393,13.4064c.5677-.1443,1.64.5818,1.035,1.3272a4.7779,4.7779,0,0,1-2.8178,1.3248c-.6248.0556-2.7967-.021-2.7967-.021-.9252,1.5981-.7149,4.0374-.7991,6.1822a9.3461,9.3461,0,0,1-.8831,3.6589c3.7009-1.7243,10.0093-3.028,13.8224-2.3972" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M7.0237,30.6458a5.2763,5.2763,0,0,0,2.1726-2.0337,54.6611,54.6611,0,0,0,8.7476,1.0169c3.701,0,6.6869-.1757,5.4673-3.6243s-4.4579-10.5561-5.5934-11.986-2.6859-3.239-3.4486-3.1542c-.9463.1051-2.7152,1.2834-2.5166,2.0333.1892.715,1.1287,2.2774,2.7471,1.1649" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M15.1361,14.8392a8.1339,8.1339,0,0,0-1.2926-1.6406" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M12.0607,13.4064c-.5677-.1443-1.6405.5818-1.035,1.3272a4.7779,4.7779,0,0,0,2.8178,1.3248c.6248.0556,2.7967-.021,2.7967-.021.9252,1.5981.7149,4.0374.7991,6.1822a9.3461,9.3461,0,0,0,.8831,3.6589C14.6215,24.1542,8.3131,22.8505,4.5,23.4813" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M32.1812,11.742a27.5655,27.5655,0,0,0-16.3641.0006" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M10.9168,13.9894C6.9758,16.46,4.5,20.03,4.5,24c0,7.4558,8.73,13.5,19.5,13.5S43.5,31.4558,43.5,24c0-3.9705-2.4759-7.5407-6.4172-10.0109" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg> Colaborar por Mercado Pago</a>
+    </div>
+  </div>
+
+
+  <footer>
+    <span class="footer-brand">BAHI.ar</span>
+    <div class="footer-links">
+      <a href="https://www.bahi.ar/index.html">Inicio</a>
+      <a href="https://www.bahi.ar/guardias.html">Emergencias</a>
+      <a href="https://www.bahi.ar/farmacias.html">Farmacias</a>
+      <a href="https://www.bahi.ar/laboratorios.html">Laboratorios</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/guiabahiar/" class="social-btn" title="Facebook" aria-label="Seguinos en Facebook"><svg aria-hidden="true" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M23,31H9c-4.4,0-8-3.6-8-8V9c0-4.4,3.6-8,8-8h14c4.4,0,8,3.6,8,8v14C31,27.4,27.4,31,23,31z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M26,16h-5v-2.8c0-0.7,0.5-1.2,1.2-1.2H25V7h-4h0c-2.8,0-5,2.2-5,5v0v4h-4v5h4v10h5V21h3L26,16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="https://www.instagram.com/guiabahiar" class="social-btn" title="Instagram" aria-label="Seguinos en Instagram"><svg aria-hidden="true" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M23,31H9c-4.4,0-8-3.6-8-8V9c0-4.4,3.6-8,8-8h14c4.4,0,8,3.6,8,8v14C31,27.4,27.4,31,23,31z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="7" r="1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="https://wa.me/542915658189" class="social-btn" title="WhatsApp" aria-label="Contactanos por WhatsApp"><svg aria-hidden="true" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M17,1C9.3,1,3,7.3,3,15c0,3.4,1.3,6.6,3.3,9L4,31l7.3-3.2C13,28.6,15,29,17,29c7.7,0,14-6.3,14-14S24.7,1,17,1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M23.7,19.1c0.3-0.9,0.3-1.6,0.2-1.8c-0.1-0.2-0.3-0.2-0.7-0.4c-0.4-0.2-2.2-1.1-2.5-1.2c-0.3-0.1-0.7-0.1-0.9,0.3c-0.4,0.5-0.7,1-1,1.3c-0.2,0.2-0.6,0.3-0.9,0.1c-0.4-0.2-1.6-0.6-3-1.8c-1.1-1-1.8-2.2-2.1-2.6c-0.2-0.4,0-0.6,0.2-0.8c0.2-0.2,0.4-0.4,0.6-0.6c0.2-0.2,0.3-0.3,0.4-0.6c0.1-0.2,0-0.5-0.1-0.7c-0.1-0.2-0.8-2-1.1-2.7c-0.2-0.6-0.4-0.6-0.8-0.6c-0.1,0-0.3,0-0.4,0c-0.5,0-1,0.1-1.3,0.5C9.9,7.9,9,8.8,9,10.6c0,1.8,1.3,3.6,1.5,3.8c0.2,0.2,2.6,4,6.3,5.6c2.9,1.2,3.8,1.1,4.4,1C22.2,20.7,23.4,20,23.7,19.1L23.7,19.1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <span>© 2026 BAHI.ar — Todos los derechos reservados</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+          observer.unobserve(el.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // GOOGLE ANALYTICS - EVENTOS PERSONALIZADOS
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    // 1️⃣ TRACKING DE SCROLL (Engagement)
+    let scrollTracked = {
+      '25': false,
+      '50': false,
+      '75': false,
+      '100': false
+    };
+
+    document.addEventListener('scroll', () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (window.scrollY / scrollHeight) * 100;
+
+      if (scrollPercent >= 25 && !scrollTracked['25']) {
+        scrollTracked['25'] = true;
+        gtag('event', 'scroll_depth', { 'depth': '25%', 'page': 'landing' });
+      }
+      if (scrollPercent >= 50 && !scrollTracked['50']) {
+        scrollTracked['50'] = true;
+        gtag('event', 'scroll_depth', { 'depth': '50%', 'page': 'landing' });
+      }
+      if (scrollPercent >= 75 && !scrollTracked['75']) {
+        scrollTracked['75'] = true;
+        gtag('event', 'scroll_depth', { 'depth': '75%', 'page': 'landing' });
+      }
+      if (scrollPercent >= 95 && !scrollTracked['100']) {
+        scrollTracked['100'] = true;
+        gtag('event', 'scroll_depth', { 'depth': '100%', 'page': 'landing' });
+      }
+    });
+
+    // 2️⃣ TRACKING DE SECCIONES VISTAS
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id || entry.target.className;
+          gtag('event', 'section_view', { 'section': sectionId });
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    // Observar secciones principales
+    document.querySelectorAll('[class*="wrap"]').forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    // 3️⃣ TRACKING DE ENLACES SOCIALES
+    document.querySelectorAll('.social-btn').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const platform = this.getAttribute('title') || 'social';
+        gtag('event', 'social_click', { 
+          'platform': platform.toLowerCase(),
+          'section': 'footer'
+        });
+      });
+    });
+
+    // 4️⃣ TRACKING DE INTENTOS DE INSTALACIÓN
+    document.querySelectorAll('.install-card').forEach((card, index) => {
+      const os = card.querySelector('.install-os').textContent.trim();
+      card.addEventListener('click', () => {
+        gtag('event', 'installation_guide_view', { 'os': os });
+      });
+    });
+
+    // 5️⃣ TIEMPO EN PÁGINA (30 segundos = engaged user)
+    setTimeout(() => {
+      gtag('event', 'time_on_page', { 'duration': '30_seconds', 'page': 'landing' });
+    }, 30000);
+
+    console.log('✅ Analytics eventos personalizados activados');
+  </script>
+</body>
+</html>
