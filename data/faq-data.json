@@ -5,40 +5,40 @@
       "items": [
         {
           "question": "¿Qué es BAHI.ar?",
-          "answer": "Es tu guía médica digital y de bolsillo para Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Te permite encontrar rápido farmacias de turno, guardias, laboratorios y números de emergencia. Vas a poder llamar directamente o ver cómo llegar en el mapa desde tu celular. ¡Y es muy fácil de usar!"
+          "answer": "Es una guía médica digital pensada para consultar todo lo relacionado con la salud en Bahía Blanca, Ingeniero White, Cabildo y General Cerri. Te permite encontrar de forma rápida farmacias de turno, guardias, laboratorios y números de emergencia, con la opción de llamar, contactar por WhatsApp o ver cómo llegar usando el mapa incorporado."
         },
         {
           "question": "¿Hay que pagar para usarla?",
-          "answer": "Nunca te vamos a cobrar nada. Si la página te resulta útil y tenés ganas de darnos una mano, podés hacer un aporte voluntario por <a href=\"https://link.mercadopago.com.ar/mpbahiar\" target=\"_blank\" rel=\"noopener\" style=\"color:#1F75FE;\">Mercado Pago</a>, pero es totalmente opcional.",
+          "answer": "No, el acceso a la guía es 100% gratuito. Si el sitio te resulta útil y querés darnos una mano para mantenerlo en funcionamiento, podés realizar un aporte voluntario a través de <a href=\"https://link.mercadopago.com.ar/mpbahiar\" target=\"_blank\" rel=\"noopener\" style=\"color:#1F75FE;\">Mercado Pago</a>, pero es totalmente opcional.",
           "badge": "♥ 100% gratuita"
         },
         {
           "question": "¿La información está actualizada?",
-          "answer": "Sí. Las farmacias de turno se actualizan todos los días, y los datos de las guardias y los laboratorios se revisan constantemente. Si llegás a ver algún dato viejo, nos podés avisar fácil con el botón <a href=\"https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20\" target=\"_blank\" rel=\"noopener\" style=\"color:#1F75FE;\">\"Reportar error\"</a> que está arriba de todo en la pantalla."
+          "answer": "Sí. El cronograma de las farmacias de turno se actualiza diariamente, y revisamos constantemente los datos de las guardias y los laboratorios de la ciudad. De todas formas, si encontrás algún dato que haya cambiado, nos podés avisar fácilmente con el botón <a href=\"https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20\" target=\"_blank\" rel=\"noopener\" style=\"color:#1F75FE;\">\"Reportar error\"</a> ubicado en la parte superior de la pantalla."
         },
         {
           "question": "¿Cómo busco las farmacias de turno de hoy?",
-          "answer": "Apenas entrás a la página vas a ver las farmacias del día con su dirección y teléfono. Esta lista cambia automáticamente todos los días a las <strong>8:30 de la mañana</strong>. Además, tenés un botón de <strong>\"Compartir farmacias\"</strong> por si se la querés mandar por WhatsApp a un familiar o amigo que lo necesite."
+          "answer": "Al ingresar a la página vas a ver en primer lugar las farmacias que están de turno, junto con su dirección y teléfono. Esta lista se actualiza automáticamente todos los días. Además, tenés disponible un botón para compartir la información por WhatsApp si necesitás mandársela a un familiar o amigo."
         },
         {
-          "question": "¿Puedo buscar por mi barrio u obra social?",
-          "answer": "¡Sí! En las secciones de Farmacias y Laboratorios vas a encontrar filtros. Podés buscar por la zona donde estás, por tu obra social o por lo que necesités en ese momento."
+          "question": "¿Puedo buscar por mi barrio?",
+          "answer": "Sí. Tanto en la sección de Farmacias como en la de Laboratorios vas a encontrar filtros específicos. Esto te permite ordenar la búsqueda según la zona donde te encuentres. De momento solo es posible filtrar por zona, próximamente podrás hacerlo por otros conceptos tales como obra social, si envían a domicilio, etc."
         },
         {
-          "question": "¿Anda si me quedo sin internet o sin datos?",
-          "answer": "Sí, pero a medias. Una vez que entraste a la página con internet, mucha información queda guardada en tu celular y la podés seguir viendo. Ojo: para ver las farmacias de turno, te recomendamos siempre tener internet, porque los turnos cambian todos los días."
+          "question": "¿Funciona si me quedo sin internet o sin datos?",
+          "answer": "Sí, se puede usar en parte. Una vez que ingresás a la aplicación con conexión, una buena parte de la información queda guardada en tu teléfono para que puedas seguir consultándola. Sin embargo, para ver las farmacias de turno te recomendamos contar con internet, ya que los turnos rotan a diario y es la mejor forma de asegurarte el dato exacto."
         },
         {
-          "question": "¿Me tengo que registrar? ¿Guardan mis datos personales?",
-          "answer": "Para nada. No hace falta crear ningún usuario, ni poner contraseñas, ni dejar tus datos. La página solo guarda un archivito mínimo en tu celular para no estar preguntándote a cada rato si querés instalar la aplicación. Tu privacidad está asegurada."
+          "question": "¿Me tengo que registrar o guardan mis datos personales?",
+          "answer": "No, para nada. No hace falta que crees un usuario, recuerdes contraseñas ni dejes ningún tipo de información personal. La web solo guarda un archivo mínimo de configuración en tu dispositivo para evitar preguntarte a cada rato si querés instalar la aplicación. Tu privacidad está completamente asegurada."
         },
         {
           "question": "¿Qué hago si encuentro un número o dirección que está mal?",
-          "answer": "Tocá el botón <a href=\"https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20\" target=\"_blank\" rel=\"noopener\" style=\"color:#1F75FE;\">\"Reportar error\"</a> en la parte de arriba de la página. Eso te va a abrir un chat de WhatsApp directo con nosotros. Leemos todos los mensajes y te respondemos en menos de <strong>48 horas hábiles</strong>. ¡Tu ayuda nos sirve un montón para mejorar!"
+          "answer": "Podés tocar el botón <a href=\"https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20\" target=\"_blank\" rel=\"noopener\" style=\"color:#1F75FE;\">\"Reportar error\"</a> que está arriba de todo en la pantalla. Eso va a abrir un chat directo de WhatsApp con nosotros. Leemos todos los mensajes y respondemos siempre; tu aviso nos ayuda muchísimo a mantener la guía al día."
         },
         {
-          "question": "¿De dónde sacan la información? ¿Es confiable?",
-          "answer": "¡Sí, es 100% confiable! Todos los datos que publicamos son oficiales. Nos los pasan directamente los colegios y entidades médicas que representan a los profesionales y centros de salud de la ciudad."
+          "question": "¿De dónde obtienen la información? ¿Es confiable?",
+          "answer": "Sí, y nos lo tomamos muy en serio. Todos los datos que encontrás en la guía provienen de fuentes oficiales. Trabajamos con la información que nos brindan directamente los colegios profesionales y las entidades que representan a cada uno de los que integran la guía."
         }
       ]
     }
