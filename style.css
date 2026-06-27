@@ -1027,14 +1027,14 @@ body {
     gap: 6px;
     background: #ffffff;
     color: var(--text-main);
-    border: 1.5px solid #d0d5e0;
+    border: 1px solid var(--border-light);
     padding: 6px 12px;
     border-radius: var(--radius-btn);
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: var(--shadow-soft);
+    transition: background 0.15s ease;
+    box-shadow: none;
     font-family: var(--font-base);
     flex-shrink: 0;
     min-height: 36px;
@@ -1049,7 +1049,7 @@ body {
     .btn-share-wa:hover {
         background: #f4f6fa;
         color: var(--text-main);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: none;
     }
 }
 
