@@ -1033,14 +1033,14 @@ body {
     border: 1.5px solid #25D366;
     padding: 6px 12px;
     border-radius: var(--radius-btn);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: var(--shadow-soft);
     font-family: var(--font-base);
     flex-shrink: 0;
-    min-height: 44px;
+    min-height: 36px;
 }
 
 .btn-share-wa:active {
