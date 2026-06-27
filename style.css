@@ -1371,6 +1371,55 @@ body {
     transform: scale(0.92);
 }
 
+.support-block {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.support-text {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: var(--font-base);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.btn-support {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 280px;
+    padding: 11px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-btn);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-base);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+@media (hover: hover) {
+    .btn-support:hover {
+        background: rgba(255, 255, 255, 0.18);
+        border-color: rgba(255, 255, 255, 0.4);
+        color: #ffffff;
+        text-decoration: none;
+    }
+}
+
+.btn-support:active {
+    transform: scale(0.97);
+}
+
 .social-copy {
     font-size: 13px;
     color: rgba(255, 255, 255, 0.5);
