@@ -235,7 +235,7 @@ body {
 }
 
 .btn-accent {
-    background: var(--orange);
+    background: var(--orange-dark);
     color: #fff;
 }
 
@@ -362,7 +362,7 @@ body {
 
 .resultado-ubicacion {
     font-size: 12px;
-    color: #999;
+    color: #767676;
     margin-top: 2px;
 }
 
@@ -373,7 +373,7 @@ body {
 .busqueda-sin-resultados {
     padding: 16px;
     text-align: center;
-    color: #999;
+    color: #767676;
     font-size: 14px;
 }
 
@@ -589,7 +589,7 @@ body {
 
 .btn-whatsapp {
     background: #25D366;
-    color: #fff;
+    color: #0a3d1f;
     border: none;
 }
 
@@ -1421,7 +1421,7 @@ body {
 
 .social-copy {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
     font-family: var(--font-base);
     margin-top: 28px;
     padding-top: 20px;
@@ -1655,7 +1655,7 @@ body {
 
 .faq-report-row__label {
     font-size: 12px;
-    color: #888;
+    color: #6B7280;
 }
 
 .faq-report-link {
