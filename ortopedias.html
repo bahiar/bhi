@@ -331,7 +331,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           if (!contenedor) return;
 
           try {
-            const response = await fetch('data/ortopedia.json');
+            const response = await fetch('data/bd_bahiar.json');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
             datosOriginales = data.prestadores.filter(p => p.TIPO === TIPO_VISTA);
