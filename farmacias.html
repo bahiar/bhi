@@ -255,14 +255,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const TIPO_VISTA   = 'FARMACIA';
         const CONTENEDOR_ID = 'contenedor-cards';
 
+        // ── Configuración de pills booleanos ──────────────────────────────────
+        // Para agregar/quitar un pill, solo tocá esta lista. El botón en el HTML
+        // debe tener id="chip-<field>" y class="filter-chip".
+        const PILLS_BOOLEAN = [
+          { field: 'stock',       dato: 'STOCK'       },
+          { field: 'inyectables', dato: 'INYECTABLES' },
+          { field: 'delivery',    dato: 'DELIVERY'    },
+        ];
+
         let datosOriginales = [];
         const filtros = {
-          texto:      '',
-          localidad:  '',
-          stock:      false,
-          inyectables: false,
-          delivery:   false,
-          ooss:       ''
+          texto:     '',
+          localidad: '',
+          ooss:      '',
+          ...Object.fromEntries(PILLS_BOOLEAN.map(p => [p.field, false]))
         };
 
         // ── Renderizado ────────────────────────────────────────────────────────
@@ -313,11 +320,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               (item.PRESTADOR || '').toLowerCase().includes(texto) ||
               (item.DOMICILIO  || '').toLowerCase().includes(texto)
             )) return false;
-            if (filtros.localidad   && item.LOCALIDAD !== filtros.localidad) return false;
-            if (filtros.stock       && !item.STOCK)       return false;
-            if (filtros.inyectables && !item.INYECTABLES) return false;
-            if (filtros.delivery    && !item.DELIVERY)    return false;
+            if (filtros.localidad && item.LOCALIDAD !== filtros.localidad) return false;
             if (filtros.ooss && !(item.OOSS || '').toLowerCase().includes(filtros.ooss.toLowerCase())) return false;
+
+            for (const p of PILLS_BOOLEAN) {
+              if (filtros[p.field] && !item[p.dato]) return false;
+            }
             return true;
           });
           renderCards(resultado);
@@ -332,10 +340,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           document.querySelectorAll('.search-input-local').forEach(i => { i.value = ''; });
           filtros.texto = '';
           filtros.localidad = '';
-          filtros.stock = false;
-          filtros.inyectables = false;
-          filtros.delivery = false;
           filtros.ooss = '';
+          PILLS_BOOLEAN.forEach(p => { filtros[p.field] = false; });
           aplicarFiltros();
         }
         window.limpiarFiltrosFarmacias = limpiarFiltros;
@@ -401,11 +407,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               });
             }
 
-            ['chip-stock', 'chip-inyectables', 'chip-delivery'].forEach(id => {
-              const btn = document.getElementById(id);
+            PILLS_BOOLEAN.forEach(({ field }) => {
+              const btn = document.getElementById(`chip-${field}`);
               if (!btn) return;
               btn.addEventListener('click', () => {
-                const field = btn.dataset.field;  // ya en minúsculas en el HTML
                 filtros[field] = !filtros[field];
                 btn.classList.toggle('active', filtros[field]);
                 btn.setAttribute('aria-pressed', String(filtros[field]));
