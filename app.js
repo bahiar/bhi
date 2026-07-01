@@ -128,7 +128,8 @@ window.crearCardHTML = (item, tipo, index) => {
     const filasCuerpo = [
         item.HORARIO && `<p class="card-detail-row">${window.getSvgIcon('HORARIO')}<strong>Horario:</strong> ${window.esc(item.HORARIO)}</p>`,
         item.OOSS && `<p class="card-detail-row">${window.getSvgIcon('OOSS')}<strong>Obra social:</strong> ${window.esc(item.OOSS)}</p>`,
-        item.STOCK && `<p class="card-detail-row">${window.getSvgIcon('STOCK')}<strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`
+        item.STOCK && `<p class="card-detail-row">${window.getSvgIcon('STOCK')}<strong>Stock:</strong> ${window.esc(item.STOCK)}</p>`,
+        item.SERVICIOS && `<p class="card-detail-row">${window.getSvgIcon('STOCK')}<strong>Servicios:</strong> ${window.esc(item.SERVICIOS)}</p>`
     ].filter(Boolean).join('');
 
     const mostrarExpansion = filasCuerpo && tipo !== 'GUARDIA';
