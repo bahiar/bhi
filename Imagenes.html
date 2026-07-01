@@ -251,7 +251,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           try {
             // Nota: En producción esto sería 'data/RX_bahiar.json'
-            const response = await fetch('RX_bahiar.json');
+            const response = await fetch('data/RX_bahiar.json');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
             datosOriginales = data.prestadores.filter(p => p.TIPO === TIPO_VISTA);
