@@ -29,10 +29,10 @@ window.PILLS_CONFIG = {
     tipo: 'FARMACIA',   // filtra el array `prestadores` por item.TIPO
     pills: [
       { campo: 'LOCALIDAD',   tipoPill: 'select',  activo: true,  label: 'Localidad' },
-      { campo: 'STOCK',       tipoPill: 'boolean', activo: true,  label: '¿Tienen...?' },
-      { campo: 'INYECTABLES', tipoPill: 'boolean', activo: true,  label: 'Inyectables' },
-      { campo: 'DELIVERY',    tipoPill: 'boolean', activo: true,  label: 'Cadete' },
-      { campo: 'OOSS',        tipoPill: 'select',  activo: true,  multivalor: true, label: 'Obra Social' },
+      { campo: 'STOCK',       tipoPill: 'boolean', activo: false,  label: '¿Tienen...?' },
+      { campo: 'INYECTABLES', tipoPill: 'boolean', activo: false,  label: 'Inyectables' },
+      { campo: 'DELIVERY',    tipoPill: 'boolean', activo: false,  label: 'Cadete' },
+      { campo: 'OOSS',        tipoPill: 'select',  activo: false,  multivalor: true, label: 'Obra Social' },
       { campo: 'RX',          tipoPill: 'boolean', activo: false, label: 'RX' },
       { campo: 'ECO',         tipoPill: 'boolean', activo: false, label: 'ECO' },
       { campo: 'DMO',         tipoPill: 'boolean', activo: false, label: 'DMO' },
@@ -53,9 +53,9 @@ window.PILLS_CONFIG = {
     pills: [
       { campo: 'LOCALIDAD',   tipoPill: 'select',  activo: true,  label: 'Localidad' },
       { campo: 'STOCK',       tipoPill: 'boolean', activo: false, label: '¿Tienen...?' },
-      { campo: 'INYECTABLES', tipoPill: 'boolean', activo: true,  label: 'Inyectables' },
-      { campo: 'DELIVERY',    tipoPill: 'boolean', activo: true,  label: 'Domicilio' },
-      { campo: 'OOSS',        tipoPill: 'select',  activo: true,  multivalor: true, label: 'Obra Social' },
+      { campo: 'INYECTABLES', tipoPill: 'boolean', activo: false,  label: 'Inyectables' },
+      { campo: 'DELIVERY',    tipoPill: 'boolean', activo: false,  label: 'Domicilio' },
+      { campo: 'OOSS',        tipoPill: 'select',  activo: false,  multivalor: false, label: 'Obra Social' },
       { campo: 'RX',          tipoPill: 'boolean', activo: false, label: 'RX' },
       { campo: 'ECO',         tipoPill: 'boolean', activo: false, label: 'ECO' },
       { campo: 'DMO',         tipoPill: 'boolean', activo: false, label: 'DMO' },
@@ -75,7 +75,7 @@ window.PILLS_CONFIG = {
     tipo: 'ORTOPEDIA',
     pills: [
       { campo: 'LOCALIDAD',   tipoPill: 'select',  activo: true,  label: 'Localidad' },
-      { campo: 'STOCK',       tipoPill: 'boolean', activo: true,  label: 'Con stock detallado' },
+      { campo: 'STOCK',       tipoPill: 'boolean', activo: false,  label: 'Con stock detallado' },
       { campo: 'INYECTABLES', tipoPill: 'boolean', activo: false, label: 'Inyectables' },
       { campo: 'DELIVERY',    tipoPill: 'boolean', activo: false, label: 'Delivery' },
       { campo: 'OOSS',        tipoPill: 'select',  activo: false, label: 'Obra Social' },
