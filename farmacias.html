@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Directorio de Farmacias en Bahía Blanca | BAHI.ar</title>
 
-    <meta name="description" content="Farmacias de turno y directorio completo en Bahía Blanca. Buscá por localidad, obra social, delivery e inyectables.">
+    <meta name="description" content="Farmacias de turno y directorio completo en Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Buscá por localidad, obra social, delivery e inyectables a domicilio.">
     <link rel="canonical" href="https://www.bahi.ar/farmacias.html">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/images/favicon.ico" sizes="any">
@@ -21,7 +21,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
     <meta property="og:title" content="Directorio de Farmacias en Bahía Blanca | BAHI.ar">
-    <meta property="og:description" content="Farmacias de turno y directorio completo en Bahía Blanca. Buscá por localidad, obra social, delivery e inyectables.">
+    <meta property="og:description" content="Farmacias de turno y directorio completo en Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Buscá por localidad, obra social, delivery e inyectables a domicilio.">
     <meta property="og:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Directorio de Farmacias en Bahía Blanca | BAHI.ar">
-    <meta name="twitter:description" content="Farmacias de turno y directorio completo en Bahía Blanca. Buscá por localidad, obra social, delivery e inyectables.">
+    <meta name="twitter:description" content="Farmacias de turno y directorio completo en Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Buscá por localidad, obra social, delivery e inyectables a domicilio.">
     <meta name="twitter:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
 
     <!-- Geo Meta / SEO Local -->
@@ -90,6 +90,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             "longitude": -62.2661
           },
           "telephone": "+542915658189",
+          "logo": "https://www.bahi.ar/assets/images/mask-icon.svg",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          },
           "sameAs": [
             "https://www.facebook.com/guiabahiar/",
             "https://www.instagram.com/guiabahiar"
@@ -123,6 +132,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               }
             }
           ]
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://www.bahi.ar/farmacias.html#collection",
+          "url": "https://www.bahi.ar/farmacias.html",
+          "name": "Directorio de Farmacias en Bahía Blanca",
+          "description": "Listado de farmacias de turno y de lunes a domingo en Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri.",
+          "isPartOf": { "@id": "https://www.bahi.ar/#website" },
+          "about": {
+            "@type": "Pharmacy",
+            "name": "Farmacias en Bahía Blanca",
+            "areaServed": {
+              "@type": "City",
+              "name": "Bahía Blanca"
+            }
+          }
         }
       ]
     }

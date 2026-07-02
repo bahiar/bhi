@@ -45,6 +45,13 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://www.bahi.ar/imagenes.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Páginas legales -->
   <url>
     <loc>https://www.bahi.ar/privacidad.html</loc>

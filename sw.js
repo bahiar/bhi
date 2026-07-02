@@ -31,6 +31,10 @@ const SHELL_ASSETS = [
     './farmacias.html',
     './guardias.html',
     './laboratorios.html',
+    './ortopedias.html',
+    './assets/cuadros/CLOCK.svg',
+    './assets/cuadros/OOSS.svg',
+    './assets/cuadros/STOCK.svg',
     './style.css',
     './app.js',
     './manifest.json',
@@ -40,6 +44,7 @@ const SHELL_ASSETS = [
 const DATA_FILES = [
     './data/bd_bahiar.json',
     './data/turnero.json',   // Crítico: determina la farmacia de turno del día
+    './data/ortopedia.json',
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

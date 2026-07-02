@@ -54,14 +54,14 @@
             icon: 'lab-svgrepo-com.svg'
         },
         {
-            href: 'https://www.bahi.ar/ortopedias',
+            href: 'ortopedias.html',
             label: 'Ortopedias',
             bg: 'rgba(25,25,113,0.1)',
             color: '#191971',
             icon: 'orthopedic-leg-svgrepo-com.svg'
         },
         {
-            href: 'https://www.bahi.ar/Imagenes',
+            href: 'imagenes.html',
             label: 'Imágenes',
             bg: 'rgba(99,153,34,0.12)',
             color: '#3B6D11',
@@ -112,6 +112,7 @@
     }
 
     var iconCache = {}; // url -> texto SVG ya procesado (fill="currentColor")
+    var modalIconsLoaded = false; // se cargan recién al primer click en "Más"
 
     function iconTag(iconFile, className) {
         var url = ICON_BASE_PATH + iconFile;
@@ -184,7 +185,7 @@
                 '</a>';
         });
 
-        html += '<button type="button" class="bottom-nav-item" aria-label="Más servicios" aria-haspopup="dialog" aria-expanded="false" aria-controls="mas-modal-overlay" onclick="document.getElementById(\'mas-modal-overlay\').style.display=\'flex\';this.setAttribute(\'aria-expanded\',\'true\')">' +
+        html += '<button type="button" class="bottom-nav-item" aria-label="Más servicios" aria-haspopup="dialog" aria-expanded="false" aria-controls="mas-modal-overlay" onclick="window.__bnv2OpenMas(this)">' +
             '<svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>' +
             'Más' +
             '</button>';
@@ -217,6 +218,17 @@
             '</div>';
     }
 
+    function openMasModal(btn) {
+        var overlay = document.getElementById('mas-modal-overlay');
+        overlay.style.display = 'flex';
+        btn.setAttribute('aria-expanded', 'true');
+        if (!modalIconsLoaded) {
+            modalIconsLoaded = true;
+            loadIcons(overlay);
+        }
+    }
+    window.__bnv2OpenMas = openMasModal;
+
     function mount() {
         var root = document.getElementById('bottom-nav-root');
         if (!root) {
@@ -225,7 +237,7 @@
             document.body.appendChild(root);
         }
         root.outerHTML = buildNavHTML() + buildModalHTML();
-        loadIcons(document);
+        loadIcons(document.querySelector('.bottom-nav')); // solo los 3 íconos visibles; los del modal se cargan al primer click
     }
 
     if (document.readyState === 'loading') {

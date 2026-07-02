@@ -2,6 +2,7 @@
   "name": "BAHI.ar — Salud en Bahía Blanca",
   "short_name": "BAHI.ar",
   "description": "Farmacias de turno, guardias médicas 24hs y laboratorios en Bahía Blanca, Argentina.",
+  "id": "/",
   "start_url": "/?utm_source=pwa&utm_medium=homescreen",
   "scope": "/",
   "display": "standalone",
@@ -110,6 +111,18 @@
       "icons": [
         {
           "src": "/assets/icons/shortcut-labs.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Ortopedias",
+      "short_name": "Ortopedias",
+      "description": "Ortopedias y venta de artículos ortopédicos",
+      "url": "/ortopedias.html",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-ortopedias.png",
           "sizes": "96x96"
         }
       ]

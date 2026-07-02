@@ -91,6 +91,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             "longitude": -62.2661
           },
           "telephone": "+542915658189",
+          "logo": "https://www.bahi.ar/assets/images/mask-icon.svg",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          },
           "sameAs": [
             "https://www.facebook.com/guiabahiar/",
             "https://www.instagram.com/guiabahiar"
@@ -124,6 +133,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               }
             }
           ]
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://www.bahi.ar/guardias.html#collection",
+          "url": "https://www.bahi.ar/guardias.html",
+          "name": "Guardias Médicas y Emergencias en Bahía Blanca",
+          "description": "Listado de guardias médicas, hospitales y servicios de emergencia 24hs en Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri.",
+          "isPartOf": { "@id": "https://www.bahi.ar/#website" },
+          "about": {
+            "@type": "EmergencyService",
+            "name": "Guardias médicas y emergencias en Bahía Blanca",
+            "areaServed": {
+              "@type": "City",
+              "name": "Bahía Blanca"
+            }
+          }
         }
       ]
     }
