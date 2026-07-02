@@ -18,7 +18,7 @@
 // ─── Versión ──────────────────────────────────────────────────────────────────
 // ⚠ Incrementar en cada deploy para invalidar el caché y forzar install.
 // v4.38: botón Compartir movido a section-header; limpieza visual btn-share-wa.
-const CACHE_VERSION = 'v4.94';
+const CACHE_VERSION = 'v4.95';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
