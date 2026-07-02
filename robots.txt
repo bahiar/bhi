@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Allow: /manifest.json
+Disallow: /*?q=*
 
 Sitemap: https://www.bahi.ar/sitemap.xml
