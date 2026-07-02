@@ -1306,6 +1306,7 @@ span.bottom-nav-icon {
     mask-position: center;
     -webkit-mask-size: contain;
     mask-size: contain;
+    mask-mode: alpha;
 }
 
 button.bottom-nav-item {
@@ -1364,6 +1365,7 @@ button.bottom-nav-item {
     mask-position: center;
     -webkit-mask-size: contain;
     mask-size: contain;
+    mask-mode: alpha;
 }
 
 .mas-grid-item__label {
