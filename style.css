@@ -1342,7 +1342,8 @@ button.bottom-nav-item {
     flex-shrink: 0;
 }
 
-.mas-grid-item__icon svg {
+.mas-grid-item__icon svg,
+.mas-grid-item__icon-img {
     width: 18px;
     height: 18px;
 }
