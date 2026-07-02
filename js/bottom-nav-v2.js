@@ -112,7 +112,8 @@
     }
 
     function iconTag(iconFile, className) {
-        return '<img class="' + className + '" src="' + ICON_BASE_PATH + iconFile + '" alt="" aria-hidden="true">';
+        var url = ICON_BASE_PATH + iconFile;
+        return '<span class="' + className + '" style="-webkit-mask-image:url(\'' + url + '\');mask-image:url(\'' + url + '\');" aria-hidden="true"></span>';
     }
 
     function buildNavHTML() {
