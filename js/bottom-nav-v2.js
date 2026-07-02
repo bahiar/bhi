@@ -75,28 +75,28 @@
             icon: 'reading-glasses-optic-svgrepo-com.svg'
         },
         {
-            href: 'https://www.bahi.ar/enfermeria',
+            href: 'enfermeria.html',
             label: 'Enfermería',
             bg: 'rgba(220,20,90,0.12)',
             color: '#DC145A',
             icon: 'nurse-svgrepo-com.svg'
         },
         {
-            href: 'https://www.bahi.ar/kinesiologia',
+            href: 'kinesiologia.html',
             label: 'Kinesiología',
             bg: 'rgba(0,150,136,0.12)',
             color: '#009688',
             icon: 'i-physical-therapy-svgrepo-com.svg'
         },
         {
-            href: 'https://www.bahi.ar/nutricion',
+            href: 'nutricion.html',
             label: 'Nutrición',
             bg: 'rgba(139,195,74,0.15)',
             color: '#558B2F',
             icon: 'i-nutrition-svgrepo-com.svg'
         },
         {
-            href: 'https://www.bahi.ar/fonoaudiologia',
+            href: 'fonoaudiologia.html',
             label: 'Fonoaudiología',
             bg: 'rgba(156,39,176,0.12)',
             color: '#9C27B0',
