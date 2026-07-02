@@ -273,7 +273,7 @@ function aplicarFiltroCards(filtro) {
             btnLimpiar = document.createElement('div');
             btnLimpiar.id = 'search-clear-banner';
             btnLimpiar.className = 'search-clear-banner';
-            btnLimpiar.innerHTML = '<button type="button" class="error-state-action" style="margin:0 auto;display:block;">Limpiar busqueda</button>';
+            btnLimpiar.innerHTML = '<button type="button" class="error-state-action" style="margin:0 auto;display:block;">Limpiar búsqueda</button>';
             mainContainer.insertBefore(btnLimpiar, mainContainer.firstChild);
             btnLimpiar.querySelector('button').addEventListener('click', () => {
                 document.querySelectorAll('.search-container input:not(.search-input-local)').forEach(i => { i.value = ''; });
@@ -289,7 +289,7 @@ function aplicarFiltroCards(filtro) {
                 sinRes.id = 'search-no-results';
                 sinRes.className = 'error-state';
                 sinRes.setAttribute('role', 'status');
-                sinRes.innerHTML = '<div class="error-state-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><p class="error-state-title">No se encontraron resultados</p><p class="error-state-desc">Proba con otra palabra o revisa la ortografia.</p>';
+                sinRes.innerHTML = '<div class="error-state-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><p class="error-state-title">No se encontraron resultados</p><p class="error-state-desc">Probá con otra palabra o revisá la ortografía.</p>';
                 mainContainer.appendChild(sinRes);
             }
         } else {
