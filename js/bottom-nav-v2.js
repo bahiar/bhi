@@ -111,9 +111,63 @@
         return file;
     }
 
+    var iconCache = {}; // url -> texto SVG ya procesado (fill="currentColor")
+
     function iconTag(iconFile, className) {
         var url = ICON_BASE_PATH + iconFile;
-        return '<span class="' + className + '" style="-webkit-mask-image:url(\'' + url + '\');mask-image:url(\'' + url + '\');" aria-hidden="true"></span>';
+        // Placeholder: se reemplaza por el <svg> real una vez que loadIcons() lo descarga.
+        return '<span class="' + className + '" data-icon-src="' + url + '" aria-hidden="true"></span>';
+    }
+
+    /**
+     * Limpia el SVG descargado para que herede color vía currentColor:
+     *  - Quita bloques <style> (algunos íconos definen fill ahí, ej. .st0{fill:#000000})
+     *  - Quita atributos fill="..." de cada elemento (para que hereden del root)
+     *  - Quita width/height fijos del root (para que mande el CSS del contenedor)
+     *  - Fuerza fill="currentColor" en el <svg> raíz
+     */
+    function recolorSvg(svgText) {
+        return svgText
+            .replace(/<style[\s\S]*?<\/style>/gi, '')
+            .replace(/\sfill="(?!none)[^"]*"/gi, '')
+            .replace(/\sfill='(?!none)[^']*'/gi, '')
+            .replace(/\swidth="[^"]*"/i, '')
+            .replace(/\sheight="[^"]*"/i, '')
+            .replace(/<svg /i, '<svg fill="currentColor" ');
+    }
+
+    /** Descarga (con caché) todos los SVG referenciados y reemplaza los placeholders por el <svg> real. */
+    function loadIcons(root) {
+        var placeholders = root.querySelectorAll('[data-icon-src]');
+        placeholders.forEach(function (placeholder) {
+            var url = placeholder.getAttribute('data-icon-src');
+
+            var apply = function (svgText) {
+                var wrapper = document.createElement('div');
+                wrapper.innerHTML = svgText.trim();
+                var svgEl = wrapper.querySelector('svg');
+                if (!svgEl) return;
+                svgEl.setAttribute('class', placeholder.getAttribute('class'));
+                svgEl.setAttribute('aria-hidden', 'true');
+                placeholder.replaceWith(svgEl);
+            };
+
+            if (iconCache[url]) {
+                apply(iconCache[url]);
+                return;
+            }
+
+            fetch(url)
+                .then(function (res) { return res.ok ? res.text() : Promise.reject(); })
+                .then(function (rawSvg) {
+                    var processed = recolorSvg(rawSvg);
+                    iconCache[url] = processed;
+                    apply(processed);
+                })
+                .catch(function () {
+                    console.warn('[bottom-nav-v2] No se pudo cargar el ícono:', url);
+                });
+        });
     }
 
     function buildNavHTML() {
@@ -171,6 +225,7 @@
             document.body.appendChild(root);
         }
         root.outerHTML = buildNavHTML() + buildModalHTML();
+        loadIcons(document);
     }
 
     if (document.readyState === 'loading') {
