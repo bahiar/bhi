@@ -107,13 +107,13 @@ window.PILLS_CONFIG = {
         activo: true,
         label: 'Servicio',
         opciones: [
-          { valor: 'RX',   label: 'Rayos X' },
-          { valor: 'ECO',  label: 'Ecografía' },
-          { valor: 'TAC',  label: 'Tomografía (TAC)' },
-          { valor: 'RMN',  label: 'Resonancia (RMN)' },
-          { valor: 'MAMO', label: 'Mamografía' },
-          { valor: 'DMO',  label: 'Densitometría' },
-          { valor: 'DENT', label: 'Odontológico' },
+          { valor: 'RX',   label: 'Radiografías' },
+          { valor: 'ECO',  label: 'Ecografías' },
+          { valor: 'TAC',  label: 'Tomografías (TAC)' },
+          { valor: 'RMN',  label: 'Resonancias (RMN)' },
+          { valor: 'MAMO', label: 'Mamografías' },
+          { valor: 'DMO',  label: 'Densitometrías' },
+          { valor: 'DENT', label: 'Estudios dentales' },
         ]
       },
     ]
