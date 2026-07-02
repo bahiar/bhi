@@ -17,8 +17,10 @@
 
 // ─── Versión ──────────────────────────────────────────────────────────────────
 // ⚠ Incrementar en cada deploy para invalidar el caché y forzar install.
-// v4.38: botón Compartir movido a section-header; limpieza visual btn-share-wa.
-const CACHE_VERSION = 'v4.102';
+// v4.103: fix cache stale — install ahora usa fetch({cache:'reload'}) en vez
+// de cache.add(), para no guardar en Cache Storage una respuesta vieja que
+// venía del HTTP cache del navegador.
+const CACHE_VERSION = 'v4.103';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
@@ -71,6 +73,22 @@ function isDataRequest(url) {
     return url.pathname.endsWith('.json') && url.pathname.includes('/data/');
 }
 
+/**
+ * Descarga un asset ignorando el caché HTTP del navegador y lo guarda
+ * en la cache indicada. Evita que cache.add() reutilice una respuesta
+ * vieja servida desde el HTTP cache (bug clásico: CACHE_VERSION nueva
+ * pero contenido viejo adentro).
+ */
+async function fetchAndCache(cacheName, asset) {
+    const cache = await caches.open(cacheName);
+    const request = new Request(asset, { cache: 'reload' }); // 'reload' = bypass HTTP cache
+    const response = await fetch(request);
+    if (response && response.status === 200) {
+        await cache.put(asset, response.clone());
+    }
+    return response;
+}
+
 /** Guarda en caché solo respuestas básicas con status 200. */
 async function putInCache(cacheName, request, response) {
     if (!response || response.status !== 200 || response.type === 'opaque') return;
@@ -89,21 +107,19 @@ async function notificarClientes(payload) {
 self.addEventListener('install', (event) => {
     event.waitUntil(
         (async () => {
-            // Shell → CACHE_NAME
-            const shellCache = await caches.open(CACHE_NAME);
+            // Shell → CACHE_NAME (fetch forzado sin HTTP cache)
             await Promise.allSettled(
                 SHELL_ASSETS.map(asset =>
-                    shellCache.add(asset).catch(err =>
+                    fetchAndCache(CACHE_NAME, asset).catch(err =>
                         console.warn(`[SW] No se pudo cachear shell "${asset}":`, err.message)
                     )
                 )
             );
 
-            // Datos → DATA_CACHE_NAME
-            const dataCache = await caches.open(DATA_CACHE_NAME);
+            // Datos → DATA_CACHE_NAME (fetch forzado sin HTTP cache)
             await Promise.allSettled(
                 DATA_FILES.map(asset =>
-                    dataCache.add(asset).catch(err =>
+                    fetchAndCache(DATA_CACHE_NAME, asset).catch(err =>
                         console.warn(`[SW] No se pudo cachear data "${asset}":`, err.message)
                     )
                 )
