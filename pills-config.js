@@ -105,7 +105,7 @@ window.PILLS_CONFIG = {
         campo: 'SERVICIO',
         tipoPill: 'campo-dinamico',
         activo: true,
-        label: 'Servicio',
+        label: 'Práctica',
         opciones: [
           { valor: 'RX',   label: 'Radiografías' },
           { valor: 'ECO',  label: 'Ecografías' },
