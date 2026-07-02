@@ -20,7 +20,7 @@
 // v4.103: fix cache stale — install ahora usa fetch({cache:'reload'}) en vez
 // de cache.add(), para no guardar en Cache Storage una respuesta vieja que
 // venía del HTTP cache del navegador.
-const CACHE_VERSION = 'v4.118';
+const CACHE_VERSION = 'v4.119';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
