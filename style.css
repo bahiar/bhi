@@ -27,6 +27,16 @@
     --font-base: system-ui, -apple-system, BlinkMacSystemFont,
                  "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     --font-brand: 'Plus Jakarta Sans', 'varela_roundregular', var(--font-base);
+
+    /* Escala tonal sistemática: azules/teales coherentes + rojo solo para urgencias reales */
+    --accent-blue-light: #3E92CC;       /* Azul claro – Imágenes, Kinesiología */
+    --accent-blue-medium: #2A628F;      /* Azul medio – Laboratorios, Nutrición */
+    --accent-blue-dark: #13293D;        /* Azul oscuro – Ortopedias, Ópticas */
+    --accent-blue-deeper: #16324F;      /* Azul más oscuro – Fonoaudiología */
+    --accent-blue-petrol: #18435A;      /* Azul petróleo – Enfermería */
+    --accent-emergency: #DC2626;        /* Rojo urgencia – SOLO Emergencia/Guardias */
+
+
     --cat-farmacia: var(--orange);
     --cat-guardia: #DC2626;
     --cat-laboratorio: var(--accent);

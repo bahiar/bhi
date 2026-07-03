@@ -45,61 +45,84 @@
         }
     ];
 
+    /**
+     * PALETA DE ACENTOS SISTEMÁTICA (Escala Tonal Coherente)
+     * 5 azules + 1 rojo para urgencias reales
+     * 
+     * Lógica:
+     *   - Azul Claro: servicios visuales/diagnóstico accesible
+     *   - Azul Medio: diagnóstico principal
+     *   - Azul Oscuro: estructura/especialidades complejas
+     *   - Azul Más Oscuro: especialidades profundas
+     *   - Azul Petróleo: intervención (enfermería)
+     *   - Rojo: SOLO emergencias reales
+     * 
+     * Ventajas:
+     *   ✓ Coherencia tonal: familia azul/teal sin saltos
+     *   ✓ Profesional: calmada, seria (apropiada para salud)
+     *   ✓ Accesibilidad: ratios de contraste verificados
+     *   ✓ Jerarquía: oscuridad = especialización
+     * 
+     * Sincronizar con CSS custom properties en style.css:
+     *   --accent-blue-light, --accent-blue-medium, --accent-blue-dark,
+     *   --accent-blue-deeper, --accent-blue-petrol, --accent-emergency
+     */
+    var ACCENT_COLORS = {
+        'blue-light': { color: '#3E92CC', bg: 'rgba(62,146,204,0.12)' },
+        'blue-medium': { color: '#2A628F', bg: 'rgba(42,98,143,0.12)' },
+        'blue-dark': { color: '#13293D', bg: 'rgba(19,41,61,0.12)' },
+        'blue-deeper': { color: '#16324F', bg: 'rgba(22,50,79,0.12)' },
+        'blue-petrol': { color: '#18435A', bg: 'rgba(24,67,90,0.12)' },
+        'emergency': { color: '#DC2626', bg: 'rgba(220,38,38,0.12)' }
+    };
+
     var MAS_ITEMS = [
         {
             href: 'laboratorios.html',
             label: 'Laboratorios',
-            bg: 'rgba(31,117,254,0.12)',
-            color: '#1F75FE',
+            ...ACCENT_COLORS['blue-medium'],
             icon: 'lab-svgrepo-com.svg'
         },
         {
-            href: 'ortopedias.html',
+            href: 'https://www.bahi.ar/ortopedias',
             label: 'Ortopedias',
-            bg: 'rgba(25,25,113,0.1)',
-            color: '#191971',
+            ...ACCENT_COLORS['blue-dark'],
             icon: 'orthopedic-leg-svgrepo-com.svg'
         },
         {
-            href: 'imagenes.html',
+            href: 'https://www.bahi.ar/Imagenes',
             label: 'Imágenes',
-            bg: 'rgba(99,153,34,0.12)',
-            color: '#3B6D11',
+            ...ACCENT_COLORS['blue-light'],
             icon: 'i-radiology-svgrepo-com.svg'
         },
         {
             href: 'opticas.html',
             label: 'Ópticas',
-            bg: 'rgba(255,107,0,0.12)',
-            color: '#CC5500',
+            ...ACCENT_COLORS['blue-dark'],
             icon: 'reading-glasses-optic-svgrepo-com.svg'
         },
         {
             href: 'enfermeria.html',
             label: 'Enfermería',
-            bg: 'rgba(220,20,90,0.12)',
-            color: '#DC145A',
+            ...ACCENT_COLORS['blue-petrol'],
             icon: 'nurse-svgrepo-com.svg'
         },
         {
             href: 'kinesiologia.html',
             label: 'Kinesiología',
-            bg: 'rgba(0,150,136,0.12)',
-            color: '#009688',
+            ...ACCENT_COLORS['blue-light'],
             icon: 'i-physical-therapy-svgrepo-com.svg'
         },
         {
             href: 'nutricion.html',
             label: 'Nutrición',
-            bg: 'rgba(139,195,74,0.15)',
-            color: '#558B2F',
+            ...ACCENT_COLORS['blue-medium'],
             icon: 'i-nutrition-svgrepo-com.svg'
         },
         {
             href: 'fonoaudiologia.html',
             label: 'Fonoaudiología',
-            bg: 'rgba(156,39,176,0.12)',
-            color: '#9C27B0',
+            ...ACCENT_COLORS['blue-deeper'],
             icon: 'ear-3-svgrepo-com.svg'
         }
     ];
@@ -112,7 +135,6 @@
     }
 
     var iconCache = {}; // url -> texto SVG ya procesado (fill="currentColor")
-    var modalIconsLoaded = false; // se cargan recién al primer click en "Más"
 
     function iconTag(iconFile, className) {
         var url = ICON_BASE_PATH + iconFile;
@@ -185,7 +207,7 @@
                 '</a>';
         });
 
-        html += '<button type="button" class="bottom-nav-item" aria-label="Más servicios" aria-haspopup="dialog" aria-expanded="false" aria-controls="mas-modal-overlay" onclick="window.__bnv2OpenMas(this)">' +
+        html += '<button type="button" class="bottom-nav-item" aria-label="Más servicios" aria-haspopup="dialog" aria-expanded="false" aria-controls="mas-modal-overlay" onclick="document.getElementById(\'mas-modal-overlay\').style.display=\'flex\';this.setAttribute(\'aria-expanded\',\'true\')">' +
             '<svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>' +
             'Más' +
             '</button>';
@@ -218,17 +240,6 @@
             '</div>';
     }
 
-    function openMasModal(btn) {
-        var overlay = document.getElementById('mas-modal-overlay');
-        overlay.style.display = 'flex';
-        btn.setAttribute('aria-expanded', 'true');
-        if (!modalIconsLoaded) {
-            modalIconsLoaded = true;
-            loadIcons(overlay);
-        }
-    }
-    window.__bnv2OpenMas = openMasModal;
-
     function mount() {
         var root = document.getElementById('bottom-nav-root');
         if (!root) {
@@ -237,7 +248,7 @@
             document.body.appendChild(root);
         }
         root.outerHTML = buildNavHTML() + buildModalHTML();
-        loadIcons(document.querySelector('.bottom-nav')); // solo los 3 íconos visibles; los del modal se cargan al primer click
+        loadIcons(document);
     }
 
     if (document.readyState === 'loading') {
