@@ -74,6 +74,29 @@ body {
     z-index: 50;
 }
 
+/* Reserva de espacio para header-nav.js y bottom-nav-v2.js:
+   estos scripts inyectan el header/nav real en DOMContentLoaded,
+   reemplazando el div vacío. Sin esta reserva, el div arranca en
+   0px y el salto al montarse genera layout shift (CLS). */
+#header-nav-root {
+    min-height: 52px; /* = .header-content height */
+    background: linear-gradient(135deg, #191971 0%, #1a2f8e 100%);
+}
+@media (min-width: 768px) {
+    #header-nav-root {
+        min-height: 108px; /* header (52px) + sub-nav visible en desktop (~56px) */
+    }
+}
+
+#bottom-nav-root {
+    min-height: 60px; /* = altura real de .bottom-nav en mobile */
+}
+@media (min-width: 768px) {
+    #bottom-nav-root {
+        min-height: 0; /* .bottom-nav se oculta en desktop */
+    }
+}
+
 .header-content {
     display: flex;
     align-items: center;
