@@ -75,6 +75,24 @@ window.esc = (str) => {
     return d.innerHTML;
 };
 
+/**
+ * Escapa un valor para uso seguro DENTRO de un atributo HTML entrecomillado
+ * (href="...", aria-label="...", etc.). window.esc() no basta ahí: usa
+ * textContent/innerHTML, que NO escapa comillas dobles. Si el dato de origen
+ * (por ej. un campo FIJO/MOVIL en bd_bahiar.json) trae un carácter " suelto,
+ * ese " cierra el atributo antes de tiempo y genera markup roto del tipo
+ * <a href="tel:" ""="" ...>, que es justamente el enlace "Llamar" malformado
+ * detectado por Lighthouse en Diagnóstico Pueyrredón.
+ */
+window.escAttr = (str) => {
+    return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+};
+
 window.safeMapsUrl = (url) => {
     if (!url) return null;
     try {
@@ -115,15 +133,20 @@ window.crearCardHTML = (item, tipo, index) => {
 
     const botonesAccion = [
         linkTel
-            ? `<a href="${window.esc(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${window.esc(item.PRESTADOR)}">${SVG_LLAMAR} Llamar</a>`
+            ? `<a href="${window.escAttr(linkTel)}" class="btn btn-accent" aria-label="Llamar a ${window.escAttr(item.PRESTADOR)}">${SVG_LLAMAR} Llamar</a>`
             : '',
+        // Si ya se mostró un botón "Llamar" desde FIJO, no repetimos un segundo
+        // botón "Llamar" desde MOVIL: dos enlaces con el mismo texto visible
+        // y distinto destino son confusos para lectores de pantalla
+        // (issue de "Enlaces idénticos" de Lighthouse). MOVIL solo genera
+        // botón propio si es un link de WhatsApp (https://), o si no había FIJO.
         linkMovil && linkMovil.startsWith('https://')
-            ? `<a href="${window.esc(linkMovil)}" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de ${window.esc(item.PRESTADOR)}">${SVG_WHATSAPP} WhatsApp</a>`
-            : (linkMovil
-                ? `<a href="${window.esc(linkMovil)}" class="btn btn-accent" aria-label="Llamar a ${window.esc(item.PRESTADOR)}">${SVG_LLAMAR} Llamar</a>`
+            ? `<a href="${window.escAttr(linkMovil)}" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de ${window.escAttr(item.PRESTADOR)}">${SVG_WHATSAPP} WhatsApp</a>`
+            : (linkMovil && !linkTel
+                ? `<a href="${window.escAttr(linkMovil)}" class="btn btn-accent" aria-label="Llamar a ${window.escAttr(item.PRESTADOR)}">${SVG_LLAMAR} Llamar</a>`
                 : ''),
         mapsUrl
-            ? `<a href="${window.esc(mapsUrl)}" class="btn btn-outline" target="_blank" rel="noopener noreferrer" aria-label="Ver mapa de ${window.esc(item.PRESTADOR)}">${SVG_MAPA} Mapa</a>`
+            ? `<a href="${window.escAttr(mapsUrl)}" class="btn btn-outline" target="_blank" rel="noopener noreferrer" aria-label="Ver mapa de ${window.escAttr(item.PRESTADOR)}">${SVG_MAPA} Mapa</a>`
             : ''
     ].filter(Boolean).join('');
 
@@ -137,9 +160,9 @@ window.crearCardHTML = (item, tipo, index) => {
     const mostrarExpansion = filasCuerpo && tipo !== 'GUARDIA';
 
     return `
-<article class="card" data-estado="${window.esc(estado)}" data-tipo="${window.esc(tipo)}"
-    data-domicilio="${window.esc(item.DOMICILIO || '')}" data-localidad="${window.esc(item.LOCALIDAD || '')}"
-    data-fijo="${window.esc(item.FIJO || '')}" data-movil="${window.esc(item.MOVIL || '')}">
+<article class="card" data-estado="${window.escAttr(estado)}" data-tipo="${window.escAttr(tipo)}"
+    data-domicilio="${window.escAttr(item.DOMICILIO || '')}" data-localidad="${window.escAttr(item.LOCALIDAD || '')}"
+    data-fijo="${window.escAttr(item.FIJO || '')}" data-movil="${window.escAttr(item.MOVIL || '')}">
     <div class="card-top">
         <div class="card-info">
             <h3 class="card-name">${window.esc(item.PRESTADOR)}</h3>
@@ -359,7 +382,7 @@ async function buscarGlobal(filtro, contenedor) {
         const html = conTipo.slice(0, MAX_SEARCH_RESULTS).map((item, i) => {
             const emoji = EMOJI_TIPO_MAP[item.tipo] || '💊';
             
-            return `<div class="resultado-busqueda" data-index="${i}" data-tipo="${window.esc(item.tipo)}" data-nombre="${window.esc(item.PRESTADOR)}">
+            return `<div class="resultado-busqueda" data-index="${i}" data-tipo="${window.escAttr(item.tipo)}" data-nombre="${window.escAttr(item.PRESTADOR)}">
                 <div>
                     <div class="resultado-nombre">${window.esc(item.PRESTADOR)}</div>
                     <div class="resultado-ubicacion">${window.esc(item.DOMICILIO || '')}</div>

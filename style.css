@@ -11,14 +11,14 @@
 
 :root {
     --primary: #191971;
-    --accent: #1F75FE;
+    --accent: #1456B8;
     --bg-main: #EEF2F7;
     --card-bg: #FFFFFF;
     --text-main: #0F172A;
     --text-muted: #525E73;
     --border-light: #E2E8F0;
     --orange: #FF6B00;
-    --orange-dark: #CC5500;
+    --orange-dark: #A34300;
     --orange-light: rgba(255, 107, 0, 0.10);
     --orange-border: rgba(255, 107, 0, 0.25);
     --radius-card: 16px;
@@ -1283,7 +1283,6 @@ body {
     gap: 3px;
     padding: 8px 4px 10px;
     text-decoration: none;
-    color: #94A3B8;
     font-size: 10px;
     font-weight: 700;
     font-family: var(--font-brand);
@@ -1292,6 +1291,7 @@ body {
     min-height: 56px;
     touch-action: manipulation;
     position: relative;
+    color: var(--text-muted);
 }
 
 .bottom-nav-item.active {
