@@ -1106,6 +1106,13 @@ body {
         justify-content: center;
         gap: 12px;
         max-width: 1200px;
+        flex-wrap: wrap;
+    }
+
+    .sub-nav-link {
+        font-size: 12px;
+        padding: 7px 14px;
+        min-height: 32px;
     }
 
     .cards-grid {
