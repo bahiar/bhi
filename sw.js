@@ -20,7 +20,7 @@
 // v4.128: incluir header-nav.js (componente unificado de navegación) y todas
 // las páginas HTML nuevas (páginas legales, de construcción, etc.) en SHELL_ASSETS.
 // Esto garantiza que offline funcione completo sin inconsistencias de nav.
-const CACHE_VERSION = 'v4.128';
+const CACHE_VERSION = 'v4.129';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
