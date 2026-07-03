@@ -18,6 +18,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="icon" href="assets/images/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -30,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             text-justify: inter-word;
             font-size: 11.5px;
             line-height: 1.55;
-            color: #8a8a9a;
+            color: var(--text-muted);
             letter-spacing: 0.01em;
         }
     </style>
@@ -178,7 +180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         spellcheck="false"
                     >
                 </div>
-                <a href="mapa.html" aria-label="Ver mapa de prestadores" class="btn-map-toggle">
+                <a href="mapa.html" aria-label="Ver prestadores en mapa" class="btn-map-toggle">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
                     <span class="btn-map-toggle__label">en mapa</span>
                 </a>
