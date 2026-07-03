@@ -20,19 +20,23 @@
 (function() {
     'use strict';
 
-    // Listado completo de secciones (para que páginas legales hereden)
+    // Listado COMPLETO de secciones para páginas funcionales (desktop mostrará todas)
     var FULL_NAV_ITEMS = [
         { href: 'index.html', label: 'Inicio' },
         { href: 'guardias.html', label: 'Emergencia' },
         { href: 'farmacias.html', label: 'Farmacias' },
         { href: 'laboratorios.html', label: 'Laboratorios' },
         { href: 'ortopedias.html', label: 'Ortopedias' },
-        { href: 'Imagenes.html', label: 'Imágenes' },
-        { href: 'opticas.html', label: 'Ópticas' }
+        { href: 'opticas.html', label: 'Ópticas' },
+        { href: 'imagenes.html', label: 'Imágenes' },
+        { href: 'enfermeria.html', label: 'Enfermería' },
+        { href: 'kinesiologia.html', label: 'Kinesiología' },
+        { href: 'nutricion.html', label: 'Nutrición' },
+        { href: 'fonoaudiologia.html', label: 'Fonoaudiología' }
     ];
 
-    // Sub-nav reducido para páginas legales (solo primeros 4)
-    var LEGAL_NAV_ITEMS = FULL_NAV_ITEMS.slice(0, 4);
+    // Sub-nav reducido para páginas legales (primeras 6 secciones principales)
+    var LEGAL_NAV_ITEMS = FULL_NAV_ITEMS.slice(0, 6);
 
     function getCurrentPage() {
         var config = window.headerNavConfig || {};
@@ -94,9 +98,7 @@
             '<ul class="sub-nav-list">';
 
         navItems.forEach(function(item) {
-            var hrefLower = item.href.toLowerCase();
-            var isCurrent = hrefLower === (current + '.html').toLowerCase() ||
-                (current === 'index' && hrefLower === 'index.html');
+            var isCurrent = item.href === (current + '.html') || (current === 'index' && item.href === 'index.html');
             html += '<li><a href="' + item.href + '" class="sub-nav-link' + (isCurrent ? ' active' : '') + '"' +
                 (isCurrent ? ' aria-current="page"' : '') +
                 '>' + item.label + '</a></li>';
