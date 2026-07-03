@@ -52,7 +52,7 @@
         var html = '<div class="header-content">';
 
         // Logo siempre presente
-        html += '<a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">' +
+        html += '<a href="index.html" class="brand-logo">' +
             '<img src="assets/images/mask-icon.svg" alt="" aria-hidden="true" width="36" height="36" style="flex-shrink:0;border-radius:9px;">' +
             '<span class="brand-logo__wordmark">' +
             '<span class="brand-logo__name">BAHI<span class="brand-logo__name--accent">.ar</span></span>' +
@@ -66,7 +66,7 @@
         if (type === 'full') {
             // Páginas funcionales: botón instalar + FAQ
             html += '<button id="btn-instalar-app" aria-label="Instalar la app BAHI.ar" class="header-btn header-btn--instalar" type="button" hidden>Instalar</button>' +
-                '<button onclick="document.getElementById(\'faq-modal-overlay\').style.display=\'flex\'" aria-label="Preguntas frecuentes" class="header-btn">' +
+                '<button onclick="document.getElementById(\'faq-modal-overlay\').style.display=\'flex\'" aria-label="Ayuda: preguntas frecuentes" class="header-btn">' +
                 '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' +
                 'Ayuda' +
                 '</button>';
