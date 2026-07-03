@@ -198,6 +198,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 mostrarIndicadorCache();
             }
         });
+
+        // Sesiones PWA en modo standalone pueden quedar abiertas días sin que
+        // el navegador re-chequee sw.js por su cuenta. Forzamos el chequeo
+        // cada vez que la pestaña vuelve a estar visible, para que el banner
+        // de actualización (y la recarga automática) aparezcan antes.
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.getRegistration().then(reg => reg?.update());
+            }
+        });
     }
 
     document.addEventListener('click', (e) => {
@@ -384,6 +394,8 @@ async function buscarGlobal(filtro, contenedor) {
 // BANNERS Y NOTIFICACIONES
 // ═════════════════════════════════════════════════════════════════════════════
 
+const AUTO_RELOAD_DELAY_MS = 2500;
+
 function mostrarBannerActualizacion(version) {
     let banner = document.getElementById('update-banner');
     if (banner) {
@@ -393,10 +405,16 @@ function mostrarBannerActualizacion(version) {
     banner = document.createElement('div');
     banner.id = 'update-banner';
     banner.setAttribute('role', 'status');
+    banner.setAttribute('aria-live', 'polite');
     banner.innerHTML = `
-        <span>Nueva versión disponible${version ? ` (${version})` : ''}</span>
-        <button id="btn-actualizar">Actualizar</button>`;
+        <span>Actualizando BAHI.ar${version ? ` (${version})` : ''}…</span>
+        <button id="btn-actualizar">Actualizar ahora</button>`;
     document.body.insertBefore(banner, document.body.children[1]);
+
+    // Recarga automática: garantiza que todos los usuarios (no solo los que
+    // clickean el banner) terminen en la versión nueva del shell (JS/CSS/HTML
+    // cacheados). El botón sigue disponible por si alguien quiere adelantarla.
+    setTimeout(() => location.reload(), AUTO_RELOAD_DELAY_MS);
 }
 
 function configurarBannerActualizacion() {
