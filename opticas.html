@@ -44,26 +44,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-    <header class="main-header">
-        <div class="header-content">
-            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
-                <img src="assets/images/mask-icon.svg" alt="" aria-hidden="true" width="36" height="36" style="flex-shrink:0;border-radius:9px;">
-                <span class="brand-logo__wordmark">
-                    <span class="brand-logo__name">BAHI<span class="brand-logo__name--accent">.ar</span></span>
-                    <span class="brand-logo__tagline">guía médica de Bahía Blanca</span>
-                </span>
-            </a>
-        </div>
-    </header>
-
-    <nav class="sub-nav" aria-label="Accesos rápidos">
-        <ul class="sub-nav-list">
-            <li><a href="index.html" class="sub-nav-link">Inicio</a></li>
-            <li><a href="guardias.html" class="sub-nav-link">Emergencia</a></li>
-            <li><a href="farmacias.html" class="sub-nav-link">Farmacias</a></li>
-            <li><a href="opticas.html" class="sub-nav-link active" aria-current="page">Ópticas</a></li>
-        </ul>
-    </nav>
+    <div id="header-nav-root"></div>
+    <script>
+        window.headerNavConfig = { page: 'opticas', type: 'maintenance' };
+    </script>
+    <script src="js/header-nav.js" defer></script>
 
     <main class="app-view" id="content">
         <div class="main-container" id="main-content">
