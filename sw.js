@@ -17,10 +17,10 @@
 
 // ─── Versión ──────────────────────────────────────────────────────────────────
 // ⚠ Incrementar en cada deploy para invalidar el caché y forzar install.
-// v4.103: fix cache stale — install ahora usa fetch({cache:'reload'}) en vez
-// de cache.add(), para no guardar en Cache Storage una respuesta vieja que
-// venía del HTTP cache del navegador.
-const CACHE_VERSION = 'v4.130';
+// v4.128: incluir header-nav.js (componente unificado de navegación) y todas
+// las páginas HTML nuevas (páginas legales, de construcción, etc.) en SHELL_ASSETS.
+// Esto garantiza que offline funcione completo sin inconsistencias de nav.
+const CACHE_VERSION = 'v4.128';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
@@ -28,15 +28,26 @@ const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 const SHELL_ASSETS = [
     './',
     './index.html',
-    './farmacias.html',
     './guardias.html',
+    './farmacias.html',
     './laboratorios.html',
     './ortopedias.html',
+    './Imagenes.html',
+    './privacidad.html',
+    './terminos.html',
+    './aviso-legal.html',
+    './enfermeria.html',
+    './fonoaudiologia.html',
+    './kinesiologia.html',
+    './nutricion.html',
+    './opticas.html',
     './assets/cuadros/CLOCK.svg',
     './assets/cuadros/OOSS.svg',
     './assets/cuadros/STOCK.svg',
     './style.css',
     './app.js',
+    './js/header-nav.js',
+    './js/bottom-nav-v2.js',
     './manifest.json',
 ];
 
