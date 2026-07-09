@@ -1911,3 +1911,159 @@ button.bottom-nav-item {
     color: #fff;
     border-bottom-color: rgba(255, 255, 255, 0.4);
 }
+
+/* =================================================================
+   DARK MODE
+   Activado agregando la clase .dark a <html> (ver script inline en
+   portada.html). Reutiliza las custom properties existentes, así
+   que la mayoría de los componentes se adaptan solo.
+   ================================================================= */
+
+html.dark {
+    --bg-main: #0B1120;
+    --card-bg: #161E30;
+    --text-main: #E6EAF2;
+    --text-muted: #94A3B8;
+    --border-light: #29344C;
+    --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.45), 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+html.dark body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+/* Textos que usaban --primary (azul marino) sobre fondos claros:
+   pierden contraste sobre las superficies oscuras del dark mode,
+   así que dentro de .dark pasan a un azul más claro y legible. */
+html.dark .card-field-icon,
+html.dark .card-detail-row a,
+html.dark .home-acc-vertodos,
+html.dark .btn-map-toggle,
+html.dark .legal-content h2,
+html.dark .legal-back:hover {
+    color: #6E93FF;
+}
+html.dark .card-detail-row a:hover { border-bottom-color: #6E93FF; }
+
+/* Superficies con blanco fijo en vez de var(--card-bg) */
+html.dark .search-container input[type="text"],
+html.dark .search-container--main input[type="text"],
+html.dark .btn-map-toggle,
+html.dark .sub-nav-link,
+html.dark .btn-share-wa,
+html.dark #btn-actualizar,
+html.dark .filter-chip,
+html.dark .filter-chip-select,
+html.dark .filter-chip-select option,
+html.dark .bottom-nav {
+    background: var(--card-bg);
+}
+
+@media (hover: hover) {
+    html.dark .btn-map-toggle:hover,
+    html.dark .btn-share-wa:hover { background: #1D2740; }
+}
+
+html.dark .mas-grid-item { background: #1A2338; }
+html.dark .mas-grid-item:hover,
+html.dark .mas-grid-item:focus-visible { background: #212C48; }
+html.dark .mas-grid-item__label { color: var(--text-main); }
+
+html.dark .resultado-nombre { color: var(--text-main); }
+html.dark .resultado-ubicacion,
+html.dark .busqueda-sin-resultados { color: var(--text-muted); }
+html.dark .resultado-busqueda { border-color: var(--border-light); }
+html.dark .resultado-busqueda:hover { background: rgba(255, 255, 255, 0.04); }
+html.dark .busqueda-global-resultados { background: var(--card-bg); border-color: var(--border-light); }
+
+html.dark .section-header-meta { color: var(--text-muted); }
+
+html.dark .cache-indicator-warning {
+    background: rgba(245, 124, 0, 0.14);
+    border-color: rgba(245, 124, 0, 0.35);
+    color: #FFB74D;
+}
+
+html.dark .faq-report-row { background: var(--card-bg); border-color: var(--border-light); }
+html.dark .faq-report-row__label { color: var(--text-muted); }
+
+html.dark .skeleton-line {
+    background: linear-gradient(90deg, #1C2740 25%, #263049 50%, #1C2740 75%);
+    background-size: 200% 100%;
+}
+
+/* ── Botón de cambio de tema ── */
+.theme-toggle-btn {
+    position: fixed;
+    right: 16px;
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    z-index: 55;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border-light);
+    background: var(--card-bg);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    touch-action: manipulation;
+    padding: 0;
+    transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle-btn:active { transform: scale(0.94); }
+
+.theme-toggle-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--primary);
+    pointer-events: none;
+}
+
+.theme-toggle-icon--sun { display: none; }
+html.dark .theme-toggle-icon--moon { display: none; }
+html.dark .theme-toggle-icon--sun { display: block; }
+html.dark .theme-toggle-icon { color: #FFB74D; }
+
+@media (min-width: 768px) {
+    .theme-toggle-btn { bottom: 20px; }
+}
+
+/* =================================================================
+   Transición de tema con la View Transitions API (máscara circular)
+   Basado en el ejemplo "circle" de https://theme-toggle.rdsx.dev/
+   ================================================================= */
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        --expo-out: linear(
+            0 0%, 0.1684 2.66%, 0.3165 5.49%,
+            0.446 8.52%, 0.5581 11.78%,
+            0.6535 15.29%, 0.7341 19.11%,
+            0.8011 23.3%, 0.8557 27.93%,
+            0.8962 32.68%, 0.9283 38.01%,
+            0.9529 44.08%, 0.9711 51.14%,
+            0.9833 59.06%, 0.9915 68.74%, 1 100%
+        );
+    }
+
+    ::view-transition-old(root),
+    html.dark::view-transition-old(root) {
+        animation: none;
+        animation-fill-mode: both;
+        z-index: -1;
+    }
+
+    ::view-transition-new(root) {
+        mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="white"/></svg>') center / 0 no-repeat;
+        animation: theme-toggle-circle 0.6s;
+        animation-fill-mode: both;
+        animation-timing-function: var(--expo-out);
+    }
+
+    @keyframes theme-toggle-circle {
+        to { mask-size: 200vmax; }
+    }
+}
