@@ -464,8 +464,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                 </div>
 
-                <!-- ── LABORATORIOS — colapsada. Carga sus datos recién al abrirse
-                     (ver lógica del acordeón inline al final del body). ── -->
+                <!-- ── FARMACIAS — colapsada. Carga todas las farmacias ── -->
+                <div class="home-acc-item" role="listitem">
+                    <h2 class="home-acc-heading">
+                        <button class="home-acc-header" data-categoria="farmacias" aria-expanded="false" aria-controls="home-acc-panel-farmacias">
+                            <span class="home-acc-icon-badge">
+                                <span class="home-acc-icon" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
+                            </span>
+                            <span class="home-acc-watermark" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
+                            <span class="home-acc-header__text">
+                                <span class="home-acc-header__label">Farmacias</span>
+                                <span class="home-acc-header__sub">Directorio completo</span>
+                            </span>
+                            <span class="home-acc-chevron-wrap">
+                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </button>
+                    </h2>
+                    <div class="home-acc-body" id="home-acc-panel-farmacias"></div>
+                </div>
+
+                <!-- ── EMERGENCIAS — colapsada. ── -->
+                <div class="home-acc-item" role="listitem">
+                    <h2 class="home-acc-heading">
+                        <button class="home-acc-header" data-categoria="emergencias" aria-expanded="false" aria-controls="home-acc-panel-emergencias">
+                            <span class="home-acc-icon-badge">
+                                <span class="home-acc-icon" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
+                            </span>
+                            <span class="home-acc-watermark" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
+                            <span class="home-acc-header__text">
+                                <span class="home-acc-header__label">Emergencias</span>
+                                <span class="home-acc-header__sub">Líneas y ambulancias</span>
+                            </span>
+                            <span class="home-acc-chevron-wrap">
+                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </button>
+                    </h2>
+                    <div class="home-acc-body" id="home-acc-panel-emergencias"></div>
+                </div>
+
+                <!-- ── LABORATORIOS — colapsada. Carga sus datos recién al abrirse ── -->
                 <div class="home-acc-item" role="listitem">
                     <h2 class="home-acc-heading">
                         <button class="home-acc-header" data-categoria="laboratorios" aria-expanded="false" aria-controls="home-acc-panel-laboratorios">
@@ -483,26 +522,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </button>
                     </h2>
                     <div class="home-acc-body" id="home-acc-panel-laboratorios"></div>
-                </div>
-
-                <!-- ── ORTOPEDIAS — colapsada. ── -->
-                <div class="home-acc-item" role="listitem">
-                    <h2 class="home-acc-heading">
-                        <button class="home-acc-header" data-categoria="ortopedias" aria-expanded="false" aria-controls="home-acc-panel-ortopedias">
-                            <span class="home-acc-icon-badge">
-                                <span class="home-acc-icon" data-icon-src="js/orthopedic-leg-svgrepo-com.svg" aria-hidden="true"></span>
-                            </span>
-                            <span class="home-acc-watermark" data-icon-src="js/orthopedic-leg-svgrepo-com.svg" aria-hidden="true"></span>
-                            <span class="home-acc-header__text">
-                                <span class="home-acc-header__label">Ortopedias</span>
-                                <span class="home-acc-header__sub">Insumos y rehabilitación</span>
-                            </span>
-                            <span class="home-acc-chevron-wrap">
-                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                            </span>
-                        </button>
-                    </h2>
-                    <div class="home-acc-body" id="home-acc-panel-ortopedias"></div>
                 </div>
 
                 <!-- ── IMÁGENES — colapsada. ── -->
@@ -523,26 +542,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </button>
                     </h2>
                     <div class="home-acc-body" id="home-acc-panel-imagenes"></div>
-                </div>
-
-                <!-- ── GUARDIAS — colapsada. ── -->
-                <div class="home-acc-item" role="listitem">
-                    <h2 class="home-acc-heading">
-                        <button class="home-acc-header" data-categoria="guardias" aria-expanded="false" aria-controls="home-acc-panel-guardias">
-                            <span class="home-acc-icon-badge">
-                                <span class="home-acc-icon" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
-                            </span>
-                            <span class="home-acc-watermark" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
-                            <span class="home-acc-header__text">
-                                <span class="home-acc-header__label">Guardias</span>
-                                <span class="home-acc-header__sub">Atención de urgencia</span>
-                            </span>
-                            <span class="home-acc-chevron-wrap">
-                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                            </span>
-                        </button>
-                    </h2>
-                    <div class="home-acc-body" id="home-acc-panel-guardias"></div>
                 </div>
 
             </div>
@@ -710,10 +709,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             //    correctamente un archivo externo adicional) ──
             const ACC_LIMITE = 6;
             const ACC_CATEGORIAS = {
+                farmacias:    { fuente: 'data/bd_bahiar.json', tipo: 'FARMACIA',         verTodos: 'farmacias.html' },
+                emergencias:  { fuente: 'data/bd_bahiar.json', tipo: 'EMERGENCIA',       verTodos: 'emergencias.html' },
                 laboratorios: { fuente: 'data/bd_bahiar.json', tipo: 'LABORATORIO',      verTodos: 'laboratorios.html' },
-                ortopedias:   { fuente: 'data/ortopedia.json',  tipo: 'ORTOPEDIA',        verTodos: 'ortopedias.html' },
                 imagenes:     { fuente: 'data/RX_bahiar.json',  tipo: 'RADIOLOGIA',       verTodos: 'imagenes.html' },
-                guardias:     { fuente: 'data/bd_bahiar.json',  tipo: 'UNIDAD SANITARIA', verTodos: 'guardias.html' },
             };
             const accCache = {};
 
