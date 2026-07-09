@@ -69,10 +69,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             z-index: 1;
         }
         .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="farmacias-turno"])::before { background: linear-gradient(var(--orange), var(--orange-dark)); }
+        .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="farmacias"])::before { background: linear-gradient(var(--orange), var(--orange-dark)); }
+        .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="emergencias"])::before          { background: linear-gradient(var(--cat-guardia), #991B1B); }
         .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="laboratorios"])::before      { background: linear-gradient(var(--accent), var(--cat-laboratorio-dark)); }
-        .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="ortopedias"])::before        { background: linear-gradient(var(--cat-ortopedia), var(--cat-ortopedia-dark)); }
         .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="imagenes"])::before          { background: linear-gradient(var(--cat-imagenes), var(--cat-imagenes-dark)); }
-        .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="guardias"])::before          { background: linear-gradient(var(--cat-guardia), #991B1B); }
 
         .home-acc-header {
             position: relative;
@@ -105,10 +105,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .home-acc-icon-badge .home-acc-icon { color: #fff; width: 22px; height: 22px; display: block; }
         .home-acc-header[data-categoria="farmacias-turno"] .home-acc-icon-badge { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+        .home-acc-header[data-categoria="farmacias"] .home-acc-icon-badge { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+        .home-acc-header[data-categoria="emergencias"] .home-acc-icon-badge         { background: linear-gradient(135deg, var(--cat-guardia), #991B1B); }
         .home-acc-header[data-categoria="laboratorios"] .home-acc-icon-badge      { background: linear-gradient(135deg, var(--accent), var(--cat-laboratorio-dark)); }
-        .home-acc-header[data-categoria="ortopedias"] .home-acc-icon-badge       { background: linear-gradient(135deg, var(--cat-ortopedia), var(--cat-ortopedia-dark)); }
         .home-acc-header[data-categoria="imagenes"] .home-acc-icon-badge         { background: linear-gradient(135deg, var(--cat-imagenes), var(--cat-imagenes-dark)); }
-        .home-acc-header[data-categoria="guardias"] .home-acc-icon-badge         { background: linear-gradient(135deg, var(--cat-guardia), #991B1B); }
 
         /* ── marca de agua: el mismo ícono, gigante y casi invisible, sangrando
                en el borde derecho — textura sin usar fotos ── */
@@ -126,10 +126,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .home-acc-item--featured .home-acc-watermark { opacity: 0.12; color: #fff; }
         .home-acc-header[data-categoria="farmacias-turno"] ~ .home-acc-watermark,
         .home-acc-header[data-categoria="farmacias-turno"] .home-acc-watermark { color: var(--orange); }
+        .home-acc-header[data-categoria="farmacias"] .home-acc-watermark { color: var(--orange); }
+        .home-acc-header[data-categoria="emergencias"] .home-acc-watermark { color: var(--cat-guardia); }
         .home-acc-header[data-categoria="laboratorios"] .home-acc-watermark { color: var(--accent); }
-        .home-acc-header[data-categoria="ortopedias"] .home-acc-watermark { color: var(--cat-ortopedia); }
         .home-acc-header[data-categoria="imagenes"] .home-acc-watermark { color: var(--cat-imagenes); }
-        .home-acc-header[data-categoria="guardias"] .home-acc-watermark { color: var(--cat-guardia); }
 
         .home-acc-header__text {
             flex: 1;
@@ -710,7 +710,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const ACC_LIMITE = 6;
             const ACC_CATEGORIAS = {
                 farmacias:    { fuente: 'data/bd_bahiar.json', tipo: 'FARMACIA',         verTodos: 'farmacias.html' },
-                emergencias:  { fuente: 'data/bd_bahiar.json', tipo: 'EMERGENCIA',       verTodos: 'emergencias.html' },
                 laboratorios: { fuente: 'data/bd_bahiar.json', tipo: 'LABORATORIO',      verTodos: 'laboratorios.html' },
                 imagenes:     { fuente: 'data/RX_bahiar.json',  tipo: 'RADIOLOGIA',       verTodos: 'imagenes.html' },
             };
@@ -729,6 +728,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
 
             function accRenderPanel(clave, panel) {
+                // CASO ESPECIAL: Emergencias (datos hardcodeados)
+                if (clave === 'emergencias') {
+                    const SVG_LLAMAR     = `<svg class="btn-icon btn-icon--call" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`;
+                    const SVG_WHATSAPP   = `<svg class="btn-icon btn-icon--whatsapp" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>`;
+                    
+                    const emergenciasHTML = `
+                        <div class="home-acc-cards">
+                          <article class="card card-emergencia" data-tipo="EMERGENCIA" data-estado="turno">
+                            <div class="card-top">
+                              <div class="card-info">
+                                <span class="card-badge card-badge--emergencia">● Emergencia gratuita</span>
+                                <h3 class="card-name">107</h3>
+                                <p class="card-addr">Emergencias Médicas · 24 hs</p>
+                              </div>
+                            </div>
+                            <div class="card-actions card-actions--single">
+                              <a href="tel:107" class="btn btn-accent" aria-label="Llamar al 107 - Emergencias médicas">${SVG_LLAMAR} Llamar al 107</a>
+                            </div>
+                          </article>
+
+                          <article class="card" data-tipo="AMBULANCIA">
+                            <div class="card-top">
+                              <div class="card-info">
+                                <span class="card-badge card-badge--ambulancia">Ambulancia</span>
+                                <h3 class="card-name">SEM Emergencias Médicas</h3>
+                                <p class="card-addr">(0291) 459-1919</p>
+                              </div>
+                            </div>
+                            <div class="card-actions">
+                              <a href="tel:02914591919" class="btn btn-accent" aria-label="Llamar a SEM Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
+                              <a href="https://wa.me/5492916492840" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de SEM Emergencias Médicas">${SVG_WHATSAPP} WhatsApp</a>
+                            </div>
+                          </article>
+
+                          <article class="card" data-tipo="AMBULANCIA">
+                            <div class="card-top">
+                              <div class="card-info">
+                                <span class="card-badge card-badge--ambulancia">Ambulancia</span>
+                                <h3 class="card-name">Alerta Emergencias Médicas</h3>
+                                <p class="card-addr">(0291) 455-3388</p>
+                              </div>
+                            </div>
+                            <div class="card-actions card-actions--single">
+                              <a href="tel:02914553388" class="btn btn-accent" aria-label="Llamar a Alerta Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
+                            </div>
+                          </article>
+                        </div>
+                        <a href="emergencias.html" class="home-acc-vertodos">Ver todas →</a>
+                    `;
+                    panel.innerHTML = emergenciasHTML;
+                    return;
+                }
+
                 const cfg = ACC_CATEGORIAS[clave];
                 accCargarDatos(clave)
                     .then(items => {
@@ -780,7 +832,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                         // Lazy load: solo si es una categoría manejada acá
                         // (no "farmacias-turno") y todavía no se cargó.
-                        if (panel && ACC_CATEGORIAS[clave] && !panel.dataset.cargado) {
+                        // Incluye "emergencias" aunque no esté en ACC_CATEGORIAS
+                        if (panel && (ACC_CATEGORIAS[clave] || clave === 'emergencias') && !panel.dataset.cargado) {
                             panel.dataset.cargado = '1';
                             panel.innerHTML = '<p class="home-acc-msg">Cargando...</p>';
                             accRenderPanel(clave, panel);
