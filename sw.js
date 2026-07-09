@@ -23,7 +23,7 @@
 // v4.129: header-nav.js corregido — Imágenes faltaba en FULL_NAV_ITEMS (nunca
 // aparecía en el sub-nav pese a ser una sección 'full' terminada). También se
 // corrigió la comparación de página activa para que no dependa de mayúsculas.
-const CACHE_VERSION = 'v4.172';
+const CACHE_VERSION = 'v4.173';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
