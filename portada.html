@@ -303,22 +303,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             justify-content: space-between;
             align-items: center;
             gap: 10px;
-            background: rgba(232, 114, 12, 0.12);
-            border: 1px solid rgba(232, 114, 12, 0.35);
+            background: rgba(232, 114, 12, 0.15);
+            border: 1px solid rgba(232, 114, 12, 0.3);
             border-radius: 12px;
             padding: 12px 14px;
             margin-bottom: 16px;
+            flex-wrap: wrap;
         }
         .footer-support .txt {
-            color: #ffd9b0;
+            color: #8B4513;
             font-size: 12px;
             flex: 1;
+            min-width: 150px;
         }
         .footer-support .txt b {
             display: block;
-            color: #fff;
+            color: #5C2E0A;
             font-size: 13.5px;
             font-weight: 700;
+        }
+        [data-mode="dark"] .footer-support {
+            background: rgba(232, 114, 12, 0.12);
+            border: 1px solid rgba(232, 114, 12, 0.35);
         }
         [data-mode="dark"] .footer-support .txt {
             color: #ffd9b0;
@@ -409,13 +415,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 10.5px;
             color: var(--text-muted, #5f6690);
             margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: center;
         }
         .footer-legal a {
             color: var(--text-muted, #5f6690);
             text-decoration: none;
+            white-space: nowrap;
         }
         .footer-legal a:hover {
             text-decoration: underline;
+        }
+        @media (max-width: 480px) {
+            .footer-legal {
+                font-size: 9.5px;
+                gap: 3px;
+            }
+            .footer-support {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .footer-support .txt {
+                min-width: auto;
+            }
+            .btn-donar {
+                width: 100%;
+            }
         }
     </style>
 
@@ -722,7 +750,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <footer class="app-footer">
             <div class="footer-support">
-                <div class="txt"><b>¿Te sirve BAHI.ar?</b> Ayudanos a mantenerlo gratis.</div>
+                <div class="txt"><b>¿Te resulta útil?</b> Podés ayudarnos.</div>
                 <a href="https://link.mercadopago.com.ar/mpbahiar" target="_blank" rel="noopener noreferrer" class="btn-donar" title="¿Te sirve la info? Ayudanos a mantenerla actualizada">Apoyar ❤️</a>
             </div>
             <div class="footer-links">
@@ -1063,37 +1091,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             inicializarAcordeon();
 
         })();
-    </script>
-
-    <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema claro/oscuro">
-        <svg class="theme-toggle-icon theme-toggle-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="theme-toggle-icon theme-toggle-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    </button>
-    <script>
-    (function () {
-        var btn = document.getElementById('theme-toggle');
-        if (!btn) return;
-
-        function actualizarAria() {
-            var esOscuro = document.documentElement.classList.contains('dark');
-            btn.setAttribute('aria-label', esOscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
-        }
-        actualizarAria();
-
-        function switchTheme() {
-            var esOscuro = document.documentElement.classList.toggle('dark');
-            try { localStorage.setItem('bahi-theme', esOscuro ? 'dark' : 'light'); } catch (e) {}
-            actualizarAria();
-        }
-
-        btn.addEventListener('click', function () {
-            if (!document.startViewTransition) {
-                switchTheme();
-                return;
-            }
-            document.startViewTransition(switchTheme);
-        });
-    })();
     </script>
 
     <div id="bottom-nav-root"></div>
