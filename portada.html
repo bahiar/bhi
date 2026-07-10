@@ -295,7 +295,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .app-footer {
             background: var(--footer-bg, #f5f7fa);
             margin-top: 18px;
-            padding: 22px 20px 18px;
+            padding: 22px 20px calc(84px + env(safe-area-inset-bottom));
             border-radius: 0 0 8px 8px;
         }
         .footer-support {
@@ -371,24 +371,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(26, 47, 142, 0.08);
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
+            color: var(--primary, #1a2f8e);
             font-size: 13px;
             font-weight: 700;
             cursor: pointer;
             text-decoration: none;
             transition: background 0.15s ease;
         }
+        .social-btn svg { width: 16px; height: 16px; }
         .social-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(26, 47, 142, 0.15);
         }
         .social-btn:focus-visible {
             outline: none;
+            box-shadow: 0 0 0 2px rgba(26, 47, 142, 0.3);
+        }
+        [data-mode="dark"] .social-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        [data-mode="dark"] .social-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        [data-mode="dark"] .social-btn:focus-visible {
             box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+        [data-mode="dark"] .btn-share-wa span {
+            color: #eef0f5;
         }
         .footer-report {
             display: flex;
@@ -436,7 +450,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         @media (max-width: 480px) {
             .app-footer {
-                padding: 14px 12px 12px;
+                padding: 14px 12px calc(80px + env(safe-area-inset-bottom));
                 margin-top: 12px;
             }
             .footer-support {
@@ -792,7 +806,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="footer-links">
                 <div class="footer-social">
                     <a href="https://www.facebook.com/guiabahiar/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Facebook">f</a>
-                    <a href="https://www.instagram.com/guiabahiar" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Instagram">@</a>
+                    <a href="https://www.instagram.com/guiabahiar" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                 </div>
                 <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" class="footer-report">
                     <span aria-hidden="true">⚠️</span> Reportar un error
