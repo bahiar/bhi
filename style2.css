@@ -62,6 +62,17 @@ body {
     }
 }
 
+/* Placeholder de #header-nav-root mientras carga header-nav.js (script defer):
+   sin esto, .main-header aparece con alto 0 y todo <main> salta hacia abajo
+   apenas el script termina de montar el header real. 96px ≈ 52px del
+   .header-content + el sub-nav de categorías en una sola fila; en mobile,
+   donde el sub-nav puede ocupar más, el salto residual es mínimo comparado
+   con el actual. */
+#header-nav-root {
+    display: block;
+    min-height: 96px;
+}
+
 .main-header {
     background: linear-gradient(135deg, #191971 0%, #1a2f8e 100%);
     padding: 0;

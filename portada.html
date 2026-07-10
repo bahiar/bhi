@@ -967,12 +967,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.addEventListener('keydown',function(e){
         if(e.key==='Escape'){
           var o=document.getElementById('faq-modal-overlay');if(o)o.style.display='none';
-          var m=document.getElementById('mas-modal-overlay');
-          if(m && m.style.display!=='none'){
-            m.style.display='none';
-            var t=document.querySelector('.bottom-nav-item[aria-controls=mas-modal-overlay]');
-            if(t) t.setAttribute('aria-expanded','false');
-          }
+          // El cierre de #mas-modal-overlay con Escape vive en bottom-nav-v2.js
+          // (setupMasModal), junto con el resto de su manejo de foco.
         }
       });
     </script>
