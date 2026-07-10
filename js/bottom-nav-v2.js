@@ -207,6 +207,15 @@
                 '</a>';
         });
 
+        // Ayuda: dispara el modal de FAQ (#faq-modal-overlay), que ya existe en cada
+        // página vía el sistema centralizado faq.js/faq-data.json pero hoy no tiene
+        // ningún botón que lo abra. Ícono inline (no via loadIcons) para no depender
+        // de un archivo SVG externo que puede no existir en /js.
+        html += '<button type="button" class="bottom-nav-item" aria-label="Ayuda" aria-haspopup="dialog" aria-expanded="false" aria-controls="faq-modal-overlay" onclick="var o=document.getElementById(\'faq-modal-overlay\');if(o){o.style.display=\'flex\';this.setAttribute(\'aria-expanded\',\'true\');}">' +
+            '<svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5" stroke-linecap="round"/><circle cx="12" cy="17" r="0.6" fill="currentColor" stroke="none"/></svg>' +
+            'Ayuda' +
+            '</button>';
+
         html += '<button type="button" class="bottom-nav-item" aria-label="Más servicios" aria-haspopup="dialog" aria-expanded="false" aria-controls="mas-modal-overlay" onclick="document.getElementById(\'mas-modal-overlay\').style.display=\'flex\';this.setAttribute(\'aria-expanded\',\'true\')">' +
             '<svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>' +
             'Más' +
