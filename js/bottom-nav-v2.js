@@ -86,31 +86,31 @@
         {
             href: 'ortopedias.html',
             label: 'Ortopedias',
-            ...ACCENT_COLORS['blue-dark'],
+            ...ACCENT_COLORS['blue-medium'],
             icon: 'orthopedic-leg-svgrepo-com.svg'
         },
         {
             href: 'imagenes.html',
             label: 'Imágenes',
-            ...ACCENT_COLORS['blue-light'],
+            ...ACCENT_COLORS['blue-medium'],
             icon: 'i-radiology-svgrepo-com.svg'
         },
         {
             href: 'opticas.html',
             label: 'Ópticas',
-            ...ACCENT_COLORS['blue-dark'],
+            ...ACCENT_COLORS['blue-medium'],
             icon: 'reading-glasses-optic-svgrepo-com.svg'
         },
         {
             href: 'enfermeria.html',
             label: 'Enfermería',
-            ...ACCENT_COLORS['blue-petrol'],
+            ...ACCENT_COLORS['blue-medium'],
             icon: 'nurse-svgrepo-com.svg'
         },
         {
             href: 'kinesiologia.html',
             label: 'Kinesiología',
-            ...ACCENT_COLORS['blue-light'],
+            ...ACCENT_COLORS['blue-medium'],
             icon: 'i-physical-therapy-svgrepo-com.svg'
         },
         {
@@ -122,7 +122,7 @@
         {
             href: 'fonoaudiologia.html',
             label: 'Fonoaudiología',
-            ...ACCENT_COLORS['blue-deeper'],
+            ...ACCENT_COLORS['blue-medium'],
             icon: 'ear-3-svgrepo-com.svg'
         }
     ];
@@ -228,7 +228,7 @@
 
         return '<div id="mas-modal-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,40,0.65);align-items:flex-end;justify-content:center;" ' +
             'role="dialog" aria-modal="true" aria-labelledby="mas-modal-title">' +
-            '<div style="background:var(--bg-card,#fff);width:100%;max-width:480px;border-radius:20px 20px 0 0;max-height:80vh;display:flex;flex-direction:column;overflow:hidden;">' +
+            '<div style="background:var(--card-bg,#fff);width:100%;max-width:480px;border-radius:20px 20px 0 0;max-height:80vh;display:flex;flex-direction:column;overflow:hidden;">' +
             '<div style="padding:16px 20px 6px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">' +
             '<div id="mas-modal-title" style="font-size:15px;font-weight:700;color:var(--primary,#191971);font-family:var(--font-brand);">Más servicios</div>' +
             '<button id="mas-modal-close" ' +
@@ -276,6 +276,47 @@
         });
     }
 
+    /**
+     * Inyecta un <style> con overrides dark-mode para toda la barra y el modal
+     * "Más". Vive acá (y no en style2.css) para que el componente sea
+     * autocontenido: cualquier página que lo incluya obtiene soporte dark mode
+     * sin depender de reglas externas. Usa los mismos tokens que ya definen
+     * [data-mode="dark"] en el resto del sitio (--card-bg, --text-main,
+     * --text-muted, --border-light, --bg-main).
+     */
+    function injectThemeStyles() {
+        if (document.getElementById('bottom-nav-v2-theme')) return;
+        var style = document.createElement('style');
+        style.id = 'bottom-nav-v2-theme';
+        style.textContent =
+            '[data-mode="dark"] .bottom-nav {' +
+            '  background: var(--card-bg, #181d33);' +
+            '  border-top: 1px solid var(--border-light, #2a3050);' +
+            '}' +
+            '[data-mode="dark"] .bottom-nav-item {' +
+            '  color: var(--text-muted, #9a9fb5);' +
+            '}' +
+            '[data-mode="dark"] .bottom-nav-item.active,' +
+            '[data-mode="dark"] .bottom-nav-item[aria-current="page"] {' +
+            '  color: var(--text-main, #eef0f5);' +
+            '}' +
+            '[data-mode="dark"] #mas-modal-title {' +
+            '  color: var(--text-main, #eef0f5) !important;' +
+            '}' +
+            '[data-mode="dark"] #mas-modal-close {' +
+            '  background: rgba(255,255,255,0.08) !important;' +
+            '  color: var(--text-main, #eef0f5) !important;' +
+            '}' +
+            '[data-mode="dark"] .mas-grid-item {' +
+            '  background: var(--bg-main, #0e1220);' +
+            '  border-color: var(--border-light, #2a3050);' +
+            '}' +
+            '[data-mode="dark"] .mas-grid-item__label {' +
+            '  color: var(--text-main, #eef0f5);' +
+            '}';
+        document.head.appendChild(style);
+    }
+
     function mount() {
         var root = document.getElementById('bottom-nav-root');
         if (!root) {
@@ -286,6 +327,7 @@
         root.outerHTML = buildNavHTML() + buildModalHTML();
         loadIcons(document);
         setupMasModal();
+        injectThemeStyles();
     }
 
     if (document.readyState === 'loading') {
