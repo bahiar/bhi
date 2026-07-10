@@ -30,6 +30,13 @@
     --cat-farmacia: var(--orange);
     --cat-guardia: #DC2626;
     --cat-laboratorio: var(--accent);
+    /* Nivel de superficie flotante (modales, dropdowns) — hoy igual a
+       card-bg en claro, pero queda listo para diferenciarlo si hace falta */
+    --surface-2: #F8FAFC;
+    /* Color de texto de marca (links, íconos de dato, headings de detalle).
+       En claro es --primary; en oscuro se resuelve UNA sola vez más abajo
+       en vez de parchear cada selector por separado. */
+    --text-link: var(--primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -550,7 +557,7 @@ body {
     width: 16px;
     height: 16px;
     min-width: 16px;
-    color: var(--primary);
+    color: var(--text-link);
     vertical-align: -0.125em;
     margin-right: 2px;
 }
@@ -567,14 +574,14 @@ body {
 }
 
 .card-detail-row a {
-    color: var(--primary);
+    color: var(--text-link);
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-color 0.15s ease;
 }
 
 .card-detail-row a:hover {
-    border-bottom-color: var(--primary);
+    border-bottom-color: var(--text-link);
 }
 
 .card-chevron {
@@ -755,7 +762,7 @@ body {
     font-family: var(--font-base);
     font-size: 13.5px;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--text-link);
     text-decoration: none;
     box-shadow: none;
     transition: transform 0.15s ease, background 0.15s ease;
@@ -1240,7 +1247,7 @@ body {
 
 .filter-chip-select option {
     background: #fff;
-    color: var(--primary);
+    color: var(--text-link);
 }
 
 .bottom-nav {
@@ -1278,7 +1285,7 @@ body {
 }
 
 .bottom-nav-item.active {
-    color: var(--primary);
+    color: var(--text-link);
 }
 
 .bottom-nav-item.active::after {
@@ -1288,7 +1295,7 @@ body {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: var(--primary);
+    background: var(--text-link);
 }
 
 .bottom-nav-icon {
@@ -1572,7 +1579,7 @@ button.bottom-nav-item {
 }
 
 .pwa-install-banner__btn--install:hover {
-    background: var(--bg-main);
+    background: #EEF2F7;
 }
 
 .pwa-install-banner__btn--dismiss {
@@ -1744,7 +1751,7 @@ button.bottom-nav-item {
 }
 
 .legal-back:hover {
-    color: var(--primary);
+    color: var(--text-link);
 }
 
 .legal-hero h1 {
@@ -1809,7 +1816,7 @@ button.bottom-nav-item {
     font-family: var(--font-brand);
     font-size: 17px;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--text-link);
     margin: 0 0 12px;
     padding-top: 22px;
     border-top: 1px solid var(--border-light);
@@ -1842,7 +1849,7 @@ button.bottom-nav-item {
 
 .legal-content li strong,
 .legal-content p strong {
-    color: var(--primary);
+    color: var(--text-link);
     font-weight: 700;
 }
 
@@ -1920,12 +1927,22 @@ button.bottom-nav-item {
    ================================================================= */
 
 html.dark {
-    --bg-main: #0B1120;
-    --card-bg: #161E30;
-    --text-main: #E6EAF2;
+    --bg-main: #10141F;
+    --card-bg: #1A1F2C;
+    --surface-2: #232838;
+    --text-main: #EDEEF2;
     --text-muted: #94A3B8;
-    --border-light: #29344C;
+    --border-light: #2A2F3D;
     --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.45), 0 4px 14px rgba(0, 0, 0, 0.35);
+
+    /* Resuelto UNA sola vez acá en vez de parchear cada selector que
+       usaba --primary como color de texto (ver :root, --text-link) */
+    --text-link: #8FA6FF;
+
+    /* Colores de categoría/marca: mismo matiz, apenas más luminosos para
+       no vibrar contra el fondo oscuro (no se tocan los que se usan como
+       fondo sólido de botones, solo los que funcionan como acento/borde) */
+    --cat-guardia: #F0554F;
 }
 
 html.dark body {
@@ -1933,18 +1950,20 @@ html.dark body {
     color: var(--text-main);
 }
 
-/* Textos que usaban --primary (azul marino) sobre fondos claros:
-   pierden contraste sobre las superficies oscuras del dark mode,
-   así que dentro de .dark pasan a un azul más claro y legible. */
-html.dark .card-field-icon,
-html.dark .card-detail-row a,
-html.dark .home-acc-vertodos,
-html.dark .btn-map-toggle,
-html.dark .legal-content h2,
-html.dark .legal-back:hover {
-    color: #6E93FF;
+/* Tinte de categoría más visible sobre fondo oscuro: la misma opacidad
+   baja que en claro queda casi invisible sobre una superficie ya oscura */
+html.dark .card[data-estado="turno"] {
+    background: linear-gradient(to right, rgba(255, 138, 61, 0.09) 0px, transparent 52px), var(--card-bg);
 }
-html.dark .card-detail-row a:hover { border-bottom-color: #6E93FF; }
+html.dark .card[data-tipo="GUARDIA"] {
+    background: linear-gradient(to right, rgba(240, 85, 79, 0.08) 0px, transparent 52px), var(--card-bg);
+}
+html.dark .home-acc-watermark { opacity: 0.09; }
+html.dark .home-acc-item--featured .home-acc-watermark { opacity: 0.16; }
+
+/* home-acc-vertodos vive en el <style> inline de portada.html, no acá,
+   así que se resuelve puntualmente con la misma variable centralizada */
+html.dark .home-acc-vertodos { color: var(--text-link); }
 
 /* Superficies con blanco fijo en vez de var(--card-bg) */
 html.dark .search-container input[type="text"],
@@ -1962,12 +1981,12 @@ html.dark .bottom-nav {
 
 @media (hover: hover) {
     html.dark .btn-map-toggle:hover,
-    html.dark .btn-share-wa:hover { background: #1D2740; }
+    html.dark .btn-share-wa:hover { background: var(--surface-2); }
 }
 
-html.dark .mas-grid-item { background: #1A2338; }
+html.dark .mas-grid-item { background: var(--card-bg); }
 html.dark .mas-grid-item:hover,
-html.dark .mas-grid-item:focus-visible { background: #212C48; }
+html.dark .mas-grid-item:focus-visible { background: var(--surface-2); }
 html.dark .mas-grid-item__label { color: var(--text-main); }
 
 html.dark .resultado-nombre { color: var(--text-main); }
