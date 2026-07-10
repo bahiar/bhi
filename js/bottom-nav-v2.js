@@ -12,9 +12,9 @@
  * Ver ICON_BASE_PATH más abajo si se necesita cambiar la carpeta de íconos.
  *
  * La página activa se detecta automáticamente por el nombre de archivo actual.
- * El manejador de tecla Escape para cerrar el modal ya existe en el <script> propio
- * de cada página (busca #mas-modal-overlay y el botón con aria-controls="mas-modal-overlay");
- * este componente mantiene esos mismos IDs/selectores para no romper esa lógica.
+ * El modal "Más" maneja su propio ciclo de foco (patrón WAI-ARIA dialog) y su
+ * cierre con Escape acá mismo, en setupMasModal() — no depende de que la página
+ * que lo incluye repita esa lógica en un <script> propio.
  */
 (function () {
     'use strict';
@@ -84,13 +84,13 @@
             icon: 'lab-svgrepo-com.svg'
         },
         {
-            href: 'https://www.bahi.ar/ortopedias',
+            href: 'ortopedias.html',
             label: 'Ortopedias',
             ...ACCENT_COLORS['blue-dark'],
             icon: 'orthopedic-leg-svgrepo-com.svg'
         },
         {
-            href: 'https://www.bahi.ar/Imagenes',
+            href: 'imagenes.html',
             label: 'Imágenes',
             ...ACCENT_COLORS['blue-light'],
             icon: 'i-radiology-svgrepo-com.svg'
@@ -207,7 +207,7 @@
                 '</a>';
         });
 
-        html += '<button type="button" class="bottom-nav-item" aria-label="Más servicios" aria-haspopup="dialog" aria-expanded="false" aria-controls="mas-modal-overlay" onclick="document.getElementById(\'mas-modal-overlay\').style.display=\'flex\';this.setAttribute(\'aria-expanded\',\'true\')">' +
+        html += '<button type="button" id="btn-mas-servicios" class="bottom-nav-item" aria-label="Más servicios" aria-haspopup="dialog" aria-expanded="false" aria-controls="mas-modal-overlay">' +
             '<svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>' +
             'Más' +
             '</button>';
@@ -227,17 +227,53 @@
         }).join('');
 
         return '<div id="mas-modal-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,40,0.65);align-items:flex-end;justify-content:center;" ' +
-            'onclick="if(event.target===this){this.style.display=\'none\';document.querySelector(\'.bottom-nav-item[aria-controls=mas-modal-overlay]\').setAttribute(\'aria-expanded\',\'false\');}" ' +
             'role="dialog" aria-modal="true" aria-labelledby="mas-modal-title">' +
             '<div style="background:var(--bg-card,#fff);width:100%;max-width:480px;border-radius:20px 20px 0 0;max-height:80vh;display:flex;flex-direction:column;overflow:hidden;">' +
             '<div style="padding:16px 20px 6px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">' +
             '<div id="mas-modal-title" style="font-size:15px;font-weight:700;color:var(--primary,#191971);font-family:var(--font-brand);">Más servicios</div>' +
-            '<button onclick="document.getElementById(\'mas-modal-overlay\').style.display=\'none\';document.querySelector(\'.bottom-nav-item[aria-controls=mas-modal-overlay]\').setAttribute(\'aria-expanded\',\'false\')" ' +
-            'style="width:30px;height:30px;border-radius:50%;background:rgba(15,23,42,0.06);border:none;color:#525E73;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;" aria-label="Cerrar">✕</button>' +
+            '<button id="mas-modal-close" ' +
+            'style="width:44px;height:44px;border-radius:50%;background:rgba(15,23,42,0.06);border:none;color:#525E73;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;" aria-label="Cerrar">✕</button>' +
             '</div>' +
             '<div class="mas-grid" style="overflow-y:auto;padding:10px 20px 26px;">' + itemsHtml + '</div>' +
             '</div>' +
             '</div>';
+    }
+
+    /**
+     * Maneja el ciclo de vida del modal "Más" siguiendo el patrón WAI-ARIA de diálogo:
+     * al abrir, mueve el foco adentro; al cerrar (X, click en el fondo o Escape),
+     * lo devuelve al botón que lo disparó. Vive acá y no en cada página, porque
+     * bottom-nav-v2.js es el único componente reutilizable entre todas ellas.
+     */
+    function setupMasModal() {
+        var trigger = document.getElementById('btn-mas-servicios');
+        var overlay = document.getElementById('mas-modal-overlay');
+        var closeBtn = document.getElementById('mas-modal-close');
+        if (!trigger || !overlay || !closeBtn) return;
+
+        function onKeydown(e) {
+            if (e.key === 'Escape') closeModal();
+        }
+
+        function openModal() {
+            overlay.style.display = 'flex';
+            trigger.setAttribute('aria-expanded', 'true');
+            closeBtn.focus();
+            document.addEventListener('keydown', onKeydown);
+        }
+
+        function closeModal() {
+            overlay.style.display = 'none';
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.focus();
+            document.removeEventListener('keydown', onKeydown);
+        }
+
+        trigger.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) closeModal();
+        });
     }
 
     function mount() {
@@ -249,6 +285,7 @@
         }
         root.outerHTML = buildNavHTML() + buildModalHTML();
         loadIcons(document);
+        setupMasModal();
     }
 
     if (document.readyState === 'loading') {
