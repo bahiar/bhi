@@ -1111,7 +1111,7 @@ body {
     }
 
     .sub-nav-list {
-        justify-content: center;
+        justify-content: flex-start;
         gap: 12px;
         max-width: 1200px;
     }
@@ -1937,13 +1937,13 @@ button.bottom-nav-item {
    que la mayoría de los componentes se adaptan solo.
    ================================================================= */
 
-html.dark {
-    --bg-main: #10141F;
-    --card-bg: #1A1F2C;
+html[data-mode="dark"] {
+    --bg-main: #0e1220;
+    --card-bg: #181d33;
     --surface-2: #232838;
-    --text-main: #EDEEF2;
-    --text-muted: #94A3B8;
-    --border-light: #2A2F3D;
+    --text-main: #eef0f5;
+    --text-muted: #9a9fb5;
+    --border-light: #2a3050;
     --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.45), 0 4px 14px rgba(0, 0, 0, 0.35);
 
     /* Resuelto UNA sola vez acá en vez de parchear cada selector que
@@ -1956,69 +1956,69 @@ html.dark {
     --cat-guardia: #F0554F;
 }
 
-html.dark body {
+html[data-mode="dark"] body {
     background-color: var(--bg-main);
     color: var(--text-main);
 }
 
 /* Tinte de categoría más visible sobre fondo oscuro: la misma opacidad
    baja que en claro queda casi invisible sobre una superficie ya oscura */
-html.dark .card[data-estado="turno"] {
+html[data-mode="dark"] .card[data-estado="turno"] {
     background: linear-gradient(to right, rgba(255, 138, 61, 0.09) 0px, transparent 52px), var(--card-bg);
 }
-html.dark .card[data-tipo="GUARDIA"] {
+html[data-mode="dark"] .card[data-tipo="GUARDIA"] {
     background: linear-gradient(to right, rgba(240, 85, 79, 0.08) 0px, transparent 52px), var(--card-bg);
 }
-html.dark .home-acc-watermark { opacity: 0.09; }
-html.dark .home-acc-item--featured .home-acc-watermark { opacity: 0.16; }
+html[data-mode="dark"] .home-acc-watermark { opacity: 0.09; }
+html[data-mode="dark"] .home-acc-item--featured .home-acc-watermark { opacity: 0.16; }
 
 /* home-acc-vertodos vive en el <style> inline de portada.html, no acá,
    así que se resuelve puntualmente con la misma variable centralizada */
-html.dark .home-acc-vertodos { color: var(--text-link); }
+html[data-mode="dark"] .home-acc-vertodos { color: var(--text-link); }
 
 /* Superficies con blanco fijo en vez de var(--card-bg) */
-html.dark .search-container input[type="text"],
-html.dark .search-container--main input[type="text"],
-html.dark .btn-map-toggle,
-html.dark .sub-nav-link,
-html.dark .btn-share-wa,
-html.dark #btn-actualizar,
-html.dark .filter-chip,
-html.dark .filter-chip-select,
-html.dark .filter-chip-select option,
-html.dark .bottom-nav {
+html[data-mode="dark"] .search-container input[type="text"],
+html[data-mode="dark"] .search-container--main input[type="text"],
+html[data-mode="dark"] .btn-map-toggle,
+html[data-mode="dark"] .sub-nav-link,
+html[data-mode="dark"] .btn-share-wa,
+html[data-mode="dark"] #btn-actualizar,
+html[data-mode="dark"] .filter-chip,
+html[data-mode="dark"] .filter-chip-select,
+html[data-mode="dark"] .filter-chip-select option,
+html[data-mode="dark"] .bottom-nav {
     background: var(--card-bg);
 }
 
 @media (hover: hover) {
-    html.dark .btn-map-toggle:hover,
-    html.dark .btn-share-wa:hover { background: var(--surface-2); }
+    html[data-mode="dark"] .btn-map-toggle:hover,
+    html[data-mode="dark"] .btn-share-wa:hover { background: var(--surface-2); }
 }
 
-html.dark .mas-grid-item { background: var(--card-bg); }
-html.dark .mas-grid-item:hover,
-html.dark .mas-grid-item:focus-visible { background: var(--surface-2); }
-html.dark .mas-grid-item__label { color: var(--text-main); }
+html[data-mode="dark"] .mas-grid-item { background: var(--card-bg); }
+html[data-mode="dark"] .mas-grid-item:hover,
+html[data-mode="dark"] .mas-grid-item:focus-visible { background: var(--surface-2); }
+html[data-mode="dark"] .mas-grid-item__label { color: var(--text-main); }
 
-html.dark .resultado-nombre { color: var(--text-main); }
-html.dark .resultado-ubicacion,
-html.dark .busqueda-sin-resultados { color: var(--text-muted); }
-html.dark .resultado-busqueda { border-color: var(--border-light); }
-html.dark .resultado-busqueda:hover { background: rgba(255, 255, 255, 0.04); }
-html.dark .busqueda-global-resultados { background: var(--card-bg); border-color: var(--border-light); }
+html[data-mode="dark"] .resultado-nombre { color: var(--text-main); }
+html[data-mode="dark"] .resultado-ubicacion,
+html[data-mode="dark"] .busqueda-sin-resultados { color: var(--text-muted); }
+html[data-mode="dark"] .resultado-busqueda { border-color: var(--border-light); }
+html[data-mode="dark"] .resultado-busqueda:hover { background: rgba(255, 255, 255, 0.04); }
+html[data-mode="dark"] .busqueda-global-resultados { background: var(--card-bg); border-color: var(--border-light); }
 
-html.dark .section-header-meta { color: var(--text-muted); }
+html[data-mode="dark"] .section-header-meta { color: var(--text-muted); }
 
-html.dark .cache-indicator-warning {
+html[data-mode="dark"] .cache-indicator-warning {
     background: rgba(245, 124, 0, 0.14);
     border-color: rgba(245, 124, 0, 0.35);
     color: #FFB74D;
 }
 
-html.dark .faq-report-row { background: var(--card-bg); border-color: var(--border-light); }
-html.dark .faq-report-row__label { color: var(--text-muted); }
+html[data-mode="dark"] .faq-report-row { background: var(--card-bg); border-color: var(--border-light); }
+html[data-mode="dark"] .faq-report-row__label { color: var(--text-muted); }
 
-html.dark .skeleton-line {
+html[data-mode="dark"] .skeleton-line {
     background: linear-gradient(90deg, #1C2740 25%, #263049 50%, #1C2740 75%);
     background-size: 200% 100%;
 }
@@ -2054,9 +2054,9 @@ html.dark .skeleton-line {
 }
 
 .theme-toggle-icon--sun { display: none; }
-html.dark .theme-toggle-icon--moon { display: none; }
-html.dark .theme-toggle-icon--sun { display: block; }
-html.dark .theme-toggle-icon { color: #FFB74D; }
+html[data-mode="dark"] .theme-toggle-icon--moon { display: none; }
+html[data-mode="dark"] .theme-toggle-icon--sun { display: block; }
+html[data-mode="dark"] .theme-toggle-icon { color: #FFB74D; }
 
 @media (min-width: 768px) {
     .theme-toggle-btn { bottom: 20px; }
@@ -2080,7 +2080,7 @@ html.dark .theme-toggle-icon { color: #FFB74D; }
     }
 
     ::view-transition-old(root),
-    html.dark::view-transition-old(root) {
+    html[data-mode="dark"]::view-transition-old(root) {
         animation: none;
         animation-fill-mode: both;
         z-index: -1;
