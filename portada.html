@@ -292,10 +292,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             box-shadow: 0 0 0 3px rgba(25, 25, 113, 0.2);
         }
         /* ── Footer mejorado (app-footer) ── */
+        .action-strip {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
         .app-footer {
             background: var(--footer-bg, #f5f7fa);
             margin-top: 18px;
-            padding: 22px 20px calc(84px + env(safe-area-inset-bottom));
+            padding: 22px 6px calc(84px + env(safe-area-inset-bottom));
             border-radius: 0 0 8px 8px;
         }
         .footer-support {
@@ -383,7 +389,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             text-decoration: none;
             transition: background 0.15s ease;
         }
-        .social-btn svg { width: 16px; height: 16px; }
+        .social-btn svg { width: 19px; height: 19px; }
         .social-btn:hover {
             background: rgba(26, 47, 142, 0.15);
         }
@@ -410,13 +416,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             gap: 6px;
             background: none;
             border: none;
-            color: var(--footer-text, #c9cdf0);
+            color: #000;
             font-size: 12px;
             text-decoration: underline;
             min-height: 44px;
             cursor: pointer;
             padding: 0;
             font-family: inherit;
+        }
+        [data-mode="dark"] .footer-report {
+            color: var(--footer-text, #c9cdf0);
         }
         .footer-report:hover {
             opacity: 0.8;
@@ -450,7 +459,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         @media (max-width: 480px) {
             .app-footer {
-                padding: 14px 12px calc(80px + env(safe-area-inset-bottom));
+                padding: 14px 4px calc(80px + env(safe-area-inset-bottom));
                 margin-top: 12px;
             }
             .footer-support {
@@ -805,7 +814,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="footer-links">
                 <div class="footer-social">
-                    <a href="https://www.facebook.com/guiabahiar/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Facebook">f</a>
+                    <a href="https://www.facebook.com/guiabahiar/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
                     <a href="https://www.instagram.com/guiabahiar" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                 </div>
                 <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" class="footer-report">
