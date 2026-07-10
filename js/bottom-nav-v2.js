@@ -277,17 +277,22 @@
     }
 
     /**
-     * Inyecta un <style> con overrides dark-mode para lo que NO cubre
-     * style2.css (que ya soluciona .bottom-nav y .mas-grid-item de forma
-     * nativa vía html[data-mode="dark"]). Acá solo queda lo que se genera
-     * con color inline en este mismo script: el texto/estado activo de
-     * .bottom-nav-item, y el título + botón cerrar del modal "Más".
+     * Inyecta un <style> con overrides dark-mode para toda la barra y el modal
+     * "Más". Vive acá (y no en style2.css) para que el componente sea
+     * autocontenido: cualquier página que lo incluya obtiene soporte dark mode
+     * sin depender de reglas externas. Usa los mismos tokens que ya definen
+     * [data-mode="dark"] en el resto del sitio (--card-bg, --text-main,
+     * --text-muted, --border-light, --bg-main).
      */
     function injectThemeStyles() {
         if (document.getElementById('bottom-nav-v2-theme')) return;
         var style = document.createElement('style');
         style.id = 'bottom-nav-v2-theme';
         style.textContent =
+            '[data-mode="dark"] .bottom-nav {' +
+            '  background: var(--card-bg, #181d33) !important;' +
+            '  border-top: 1px solid var(--border-light, #2a3050) !important;' +
+            '}' +
             '[data-mode="dark"] .bottom-nav-item {' +
             '  color: var(--text-muted, #9a9fb5) !important;' +
             '}' +
@@ -295,11 +300,21 @@
             '[data-mode="dark"] .bottom-nav-item[aria-current="page"] {' +
             '  color: var(--text-main, #eef0f5) !important;' +
             '}' +
+            '[data-mode="dark"] #mas-modal-overlay > div {' +
+            '  background: var(--card-bg, #181d33) !important;' +
+            '}' +
             '[data-mode="dark"] #mas-modal-title {' +
             '  color: var(--text-main, #eef0f5) !important;' +
             '}' +
             '[data-mode="dark"] #mas-modal-close {' +
             '  background: rgba(255,255,255,0.08) !important;' +
+            '  color: var(--text-main, #eef0f5) !important;' +
+            '}' +
+            '[data-mode="dark"] .mas-grid-item {' +
+            '  background: var(--bg-main, #0e1220) !important;' +
+            '  border-color: var(--border-light, #2a3050) !important;' +
+            '}' +
+            '[data-mode="dark"] .mas-grid-item__label {' +
             '  color: var(--text-main, #eef0f5) !important;' +
             '}';
         document.head.appendChild(style);
