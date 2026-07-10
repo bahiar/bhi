@@ -23,7 +23,12 @@
 // v4.129: header-nav.js corregido — Imágenes faltaba en FULL_NAV_ITEMS (nunca
 // aparecía en el sub-nav pese a ser una sección 'full' terminada). También se
 // corrigió la comparación de página activa para que no dependa de mayúsculas.
-const CACHE_VERSION = 'v4.204';
+// v4.205: fix de casing "Imagenes.html" → "imagenes.html" en SHELL_ASSETS (el
+// precache de esa página fallaba en silencio por mismatch de mayúsculas contra
+// el filesystem case-sensitive de GitHub Pages). También se agregó
+// updateViaCache:'none' al register() en app.js, para que el navegador no siga
+// sirviendo sw.js desde su propia caché HTTP al chequear actualizaciones.
+const CACHE_VERSION = 'v4.205';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
@@ -35,7 +40,7 @@ const SHELL_ASSETS = [
     './farmacias.html',
     './laboratorios.html',
     './ortopedias.html',
-    './Imagenes.html',
+    './imagenes.html',
     './privacidad.html',
     './terminos.html',
     './aviso-legal.html',
