@@ -64,8 +64,11 @@
         html += '<div class="header-actions">';
 
         if (type === 'full') {
-            // Páginas funcionales: botón instalar + FAQ
+            // Páginas funcionales: botón instalar + dark mode + FAQ
             html += '<button id="btn-instalar-app" aria-label="Instalar la app BAHI.ar" class="header-btn header-btn--instalar" type="button" hidden>Instalar</button>' +
+                '<button id="btn-theme-toggle" aria-label="Cambiar a modo oscuro" aria-pressed="false" class="header-btn" type="button">' +
+                '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 3v1m0 16v1M4.22 4.22l.707.707M18.071 18.071l.707.707M3 12h1m16 0h1M4.22 19.78l.707-.707M18.071 5.929l.707-.707"/></svg>' +
+                '</button>' +
                 '<button onclick="document.getElementById(\'faq-modal-overlay\').style.display=\'flex\'" aria-label="Ayuda: preguntas frecuentes" class="header-btn">' +
                 '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' +
                 'Ayuda' +
@@ -108,6 +111,29 @@
         return html;
     }
 
+    function toggleTheme() {
+        var root = document.documentElement;
+        var current = root.getAttribute('data-mode') || 'light';
+        var next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-mode', next);
+        try {
+            localStorage.setItem('bahi-theme', next);
+        } catch (e) {}
+        updateThemeButton(next);
+    }
+
+    function updateThemeButton(mode) {
+        var btn = document.getElementById('btn-theme-toggle');
+        if (!btn) return;
+        var isDark = mode === 'dark';
+        btn.setAttribute('aria-pressed', String(isDark));
+        btn.setAttribute('aria-label', isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+        // Cambiar ícono: sol para light, luna para dark
+        btn.innerHTML = isDark 
+            ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+            : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+    }
+
     function mount() {
         var root = document.getElementById('header-nav-root');
         if (!root) return;
@@ -123,6 +149,25 @@
             subNavHTML;
 
         root.replaceWith(tempContainer.firstChild, tempContainer.lastChild);
+
+        // Setup theme toggle si está disponible
+        var themeBtn = document.getElementById('btn-theme-toggle');
+        if (themeBtn) {
+            var currentMode = document.documentElement.getAttribute('data-mode') || 'light';
+            updateThemeButton(currentMode);
+            themeBtn.addEventListener('click', toggleTheme);
+        }
+
+        // Listen para cambios de preferencia del SO
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                if (!localStorage.getItem('bahi-theme')) {
+                    var mode = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-mode', mode);
+                    updateThemeButton(mode);
+                }
+            });
+        }
     }
 
     if (document.readyState === 'loading') {
