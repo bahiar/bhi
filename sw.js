@@ -28,7 +28,7 @@
 // el filesystem case-sensitive de GitHub Pages). También se agregó
 // updateViaCache:'none' al register() en app.js, para que el navegador no siga
 // sirviendo sw.js desde su propia caché HTTP al chequear actualizaciones.
-const CACHE_VERSION = 'v4.209';
+const CACHE_VERSION = 'v4.210';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
