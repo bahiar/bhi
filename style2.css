@@ -889,25 +889,10 @@ body {
     border-color: var(--primary);
 }
 
-/* Secciones en construcción: opacidad reducida + badge, para que no
-   se hagan clic esperando datos reales todavía */
+/* Secciones en construcción: opacidad reducida, sin badge (el badge
+   sumaba ancho extra y empujaba ítems fuera de la fila visible) */
 .sub-nav-link[data-status="construccion"] {
     opacity: 0.6;
-}
-
-.sub-nav-badge {
-    display: inline-block;
-    margin-left: 6px;
-    padding: 1px 6px;
-    border-radius: 8px;
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    background: var(--orange-light);
-    color: var(--orange-dark);
-    vertical-align: middle;
-    line-height: 1.5;
 }
 
 .error-state {
@@ -1192,6 +1177,51 @@ body {
     .sub-nav.is-at-start::before { opacity: 0; }
     .sub-nav.is-at-end::after { opacity: 0; }
 
+    /* Flechas tipo Airbnb: circulares, flotando sobre el degradé,
+       ocultas hasta que se pasa el mouse por el nav; cada una se
+       esconde sola cuando ya no hay nada para ese lado (is-at-start /
+       is-at-end, misma lógica que los fades). Solo tiene sentido con
+       mouse (hover: hover) — en touch el swipe nativo ya alcanza. */
+    .sub-nav-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid var(--border-light);
+        background: var(--card-bg);
+        color: var(--text-main);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
+        opacity: 0;
+        transition: opacity 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .sub-nav-arrow--prev { left: 4px; }
+    .sub-nav-arrow--next { right: 4px; }
+
+    .sub-nav.is-at-start .sub-nav-arrow--prev,
+    .sub-nav.is-at-end .sub-nav-arrow--next {
+        display: none !important;
+    }
+
+    @media (hover: hover) {
+        .sub-nav-arrow {
+            display: flex;
+        }
+        .sub-nav:hover .sub-nav-arrow {
+            opacity: 1;
+        }
+        .sub-nav-arrow:hover {
+            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.22);
+        }
+    }
+
     .sub-nav-list .sub-nav-link {
         background: transparent;
         border: none;
@@ -1215,9 +1245,7 @@ body {
         border-bottom-color: var(--orange);
     }
 
-    .sub-nav-list .sub-nav-link[data-status="construccion"] {
-        opacity: 0.55;
-    }
+
 
     .cards-grid {
         padding-left: 0;
@@ -2099,11 +2127,6 @@ html.dark .bottom-nav {
 @media (hover: hover) {
     html.dark .btn-map-toggle:hover,
     html.dark .btn-share-wa:hover { background: var(--surface-2); }
-}
-
-html.dark .sub-nav-badge {
-    background: rgba(255, 107, 0, 0.18);
-    color: #FF9955;
 }
 
 html.dark .mas-grid-item { background: var(--card-bg); }
