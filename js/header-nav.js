@@ -100,7 +100,11 @@
         var current = getCurrentPage();
         var navItems = (type === 'legal') ? LEGAL_NAV_ITEMS : FULL_NAV_ITEMS;
 
+        var arrowSvgPrev = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>';
+        var arrowSvgNext = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>';
+
         var html = '<nav class="sub-nav" aria-label="Navegación principal">' +
+            '<button type="button" class="sub-nav-arrow sub-nav-arrow--prev" aria-label="Ver secciones anteriores" tabindex="-1">' + arrowSvgPrev + '</button>' +
             '<ul class="sub-nav-list">';
 
         navItems.forEach(function(item) {
@@ -108,12 +112,12 @@
             html += '<li><a href="' + item.href + '" class="sub-nav-link' + (isCurrent ? ' active' : '') + '"' +
                 (isCurrent ? ' aria-current="page"' : '') +
                 (item.enConstruccion ? ' data-status="construccion"' : '') +
-                '>' + item.label +
-                (item.enConstruccion ? '<span class="sub-nav-badge">Próx.</span>' : '') +
-                '</a></li>';
+                '>' + item.label + '</a></li>';
         });
 
-        html += '</ul></nav>';
+        html += '</ul>' +
+            '<button type="button" class="sub-nav-arrow sub-nav-arrow--next" aria-label="Ver más secciones" tabindex="-1">' + arrowSvgNext + '</button>' +
+            '</nav>';
         return html;
     }
 
@@ -152,6 +156,9 @@
         var list = document.querySelector('.sub-nav-list');
         if (!nav || !list) return;
 
+        var prevBtn = nav.querySelector('.sub-nav-arrow--prev');
+        var nextBtn = nav.querySelector('.sub-nav-arrow--next');
+
         function updateEdgeFades() {
             var maxScroll = list.scrollWidth - list.clientWidth;
             nav.classList.toggle('is-at-start', list.scrollLeft <= 1);
@@ -159,14 +166,22 @@
         }
 
         list.addEventListener('wheel', function(e) {
-            // Solo redirigir cuando el gesto es mayormente vertical
-            // (rueda de mouse); dejar pasar el trackpad, que ya manda
-            // deltaX nativo.
             if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
                 list.scrollLeft += e.deltaY;
                 e.preventDefault();
             }
         }, { passive: false });
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                list.scrollBy({ left: -240, behavior: 'smooth' });
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                list.scrollBy({ left: 240, behavior: 'smooth' });
+            });
+        }
 
         list.addEventListener('scroll', updateEdgeFades, { passive: true });
         window.addEventListener('resize', updateEdgeFades);
