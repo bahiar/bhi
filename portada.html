@@ -291,13 +291,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             outline: none;
             box-shadow: 0 0 0 3px rgba(25, 25, 113, 0.2);
         }
-        /* ── Footer mejorado (app-footer) ── */
-        .action-strip {
-            padding-left: 0;
-            padding-right: 0;
-            margin-left: 0;
-            margin-right: 0;
-        }
+        /* ── Footer mejorado (app-footer) ──
+           .action-strip ahora vive DENTRO de #main-content.main-container
+           (ver HTML), así que hereda automáticamente el mismo max-width,
+           padding lateral y centrado que las cards de arriba. Ya no
+           necesita padding/margin propios en el eje horizontal. */
         .app-footer {
             background: var(--footer-bg, #f5f7fa);
             margin-top: 18px;
@@ -306,9 +304,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .footer-support {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
             background: rgba(232, 114, 12, 0.15);
             border: 1px solid rgba(232, 114, 12, 0.3);
             border-radius: 12px;
@@ -319,7 +317,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .footer-support .txt {
             color: #8B4513;
             font-size: 12px;
-            flex: 1;
+            flex: 0 1 auto;
             min-width: 150px;
         }
         .footer-support .txt b {
@@ -809,11 +807,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             </div>
 
-        </div>
+            <div class="action-strip">
 
-        <div class="action-strip">
-
-        <footer class="app-footer">
+            <footer class="app-footer">
             <div class="footer-support">
                 <div class="txt"><b>¿Te resulta útil?</b> Podés ayudarnos.</div>
                 <a href="https://link.mercadopago.com.ar/mpbahiar" target="_blank" rel="noopener noreferrer" class="btn-donar" title="¿Te sirve la info? Ayudanos a mantenerla actualizada">Apoyar</a>
@@ -832,6 +828,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="privacidad.html">Privacidad</a><span aria-hidden="true">·</span><a href="aviso-legal.html">Aviso legal</a><span aria-hidden="true">·</span><a href="terminos.html">Términos</a><span aria-hidden="true">·</span>© 2026 BAHI.ar
             </div>
         </footer>
+
+            </div>
+
+        </div>
     </main>
 
     <div id="faq-modal-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,40,0.65);align-items:flex-end;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">

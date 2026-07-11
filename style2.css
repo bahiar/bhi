@@ -1100,15 +1100,14 @@ body {
     .filter-chips-container,
     #contenedor-cards,
     .cards-grid,
-    .action-strip,
     .section-divider {
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;
     }
 
-    .action-strip.action-strip {
-        padding: 20px 24px 0;
+    .action-strip {
+        padding-top: 20px;
     }
 
     .sub-nav {
@@ -1739,7 +1738,7 @@ button.bottom-nav-item {
        "comprimido" comparado con las cards de arriba) */
     align-items: stretch;
     gap: 0;
-    padding: 20px 16px 0;
+    padding-top: 20px;
     width: 100%;
 }
 
@@ -2140,15 +2139,3 @@ html.dark .theme-toggle-icon { color: #FFB74D; }
     }
 }
 
-/* =================================================================
-   Refuerzo: footer de la portada no debe quedar angosto respecto
-   a las cards de arriba. Máxima especificidad práctica para no
-   depender del orden de otras reglas .action-strip / .app-footer
-   ya existentes en este archivo.
-   ================================================================= */
-.action-strip.action-strip {
-    align-items: stretch;
-}
-.app-footer.app-footer {
-    width: 100%;
-}
