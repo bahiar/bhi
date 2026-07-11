@@ -21,18 +21,21 @@
     'use strict';
 
     // Listado COMPLETO de secciones para páginas funcionales (desktop mostrará todas)
+    // Orden estricto acordado: 7 funcionales (con datos) + 5 en construcción.
+    // enConstruccion:true agrega data-status="construccion" + badge "Próx." (ver CSS)
     var FULL_NAV_ITEMS = [
-        { href: 'index.html', label: 'Inicio' },
-        { href: 'guardias.html', label: 'Emergencia' },
-        { href: 'farmacias.html', label: 'Farmacias' },
-        { href: 'laboratorios.html', label: 'Laboratorios' },
-        { href: 'ortopedias.html', label: 'Ortopedias' },
-        { href: 'opticas.html', label: 'Ópticas' },
-        { href: 'imagenes.html', label: 'Imágenes' },
-        { href: 'enfermeria.html', label: 'Enfermería' },
-        { href: 'kinesiologia.html', label: 'Kinesiología' },
-        { href: 'nutricion.html', label: 'Nutrición' },
-        { href: 'fonoaudiologia.html', label: 'Fonoaudiología' }
+        { href: 'index.html',          label: 'Inicio' },
+        { href: 'farmacias.html',      label: 'Farmacias' },
+        { href: 'emergencias.html',    label: 'Emergencias' },
+        { href: 'unidades.html',       label: 'Salas médicas' },
+        { href: 'laboratorios.html',   label: 'Laboratorios' },
+        { href: 'imagenes.html',       label: 'Imágenes' },
+        { href: 'ortopedias.html',     label: 'Ortopedias' },
+        { href: 'opticas.html',        label: 'Ópticas',        enConstruccion: true },
+        { href: 'enfermeria.html',     label: 'Enfermería',     enConstruccion: true },
+        { href: 'kinesiologia.html',   label: 'Kinesiología',   enConstruccion: true },
+        { href: 'nutricion.html',      label: 'Nutrición',      enConstruccion: true },
+        { href: 'fonoaudiologia.html', label: 'Fonoaudiología', enConstruccion: true }
     ];
 
     // Sub-nav reducido para páginas legales (primeras 6 secciones principales)
@@ -104,7 +107,10 @@
             var isCurrent = item.href === (current + '.html') || (current === 'index' && item.href === 'index.html');
             html += '<li><a href="' + item.href + '" class="sub-nav-link' + (isCurrent ? ' active' : '') + '"' +
                 (isCurrent ? ' aria-current="page"' : '') +
-                '>' + item.label + '</a></li>';
+                (item.enConstruccion ? ' data-status="construccion"' : '') +
+                '>' + item.label +
+                (item.enConstruccion ? '<span class="sub-nav-badge">Próx.</span>' : '') +
+                '</a></li>';
         });
 
         html += '</ul></nav>';
