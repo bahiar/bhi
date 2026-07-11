@@ -1107,9 +1107,8 @@ body {
         margin-right: auto;
     }
 
-    .action-strip {
-        padding-left: 24px;
-        padding-right: 24px;
+    .action-strip.action-strip {
+        padding: 20px 24px 0;
     }
 
     .sub-nav {
@@ -1119,14 +1118,12 @@ body {
         padding: 0 16px;
     }
 
-    .sub-nav-list {
-        /* fallback para navegadores sin soporte de "safe" (ver regla siguiente) */
+    .sub-nav-list.sub-nav-list {
+        /* flex-start fijo: "safe center" depende de soporte de navegador
+           poco confiable y en la práctica casi siempre desborda con 11
+           pills, así que directamente arrancamos desde "Inicio" sin
+           centrar — así nunca se cortan los pills en los extremos */
         justify-content: flex-start;
-        /* centra los pills solo cuando entran todos; si desbordan, evita que
-           el centrado los corte parejo a ambos lados (bug: "Inicio" tapado a
-           la izquierda y "Fonoaudiología" a la derecha) dejándolos arrancar
-           desde el principio y scrollear con normalidad */
-        justify-content: safe center;
         gap: 12px;
         max-width: 1200px;
     }
@@ -2114,4 +2111,17 @@ html.dark .theme-toggle-icon { color: #FFB74D; }
     @keyframes theme-toggle-circle {
         to { mask-size: 200vmax; }
     }
+}
+
+/* =================================================================
+   Refuerzo: footer de la portada no debe quedar angosto respecto
+   a las cards de arriba. Máxima especificidad práctica para no
+   depender del orden de otras reglas .action-strip / .app-footer
+   ya existentes en este archivo.
+   ================================================================= */
+.action-strip.action-strip {
+    align-items: stretch;
+}
+.app-footer.app-footer {
+    width: 100%;
 }
