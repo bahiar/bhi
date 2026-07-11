@@ -30,10 +30,10 @@
             icon: 'hospital-svgrepo-com.svg'
         },
         {
-            href: 'guardias.html',
-            id: 'guardias',
-            label: 'Emergencia',
-            ariaLabel: 'Emergencia',
+            href: 'emergencias.html',
+            id: 'emergencias',
+            label: 'Emergencias',
+            ariaLabel: 'Emergencias',
             icon: 'ambulance-svgrepo-com.svg'
         },
         {
