@@ -140,6 +140,39 @@
             : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
     }
 
+    // El sub-nav de desktop es una sola fila con overflow-x. Un mouse
+    // normal (sin trackpad) no puede scrollearla con la rueda vertical
+    // por defecto, y al ocultar la scrollbar (a pedido) el último ítem
+    // (Fonoaudiología) queda invisible e inalcanzable. Esto arregla las
+    // dos partes del problema: permite scrollear con la rueda del mouse,
+    // y prende/apaga los degradés de borde (is-at-start / is-at-end)
+    // para avisar visualmente que hay más contenido.
+    function setupSubNavScroll() {
+        var nav = document.querySelector('.sub-nav');
+        var list = document.querySelector('.sub-nav-list');
+        if (!nav || !list) return;
+
+        function updateEdgeFades() {
+            var maxScroll = list.scrollWidth - list.clientWidth;
+            nav.classList.toggle('is-at-start', list.scrollLeft <= 1);
+            nav.classList.toggle('is-at-end', list.scrollLeft >= maxScroll - 1);
+        }
+
+        list.addEventListener('wheel', function(e) {
+            // Solo redirigir cuando el gesto es mayormente vertical
+            // (rueda de mouse); dejar pasar el trackpad, que ya manda
+            // deltaX nativo.
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                list.scrollLeft += e.deltaY;
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        list.addEventListener('scroll', updateEdgeFades, { passive: true });
+        window.addEventListener('resize', updateEdgeFades);
+        updateEdgeFades();
+    }
+
     function mount() {
         var root = document.getElementById('header-nav-root');
         if (!root) return;
@@ -155,6 +188,8 @@
             subNavHTML;
 
         root.replaceWith(tempContainer.firstChild, tempContainer.lastChild);
+
+        setupSubNavScroll();
 
         // Setup theme toggle si está disponible
         var themeBtn = document.getElementById('btn-theme-toggle');
