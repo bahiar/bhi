@@ -407,9 +407,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         [data-mode="dark"] .social-btn:focus-visible {
             box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
         }
-        [data-mode="dark"] .btn-share-wa span {
-            color: #eef0f5;
-        }
         .footer-report {
             display: flex;
             align-items: center;
@@ -1009,7 +1006,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
                           </article>
                         </div>
-                        <a href="emergencias.html" class="home-acc-vertodos">Ver todas →</a>
+                        <a href="emergencias.html" class="home-acc-vertodos">Ver completo →</a>
                     `;
                     panel.innerHTML = emergenciasHTML;
                     return;
@@ -1027,8 +1024,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             .map((item, i) => window.crearCardHTML(item, cfg.tipo, i))
                             .join('');
                         const textoVerTodos = items.length > ACC_LIMITE
-                            ? `Ver todas (${items.length}) →`
-                            : 'Ver todas →';
+                            ? `Ver completo (${items.length}) →`
+                            : 'Ver completo →';
                         panel.innerHTML = `
                             <div class="home-acc-cards">${cardsHTML}</div>
                             <a href="${cfg.verTodos}" class="home-acc-vertodos">${textoVerTodos}</a>
