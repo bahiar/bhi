@@ -124,6 +124,12 @@
             label: 'Fonoaudiología',
             ...ACCENT_COLORS['blue-medium'],
             icon: 'ear-3-svgrepo-com.svg'
+        },
+        {
+            href: 'unidades.html',
+            label: 'Salas médicas',
+            ...ACCENT_COLORS['blue-medium'],
+            icon: 'sanitaria.svg'
         }
     ];
 
