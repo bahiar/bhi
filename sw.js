@@ -28,7 +28,11 @@
 // el filesystem case-sensitive de GitHub Pages). También se agregó
 // updateViaCache:'none' al register() en app.js, para que el navegador no siga
 // sirviendo sw.js desde su propia caché HTTP al chequear actualizaciones.
-const CACHE_VERSION = 'v4.248';
+// v4.249: "portada.html" reemplazó a "index.html" (deploy directo, mismo
+// nombre) — se saca "./portada.html" de SHELL_ASSETS porque ya no existe
+// como archivo aparte; precachearlo generaba un warning de fetch fallido
+// en cada install.
+const CACHE_VERSION = 'v4.249';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
@@ -36,7 +40,6 @@ const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 const SHELL_ASSETS = [
     './',
     './index.html',
-    './portada.html',
     './emergencias.html',
     './unidades.html',
     './guardias.html',
