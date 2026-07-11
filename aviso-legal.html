@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
+<script>
+(function () {
+    try {
+        var stored = localStorage.getItem('bahi-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-mode', theme);
+    } catch (e) {
+        document.documentElement.setAttribute('data-mode', 'light');
+    }
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -9,6 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-5RNWBBM7');</script>
 <!-- End Google Tag Manager -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="25bce197-667d-4886-840b-b5068b039c63"></script>
+    <meta charset="UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aviso Legal | BAHI.ar</title>
@@ -19,10 +31,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="icon" href="assets/images/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-    <link rel="preload" href="style.css" as="style">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="style2.css" as="style">
+    <link rel="stylesheet" href="style2.css">
     <style>
-        :root { --header-h: 52px; }
+        :root {
+            --header-h: 52px;
+            --cat-ortopedia: #0E9F6E;
+            --cat-ortopedia-dark: #0A7A54;
+            --cat-imagenes: #5B4FE8;
+            --cat-imagenes-dark: #4438C4;
+            --cat-laboratorio-dark: #1558C4;
+        }
+        [data-mode="dark"] {
+            --bg-main: #0e1220;
+            --card-bg: #181d33;
+            --text-main: #eef0f5;
+            --text-muted: #9a9fb5;
+            --border-light: #2a3050;
+            --footer-bg: #0b0f1e;
+            --text-link: #8FA6FF;
+        }
     </style>
     <meta property="og:title" content="Aviso Legal | BAHI.ar">
     <meta property="og:description" content="Aviso Legal de BAHI.ar: naturaleza informativa del sitio, exactitud de los datos y limitación de responsabilidad.">
