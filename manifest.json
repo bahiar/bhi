@@ -6,6 +6,7 @@
   "start_url": "/?utm_source=pwa&utm_medium=homescreen",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "any",
   "theme_color": "#191971",
   "background_color": "#191971",
@@ -76,6 +77,13 @@
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Guardias médicas y emergencias 24hs"
+    },
+    {
+      "src": "/assets/screenshots/home-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "BAHI.ar en escritorio"
     }
   ],
   "shortcuts": [
