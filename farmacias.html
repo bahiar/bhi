@@ -31,6 +31,29 @@
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
   <link rel="preload" href="style2.css" as="style">
   <link rel="stylesheet" href="style2.css">
+  <style>
+    :root {
+        --header-h: 52px;
+        /* Colores de categoría que faltaban en style2.css — derivados de tu paleta,
+           no inventé un esquema nuevo: primary=navy, accent=azul, orange=farmacia,
+           guardia=rojo ya existen. Sumo dos tonos que faltan (ortopedia, imágenes)
+           manteniendo la misma temperatura/saturación que el resto. */
+        --cat-ortopedia: #0E9F6E;
+        --cat-ortopedia-dark: #0A7A54;
+        --cat-imagenes: #5B4FE8;
+        --cat-imagenes-dark: #4438C4;
+        --cat-laboratorio-dark: #1558C4;
+    }
+    [data-mode="dark"] {
+        --bg-main: #0e1220;
+        --card-bg: #181d33;
+        --text-main: #eef0f5;
+        --text-muted: #9a9fb5;
+        --border-light: #2a3050;
+        --footer-bg: #0b0f1e;
+        --text-link: #8FA6FF;
+    }
+  </style>
   <meta property="og:title" content="Directorio Oficial de Farmacias — Colegio de Farmacéuticos | BAHI.ar">
   <meta property="og:description" content="Directorio oficial del Colegio de Farmacéuticos de Buenos Aires - Filial Bahía Blanca. Todas las farmacias de turno y habilitadas en Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo. Filtro por obra social y servicios.">
   <meta property="og:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
