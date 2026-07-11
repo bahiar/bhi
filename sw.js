@@ -32,7 +32,7 @@
 // nombre) — se saca "./portada.html" de SHELL_ASSETS porque ya no existe
 // como archivo aparte; precachearlo generaba un warning de fetch fallido
 // en cada install.
-const CACHE_VERSION = 'v4.251';
+const CACHE_VERSION = 'v4.252';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
