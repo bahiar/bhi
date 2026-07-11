@@ -833,6 +833,7 @@ body {
 }
 
 .sub-nav {
+    position: relative;
     margin: 0;
     padding: 0 16px;
     overflow-x: auto;
@@ -1161,6 +1162,35 @@ body {
     .sub-nav-list.sub-nav-list::-webkit-scrollbar {
         display: none;
     }
+
+    /* Degradé en los bordes: avisa que hay más links fuera de vista.
+       Las clases .is-at-start / .is-at-end las controla header-nav.js
+       según la posición real del scroll (ver mount() -> updateEdgeFades). */
+    .sub-nav::before,
+    .sub-nav::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 36px;
+        pointer-events: none;
+        z-index: 2;
+        opacity: 1;
+        transition: opacity 0.2s ease;
+    }
+
+    .sub-nav::before {
+        left: 0;
+        background: linear-gradient(to right, var(--bg-main), transparent);
+    }
+
+    .sub-nav::after {
+        right: 0;
+        background: linear-gradient(to left, var(--bg-main), transparent);
+    }
+
+    .sub-nav.is-at-start::before { opacity: 0; }
+    .sub-nav.is-at-end::after { opacity: 0; }
 
     .sub-nav-list .sub-nav-link {
         background: transparent;
