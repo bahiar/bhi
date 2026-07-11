@@ -1116,16 +1116,43 @@ body {
         width: 100%;
         justify-content: center;
         padding: 0 16px;
+        /* en escritorio los links se acomodan en varias líneas en vez de
+           scrollear horizontalmente, así que ya no hace falta el overflow
+           ni el min-height fijo de una sola fila de pills */
+        overflow-x: visible;
     }
 
     .sub-nav-list.sub-nav-list {
-        /* flex-start fijo: "safe center" depende de soporte de navegador
-           poco confiable y en la práctica casi siempre desborda con 11
-           pills, así que directamente arrancamos desde "Inicio" sin
-           centrar — así nunca se cortan los pills en los extremos */
-        justify-content: flex-start;
-        gap: 12px;
+        /* de pills en una fila con scroll -> texto tipo "tabs" que se
+           acomoda en varias líneas si no entra todo; nunca se corta */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0 4px;
         max-width: 1200px;
+        padding: 4px 16px;
+    }
+
+    .sub-nav-list .sub-nav-link {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        border-bottom: 2px solid transparent;
+        padding: 12px 14px;
+        min-height: auto;
+    }
+
+    @media (hover: hover) {
+        .sub-nav-list .sub-nav-link:hover {
+            color: var(--primary);
+            border-bottom-color: var(--border-light);
+        }
+    }
+
+    .sub-nav-list .sub-nav-link.active {
+        background: transparent;
+        color: var(--primary);
+        font-weight: 700;
+        border-bottom-color: var(--orange);
     }
 
     .cards-grid {

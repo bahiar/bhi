@@ -363,11 +363,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .footer-links {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 16px;
             margin-bottom: 14px;
+        }
+        .footer-divider {
+            width: 1px;
+            height: 22px;
+            background: var(--border-light);
+            flex-shrink: 0;
         }
         .footer-social {
             display: flex;
@@ -484,6 +490,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 align-items: center;
                 gap: 8px;
                 margin-bottom: 10px;
+            }
+            .footer-divider {
+                display: none;
             }
             .footer-social {
                 justify-content: center;
@@ -814,6 +823,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a href="https://www.facebook.com/guiabahiar/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
                     <a href="https://www.instagram.com/guiabahiar" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                 </div>
+                <span class="footer-divider" aria-hidden="true"></span>
                 <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" class="footer-report">
                     <span aria-hidden="true">⚠️</span> Reportar un error
                 </a>
