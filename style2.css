@@ -888,6 +888,27 @@ body {
     border-color: var(--primary);
 }
 
+/* Secciones en construcción: opacidad reducida + badge, para que no
+   se hagan clic esperando datos reales todavía */
+.sub-nav-link[data-status="construccion"] {
+    opacity: 0.6;
+}
+
+.sub-nav-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    background: var(--orange-light);
+    color: var(--orange-dark);
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
 .error-state {
     text-align: center;
     padding: 48px 24px;
@@ -1123,13 +1144,22 @@ body {
     }
 
     .sub-nav-list.sub-nav-list {
-        /* de pills en una fila con scroll -> texto tipo "tabs" que se
-           acomoda en varias líneas si no entra todo; nunca se corta */
-        flex-wrap: wrap;
-        justify-content: center;
+        /* 12 secciones en desktop: una sola fila tipo "tabs" con scroll
+           lateral oculto en vez de wrap a varias líneas — evita romper
+           el ancho de página o saturar visualmente el header */
+        flex-wrap: nowrap;
+        justify-content: flex-start;
         gap: 0 4px;
         max-width: 1200px;
         padding: 4px 16px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .sub-nav-list.sub-nav-list::-webkit-scrollbar {
+        display: none;
     }
 
     .sub-nav-list .sub-nav-link {
@@ -1153,6 +1183,10 @@ body {
         color: var(--primary);
         font-weight: 700;
         border-bottom-color: var(--orange);
+    }
+
+    .sub-nav-list .sub-nav-link[data-status="construccion"] {
+        opacity: 0.55;
     }
 
     .cards-grid {
@@ -2035,6 +2069,11 @@ html.dark .bottom-nav {
 @media (hover: hover) {
     html.dark .btn-map-toggle:hover,
     html.dark .btn-share-wa:hover { background: var(--surface-2); }
+}
+
+html.dark .sub-nav-badge {
+    background: rgba(255, 107, 0, 0.18);
+    color: #FF9955;
 }
 
 html.dark .mas-grid-item { background: var(--card-bg); }
