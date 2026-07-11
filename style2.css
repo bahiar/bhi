@@ -2013,9 +2013,9 @@ html.dark .card[data-tipo="GUARDIA"] {
 html.dark .home-acc-watermark { opacity: 0.09; }
 html.dark .home-acc-item--featured .home-acc-watermark { opacity: 0.16; }
 
-/* home-acc-vertodos vive en el <style> inline de portada.html, no acá,
-   así que se resuelve puntualmente con la misma variable centralizada */
-html.dark .home-acc-vertodos { color: var(--text-link); }
+/* home-acc-vertodos usa var(--text-link), que ya cambia de tono en
+   dark mode vía la variable --text-link redefinida en el bloque
+   [data-mode="dark"] (portada.html). No necesita regla propia acá. */
 
 /* Superficies con blanco fijo en vez de var(--card-bg) */
 html.dark .search-container input[type="text"],
