@@ -1,0 +1,52 @@
+name: Bump sitemap lastmod
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.html'
+
+# Evita que corran dos ejecuciones en paralelo y se pisen los commits
+concurrency:
+  group: bump-sitemap
+  cancel-in-progress: false
+
+jobs:
+  bump-sitemap:
+    runs-on: ubuntu-latest
+    # Evita loop infinito: si el último commit ya lo hizo este mismo workflow, no correr de nuevo
+    if: "!contains(github.event.head_commit.message, '[skip sitemap]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # necesitamos el commit anterior para poder diffear
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Detectar archivos .html modificados
+        id: changed
+        run: |
+          FILES=$(git diff --name-only HEAD~1 HEAD -- '*.html' | tr '\n' ' ')
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          echo "Archivos .html modificados: $FILES"
+
+      - name: Actualizar sitemap.xml
+        if: steps.changed.outputs.files != ''
+        run: node scripts/bump-sitemap.js ${{ steps.changed.outputs.files }}
+
+      - name: Commit y push si hubo cambios
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "sitemap.xml sin cambios, no hay nada que commitear."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "chore: bump sitemap lastmod [skip sitemap]"
+          git push
