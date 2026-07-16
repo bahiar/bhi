@@ -1039,6 +1039,20 @@ body {
     flex-wrap: wrap;
 }
 
+.section-header--stacked {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.section-header--stacked .section-header-actions {
+    width: 100%;
+}
+
+.section-header--stacked .section-header-actions .btn-share-wa {
+    flex: 1;
+    justify-content: center;
+}
+
 .btn-share-wa:disabled {
     opacity: 0.6;
     cursor: not-allowed;
