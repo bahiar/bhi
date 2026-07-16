@@ -310,26 +310,12 @@ window.PillsEngine = (function () {
     };
 
     try {
-      const [response, posicion] = await Promise.all([
-        fetch(cfg.fuente),
-        typeof window.obtenerPosicionUsuario === 'function'
-          ? window.obtenerPosicionUsuario()
-          : Promise.resolve(null)
-      ]);
+      const response = await fetch(cfg.fuente);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
 
       let datos = data.prestadores || [];
       if (cfg.tipo) datos = datos.filter(p => p.TIPO === cfg.tipo);
-
-      window.posicionUsuario = posicion;
-
-      if (posicion && typeof window.calcularDistanciaKm === 'function') {
-        const distanciaDe = item => (Number.isFinite(item.lat) && Number.isFinite(item.lng))
-          ? window.calcularDistanciaKm(posicion.lat, posicion.lng, item.lat, item.lng)
-          : Infinity; // sin coordenadas → al final del listado, no rompe el orden
-        datos = [...datos].sort((a, b) => distanciaDe(a) - distanciaDe(b));
-      }
 
       estados[vista].datosOriginales = datos;
 
@@ -351,5 +337,47 @@ window.PillsEngine = (function () {
     }
   }
 
-  return { init, limpiar };
+  // ── Geolocalización on-demand ────────────────────────────────────
+  // Se llama desde un botón en el HTML: onclick="PillsEngine.activarUbicacion('farmacias', this)"
+  // El pedido de permiso al navegador solo ocurre en este click, nunca al cargar la página.
+  async function activarUbicacion(vista, boton) {
+    const estado = estados[vista];
+    if (!estado) return;
+
+    const span = boton ? boton.querySelector('span') : null;
+    if (boton) {
+      boton.disabled = true;
+      if (span) span.textContent = 'Buscando ubicación…';
+    }
+
+    const posicion = typeof window.obtenerPosicionUsuario === 'function'
+      ? await window.obtenerPosicionUsuario()
+      : null;
+
+    window.posicionUsuario = posicion;
+
+    if (!posicion) {
+      if (boton && span) {
+        span.textContent = 'No pudimos acceder a tu ubicación';
+        setTimeout(() => {
+          boton.disabled = false;
+          span.textContent = 'Ordenar por cercanía';
+        }, 3000);
+      }
+      return;
+    }
+
+    if (typeof window.calcularDistanciaKm === 'function') {
+      const distanciaDe = item => (Number.isFinite(item.lat) && Number.isFinite(item.lng))
+        ? window.calcularDistanciaKm(posicion.lat, posicion.lng, item.lat, item.lng)
+        : Infinity;
+      estado.datosOriginales = [...estado.datosOriginales].sort((a, b) => distanciaDe(a) - distanciaDe(b));
+    }
+
+    aplicarFiltros(vista); // re-renderiza respetando los filtros de pills que estén activos
+
+    if (boton) boton.hidden = true; // ya cumplió su función
+  }
+
+  return { init, limpiar, activarUbicacion };
 })();

@@ -270,11 +270,15 @@
             <h2 id="titulo-farmacias">Farmacias Habilitadas</h2>
             <p class="section-header-meta" id="header-meta-count">Directorio completo</p>
           </div>
+          <button id="btn-ubicacion-farmacias" class="btn-share-wa btn-ubicacion" type="button" onclick="PillsEngine.activarUbicacion('farmacias', this)" aria-label="Ordenar farmacias por cercanía a tu ubicación">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s-7-7.58-7-12a7 7 0 1 1 14 0c0 4.42-7 12-7 12Z" stroke="var(--orange-dark)" stroke-width="1.8"/><circle cx="12" cy="9" r="2.3" stroke="var(--orange-dark)" stroke-width="1.8"/></svg>
+            <span>Ordenar por cercanía</span>
+          </button>
         </div>
 
         <section id="filtros-farmacias" aria-labelledby="titulo-filtros">
           <h3 id="titulo-filtros" class="sr-only">Filtrar farmacias por localidad, obra social y servicios</h3>
-          <div class="filter-chips-container" role="group" aria-label="Filtros de búsqueda"></div>
+          <div class="filter-chips-container" id="filter-chips-container" role="group" aria-label="Filtros de búsqueda"></div>
         </section>
 
         <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Listado de farmacias habilitadas">

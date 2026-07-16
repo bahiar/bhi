@@ -1032,6 +1032,18 @@ body {
     gap: 12px;
 }
 
+.section-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-share-wa:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .section-header-titles {
     flex: 1;
     min-width: 0;
