@@ -655,7 +655,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             navigator.geolocation.getCurrentPosition(
                 pos => {
                     const { latitude: lat, longitude: lng, accuracy } = pos.coords;
-                    mapa.setView([lat, lng], 16);
 
                     // Limpiar marcador y círculo de precisión anteriores
                     if (window._marcadorUsuario) window._marcadorUsuario.remove();
@@ -663,12 +662,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                     // Círculo de precisión (radio real del GPS, en metros)
                     window._circuloPrecisionUsuario = L.circle([lat, lng], {
-                        radius: accuracy,
+                        radius: accuracy || 30,
                         color: '#1565C0',
-                        weight: 1,
+                        weight: 2,
                         fillColor: '#1565C0',
-                        fillOpacity: 0.12,
+                        fillOpacity: 0.15,
                     }).addTo(mapa);
+
+                    // Encuadrar el mapa al tamaño real del círculo (chico o grande)
+                    mapa.fitBounds(window._circuloPrecisionUsuario.getBounds(), { maxZoom: 16 });
 
                     // Punto de ubicación con animación de pulso
                     window._marcadorUsuario = L.marker([lat, lng], {
