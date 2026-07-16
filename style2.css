@@ -281,6 +281,7 @@ body {
 }
 
 .card {
+    position: relative;
     background: var(--card-bg);
     border-radius: var(--radius-card);
     border: 1px solid var(--border-light);
@@ -423,6 +424,36 @@ body {
     background: rgba(220, 38, 38, 0.08);
     color: var(--cat-guardia);
     border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+/* Badge de distancia (geolocalización) — chip flotante arriba a la
+   derecha de cada card. --orange-dark en vez de --orange en el ícono:
+   el naranja base no llega al 3:1 de contraste no-textual (WCAG 1.4.11)
+   contra --bg-main en modo claro (2.5:1); --orange-dark sí (3.8:1). */
+.card-distance {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 9px;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--text-muted);
+    background: var(--bg-main);
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.card-distance-icon {
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+    color: var(--orange-dark);
 }
 
 @media (hover: hover) {

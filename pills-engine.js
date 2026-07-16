@@ -310,12 +310,26 @@ window.PillsEngine = (function () {
     };
 
     try {
-      const response = await fetch(cfg.fuente);
+      const [response, posicion] = await Promise.all([
+        fetch(cfg.fuente),
+        typeof window.obtenerPosicionUsuario === 'function'
+          ? window.obtenerPosicionUsuario()
+          : Promise.resolve(null)
+      ]);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
 
       let datos = data.prestadores || [];
       if (cfg.tipo) datos = datos.filter(p => p.TIPO === cfg.tipo);
+
+      window.posicionUsuario = posicion;
+
+      if (posicion && typeof window.calcularDistanciaKm === 'function') {
+        const distanciaDe = item => (Number.isFinite(item.lat) && Number.isFinite(item.lng))
+          ? window.calcularDistanciaKm(posicion.lat, posicion.lng, item.lat, item.lng)
+          : Infinity; // sin coordenadas → al final del listado, no rompe el orden
+        datos = [...datos].sort((a, b) => distanciaDe(a) - distanciaDe(b));
+      }
 
       estados[vista].datosOriginales = datos;
 

@@ -1087,14 +1087,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 });
             }
 
+            let posicionPromise = null;
+
+            function obtenerPosicionGeolocalizacion() {
+                if (!posicionPromise) {
+                    posicionPromise = new Promise(resolve => {
+                        if (!navigator.geolocation) return resolve(null);
+                        navigator.geolocation.getCurrentPosition(
+                            pos => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+                            () => resolve(null),
+                            { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 }
+                        );
+                    });
+                }
+                return posicionPromise;
+            }
+
             async function inicializarTurnos(reintentos = 0) {
                 const contenedor = document.getElementById('contenedor-cards');
                 if (!contenedor) return;
 
                 try {
-                    const [resT, resP] = await Promise.all([
+                    const [resT, resP, posicion] = await Promise.all([
                         fetch(CONFIG.URL_TURNERO),
-                        fetch(CONFIG.URL_PADRON)
+                        fetch(CONFIG.URL_PADRON),
+                        obtenerPosicionGeolocalizacion()
                     ]);
 
                     if (!resT.ok || !resP.ok) {
@@ -1105,6 +1122,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     const padron = await resP.json();
 
                     padronCompleto = padron.prestadores || [];
+                    window.posicionUsuario = posicion;
 
                     const fechaOp = obtenerFechaOperativa();
                     const entrada = turnero.find(t => t.fecha === fechaOp);
@@ -1142,6 +1160,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         }
                         setTimeout(() => inicializarTurnos(reintentos + 1), 100);
                         return;
+                    }
+
+                    if (posicion && typeof window.calcularDistanciaKm === 'function') {
+                        deTurno.sort((a, b) =>
+                            window.calcularDistanciaKm(posicion.lat, posicion.lng, a.lat, a.lng) -
+                            window.calcularDistanciaKm(posicion.lat, posicion.lng, b.lat, b.lng)
+                        );
                     }
 
                     contenedor.innerHTML = deTurno
