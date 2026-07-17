@@ -169,27 +169,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transform: rotate(180deg);
         }
 
-        /* ── Botón "Mi ubicación" ── */
+        /* ── Botón "Mi ubicación" (dentro del panel de filtros) ── */
         #btn-ubicacion {
-            position: absolute;
-            bottom: 16px;
-            right: 12px;
-            z-index: 500;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--bg-card, #fff);
-            border: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #1565C0;
+            background: #e8f0fe;
+            color: #1565C0;
             cursor: pointer;
-            color: #191971;
+            padding: 0;
             transition: background 0.15s;
         }
 
-        #btn-ubicacion:active { background: #f0f0f0; }
+        #btn-ubicacion:active { background: #d5e4fb; }
 
         /* ── Toast de estado ── */
         #mapa-toast {
@@ -362,6 +358,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <polyline points="21 3 21 9 15 9"/>
                 </svg>
             </button>
+            <button type="button" id="btn-ubicacion" title="Mi ubicación" aria-label="Centrar en mi ubicación">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+                    <circle cx="12" cy="12" r="9" stroke-dasharray="2 3"/>
+                </svg>
+            </button>
         </div>
 
         <!-- Mensaje sin datos visibles -->
@@ -373,16 +377,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>Ningún tipo seleccionado</p>
             <span>Activá al menos un filtro para ver prestadores en el mapa.</span>
         </div>
-
-        <!-- Botón mi ubicación -->
-        <button id="btn-ubicacion" aria-label="Centrar en mi ubicación" title="Mi ubicación">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
-                <circle cx="12" cy="12" r="9" stroke-dasharray="2 3"/>
-            </svg>
-        </button>
 
         <!-- Toast -->
         <div id="mapa-toast" role="status" aria-live="polite"></div>
@@ -654,36 +648,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             mostrarToast('Buscando tu ubicación…', 3000);
             navigator.geolocation.getCurrentPosition(
                 pos => {
-                    const { latitude: lat, longitude: lng, accuracy } = pos.coords;
+                    try {
+                        const { latitude: lat, longitude: lng, accuracy } = pos.coords;
 
-                    // Limpiar marcador y círculo de precisión anteriores
-                    if (window._marcadorUsuario) window._marcadorUsuario.remove();
-                    if (window._circuloPrecisionUsuario) window._circuloPrecisionUsuario.remove();
+                        // Limpiar marcador y círculo de precisión anteriores
+                        if (window._marcadorUsuario) window._marcadorUsuario.remove();
+                        if (window._circuloPrecisionUsuario) window._circuloPrecisionUsuario.remove();
 
-                    // Círculo de precisión (radio real del GPS, en metros)
-                    window._circuloPrecisionUsuario = L.circle([lat, lng], {
-                        radius: accuracy || 30,
-                        color: '#1565C0',
-                        weight: 2,
-                        fillColor: '#1565C0',
-                        fillOpacity: 0.15,
-                    }).addTo(mapa);
+                        // Círculo de precisión (radio real del GPS, en metros)
+                        window._circuloPrecisionUsuario = L.circle([lat, lng], {
+                            radius: accuracy || 30,
+                            color: '#1565C0',
+                            weight: 3,
+                            fillColor: '#1565C0',
+                            fillOpacity: 0.15,
+                        }).addTo(mapa);
 
-                    // Encuadrar el mapa al tamaño real del círculo (chico o grande)
-                    mapa.fitBounds(window._circuloPrecisionUsuario.getBounds(), { maxZoom: 18, padding: [40, 40] });
+                        // Encuadrar el mapa al tamaño real del círculo (chico o grande)
+                        mapa.fitBounds(window._circuloPrecisionUsuario.getBounds(), { maxZoom: 18, padding: [40, 40] });
 
-                    // Punto de ubicación con animación de pulso
-                    window._marcadorUsuario = L.marker([lat, lng], {
-                        icon: L.divIcon({
-                            html: '<div class="user-location-dot"></div>',
-                            className: '',
-                            iconSize: [18, 18],
-                            iconAnchor: [9, 9],
-                        }),
-                        zIndexOffset: 1000,
-                    }).addTo(mapa).bindPopup('Tu ubicación').openPopup();
+                        // Punto de ubicación con animación de pulso
+                        window._marcadorUsuario = L.marker([lat, lng], {
+                            icon: L.divIcon({
+                                html: '<div class="user-location-dot"></div>',
+                                className: '',
+                                iconSize: [18, 18],
+                                iconAnchor: [9, 9],
+                            }),
+                            zIndexOffset: 1000,
+                        }).addTo(mapa).bindPopup('Tu ubicación').openPopup();
 
-                    mostrarToast('Ubicación encontrada', 2000);
+                        // DIAGNÓSTICO TEMPORAL — sacar esta línea una vez resuelto
+                        mostrarToast('Precisión: ' + Math.round(accuracy || 0) + ' m — círculo OK', 5000);
+                    } catch (err) {
+                        // DIAGNÓSTICO TEMPORAL — sacar este catch una vez resuelto
+                        mostrarToast('Error JS: ' + err.message, 6000);
+                    }
                 },
                 () => mostrarToast('No se pudo obtener la ubicación', 3000)
             );
