@@ -75,6 +75,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             height: 100%;
         }
 
+        /* Oscurece un poco los tiles de Positron (gris más marcado) */
+        #mapa .leaflet-tile-pane {
+            filter: brightness(0.82) contrast(1.05) saturate(0.9);
+        }
+
         /* ── Panel de filtros (sobre el mapa) ── */
         #filtros-panel {
             position: absolute;
@@ -158,15 +163,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-family: inherit;
             border-radius: 20px;
             padding: 5px 12px 5px 9px;
-            border: 2px solid #ccc;
-            background: #f5f5f5;
-            color: #555;
+            border: 2px solid #757575;
+            background: #eeeeee;
+            color: #424242;
             cursor: pointer;
             line-height: 1;
             transition: background 0.15s;
         }
 
-        #btn-recargar-mapa:active { background: #e8e8e8; }
+        #btn-recargar-mapa:active { background: #d8d8d8; }
         #btn-recargar-mapa svg { transition: transform 0.4s; flex-shrink: 0; }
         #btn-recargar-mapa:active svg { transform: rotate(180deg); }
 
