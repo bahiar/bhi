@@ -1145,7 +1145,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         .join('');
                 }
 
-                if (boton) boton.hidden = true; // ya cumplió su función
+                if (boton) {
+                    boton.querySelector('span').textContent = 'Más cerca';
+                    boton.hidden = true; // ya cumplió su función
+                }
             }
 
             async function inicializarTurnos(reintentos = 0) {
