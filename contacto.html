@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<script>
+(function () {
+    try {
+        var stored = localStorage.getItem('bahi-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-mode', theme);
+    } catch (e) {
+        document.documentElement.setAttribute('data-mode', 'light');
+    }
+})();
+</script>
+<!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5RNWBBM7');</script>
+<!-- End Google Tag Manager -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="25bce197-667d-4886-840b-b5068b039c63"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Escribinos | BAHI.ar</title>
+  <meta name="description" content="¿Encontraste un error o querés sumar tu prestador a BAHI.ar? Escribinos desde el formulario de contacto y te respondemos a la brevedad.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.bahi.ar/contacto.html">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="preload" href="style2.css" as="style">
+  <link rel="stylesheet" href="style2.css">
+  <style>
+    :root {
+        --header-h: 52px;
+    }
+    [data-mode="dark"] {
+        --bg-main: #0e1220;
+        --card-bg: #181d33;
+        --text-main: #eef0f5;
+        --text-muted: #9a9fb5;
+        --border-light: #2a3050;
+        --footer-bg: #0b0f1e;
+        --text-link: #8FA6FF;
+    }
+  </style>
+  <meta property="og:title" content="Contacto — Escribinos | BAHI.ar">
+  <meta property="og:description" content="¿Encontraste un error o querés sumar tu prestador a BAHI.ar? Escribinos desde el formulario de contacto y te respondemos a la brevedad.">
+  <meta property="og:url" content="https://www.bahi.ar/contacto.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contacto — Escribinos | BAHI.ar">
+  <meta name="twitter:description" content="¿Encontraste un error o querés sumar tu prestador a BAHI.ar? Escribinos desde el formulario de contacto y te respondemos a la brevedad.">
+  <meta name="twitter:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+  <meta name="theme-color" content="#191971">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RNWBBM7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div id="header-nav-root"></div>
+  <script>
+    window.headerNavConfig = { page: 'contacto', type: 'full' };
+  </script>
+  <script src="js/header-nav.js" defer></script>
+
+  <main class="app-view" id="content">
+    <div class="main-container" id="main-content">
+
+      <h1 class="sr-only">Contacto — Escribinos a BAHI.ar</h1>
+
+      <a href="index.html" class="btn-back-home">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19 12H5M5 12l7-7M5 12l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Volver al inicio
+      </a>
+
+      <section id="contacto" aria-labelledby="titulo-contacto">
+        <div class="section-header">
+          <div class="section-header-titles">
+            <h2 id="titulo-contacto">Contacto</h2>
+            <p class="section-header-meta">Te respondemos a la brevedad</p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <p class="contact-intro">¿Encontraste un dato desactualizado, querés sumar tu farmacia, laboratorio o consultorio, o simplemente tenés una consulta? Completá el formulario y te escribimos.</p>
+
+          <form id="form-contacto" novalidate>
+            <label for="c-nombre">Nombre</label>
+            <input type="text" id="c-nombre" name="nombre" autocomplete="name" required maxlength="80">
+
+            <label for="c-email">Email</label>
+            <input type="email" id="c-email" name="email" autocomplete="email" required maxlength="120">
+
+            <label for="c-mensaje">Mensaje</label>
+            <textarea id="c-mensaje" name="mensaje" required maxlength="500" rows="5"></textarea>
+
+            <!-- Honeypot anti-spam: campo oculto para bots, invisible para personas -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="c-empresa">No completar</label>
+              <input type="text" id="c-empresa" name="empresa" tabindex="-1" autocomplete="off">
+            </div>
+
+            <button type="submit" id="c-submit" class="btn btn-accent">Enviar mensaje</button>
+            <p id="c-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="bottom-nav-root"></div>
+  <script src="js/bottom-nav-v2.js" defer></script>
+
+  <style>
+    .btn-back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin: 14px 0 4px;
+        padding: 8px 4px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-link);
+        text-decoration: none;
+    }
+    .btn-back-home:hover {
+        text-decoration: underline;
+    }
+    .contact-card {
+        background: var(--card-bg);
+        border-radius: var(--radius-card);
+        border: 1px solid var(--border-light);
+        box-shadow: var(--shadow-soft);
+        padding: 20px;
+        max-width: 560px;
+    }
+    .contact-intro {
+        color: var(--text-muted);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 18px;
+    }
+    #form-contacto label {
+        display: block;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--text-main);
+        margin-top: 14px;
+        margin-bottom: 6px;
+    }
+    #form-contacto input[type="text"],
+    #form-contacto input[type="email"],
+    #form-contacto textarea {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-btn);
+        font: inherit;
+        font-size: 15px;
+        color: var(--text-main);
+        background: var(--bg-main);
+        transition: border-color 0.15s;
+    }
+    #form-contacto input:focus,
+    #form-contacto textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+    }
+    #form-contacto textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+    .hp-field {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+    #c-submit {
+        width: 100%;
+        margin-top: 20px;
+    }
+    #c-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    #c-status {
+        margin-top: 12px;
+        font-size: 13.5px;
+        min-height: 1.2em;
+    }
+    #c-status.ok { color: #16A34A; }
+    #c-status.error { color: var(--orange-dark); }
+  </style>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function initContactForm() {
+      // Credenciales reales de tu cuenta EmailJS
+      var EMAILJS_PUBLIC_KEY = 'tNzeWvJIYif8LJDKb';
+      var EMAILJS_SERVICE_ID = 'service_8yz5lo8';
+      var EMAILJS_TEMPLATE_ID = 'template_ozra74t';
+
+      var form = document.getElementById('form-contacto');
+      var status = document.getElementById('c-status');
+      var submitBtn = document.getElementById('c-submit');
+
+      if (!form) return;
+
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof emailjs === 'undefined') {
+          console.warn('[BAHI.ar] EmailJS no se pudo cargar.');
+          return;
+        }
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        status.textContent = '';
+        status.className = '';
+
+        // Honeypot: si un bot completó este campo oculto, se descarta silenciosamente
+        if (form.empresa.value.trim() !== '') {
+          form.reset();
+          return;
+        }
+
+        var nombre = form.nombre.value.trim();
+        var email = form.email.value.trim();
+        var mensaje = form.mensaje.value.trim();
+
+        if (!nombre || !email || !mensaje) {
+          status.textContent = 'Completá todos los campos.';
+          status.className = 'error';
+          return;
+        }
+
+        if (typeof emailjs === 'undefined') {
+          status.textContent = 'No se pudo cargar el servicio de envío. Probá de nuevo más tarde.';
+          status.className = 'error';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          nombre: nombre,
+          email: email,
+          mensaje: mensaje
+        }).then(function () {
+          status.textContent = '¡Mensaje enviado! Te responderemos pronto.';
+          status.className = 'ok';
+          form.reset();
+        }).catch(function (err) {
+          console.error('[BAHI.ar] Error EmailJS:', err);
+          status.textContent = 'No se pudo enviar. Probá de nuevo o escribinos por WhatsApp.';
+          status.className = 'error';
+        }).finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar mensaje';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
