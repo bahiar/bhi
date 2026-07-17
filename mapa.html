@@ -670,7 +670,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     }).addTo(mapa);
 
                     // Encuadrar el mapa al tamaño real del círculo (chico o grande)
-                    mapa.fitBounds(window._circuloPrecisionUsuario.getBounds(), { maxZoom: 16 });
+                    mapa.fitBounds(window._circuloPrecisionUsuario.getBounds(), { maxZoom: 18, padding: [40, 40] });
 
                     // Punto de ubicación con animación de pulso
                     window._marcadorUsuario = L.marker([lat, lng], {
