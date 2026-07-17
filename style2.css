@@ -2186,6 +2186,21 @@ button.bottom-nav-item {
     [data-mode="dark"] .btn-share-wa:hover { background: var(--surface-2); }
 }
 
+/* El texto de estos botones estaba fijo en var(--primary)/var(--accent)
+   (pensado para su fondo blanco fijo original). Al pasar el fondo a
+   var(--card-bg) arriba, el texto quedaba casi invisible (~1.1:1 de
+   contraste en .btn-share-wa). Se corrige apuntando a las variables
+   que ya se redefinen para dark mode. */
+[data-mode="dark"] .btn-share-wa {
+    color: var(--text-main);
+}
+
+[data-mode="dark"] .filter-chip,
+[data-mode="dark"] .filter-chip-select,
+[data-mode="dark"] #btn-actualizar {
+    color: var(--text-link);
+}
+
 [data-mode="dark"] .mas-grid-item { background: var(--card-bg); }
 [data-mode="dark"] .mas-grid-item:hover,
 [data-mode="dark"] .mas-grid-item:focus-visible { background: var(--surface-2); }
