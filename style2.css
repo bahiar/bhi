@@ -2128,7 +2128,7 @@ button.bottom-nav-item {
    que la mayoría de los componentes se adaptan solo.
    ================================================================= */
 
-html.dark {
+[data-mode="dark"] {
     --bg-main: #10141F;
     --card-bg: #1A1F2C;
     --surface-2: #232838;
@@ -2147,69 +2147,69 @@ html.dark {
     --cat-guardia: #F0554F;
 }
 
-html.dark body {
+[data-mode="dark"] body {
     background-color: var(--bg-main);
     color: var(--text-main);
 }
 
 /* Tinte de categoría más visible sobre fondo oscuro: la misma opacidad
    baja que en claro queda casi invisible sobre una superficie ya oscura */
-html.dark .card[data-estado="turno"] {
+[data-mode="dark"] .card[data-estado="turno"] {
     background: linear-gradient(to right, rgba(255, 138, 61, 0.09) 0px, transparent 52px), var(--card-bg);
 }
-html.dark .card[data-tipo="GUARDIA"] {
+[data-mode="dark"] .card[data-tipo="GUARDIA"] {
     background: linear-gradient(to right, rgba(240, 85, 79, 0.08) 0px, transparent 52px), var(--card-bg);
 }
-html.dark .home-acc-watermark { opacity: 0.09; }
-html.dark .home-acc-item--featured .home-acc-watermark { opacity: 0.16; }
+[data-mode="dark"] .home-acc-watermark { opacity: 0.09; }
+[data-mode="dark"] .home-acc-item--featured .home-acc-watermark { opacity: 0.16; }
 
 /* home-acc-vertodos usa var(--text-link), que ya cambia de tono en
    dark mode vía la variable --text-link redefinida en el bloque
    [data-mode="dark"] (portada.html). No necesita regla propia acá. */
 
 /* Superficies con blanco fijo en vez de var(--card-bg) */
-html.dark .search-container input[type="text"],
-html.dark .search-container--main input[type="text"],
-html.dark .btn-map-toggle,
-html.dark .sub-nav-link,
-html.dark .btn-share-wa,
-html.dark #btn-actualizar,
-html.dark .filter-chip,
-html.dark .filter-chip-select,
-html.dark .filter-chip-select option,
-html.dark .bottom-nav {
+[data-mode="dark"] .search-container input[type="text"],
+[data-mode="dark"] .search-container--main input[type="text"],
+[data-mode="dark"] .btn-map-toggle,
+[data-mode="dark"] .sub-nav-link,
+[data-mode="dark"] .btn-share-wa,
+[data-mode="dark"] #btn-actualizar,
+[data-mode="dark"] .filter-chip,
+[data-mode="dark"] .filter-chip-select,
+[data-mode="dark"] .filter-chip-select option,
+[data-mode="dark"] .bottom-nav {
     background: var(--card-bg);
 }
 
 @media (hover: hover) {
-    html.dark .btn-map-toggle:hover,
-    html.dark .btn-share-wa:hover { background: var(--surface-2); }
+    [data-mode="dark"] .btn-map-toggle:hover,
+    [data-mode="dark"] .btn-share-wa:hover { background: var(--surface-2); }
 }
 
-html.dark .mas-grid-item { background: var(--card-bg); }
-html.dark .mas-grid-item:hover,
-html.dark .mas-grid-item:focus-visible { background: var(--surface-2); }
-html.dark .mas-grid-item__label { color: var(--text-main); }
+[data-mode="dark"] .mas-grid-item { background: var(--card-bg); }
+[data-mode="dark"] .mas-grid-item:hover,
+[data-mode="dark"] .mas-grid-item:focus-visible { background: var(--surface-2); }
+[data-mode="dark"] .mas-grid-item__label { color: var(--text-main); }
 
-html.dark .resultado-nombre { color: var(--text-main); }
-html.dark .resultado-ubicacion,
-html.dark .busqueda-sin-resultados { color: var(--text-muted); }
-html.dark .resultado-busqueda { border-color: var(--border-light); }
-html.dark .resultado-busqueda:hover { background: rgba(255, 255, 255, 0.04); }
-html.dark .busqueda-global-resultados { background: var(--card-bg); border-color: var(--border-light); }
+[data-mode="dark"] .resultado-nombre { color: var(--text-main); }
+[data-mode="dark"] .resultado-ubicacion,
+[data-mode="dark"] .busqueda-sin-resultados { color: var(--text-muted); }
+[data-mode="dark"] .resultado-busqueda { border-color: var(--border-light); }
+[data-mode="dark"] .resultado-busqueda:hover { background: rgba(255, 255, 255, 0.04); }
+[data-mode="dark"] .busqueda-global-resultados { background: var(--card-bg); border-color: var(--border-light); }
 
-html.dark .section-header-meta { color: var(--text-muted); }
+[data-mode="dark"] .section-header-meta { color: var(--text-muted); }
 
-html.dark .cache-indicator-warning {
+[data-mode="dark"] .cache-indicator-warning {
     background: rgba(245, 124, 0, 0.14);
     border-color: rgba(245, 124, 0, 0.35);
     color: #FFB74D;
 }
 
-html.dark .faq-report-row { background: var(--card-bg); border-color: var(--border-light); }
-html.dark .faq-report-row__label { color: var(--text-muted); }
+[data-mode="dark"] .faq-report-row { background: var(--card-bg); border-color: var(--border-light); }
+[data-mode="dark"] .faq-report-row__label { color: var(--text-muted); }
 
-html.dark .skeleton-line {
+[data-mode="dark"] .skeleton-line {
     background: linear-gradient(90deg, #1C2740 25%, #263049 50%, #1C2740 75%);
     background-size: 200% 100%;
 }
@@ -2245,9 +2245,9 @@ html.dark .skeleton-line {
 }
 
 .theme-toggle-icon--sun { display: none; }
-html.dark .theme-toggle-icon--moon { display: none; }
-html.dark .theme-toggle-icon--sun { display: block; }
-html.dark .theme-toggle-icon { color: #FFB74D; }
+[data-mode="dark"] .theme-toggle-icon--moon { display: none; }
+[data-mode="dark"] .theme-toggle-icon--sun { display: block; }
+[data-mode="dark"] .theme-toggle-icon { color: #FFB74D; }
 
 @media (min-width: 768px) {
     .theme-toggle-btn { bottom: 20px; }
@@ -2271,7 +2271,7 @@ html.dark .theme-toggle-icon { color: #FFB74D; }
     }
 
     ::view-transition-old(root),
-    html.dark::view-transition-old(root) {
+    [data-mode="dark"]::view-transition-old(root) {
         animation: none;
         animation-fill-mode: both;
         z-index: -1;
