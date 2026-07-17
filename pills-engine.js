@@ -376,7 +376,10 @@ window.PillsEngine = (function () {
 
     aplicarFiltros(vista); // re-renderiza respetando los filtros de pills que estén activos
 
-    if (boton) boton.hidden = true; // ya cumplió su función
+    if (boton) {
+      if (span) span.textContent = 'Más cerca';
+      boton.hidden = true; // ya cumplió su función
+    }
   }
 
   return { init, limpiar, activarUbicacion };
