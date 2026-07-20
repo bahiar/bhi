@@ -21,7 +21,7 @@
     'use strict';
 
     // Listado COMPLETO de secciones para páginas funcionales (desktop mostrará todas)
-    // Orden estricto acordado: 7 funcionales (con datos) + 5 en construcción.
+    // Orden estricto acordado: 8 funcionales (con datos) + 4 en construcción.
     // enConstruccion:true agrega data-status="construccion" + badge "Próx." (ver CSS)
     var FULL_NAV_ITEMS = [
         { href: 'index.html',          label: 'Inicio' },
@@ -33,7 +33,7 @@
         { href: 'ortopedias.html',     label: 'Ortopedias' },
         { href: 'opticas.html',        label: 'Ópticas',        enConstruccion: true },
         { href: 'enfermeria.html',     label: 'Enfermería',     enConstruccion: true },
-        { href: 'kinesiologia.html',   label: 'Kinesiología',   enConstruccion: true },
+        { href: 'kinesiologia.html',   label: 'Kinesiología' },
         { href: 'nutricion.html',      label: 'Nutrición',      enConstruccion: true },
         { href: 'fonoaudiologia.html', label: 'Fonoaudiología', enConstruccion: true }
     ];
