@@ -254,12 +254,13 @@ body {
 }
 
 .btn-accent {
-    background: var(--orange-dark);
+    /* --orange-dark (#CC5500) con blanco da 4.31:1, no llega a 4.5:1 AA. */
+    background: #B84D00;
     color: #fff;
 }
 
 @media (hover: hover) {
-    .btn-accent:hover { background: var(--orange-dark); }
+    .btn-accent:hover { background: #963E00; }
     .btn-outline:hover { background: rgba(255, 107, 0, 0.18); }
 }
 
@@ -1861,14 +1862,15 @@ button.bottom-nav-item {
 }
 
 .header-btn--instalar {
-    background: var(--orange);
-    border-color: var(--orange);
+    /* #FF6B00 con blanco da 2.85:1 (falla AA). #B84D00 da 5.12:1. */
+    background: #B84D00;
+    border-color: #B84D00;
     color: #fff;
 }
 
 .header-btn--instalar:hover {
-    background: var(--orange-dark);
-    border-color: var(--orange-dark);
+    background: #963E00;
+    border-color: #963E00;
 }
 
 #btn-instalar-app[hidden] {

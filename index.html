@@ -12,12 +12,28 @@
     }
 })();
 </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5RNWBBM7');</script>
+<!-- Google Tag Manager (carga diferida: primera interacción o 3.5s tras load, para no bloquear el render inicial) -->
+<script>
+window.dataLayer = window.dataLayer || [];
+(function(w,d,s,l,i){
+    var loaded = false;
+    function loadGTM(){
+        if (loaded) return;
+        loaded = true;
+        w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0], j=d.createElement(s),
+            dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+    }
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    events.forEach(function(evt){
+        w.addEventListener(evt, loadGTM, {passive:true, once:true});
+    });
+    w.addEventListener('load', function(){ setTimeout(loadGTM, 3500); });
+})(window,document,'script','dataLayer','GTM-5RNWBBM7');
+</script>
 <!-- End Google Tag Manager -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="25bce197-667d-4886-840b-b5068b039c63"></script>
     <meta charset="UTF-8">
@@ -385,7 +401,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: #fff;
         }
         .btn-donar {
-            background: var(--orange, #e8720c);
+            /* Color propio (no var(--orange)) para cumplir contraste AA 4.5:1 con texto blanco.
+               --orange (#FF6B00) da 2.85:1 y --orange-dark (#CC5500) da 4.31:1, ambos insuficientes. */
+            background: #B84D00;
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -401,7 +419,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: background 0.15s ease;
         }
         .btn-donar:hover {
-            background: var(--orange-dark, #c65e05);
+            background: #963E00;
         }
         .btn-donar:focus-visible {
             outline: none;
