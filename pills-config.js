@@ -70,6 +70,19 @@ window.PILLS_CONFIG = {
   },
 
   // ─────────────────────────────────────────────────────────────
+  kinesiologia: {
+    fuente: 'data/kft.json',
+    tipo: 'KINESIOLOGIA',
+    pills: [
+      { campo: 'LOCALIDAD',   tipoPill: 'select',  activo: true,  label: 'Localidad' },
+      { campo: 'DELIVERY',    tipoPill: 'boolean', activo: true,  label: 'Atención a domicilio' },
+      { campo: 'GRUPO',       tipoPill: 'select',  activo: false, label: 'Grupo' },
+      { campo: 'NIVEL',       tipoPill: 'select',  activo: false, label: 'Nivel' },
+      { campo: 'OOSS',        tipoPill: 'select',  activo: false, multivalor: false, label: 'Obra Social' },
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────
   ortopedia: {
     fuente: 'data/ortopedia.json',
     tipo: 'ORTOPEDIA',
