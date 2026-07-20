@@ -15,7 +15,7 @@
     --bg-main: #EEF2F7;
     --card-bg: #FFFFFF;
     --text-main: #0F172A;
-    --text-muted: #525E73;
+    --text-muted: #48536B;
     --border-light: #E2E8F0;
     --orange: #FF6B00;
     --orange-dark: #CC5500;
@@ -30,13 +30,14 @@
     --cat-farmacia: var(--orange);
     --cat-guardia: #DC2626;
     --cat-laboratorio: var(--accent);
+    --cat-otros: #0D9488;
     /* Nivel de superficie flotante (modales, dropdowns) — hoy igual a
        card-bg en claro, pero queda listo para diferenciarlo si hace falta */
     --surface-2: #F8FAFC;
     /* Color de texto de marca (links, íconos de dato, headings de detalle).
        En claro es --primary; en oscuro se resuelve UNA sola vez más abajo
        en vez de parchear cada selector por separado. */
-    --text-link: var(--primary);
+    --text-link: var(--accent);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -2146,6 +2147,7 @@ button.bottom-nav-item {
        no vibrar contra el fondo oscuro (no se tocan los que se usan como
        fondo sólido de botones, solo los que funcionan como acento/borde) */
     --cat-guardia: #F0554F;
+    --cat-otros: #2DD4BF;
 }
 
 [data-mode="dark"] body {
