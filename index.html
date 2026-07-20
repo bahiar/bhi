@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<script>
+(function () {
+    try {
+        var stored = localStorage.getItem('bahi-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-mode', theme);
+    } catch (e) {
+        document.documentElement.setAttribute('data-mode', 'light');
+    }
+})();
+</script>
+<!-- Google Tag Manager (carga diferida: primera interacción o 3.5s tras load, para no bloquear el render inicial) -->
+<script>
+window.dataLayer = window.dataLayer || [];
+(function(w,d,s,l,i){
+    var loaded = false;
+    function loadGTM(){
+        if (loaded) return;
+        loaded = true;
+        w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0], j=d.createElement(s),
+            dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+    }
+    var events = ['scroll','mousemove','touchstart','keydown','click'];
+    events.forEach(function(evt){
+        w.addEventListener(evt, loadGTM, {passive:true, once:true});
+    });
+    w.addEventListener('load', function(){ setTimeout(loadGTM, 3500); });
+})(window,document,'script','dataLayer','GTM-5RNWBBM7');
+</script>
+<!-- End Google Tag Manager -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="25bce197-667d-4886-840b-b5068b039c63"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacias de Turno Hoy en Bahía Blanca | BAHI.ar</title>
+    <meta name="description" content="Guía médica digital de Bahía Blanca: farmacias de turno, hospitales, clínicas, laboratorios, centros de diagnóstico, nutrición, kinesiología, fonoaudiología y ópticas. Información médica unificada y actualizada.">
+    <link rel="canonical" href="https://www.bahi.ar/">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <link rel="preload" href="style2.css" as="style">
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        :root {
+            --header-h: 52px;
+            /* Colores de categoría que faltaban en style2.css — derivados de tu paleta,
+               no inventé un esquema nuevo: primary=navy, accent=azul, orange=farmacia,
+               guardia=rojo ya existen. Sumo dos tonos que faltan (ortopedia, imágenes)
+               manteniendo la misma temperatura/saturación que el resto. */
+            --cat-ortopedia: #0E9F6E;
+            --cat-ortopedia-dark: #0A7A54;
+            --cat-imagenes: #5B4FE8;
+            --cat-imagenes-dark: #4438C4;
+            --cat-laboratorio-dark: #1558C4;
+        }
+        [data-mode="dark"] {
+            --bg-main: #0e1220;
+            --card-bg: #181d33;
+            --text-main: #eef0f5;
+            --text-muted: #9a9fb5;
+            --border-light: #2a3050;
+            --footer-bg: #0b0f1e;
+            --text-link: #8FA6FF;
+        }
+        #splash-custom {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: linear-gradient(135deg, #EA580C 0 49.5%, #191971 50.5% 100%);
+            transition: opacity 0.35s ease;
+        }
+        #splash-custom.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #splash-custom img {
+            width: 84px;
+            height: 84px;
+        }
+        #splash-brand {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #ffffff;
+        }
+        :root { --ink: #EA580C; }
+        .ld-ekg { width: 64px; height: 32px; }
+        .ld-ekg polyline {
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 90;
+            stroke-dashoffset: 90;
+            animation: ekg 1.6s linear infinite;
+        }
+        @keyframes ekg {
+            0%       { stroke-dashoffset: 90; }
+            60%, 75% { stroke-dashoffset: 0; }
+            100%     { stroke-dashoffset: -90; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .ld-ekg polyline { animation: none; stroke-dashoffset: 0; }
+        }
+        .fuente-oficial-nota {
+            margin: 14px 2px 4px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0,0,0,0.07);
+            text-align: justify;
+            text-justify: inter-word;
+            font-size: 11.5px;
+            line-height: 1.55;
+            color: var(--text-muted);
+            letter-spacing: 0.01em;
+        }
+
+        /* ── Acordeón de categorías del index ── */
+        .home-acc { display: flex; flex-direction: column; gap: 12px; }
+        .home-acc-heading { margin: 0; }
+        .home-acc-item {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .home-acc-item:active { transform: scale(0.99); }
+
+        /* filo de color por categoría (izquierda), usando :has() así no
+           hace falta tocar el JS ni agregar clases nuevas por ítem */
+        .home-acc-item::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            z-index: 1;
+        }
+        .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="farmacias-turno"])::before { background: linear-gradient(var(--orange), var(--orange-dark)); }
+        .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="farmacias"])::before { background: linear-gradient(var(--orange), var(--orange-dark)); }
+        .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="emergencias"])::before          { background: linear-gradient(var(--cat-guardia), #991B1B); }
+        .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="laboratorios"])::before      { background: linear-gradient(var(--accent), var(--cat-laboratorio-dark)); }
+        .home-acc-item:has(> .home-acc-heading .home-acc-header[data-categoria="imagenes"])::before          { background: linear-gradient(var(--cat-imagenes), var(--cat-imagenes-dark)); }
+
+        .home-acc-header {
+            position: relative;
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 14px 16px 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            text-align: left;
+            min-height: 44px;
+            font-family: var(--font-brand);
+            touch-action: manipulation;
+            overflow: hidden;
+        }
+
+        /* ── badge del ícono: cuadrado con degradado de marca por categoría ── */
+        .home-acc-icon-badge {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        .home-acc-icon-badge .home-acc-icon { color: #fff; width: 22px; height: 22px; display: block; }
+        .home-acc-header[data-categoria="farmacias-turno"] .home-acc-icon-badge { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+        .home-acc-header[data-categoria="farmacias"] .home-acc-icon-badge { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+        .home-acc-header[data-categoria="emergencias"] .home-acc-icon-badge         { background: linear-gradient(135deg, var(--cat-guardia), #991B1B); }
+        .home-acc-header[data-categoria="laboratorios"] .home-acc-icon-badge      { background: linear-gradient(135deg, var(--accent), var(--cat-laboratorio-dark)); }
+        .home-acc-header[data-categoria="imagenes"] .home-acc-icon-badge         { background: linear-gradient(135deg, var(--cat-imagenes), var(--cat-imagenes-dark)); }
+
+        /* ── marca de agua: el mismo ícono, gigante y casi invisible, sangrando
+               en el borde derecho — textura sin usar fotos ── */
+        .home-acc-watermark {
+            position: absolute;
+            right: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 92px;
+            height: 92px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .home-acc-item--featured .home-acc-watermark { opacity: 0.12; color: #fff; }
+        .home-acc-header[data-categoria="farmacias-turno"] ~ .home-acc-watermark,
+        .home-acc-header[data-categoria="farmacias-turno"] .home-acc-watermark { color: var(--orange); }
+        .home-acc-header[data-categoria="farmacias"] .home-acc-watermark { color: var(--orange); }
+        .home-acc-header[data-categoria="emergencias"] .home-acc-watermark { color: var(--cat-guardia); }
+        .home-acc-header[data-categoria="laboratorios"] .home-acc-watermark { color: var(--accent); }
+        .home-acc-header[data-categoria="imagenes"] .home-acc-watermark { color: var(--cat-imagenes); }
+
+        .home-acc-header__text {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            z-index: 2;
+        }
+        .home-acc-header__label {
+            display: block;
+            font-size: 15.5px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+        }
+        .home-acc-header__sub {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-family: var(--font-base);
+        }
+        .home-acc-header__sub-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #16A34A;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .home-acc-header__sub-dot::after {
+            content: "";
+            position: absolute; inset: -3px;
+            border-radius: 50%;
+            background: #16A34A;
+            opacity: 0.35;
+            animation: home-acc-pulse 1.8s infinite;
+        }
+        @keyframes home-acc-pulse {
+            0% { transform: scale(1); opacity: 0.35; }
+            70% { transform: scale(2.4); opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .home-acc-chevron-wrap {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        .home-acc-chevron {
+            flex-shrink: 0;
+            color: var(--text-muted);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .home-acc-item--open .home-acc-chevron { transform: rotate(180deg); }
+        .home-acc-item--open .home-acc-header { border-bottom: 1px solid var(--border-light); }
+
+        /* ── card destacada: Farmacias de turno, tratamiento hero ── */
+        .home-acc-item--featured {
+            box-shadow: 0 14px 30px -16px rgba(25, 25, 113, 0.5);
+        }
+        .home-acc-item--featured::before { display: none; }
+        .home-acc-item--featured > .home-acc-heading > .home-acc-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2f8e 100%);
+            padding: 18px 18px 18px 20px;
+        }
+        .home-acc-item--featured .home-acc-header__label,
+        .home-acc-item--featured .home-acc-header__sub { color: #fff; }
+        .home-acc-item--featured .home-acc-header__sub { color: rgba(255,255,255,0.8); }
+        .home-acc-item--featured .home-acc-header[data-categoria] .home-acc-icon-badge { background: rgba(255,255,255,0.16); box-shadow: none; }
+        .home-acc-item--featured .home-acc-chevron-wrap { background: rgba(255,255,255,0.16); }
+        .home-acc-item--featured .home-acc-chevron { color: #fff; }
+        .home-acc-item--featured.home-acc-item--open .home-acc-header { border-bottom-color: rgba(255,255,255,0.15); }
+
+        .home-acc-body {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        }
+        .home-acc-item--open .home-acc-body {
+            max-height: 4000px;
+            opacity: 1;
+            padding: 14px 16px 16px;
+        }
+        .section-header--acc { padding: 0 0 10px; }
+        .home-acc-cards { display: flex; flex-direction: column; gap: 10px; }
+        .home-acc-vertodos {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            font-family: var(--font-brand);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text-link);
+            text-decoration: none;
+            border-top: 1px solid var(--border-light);
+        }
+        .home-acc-msg {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 12px 0;
+            margin: 0;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .home-acc-chevron, .home-acc-body, .home-acc-header__sub-dot::after { transition: none; animation: none; }
+        }
+        /* ── Botón Mapa mejorado (map-toggle-btn) ── */
+        .map-toggle-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+        .map-toggle-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        [data-mode="dark"] .map-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .map-toggle-btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(25, 25, 113, 0.2);
+        }
+        /* ── Footer mejorado (app-footer) ──
+           .action-strip ahora vive DENTRO de #main-content.main-container
+           (ver HTML), así que hereda automáticamente el mismo max-width,
+           padding lateral y centrado que las cards de arriba. Ya no
+           necesita padding/margin propios en el eje horizontal. */
+        .app-footer {
+            background: var(--footer-bg, #f5f7fa);
+            margin-top: 18px;
+            padding: 22px 6px calc(84px + env(safe-area-inset-bottom));
+            border-radius: 0 0 8px 8px;
+        }
+        .footer-support {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;
+            background: rgba(232, 114, 12, 0.15);
+            border: 1px solid rgba(232, 114, 12, 0.3);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .footer-support .txt {
+            color: #8B4513;
+            font-size: 12px;
+            flex: 0 1 auto;
+            min-width: 150px;
+        }
+        .footer-support .txt b {
+            display: block;
+            color: #5C2E0A;
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+        [data-mode="dark"] .footer-support {
+            background: rgba(232, 114, 12, 0.12);
+            border: 1px solid rgba(232, 114, 12, 0.35);
+        }
+        [data-mode="dark"] .footer-support .txt {
+            color: #ffd9b0;
+        }
+        [data-mode="dark"] .footer-support .txt b {
+            color: #fff;
+        }
+        .btn-donar {
+            /* Color propio (no var(--orange)) para cumplir contraste AA 4.5:1 con texto blanco.
+               --orange (#FF6B00) da 2.85:1 y --orange-dark (#CC5500) da 4.31:1, ambos insuficientes. */
+            background: #B84D00;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 9px 14px;
+            font-size: 12.5px;
+            font-weight: 700;
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s ease;
+        }
+        .btn-donar:hover {
+            background: #963E00;
+        }
+        .btn-donar:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+        .footer-divider {
+            width: 1px;
+            height: 22px;
+            background: var(--border-light);
+            flex-shrink: 0;
+        }
+        .footer-social {
+            display: flex;
+            gap: 8px;
+        }
+        .social-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(26, 47, 142, 0.08);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary, #1a2f8e);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.15s ease;
+        }
+        .social-btn svg { width: 19px; height: 19px; }
+        .social-btn:hover {
+            background: rgba(26, 47, 142, 0.15);
+        }
+        .social-btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(26, 47, 142, 0.3);
+        }
+        [data-mode="dark"] .social-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        [data-mode="dark"] .social-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        [data-mode="dark"] .social-btn:focus-visible {
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+        .footer-report {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            color: #000;
+            font-size: 12px;
+            text-decoration: underline;
+            min-height: 44px;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+        }
+        [data-mode="dark"] .footer-report {
+            color: var(--footer-text, #c9cdf0);
+        }
+        .footer-report:hover {
+            opacity: 0.8;
+        }
+        .footer-report:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+        .footer-legal {
+            font-size: 10.5px;
+            color: var(--text-muted, #5f6690);
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+            justify-content: center;
+            line-height: 1.3;
+        }
+        .footer-legal a {
+            color: var(--text-muted, #5f6690);
+            text-decoration: none;
+            white-space: nowrap;
+            font-size: 10.5px;
+        }
+        .footer-legal a:hover {
+            text-decoration: underline;
+        }
+        .footer-legal span {
+            margin: 0 1px;
+            font-size: 10.5px;
+        }
+        @media (max-width: 480px) {
+            .app-footer {
+                padding: 14px 4px calc(80px + env(safe-area-inset-bottom));
+                margin-top: 12px;
+            }
+            .footer-support {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+                padding: 10px 12px;
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+            .footer-support .txt {
+                min-width: auto;
+                font-size: 11px;
+            }
+            .footer-support .txt b {
+                font-size: 12px;
+            }
+            .btn-donar {
+                width: 100%;
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            .footer-divider {
+                display: none;
+            }
+            .footer-social {
+                justify-content: center;
+            }
+            .footer-legal {
+                font-size: 12px;
+                gap: 2px;
+                line-height: 1.4;
+                word-spacing: -0.1em;
+            }
+            .footer-legal a {
+                font-size: 12px;
+            }
+            .footer-legal span {
+                margin: 0 1px;
+            }
+        }
+    </style>
+
+    <meta property="og:title" content="Farmacias de Turno Hoy en Bahía Blanca | BAHI.ar">
+    <meta property="og:description" content="Guía médica digital de Bahía Blanca: farmacias de turno, hospitales, clínicas, laboratorios, centros de diagnóstico, nutrición, kinesiología, fonoaudiología y ópticas. Información médica unificada y actualizada.">
+    <meta property="og:url" content="https://www.bahi.ar/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="BAHI.ar">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Farmacias de Turno Hoy en Bahía Blanca | BAHI.ar">
+    <meta name="twitter:description" content="Guía médica digital de Bahía Blanca: farmacias de turno, hospitales, clínicas, laboratorios, centros de diagnóstico, nutrición, kinesiología, fonoaudiología y ópticas. Información médica unificada y actualizada.">
+    <meta name="twitter:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+
+    <meta name="geo.region" content="AR-B">
+    <meta name="geo.placename" content="Bahía Blanca, Buenos Aires, Argentina">
+    <meta name="geo.position" content="-38.7183;-62.2661">
+    <meta name="ICBM" content="-38.7183, -62.2661">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.bahi.ar/#website",
+          "url": "https://www.bahi.ar/",
+          "name": "BAHI.ar",
+          "description": "Directorio de salud para Bahía Blanca: farmacias de turno, hospitales, clínicas, laboratorios, centros de diagnóstico, nutrición, kinesiología, fonoaudiología y ópticas.",
+          "inLanguage": "es-AR",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.bahi.ar/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://www.bahi.ar/#business",
+          "name": "BAHI.ar",
+          "url": "https://www.bahi.ar/",
+          "description": "Guía médica digital para Bahía Blanca, Ingeniero White, Cabildo y Cerri. Farmacias de turno, hospitales, clínicas, laboratorios clínicos, centros de diagnóstico por imágenes, nutrición, kinesiología, fonoaudiología y ópticas.",
+          "areaServed": {
+            "@type": "City",
+            "name": "Bahía Blanca",
+            "containedInPlace": {
+              "@type": "State",
+              "name": "Buenos Aires",
+              "containedInPlace": {
+                "@type": "Country",
+                "name": "Argentina"
+              }
+            }
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bahía Blanca",
+            "addressRegion": "Buenos Aires",
+            "addressCountry": "AR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -38.7183,
+            "longitude": -62.2661
+          },
+          "telephone": "+542915658189",
+          "sameAs": [
+            "https://www.facebook.com/guiabahiar/",
+            "https://www.instagram.com/guiabahiar"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Qué es BAHI.ar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Es una guía médica digital para los vecinos de Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Reúne farmacias de turno, guardias, laboratorios, centros de diagnóstico, nutrición, kinesiología, fonoaudiología y ópticas."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Con qué frecuencia se actualizan las farmacias de turno?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Las farmacias de turno se actualizan diariamente a las 8:30 hs."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Funciona sin conexión a internet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, de forma parcial. Una vez visitada con conexión, el contenido queda guardado en el dispositivo."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <meta name="theme-color" content="#191971">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+
+<div id="splash-custom" aria-hidden="true">
+    <img src="assets/images/mask-icon.svg" alt="" width="84" height="84">
+    <span id="splash-brand">BAHI.ar</span>
+    <svg class="ld-ekg" viewBox="0 0 64 32"><polyline points="0,16 14,16 20,6 28,26 34,16 64,16" /></svg>
+</div>
+<script>
+    (function () {
+        function ocultarSplash() {
+            var s = document.getElementById('splash-custom');
+            if (!s) return;
+            s.classList.add('is-hidden');
+            setTimeout(function () { s.remove(); }, 400);
+        }
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            setTimeout(ocultarSplash, 300);
+        } else {
+            document.addEventListener('DOMContentLoaded', function () {
+                setTimeout(ocultarSplash, 300);
+            });
+        }
+        window.addEventListener('load', ocultarSplash);
+        setTimeout(ocultarSplash, 2500);
+    })();
+</script>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RNWBBM7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="header-nav-root"></div>
+    <script>
+        window.headerNavConfig = { page: 'index', type: 'full' };
+    </script>
+    <script src="js/header-nav.js" defer></script>
+
+    <main class="app-view" id="content">
+        <div id="main-content" class="main-container">
+
+            <h1 class="sr-only">BAHI.ar — Guía médica digital de Bahía Blanca: farmacias, hospitales, laboratorios, diagnóstico, nutrición, kinesiología y más</h1>
+
+            <div class="search-bar-main">
+                <div class="search-container search-container--main">
+                    <div class="search-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <input
+                        id="search-input"
+                        type="text"
+                        placeholder="Buscar en BAHI.ar..."
+                        aria-label="Buscar farmacias, hospitales, laboratorios y otros servicios médicos"
+                        autocomplete="off"
+                        autocorrect="off"
+                        spellcheck="false"
+                    >
+                </div>
+                <a href="mapa.html" aria-label="Ver resultados en el mapa" class="map-toggle-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+                </a>
+            </div>
+
+            <div class="home-acc" role="list" aria-label="Categorías de BAHI.ar">
+
+                <!-- ── FARMACIAS DE TURNO — abierta por defecto. Su lógica de carga
+                     (inicializarTurnos) NO cambia, sigue corriendo siempre al entrar
+                     a la página; el acordeón solo controla el colapsado visual. ── -->
+                <div class="home-acc-item home-acc-item--open home-acc-item--featured" role="listitem">
+                    <h2 class="home-acc-heading">
+                        <button class="home-acc-header" data-categoria="farmacias-turno" aria-expanded="true" aria-controls="home-acc-panel-farmacias-turno">
+                            <span class="home-acc-icon-badge">
+                                <span class="home-acc-icon" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
+                            </span>
+                            <span class="home-acc-watermark" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
+                            <span class="home-acc-header__text">
+                                <span class="home-acc-header__label">Farmacias de turno</span>
+                                <span class="home-acc-header__sub"><span class="home-acc-header__sub-dot" aria-hidden="true"></span> listado oficial actualizado</span>
+                            </span>
+                            <span class="home-acc-chevron-wrap">
+                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </button>
+                    </h2>
+                    <div class="home-acc-body" id="home-acc-panel-farmacias-turno">
+
+                        <div class="section-header section-header--acc section-header--stacked">
+                            <div class="section-header-titles">
+                                <p class="section-header-meta" id="leyenda-horario" aria-live="polite"></p>
+                            </div>
+                            <div class="section-header-actions">
+                                <button id="btn-ubicacion-turno" class="btn-share-wa btn-ubicacion" type="button" hidden aria-label="Ordenar farmacias de turno por cercanía a tu ubicación">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s-7-7.58-7-12a7 7 0 1 1 14 0c0 4.42-7 12-7 12Z" stroke="var(--orange-dark)" stroke-width="1.8"/><circle cx="12" cy="9" r="2.3" stroke="var(--orange-dark)" stroke-width="1.8"/></svg>
+                                    <span>Ordenar por cercanía</span>
+                                </button>
+                                <button id="btn-compartir-whatsapp" class="btn-share-wa" aria-label="Compartir farmacias de turno por WhatsApp">
+                                    <svg width="14" height="14" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                                    <span>Compartir</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="contenedor-cards" class="cards-grid cards-grid--no-pad" aria-live="polite" aria-label="Farmacias de turno">
+                            <div class="skeleton-card" aria-hidden="true">
+                                <div class="skeleton-line skeleton-line-title"></div>
+                                <div class="skeleton-line skeleton-line-addr"></div>
+                                <div class="skeleton-btns">
+                                    <div class="skeleton-line skeleton-btn"></div>
+                                    <div class="skeleton-line skeleton-btn"></div>
+                                </div>
+                            </div>
+                            <div class="skeleton-card" aria-hidden="true">
+                                <div class="skeleton-line skeleton-line-title"></div>
+                                <div class="skeleton-line skeleton-line-addr"></div>
+                                <div class="skeleton-btns">
+                                    <div class="skeleton-line skeleton-btn"></div>
+                                    <div class="skeleton-line skeleton-btn"></div>
+                                </div>
+                            </div>
+                            <div class="skeleton-card" aria-hidden="true">
+                                <div class="skeleton-line skeleton-line-title"></div>
+                                <div class="skeleton-line skeleton-line-addr"></div>
+                                <div class="skeleton-btns">
+                                    <div class="skeleton-line skeleton-btn"></div>
+                                    <div class="skeleton-line skeleton-btn"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="fuente-oficial-nota">
+                            (*) Los datos de las farmacias de turno son oficiales y se publican gracias a la colaboración del Colegio de Farmacéuticos de la Provincia de Buenos Aires - Filial Bahía Blanca.
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- ── FARMACIAS — colapsada. Carga todas las farmacias ── -->
+                <div class="home-acc-item" role="listitem">
+                    <h2 class="home-acc-heading">
+                        <button class="home-acc-header" data-categoria="farmacias" aria-expanded="false" aria-controls="home-acc-panel-farmacias">
+                            <span class="home-acc-icon-badge">
+                                <span class="home-acc-icon" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
+                            </span>
+                            <span class="home-acc-watermark" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
+                            <span class="home-acc-header__text">
+                                <span class="home-acc-header__label">Farmacias</span>
+                                <span class="home-acc-header__sub">de Bahía Blanca, Ingeniero White, Gral. Daniel Cerri y Cabildo</span>
+                            </span>
+                            <span class="home-acc-chevron-wrap">
+                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </button>
+                    </h2>
+                    <div class="home-acc-body" id="home-acc-panel-farmacias"></div>
+                </div>
+
+                <!-- ── EMERGENCIAS — colapsada. ── -->
+                <div class="home-acc-item" role="listitem">
+                    <h2 class="home-acc-heading">
+                        <button class="home-acc-header" data-categoria="emergencias" aria-expanded="false" aria-controls="home-acc-panel-emergencias">
+                            <span class="home-acc-icon-badge">
+                                <span class="home-acc-icon" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
+                            </span>
+                            <span class="home-acc-watermark" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
+                            <span class="home-acc-header__text">
+                                <span class="home-acc-header__label">Emergencias</span>
+                                <span class="home-acc-header__sub">107 - ambulancias - guardias hospitalarias</span>
+                            </span>
+                            <span class="home-acc-chevron-wrap">
+                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </button>
+                    </h2>
+                    <div class="home-acc-body" id="home-acc-panel-emergencias"></div>
+                </div>
+
+                <!-- ── LABORATORIOS — colapsada. Carga sus datos recién al abrirse ── -->
+                <div class="home-acc-item" role="listitem">
+                    <h2 class="home-acc-heading">
+                        <button class="home-acc-header" data-categoria="laboratorios" aria-expanded="false" aria-controls="home-acc-panel-laboratorios">
+                            <span class="home-acc-icon-badge">
+                                <span class="home-acc-icon" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
+                            </span>
+                            <span class="home-acc-watermark" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
+                            <span class="home-acc-header__text">
+                                <span class="home-acc-header__label">Laboratorios</span>
+                                <span class="home-acc-header__sub">de análisis bioquímicos - anatomía patológica</span>
+                            </span>
+                            <span class="home-acc-chevron-wrap">
+                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </button>
+                    </h2>
+                    <div class="home-acc-body" id="home-acc-panel-laboratorios"></div>
+                </div>
+
+                <!-- ── IMÁGENES — colapsada. ── -->
+                <div class="home-acc-item" role="listitem">
+                    <h2 class="home-acc-heading">
+                        <button class="home-acc-header" data-categoria="imagenes" aria-expanded="false" aria-controls="home-acc-panel-imagenes">
+                            <span class="home-acc-icon-badge">
+                                <span class="home-acc-icon" data-icon-src="js/i-radiology-svgrepo-com.svg" aria-hidden="true"></span>
+                            </span>
+                            <span class="home-acc-watermark" data-icon-src="js/i-radiology-svgrepo-com.svg" aria-hidden="true"></span>
+                            <span class="home-acc-header__text">
+                                <span class="home-acc-header__label">Imágenes</span>
+                                <span class="home-acc-header__sub">radiografías - ecografías - tomografías - resonancias - mamografías - estudios dentales - densitometrías</span>
+                            </span>
+                            <span class="home-acc-chevron-wrap">
+                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </button>
+                    </h2>
+                    <div class="home-acc-body" id="home-acc-panel-imagenes"></div>
+                </div>
+
+            </div>
+
+            <div class="action-strip">
+
+            <footer class="app-footer">
+            <div class="footer-support">
+                <div class="txt"><b>¿Te resulta útil?</b> Podés ayudarnos.</div>
+                <a href="https://link.mercadopago.com.ar/mpbahiar" target="_blank" rel="noopener noreferrer" class="btn-donar" title="¿Te sirve la info? Ayudanos a mantenerla actualizada">Apoyar</a>
+            </div>
+            <div class="footer-links">
+                <div class="footer-social">
+                    <a href="contacto.html" class="social-btn" aria-label="Formulario de contacto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 7L2 7"></path></svg></a>
+                    <a href="https://www.facebook.com/guiabahiar/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="https://www.instagram.com/guiabahiar" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                </div>
+                <span class="footer-divider" aria-hidden="true"></span>
+                <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" class="footer-report">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    Reportar un error
+                </a>
+            </div>
+            <div class="footer-legal">
+                <a href="privacidad.html">Privacidad</a><span aria-hidden="true">·</span><a href="aviso-legal.html">Aviso legal</a><span aria-hidden="true">·</span><a href="terminos.html">Términos</a><span aria-hidden="true">·</span>© 2026 BAHI.ar
+            </div>
+        </footer>
+
+            </div>
+
+        </div>
+    </main>
+
+    <div id="faq-modal-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,40,0.65);align-items:flex-end;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+      <div style="background:var(--bg-card,#fff);width:100%;max-width:480px;border-radius:20px 20px 0 0;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;">
+
+        <div style="background:#191971;padding:16px 20px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+          <div>
+            <div class="brand-logo__name" style="font-size:19px;font-weight:500;letter-spacing:-0.5px;">BAHI<span class="brand-logo__name--accent">.ar</span></div>
+            <div class="brand-logo__tagline" style="margin-top:1px;">Preguntas frecuentes</div>
+          </div>
+          <button onclick="document.getElementById('faq-modal-overlay').style.display='none'" style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;" aria-label="Cerrar">✕</button>
+        </div>
+
+        <div style="overflow-y:auto;flex:1;" id="faq-body">
+          <!-- El contenido se cargará aquí desde faq-data.json -->
+        </div>
+
+        <div class="faq-report-row">
+          <span class="faq-report-row__label">¿No encontraste tu respuesta?</span>
+          <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" class="faq-report-link">
+            <svg width="14" height="14" viewBox="0 0 448 512" fill="#25D366" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            Reportar error
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <style>
+      .faq-i{border-bottom:0.5px solid rgba(0,0,0,0.08);}
+      .faq-btn{width:100%;background:none;border:none;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;text-align:left;font-size:13.5px;font-weight:500;color:#1a1a2e;font-family:inherit;}
+      .faq-chv{flex-shrink:0;color:#888;transition:transform 0.2s;}
+      .faq-ans{display:none;padding:0 20px 13px;font-size:13px;color:#555;line-height:1.65;}
+      .faq-i.open .faq-chv{transform:rotate(180deg);}
+      .faq-i.open .faq-ans{display:block;}
+    </style>
+
+    <script src="app.js" defer></script>
+    <script src="faq.js" defer></script>
+
+    <script defer>
+        (function () {
+            'use strict';
+
+            const CONFIG = {
+                TIMEZONE: 'America/Argentina/Buenos_Aires',
+                HORA_CAMBIO: 8,
+                MINUTO_CAMBIO: 30,
+                URL_TURNERO: 'data/turnero.json',
+                URL_PADRON: 'data/bd_bahiar.json',
+                MAX_REINTENTOS: 20
+            };
+
+            function obtenerFechaOperativa() {
+                const partes = new Intl.DateTimeFormat('en-CA', {
+                    timeZone: CONFIG.TIMEZONE,
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                }).formatToParts(new Date());
+
+                const p = {};
+                partes.forEach(v => { p[v.type] = v.value; });
+
+                const hora = parseInt(p.hour, 10);
+                const minuto = parseInt(p.minute, 10);
+                const fecha = new Date(`${p.year}-${p.month}-${p.day}T12:00:00Z`);
+
+                const esMadrugada =
+                    hora < CONFIG.HORA_CAMBIO ||
+                    (hora === CONFIG.HORA_CAMBIO && minuto < CONFIG.MINUTO_CAMBIO);
+
+                if (esMadrugada) {
+                    fecha.setDate(fecha.getDate() - 1);
+                }
+
+                return fecha.toISOString().split('T')[0];
+            }
+
+            function armarLeyenda(fechaOp) {
+                const meses = [
+                    'enero','febrero','marzo','abril','mayo','junio',
+                    'julio','agosto','septiembre','octubre','noviembre','diciembre'
+                ];
+                const [año, mes, día] = fechaOp.split('-');
+                const diaNum = parseInt(día, 10);
+                const mesNum = parseInt(mes, 10) - 1;
+                const f = new Date(`${año}-${mes}-${día}T12:00:00Z`);
+                const mañana = new Date(f.getTime() + 86400000);
+                const mañanaDia = mañana.getUTCDate();
+                const mañanaNum = mañana.getUTCMonth();
+
+                return {
+                    badge: `Hasta 8:30 de mañana (${mañanaDia} ${meses[mañanaNum]})`,
+                    strip: 'Activo ahora'
+                };
+            }
+
+            function mostrarError(contenedor, msg) {
+                contenedor.innerHTML = `
+                    <div class="error-state">
+                        <div class="error-state-icon" aria-hidden="true">⚠️</div>
+                        <p class="error-state-title">Error de carga</p>
+                        <p class="error-state-desc">${msg}</p>
+                    </div>`;
+            }
+
+            let padronCompleto = [];
+            const leyendaHorario = document.getElementById('leyenda-horario');
+
+            // ── Acordeón de categorías (antes en home-accordion.js, ahora
+            //    inline para no depender de que el Service Worker sirva
+            //    correctamente un archivo externo adicional) ──
+            const ACC_LIMITE = 6;
+            const ACC_CATEGORIAS = {
+                farmacias:    { fuente: 'data/bd_bahiar.json', tipo: 'FARMACIA',         verTodos: 'farmacias.html' },
+                laboratorios: { fuente: 'data/bd_bahiar.json', tipo: 'LABORATORIO',      verTodos: 'laboratorios.html' },
+                imagenes:     { fuente: 'data/RX_bahiar.json',  tipo: 'RADIOLOGIA',       verTodos: 'imagenes.html' },
+            };
+            const accCache = {};
+
+            async function accCargarDatos(clave) {
+                if (accCache[clave]) return accCache[clave];
+                const cfg = ACC_CATEGORIAS[clave];
+                const res = await fetch(cfg.fuente);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                let items = data.prestadores || [];
+                if (cfg.tipo) items = items.filter(p => p.TIPO === cfg.tipo);
+                accCache[clave] = items;
+                return items;
+            }
+
+            function accRenderPanel(clave, panel) {
+                // CASO ESPECIAL: Emergencias (datos hardcodeados)
+                if (clave === 'emergencias') {
+                    const SVG_LLAMAR     = `<svg class="btn-icon btn-icon--call" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`;
+                    const SVG_WHATSAPP   = `<svg class="btn-icon btn-icon--whatsapp" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>`;
+                    
+                    const emergenciasHTML = `
+                        <div class="home-acc-cards">
+                          <article class="card card-emergencia" data-tipo="EMERGENCIA" data-estado="turno">
+                            <div class="card-top">
+                              <div class="card-info">
+                                <span class="card-badge card-badge--emergencia">● Emergencia gratuita</span>
+                                <h3 class="card-name">107</h3>
+                                <p class="card-addr">Emergencias Médicas · 24 hs</p>
+                              </div>
+                            </div>
+                            <div class="card-actions card-actions--single">
+                              <a href="tel:107" class="btn btn-accent" aria-label="Llamar al 107 - Emergencias médicas">${SVG_LLAMAR} Llamar al 107</a>
+                            </div>
+                          </article>
+
+                          <article class="card" data-tipo="AMBULANCIA">
+                            <div class="card-top">
+                              <div class="card-info">
+                                <span class="card-badge card-badge--ambulancia">Ambulancia</span>
+                                <h3 class="card-name">SEM Emergencias Médicas</h3>
+                                <p class="card-addr">(0291) 459-1919</p>
+                              </div>
+                            </div>
+                            <div class="card-actions">
+                              <a href="tel:02914591919" class="btn btn-accent" aria-label="Llamar a SEM Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
+                              <a href="https://wa.me/5492916492840" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de SEM Emergencias Médicas">${SVG_WHATSAPP} WhatsApp</a>
+                            </div>
+                          </article>
+
+                          <article class="card" data-tipo="AMBULANCIA">
+                            <div class="card-top">
+                              <div class="card-info">
+                                <span class="card-badge card-badge--ambulancia">Ambulancia</span>
+                                <h3 class="card-name">Alerta Emergencias Médicas</h3>
+                                <p class="card-addr">(0291) 455-3388</p>
+                              </div>
+                            </div>
+                            <div class="card-actions card-actions--single">
+                              <a href="tel:02914553388" class="btn btn-accent" aria-label="Llamar a Alerta Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
+                            </div>
+                          </article>
+                        </div>
+                        <a href="emergencias.html" class="home-acc-vertodos">Ver completo →</a>
+                    `;
+                    panel.innerHTML = emergenciasHTML;
+                    return;
+                }
+
+                const cfg = ACC_CATEGORIAS[clave];
+                accCargarDatos(clave)
+                    .then(items => {
+                        if (items.length === 0) {
+                            panel.innerHTML = '<p class="home-acc-msg">No hay resultados disponibles por ahora.</p>';
+                            return;
+                        }
+                        const visibles = items.slice(0, ACC_LIMITE);
+                        const cardsHTML = visibles
+                            .map((item, i) => window.crearCardHTML(item, cfg.tipo, i))
+                            .join('');
+                        const textoVerTodos = items.length > ACC_LIMITE
+                            ? `Ver completo (${items.length}) →`
+                            : 'Ver completo →';
+                        panel.innerHTML = `
+                            <div class="home-acc-cards">${cardsHTML}</div>
+                            <a href="${cfg.verTodos}" class="home-acc-vertodos">${textoVerTodos}</a>
+                        `;
+                    })
+                    .catch(err => {
+                        console.error(`[Acordeón] Error al cargar "${clave}":`, err);
+                        panel.innerHTML = '<p class="home-acc-msg">No se pudo cargar la información. Probá de nuevo más tarde.</p>';
+                        delete panel.dataset.cargado; // permite reintentar en el próximo click
+                    });
+            }
+
+            function accCerrarTodos() {
+                document.querySelectorAll('.home-acc-item--open').forEach(item => {
+                    item.classList.remove('home-acc-item--open');
+                    const header = item.querySelector('.home-acc-header');
+                    if (header) header.setAttribute('aria-expanded', 'false');
+                });
+            }
+
+            function inicializarAcordeon() {
+                document.querySelectorAll('.home-acc-header[data-categoria]').forEach(header => {
+                    header.addEventListener('click', () => {
+                        const clave = header.dataset.categoria;
+                        const item = header.closest('.home-acc-item');
+                        const panel = document.getElementById(`home-acc-panel-${clave}`);
+                        const yaEstabaAbierto = item.classList.contains('home-acc-item--open');
+
+                        accCerrarTodos();
+
+                        if (yaEstabaAbierto) return; // click sobre el que ya estaba abierto: solo se cierra
+
+                        item.classList.add('home-acc-item--open');
+                        header.setAttribute('aria-expanded', 'true');
+
+                        // Lazy load: solo si es una categoría manejada acá
+                        // (no "farmacias-turno") y todavía no se cargó.
+                        // Incluye "emergencias" aunque no esté en ACC_CATEGORIAS
+                        if (panel && (ACC_CATEGORIAS[clave] || clave === 'emergencias') && !panel.dataset.cargado) {
+                            panel.dataset.cargado = '1';
+                            panel.innerHTML = '<p class="home-acc-msg">Cargando...</p>';
+                            accRenderPanel(clave, panel);
+                        }
+                    });
+                });
+            }
+
+            let posicionPromise = null;
+            let deTurnoActual = [];
+
+            function obtenerPosicionGeolocalizacion() {
+                if (!posicionPromise) {
+                    posicionPromise = new Promise(resolve => {
+                        if (!navigator.geolocation) return resolve(null);
+                        navigator.geolocation.getCurrentPosition(
+                            pos => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+                            () => resolve(null),
+                            { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 }
+                        );
+                    });
+                }
+                return posicionPromise;
+            }
+
+            async function activarUbicacionTurno() {
+                const boton = document.getElementById('btn-ubicacion-turno');
+                const contenedor = document.getElementById('contenedor-cards');
+                if (boton) {
+                    boton.disabled = true;
+                    boton.querySelector('span').textContent = 'Buscando ubicación…';
+                }
+
+                const posicion = await obtenerPosicionGeolocalizacion();
+                window.posicionUsuario = posicion;
+
+                if (!posicion) {
+                    if (boton) {
+                        boton.querySelector('span').textContent = 'No pudimos acceder a tu ubicación';
+                        setTimeout(() => {
+                            boton.disabled = false;
+                            boton.querySelector('span').textContent = 'Ordenar por cercanía';
+                        }, 3000);
+                    }
+                    return;
+                }
+
+                if (typeof window.calcularDistanciaKm === 'function') {
+                    deTurnoActual.sort((a, b) =>
+                        window.calcularDistanciaKm(posicion.lat, posicion.lng, a.lat, a.lng) -
+                        window.calcularDistanciaKm(posicion.lat, posicion.lng, b.lat, b.lng)
+                    );
+                }
+
+                if (contenedor && typeof window.crearCardHTML === 'function') {
+                    contenedor.innerHTML = deTurnoActual
+                        .map((f, i) => window.crearCardHTML(f, 'TURNO', i))
+                        .join('');
+                }
+
+                if (boton) {
+                    boton.querySelector('span').textContent = 'Más cerca';
+                    boton.hidden = true; // ya cumplió su función
+                }
+            }
+
+            async function inicializarTurnos(reintentos = 0) {
+                const contenedor = document.getElementById('contenedor-cards');
+                if (!contenedor) return;
+
+                try {
+                    const [resT, resP] = await Promise.all([
+                        fetch(CONFIG.URL_TURNERO),
+                        fetch(CONFIG.URL_PADRON)
+                    ]);
+
+                    if (!resT.ok || !resP.ok) {
+                        throw new Error('Error HTTP al descargar datos');
+                    }
+
+                    const turnero = await resT.json();
+                    const padron = await resP.json();
+
+                    padronCompleto = padron.prestadores || [];
+
+                    const fechaOp = obtenerFechaOperativa();
+                    const entrada = turnero.find(t => t.fecha === fechaOp);
+
+                    if (!entrada) {
+                        throw new Error(`Fecha ${fechaOp} no encontrada en el turnero`);
+                    }
+
+                    const grupoActual = entrada.grupo;
+
+                    const deTurno = padron.prestadores.filter(f =>
+                        f.TIPO === 'FARMACIA' &&
+                        f.GRUPO === grupoActual &&
+                        (f.FIJO || f.MOVIL)
+                    );
+
+                    const leyenda = armarLeyenda(fechaOp);
+                    if (leyendaHorario) {
+                        leyendaHorario.textContent = leyenda.badge;
+                    }
+
+                    if (deTurno.length === 0) {
+                        contenedor.innerHTML = `
+                            <div class="error-state">
+                                <div class="error-state-icon" aria-hidden="true">🔍</div>
+                                <p class="error-state-title">Sin farmacias registradas</p>
+                                <p class="error-state-desc">No hay farmacias registradas para el Grupo ${grupoActual} con teléfono disponible.</p>
+                            </div>`;
+                        return;
+                    }
+
+                    if (typeof window.crearCardHTML !== 'function') {
+                        if (reintentos >= CONFIG.MAX_REINTENTOS) {
+                            throw new Error('crearCardHTML no disponible tras reintentos');
+                        }
+                        setTimeout(() => inicializarTurnos(reintentos + 1), 100);
+                        return;
+                    }
+
+                    deTurnoActual = deTurno;
+
+                    contenedor.innerHTML = deTurno
+                        .map((f, i) => window.crearCardHTML(f, 'TURNO', i))
+                        .join('');
+
+                    const botonUbicacion = document.getElementById('btn-ubicacion-turno');
+                    if (botonUbicacion) {
+                        botonUbicacion.hidden = false;
+                        botonUbicacion.addEventListener('click', activarUbicacionTurno);
+                    }
+
+                } catch (err) {
+                    console.error('[BAHI.ar] Fallo al inicializar turnos:', err);
+                    mostrarError(contenedor, err.message);
+                }
+            }
+
+            inicializarTurnos();
+            inicializarAcordeon();
+
+        })();
+    </script>
+
+    <div id="bottom-nav-root"></div>
+    <script src="js/bottom-nav-v2.js" defer></script>
+    <script>
+      function faqToggle(btn){
+        var item=btn.closest('.faq-i');
+        var isOpen=item.classList.contains('open');
+        document.querySelectorAll('.faq-i.open').forEach(function(i){i.classList.remove('open');});
+        if(!isOpen) item.classList.add('open');
+      }
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'){
+          var o=document.getElementById('faq-modal-overlay');if(o)o.style.display='none';
+          // El cierre de #mas-modal-overlay con Escape vive en bottom-nav-v2.js
+          // (setupMasModal), junto con el resto de su manejo de foco.
+        }
+      });
+    </script>
+
+</body>
+</html>
