@@ -31,7 +31,7 @@
         { href: 'laboratorios.html',   label: 'Laboratorios' },
         { href: 'imagenes.html',       label: 'Imágenes' },
         { href: 'ortopedias.html',     label: 'Ortopedias' },
-        { href: 'opticas.html',        label: 'Ópticas',        enConstruccion: true },
+        { href: 'opticas.html',        label: 'Ópticas' },
         { href: 'enfermeria.html',     label: 'Enfermería',     enConstruccion: true },
         { href: 'kinesiologia.html',   label: 'Kinesiología' },
         { href: 'nutricion.html',      label: 'Nutrición',      enConstruccion: true },
