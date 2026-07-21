@@ -134,6 +134,30 @@
           "sizes": "96x96"
         }
       ]
+    },
+    {
+      "name": "Kinesiología",
+      "short_name": "Kinesio",
+      "description": "Kinesiólogos y centros de rehabilitación",
+      "url": "/kinesiologia.html",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-kinesiologia.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Patólogos",
+      "short_name": "Patólogos",
+      "description": "Patólogos y centros de anatomía patológica",
+      "url": "/patologia.html",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-patologia.png",
+          "sizes": "96x96"
+        }
+      ]
     }
   ]
 }
