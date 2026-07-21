@@ -36,7 +36,7 @@
 // Enfermería se descontinuó (bottom-nav-v2.js y app.js ya apuntan a
 // Patología); dejar la entrada vieja generaba un fetch fallido en cada
 // install y dejaba la página nueva fuera del app-shell offline.
-const CACHE_VERSION = 'v4.340';
+const CACHE_VERSION = 'v4.341';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
