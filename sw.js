@@ -36,6 +36,11 @@
 // Enfermería se descontinuó (bottom-nav-v2.js y app.js ya apuntan a
 // Patología); dejar la entrada vieja generaba un fetch fallido en cada
 // install y dejaba la página nueva fuera del app-shell offline.
+// v4.341: "style.css" → "style2.css" en SHELL_ASSETS. style.css ya no se usa
+// (index.html carga style2.css); precachear el archivo viejo dejaba la hoja
+// de estilos real fuera del app-shell durante el install, aunque terminaba
+// cacheándose igual en la primera visita online vía el fetch handler
+// cache-first. style.css se puede borrar del repo.
 const CACHE_VERSION = 'v4.341';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
@@ -62,7 +67,7 @@ const SHELL_ASSETS = [
     './assets/cuadros/CLOCK.svg',
     './assets/cuadros/OOSS.svg',
     './assets/cuadros/STOCK.svg',
-    './style.css',
+    './style2.css',
     './app.js',
     './js/header-nav.js',
     './js/bottom-nav-v2.js',
