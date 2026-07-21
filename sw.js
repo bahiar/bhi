@@ -32,7 +32,11 @@
 // nombre) — se saca "./portada.html" de SHELL_ASSETS porque ya no existe
 // como archivo aparte; precachearlo generaba un warning de fetch fallido
 // en cada install.
-const CACHE_VERSION = 'v4.338';
+// v4.339: "enfermeria.html" → "patologia.html" en SHELL_ASSETS. La página de
+// Enfermería se descontinuó (bottom-nav-v2.js y app.js ya apuntan a
+// Patología); dejar la entrada vieja generaba un fetch fallido en cada
+// install y dejaba la página nueva fuera del app-shell offline.
+const CACHE_VERSION = 'v4.339';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
@@ -50,7 +54,7 @@ const SHELL_ASSETS = [
     './privacidad.html',
     './terminos.html',
     './aviso-legal.html',
-    './enfermeria.html',
+    './patologia.html',
     './fonoaudiologia.html',
     './kinesiologia.html',
     './nutricion.html',
