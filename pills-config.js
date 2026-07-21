@@ -145,4 +145,14 @@ window.PILLS_CONFIG = {
     ]
   },
 
+  // ─────────────────────────────────────────────────────────────
+  patologia: {
+    fuente: 'data/patologos.json',
+    tipo: 'PATOLOGO',
+    pills: [
+      { campo: 'LOCALIDAD', tipoPill: 'select',  activo: true,  label: 'Localidad' },
+      { campo: 'OOSS',      tipoPill: 'select',  activo: false, multivalor: false, label: 'Obra Social' },
+    ]
+  },
+
 };
