@@ -146,6 +146,15 @@ window.PILLS_CONFIG = {
   },
 
   // ─────────────────────────────────────────────────────────────
+  unidades: {
+    fuente: 'data/bd_bahiar.json',
+    tipo: 'UNIDAD SANITARIA',
+    pills: [
+      { campo: 'LOCALIDAD', tipoPill: 'select', activo: true, label: 'Localidad' },
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────
   patologia: {
     fuente: 'data/patologos.json',
     tipo: 'PATOLOGO',

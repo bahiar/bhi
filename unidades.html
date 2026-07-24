@@ -290,12 +290,17 @@
             <p class="section-header-meta">Atención primaria de salud.</p>
           </div>
           <div class="section-header-actions">
-            <button id="btn-ubicacion-unidades" class="btn-share-wa btn-ubicacion" type="button" onclick="activarUbicacionUnidades(this)" aria-label="Ordenar unidades sanitarias por cercanía a tu ubicación">
+            <button id="btn-ubicacion-unidades" class="btn-share-wa btn-ubicacion" type="button" onclick="PillsEngine.activarUbicacion('unidades', this)" aria-label="Ordenar unidades sanitarias por cercanía a tu ubicación">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s-7-7.58-7-12a7 7 0 1 1 14 0c0 4.42-7 12-7 12Z" stroke="var(--orange-dark)" stroke-width="1.8"/><circle cx="12" cy="9" r="2.3" stroke="var(--orange-dark)" stroke-width="1.8"/></svg>
               <span>Ordenar por cercanía</span>
             </button>
           </div>
         </div>
+
+        <section id="filtros-unidades" aria-labelledby="titulo-filtros-unidades">
+          <h3 id="titulo-filtros-unidades" class="sr-only">Filtrar unidades sanitarias por localidad</h3>
+          <div class="filter-chips-container" id="filter-chips-container" role="group" aria-label="Filtros de búsqueda"></div>
+        </section>
 
         <div id="contenedor-unidades-sanitarias" class="cards-grid" aria-live="polite" aria-label="Unidades sanitarias municipales: CAPS y salitas médicas">
           <div class="skeleton-card" aria-hidden="true">
@@ -369,79 +374,16 @@
     .faq-opticas__item p{margin:0;padding:0 16px 14px;font-size:13px;line-height:1.6;color:var(--text-muted,#555);}
   </style>
 
+  <script src="pills-config.js" defer></script>
   <script src="app.js" defer></script>
   <script src="faq.js" defer></script>
-
+  <script src="pills-engine.js" defer></script>
   <script defer>
-    let __unidadesSanitarias = [];
-
-    function renderUnidadesSanitarias() {
-      const contenedorUnidades = document.getElementById('contenedor-unidades-sanitarias');
-      if (!contenedorUnidades || typeof window.crearCardHTML !== 'function') return;
-      contenedorUnidades.innerHTML = __unidadesSanitarias
-        .map((item, i) => window.crearCardHTML(item, 'UNIDAD_SANITARIA', i))
-        .join('');
-    }
-
-    // Se llama desde el botón "Ordenar por cercanía". El pedido de permiso
-    // de ubicación al navegador solo ocurre en este click, nunca al cargar la página.
-    async function activarUbicacionUnidades(boton) {
-      const span = boton ? boton.querySelector('span') : null;
-      if (boton) {
-        boton.disabled = true;
-        if (span) span.textContent = 'Buscando ubicación…';
-      }
-
-      const posicion = typeof window.obtenerPosicionUsuario === 'function'
-        ? await window.obtenerPosicionUsuario()
-        : null;
-
-      window.posicionUsuario = posicion;
-
-      if (!posicion) {
-        if (boton && span) {
-          span.textContent = 'No pudimos acceder a tu ubicación';
-          setTimeout(() => {
-            boton.disabled = false;
-            span.textContent = 'Ordenar por cercanía';
-          }, 3000);
-        }
-        return;
-      }
-
-      if (typeof window.calcularDistanciaKm === 'function') {
-        const distanciaDe = item => (Number.isFinite(item.lat) && Number.isFinite(item.lng))
-          ? window.calcularDistanciaKm(posicion.lat, posicion.lng, item.lat, item.lng)
-          : Infinity;
-        __unidadesSanitarias = [...__unidadesSanitarias].sort((a, b) => distanciaDe(a) - distanciaDe(b));
-      }
-
-      renderUnidadesSanitarias();
-
-      if (boton) {
-        if (span) span.textContent = 'Más cerca';
-        boton.hidden = true; // ya cumplió su función
-      }
-    }
-    window.activarUbicacionUnidades = activarUbicacionUnidades;
-
     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        const contenedorUnidades = document.getElementById('contenedor-unidades-sanitarias');
-        if (contenedorUnidades && typeof window.crearCardHTML === 'function') {
-          fetch('data/bd_bahiar.json')
-            .then(response => response.json())
-            .then(data => {
-              __unidadesSanitarias = data.prestadores.filter(item => item.TIPO === 'UNIDAD SANITARIA');
-              renderUnidadesSanitarias();
-            })
-            .catch(err => {
-              console.error('[BAHI.ar] Error al cargar unidades sanitarias:', err);
-              contenedorUnidades.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">No se pudieron cargar las unidades sanitarias</p>';
-            });
-        }
-
-      }, 150);
+      PillsEngine.init('unidades', {
+        contenedorId: 'contenedor-unidades-sanitarias',
+        tipoVista: 'UNIDAD_SANITARIA'
+      });
     });
   </script>
 
