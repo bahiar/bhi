@@ -159,6 +159,60 @@
         ]
       },
       {
+        "@type": "FAQPage",
+        "@id": "https://www.bahi.ar/unidades.html#faq-especifico",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué centros figuran en esta sección?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Encontrarás la nómina completa de todas las Unidades Sanitarias y Centros de Atención Primaria de la Salud (CAPS) pertenecientes al sistema de salud municipal de la ciudad."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Abarca también las delegaciones y localidades del partido?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. La guía cubre las Unidades Sanitarias distribuidas en todos los barrios de la ciudad de Bahía Blanca y en sus distintas delegaciones: Ingeniero White, General Daniel Cerri, Cabildo, Villa Bordeu y demás localidades del partido."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Se especifican los horarios de atención de cada centro?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. En la ficha de cada Unidad Sanitaria vas a encontrar los días y horarios detallados en los que permanece abierta para la atención al público."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo puedo encontrar la Unidad Sanitaria más cercana a mi domicilio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Gracias a la integración con Google Maps y GPS, podés ordenar las Unidades Sanitarias por proximidad en tiempo real para saber cuál se encuentra más cerca de tu ubicación actual."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo buscar por barrio o nombre?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Disponés de un buscador y filtros por barrio o dirección para ubicar rápidamente el centro de salud correspondiente a tu zona."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué datos de contacto ofrece cada ficha?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cada Unidad Sanitaria cuenta con ubicación exacta con enlace directo a Google Maps, teléfono de contacto con botón de llamada en un clic, y enlace a WhatsApp para consultas en aquellos centros que disponen de este canal habilitado."
+            }
+          }
+        ]
+      },
+      {
         "@type": "CollectionPage",
         "@id": "https://www.bahi.ar/unidades.html#collection",
         "url": "https://www.bahi.ar/unidades.html",
@@ -263,8 +317,57 @@
         </div>
       </section>
 
+      <section id="faq-unidades" class="faq-opticas" aria-labelledby="titulo-faq-unidades">
+        <h2 id="titulo-faq-unidades">Preguntas frecuentes sobre unidades sanitarias en Bahía Blanca</h2>
+        <p class="faq-opticas__intro">Resolvé tus dudas sobre el directorio de Unidades Sanitarias y CAPS municipales de BAHI.ar para Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo.</p>
+
+        <h3 class="faq-opticas__group">Cobertura y centros municipales</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Qué centros figuran en esta sección?</summary>
+          <p>Encontrarás la nómina completa de todas las Unidades Sanitarias y Centros de Atención Primaria de la Salud (CAPS) pertenecientes al sistema de salud municipal de la ciudad.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Abarca también las delegaciones y localidades del partido?</summary>
+          <p>Sí. La guía cubre las Unidades Sanitarias distribuidas en todos los barrios de la ciudad de Bahía Blanca y en sus distintas delegaciones: Ingeniero White, General Daniel Cerri, Cabildo, Villa Bordeu y demás localidades del partido.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Horarios y días de atención</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Se especifican los horarios de atención de cada centro?</summary>
+          <p>Sí. En la ficha de cada Unidad Sanitaria vas a encontrar los días y horarios detallados en los que permanece abierta para la atención al público.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Localización, búsqueda y contacto</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Cómo puedo encontrar la Unidad Sanitaria más cercana a mi domicilio?</summary>
+          <p>Gracias a la integración con Google Maps y GPS, podés ordenar las Unidades Sanitarias por proximidad en tiempo real para saber cuál se encuentra más cerca de tu ubicación actual.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Puedo buscar por barrio o nombre?</summary>
+          <p>Sí. Disponés de un buscador y filtros por barrio o dirección para ubicar rápidamente el centro de salud correspondiente a tu zona.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Qué datos de contacto ofrece cada ficha?</summary>
+          <p>Cada Unidad Sanitaria cuenta con ubicación exacta con enlace directo a Google Maps, teléfono de contacto con botón de llamada en un clic, y enlace a WhatsApp para consultas en aquellos centros que disponen de este canal habilitado.</p>
+        </details>
+      </section>
+
     </div>
   </main>
+
+  <style>
+    #contenedor-unidades-sanitarias.cards-grid{padding-bottom:0;}
+    .faq-opticas{margin-top:28px;padding:20px 18px calc(80px + env(safe-area-inset-bottom, 0px));border-top:1px solid var(--border-light,#e6e6ee);}
+    .faq-opticas h2{font-size:17px;font-weight:600;color:var(--text-main,#1a1a2e);margin:0 0 6px;}
+    .faq-opticas__intro{font-size:13.5px;color:var(--text-muted,#6b7080);line-height:1.55;margin:0 0 16px;}
+    .faq-opticas__group{font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;color:var(--text-muted,#8a8fa5);margin:18px 0 8px;}
+    .faq-opticas__item{border:1px solid var(--border-light,#e6e6ee);border-radius:10px;margin-bottom:8px;background:var(--card-bg,#fff);overflow:hidden;}
+    .faq-opticas__item summary{list-style:none;cursor:pointer;padding:12px 16px;font-size:13.5px;font-weight:500;color:var(--text-main,#1a1a2e);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .faq-opticas__item summary::-webkit-details-marker{display:none;}
+    .faq-opticas__item summary::after{content:'';flex-shrink:0;width:8px;height:8px;border-right:2px solid var(--text-muted,#8a8fa5);border-bottom:2px solid var(--text-muted,#8a8fa5);transform:rotate(45deg);transition:transform 0.2s;}
+    .faq-opticas__item[open] summary::after{transform:rotate(-135deg);}
+    .faq-opticas__item p{margin:0;padding:0 16px 14px;font-size:13px;line-height:1.6;color:var(--text-muted,#555);}
+  </style>
 
   <script src="app.js" defer></script>
   <script src="faq.js" defer></script>

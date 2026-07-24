@@ -161,6 +161,60 @@
         ]
       },
       {
+        "@type": "FAQPage",
+        "@id": "https://www.bahi.ar/patologia.html#faq-especifico",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué profesionales y centros figuran en esta sección?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Encontrarás la nómina de laboratorios de anatomía patológica, patólogos particulares y centros privados especializados en el procesamiento e interpretación de biopsias y estudios citológicos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Abarca todo el partido de Bahía Blanca?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. La guía cubre la ciudad de Bahía Blanca (todos sus barrios) así como sus delegaciones y localidades: Ingeniero White, General Daniel Cerri y Cabildo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Se pueden filtrar las búsquedas por especialista o tipo de práctica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. La sección lista los establecimientos y laboratorios privados de anatomía patológica de la ciudad para consulta directa de sus datos de contacto y ubicación."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo encuentro el laboratorio de patología más cercano?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mediante la integración con Google Maps y la geolocalización por GPS, podés ordenar los centros según la proximidad a tu ubicación en tiempo real."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo buscar por barrio o nombre?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Contás con un buscador y filtros para localizar laboratorios por nombre comercial, calle o barrio específico."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué datos de contacto ofrece cada ficha?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cada ficha de laboratorio o centro patológico incluye ubicación exacta con enlace directo a Google Maps, teléfono de línea con botón de llamada en un clic, y enlace a WhatsApp para consultas directas en los centros que cuenten con este canal habilitado."
+            }
+          }
+        ]
+      },
+      {
         "@type": "CollectionPage",
         "@id": "https://www.bahi.ar/patologia.html#collection",
         "url": "https://www.bahi.ar/patologia.html",
@@ -289,8 +343,57 @@
         </div>
       </section>
 
+      <section id="faq-patologia" class="faq-opticas" aria-labelledby="titulo-faq-patologia">
+        <h2 id="titulo-faq-patologia">Preguntas frecuentes sobre patología en Bahía Blanca</h2>
+        <p class="faq-opticas__intro">Resolvé tus dudas sobre el directorio de laboratorios de anatomía patológica de BAHI.ar para Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo.</p>
+
+        <h3 class="faq-opticas__group">Cobertura e instituciones</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Qué profesionales y centros figuran en esta sección?</summary>
+          <p>Encontrarás la nómina de laboratorios de anatomía patológica, patólogos particulares y centros privados especializados en el procesamiento e interpretación de biopsias y estudios citológicos.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Abarca todo el partido de Bahía Blanca?</summary>
+          <p>Sí. La guía cubre la ciudad de Bahía Blanca (todos sus barrios) así como sus delegaciones y localidades: Ingeniero White, General Daniel Cerri y Cabildo.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Tipos de estudios y atención</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Se pueden filtrar las búsquedas por especialista o tipo de práctica?</summary>
+          <p>No. La sección lista los establecimientos y laboratorios privados de anatomía patológica de la ciudad para consulta directa de sus datos de contacto y ubicación.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Localización, búsqueda y contacto</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Cómo encuentro el laboratorio de patología más cercano?</summary>
+          <p>Mediante la integración con Google Maps y la geolocalización por GPS, podés ordenar los centros según la proximidad a tu ubicación en tiempo real.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Puedo buscar por barrio o nombre?</summary>
+          <p>Sí. Contás con un buscador y filtros para localizar laboratorios por nombre comercial, calle o barrio específico.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Qué datos de contacto ofrece cada ficha?</summary>
+          <p>Cada ficha de laboratorio o centro patológico incluye ubicación exacta con enlace directo a Google Maps, teléfono de línea con botón de llamada en un clic, y enlace a WhatsApp para consultas directas en los centros que cuenten con este canal habilitado.</p>
+        </details>
+      </section>
+
     </div>
   </main>
+
+  <style>
+    #contenedor-cards.cards-grid{padding-bottom:0;}
+    .faq-opticas{margin-top:28px;padding:20px 18px calc(80px + env(safe-area-inset-bottom, 0px));border-top:1px solid var(--border-light,#e6e6ee);}
+    .faq-opticas h2{font-size:17px;font-weight:600;color:var(--text-main,#1a1a2e);margin:0 0 6px;}
+    .faq-opticas__intro{font-size:13.5px;color:var(--text-muted,#6b7080);line-height:1.55;margin:0 0 16px;}
+    .faq-opticas__group{font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;color:var(--text-muted,#8a8fa5);margin:18px 0 8px;}
+    .faq-opticas__item{border:1px solid var(--border-light,#e6e6ee);border-radius:10px;margin-bottom:8px;background:var(--card-bg,#fff);overflow:hidden;}
+    .faq-opticas__item summary{list-style:none;cursor:pointer;padding:12px 16px;font-size:13.5px;font-weight:500;color:var(--text-main,#1a1a2e);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .faq-opticas__item summary::-webkit-details-marker{display:none;}
+    .faq-opticas__item summary::after{content:'';flex-shrink:0;width:8px;height:8px;border-right:2px solid var(--text-muted,#8a8fa5);border-bottom:2px solid var(--text-muted,#8a8fa5);transform:rotate(45deg);transition:transform 0.2s;}
+    .faq-opticas__item[open] summary::after{transform:rotate(-135deg);}
+    .faq-opticas__item p{margin:0;padding:0 16px 14px;font-size:13px;line-height:1.6;color:var(--text-muted,#555);}
+  </style>
 
   <script src="pills-config.js" defer></script>
   <script src="app.js" defer></script>

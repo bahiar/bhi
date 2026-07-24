@@ -159,6 +159,52 @@
         ]
       },
       {
+        "@type": "FAQPage",
+        "@id": "https://www.bahi.ar/laboratorios.html#faq-especifico",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué laboratorios figuran en el listado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Encontrarás todos los laboratorios de análisis clínicos integrados y matriculados a través del Centro de Analistas Clínicos - Distrito X (Bahía Blanca)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué áreas o localidades abarca el listado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La guía cubre la totalidad de la ciudad de Bahía Blanca (todos los barrios declarados) y sus localidades y delegaciones: Ingeniero White, General Daniel Cerri y Cabildo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo encuentro el laboratorio más cercano a mi ubicación?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Al igual que en la sección de farmacias, dispones de integración con Google Maps y geolocalización por GPS. Activando el permiso de ubicación en tu dispositivo, el mapa interactivo te mostrará y ordenará los laboratorios según la cercanía a donde te encuentres."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo buscar por barrio o dirección?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Podés utilizar el buscador y los filtros para encontrar laboratorios ingresando un barrio específico, calle o nombre del profesional o establecimiento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué canales de comunicación ofrece cada ficha de laboratorio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En la ficha de cada laboratorio vas a encontrar ubicación exacta con enlace a Google Maps, teléfono de línea con botón de llamada directa, y WhatsApp en aquellos laboratorios que dispongan de este canal para consultas o turnos."
+            }
+          }
+        ]
+      },
+      {
         "@type": "CollectionPage",
         "@id": "https://www.bahi.ar/laboratorios.html#collection",
         "url": "https://www.bahi.ar/laboratorios.html",
@@ -295,8 +341,53 @@
         </div>
       </section>
 
+      <section id="faq-laboratorios" class="faq-opticas" aria-labelledby="titulo-faq-laboratorios">
+        <h2 id="titulo-faq-laboratorios">Preguntas frecuentes sobre laboratorios en Bahía Blanca</h2>
+        <p class="faq-opticas__intro">Resolvé tus dudas sobre el directorio de laboratorios de análisis clínicos de BAHI.ar para Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo.</p>
+
+        <h3 class="faq-opticas__group">Cobertura e instituciones</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Qué laboratorios figuran en el listado?</summary>
+          <p>Encontrarás todos los laboratorios de análisis clínicos integrados y matriculados a través del Centro de Analistas Clínicos - Distrito X (Bahía Blanca).</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Qué áreas o localidades abarca el listado?</summary>
+          <p>La guía cubre la totalidad de la ciudad de Bahía Blanca (todos los barrios declarados) y sus localidades y delegaciones: Ingeniero White, General Daniel Cerri y Cabildo.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Herramientas de localización y búsqueda</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Cómo encuentro el laboratorio más cercano a mi ubicación?</summary>
+          <p>Al igual que en la sección de farmacias, dispones de integración con Google Maps y geolocalización por GPS. Activando el permiso de ubicación en tu dispositivo, el mapa interactivo te mostrará y ordenará los laboratorios según la cercanía a donde te encuentres.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Puedo buscar por barrio o dirección?</summary>
+          <p>Sí. Podés utilizar el buscador y los filtros para encontrar laboratorios ingresando un barrio específico, calle o nombre del profesional o establecimiento.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Formas de contacto</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Qué canales de comunicación ofrece cada ficha de laboratorio?</summary>
+          <p>En la ficha de cada laboratorio vas a encontrar ubicación exacta con enlace a Google Maps, teléfono de línea con botón de llamada directa, y WhatsApp en aquellos laboratorios que dispongan de este canal para consultas o turnos.</p>
+        </details>
+      </section>
+
     </div>
   </main>
+
+  <style>
+    #contenedor-cards.cards-grid{padding-bottom:0;}
+    .faq-opticas{margin-top:28px;padding:20px 18px calc(80px + env(safe-area-inset-bottom, 0px));border-top:1px solid var(--border-light,#e6e6ee);}
+    .faq-opticas h2{font-size:17px;font-weight:600;color:var(--text-main,#1a1a2e);margin:0 0 6px;}
+    .faq-opticas__intro{font-size:13.5px;color:var(--text-muted,#6b7080);line-height:1.55;margin:0 0 16px;}
+    .faq-opticas__group{font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;color:var(--text-muted,#8a8fa5);margin:18px 0 8px;}
+    .faq-opticas__item{border:1px solid var(--border-light,#e6e6ee);border-radius:10px;margin-bottom:8px;background:var(--card-bg,#fff);overflow:hidden;}
+    .faq-opticas__item summary{list-style:none;cursor:pointer;padding:12px 16px;font-size:13.5px;font-weight:500;color:var(--text-main,#1a1a2e);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .faq-opticas__item summary::-webkit-details-marker{display:none;}
+    .faq-opticas__item summary::after{content:'';flex-shrink:0;width:8px;height:8px;border-right:2px solid var(--text-muted,#8a8fa5);border-bottom:2px solid var(--text-muted,#8a8fa5);transform:rotate(45deg);transition:transform 0.2s;}
+    .faq-opticas__item[open] summary::after{transform:rotate(-135deg);}
+    .faq-opticas__item p{margin:0;padding:0 16px 14px;font-size:13px;line-height:1.6;color:var(--text-muted,#555);}
+  </style>
 
   <script src="pills-config.js" defer></script>
   <script src="app.js" defer></script>

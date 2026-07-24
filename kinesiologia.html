@@ -161,6 +161,60 @@
         ]
       },
       {
+        "@type": "FAQPage",
+        "@id": "https://www.bahi.ar/kinesiologia.html#faq-especifico",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué centros y profesionales figuran en esta sección?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Encontrarás el listado de consultorios, centros de rehabilitación kinesiológica y profesionales kinesiólogos y fisioterapeutas privados de la ciudad."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Abarca todo el partido de Bahía Blanca?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. La guía cubre la totalidad de la ciudad de Bahía Blanca (todos sus barrios) así como sus delegaciones y localidades: Ingeniero White, General Daniel Cerri y Cabildo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué áreas de atención abarca la kinesiología?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Los centros y profesionales listados brindan atención en kinesiología motora y rehabilitación traumatológica o deportiva, fisioterapia y manejo del dolor, kinesiología respiratoria, y neurorehabilitación y reeducación postural."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo encuentro el centro de kinesiología más cercano?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A través de la integración con Google Maps y la función de geolocalización por GPS, podés ordenar los consultorios y centros en tiempo real según la proximidad a tu ubicación."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo buscar por barrio o nombre profesional?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Podés utilizar el buscador por texto para filtrar por nombre del profesional, centro de atención, calle o barrio determinado."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué datos de contacto ofrece cada ficha?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cada ficha incluye ubicación exacta con botón directo a Google Maps, teléfono directo con botón de llamada en un clic, y enlace a WhatsApp para solicitar turnos o realizar consultas directas en los centros que cuenten con este canal habilitado."
+            }
+          }
+        ]
+      },
+      {
         "@type": "CollectionPage",
         "@id": "https://www.bahi.ar/kinesiologia.html#collection",
         "url": "https://www.bahi.ar/kinesiologia.html",
@@ -289,8 +343,57 @@
         </div>
       </section>
 
+      <section id="faq-kinesiologia" class="faq-opticas" aria-labelledby="titulo-faq-kinesiologia">
+        <h2 id="titulo-faq-kinesiologia">Preguntas frecuentes sobre kinesiología en Bahía Blanca</h2>
+        <p class="faq-opticas__intro">Resolvé tus dudas sobre el directorio de kinesiólogos y centros de rehabilitación física de BAHI.ar para Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo.</p>
+
+        <h3 class="faq-opticas__group">Cobertura y profesionales</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Qué centros y profesionales figuran en esta sección?</summary>
+          <p>Encontrarás el listado de consultorios, centros de rehabilitación kinesiológica y profesionales kinesiólogos y fisioterapeutas privados de la ciudad.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Abarca todo el partido de Bahía Blanca?</summary>
+          <p>Sí. La guía cubre la totalidad de la ciudad de Bahía Blanca (todos sus barrios) así como sus delegaciones y localidades: Ingeniero White, General Daniel Cerri y Cabildo.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Especialidades y servicios</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Qué áreas de atención abarca la kinesiología?</summary>
+          <p>Los centros y profesionales listados brindan atención en kinesiología motora y rehabilitación traumatológica o deportiva, fisioterapia y manejo del dolor, kinesiología respiratoria, y neurorehabilitación y reeducación postural.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Localización, búsqueda y contacto</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Cómo encuentro el centro de kinesiología más cercano?</summary>
+          <p>A través de la integración con Google Maps y la función de geolocalización por GPS, podés ordenar los consultorios y centros en tiempo real según la proximidad a tu ubicación.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Puedo buscar por barrio o nombre profesional?</summary>
+          <p>Sí. Podés utilizar el buscador por texto para filtrar por nombre del profesional, centro de atención, calle o barrio determinado.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Qué datos de contacto ofrece cada ficha?</summary>
+          <p>Cada ficha incluye ubicación exacta con botón directo a Google Maps, teléfono directo con botón de llamada en un clic, y enlace a WhatsApp para solicitar turnos o realizar consultas directas en los centros que cuenten con este canal habilitado.</p>
+        </details>
+      </section>
+
     </div>
   </main>
+
+  <style>
+    #contenedor-cards.cards-grid{padding-bottom:0;}
+    .faq-opticas{margin-top:28px;padding:20px 18px calc(80px + env(safe-area-inset-bottom, 0px));border-top:1px solid var(--border-light,#e6e6ee);}
+    .faq-opticas h2{font-size:17px;font-weight:600;color:var(--text-main,#1a1a2e);margin:0 0 6px;}
+    .faq-opticas__intro{font-size:13.5px;color:var(--text-muted,#6b7080);line-height:1.55;margin:0 0 16px;}
+    .faq-opticas__group{font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;color:var(--text-muted,#8a8fa5);margin:18px 0 8px;}
+    .faq-opticas__item{border:1px solid var(--border-light,#e6e6ee);border-radius:10px;margin-bottom:8px;background:var(--card-bg,#fff);overflow:hidden;}
+    .faq-opticas__item summary{list-style:none;cursor:pointer;padding:12px 16px;font-size:13.5px;font-weight:500;color:var(--text-main,#1a1a2e);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .faq-opticas__item summary::-webkit-details-marker{display:none;}
+    .faq-opticas__item summary::after{content:'';flex-shrink:0;width:8px;height:8px;border-right:2px solid var(--text-muted,#8a8fa5);border-bottom:2px solid var(--text-muted,#8a8fa5);transform:rotate(45deg);transition:transform 0.2s;}
+    .faq-opticas__item[open] summary::after{transform:rotate(-135deg);}
+    .faq-opticas__item p{margin:0;padding:0 16px 14px;font-size:13px;line-height:1.6;color:var(--text-muted,#555);}
+  </style>
 
   <script src="pills-config.js" defer></script>
   <script src="app.js" defer></script>

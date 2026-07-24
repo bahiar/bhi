@@ -159,6 +159,60 @@
         ]
       },
       {
+        "@type": "FAQPage",
+        "@id": "https://www.bahi.ar/emergencias.html#faq-especifico",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿A qué números debo llamar ante una emergencia médica o urgencia en la vía pública?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Para situaciones de riesgo de vida o emergencias en la vía pública, podés comunicarte en forma directa con el 107 (Siempre) para emergencias médicas en la vía pública y sistema de salud pública, o con las líneas de ambulancias privadas para servicios de traslado y emergencias para afiliados a medicina prepaga o sistemas de área protegida."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué instituciones médicas figuran en el listado de guardias?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Encontrarás el listado completo de todos los nosocomios públicos y privados (hospitales y clínicas) del partido de Bahía Blanca que cuentan con servicio de guardia activa."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Las guardias atienden las 24 horas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Todas las guardias médicas listadas en esta sección prestan servicio de atención continua las 24 horas del día, los 365 días del año."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Abarca también las delegaciones del partido?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. La guía cubre la totalidad del partido de Bahía Blanca, incluyendo las localidades de Ingeniero White, General Daniel Cerri y Cabildo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo se asigna el orden de atención en la guardia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Todas las guardias públicas y privadas utilizan el sistema de Triage. Esto significa que los pacientes son evaluados al ingresar y atendidos en función de la gravedad médica de su estado y no por estricto orden de llegada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué herramientas ofrece cada ficha de emergencia y guardia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Para agilizar la atención en momentos críticos, la sección ofrece botón de llamada directa para comunicarte a través del celular con un solo toque, y enlace a Google Maps para obtener la ruta navegable hacia la guardia más cercana."
+            }
+          }
+        ]
+      },
+      {
         "@type": "CollectionPage",
         "@id": "https://www.bahi.ar/emergencias.html#collection",
         "url": "https://www.bahi.ar/emergencias.html",
@@ -313,8 +367,59 @@
         </div>
       </section>
 
+      <section id="faq-emergencias" class="faq-opticas" aria-labelledby="titulo-faq-emergencias">
+        <h2 id="titulo-faq-emergencias">Preguntas frecuentes sobre emergencias y guardias en Bahía Blanca</h2>
+        <p class="faq-opticas__intro">Resolvé tus dudas sobre líneas de emergencia, ambulancias y guardias médicas activas de BAHI.ar para Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo.</p>
+
+        <h3 class="faq-opticas__group">Teléfonos de emergencia directos</h3>
+        <details class="faq-opticas__item">
+          <summary>¿A qué números debo llamar ante una emergencia médica o urgencia en la vía pública?</summary>
+          <p>Para situaciones de riesgo de vida o emergencias en la vía pública, podés comunicarte en forma directa con el 107 (Siempre) para emergencias médicas en la vía pública y sistema de salud pública, o con las líneas de ambulancias privadas para servicios de traslado y emergencias para afiliados a medicina prepaga o sistemas de área protegida.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Guardias hospitalarias e instituciones</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Qué instituciones médicas figuran en el listado de guardias?</summary>
+          <p>Encontrarás el listado completo de todos los nosocomios públicos y privados (hospitales y clínicas) del partido de Bahía Blanca que cuentan con servicio de guardia activa.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Las guardias atienden las 24 horas?</summary>
+          <p>Sí. Todas las guardias médicas listadas en esta sección prestan servicio de atención continua las 24 horas del día, los 365 días del año.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Cobertura geográfica y sistema de atención</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Abarca también las delegaciones del partido?</summary>
+          <p>Sí. La guía cubre la totalidad del partido de Bahía Blanca, incluyendo las localidades de Ingeniero White, General Daniel Cerri y Cabildo.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Cómo se asigna el orden de atención en la guardia?</summary>
+          <p>Todas las guardias públicas y privadas utilizan el sistema de Triage. Esto significa que los pacientes son evaluados al ingresar y atendidos en función de la gravedad médica de su estado y no por estricto orden de llegada.</p>
+        </details>
+
+        <h3 class="faq-opticas__group">Herramientas de contacto</h3>
+        <details class="faq-opticas__item">
+          <summary>¿Qué herramientas ofrece cada ficha de emergencia y guardia?</summary>
+          <p>Para agilizar la atención en momentos críticos, la sección ofrece botón de llamada directa para comunicarte a través del celular con un solo toque, y enlace a Google Maps para obtener la ruta navegable hacia la guardia más cercana.</p>
+        </details>
+      </section>
+
     </div>
   </main>
+
+  <style>
+    #contenedor-cards.cards-grid{padding-bottom:0;}
+    .faq-opticas{margin-top:28px;padding:20px 18px calc(80px + env(safe-area-inset-bottom, 0px));border-top:1px solid var(--border-light,#e6e6ee);}
+    .faq-opticas h2{font-size:17px;font-weight:600;color:var(--text-main,#1a1a2e);margin:0 0 6px;}
+    .faq-opticas__intro{font-size:13.5px;color:var(--text-muted,#6b7080);line-height:1.55;margin:0 0 16px;}
+    .faq-opticas__group{font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;color:var(--text-muted,#8a8fa5);margin:18px 0 8px;}
+    .faq-opticas__item{border:1px solid var(--border-light,#e6e6ee);border-radius:10px;margin-bottom:8px;background:var(--card-bg,#fff);overflow:hidden;}
+    .faq-opticas__item summary{list-style:none;cursor:pointer;padding:12px 16px;font-size:13.5px;font-weight:500;color:var(--text-main,#1a1a2e);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .faq-opticas__item summary::-webkit-details-marker{display:none;}
+    .faq-opticas__item summary::after{content:'';flex-shrink:0;width:8px;height:8px;border-right:2px solid var(--text-muted,#8a8fa5);border-bottom:2px solid var(--text-muted,#8a8fa5);transform:rotate(45deg);transition:transform 0.2s;}
+    .faq-opticas__item[open] summary::after{transform:rotate(-135deg);}
+    .faq-opticas__item p{margin:0;padding:0 16px 14px;font-size:13px;line-height:1.6;color:var(--text-muted,#555);}
+  </style>
 
   <script src="app.js" defer></script>
   <script src="faq.js" defer></script>
