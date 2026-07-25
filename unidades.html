@@ -299,7 +299,7 @@
 
         <section id="filtros-unidades" aria-labelledby="titulo-filtros-unidades">
           <h3 id="titulo-filtros-unidades" class="sr-only">Filtrar unidades sanitarias por localidad</h3>
-          <div class="filter-chips-container" id="filter-chips-container" role="group" aria-label="Filtros de búsqueda"></div>
+          <div class="filter-chips-container" id="filter-chips-container-unidades" role="group" aria-label="Filtros de búsqueda"></div>
         </section>
 
         <div id="contenedor-unidades-sanitarias" class="cards-grid" aria-live="polite" aria-label="Unidades sanitarias municipales: CAPS y salitas médicas">
@@ -382,7 +382,8 @@
     document.addEventListener('DOMContentLoaded', () => {
       PillsEngine.init('unidades', {
         contenedorId: 'contenedor-unidades-sanitarias',
-        tipoVista: 'UNIDAD_SANITARIA'
+        chipsContainerId: 'filter-chips-container-unidades',
+        tipoVista: 'UNIDAD SANITARIA'
       });
     });
   </script>

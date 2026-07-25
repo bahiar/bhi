@@ -270,11 +270,12 @@ window.PillsEngine = (function () {
     const estado = estados[vista];
     if (!estado) return;
 
-    document.querySelectorAll('#filter-chips-container .filter-chip').forEach(b => {
+    const chipsSelector = `#${estado.opciones.chipsContainerId}`;
+    document.querySelectorAll(`${chipsSelector} .filter-chip`).forEach(b => {
       b.classList.remove('active');
       b.setAttribute('aria-pressed', 'false');
     });
-    document.querySelectorAll('#filter-chips-container .filter-chip-select').forEach(s => {
+    document.querySelectorAll(`${chipsSelector} .filter-chip-select`).forEach(s => {
       s.value = '';
       s.classList.remove('active');
     });
