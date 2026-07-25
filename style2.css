@@ -1391,24 +1391,32 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 14px;
-    font-size: 13px;
+    padding: 6px 12px;
+    font-size: 12px;
     font-family: var(--font-base);
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
     flex-shrink: 0;
-    background: #fff;
-    color: var(--accent);
-    border: 1.5px solid rgba(31, 117, 254, 0.3);
-    border-radius: 999px;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    background: #ffffff;
+    color: var(--primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-btn);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     line-height: 1.2;
+    min-height: 36px;
+    box-shadow: none;
 }
 
-.filter-chip:last-child,
-.filter-chip-select:last-child {
-    border-right: 1.5px solid rgba(31, 117, 254, 0.3);
+.filter-chip:active {
+    transform: scale(0.96);
+}
+
+@media (hover: hover) {
+    .filter-chip:hover {
+        background: #f4f6fa;
+        color: var(--text-main);
+    }
 }
 
 .filter-chip.active {
@@ -1418,25 +1426,34 @@ body {
 }
 
 .filter-chip-select {
-    padding: 8px 14px;
-    font-size: 13px;
+    padding: 6px 12px;
+    font-size: 12px;
     font-family: var(--font-base);
-    font-weight: 500;
-    background: #fff;
-    color: var(--accent);
-    border: 1.5px solid rgba(31, 117, 254, 0.3);
-    border-radius: 999px;
+    font-weight: 600;
+    background: #ffffff;
+    color: var(--primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-btn);
     cursor: pointer;
     outline: none;
     line-height: 1.2;
     flex-shrink: 0;
     appearance: none;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    min-height: 36px;
+    box-shadow: none;
+}
+
+@media (hover: hover) {
+    .filter-chip-select:hover {
+        background: #f4f6fa;
+        color: var(--text-main);
+    }
 }
 
 .filter-chip-select:focus {
-    border-color: var(--accent);
-    background: rgba(31, 117, 254, 0.06);
+    border-color: var(--primary);
+    background: #f4f6fa;
 }
 
 .filter-chip-select.active {
@@ -2198,10 +2215,21 @@ button.bottom-nav-item {
     color: var(--text-main);
 }
 
-[data-mode="dark"] .filter-chip,
-[data-mode="dark"] .filter-chip-select,
 [data-mode="dark"] #btn-actualizar {
     color: var(--text-link);
+}
+
+/* Mismo tratamiento que .btn-share-wa (línea ~2214): fondo fijo
+   var(--card-bg) arriba, texto apuntando a --text-main para mantener
+   la estética idéntica a "Ordenar por cercanía". */
+[data-mode="dark"] .filter-chip,
+[data-mode="dark"] .filter-chip-select {
+    color: var(--text-main);
+}
+
+@media (hover: hover) {
+    [data-mode="dark"] .filter-chip:hover,
+    [data-mode="dark"] .filter-chip-select:hover { background: var(--surface-2); }
 }
 
 /* Desktop: .sub-nav-link usa var(--primary) como color de texto en
