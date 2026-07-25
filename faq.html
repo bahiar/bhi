@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+<script>
+(function () {
+    try {
+        var stored = localStorage.getItem('bahi-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-mode', theme);
+    } catch (e) {
+        document.documentElement.setAttribute('data-mode', 'light');
+    }
+})();
+</script>
+<!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5RNWBBM7');</script>
+<!-- End Google Tag Manager -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="25bce197-667d-4886-840b-b5068b039c63"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes | BAHI.ar</title>
+  <meta name="description" content="Qué es BAHI.ar, cómo instalarla como app, si funciona sin internet, modo oscuro, privacidad y todo lo que necesitás saber sobre la guía médica de Bahía Blanca.">
+  <link rel="canonical" href="https://www.bahi.ar/faq.html">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="preload" href="style2.css" as="style">
+  <link rel="stylesheet" href="style2.css">
+  <style>
+    :root { --header-h: 52px; }
+    [data-mode="dark"] {
+        --bg-main: #0e1220;
+        --card-bg: #181d33;
+        --text-main: #eef0f5;
+        --text-muted: #9a9fb5;
+        --border-light: #2a3050;
+        --footer-bg: #0b0f1e;
+        --text-link: #8FA6FF;
+    }
+  </style>
+  <meta property="og:title" content="Preguntas Frecuentes | BAHI.ar">
+  <meta property="og:description" content="Qué es BAHI.ar, cómo instalarla como app, si funciona sin internet, modo oscuro, privacidad y todo lo que necesitás saber sobre la guía médica de Bahía Blanca.">
+  <meta property="og:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://www.bahi.ar/faq.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Preguntas Frecuentes | BAHI.ar">
+  <meta name="twitter:description" content="Qué es BAHI.ar, cómo instalarla como app, si funciona sin internet, modo oscuro, privacidad y todo lo que necesitás saber sobre la guía médica de Bahía Blanca.">
+  <meta name="twitter:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+  <meta name="geo.region" content="AR-B">
+  <meta name="geo.placename" content="Bahía Blanca, Buenos Aires, Argentina">
+  <meta name="geo.position" content="-38.7183;-62.2661">
+  <meta name="ICBM" content="-38.7183, -62.2661">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.bahi.ar/#website",
+        "url": "https://www.bahi.ar/",
+        "name": "BAHI.ar",
+        "description": "Directorio de salud para Bahía Blanca: farmacias de turno, guardias médicas, laboratorios y ortopedias.",
+        "inLanguage": "es-AR",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.bahi.ar/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.bahi.ar/faq.html#webpage",
+        "url": "https://www.bahi.ar/faq.html",
+        "name": "Preguntas Frecuentes | BAHI.ar",
+        "description": "Qué es BAHI.ar, cómo instalarla como app, si funciona sin internet, modo oscuro, privacidad y todo lo que necesitás saber sobre la guía médica de Bahía Blanca.",
+        "isPartOf": { "@id": "https://www.bahi.ar/#website" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.bahi.ar/faq.html#faqpage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué es BAHI.ar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Es una guía médica digital para Bahía Blanca, Ingeniero White, Cabildo y General Cerri. Reúne en un solo lugar farmacias, laboratorios, guardias y otras secciones de salud, con acceso directo a llamar, escribir por WhatsApp o ver cómo llegar desde el mapa incorporado."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay que pagar para usarla?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, el acceso a la guía es 100% gratuito. Si el sitio te resulta útil y querés darnos una mano para mantenerlo en funcionamiento, podés realizar un aporte voluntario a través de Mercado Pago, pero es totalmente opcional."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo instalar BAHI.ar como una aplicación en mi celular?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. BAHI.ar es una aplicación web progresiva (PWA): podés agregarla a la pantalla de inicio de tu celular como si fuera una app, sin pasar por ninguna tienda de aplicaciones. El propio sitio te va a ofrecer instalarla la primera vez que lo visites."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿BAHI.ar tiene modo oscuro?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Podés activar el modo oscuro (dark mode) desde la configuración del sitio, y la app va a recordar tu preferencia la próxima vez que ingreses. También se adapta automáticamente si tu celular ya tiene el modo oscuro activado a nivel sistema."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Funciona si me quedo sin internet o sin datos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, se puede usar en parte. Una vez que ingresaste con conexión, una buena parte del contenido queda guardado en tu dispositivo para que puedas seguir consultándolo. De todas formas, para los datos que cambian todos los días (como turnos o disponibilidad) te recomendamos tener conexión, para asegurarte de ver siempre la información más actualizada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿La información está actualizada?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Cada sección se actualiza con la frecuencia que corresponde a su naturaleza, por ejemplo los turnos rotativos se sincronizan a diario. Revisamos constantemente los datos de todo el sitio para mantenerlos al día."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo buscar por mi barrio o zona?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Varias secciones del sitio cuentan con filtros para acotar la búsqueda según tu zona, obra social u otras características, según corresponda. Vas a encontrar el detalle de los filtros disponibles dentro de cada sección."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo sé qué farmacia, laboratorio, hospital o unidad sanitaria tengo más cerca?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En la pantalla principal, al lado del buscador, tenés un acceso a Mapa que ubica farmacias, laboratorios, hospitales y unidades sanitarias en relación a tu posición real, siempre que le des permiso de geolocalización a tu navegador o celular. Además, en varias secciones vas a encontrar el botón Ordenar por cercanía, que reordena los resultados de esa sección según la distancia a tu ubicación."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Me tengo que registrar o guardan mis datos personales?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, para nada. No hace falta que crees un usuario, recuerdes contraseñas ni dejes ningún tipo de información personal. La web solo guarda un archivo mínimo de configuración en tu dispositivo para evitar preguntarte a cada rato si querés instalar la aplicación. Tu privacidad está completamente asegurada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué hago si encuentro un dato que está mal?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Podés tocar el botón Reportar error que está arriba de todo en la pantalla. Eso va a abrir un chat directo de WhatsApp con nosotros. Leemos todos los mensajes y respondemos siempre; tu aviso nos ayuda muchísimo a mantener la guía al día."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿De dónde obtienen la información? ¿Es confiable?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, y nos lo tomamos muy en serio. Todos los datos que encontrás en la guía provienen de fuentes oficiales: colegios profesionales, organismos municipales y las entidades que representan a cada rubro de la guía."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <meta name="theme-color" content="#191971">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RNWBBM7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div id="header-nav-root"></div>
+  <script>
+    window.headerNavConfig = { page: 'faq', type: 'full' };
+  </script>
+  <script src="js/header-nav.js" defer></script>
+
+  <main class="app-view" id="content">
+    <div class="main-container" id="main-content">
+
+      <h1 class="pagina-faq__titulo">Preguntas frecuentes</h1>
+      <p class="pagina-faq__intro">Todo lo que necesitás saber sobre BAHI.ar: qué es, cómo instalarla, cómo funciona la búsqueda por cercanía, privacidad y más.</p>
+
+      <section class="faq-opticas" aria-labelledby="grupo-sobre-bahiar">
+        <h2 id="grupo-sobre-bahiar" class="faq-opticas__seccion">Sobre BAHI.ar</h2>
+        <details class="faq-opticas__item">
+          <summary>¿Qué es BAHI.ar?</summary>
+          <p>Es una guía médica digital para Bahía Blanca, Ingeniero White, Cabildo y General Cerri. Reúne en un solo lugar farmacias, laboratorios, guardias y otras secciones de salud, con acceso directo a llamar, escribir por WhatsApp o ver cómo llegar desde el mapa incorporado.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Hay que pagar para usarla?</summary>
+          <p>No, el acceso a la guía es 100% gratuito. Si el sitio te resulta útil y querés darnos una mano para mantenerlo en funcionamiento, podés realizar un aporte voluntario a través de <a href="https://link.mercadopago.com.ar/mpbahiar" target="_blank" rel="noopener">Mercado Pago</a>, pero es totalmente opcional.</p>
+        </details>
+      </section>
+
+      <section class="faq-opticas" aria-labelledby="grupo-uso-app">
+        <h2 id="grupo-uso-app" class="faq-opticas__seccion">Uso de la aplicación</h2>
+        <details class="faq-opticas__item">
+          <summary>¿Puedo instalar BAHI.ar como una aplicación en mi celular?</summary>
+          <p>Sí. BAHI.ar es una aplicación web progresiva (PWA): podés agregarla a la pantalla de inicio de tu celular como si fuera una app, sin pasar por ninguna tienda de aplicaciones. El propio sitio te va a ofrecer instalarla la primera vez que lo visites.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿BAHI.ar tiene modo oscuro?</summary>
+          <p>Sí. Podés activar el modo oscuro (dark mode) desde la configuración del sitio, y la app va a recordar tu preferencia la próxima vez que ingreses. También se adapta automáticamente si tu celular ya tiene el modo oscuro activado a nivel sistema.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Funciona si me quedo sin internet o sin datos?</summary>
+          <p>Sí, se puede usar en parte. Una vez que ingresaste con conexión, una buena parte del contenido queda guardado en tu dispositivo para que puedas seguir consultándolo. De todas formas, para los datos que cambian todos los días (como turnos o disponibilidad) te recomendamos tener conexión, para asegurarte de ver siempre la información más actualizada.</p>
+        </details>
+      </section>
+
+      <section class="faq-opticas" aria-labelledby="grupo-busqueda">
+        <h2 id="grupo-busqueda" class="faq-opticas__seccion">Búsqueda y ubicación</h2>
+        <details class="faq-opticas__item">
+          <summary>¿Puedo buscar por mi barrio o zona?</summary>
+          <p>Sí. Varias secciones del sitio cuentan con filtros para acotar la búsqueda según tu zona, obra social u otras características, según corresponda. Vas a encontrar el detalle de los filtros disponibles dentro de cada sección.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Cómo sé qué farmacia, laboratorio, hospital o unidad sanitaria tengo más cerca?</summary>
+          <p>En la pantalla principal, al lado del buscador, tenés un acceso a Mapa que ubica farmacias, laboratorios, hospitales y unidades sanitarias en relación a tu posición real, siempre que le des permiso de geolocalización a tu navegador o celular. Además, en varias secciones vas a encontrar el botón "Ordenar por cercanía", que reordena los resultados de esa sección según la distancia a tu ubicación.</p>
+        </details>
+      </section>
+
+      <section class="faq-opticas" aria-labelledby="grupo-datos">
+        <h2 id="grupo-datos" class="faq-opticas__seccion">Datos y privacidad</h2>
+        <details class="faq-opticas__item">
+          <summary>¿La información está actualizada?</summary>
+          <p>Sí. Cada sección se actualiza con la frecuencia que corresponde a su naturaleza, por ejemplo los turnos rotativos se sincronizan a diario. Revisamos constantemente los datos de todo el sitio para mantenerlos al día.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿De dónde obtienen la información? ¿Es confiable?</summary>
+          <p>Sí, y nos lo tomamos muy en serio. Todos los datos que encontrás en la guía provienen de fuentes oficiales: colegios profesionales, organismos municipales y las entidades que representan a cada rubro de la guía.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Me tengo que registrar o guardan mis datos personales?</summary>
+          <p>No, para nada. No hace falta que crees un usuario, recuerdes contraseñas ni dejes ningún tipo de información personal. La web solo guarda un archivo mínimo de configuración en tu dispositivo para evitar preguntarte a cada rato si querés instalar la aplicación. Tu privacidad está completamente asegurada.</p>
+        </details>
+        <details class="faq-opticas__item">
+          <summary>¿Qué hago si encuentro un dato que está mal?</summary>
+          <p>Podés tocar el botón <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener">"Reportar error"</a> que está arriba de todo en la pantalla. Eso va a abrir un chat directo de WhatsApp con nosotros. Leemos todos los mensajes y respondemos siempre; tu aviso nos ayuda muchísimo a mantener la guía al día.</p>
+        </details>
+      </section>
+
+    </div>
+  </main>
+
+  <style>
+    .pagina-faq__titulo{font-size:22px;font-weight:700;color:var(--text-main,#1a1a2e);margin:20px 16px 4px;}
+    .pagina-faq__intro{font-size:14px;color:var(--text-muted,#6b7080);line-height:1.55;margin:0 16px 24px;}
+    .faq-opticas{margin:0 16px 8px;padding:0 2px 8px;}
+    .faq-opticas:last-of-type{padding-bottom:calc(80px + env(safe-area-inset-bottom, 0px));}
+    .faq-opticas__seccion{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;color:var(--text-muted,#8a8fa5);margin:22px 0 10px;}
+    .faq-opticas__item{border:1px solid var(--border-light,#e6e6ee);border-radius:10px;margin-bottom:8px;background:var(--card-bg,#fff);overflow:hidden;}
+    .faq-opticas__item summary{list-style:none;cursor:pointer;padding:12px 16px;font-size:13.5px;font-weight:500;color:var(--text-main,#1a1a2e);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .faq-opticas__item summary::-webkit-details-marker{display:none;}
+    .faq-opticas__item summary::after{content:'';flex-shrink:0;width:8px;height:8px;border-right:2px solid var(--text-muted,#8a8fa5);border-bottom:2px solid var(--text-muted,#8a8fa5);transform:rotate(45deg);transition:transform 0.2s;}
+    .faq-opticas__item[open] summary::after{transform:rotate(-135deg);}
+    .faq-opticas__item p{margin:0;padding:0 16px 14px;font-size:13px;line-height:1.6;color:var(--text-muted,#555);}
+    .faq-opticas__item p a{color:var(--text-link,#1F75FE);}
+  </style>
+
+  <div id="bottom-nav-root"></div>
+  <script src="js/bottom-nav-v2.js" defer></script>
+
+</body>
+</html>
