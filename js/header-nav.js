@@ -72,10 +72,10 @@
                 '<button id="btn-theme-toggle" aria-label="Cambiar a modo oscuro" aria-pressed="false" class="header-btn" type="button">' +
                 '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 3v1m0 16v1M4.22 4.22l.707.707M18.071 18.071l.707.707M3 12h1m16 0h1M4.22 19.78l.707-.707M18.071 5.929l.707-.707"/></svg>' +
                 '</button>' +
-                '<button onclick="document.getElementById(\'faq-modal-overlay\').style.display=\'flex\'" aria-label="Ayuda: preguntas frecuentes" class="header-btn">' +
+                '<a href="faq.html" aria-label="Ayuda: preguntas frecuentes" class="header-btn">' +
                 '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' +
                 'Ayuda' +
-                '</button>';
+                '</a>';
         } else if (type === 'legal') {
             // Páginas legales: reportar error
             html += '<a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" class="btn-bug-report focus-ring">' +
