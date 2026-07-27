@@ -1,0 +1,31 @@
+# BAHI.ar
+
+> Guía médica digital de Bahía Blanca, Argentina. Información unificada y actualizada sobre farmacias de turno, hospitales, clínicas, laboratorios, centros de diagnóstico por imágenes, nutrición, kinesiología, fonoaudiología, ópticas y emergencias.
+
+BAHI.ar es una aplicación web progresiva (PWA) gratuita que centraliza servicios médicos de Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo. El listado de farmacias de turno se actualiza con datos oficiales del Colegio de Farmacéuticos de la Provincia de Buenos Aires, Filial Bahía Blanca.
+
+## Páginas principales
+
+- [Inicio](https://www.bahi.ar/): farmacias de turno del día, y acceso a todas las categorías (farmacias, emergencias, laboratorios, imágenes).
+- [Farmacias](https://www.bahi.ar/farmacias.html): listado de farmacias de Bahía Blanca, Ingeniero White, Gral. Daniel Cerri y Cabildo.
+- [Emergencias](https://www.bahi.ar/emergencias.html): teléfonos de emergencia, ambulancias y guardias hospitalarias (107).
+- [Guardias](https://www.bahi.ar/guardias.html): guardias médicas y hospitalarias.
+- [Laboratorios](https://www.bahi.ar/laboratorios.html): laboratorios de análisis bioquímicos y anatomía patológica.
+- [Patología](https://www.bahi.ar/patologia.html): centros de anatomía patológica.
+- [Imágenes](https://www.bahi.ar/imagenes.html): centros de diagnóstico por imágenes (radiografías, ecografías, tomografías, resonancias, mamografías, estudios dentales, densitometrías).
+- [Ortopedias](https://www.bahi.ar/ortopedias.html): casas de ortopedia y venta/alquiler de equipamiento.
+- [Unidades](https://www.bahi.ar/unidades.html): unidades sanitarias y centros de atención primaria.
+- [Nutrición](https://www.bahi.ar/nutricion.html): profesionales y centros de nutrición.
+- [Kinesiología](https://www.bahi.ar/kinesiologia.html): profesionales y centros de kinesiología.
+- [Fonoaudiología](https://www.bahi.ar/fonoaudiologia.html): profesionales y centros de fonoaudiología.
+- [Ópticas](https://www.bahi.ar/opticas.html): ópticas de Bahía Blanca.
+- [Mapa](https://www.bahi.ar/mapa.html): resultados de todas las categorías visualizados en un mapa.
+- [Contacto](https://www.bahi.ar/contacto.html): formulario de contacto.
+- [Privacidad](https://www.bahi.ar/privacidad.html): política de privacidad.
+- [Aviso legal](https://www.bahi.ar/aviso-legal.html): aviso legal del sitio.
+- [Términos](https://www.bahi.ar/terminos.html): términos y condiciones de uso.
+
+## Notas
+
+- El contenido de farmacias de turno cambia diariamente según el cronograma oficial por grupos.
+- Los datos de contacto, dirección y teléfono de cada prestador provienen de un padrón propio mantenido por BAHI.ar.
