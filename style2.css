@@ -36,6 +36,12 @@
        En claro es --primary; en oscuro se resuelve UNA sola vez más abajo
        en vez de parchear cada selector por separado. */
     --text-link: var(--accent);
+    /* Acento reservado para NIVEL: "PREMIUM" (cualquier sección), no
+       compite con los colores de categoría (--orange, --accent, etc.) */
+    --gold: #B8860B;
+    --gold-dark: #8A6508;
+    --gold-light: rgba(184, 134, 11, 0.10);
+    --gold-border: rgba(184, 134, 11, 0.30);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -342,6 +348,73 @@ body {
 
 .card-emergencia .btn-accent:active {
     background: #991b1b;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Card PREMIUM (NIVEL: "PREMIUM") — hoy solo farmacias, pero la
+   clase queda reusable para cualquier TIPO que sume este nivel.
+   Sello ★ inline junto al nombre (no absoluto en la esquina, para
+   no chocar con .card-distance que ya ocupa top:12/right:12). */
+.card--premium {
+    border: 1px solid var(--gold-border);
+    box-shadow: 0 2px 10px rgba(184, 134, 11, 0.14);
+}
+
+[data-mode="dark"] .card--premium {
+    box-shadow: 0 2px 10px rgba(224, 185, 77, 0.10);
+}
+
+.card--premium .card-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.premium-seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #FFFDF5;
+    font-size: 11px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 16px 12px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--gold-light);
+    color: var(--gold-dark);
+    border: 1px solid var(--gold-border);
+}
+
+/* Ficha de datos premium: siempre visible, no colapsa detrás de
+   "Más información" como el resto de las cards (card-body-collapse) */
+.card-body-premium {
+    padding: 10px 16px 16px;
+    border-top: 1px dashed var(--gold-border);
+    background: var(--gold-light);
+}
+
+.card-body-premium .card-detail-row:first-child {
+    margin-top: 0;
 }
 
 .busqueda-global-resultados {
@@ -2165,6 +2238,12 @@ button.bottom-nav-item {
        fondo sólido de botones, solo los que funcionan como acento/borde) */
     --cat-guardia: #F0554F;
     --cat-otros: #2DD4BF;
+
+    /* Dorado premium, más luminoso para no perder saturación sobre fondo oscuro */
+    --gold: #E0B94D;
+    --gold-dark: #C9A536;
+    --gold-light: rgba(224, 185, 77, 0.12);
+    --gold-border: rgba(224, 185, 77, 0.30);
 }
 
 [data-mode="dark"] body {
