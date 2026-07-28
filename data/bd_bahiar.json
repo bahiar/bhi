@@ -3903,6 +3903,26 @@
       "lat": -38.7393154,
       "lng": -62.2458672,
       "CP": "8000"
+    },
+    {
+      "TIPO": "FARMACIA",
+      "ID": "FAR-110",
+      "PRESTADOR": "PRUEBA",
+      "DOMICILIO": "Rosario 100",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Rosario+100%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542914887777",
+      "MOVIL": "",
+      "GRUPO": "E",
+      "NIVEL": "PREMIUM",
+      "STOCK": "",
+      "HORARIO": "LU/VI 8-12:30 hs.",
+      "INYECTABLES": true,
+      "DELIVERY": true,
+      "OOSS": "OSDE, SWISS, PAMI",
+      "lat": null,
+      "lng": null,
+      "CP": ""
     }
   ]
 }
