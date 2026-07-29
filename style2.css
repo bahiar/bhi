@@ -353,34 +353,65 @@ body {
 /* ─────────────────────────────────────────────────────────────
    Card PREMIUM (NIVEL: "PREMIUM") — hoy solo farmacias, pero la
    clase queda reusable para cualquier TIPO que sume este nivel.
-   Sello ★ inline junto al nombre (no absoluto en la esquina, para
-   no chocar con .card-distance que ya ocupa top:12/right:12). */
+   Wrapper con halo dorado alrededor + cabecera navy sólida con
+   el nombre y la estrella ★ a la derecha. */
+.card--premium-wrap {
+    position: relative;
+    padding: 5px;
+}
+
+.card--premium-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: calc(var(--radius-card) + 5px);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-border) 60%, transparent 100%);
+    opacity: 0.55;
+}
+
 .card--premium {
+    position: relative;
     border: 1px solid var(--gold-border);
-    box-shadow: 0 2px 10px rgba(184, 134, 11, 0.14);
+    box-shadow: 0 8px 22px rgba(184, 134, 11, 0.25);
 }
 
 [data-mode="dark"] .card--premium {
-    box-shadow: 0 2px 10px rgba(224, 185, 77, 0.10);
+    box-shadow: 0 8px 22px rgba(224, 185, 77, 0.18);
 }
 
-.card--premium .card-name {
+.card--premium .header-bar {
+    background: var(--primary);
+    padding: 12px 16px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.card--premium .header-bar .card-name {
+    color: #fff;
+    margin: 0;
+}
+
+.card--premium .card-top {
+    padding: 10px 16px 10px;
+}
+
+.card--premium .card-addr {
+    margin-top: 0;
 }
 
 .premium-seal {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
     border-radius: 50%;
     background: var(--gold);
     color: #FFFDF5;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1;
     flex-shrink: 0;
 }
