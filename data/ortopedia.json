@@ -319,6 +319,26 @@
       "lat": null,
       "lng": null,
       "CP": "8000"
+    },
+    {
+      "TIPO": "ORTOPEDIA",
+      "ID": "ORT-017",
+      "PRESTADOR": "Tecnopie",
+      "DOMICILIO": "Soler 276",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Soler+276%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "",
+      "MOVIL": "https://wa.me/5492915049362",
+      "GRUPO": "",
+      "NIVEL": "ESTANDART",
+      "STOCK": "",
+      "HORARIO": "",
+      "INYECTABLES": false,
+      "DELIVERY": false,
+      "OOSS": "",
+      "lat": -38.71833919380782,
+      "lng": -62.260617805524824,
+      "CP": "8000"
     }
   ]
 }
