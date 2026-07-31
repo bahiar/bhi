@@ -1,0 +1,72 @@
+
+| Fondo principal | `#EEF2F7` |
+--color-50: #EEF2F7;
+--color-100: #CEDAE8;
+--color-200: #AFC2D9;
+--color-300: #90AACB;
+--color-400: #7193BC;
+--color-500: #527BAD;
+--color-600: #43658E;
+--color-700: #344F6F;
+--color-800: #263950;
+--color-900: #172231;
+--color-950: #080C11;
+
+
+Primario (azul marino) | `#194571` |
+--color-50: #EAF2FA;
+--color-100: #C4DBF2;
+--color-200: #9FC4EA;
+--color-300: #79ADE2;
+--color-400: #5496D9;
+--color-500: #2E7FD1;
+--color-600: #2669AB;
+--color-700: #1D5286;
+--color-800: #194571;
+--color-900: #0D243B;
+--color-950: #050D15;
+
+
+## Naranja (marca / acento) | `#FF6B00` |
+
+| Naranja | `#FF6B00` |
+--color-50: #FFF0E6;
+--color-100: #FFD5B8;
+--color-200: #FFBB8A;
+--color-300: #FFA05C;
+--color-400: #FF852E;
+--color-500: #FF6B00;
+--color-600: #D15700;
+--color-700: #A34400;
+--color-800: #753100;
+--color-900: #471E00;
+--color-950: #1A0B00;
+
+
+## Otros
+| WhatsApp verde | `#25D366` |
+
+--color-50: #E9FBF0;
+--color-100: #C2F4D5;
+--color-200: #9BEDB9;
+--color-300: #74E79E;
+--color-400: #4DE083;
+--color-500: #25D366;
+--color-600: #1FB255;
+--color-700: #188B42;
+--color-800: #126430;
+--color-900: #0B3D1D;
+--color-950: #04160A;
+---
+
+## Fuentes
+
+**Font base** (texto general):
+```
+system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif
+```
+
+**Font brand** (marca / headings):
+```
+Roboto, , var(--font-base)
+```
