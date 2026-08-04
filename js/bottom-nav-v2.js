@@ -2,7 +2,7 @@
  * bottom-nav-v2.js
  * Footbar móvil con botón "Más" (abre modal de servicios adicionales).
  * Variante distinta a js/bottom-nav.js (que usa 4 links directos sin modal).
- * Usar en páginas que necesiten: Inicio, Emergencia, Farmacias + "Más" (Laboratorios, Ortopedias, Imágenes, Ópticas, Patología, Kinesiología, Nutrición, Fonoaudiología).
+ * Usar en páginas que necesiten: Inicio, Emergencia, Farmacias + "Más" (Laboratorios, Ortopedias, Imágenes, Ópticas, Patología, Kinesiología, Nutrición, Oftalmología).
  *
  * Incluir en cualquier página con:
  *   1) <div id="bottom-nav-root"></div>
@@ -120,10 +120,10 @@
             icon: 'i-nutrition-svgrepo-com.svg'
         },
         {
-            href: 'fonoaudiologia.html',
-            label: 'Fonoaudiología',
+            href: 'oftalmologia.html',
+            label: 'Oftalmología',
             ...ACCENT_COLORS['blue-medium'],
-            icon: 'ear-3-svgrepo-com.svg'
+            icon: 'eye-svgrepo-com.svg'
         },
         {
             href: 'unidades.html',
