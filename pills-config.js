@@ -96,6 +96,19 @@ window.PILLS_CONFIG = {
   },
 
   // ─────────────────────────────────────────────────────────────
+  oftalmologia: {
+    fuente: 'data/oftalmo.json',
+    tipo: 'OFTALMO',
+    pills: [
+      { campo: 'LOCALIDAD',   tipoPill: 'select',  activo: true,  label: 'Localidad' },
+      { campo: 'DELIVERY',    tipoPill: 'boolean', activo: false, label: 'Delivery' },
+      { campo: 'GRUPO',       tipoPill: 'select',  activo: false, label: 'Grupo' },
+      { campo: 'NIVEL',       tipoPill: 'select',  activo: false, label: 'Nivel' },
+      { campo: 'OOSS',        tipoPill: 'select',  activo: false, multivalor: false, label: 'Obra Social' },
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────
   ortopedia: {
     fuente: 'data/ortopedia.json',
     tipo: 'ORTOPEDIA',
