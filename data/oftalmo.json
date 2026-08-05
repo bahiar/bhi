@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "last_update": "2026-08-04T00:00:00.000000",
+        "last_update": "2026-08-05T00:00:00.000000",
         "version": "1.0.0"
     },
     "prestadores": [
@@ -13,6 +13,26 @@
             "MAPS": "https://www.google.com/maps/search/?api=1&query=Berutti%20128%2C%20Bahia%20Blanca%2C%20Buenos%20Aires%2C%20Argentina",
             "FIJO": "tel:02914073618",
             "MOVIL": "https://wa.me/5492914073618",
+            "GRUPO": "",
+            "NIVEL": "ESTANDART",
+            "STOCK": "",
+            "HORARIO": "",
+            "INYECTABLES": false,
+            "DELIVERY": false,
+            "OOSS": "",
+            "lat": null,
+            "lng": null,
+            "CP": "8000"
+        },
+        {
+            "TIPO": "OFTALMO",
+            "ID": "OFT-008",
+            "PRESTADOR": "Centro Rivera Moirano",
+            "DOMICILIO": "Avda. Colón 90",
+            "LOCALIDAD": "Bahia Blanca",
+            "MAPS": "https://www.google.com/maps/search/?api=1&query=Avenida%20Colon%2090%2C%20Bahia%20Blanca%2C%20Buenos%20Aires%2C%20Argentina",
+            "FIJO": "",
+            "MOVIL": "https://wa.me/5492916497455",
             "GRUPO": "",
             "NIVEL": "ESTANDART",
             "STOCK": "",
@@ -68,7 +88,7 @@
             "TIPO": "OFTALMO",
             "ID": "OFT-004",
             "PRESTADOR": "Coar",
-            "DOMICILIO": "Caronti 578 – 800",
+            "DOMICILIO": "Caronti 578 – 800",
             "LOCALIDAD": "Bahia Blanca",
             "MAPS": "https://www.google.com/maps/search/?api=1&query=Caronti%20578%C2%A0%E2%80%93%20800%2C%20Bahia%20Blanca%2C%20Buenos%20Aires%2C%20Argentina",
             "FIJO": "",
