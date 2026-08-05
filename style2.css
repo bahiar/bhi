@@ -506,6 +506,37 @@ body {
     margin-bottom: 6px;
 }
 
+/* --- Ficha inline al expandir un resultado del buscador global --- */
+.resultado-busqueda-wrap {
+    grid-column: 1 / -1; /* ocupa todo el ancho cuando .cards-grid pasa a grid (≥768px) */
+}
+
+.resultado-busqueda[aria-expanded="true"] {
+    background: rgba(0, 0, 0, 0.03);
+    border-bottom-color: transparent;
+}
+
+.resultado-ficha {
+    padding: 0 16px 16px;
+    animation: fadeInCard 0.25s ease forwards;
+}
+
+.resultado-ficha .card,
+.resultado-ficha .card--premium-wrap {
+    margin: 0 0 10px;
+    box-shadow: none;
+    border-color: var(--border-light);
+}
+
+.resultado-ver-categoria {
+    width: 100%;
+    text-decoration: none;
+}
+
+[data-mode="dark"] .resultado-busqueda[aria-expanded="true"] {
+    background: rgba(255, 255, 255, 0.04);
+}
+
 .card-badge {
     display: inline-flex;
     align-items: center;
