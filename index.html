@@ -580,7 +580,7 @@ window.dataLayer = window.dataLayer || [];
         }
     </style>
 
-    <meta property="og:title" content="Farmacias de Turno Hoy en Bahía Blanca | BAHI.ar">
+    <meta property="og:title" content="Farmacias de Turno Hoy en Bahía Blanca | BAHI.ar 24hs">
     <meta property="og:description" content="Guía médica digital de Bahía Blanca: farmacias de turno, hospitales, clínicas, laboratorios, centros de diagnóstico, nutrición, kinesiología, fonoaudiología y ópticas. Información médica unificada y actualizada.">
     <meta property="og:url" content="https://www.bahi.ar/">
     <meta property="og:type" content="website">
@@ -591,7 +591,7 @@ window.dataLayer = window.dataLayer || [];
     <meta property="og:site_name" content="BAHI.ar">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Farmacias de Turno Hoy en Bahía Blanca | BAHI.ar">
+    <meta name="twitter:title" content="Farmacias de Turno Hoy en Bahía Blanca | BAHI.ar 24hs">
     <meta name="twitter:description" content="Guía médica digital de Bahía Blanca: farmacias de turno, hospitales, clínicas, laboratorios, centros de diagnóstico, nutrición, kinesiología, fonoaudiología y ópticas. Información médica unificada y actualizada.">
     <meta name="twitter:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
 
@@ -626,18 +626,23 @@ window.dataLayer = window.dataLayer || [];
           "name": "BAHI.ar",
           "url": "https://www.bahi.ar/",
           "description": "Guía médica digital para Bahía Blanca, Ingeniero White, Cabildo y Cerri. Farmacias de turno, hospitales, clínicas, laboratorios clínicos, centros de diagnóstico por imágenes, nutrición, kinesiología, fonoaudiología y ópticas.",
-          "areaServed": {
-            "@type": "City",
-            "name": "Bahía Blanca",
-            "containedInPlace": {
-              "@type": "State",
-              "name": "Buenos Aires",
+          "areaServed": [
+            {
+              "@type": "City",
+              "name": "Bahía Blanca",
               "containedInPlace": {
-                "@type": "Country",
-                "name": "Argentina"
+                "@type": "State",
+                "name": "Buenos Aires",
+                "containedInPlace": {
+                  "@type": "Country",
+                  "name": "Argentina"
+                }
               }
-            }
-          },
+            },
+            { "@type": "Place", "name": "Ingeniero White" },
+            { "@type": "Place", "name": "General Daniel Cerri" },
+            { "@type": "Place", "name": "Cabildo" }
+          ],
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Bahía Blanca",

@@ -165,35 +165,6 @@
         ]
       },
       {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Qué es BAHI.ar?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Es una guía médica digital para los vecinos de Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Reúne farmacias de turno, guardias, laboratorios y emergencias."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Con qué frecuencia se actualizan las farmacias de turno?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Las farmacias de turno se actualizan diariamente a las 8:30 hs."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Funciona sin conexión a internet?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sí, de forma parcial. Una vez visitada con conexión, el contenido queda guardado en el dispositivo."
-            }
-          }
-        ]
-      },
-      {
         "@type": "CollectionPage",
         "@id": "https://www.bahi.ar/farmacias.html#collection",
         "url": "https://www.bahi.ar/farmacias.html",
@@ -451,6 +422,7 @@
   <script src="app.js" defer></script>
   <script src="faq.js" defer></script>
   <script src="pills-engine.js" defer></script>
+  <script src="js/schema-farmacias.js" defer></script>
   <script defer>
     document.addEventListener('DOMContentLoaded', () => {
       PillsEngine.init('farmacias');
