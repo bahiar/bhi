@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+<script>
+(function () {
+    try {
+        var stored = localStorage.getItem('bahi-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-mode', theme);
+    } catch (e) {
+        document.documentElement.setAttribute('data-mode', 'light');
+    }
+})();
+</script>
+<!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5RNWBBM7');</script>
+<!-- End Google Tag Manager -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="25bce197-667d-4886-840b-b5068b039c63"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Otros servicios en Bahía Blanca | BAHI.ar</title>
+  <meta name="description" content="Sepelios, atención femenina, medicina prepaga y otros temas útiles de Bahía Blanca que reunimos en un mismo lugar dentro de BAHI.ar.">
+  <link rel="canonical" href="https://www.bahi.ar/otros">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="preload" href="style2.css" as="style">
+  <link rel="stylesheet" href="style2.css">
+
+  <style>
+    :root { --header-h: 52px; }
+
+    /* ── Hero ──────────────────────────────────────────────────────── */
+    .otros-hero {
+      padding: 18px 16px 6px;
+      text-align: center;
+    }
+    .otros-eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--cat-otros);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .otros-eyebrow::before,
+    .otros-eyebrow::after {
+      content: "";
+      width: 26px;
+      height: 0;
+      border-top: 2px dashed var(--cat-otros);
+      opacity: 0.55;
+    }
+    .otros-hero h1 {
+      font-family: var(--font-brand);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0 0 10px;
+      letter-spacing: -0.01em;
+    }
+    .otros-hero p {
+      max-width: 480px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+    .otros-drawer-wrap {
+      max-width: 300px;
+      margin: 18px auto 4px;
+    }
+    .otros-drawer-wrap svg { width: 100%; height: auto; display: block; }
+
+    /* ── Grid de destinos (el "cajón") ─────────────────────────────── */
+    .otros-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 22px 16px calc(28px + 80px + env(safe-area-inset-bottom, 0px));
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .otros-grid {
+        padding: 28px 16px 40px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 960px;
+      }
+    }
+
+    .otros-tile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      background: var(--card-bg);
+      border: 2px dashed var(--tile-color, var(--cat-otros));
+      border-radius: 18px;
+      text-decoration: none;
+      position: relative;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .otros-tile:active { transform: scale(0.98); }
+    @media (hover: hover) {
+      .otros-tile:hover {
+        box-shadow: var(--shadow-soft);
+        border-style: solid;
+      }
+    }
+    @media (min-width: 768px) {
+      .otros-tile {
+        flex: 1 1 260px;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 26px 20px 22px;
+      }
+    }
+
+    .otros-badge {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: color-mix(in srgb, var(--tile-color, var(--cat-otros)) 14%, transparent);
+      color: var(--tile-color, var(--cat-otros));
+    }
+    @media (min-width: 768px) {
+      .otros-badge { width: 72px; height: 72px; }
+      .otros-badge svg { width: 32px; height: 32px; }
+    }
+
+    .otros-tile-body { flex: 1; min-width: 0; }
+    .otros-tile-name {
+      font-family: var(--font-brand);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0 0 3px;
+    }
+    .otros-tile-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .otros-tile-arrow {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--bg-main);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .otros-tile-arrow {
+        margin-top: 4px;
+        background: color-mix(in srgb, var(--tile-color, var(--cat-otros)) 12%, transparent);
+        color: var(--tile-color, var(--cat-otros));
+      }
+    }
+
+    .otros-tile-tag {
+      position: absolute;
+      top: -9px;
+      left: 16px;
+      background: var(--tile-color, var(--cat-otros));
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 2px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+    @media (min-width: 768px) {
+      .otros-tile-tag { left: 50%; transform: translateX(-50%); }
+    }
+  </style>
+
+  <meta property="og:title" content="Otros servicios en Bahía Blanca | BAHI.ar">
+  <meta property="og:description" content="Sepelios, atención femenina, medicina prepaga y otros temas útiles de Bahía Blanca que reunimos en un mismo lugar dentro de BAHI.ar.">
+  <meta property="og:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://www.bahi.ar/otros">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Otros servicios en Bahía Blanca | BAHI.ar">
+  <meta name="twitter:description" content="Sepelios, atención femenina, medicina prepaga y otros temas útiles de Bahía Blanca.">
+  <meta name="twitter:image" content="https://www.bahi.ar/assets/images/whatsapp.png">
+  <meta name="geo.region" content="AR-B">
+  <meta name="geo.placename" content="Bahía Blanca, Buenos Aires, Argentina">
+  <meta name="geo.position" content="-38.7183;-62.2661">
+  <meta name="ICBM" content="-38.7183, -62.2661">
+  <meta name="theme-color" content="#191971">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Otros servicios en Bahía Blanca",
+    "url": "https://www.bahi.ar/otros",
+    "hasPart": [
+      {"@type":"WebPage","name":"Servicios de sepelio en Bahía Blanca","url":"https://www.bahi.ar/sepelios"},
+      {"@type":"WebPage","name":"Atención femenina en Bahía Blanca","url":"https://www.bahi.ar/femenina"},
+      {"@type":"WebPage","name":"Medicina prepaga en Bahía Blanca","url":"https://www.bahi.ar/prepaga"}
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RNWBBM7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div id="header-nav-root"></div>
+  <script>
+    window.headerNavConfig = { page: 'otros', type: 'full' };
+  </script>
+  <script src="js/header-nav.js" defer></script>
+
+  <main class="app-view" id="content">
+    <div class="main-container" id="main-content">
+
+      <div class="otros-hero">
+        <div class="otros-eyebrow">Cajón de sastre</div>
+        <h1>Otros servicios en Bahía Blanca</h1>
+        <p>Temas puntuales que no llenan una sección propia, pero igual conviene tener a mano. Los vamos guardando acá.</p>
+
+        <div class="otros-drawer-wrap">
+          <svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un cajón abierto con etiquetas de colores saliendo de él">
+            <!-- cuerpo del cajón -->
+            <rect x="40" y="120" width="280" height="62" rx="14" fill="var(--card-bg)" stroke="var(--border-light)" stroke-width="2"/>
+            <path d="M52 120 L60 98 Q62 92 69 92 L291 92 Q298 92 300 98 L308 120 Z" fill="var(--bg-main)" stroke="var(--border-light)" stroke-width="2" stroke-linejoin="round"/>
+            <rect x="142" y="145" width="76" height="9" rx="4.5" fill="var(--border-light)"/>
+
+            <!-- etiqueta: sepelios -->
+            <g transform="translate(112,18) rotate(-9)">
+              <line x1="15" y1="0" x2="15" y2="15" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="2.5 2.5"/>
+              <rect x="0" y="15" width="30" height="38" rx="8" fill="#6B7280" fill-opacity="0.16" stroke="#6B7280" stroke-width="2"/>
+              <circle cx="15" cy="25" r="3" fill="none" stroke="#6B7280" stroke-width="2"/>
+              <path d="M15 32 v11 M11 43 h8" stroke="#6B7280" stroke-width="2" stroke-linecap="round"/>
+            </g>
+
+            <!-- etiqueta: femenina -->
+            <g transform="translate(165,6) rotate(3)">
+              <line x1="15" y1="0" x2="15" y2="15" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="2.5 2.5"/>
+              <rect x="0" y="15" width="30" height="38" rx="8" fill="#D6336C" fill-opacity="0.16" stroke="#D6336C" stroke-width="2"/>
+              <circle cx="15" cy="25" r="3" fill="none" stroke="#D6336C" stroke-width="2"/>
+              <path d="M15 33 c-3 -3 -8 0 -5 4 c1.5 1.7 5 4 5 4 s3.5 -2.3 5 -4 c3 -4 -2 -7 -5 -4 Z" fill="#D6336C"/>
+            </g>
+
+            <!-- etiqueta: prepaga -->
+            <g transform="translate(218,20) rotate(11)">
+              <line x1="15" y1="0" x2="15" y2="15" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="2.5 2.5"/>
+              <rect x="0" y="15" width="30" height="38" rx="8" fill="#1F75FE" fill-opacity="0.16" stroke="#1F75FE" stroke-width="2"/>
+              <circle cx="15" cy="25" r="3" fill="none" stroke="#1F75FE" stroke-width="2"/>
+              <path d="M15 31 l6 2.5 v5 c0 4.5 -3 7 -6 8.3 c-3 -1.3 -6 -3.8 -6 -8.3 v-5 Z" fill="none" stroke="#1F75FE" stroke-width="2" stroke-linejoin="round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <section aria-labelledby="otros-heading">
+        <h2 id="otros-heading" class="sr-only">Listado de otros servicios</h2>
+        <div class="otros-grid">
+
+          <a class="otros-tile" href="sepelios" style="--tile-color:#6B7280;">
+            <span class="otros-tile-tag">Sepelios</span>
+            <span class="otros-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21h6"/><path d="M10 21v-6a2 2 0 0 1 4 0v6"/><path d="M12 15V6"/><path d="M9 6h6l-1.2-3.6a1 1 0 0 0-1.9 0L10.8 6Z"/></svg>
+            </span>
+            <span class="otros-tile-body">
+              <p class="otros-tile-name">Servicios de sepelio</p>
+              <p class="otros-tile-desc">Casas funerarias y administración de trámites, con teléfono directo.</p>
+            </span>
+            <span class="otros-tile-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+          </a>
+
+          <a class="otros-tile" href="femenina" style="--tile-color:#D6336C;">
+            <span class="otros-tile-tag">Salud</span>
+            <span class="otros-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4-2.7-8-6-8-10.2A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8 3.8C20 14 16 17.3 12 20Z"/></svg>
+            </span>
+            <span class="otros-tile-body">
+              <p class="otros-tile-name">Atención femenina</p>
+              <p class="otros-tile-desc">Ginecología, mastología y diagnóstico orientado a la salud de la mujer.</p>
+            </span>
+            <span class="otros-tile-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+          </a>
+
+          <a class="otros-tile" href="prepaga" style="--tile-color:#1F75FE;">
+            <span class="otros-tile-tag">Cobertura</span>
+            <span class="otros-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.4 8.4-8 9-4.6-.6-8-4-8-9V6Z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            <span class="otros-tile-body">
+              <p class="otros-tile-name">Medicina prepaga</p>
+              <p class="otros-tile-desc">Sedes y líneas de contacto de las principales empresas de la ciudad.</p>
+            </span>
+            <span class="otros-tile-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="bottom-nav-root"></div>
+  <script src="js/bottom-nav-v2.js" defer></script>
+
+</body>
+</html>
