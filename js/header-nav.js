@@ -35,7 +35,7 @@
         { href: 'oftalmologia.html',   label: 'Oftalmología' },
         { href: 'patologia.html',      label: 'Patólogos' },
         { href: 'kinesiologia.html',   label: 'Kinesiología' },
-        { href: 'nutricion.html',      label: 'Nutrición',      enConstruccion: true }
+        { href: 'otros.html',           label: 'Otros' }
     ];
 
     // Sub-nav reducido para páginas legales (primeras 6 secciones principales)
