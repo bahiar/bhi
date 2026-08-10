@@ -67,12 +67,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.bahi.ar/nutricion.html</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://www.bahi.ar/oftalmologia.html</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -89,6 +83,12 @@
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.bahi.ar/otros</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.bahi.ar/patologia.html</loc>
