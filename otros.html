@@ -101,37 +101,48 @@
 
     .otros-tile {
       display: flex;
-      align-items: center;
-      gap: 14px;
+      flex-direction: column;
+      gap: 10px;
       padding: 16px;
       background: var(--card-bg);
-      border: 2px dashed var(--tile-color, var(--cat-otros));
+      border: 1px solid var(--border-light);
       border-radius: 18px;
       text-decoration: none;
-      position: relative;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
     }
     .otros-tile:active { transform: scale(0.98); }
     @media (hover: hover) {
       .otros-tile:hover {
         box-shadow: var(--shadow-soft);
-        border-style: solid;
+        border-color: var(--tile-color, var(--cat-otros));
       }
     }
     @media (min-width: 768px) {
       .otros-tile {
         flex: 1 1 260px;
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-        padding: 26px 20px 22px;
+        padding: 20px;
       }
+    }
+
+    .otros-tile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .otros-tile-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tile-color, var(--cat-otros));
     }
 
     .otros-badge {
       flex-shrink: 0;
-      width: 60px;
-      height: 60px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -139,61 +150,36 @@
       background: color-mix(in srgb, var(--tile-color, var(--cat-otros)) 14%, transparent);
       color: var(--tile-color, var(--cat-otros));
     }
-    @media (min-width: 768px) {
-      .otros-badge { width: 72px; height: 72px; }
-      .otros-badge svg { width: 32px; height: 32px; }
-    }
+    .otros-badge svg { width: 20px; height: 20px; }
 
-    .otros-tile-body { flex: 1; min-width: 0; }
+    .otros-tile-body { min-width: 0; }
     .otros-tile-name {
       font-family: var(--font-brand);
       font-size: 16px;
       font-weight: 700;
       color: var(--text-main);
-      margin: 0 0 3px;
+      margin: 0 0 4px;
     }
     .otros-tile-desc {
       font-size: 13px;
       color: var(--text-muted);
-      line-height: 1.45;
+      line-height: 1.5;
       margin: 0;
     }
 
-    .otros-tile-arrow {
-      flex-shrink: 0;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--bg-main);
-      color: var(--text-muted);
+    .otros-tile-footer {
       display: flex;
       align-items: center;
-      justify-content: center;
-    }
-    @media (min-width: 768px) {
-      .otros-tile-arrow {
-        margin-top: 4px;
-        background: color-mix(in srgb, var(--tile-color, var(--cat-otros)) 12%, transparent);
-        color: var(--tile-color, var(--cat-otros));
-      }
-    }
-
-    .otros-tile-tag {
-      position: absolute;
-      top: -9px;
-      left: 16px;
-      background: var(--tile-color, var(--cat-otros));
-      color: #fff;
-      font-size: 10px;
+      justify-content: flex-end;
+      gap: 4px;
+      padding-top: 10px;
+      margin-top: 2px;
+      border-top: 1px solid var(--border-light);
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.04em;
-      padding: 2px 8px;
-      border-radius: 999px;
-      text-transform: uppercase;
+      color: var(--tile-color, var(--cat-otros));
     }
-    @media (min-width: 768px) {
-      .otros-tile-tag { left: 50%; transform: translateX(-50%); }
-    }
+    .otros-tile-footer svg { width: 14px; height: 14px; }
   </style>
 
   <meta property="og:title" content="Otros servicios en Bahía Blanca | BAHI.ar">
@@ -243,87 +229,60 @@
     <div class="main-container" id="main-content">
 
       <div class="otros-hero">
-        <div class="otros-eyebrow">Cajón de sastre</div>
         <h1>Otros servicios en Bahía Blanca</h1>
-        <p>Temas puntuales que no llenan una sección propia, pero igual conviene tener a mano. Los vamos guardando acá.</p>
-
-        <div class="otros-drawer-wrap">
-          <svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un cajón abierto con etiquetas de colores saliendo de él">
-            <!-- cuerpo del cajón -->
-            <rect x="40" y="120" width="280" height="62" rx="14" fill="var(--card-bg)" stroke="var(--border-light)" stroke-width="2"/>
-            <path d="M52 120 L60 98 Q62 92 69 92 L291 92 Q298 92 300 98 L308 120 Z" fill="var(--bg-main)" stroke="var(--border-light)" stroke-width="2" stroke-linejoin="round"/>
-            <rect x="142" y="145" width="76" height="9" rx="4.5" fill="var(--border-light)"/>
-
-            <!-- etiqueta: sepelios -->
-            <g transform="translate(112,18) rotate(-9)">
-              <line x1="15" y1="0" x2="15" y2="15" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="2.5 2.5"/>
-              <rect x="0" y="15" width="30" height="38" rx="8" fill="#6B7280" fill-opacity="0.16" stroke="#6B7280" stroke-width="2"/>
-              <circle cx="15" cy="25" r="3" fill="none" stroke="#6B7280" stroke-width="2"/>
-              <path d="M15 32 v11 M11 43 h8" stroke="#6B7280" stroke-width="2" stroke-linecap="round"/>
-            </g>
-
-            <!-- etiqueta: femenina -->
-            <g transform="translate(165,6) rotate(3)">
-              <line x1="15" y1="0" x2="15" y2="15" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="2.5 2.5"/>
-              <rect x="0" y="15" width="30" height="38" rx="8" fill="#D6336C" fill-opacity="0.16" stroke="#D6336C" stroke-width="2"/>
-              <circle cx="15" cy="25" r="3" fill="none" stroke="#D6336C" stroke-width="2"/>
-              <path d="M15 33 c-3 -3 -8 0 -5 4 c1.5 1.7 5 4 5 4 s3.5 -2.3 5 -4 c3 -4 -2 -7 -5 -4 Z" fill="#D6336C"/>
-            </g>
-
-            <!-- etiqueta: prepaga -->
-            <g transform="translate(218,20) rotate(11)">
-              <line x1="15" y1="0" x2="15" y2="15" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="2.5 2.5"/>
-              <rect x="0" y="15" width="30" height="38" rx="8" fill="#1F75FE" fill-opacity="0.16" stroke="#1F75FE" stroke-width="2"/>
-              <circle cx="15" cy="25" r="3" fill="none" stroke="#1F75FE" stroke-width="2"/>
-              <path d="M15 31 l6 2.5 v5 c0 4.5 -3 7 -6 8.3 c-3 -1.3 -6 -3.8 -6 -8.3 v-5 Z" fill="none" stroke="#1F75FE" stroke-width="2" stroke-linejoin="round"/>
-            </g>
-          </svg>
-        </div>
       </div>
 
-      <section aria-labelledby="otros-heading">
-        <h2 id="otros-heading" class="sr-only">Listado de otros servicios</h2>
+      <section>
         <div class="otros-grid">
 
           <a class="otros-tile" href="sepelios" style="--tile-color:#6B7280;">
-            <span class="otros-tile-tag">Sepelios</span>
-            <span class="otros-badge" aria-hidden="true">
-              <svg viewBox="0 0 210 297" width="26" height="26" fill="currentColor"><path d="m 57.510702,270.96104 c -8.133788,-8.00579 -14.188757,-18.68736 -17.62065,-31.08465 l -1.254352,-4.53115 17.099669,-30.3319 c 9.404823,-16.68256 20.167381,-35.84922 23.916795,-42.59256 l 6.817151,-12.26069 -5.478391,-11.31015 C 71.319021,118.8822 67.207133,107.28559 65.152051,94.180024 c -1.361304,-8.681241 -0.874562,-22.582215 1.059418,-30.25587 1.768381,-7.016556 5.221478,-15.730759 10.09333,-25.471285 3.261817,-6.521541 4.25284,-7.996756 7.573496,-11.273626 6.25448,-6.172007 11.75843,-8.294451 21.520335,-8.29877 10.89803,-0.0051 19.40616,3.104791 25.89359,9.463777 2.98534,2.926194 3.85481,4.311983 7.57179,12.067976 5.08552,10.6117 7.15594,15.932665 8.88416,22.832143 3.43476,13.712297 2.97376,27.946928 -1.41073,43.561511 -2.31839,8.25652 -5.18065,15.30176 -12.27309,30.20939 l -6.32169,13.28757 12.09076,21.5755 c 6.64992,11.86653 17.38559,30.95017 23.85703,42.40808 13.15339,23.28851 12.22676,20.5785 9.74896,28.51207 -1.83215,5.86623 -5.97737,14.43007 -9.40921,19.43897 -2.69428,3.93241 -10.59452,12.47574 -11.53391,12.47278 -0.23914,-5.4e-4 -2.78829,-4.52625 -5.66482,-10.05665 -8.17081,-15.70919 -38.32101,-72.15428 -39.15536,-73.30386 -0.69108,-0.95222 -1.00938,-0.54034 -4.14501,5.36354 -1.86806,3.51723 -9.598965,17.98022 -17.179785,32.13999 -7.580807,14.15976 -16.13177,30.27054 -19.002138,35.80169 -2.870389,5.53116 -5.400903,10.05666 -5.623404,10.05666 -0.222483,0 -2.119264,-1.68777 -4.215071,-3.75057 z M 112.65416,101.93325 c 9.33917,-18.441985 16.75333,-37.247913 19.83271,-50.305487 0.66387,-2.815097 0.64437,-2.94479 -0.59663,-3.968698 -2.05249,-1.693456 -7.33413,-3.893385 -12.54638,-5.225862 -6.40367,-1.637057 -18.51197,-1.789881 -23.867785,-0.301265 -5.26405,1.463122 -11.34971,3.93618 -13.029161,5.294735 l -1.49753,1.211372 1.384537,5.317345 c 3.454954,13.268969 8.958424,27.123662 18.125949,45.631177 5.94604,12.003933 6.42651,12.795713 7.16073,11.799803 0.43286,-0.58712 2.69797,-4.84104 5.03356,-9.45312 z"/></svg>
+            <span class="otros-tile-header">
+              <span class="otros-tile-tag">Sepelios</span>
+              <span class="otros-badge" aria-hidden="true">
+                <svg viewBox="0 0 210 297" width="26" height="26" fill="currentColor"><path d="m 57.510702,270.96104 c -8.133788,-8.00579 -14.188757,-18.68736 -17.62065,-31.08465 l -1.254352,-4.53115 17.099669,-30.3319 c 9.404823,-16.68256 20.167381,-35.84922 23.916795,-42.59256 l 6.817151,-12.26069 -5.478391,-11.31015 C 71.319021,118.8822 67.207133,107.28559 65.152051,94.180024 c -1.361304,-8.681241 -0.874562,-22.582215 1.059418,-30.25587 1.768381,-7.016556 5.221478,-15.730759 10.09333,-25.471285 3.261817,-6.521541 4.25284,-7.996756 7.573496,-11.273626 6.25448,-6.172007 11.75843,-8.294451 21.520335,-8.29877 10.89803,-0.0051 19.40616,3.104791 25.89359,9.463777 2.98534,2.926194 3.85481,4.311983 7.57179,12.067976 5.08552,10.6117 7.15594,15.932665 8.88416,22.832143 3.43476,13.712297 2.97376,27.946928 -1.41073,43.561511 -2.31839,8.25652 -5.18065,15.30176 -12.27309,30.20939 l -6.32169,13.28757 12.09076,21.5755 c 6.64992,11.86653 17.38559,30.95017 23.85703,42.40808 13.15339,23.28851 12.22676,20.5785 9.74896,28.51207 -1.83215,5.86623 -5.97737,14.43007 -9.40921,19.43897 -2.69428,3.93241 -10.59452,12.47574 -11.53391,12.47278 -0.23914,-5.4e-4 -2.78829,-4.52625 -5.66482,-10.05665 -8.17081,-15.70919 -38.32101,-72.15428 -39.15536,-73.30386 -0.69108,-0.95222 -1.00938,-0.54034 -4.14501,5.36354 -1.86806,3.51723 -9.598965,17.98022 -17.179785,32.13999 -7.580807,14.15976 -16.13177,30.27054 -19.002138,35.80169 -2.870389,5.53116 -5.400903,10.05666 -5.623404,10.05666 -0.222483,0 -2.119264,-1.68777 -4.215071,-3.75057 z M 112.65416,101.93325 c 9.33917,-18.441985 16.75333,-37.247913 19.83271,-50.305487 0.66387,-2.815097 0.64437,-2.94479 -0.59663,-3.968698 -2.05249,-1.693456 -7.33413,-3.893385 -12.54638,-5.225862 -6.40367,-1.637057 -18.51197,-1.789881 -23.867785,-0.301265 -5.26405,1.463122 -11.34971,3.93618 -13.029161,5.294735 l -1.49753,1.211372 1.384537,5.317345 c 3.454954,13.268969 8.958424,27.123662 18.125949,45.631177 5.94604,12.003933 6.42651,12.795713 7.16073,11.799803 0.43286,-0.58712 2.69797,-4.84104 5.03356,-9.45312 z"/></svg>
+              </span>
             </span>
             <span class="otros-tile-body">
               <p class="otros-tile-name">Servicios de sepelio</p>
               <p class="otros-tile-desc">Casas funerarias y administración de trámites, con teléfono directo.</p>
             </span>
-            <span class="otros-tile-arrow" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            <span class="otros-tile-footer">
+              Ver más
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
             </span>
           </a>
 
           <a class="otros-tile" href="femenina" style="--tile-color:#D6336C;">
-            <span class="otros-tile-tag">Salud</span>
-            <span class="otros-badge" aria-hidden="true">
-              <svg viewBox="0 0 512.002 512.002" width="26" height="26" fill="currentColor"><path d="M297.71,0C179.361,0,83.419,95.941,83.419,214.291c0,50.266,17.313,96.482,46.293,133.03l-48.636,48.636l-40.794-40.794 L5.315,390.13l40.794,40.794l-46.109,46.11l34.967,34.967l46.109-46.109l40.796,40.796l34.967-34.967l-40.794-40.796 l48.636-48.636c36.547,28.979,82.764,46.292,133.028,46.292c118.349,0,214.291-95.941,214.291-214.291S416.06,0,297.71,0z M297.71,362.646c-81.935,0-148.355-66.42-148.355-148.355S215.775,65.936,297.71,65.936s148.355,66.42,148.355,148.355 S379.645,362.646,297.71,362.646z"/></svg>
+            <span class="otros-tile-header">
+              <span class="otros-tile-tag">Salud</span>
+              <span class="otros-badge" aria-hidden="true">
+                <svg viewBox="0 0 512.002 512.002" width="26" height="26" fill="currentColor"><path d="M297.71,0C179.361,0,83.419,95.941,83.419,214.291c0,50.266,17.313,96.482,46.293,133.03l-48.636,48.636l-40.794-40.794 L5.315,390.13l40.794,40.794l-46.109,46.11l34.967,34.967l46.109-46.109l40.796,40.796l34.967-34.967l-40.794-40.796 l48.636-48.636c36.547,28.979,82.764,46.292,133.028,46.292c118.349,0,214.291-95.941,214.291-214.291S416.06,0,297.71,0z M297.71,362.646c-81.935,0-148.355-66.42-148.355-148.355S215.775,65.936,297.71,65.936s148.355,66.42,148.355,148.355 S379.645,362.646,297.71,362.646z"/></svg>
+              </span>
             </span>
             <span class="otros-tile-body">
               <p class="otros-tile-name">Atención femenina</p>
               <p class="otros-tile-desc">Ginecología, mastología y diagnóstico orientado a la salud de la mujer.</p>
             </span>
-            <span class="otros-tile-arrow" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            <span class="otros-tile-footer">
+              Ver más
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
             </span>
           </a>
 
           <a class="otros-tile" href="prepaga" style="--tile-color:#1F75FE;">
-            <span class="otros-tile-tag">Cobertura</span>
-            <span class="otros-badge" aria-hidden="true">
-              <svg viewBox="0 0 351.639 351.639" width="26" height="26" fill="currentColor"><path d="M196.875,305.854c-7.446,6.765-15.721,13.996-21.04,15.622c-6.283-1.884-16.534-11.402-31.528-25.324 c-2.546-2.364-5.25-4.874-8.128-7.528C80.463,237.239,20.686,162.049,20.006,105.12c-0.233-19.476,6.284-35.357,19.922-48.552 c17.737-17.159,40.879-26.609,65.165-26.609c23.858,0,46.547,9.018,63.89,25.393c3.853,3.638,9.876,3.638,13.73,0 c17.346-16.375,40.038-25.393,63.896-25.393c24.285,0,47.428,9.45,65.165,26.608c28.077,27.165,26.517,68.214-4.635,122.007 c-2.768,4.779-1.137,10.897,3.643,13.665c4.778,2.769,10.897,1.138,13.665-3.642c45.277-78.185,25.662-122.77,1.234-146.404 C304.191,21.407,276.11,9.959,246.607,9.959c-25.932,0-50.732,8.771-70.76,24.866c-20.025-16.096-44.823-24.866-70.755-24.866 c-29.502,0-57.583,11.448-79.071,32.235C8.462,59.183-0.29,80.434,0.007,105.358c0.952,79.643,94.089,171.661,122.612,197.968 c2.861,2.639,5.548,5.133,8.079,7.482c20.903,19.409,31.396,29.15,43.846,30.787c0.432,0.057,0.868,0.085,1.303,0.085 c0.435,0,0.87-0.028,1.302-0.085c10.009-1.314,19.024-8.083,33.174-20.938c4.087-3.714,4.391-10.038,0.677-14.126 C207.287,302.444,200.963,302.141,196.875,305.854z"/><path d="M317.536,208.583h-32.117v-32.114c0-5.522-4.477-10-10-10h-40.215c-5.523,0-10,4.478-10,10v32.114h-32.117 c-5.523,0-10,4.478-10,10v40.219c0,5.522,4.477,10,10,10h32.117v32.114c0,5.522,4.477,10,10,10h40.215c5.523,0,10-4.478,10-10 v-32.114h32.117c5.523,0,10-4.478,10-10v-40.219C327.536,213.06,323.059,208.583,317.536,208.583z M307.536,248.802h-32.117 c-5.523,0-10,4.478-10,10v32.114h-20.215v-32.114c0-5.522-4.477-10-10-10h-32.117v-20.219h32.117c5.523,0,10-4.478,10-10v-32.114 h20.215v32.114c0,5.522,4.477,10,10,10h32.117V248.802z"/></svg>
+            <span class="otros-tile-header">
+              <span class="otros-tile-tag">Cobertura</span>
+              <span class="otros-badge" aria-hidden="true">
+                <svg viewBox="0 0 351.639 351.639" width="26" height="26" fill="currentColor"><path d="M196.875,305.854c-7.446,6.765-15.721,13.996-21.04,15.622c-6.283-1.884-16.534-11.402-31.528-25.324 c-2.546-2.364-5.25-4.874-8.128-7.528C80.463,237.239,20.686,162.049,20.006,105.12c-0.233-19.476,6.284-35.357,19.922-48.552 c17.737-17.159,40.879-26.609,65.165-26.609c23.858,0,46.547,9.018,63.89,25.393c3.853,3.638,9.876,3.638,13.73,0 c17.346-16.375,40.038-25.393,63.896-25.393c24.285,0,47.428,9.45,65.165,26.608c28.077,27.165,26.517,68.214-4.635,122.007 c-2.768,4.779-1.137,10.897,3.643,13.665c4.778,2.769,10.897,1.138,13.665-3.642c45.277-78.185,25.662-122.77,1.234-146.404 C304.191,21.407,276.11,9.959,246.607,9.959c-25.932,0-50.732,8.771-70.76,24.866c-20.025-16.096-44.823-24.866-70.755-24.866 c-29.502,0-57.583,11.448-79.071,32.235C8.462,59.183-0.29,80.434,0.007,105.358c0.952,79.643,94.089,171.661,122.612,197.968 c2.861,2.639,5.548,5.133,8.079,7.482c20.903,19.409,31.396,29.15,43.846,30.787c0.432,0.057,0.868,0.085,1.303,0.085 c0.435,0,0.87-0.028,1.302-0.085c10.009-1.314,19.024-8.083,33.174-20.938c4.087-3.714,4.391-10.038,0.677-14.126 C207.287,302.444,200.963,302.141,196.875,305.854z"/><path d="M317.536,208.583h-32.117v-32.114c0-5.522-4.477-10-10-10h-40.215c-5.523,0-10,4.478-10,10v32.114h-32.117 c-5.523,0-10,4.478-10,10v40.219c0,5.522,4.477,10,10,10h32.117v32.114c0,5.522,4.477,10,10,10h40.215c5.523,0,10-4.478,10-10 v-32.114h32.117c5.523,0,10-4.478,10-10v-40.219C327.536,213.06,323.059,208.583,317.536,208.583z M307.536,248.802h-32.117 c-5.523,0-10,4.478-10,10v32.114h-20.215v-32.114c0-5.522-4.477-10-10-10h-32.117v-20.219h32.117c5.523,0,10-4.478,10-10v-32.114 h20.215v32.114c0,5.522,4.477,10,10,10h32.117V248.802z"/></svg>
+              </span>
             </span>
             <span class="otros-tile-body">
               <p class="otros-tile-name">Medicina prepaga</p>
               <p class="otros-tile-desc">Sedes y líneas de contacto de las principales empresas de la ciudad.</p>
             </span>
-            <span class="otros-tile-arrow" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            <span class="otros-tile-footer">
+              Ver más
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
             </span>
           </a>
 
