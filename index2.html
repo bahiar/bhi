@@ -455,6 +455,43 @@ window.dataLayer = window.dataLayer || [];
         @media (min-width: 480px) {
             .home-service-title { font-size: 16px; }
         }
+
+        /* ── Texto "Sobre BAHI.ar" (SEO) — colapsado por default con <details> ── */
+        .home-about-text {
+            margin: 18px 0 4px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-card);
+            background: var(--card-bg);
+            overflow: hidden;
+        }
+        .home-about-summary {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 13px 16px;
+            cursor: pointer;
+            font-family: var(--font-brand);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .home-about-summary::-webkit-details-marker { display: none; }
+        .home-about-chevron { flex-shrink: 0; transition: transform 0.2s ease; }
+        .home-about-text[open] .home-about-chevron { transform: rotate(180deg); }
+        .home-about-body {
+            padding: 0 16px 16px;
+            color: var(--text-muted);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .home-about-body h2 {
+            font-size: 15px;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
         /* ── Botón Mapa mejorado (map-toggle-btn) ── */
         .map-toggle-btn {
             width: 44px;
@@ -1025,18 +1062,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             </div>
 
-            <section class="home-about-text" aria-labelledby="home-about-heading" style="padding: 16px 4px; color: var(--text-muted); font-size: 13.5px; line-height: 1.6;">
-                <h2 id="home-about-heading" style="font-size: 15px; color: var(--text-main); margin-bottom: 8px;">BAHI.ar: guía médica digital de Bahía Blanca</h2>
-                <p>
-                    BAHI.ar es una guía médica digital pensada para los vecinos de todos los barrios de Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo. Permite encontrar en un solo lugar los servicios de salud de la ciudad: qué <a href="farmacias.html">farmacia</a> está de turno hoy, cuál es el hospital o la clínica más cercana, <a href="laboratorios.html">laboratorios</a> de análisis bioquímicos o <a href="patologia.html">anatomía patológica</a>, y centros de <a href="imagenes.html">diagnóstico por imágenes</a> (radiografías, ecografías, tomografías, resonancias, mamografías y densitometrías).
-                </p>
-                <p>
-                    Otras secciones incluyen <a href="oftalmologia.html">oftalmología</a>, <a href="kinesiologia.html">kinesiología</a>, <a href="opticas.html">ópticas</a>, <a href="ortopedias.html">ortopedias</a>, <a href="unidades.html">unidades sanitarias</a>, <a href="femenina.html">atención de la mujer</a>, <a href="prepaga.html">medicinas prepagas</a>, <a href="sepelios.html">servicios fúnebres</a>, <a href="emergencias.html">teléfonos de emergencia</a> y <a href="guardias.html">guardias hospitalarias</a>.
-                </p>
-                <p>
-                    BAHI.ar funciona como una aplicación web progresiva (PWA): podés instalarla en tu celular (o usarla desde el navegador) sin necesidad de registros, suscripciones ni datos personales. La idea es simple: que encontrar un servicio médico sea rápido, confiable y gratuito. Además, podés ver todos los resultados integrados en un <a href="mapa.html">mapa</a>.
-                </p>
-            </section>
+            <details class="home-about-text">
+                <summary class="home-about-summary">
+                    <span>Sobre BAHI.ar</span>
+                    <svg class="home-about-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="home-about-body">
+                    <h2 id="home-about-heading">BAHI.ar: guía médica digital de Bahía Blanca</h2>
+                    <p>
+                        BAHI.ar es una guía médica digital pensada para los vecinos de todos los barrios de Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo. Permite encontrar en un solo lugar los servicios de salud de la ciudad: qué <a href="farmacias.html">farmacia</a> está de turno hoy, cuál es el hospital o la clínica más cercana, <a href="laboratorios.html">laboratorios</a> de análisis bioquímicos o <a href="patologia.html">anatomía patológica</a>, y centros de <a href="imagenes.html">diagnóstico por imágenes</a> (radiografías, ecografías, tomografías, resonancias, mamografías y densitometrías).
+                    </p>
+                    <p>
+                        Otras secciones incluyen <a href="oftalmologia.html">oftalmología</a>, <a href="kinesiologia.html">kinesiología</a>, <a href="opticas.html">ópticas</a>, <a href="ortopedias.html">ortopedias</a>, <a href="unidades.html">unidades sanitarias</a>, <a href="femenina.html">atención de la mujer</a>, <a href="prepaga.html">medicinas prepagas</a>, <a href="sepelios.html">servicios fúnebres</a>, <a href="emergencias.html">teléfonos de emergencia</a> y <a href="guardias.html">guardias hospitalarias</a>.
+                    </p>
+                    <p>
+                        BAHI.ar funciona como una aplicación web progresiva (PWA): podés instalarla en tu celular (o usarla desde el navegador) sin necesidad de registros, suscripciones ni datos personales. La idea es simple: que encontrar un servicio médico sea rápido, confiable y gratuito. Además, podés ver todos los resultados integrados en un <a href="mapa.html">mapa</a>.
+                    </p>
+                </div>
+            </details>
+
 
             <div class="action-strip">
 
