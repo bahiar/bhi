@@ -351,60 +351,109 @@ window.dataLayer = window.dataLayer || [];
         }
         .home-service-card {
             position: relative;
+            overflow: hidden;
+            isolation: isolate;
             display: flex;
             flex-direction: column;
             gap: 6px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-card);
-            box-shadow: var(--shadow-soft);
-            padding: 14px 14px 16px;
+            min-height: 168px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px -8px rgba(0,0,0,0.35);
+            padding: 16px 14px 14px;
             text-decoration: none;
-            color: inherit;
+            color: #fff;
             font-family: var(--font-brand);
             transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
-        .home-service-card:active { transform: scale(0.98); }
+        .home-service-card:active { transform: scale(0.97); }
+
+        /* Fondo de color por categoría (gradiente a toda la card) */
+        .home-service-card[data-categoria="farmacias"]    { background: linear-gradient(155deg, var(--orange) 0%, var(--orange-dark) 100%); }
+        .home-service-card[data-categoria="emergencias"]  { background: linear-gradient(155deg, var(--cat-guardia) 0%, #8B1A1A 100%); }
+        .home-service-card[data-categoria="laboratorios"] { background: linear-gradient(155deg, var(--accent) 0%, var(--cat-laboratorio-dark) 100%); }
+        .home-service-card[data-categoria="imagenes"]     { background: linear-gradient(155deg, var(--cat-imagenes) 0%, var(--cat-imagenes-dark) 100%); }
+
+        /* Ícono grande como marca de agua, de fondo */
+        .home-service-watermark {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            width: 92px;
+            height: 92px;
+            color: #fff;
+            opacity: 0.16;
+            transform: rotate(8deg);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .home-service-watermark svg,
+        .home-service-watermark img { width: 100%; height: 100%; display: block; }
+
+        /* Textura sutil para no dejar el gradiente demasiado plano */
+        .home-service-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 15% 100%, rgba(255,255,255,0.16), transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .home-service-icon-badge {
-            width: 38px;
-            height: 38px;
-            border-radius: 11px;
+            position: relative;
+            z-index: 1;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
+            background: rgba(255,255,255,0.22);
+            backdrop-filter: blur(2px);
         }
-        .home-service-icon-badge .home-service-icon { color: #fff; width: 19px; height: 19px; display: block; }
-        .home-service-card[data-categoria="farmacias"] .home-service-icon-badge { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
-        .home-service-card[data-categoria="emergencias"] .home-service-icon-badge { background: linear-gradient(135deg, var(--cat-guardia), #991B1B); }
-        .home-service-card[data-categoria="laboratorios"] .home-service-icon-badge { background: linear-gradient(135deg, var(--accent), var(--cat-laboratorio-dark)); }
-        .home-service-card[data-categoria="imagenes"] .home-service-icon-badge { background: linear-gradient(135deg, var(--cat-imagenes), var(--cat-imagenes-dark)); }
+        .home-service-icon-badge .home-service-icon { color: #fff; width: 18px; height: 18px; display: block; }
         .home-service-title {
-            font-size: 14.5px;
-            font-weight: 700;
-            color: var(--text-main);
+            position: relative;
+            z-index: 1;
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
             line-height: 1.25;
         }
         .home-service-count {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
+            position: relative;
+            z-index: 1;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.88);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
         }
-        .home-service-count.is-loading { opacity: 0.55; }
+        .home-service-count.is-loading { opacity: 0.6; }
         .home-service-desc {
+            position: relative;
+            z-index: 1;
             font-size: 12.5px;
             line-height: 1.4;
-            color: var(--text-muted);
+            color: rgba(255,255,255,0.92);
+            flex-grow: 1;
         }
-        .home-service-desc strong { color: var(--text-main); font-weight: 700; }
+        .home-service-desc strong { color: #fff; font-weight: 800; }
         .home-service-link {
-            margin-top: 6px;
-            font-size: 12.5px;
-            font-weight: 700;
-            color: var(--text-link);
+            position: relative;
+            z-index: 1;
+            align-self: flex-start;
+            margin-top: 4px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #fff;
+            background: rgba(255,255,255,0.22);
+            padding: 5px 12px;
+            border-radius: 999px;
         }
         @media (min-width: 480px) {
-            .home-service-title { font-size: 15.5px; }
+            .home-service-title { font-size: 16px; }
         }
         /* ── Botón Mapa mejorado (map-toggle-btn) ── */
         .map-toggle-btn {
@@ -928,6 +977,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- ── FARMACIAS ── -->
                 <a class="home-service-card" data-categoria="farmacias" href="farmacias.html">
+                    <span class="home-service-watermark" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
                     <span class="home-service-icon-badge">
                         <span class="home-service-icon" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
                     </span>
@@ -939,6 +989,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- ── EMERGENCIAS ── -->
                 <a class="home-service-card" data-categoria="emergencias" href="emergencias.html">
+                    <span class="home-service-watermark" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
                     <span class="home-service-icon-badge">
                         <span class="home-service-icon" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
                     </span>
@@ -950,6 +1001,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- ── LABORATORIOS ── -->
                 <a class="home-service-card" data-categoria="laboratorios" href="laboratorios.html">
+                    <span class="home-service-watermark" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
                     <span class="home-service-icon-badge">
                         <span class="home-service-icon" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
                     </span>
@@ -961,6 +1013,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- ── IMÁGENES ── -->
                 <a class="home-service-card" data-categoria="imagenes" href="imagenes.html">
+                    <span class="home-service-watermark" data-icon-src="js/i-radiology-svgrepo-com.svg" aria-hidden="true"></span>
                     <span class="home-service-icon-badge">
                         <span class="home-service-icon" data-icon-src="js/i-radiology-svgrepo-com.svg" aria-hidden="true"></span>
                     </span>
