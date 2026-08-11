@@ -421,16 +421,6 @@ window.dataLayer = window.dataLayer || [];
             color: #fff;
             line-height: 1.25;
         }
-        .home-service-count {
-            position: relative;
-            z-index: 1;
-            font-size: 11.5px;
-            font-weight: 700;
-            color: rgba(255,255,255,0.88);
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-        }
-        .home-service-count.is-loading { opacity: 0.6; }
         .home-service-desc {
             position: relative;
             z-index: 1;
@@ -448,9 +438,14 @@ window.dataLayer = window.dataLayer || [];
             font-size: 12px;
             font-weight: 800;
             color: #fff;
-            background: rgba(255,255,255,0.22);
+            background: linear-gradient(155deg, rgba(255,255,255,0.34), rgba(255,255,255,0.14));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
             padding: 5px 12px;
             border-radius: 999px;
+            transition: background 0.15s ease;
+        }
+        .home-service-card:active .home-service-link {
+            background: linear-gradient(155deg, rgba(255,255,255,0.4), rgba(255,255,255,0.18));
         }
         @media (min-width: 480px) {
             .home-service-title { font-size: 16px; }
@@ -1019,7 +1014,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="home-service-icon" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
                     </span>
                     <span class="home-service-title">Farmacias</span>
-                    <span class="home-service-count is-loading" data-count-categoria="farmacias">Cargando…</span>
                     <span class="home-service-desc">Todas las farmacias de <strong>Bahía Blanca</strong>, Ing. White, Cerri y Cabildo</span>
                     <span class="home-service-link">Ver todas →</span>
                 </a>
@@ -1031,7 +1025,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="home-service-icon" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
                     </span>
                     <span class="home-service-title">Emergencias</span>
-                    <span class="home-service-count" data-count-categoria="emergencias">107 · guardias</span>
                     <span class="home-service-desc"><strong>Ambulancias</strong> y <strong>guardias hospitalarias</strong> activas ahora</span>
                     <span class="home-service-link">Ver todas →</span>
                 </a>
@@ -1043,7 +1036,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="home-service-icon" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
                     </span>
                     <span class="home-service-title">Laboratorios</span>
-                    <span class="home-service-count is-loading" data-count-categoria="laboratorios">Cargando…</span>
                     <span class="home-service-desc"><strong>Bioquímicos</strong> y anatomía patológica</span>
                     <span class="home-service-link">Ver todos →</span>
                 </a>
@@ -1055,7 +1047,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="home-service-icon" data-icon-src="js/i-radiology-svgrepo-com.svg" aria-hidden="true"></span>
                     </span>
                     <span class="home-service-title">Imágenes</span>
-                    <span class="home-service-count is-loading" data-count-categoria="imagenes">Cargando…</span>
                     <span class="home-service-desc">Rx, ecografías, tomografías, resonancias</span>
                     <span class="home-service-link">Ver todos →</span>
                 </a>
@@ -1186,49 +1177,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             let padronCompleto = [];
             const leyendaHorario = document.getElementById('leyenda-horario');
-
-            // ── Grid "Otros servicios de salud" — cards estáticas siempre
-            //    visibles. Ícono, título, descripción y enlace ya están en el
-            //    HTML; acá solo completamos la cantidad de prestadores. ──
-            const SERVICE_COUNT_CATEGORIAS = {
-                laboratorios: { fuente: 'data/bd_bahiar.json', tipo: 'LABORATORIO' },
-                imagenes:     { fuente: 'data/RX_bahiar.json',  tipo: 'RADIOLOGIA' },
-            };
-
-            function pintarConteoServicio(clave, cantidad, unidad) {
-                const el = document.querySelector(`[data-count-categoria="${clave}"]`);
-                if (!el) return;
-                el.textContent = `${cantidad} · ${unidad}`;
-                el.classList.remove('is-loading');
-            }
-
-            function ocultarConteoServicio(clave) {
-                const el = document.querySelector(`[data-count-categoria="${clave}"]`);
-                if (el) el.hidden = true;
-            }
-
-            async function actualizarConteosServicios() {
-                // Farmacias reutiliza el padrón que ya trae inicializarTurnos()
-                // (mismo archivo data/bd_bahiar.json), sin repetir el fetch.
-                if (padronCompleto.length) {
-                    pintarConteoServicio('farmacias', padronCompleto.filter(p => p.TIPO === 'FARMACIA').length, 'locales');
-                } else {
-                    ocultarConteoServicio('farmacias');
-                }
-
-                for (const [clave, cfg] of Object.entries(SERVICE_COUNT_CATEGORIAS)) {
-                    try {
-                        const res = await fetch(cfg.fuente);
-                        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                        const data = await res.json();
-                        const items = (data.prestadores || []).filter(p => p.TIPO === cfg.tipo);
-                        pintarConteoServicio(clave, items.length, 'centros');
-                    } catch (err) {
-                        console.error(`[Servicios] Error al contar "${clave}":`, err);
-                        ocultarConteoServicio(clave);
-                    }
-                }
-            }
 
             // ── Toggle de "Farmacias de turno" — único ítem de acordeón que
             //    queda. Solo colapsa/expande visualmente; su contenido ya se
@@ -1376,7 +1324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 }
             }
 
-            inicializarTurnos().then(actualizarConteosServicios);
+            inicializarTurnos();
             inicializarToggleTurno();
 
         })();
