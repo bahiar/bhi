@@ -1133,6 +1133,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 }
             }
 
+            // ── Toggle de "Farmacias de turno" — único ítem de acordeón que
+            //    queda. Solo colapsa/expande visualmente; su contenido ya se
+            //    carga siempre vía inicializarTurnos(), no hay lazy-load. ──
+            function inicializarToggleTurno() {
+                const header = document.querySelector('.home-acc-header[data-categoria="farmacias-turno"]');
+                if (!header) return;
+                header.addEventListener('click', () => {
+                    const item = header.closest('.home-acc-item');
+                    const abierto = item.classList.toggle('home-acc-item--open');
+                    header.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+                });
+            }
+
             let posicionPromise = null;
             let deTurnoActual = [];
 
@@ -1267,6 +1280,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
 
             inicializarTurnos().then(actualizarConteosServicios);
+            inicializarToggleTurno();
 
         })();
     </script>
