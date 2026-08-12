@@ -555,12 +555,13 @@ window.dataLayer = window.dataLayer || [];
             color: #fff;
         }
         .btn-donar {
-            /* Color propio (no var(--orange)) para cumplir contraste AA 4.5:1 con texto blanco.
-               --orange (#FF6B00) da 2.85:1 y --orange-dark (#CC5500) da 4.31:1, ambos insuficientes. */
+            /* Degradado entre dos tonos muy cercanos al color original (#B84D00),
+               así se mantiene el contraste AA 4.5:1 con texto blanco en toda la superficie
+               (mismo motivo por el que no se usa var(--orange) ni --orange-dark acá). */
             position: relative;
             isolation: isolate;
             overflow: hidden;
-            background: #B84D00;
+            background: linear-gradient(155deg, #C65700 0%, #A54500 100%);
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -1023,7 +1024,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a class="home-service-card" data-categoria="laboratorios" href="laboratorios.html">
                     <span class="home-service-watermark" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
                     <span class="home-service-title">Laboratorios</span>
-                    <span class="home-service-desc"><strong>Bioquímicos</strong> y anatomía patológica</span>
+                    <span class="home-service-desc">de análisis clínicos</span>
                     <span class="home-service-link">Ver todos →</span>
                 </a>
 
