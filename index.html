@@ -543,6 +543,7 @@ window.dataLayer = window.dataLayer || [];
             color: #5C2E0A;
             font-size: 13.5px;
             font-weight: 700;
+            margin-bottom: 2px;
         }
         [data-mode="dark"] .footer-support {
             background: rgba(232, 114, 12, 0.12);
@@ -554,123 +555,100 @@ window.dataLayer = window.dataLayer || [];
         [data-mode="dark"] .footer-support .txt b {
             color: #fff;
         }
-        .btn-donar {
-            /* Degradado entre dos tonos muy cercanos al color original (#B84D00),
-               así se mantiene el contraste AA 4.5:1 con texto blanco en toda la superficie
-               (mismo motivo por el que no se usa var(--orange) ni --orange-dark acá). */
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            background: linear-gradient(155deg, #C65700 0%, #A54500 100%);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 9px 14px;
-            font-size: 12.5px;
-            font-weight: 700;
-            flex-shrink: 0;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .btn-donar::before {
-            content: "";
-            position: absolute;
-            z-index: 1;
-            inset: 0;
-            background: #963E00;
-            transform: translateX(-100%);
-            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .btn-donar:hover::before {
-            transform: translateX(0);
-        }
-        .btn-donar span {
-            position: relative;
-            z-index: 2;
-        }
-        .btn-donar:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
             margin-bottom: 14px;
         }
-        .footer-divider {
-            width: 1px;
-            height: 22px;
-            background: var(--border-light);
-            flex-shrink: 0;
+        .support-card {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            background: var(--card-bg, #fff);
+            border: 1px solid var(--border-light, #e2e5ef);
+            border-radius: 14px;
+            padding: 14px 12px;
+            text-decoration: none;
+            color: var(--text-main, #191971);
+            cursor: pointer;
+            transition: background 0.15s ease, transform 0.15s ease;
         }
-        .footer-social {
+        .support-card:active {
+            transform: scale(0.97);
+        }
+        .support-card:hover {
+            background: rgba(26, 47, 142, 0.05);
+        }
+        [data-mode="dark"] .support-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .support-card:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(26, 47, 142, 0.3);
+        }
+        .support-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(26, 47, 142, 0.08);
+            color: var(--primary, #1a2f8e);
+            margin-bottom: 2px;
+        }
+        .support-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+        [data-mode="dark"] .support-icon {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .support-card b {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text-main, #191971);
+        }
+        .support-card > span {
+            font-size: 11.5px;
+            color: var(--text-muted, #5f6690);
+        }
+        .support-social-links {
             display: flex;
             gap: 8px;
+            margin-top: 4px;
         }
-        .social-btn {
-            width: 36px;
-            height: 36px;
+        .support-social-links a {
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: rgba(26, 47, 142, 0.08);
-            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary, #1a2f8e);
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
             text-decoration: none;
             transition: background 0.15s ease;
         }
-        .social-btn svg { width: 19px; height: 19px; }
-        .social-btn:hover {
+        .support-social-links a svg {
+            width: 16px;
+            height: 16px;
+        }
+        .support-social-links a:hover {
             background: rgba(26, 47, 142, 0.15);
         }
-        .social-btn:focus-visible {
+        .support-social-links a:focus-visible {
             outline: none;
             box-shadow: 0 0 0 2px rgba(26, 47, 142, 0.3);
         }
-        [data-mode="dark"] .social-btn {
+        [data-mode="dark"] .support-social-links a {
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
-        [data-mode="dark"] .social-btn:hover {
+        [data-mode="dark"] .support-social-links a:hover {
             background: rgba(255, 255, 255, 0.2);
-        }
-        [data-mode="dark"] .social-btn:focus-visible {
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-        }
-        .footer-report {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: none;
-            border: none;
-            color: #000;
-            font-size: 12px;
-            text-decoration: underline;
-            min-height: 44px;
-            cursor: pointer;
-            padding: 0;
-            font-family: inherit;
-        }
-        [data-mode="dark"] .footer-report {
-            color: var(--footer-text, #c9cdf0);
-        }
-        .footer-report:hover {
-            opacity: 0.8;
-        }
-        .footer-report:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
         }
         .footer-legal {
             font-size: 10.5px;
@@ -715,22 +693,12 @@ window.dataLayer = window.dataLayer || [];
             .footer-support .txt b {
                 font-size: 12px;
             }
-            .btn-donar {
-                width: 100%;
-                padding: 10px 12px;
-                font-size: 13px;
-            }
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
+            .support-grid {
                 gap: 8px;
                 margin-bottom: 10px;
             }
-            .footer-divider {
-                display: none;
-            }
-            .footer-social {
-                justify-content: center;
+            .support-card {
+                padding: 12px 10px;
             }
             .footer-legal {
                 font-size: 12px;
@@ -1038,6 +1006,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             </div>
 
+            <div class="action-strip">
+
+            <footer class="app-footer">
+            <div class="footer-support">
+                <div class="txt"><b>¿Te resulta útil BAHI.ar?</b> Ayudanos a mantenerlo online.</div>
+            </div>
+            <div class="support-grid">
+                <a href="https://link.mercadopago.com.ar/mpbahiar" target="_blank" rel="noopener noreferrer" class="support-card" title="¿Te sirve la info? Ayudanos a mantenerla actualizada">
+                    <span class="support-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></span>
+                    <b>Apoyar</b>
+                    <span>con Mercado Pago</span>
+                </a>
+                <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" class="support-card">
+                    <span class="support-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
+                    <b>Avisanos</b>
+                    <span>si encontrás un error</span>
+                </a>
+                <a href="contacto.html" class="support-card">
+                    <span class="support-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 7L2 7"></path></svg></span>
+                    <b>Contactanos</b>
+                    <span>por dudas o consultas</span>
+                </a>
+                <div class="support-card support-card-social">
+                    <span class="support-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5Z"></path><circle cx="12" cy="12" r="1.5"></circle></svg></span>
+                    <b>Suscribite</b>
+                    <span>Seguinos en redes</span>
+                    <div class="support-social-links">
+                        <a href="https://www.facebook.com/guiabahiar/" target="_blank" rel="noopener noreferrer" aria-label="Seguinos en Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="https://www.instagram.com/guiabahiar" target="_blank" rel="noopener noreferrer" aria-label="Seguinos en Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </div>
+            </div>
+
             <details class="home-about-text">
                 <summary class="home-about-summary">
                     <span>Sobre BAHI.ar</span>
@@ -1057,26 +1058,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </details>
 
-
-            <div class="action-strip">
-
-            <footer class="app-footer">
-            <div class="footer-support">
-                <div class="txt"><b>¿Te resulta útil?</b> Podés ayudarnos.</div>
-                <a href="https://link.mercadopago.com.ar/mpbahiar" target="_blank" rel="noopener noreferrer" class="btn-donar" title="¿Te sirve la info? Ayudanos a mantenerla actualizada"><span>Apoyar</span></a>
-            </div>
-            <div class="footer-links">
-                <div class="footer-social">
-                    <a href="contacto.html" class="social-btn" aria-label="Formulario de contacto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 7L2 7"></path></svg></a>
-                    <a href="https://www.facebook.com/guiabahiar/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                    <a href="https://www.instagram.com/guiabahiar" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguinos en Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                </div>
-                <span class="footer-divider" aria-hidden="true"></span>
-                <a href="https://wa.me/542915658189?text=Hola!%20Quiero%20reportar%20un%20error%3A%20" target="_blank" rel="noopener" class="footer-report">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                    Reportar un error
-                </a>
-            </div>
             <div class="footer-legal">
                 <a href="privacidad.html">Privacidad</a><span aria-hidden="true">·</span><a href="aviso-legal.html">Aviso legal</a><span aria-hidden="true">·</span><a href="terminos.html">Términos</a><span aria-hidden="true">·</span>© 2026 BAHI.ar
             </div>
