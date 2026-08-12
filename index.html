@@ -287,8 +287,17 @@ window.dataLayer = window.dataLayer || [];
         }
         .home-acc-item--featured::before { display: none; }
         .home-acc-item--featured > .home-acc-heading > .home-acc-header {
-            background: linear-gradient(135deg, var(--primary) 0%, #1a2f8e 100%);
+            position: relative;
+            background: linear-gradient(155deg, var(--primary) 0%, #1a2f8e 100%);
             padding: 18px 18px 18px 20px;
+        }
+        .home-acc-item--featured > .home-acc-heading > .home-acc-header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: radial-gradient(circle at 15% 100%, rgba(255,255,255,0.16), transparent 55%);
+            pointer-events: none;
         }
         .home-acc-item--featured .home-acc-header__label,
         .home-acc-item--featured .home-acc-header__sub { color: #fff; }
@@ -332,6 +341,160 @@ window.dataLayer = window.dataLayer || [];
         }
         @media (prefers-reduced-motion: reduce) {
             .home-acc-chevron, .home-acc-body, .home-acc-header__sub-dot::after { transition: none; animation: none; }
+        }
+
+        /* ── Grid de "Otros servicios de salud" (siempre visible, 2 columnas) ── */
+        .home-services-heading {
+            margin: 4px 2px 10px;
+            font-family: var(--font-brand);
+            font-size: 12.5px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .home-services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .home-service-card {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-height: 168px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px -8px rgba(0,0,0,0.35);
+            padding: 16px 14px 14px;
+            text-decoration: none;
+            color: #fff;
+            font-family: var(--font-brand);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .home-service-card:active { transform: scale(0.97); }
+
+        /* Fondo de color por categoría (gradiente a toda la card) */
+        .home-service-card[data-categoria="farmacias"]    { background: linear-gradient(155deg, var(--orange) 0%, var(--orange-dark) 100%); }
+        .home-service-card[data-categoria="emergencias"]  { background: linear-gradient(155deg, var(--cat-guardia) 0%, #8B1A1A 100%); }
+        .home-service-card[data-categoria="laboratorios"] { background: linear-gradient(155deg, var(--accent) 0%, var(--cat-laboratorio-dark) 100%); }
+        .home-service-card[data-categoria="imagenes"]     { background: linear-gradient(155deg, var(--cat-imagenes) 0%, var(--cat-imagenes-dark) 100%); }
+
+        /* Ícono grande como marca de agua, de fondo */
+        .home-service-watermark {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            width: 92px;
+            height: 92px;
+            color: #fff;
+            opacity: 0.16;
+            transform: rotate(8deg);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .home-service-watermark svg,
+        .home-service-watermark img { width: 100%; height: 100%; display: block; }
+
+        /* Textura sutil para no dejar el gradiente demasiado plano */
+        .home-service-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 15% 100%, rgba(255,255,255,0.16), transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .home-service-icon-badge {
+            position: relative;
+            z-index: 1;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4px;
+            background: rgba(255,255,255,0.22);
+            backdrop-filter: blur(2px);
+        }
+        .home-service-icon-badge .home-service-icon { color: #fff; width: 18px; height: 18px; display: block; }
+        .home-service-title {
+            position: relative;
+            z-index: 1;
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.25;
+        }
+        .home-service-desc {
+            position: relative;
+            z-index: 1;
+            font-size: 12.5px;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.92);
+            flex-grow: 1;
+        }
+        .home-service-desc strong { color: #fff; font-weight: 800; }
+        .home-service-link {
+            position: relative;
+            z-index: 1;
+            align-self: flex-start;
+            margin-top: 4px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #fff;
+            background: linear-gradient(155deg, rgba(255,255,255,0.34), rgba(255,255,255,0.14));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+            padding: 5px 12px;
+            border-radius: 999px;
+            transition: background 0.15s ease;
+        }
+        .home-service-card:active .home-service-link {
+            background: linear-gradient(155deg, rgba(255,255,255,0.4), rgba(255,255,255,0.18));
+        }
+        @media (min-width: 480px) {
+            .home-service-title { font-size: 16px; }
+        }
+
+        /* ── Texto "Sobre BAHI.ar" (SEO) — colapsado por default con <details> ── */
+        .home-about-text {
+            margin: 18px 0 4px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-card);
+            background: var(--card-bg);
+            overflow: hidden;
+        }
+        .home-about-summary {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 13px 16px;
+            cursor: pointer;
+            font-family: var(--font-brand);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .home-about-summary::-webkit-details-marker { display: none; }
+        .home-about-chevron { flex-shrink: 0; transition: transform 0.2s ease; }
+        .home-about-text[open] .home-about-chevron { transform: rotate(180deg); }
+        .home-about-body {
+            padding: 0 16px 16px;
+            color: var(--text-muted);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .home-about-body h2 {
+            font-size: 15px;
+            color: var(--text-main);
+            margin-bottom: 8px;
         }
         /* ── Botón Mapa mejorado (map-toggle-btn) ── */
         .map-toggle-btn {
@@ -767,8 +930,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         spellcheck="false"
                     >
                 </div>
-                <a href="mapa.html" aria-label="Ver resultados en el mapa" class="map-toggle-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 14c2.206 0 4-1.794 4-4s-1.794-4-4-4s-4 1.794-4 4s1.794 4 4 4m0-6c1.103 0 2 .897 2 2s-.897 2-2 2s-2-.897-2-2s.897-2 2-2"/><path d="M11.42 21.814a1 1 0 0 0 1.16 0C12.884 21.599 20.029 16.44 20 10c0-4.411-3.589-8-8-8S4 5.589 4 9.995c-.029 6.445 7.116 11.604 7.42 11.819M12 4c3.309 0 6 2.691 6 6.005c.021 4.438-4.388 8.423-6 9.73c-1.611-1.308-6.021-5.294-6-9.735c0-3.309 2.691-6 6-6"/></svg>
+                <a href="mapa.html" aria-label="Ver resultados en el mapa" title="Ver en el mapa" class="map-toggle-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><title>Ver en el mapa</title><path d="M12 14c2.206 0 4-1.794 4-4s-1.794-4-4-4s-4 1.794-4 4s1.794 4 4 4m0-6c1.103 0 2 .897 2 2s-.897 2-2 2s-2-.897-2-2s.897-2 2-2"/><path d="M11.42 21.814a1 1 0 0 0 1.16 0C12.884 21.599 20.029 16.44 20 10c0-4.411-3.589-8-8-8S4 5.589 4 9.995c-.029 6.445 7.116 11.604 7.42 11.819M12 4c3.309 0 6 2.691 6 6.005c.021 4.438-4.388 8.423-6 9.73c-1.611-1.308-6.021-5.294-6-9.735c0-3.309 2.691-6 6-6"/></svg>
                 </a>
             </div>
 
@@ -848,100 +1011,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                 </div>
 
-                <!-- ── FARMACIAS — colapsada. Carga todas las farmacias ── -->
-                <div class="home-acc-item" role="listitem">
-                    <h2 class="home-acc-heading">
-                        <button class="home-acc-header" data-categoria="farmacias" aria-expanded="false" aria-controls="home-acc-panel-farmacias">
-                            <span class="home-acc-icon-badge">
-                                <span class="home-acc-icon" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
-                            </span>
-                            <span class="home-acc-watermark" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
-                            <span class="home-acc-header__text">
-                                <span class="home-acc-header__label">Farmacias</span>
-                                <span class="home-acc-header__sub">de Bahía Blanca, Ingeniero White, Gral. Daniel Cerri y Cabildo</span>
-                            </span>
-                            <span class="home-acc-chevron-wrap">
-                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                            </span>
-                        </button>
-                    </h2>
-                    <div class="home-acc-body" id="home-acc-panel-farmacias"></div>
-                </div>
+            </div>
 
-                <!-- ── EMERGENCIAS — colapsada. ── -->
-                <div class="home-acc-item" role="listitem">
-                    <h2 class="home-acc-heading">
-                        <button class="home-acc-header" data-categoria="emergencias" aria-expanded="false" aria-controls="home-acc-panel-emergencias">
-                            <span class="home-acc-icon-badge">
-                                <span class="home-acc-icon" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
-                            </span>
-                            <span class="home-acc-watermark" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
-                            <span class="home-acc-header__text">
-                                <span class="home-acc-header__label">Emergencias</span>
-                                <span class="home-acc-header__sub">107 - ambulancias - guardias hospitalarias</span>
-                            </span>
-                            <span class="home-acc-chevron-wrap">
-                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                            </span>
-                        </button>
-                    </h2>
-                    <div class="home-acc-body" id="home-acc-panel-emergencias"></div>
-                </div>
+            <h2 class="home-services-heading">Otros servicios de salud</h2>
+            <div class="home-services-grid">
 
-                <!-- ── LABORATORIOS — colapsada. Carga sus datos recién al abrirse ── -->
-                <div class="home-acc-item" role="listitem">
-                    <h2 class="home-acc-heading">
-                        <button class="home-acc-header" data-categoria="laboratorios" aria-expanded="false" aria-controls="home-acc-panel-laboratorios">
-                            <span class="home-acc-icon-badge">
-                                <span class="home-acc-icon" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
-                            </span>
-                            <span class="home-acc-watermark" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
-                            <span class="home-acc-header__text">
-                                <span class="home-acc-header__label">Laboratorios</span>
-                                <span class="home-acc-header__sub">de análisis bioquímicos - anatomía patológica</span>
-                            </span>
-                            <span class="home-acc-chevron-wrap">
-                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                            </span>
-                        </button>
-                    </h2>
-                    <div class="home-acc-body" id="home-acc-panel-laboratorios"></div>
-                </div>
+                <!-- ── FARMACIAS ── -->
+                <a class="home-service-card" data-categoria="farmacias" href="farmacias.html">
+                    <span class="home-service-watermark" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
+                    <span class="home-service-icon-badge">
+                        <span class="home-service-icon" data-icon-src="js/medicine-9-svgrepo-com.svg" aria-hidden="true"></span>
+                    </span>
+                    <span class="home-service-title">Farmacias</span>
+                    <span class="home-service-desc">en Bahía Blanca, Cerri, White y Cabildo.</span>
+                    <span class="home-service-link">Ver todas →</span>
+                </a>
 
-                <!-- ── IMÁGENES — colapsada. ── -->
-                <div class="home-acc-item" role="listitem">
-                    <h2 class="home-acc-heading">
-                        <button class="home-acc-header" data-categoria="imagenes" aria-expanded="false" aria-controls="home-acc-panel-imagenes">
-                            <span class="home-acc-icon-badge">
-                                <span class="home-acc-icon" data-icon-src="js/i-radiology-svgrepo-com.svg" aria-hidden="true"></span>
-                            </span>
-                            <span class="home-acc-watermark" data-icon-src="js/i-radiology-svgrepo-com.svg" aria-hidden="true"></span>
-                            <span class="home-acc-header__text">
-                                <span class="home-acc-header__label">Imágenes</span>
-                                <span class="home-acc-header__sub">radiografías - ecografías - tomografías - resonancias - mamografías - estudios dentales - densitometrías</span>
-                            </span>
-                            <span class="home-acc-chevron-wrap">
-                                <svg class="home-acc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                            </span>
-                        </button>
-                    </h2>
-                    <div class="home-acc-body" id="home-acc-panel-imagenes"></div>
-                </div>
+                <!-- ── EMERGENCIAS ── -->
+                <a class="home-service-card" data-categoria="emergencias" href="emergencias.html">
+                    <span class="home-service-watermark" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
+                    <span class="home-service-icon-badge">
+                        <span class="home-service-icon" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
+                    </span>
+                    <span class="home-service-title">Emergencias</span>
+                    <span class="home-service-desc">107 / guardias en hospitales / traslados</span>
+                    <span class="home-service-link">Ver todas →</span>
+                </a>
+
+                <!-- ── LABORATORIOS ── -->
+                <a class="home-service-card" data-categoria="laboratorios" href="laboratorios.html">
+                    <span class="home-service-watermark" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
+                    <span class="home-service-icon-badge">
+                        <span class="home-service-icon" data-icon-src="js/lab-svgrepo-com.svg" aria-hidden="true"></span>
+                    </span>
+                    <span class="home-service-title">Laboratorios</span>
+                    <span class="home-service-desc"><strong>Bioquímicos</strong> y anatomía patológica</span>
+                    <span class="home-service-link">Ver todos →</span>
+                </a>
+
+                <!-- ── IMÁGENES ── -->
+                <a class="home-service-card" data-categoria="imagenes" href="imagenes.html">
+                    <span class="home-service-watermark" data-icon-src="js/i-radiology-svgrepo-com.svg" aria-hidden="true"></span>
+                    <span class="home-service-icon-badge">
+                        <span class="home-service-icon" data-icon-src="js/i-radiology-svgrepo-com.svg" aria-hidden="true"></span>
+                    </span>
+                    <span class="home-service-title">Imágenes</span>
+                    <span class="home-service-desc">radiografías, ecografías, tomografías,  resonancias...</span>
+                    <span class="home-service-link">Ver todos →</span>
+                </a>
 
             </div>
 
-            <section class="home-about-text" aria-labelledby="home-about-heading" style="padding: 16px 4px; color: var(--text-muted); font-size: 13.5px; line-height: 1.6;">
-                <h2 id="home-about-heading" style="font-size: 15px; color: var(--text-main); margin-bottom: 8px;">BAHI.ar: guía médica digital de Bahía Blanca</h2>
-                <p>
-                    BAHI.ar es una guía médica digital pensada para los vecinos de todos los barrios de Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo. Permite encontrar en un solo lugar los servicios de salud de la ciudad: qué <a href="farmacias.html">farmacia</a> está de turno hoy, cuál es el hospital o la clínica más cercana, <a href="laboratorios.html">laboratorios</a> de análisis bioquímicos o <a href="patologia.html">anatomía patológica</a>, y centros de <a href="imagenes.html">diagnóstico por imágenes</a> (radiografías, ecografías, tomografías, resonancias, mamografías y densitometrías).
-                </p>
-                <p>
-                    Otras secciones incluyen <a href="oftalmologia.html">oftalmología</a>, <a href="kinesiologia.html">kinesiología</a>, <a href="opticas.html">ópticas</a>, <a href="ortopedias.html">ortopedias</a>, <a href="unidades.html">unidades sanitarias</a>, <a href="femenina.html">atención de la mujer</a>, <a href="prepaga.html">medicinas prepagas</a>, <a href="sepelios.html">servicios fúnebres</a>, <a href="emergencias.html">teléfonos de emergencia</a> y <a href="guardias.html">guardias hospitalarias</a>.
-                </p>
-                <p>
-                    BAHI.ar funciona como una aplicación web progresiva (PWA): podés instalarla en tu celular (o usarla desde el navegador) sin necesidad de registros, suscripciones ni datos personales. La idea es simple: que encontrar un servicio médico sea rápido, confiable y gratuito. Además, podés ver todos los resultados integrados en un <a href="mapa.html">mapa</a>.
-                </p>
-            </section>
+            <details class="home-about-text">
+                <summary class="home-about-summary">
+                    <span>Sobre BAHI.ar</span>
+                    <svg class="home-about-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="home-about-body">
+                    <h2 id="home-about-heading">BAHI.ar: guía médica digital de Bahía Blanca</h2>
+                    <p>
+                        BAHI.ar es una guía médica digital pensada para los vecinos de todos los barrios de Bahía Blanca, Ingeniero White, General Daniel Cerri y Cabildo. Permite encontrar en un solo lugar los servicios de salud de la ciudad: qué <a href="farmacias.html">farmacia</a> está de turno hoy, cuál es el hospital o la clínica más cercana, <a href="laboratorios.html">laboratorios</a> de análisis bioquímicos o <a href="patologia.html">anatomía patológica</a>, y centros de <a href="imagenes.html">diagnóstico por imágenes</a> (radiografías, ecografías, tomografías, resonancias, mamografías y densitometrías).
+                    </p>
+                    <p>
+                        Otras secciones incluyen <a href="oftalmologia.html">oftalmología</a>, <a href="kinesiologia.html">kinesiología</a>, <a href="opticas.html">ópticas</a>, <a href="ortopedias.html">ortopedias</a>, <a href="unidades.html">unidades sanitarias</a>, <a href="femenina.html">atención de la mujer</a>, <a href="prepaga.html">medicinas prepagas</a>, <a href="sepelios.html">servicios fúnebres</a>, <a href="emergencias.html">teléfonos de emergencia</a> y <a href="guardias.html">guardias hospitalarias</a>.
+                    </p>
+                    <p>
+                        BAHI.ar funciona como una aplicación web progresiva (PWA): podés instalarla en tu celular (o usarla desde el navegador) sin necesidad de registros, suscripciones ni datos personales. La idea es simple: que encontrar un servicio médico sea rápido, confiable y gratuito. Además, podés ver todos los resultados integrados en un <a href="mapa.html">mapa</a>.
+                    </p>
+                </div>
+            </details>
+
 
             <div class="action-strip">
 
@@ -1048,141 +1187,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             let padronCompleto = [];
             const leyendaHorario = document.getElementById('leyenda-horario');
 
-            // ── Acordeón de categorías (antes en home-accordion.js, ahora
-            //    inline para no depender de que el Service Worker sirva
-            //    correctamente un archivo externo adicional) ──
-            const ACC_LIMITE = 6;
-            const ACC_CATEGORIAS = {
-                farmacias:    { fuente: 'data/bd_bahiar.json', tipo: 'FARMACIA',         verTodos: 'farmacias.html' },
-                laboratorios: { fuente: 'data/bd_bahiar.json', tipo: 'LABORATORIO',      verTodos: 'laboratorios.html' },
-                imagenes:     { fuente: 'data/RX_bahiar.json',  tipo: 'RADIOLOGIA',       verTodos: 'imagenes.html' },
-            };
-            const accCache = {};
-
-            async function accCargarDatos(clave) {
-                if (accCache[clave]) return accCache[clave];
-                const cfg = ACC_CATEGORIAS[clave];
-                const res = await fetch(cfg.fuente);
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const data = await res.json();
-                let items = data.prestadores || [];
-                if (cfg.tipo) items = items.filter(p => p.TIPO === cfg.tipo);
-                accCache[clave] = items;
-                return items;
-            }
-
-            function accRenderPanel(clave, panel) {
-                // CASO ESPECIAL: Emergencias (datos hardcodeados)
-                if (clave === 'emergencias') {
-                    const SVG_LLAMAR     = `<svg class="btn-icon btn-icon--call" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`;
-                    const SVG_WHATSAPP   = `<svg class="btn-icon btn-icon--whatsapp" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.5-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>`;
-                    
-                    const emergenciasHTML = `
-                        <div class="home-acc-cards">
-                          <article class="card card-emergencia" data-tipo="EMERGENCIA" data-estado="turno">
-                            <div class="card-top">
-                              <div class="card-info">
-                                <span class="card-badge card-badge--emergencia">● Emergencia gratuita</span>
-                                <h3 class="card-name">107</h3>
-                                <p class="card-addr">Emergencias Médicas · 24 hs</p>
-                              </div>
-                            </div>
-                            <div class="card-actions card-actions--single">
-                              <a href="tel:107" class="btn btn-accent" aria-label="Llamar al 107 - Emergencias médicas">${SVG_LLAMAR} Llamar al 107</a>
-                            </div>
-                          </article>
-
-                          <article class="card" data-tipo="AMBULANCIA">
-                            <div class="card-top">
-                              <div class="card-info">
-                                <span class="card-badge card-badge--ambulancia">Ambulancia</span>
-                                <h3 class="card-name">SEM Emergencias Médicas</h3>
-                                <p class="card-addr">(0291) 459-1919</p>
-                              </div>
-                            </div>
-                            <div class="card-actions">
-                              <a href="tel:02914591919" class="btn btn-accent" aria-label="Llamar a SEM Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
-                              <a href="https://wa.me/5492916492840" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de SEM Emergencias Médicas">${SVG_WHATSAPP} WhatsApp</a>
-                            </div>
-                          </article>
-
-                          <article class="card" data-tipo="AMBULANCIA">
-                            <div class="card-top">
-                              <div class="card-info">
-                                <span class="card-badge card-badge--ambulancia">Ambulancia</span>
-                                <h3 class="card-name">Alerta Emergencias Médicas</h3>
-                                <p class="card-addr">(0291) 455-3388</p>
-                              </div>
-                            </div>
-                            <div class="card-actions card-actions--single">
-                              <a href="tel:02914553388" class="btn btn-accent" aria-label="Llamar a Alerta Emergencias Médicas">${SVG_LLAMAR} Llamar</a>
-                            </div>
-                          </article>
-                        </div>
-                        <a href="emergencias.html" class="home-acc-vertodos">Ver completo →</a>
-                    `;
-                    panel.innerHTML = emergenciasHTML;
-                    return;
-                }
-
-                const cfg = ACC_CATEGORIAS[clave];
-                accCargarDatos(clave)
-                    .then(items => {
-                        if (items.length === 0) {
-                            panel.innerHTML = '<p class="home-acc-msg">No hay resultados disponibles por ahora.</p>';
-                            return;
-                        }
-                        const visibles = items.slice(0, ACC_LIMITE);
-                        const cardsHTML = visibles
-                            .map((item, i) => window.crearCardHTML(item, cfg.tipo, i))
-                            .join('');
-                        const textoVerTodos = items.length > ACC_LIMITE
-                            ? `Ver completo (${items.length}) →`
-                            : 'Ver completo →';
-                        panel.innerHTML = `
-                            <div class="home-acc-cards">${cardsHTML}</div>
-                            <a href="${cfg.verTodos}" class="home-acc-vertodos">${textoVerTodos}</a>
-                        `;
-                    })
-                    .catch(err => {
-                        console.error(`[Acordeón] Error al cargar "${clave}":`, err);
-                        panel.innerHTML = '<p class="home-acc-msg">No se pudo cargar la información. Probá de nuevo más tarde.</p>';
-                        delete panel.dataset.cargado; // permite reintentar en el próximo click
-                    });
-            }
-
-            function accCerrarTodos() {
-                document.querySelectorAll('.home-acc-item--open').forEach(item => {
-                    item.classList.remove('home-acc-item--open');
-                    const header = item.querySelector('.home-acc-header');
-                    if (header) header.setAttribute('aria-expanded', 'false');
-                });
-            }
-
-            function inicializarAcordeon() {
-                document.querySelectorAll('.home-acc-header[data-categoria]').forEach(header => {
-                    header.addEventListener('click', () => {
-                        const clave = header.dataset.categoria;
-                        const item = header.closest('.home-acc-item');
-                        const panel = document.getElementById(`home-acc-panel-${clave}`);
-                        const yaEstabaAbierto = item.classList.contains('home-acc-item--open');
-
-                        accCerrarTodos();
-
-                        if (yaEstabaAbierto) return; // click sobre el que ya estaba abierto: solo se cierra
-
-                        item.classList.add('home-acc-item--open');
-                        header.setAttribute('aria-expanded', 'true');
-
-                        // Lazy load: solo si es una categoría manejada acá
-                        // (no "farmacias-turno") y todavía no se cargó.
-                        // Incluye "emergencias" aunque no esté en ACC_CATEGORIAS
-                        if (panel && (ACC_CATEGORIAS[clave] || clave === 'emergencias') && !panel.dataset.cargado) {
-                            panel.dataset.cargado = '1';
-                            panel.innerHTML = '<p class="home-acc-msg">Cargando...</p>';
-                            accRenderPanel(clave, panel);
-                        }
-                    });
+            // ── Toggle de "Farmacias de turno" — único ítem de acordeón que
+            //    queda. Solo colapsa/expande visualmente; su contenido ya se
+            //    carga siempre vía inicializarTurnos(), no hay lazy-load. ──
+            function inicializarToggleTurno() {
+                const header = document.querySelector('.home-acc-header[data-categoria="farmacias-turno"]');
+                if (!header) return;
+                header.addEventListener('click', () => {
+                    const item = header.closest('.home-acc-item');
+                    const abierto = item.classList.toggle('home-acc-item--open');
+                    header.setAttribute('aria-expanded', abierto ? 'true' : 'false');
                 });
             }
 
@@ -1320,7 +1334,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
 
             inicializarTurnos();
-            inicializarAcordeon();
+            inicializarToggleTurno();
 
         })();
     </script>
