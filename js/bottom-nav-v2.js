@@ -2,16 +2,24 @@
  * bottom-nav-v2.js
  * Footbar móvil con botón "Más" (abre modal de servicios adicionales).
  * Variante distinta a js/bottom-nav.js (que usa 4 links directos sin modal).
- * Usar en páginas que necesiten: Inicio, Emergencia, Farmacias + "Más" (Laboratorios, Ortopedias, Imágenes, Ópticas, Patología, Kinesiología, Otros, Oftalmología).
+ * Usar en páginas que necesiten: Inicio, Emergencia, Farmacias + "Más"
+ * (Laboratorios, Patología, Imágenes, Oftalmología, Ópticas, Kinesiología,
+ * Ortopedias, Atención mujer, Salas médicas, Medicina prepaga, Servicios
+ * fúnebres, Otros).
  *
  * Incluir en cualquier página con:
  *   1) <div id="bottom-nav-root"></div>
  *   2) <script src="js/bottom-nav-v2.js" defer></script>
  *
- * Los íconos ahora son archivos SVG externos ubicados en /js (en vez de paths inline).
- * Ver ICON_BASE_PATH más abajo si se necesita cambiar la carpeta de íconos.
+ * Los íconos son SVG Tabler-outline (24x24, stroke=currentColor, stroke-width 1)
+ * embebidos como strings acá mismo — ya no se descargan por fetch() desde /js
+ * (ver versión anterior). Esto elimina la dependencia de archivos externos
+ * mixtos en estilo y el paso de recolorSvg() para forzar currentColor.
  *
- * La página activa se detecta automáticamente por el nombre de archivo actual.
+ * La página activa se detecta automáticamente por el nombre de archivo actual
+ * y se marca con una barra de acento superior en var(--primary) (ver
+ * .bottom-nav-item.active en style2.css) — antes era un punto debajo del ícono.
+ *
  * El modal "Más" maneja su propio ciclo de foco (patrón WAI-ARIA dialog) y su
  * cierre con Escape acá mismo, en setupMasModal() — no depende de que la página
  * que lo incluye repita esa lógica en un <script> propio.
@@ -19,53 +27,35 @@
 (function () {
     'use strict';
 
-    var ICON_BASE_PATH = 'js/';
+    var ICONS = {
+        home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12h2l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h5.5" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>',
+        ambulance: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" /><path d="M6 10h4m-2 -2v4" /></svg>',
+        pharmacy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -1" /><path d="M10 6v.98c0 .877 -.634 1.626 -1.5 1.77c-.866 .144 -1.5 .893 -1.5 1.77v8.48a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-8.48c0 -.877 -.634 -1.626 -1.5 -1.77a1.795 1.795 0 0 1 -1.5 -1.77v-.98" /><path d="M7 12h10" /><path d="M7 18h10" /><path d="M11 15h2" /></svg>',
+        dots: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>',
+        testPipe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8.04l-12.122 12.124a2.857 2.857 0 1 1 -4.041 -4.04l12.122 -12.124" /><path d="M7 13h8" /><path d="M19 15l1.5 1.6a2 2 0 1 1 -3 0l1.5 -1.6" /><path d="M15 3l6 6" /></svg>',
+        microscope: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21h14" /><path d="M6 18h2" /><path d="M7 18v3" /><path d="M9 11l3 3l6 -6l-3 -3l-6 6" /><path d="M10.5 12.5l-1.5 1.5" /><path d="M17 3l3 3" /><path d="M12 21a6 6 0 0 0 3.715 -10.712" /></svg>',
+        imaging: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 18h16" /><path d="M9 6l6 12M15 6L9 18" /><path d="M6 12h12" /></svg>',
+        eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>',
+        glasses: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h-2l-3 10v2.5" /><path d="M16 4h2l3 10v2.5" /><path d="M10 16l4 0" /><path d="M14 16.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0" /><path d="M3 16.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0" /></svg>',
+        physio: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l-1 -3l4 -2l4 1h3.5" /><path d="M3 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M11 6a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 17v-7" /><path d="M8 20h7l1 -4l4 -2" /><path d="M18 20h3" /></svg>',
+        crutches: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2" /><path d="M11 21h2" /><path d="M12 21v-4.092a3 3 0 0 1 .504 -1.664l.992 -1.488a3 3 0 0 0 .504 -1.664v-5.092" /><path d="M12 21v-4.092a3 3 0 0 0 -.504 -1.664l-.992 -1.488a3 3 0 0 1 -.504 -1.664v-5.092" /><path d="M10 11h4" /></svg>',
+        genderFemale: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" /><path d="M12 14v7" /><path d="M9 18h6" /></svg>',
+        buildingHospital: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l18 0" /><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16" /><path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" /><path d="M10 9l4 0" /><path d="M12 7l0 4" /></svg>',
+        calendarDollar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M13 21h-7a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h12.5" /><path d="M21 15h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" /><path d="M19 21v1m0 -8v1" /></svg>',
+        ribbonHealth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21s9.286 -9.841 9.286 -13.841a3.864 3.864 0 0 0 -1.182 -3.008a4.13 4.13 0 0 0 -3.104 -1.144a4.13 4.13 0 0 0 -3.104 1.143a3.864 3.864 0 0 0 -1.182 3.01c0 4 9.286 13.84 9.286 13.84" /></svg>',
+        textPlus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 10h-14" /><path d="M5 6h14" /><path d="M14 14h-9" /><path d="M5 18h6" /><path d="M18 15v6" /><path d="M15 18h6" /></svg>'
+    };
 
     var NAV_ITEMS = [
-        {
-            href: 'index.html',
-            id: 'inicio',
-            label: 'Inicio',
-            ariaLabel: 'Inicio',
-            icon: 'hospital-svgrepo-com.svg'
-        },
-        {
-            href: 'emergencias.html',
-            id: 'emergencias',
-            label: 'Emergencias',
-            ariaLabel: 'Emergencias',
-            icon: 'ambulance-svgrepo-com.svg'
-        },
-        {
-            href: 'farmacias.html',
-            id: 'farmacias',
-            label: 'Farmacias',
-            ariaLabel: 'Farmacias',
-            icon: 'medicine-9-svgrepo-com.svg'
-        }
+        { href: 'index.html', id: 'inicio', label: 'Inicio', ariaLabel: 'Inicio', icon: ICONS.home },
+        { href: 'emergencias.html', id: 'emergencias', label: 'Emergencias', ariaLabel: 'Emergencias', icon: ICONS.ambulance },
+        { href: 'farmacias.html', id: 'farmacias', label: 'Farmacias', ariaLabel: 'Farmacias', icon: ICONS.pharmacy }
     ];
 
     /**
      * PALETA DE ACENTOS SISTEMÁTICA (Escala Tonal Coherente)
-     * 5 azules + 1 rojo para urgencias reales
-     * 
-     * Lógica:
-     *   - Azul Claro: servicios visuales/diagnóstico accesible
-     *   - Azul Medio: diagnóstico principal
-     *   - Azul Oscuro: estructura/especialidades complejas
-     *   - Azul Más Oscuro: especialidades profundas
-     *   - Azul Petróleo: intervención (enfermería)
-     *   - Rojo: SOLO emergencias reales
-     * 
-     * Ventajas:
-     *   ✓ Coherencia tonal: familia azul/teal sin saltos
-     *   ✓ Profesional: calmada, seria (apropiada para salud)
-     *   ✓ Accesibilidad: ratios de contraste verificados
-     *   ✓ Jerarquía: oscuridad = especialización
-     * 
-     * Sincronizar con CSS custom properties en style.css:
-     *   --accent-blue-light, --accent-blue-medium, --accent-blue-dark,
-     *   --accent-blue-deeper, --accent-blue-petrol, --accent-emergency
+     * 5 azules + 1 rojo para urgencias reales — ver detalle en versión anterior.
+     * Sincronizar con CSS custom properties en style.css.
      */
     var ACCENT_COLORS = {
         'blue-light': { color: '#3E92CC', bg: 'rgba(62,146,204,0.12)' },
@@ -76,61 +66,29 @@
         'emergency': { color: '#DC2626', bg: 'rgba(220,38,38,0.12)' }
     };
 
+    /**
+     * Orden agrupado por afinidad temática (no alfabético ni de agregado):
+     *   1) Diagnóstico: Laboratorios, Patología, Imágenes
+     *   2) Especialidades/sentidos: Oftalmología, Ópticas, Kinesiología, Ortopedias
+     *   3) Salud de la mujer + salas: Atención mujer, Salas médicas
+     *   4) Gestión/trámites: Medicina prepaga, Servicios fúnebres, Otros (catch-all al final)
+     */
     var MAS_ITEMS = [
-        {
-            href: 'laboratorios.html',
-            label: 'Laboratorios',
-            ...ACCENT_COLORS['blue-medium'],
-            icon: 'lab-svgrepo-com.svg'
-        },
-        {
-            href: 'ortopedias.html',
-            label: 'Ortopedias',
-            ...ACCENT_COLORS['blue-medium'],
-            icon: 'orthopedic-leg-svgrepo-com.svg'
-        },
-        {
-            href: 'imagenes.html',
-            label: 'Imágenes',
-            ...ACCENT_COLORS['blue-medium'],
-            icon: 'i-radiology-svgrepo-com.svg'
-        },
-        {
-            href: 'opticas.html',
-            label: 'Ópticas',
-            ...ACCENT_COLORS['blue-medium'],
-            icon: 'reading-glasses-optic-svgrepo-com.svg'
-        },
-        {
-            href: 'patologia.html',
-            label: 'Patología',
-            ...ACCENT_COLORS['blue-medium'],
-            icon: 'i-pathology-svgrepo-com.svg'
-        },
-        {
-            href: 'kinesiologia.html',
-            label: 'Kinesiología',
-            ...ACCENT_COLORS['blue-medium'],
-            icon: 'i-physical-therapy-svgrepo-com.svg'
-        },
-        {
-            href: 'otros.html',
-            label: 'Otros',
-            ...ACCENT_COLORS['blue-medium'],
-            icon: 'i-nutrition-svgrepo-com.svg'
-        },
-        {
-            href: 'oftalmologia.html',
-            label: 'Oftalmología',
-            ...ACCENT_COLORS['blue-medium'],
-            icon: 'eye-svgrepo-com.svg'
-        },
-        {
-            href: 'unidades.html',
-            label: 'Salas médicas',
-            ...ACCENT_COLORS['blue-medium'],
-            icon: 'sanitaria.svg'
-        }
+        { href: 'laboratorios.html', label: 'Laboratorios', ...ACCENT_COLORS['blue-medium'], icon: ICONS.testPipe },
+        { href: 'patologia.html', label: 'Patología', ...ACCENT_COLORS['blue-medium'], icon: ICONS.microscope },
+        { href: 'imagenes.html', label: 'Imágenes', ...ACCENT_COLORS['blue-medium'], icon: ICONS.imaging },
+
+        { href: 'oftalmologia.html', label: 'Oftalmología', ...ACCENT_COLORS['blue-medium'], icon: ICONS.eye },
+        { href: 'opticas.html', label: 'Ópticas', ...ACCENT_COLORS['blue-medium'], icon: ICONS.glasses },
+        { href: 'kinesiologia.html', label: 'Kinesiología', ...ACCENT_COLORS['blue-medium'], icon: ICONS.physio },
+        { href: 'ortopedias.html', label: 'Ortopedias', ...ACCENT_COLORS['blue-medium'], icon: ICONS.crutches },
+
+        { href: 'femenina.html', label: 'Atención mujer', ...ACCENT_COLORS['blue-medium'], icon: ICONS.genderFemale },
+        { href: 'unidades.html', label: 'Salas médicas', ...ACCENT_COLORS['blue-medium'], icon: ICONS.buildingHospital },
+
+        { href: 'prepaga.html', label: 'Medicina prepaga', ...ACCENT_COLORS['blue-medium'], icon: ICONS.calendarDollar },
+        { href: 'sepelios.html', label: 'Servicios fúnebres', ...ACCENT_COLORS['blue-medium'], icon: ICONS.ribbonHealth },
+        { href: 'otros.html', label: 'Otros', ...ACCENT_COLORS['blue-medium'], icon: ICONS.textPlus }
     ];
 
     function getCurrentPage() {
@@ -140,63 +98,9 @@
         return file;
     }
 
-    var iconCache = {}; // url -> texto SVG ya procesado (fill="currentColor")
-
-    function iconTag(iconFile, className) {
-        var url = ICON_BASE_PATH + iconFile;
-        // Placeholder: se reemplaza por el <svg> real una vez que loadIcons() lo descarga.
-        return '<span class="' + className + '" data-icon-src="' + url + '" aria-hidden="true"></span>';
-    }
-
-    /**
-     * Limpia el SVG descargado para que herede color vía currentColor:
-     *  - Quita bloques <style> (algunos íconos definen fill ahí, ej. .st0{fill:#000000})
-     *  - Quita atributos fill="..." de cada elemento (para que hereden del root)
-     *  - Quita width/height fijos del root (para que mande el CSS del contenedor)
-     *  - Fuerza fill="currentColor" en el <svg> raíz
-     */
-    function recolorSvg(svgText) {
-        return svgText
-            .replace(/<style[\s\S]*?<\/style>/gi, '')
-            .replace(/\sfill="(?!none)[^"]*"/gi, '')
-            .replace(/\sfill='(?!none)[^']*'/gi, '')
-            .replace(/\swidth="[^"]*"/i, '')
-            .replace(/\sheight="[^"]*"/i, '')
-            .replace(/<svg /i, '<svg fill="currentColor" ');
-    }
-
-    /** Descarga (con caché) todos los SVG referenciados y reemplaza los placeholders por el <svg> real. */
-    function loadIcons(root) {
-        var placeholders = root.querySelectorAll('[data-icon-src]');
-        placeholders.forEach(function (placeholder) {
-            var url = placeholder.getAttribute('data-icon-src');
-
-            var apply = function (svgText) {
-                var wrapper = document.createElement('div');
-                wrapper.innerHTML = svgText.trim();
-                var svgEl = wrapper.querySelector('svg');
-                if (!svgEl) return;
-                svgEl.setAttribute('class', placeholder.getAttribute('class'));
-                svgEl.setAttribute('aria-hidden', 'true');
-                placeholder.replaceWith(svgEl);
-            };
-
-            if (iconCache[url]) {
-                apply(iconCache[url]);
-                return;
-            }
-
-            fetch(url)
-                .then(function (res) { return res.ok ? res.text() : Promise.reject(); })
-                .then(function (rawSvg) {
-                    var processed = recolorSvg(rawSvg);
-                    iconCache[url] = processed;
-                    apply(processed);
-                })
-                .catch(function () {
-                    console.warn('[bottom-nav-v2] No se pudo cargar el ícono:', url);
-                });
-        });
+    function iconTag(svgMarkup, className) {
+        return svgMarkup
+            .replace('<svg ', '<svg class="' + className + '" aria-hidden="true" ');
     }
 
     function buildNavHTML() {
@@ -214,7 +118,7 @@
         });
 
         html += '<button type="button" id="btn-mas-servicios" class="bottom-nav-item" aria-label="Más servicios" aria-haspopup="dialog" aria-expanded="false" aria-controls="mas-modal-overlay">' +
-            '<svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>' +
+            iconTag(ICONS.dots, 'bottom-nav-icon') +
             'Más' +
             '</button>';
 
@@ -288,7 +192,7 @@
      * autocontenido: cualquier página que lo incluya obtiene soporte dark mode
      * sin depender de reglas externas. Usa los mismos tokens que ya definen
      * [data-mode="dark"] en el resto del sitio (--card-bg, --text-main,
-     * --text-muted, --border-light, --bg-main).
+     * --text-muted, --border-light, --bg-main, --primary).
      */
     function injectThemeStyles() {
         if (document.getElementById('bottom-nav-v2-theme')) return;
@@ -304,7 +208,11 @@
             '}' +
             '[data-mode="dark"] .bottom-nav-item.active,' +
             '[data-mode="dark"] .bottom-nav-item[aria-current="page"] {' +
-            '  color: var(--text-main, #eef0f5) !important;' +
+            '  color: var(--text-link, #8FA6FF) !important;' +
+            '}' +
+            '[data-mode="dark"] .bottom-nav-item.active::before,' +
+            '[data-mode="dark"] .bottom-nav-item[aria-current="page"]::before {' +
+            '  background: var(--text-link, #8FA6FF) !important;' +
             '}' +
             '[data-mode="dark"] #mas-modal-overlay > div {' +
             '  background: var(--card-bg, #181d33) !important;' +
@@ -334,7 +242,6 @@
             document.body.appendChild(root);
         }
         root.outerHTML = buildNavHTML() + buildModalHTML();
-        loadIcons(document);
         setupMasModal();
         injectThemeStyles();
     }
