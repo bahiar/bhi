@@ -7,11 +7,11 @@
         {
             "TIPO": "OFTALMO",
             "ID": "OFT-001",
-            "PRESTADOR": "2020 Oftalmología",
+            "PRESTADOR": "20/20 Oftalmología",
             "DOMICILIO": "Berutti 128",
             "LOCALIDAD": "Bahia Blanca",
             "MAPS": "https://www.google.com/maps/search/?api=1&query=Berutti%20128%2C%20Bahia%20Blanca%2C%20Buenos%20Aires%2C%20Argentina",
-            "FIJO": "tel:02914073618",
+            "FIJO": "",
             "MOVIL": "https://wa.me/5492914073618",
             "GRUPO": "",
             "NIVEL": "ESTANDART",
