@@ -1639,8 +1639,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
-    padding: 8px 4px 10px;
+    gap: 5px;
+    padding: 10px 4px 8px;
     text-decoration: none;
     color: #94A3B8;
     font-size: 10px;
@@ -1653,18 +1653,21 @@ body {
     position: relative;
 }
 
-.bottom-nav-item.active {
-    color: var(--text-link);
+.bottom-nav-item.active,
+.bottom-nav-item[aria-current="page"] {
+    color: var(--primary);
 }
 
-.bottom-nav-item.active::after {
+.bottom-nav-item.active::before,
+.bottom-nav-item[aria-current="page"]::before {
     content: '';
     position: absolute;
-    bottom: 6px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--text-link);
+    top: 0;
+    left: 22%;
+    right: 22%;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: var(--primary);
 }
 
 .bottom-nav-icon {
