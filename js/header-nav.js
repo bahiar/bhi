@@ -35,7 +35,7 @@
         { href: 'oftalmologia.html',   label: 'Oftalmología' },
         { href: 'patologia.html',      label: 'Patólogos' },
         { href: 'kinesiologia.html',   label: 'Kinesiología' },
-        { href: 'nutricion.html',      label: 'Nutrición',      enConstruccion: true }
+        { href: 'otros.html',           label: 'Otros' }
     ];
 
     // Sub-nav reducido para páginas legales (primeras 6 secciones principales)
@@ -86,6 +86,11 @@
         // type === 'maintenance': sin header-actions
 
         html += '</div>';
+
+        // Contenedor de búsqueda global (solo para pages con búsqueda)
+        if (type === 'full') {
+            html += '<div id="contenedor-busqueda-global" class="busqueda-global-resultados" hidden></div>';
+        }
 
         html += '</div>';
         return html;
@@ -154,32 +159,10 @@
         var prevBtn = nav.querySelector('.sub-nav-arrow--prev');
         var nextBtn = nav.querySelector('.sub-nav-arrow--next');
 
-        // updateEdgeFades hace TODAS las lecturas de layout (scrollLeft,
-        // scrollWidth, clientWidth) antes de escribir ninguna clase.
-        // Escribir una clase y después volver a leer una propiedad
-        // geométrica (como pasaba antes con el segundo list.scrollLeft)
-        // fuerza al navegador a recalcular el layout de forma síncrona
-        // ("forced reflow"). Leyendo todo primero evitamos esa intercalación.
         function updateEdgeFades() {
-            var scrollLeft = list.scrollLeft;
             var maxScroll = list.scrollWidth - list.clientWidth;
-            nav.classList.toggle('is-at-start', scrollLeft <= 1);
-            nav.classList.toggle('is-at-end', scrollLeft >= maxScroll - 1);
-        }
-
-        // El evento 'scroll' puede dispararse muchas veces por segundo
-        // (scroll suave, inercia táctil). Sin throttling, cada uno de esos
-        // eventos ejecutaba updateEdgeFades de inmediato, multiplicando el
-        // costo del reflow. requestAnimationFrame agrupa todo eso en, como
-        // mucho, una actualización por frame pintado.
-        var edgeFadesScheduled = false;
-        function scheduleEdgeFadesUpdate() {
-            if (edgeFadesScheduled) return;
-            edgeFadesScheduled = true;
-            requestAnimationFrame(function() {
-                edgeFadesScheduled = false;
-                updateEdgeFades();
-            });
+            nav.classList.toggle('is-at-start', list.scrollLeft <= 1);
+            nav.classList.toggle('is-at-end', list.scrollLeft >= maxScroll - 1);
         }
 
         list.addEventListener('wheel', function(e) {
@@ -200,8 +183,8 @@
             });
         }
 
-        list.addEventListener('scroll', scheduleEdgeFadesUpdate, { passive: true });
-        window.addEventListener('resize', scheduleEdgeFadesUpdate);
+        list.addEventListener('scroll', updateEdgeFades, { passive: true });
+        window.addEventListener('resize', updateEdgeFades);
         updateEdgeFades();
     }
 
