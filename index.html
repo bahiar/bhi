@@ -7,6 +7,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="BAHI.ar">
+    <link rel="preconnect" href="https://cloud.umami.is">
+    <link rel="preconnect" href="https://static.cloudflareinsights.com">
 <script>
 (function () {
     try {
@@ -858,7 +860,7 @@ window.dataLayer = window.dataLayer || [];
 <body>
 
 <div id="splash-custom" aria-hidden="true">
-    <img src="assets/images/mask-icon.svg" alt="" width="84" height="84">
+    <img src="assets/images/mask-icon.svg" alt="" width="84" height="84" fetchpriority="high">
     <span id="splash-brand">BAHI.ar</span>
     <svg class="ld-ekg" viewBox="0 0 64 32"><polyline points="0,16 14,16 20,6 28,26 34,16 64,16" /></svg>
 </div>
@@ -919,7 +921,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <!-- Contenedor para resultados de búsqueda global -->
-            <div id="contenedor-busqueda-global" class="cards-grid cards-grid--no-pad" aria-live="polite" aria-label="Resultados de búsqueda en todas las categorías" hidden></div>
+            <div id="contenedor-busqueda-global" class="cards-grid cards-grid--no-pad" role="region" aria-live="polite" aria-label="Resultados de búsqueda en todas las categorías" hidden></div>
 
             <div class="home-acc" role="list" aria-label="Categorías de BAHI.ar">
 
@@ -949,7 +951,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <p class="section-header-meta" id="leyenda-horario" aria-live="polite"></p>
                             </div>
                             <div class="section-header-actions">
-                                <button id="btn-ubicacion-turno" class="btn-share-wa btn-ubicacion" type="button" hidden aria-label="Ordenar farmacias de turno por cercanía a tu ubicación">
+                                <button id="btn-ubicacion-turno" class="btn-share-wa btn-ubicacion" type="button" hidden aria-label="Ordenar por cercanía a tu ubicación">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s-7-7.58-7-12a7 7 0 1 1 14 0c0 4.42-7 12-7 12Z" stroke="var(--orange-dark)" stroke-width="1.8"/><circle cx="12" cy="9" r="2.3" stroke="var(--orange-dark)" stroke-width="1.8"/></svg>
                                     <span>Ordenar por cercanía</span>
                                 </button>
@@ -1109,7 +1111,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </main>
 
     <script src="app.js" defer></script>
-    <script src="busqueda-mejorada.js" defer></script>
+    <script src="js/busqueda-mejorada.js" defer></script>
 
     <script defer>
         (function () {

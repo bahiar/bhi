@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'varela_roundregular';
-    src: url('/bhi/assets/fonts/varelaround-regular-webfont.woff2') format('woff2'),
-         url('/bhi/assets/fonts/varelaround-regular-webfont.woff') format('woff');
+    src: url('assets/fonts/varelaround-regular-webfont.woff2') format('woff2'),
+         url('assets/fonts/varelaround-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -9,7 +9,7 @@
 
 :root {
     --primary: #191971;
-    --accent: #1F75FE;
+    --accent: #1C6CE8;
     --bg-main: #EEF2F7;
     --card-bg: #FFFFFF;
     --text-main: #0F172A;
@@ -1642,7 +1642,7 @@ body {
     gap: 5px;
     padding: 10px 4px 8px;
     text-decoration: none;
-    color: #94A3B8;
+    color: var(--text-muted);
     font-size: 10px;
     font-weight: 700;
     font-family: var(--font-brand);
