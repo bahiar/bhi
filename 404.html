@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
+    <meta charset="UTF-8">
+    <script>
+    (function () {
+        try {
+            var stored = localStorage.getItem('bahi-theme');
+            var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-mode', theme);
+        } catch (e) {
+            document.documentElement.setAttribute('data-mode', 'light');
+        }
+    })();
+    </script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,7 +20,6 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5RNWBBM7');</script>
     <!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página no encontrada | BAHI.ar</title>
     <meta name="robots" content="noindex, follow">
@@ -16,8 +27,36 @@
     <link rel="icon" href="assets/images/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-    <link rel="preload" href="style.css" as="style">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #191971;
+            --bg-main: #EEF2F7;
+            --card-bg: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #48536B;
+            --border-light: #E2E8F0;
+            --font-base: system-ui, -apple-system, BlinkMacSystemFont,
+                         "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        }
+        [data-mode="dark"] {
+            --bg-main: #0e1220;
+            --card-bg: #181d33;
+            --text-main: #eef0f5;
+            --text-muted: #9a9fb5;
+            --border-light: #2a3050;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-base);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+        }
+        .sub-nav-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
     <meta name="theme-color" content="#191971">
 </head>
 <body>
@@ -34,43 +73,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 </script>
 
-    <header class="main-header">
-        <div class="header-content">
-            <a href="index.html" class="brand-logo" aria-label="BAHI.ar – Inicio">
-                <img src="assets/images/mask-icon.svg" alt="" aria-hidden="true" width="36" height="36" style="flex-shrink:0;border-radius:9px;">
-                <span class="brand-logo__wordmark">
-                    <span class="brand-logo__name">BAHI<span class="brand-logo__name--accent">.ar</span></span>
-                    <span class="brand-logo__tagline">guía médica de Bahía Blanca</span>
-                </span>
-            </a>
-        </div>
-    </header>
-
-    <nav class="sub-nav" aria-label="Accesos rápidos">
-        <ul class="sub-nav-list">
-            <li><a href="index.html" class="sub-nav-link">Inicio</a></li>
-            <li><a href="guardias.html" class="sub-nav-link">Emergencia</a></li>
-            <li><a href="farmacias.html" class="sub-nav-link">Farmacias</a></li>
-            <li><a href="laboratorios.html" class="sub-nav-link">Laboratorios</a></li>
-            <li><a href="ortopedias.html" class="sub-nav-link">Ortopedias</a></li>
-        </ul>
-    </nav>
-
     <main class="app-view" id="content">
         <div class="main-container" id="main-content" style="text-align:center;padding:48px 20px;">
             <h1 style="font-size:22px;color:var(--primary,#191971);margin-bottom:8px;">Página no encontrada</h1>
-            <p style="color:#525E73;margin-bottom:28px;">El enlace que seguiste no existe o cambió de dirección. Probá desde alguna de estas secciones:</p>
+            <p style="color:var(--text-muted);margin-bottom:28px;">El enlace que seguiste no existe o cambió de dirección.</p>
+            <img src="assets/images/error.png" alt="" aria-hidden="true" width="120" height="120" style="display:block;margin:0 auto 20px;">
             <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-                <a href="index.html" class="sub-nav-link" style="border:1px solid rgba(25,25,113,0.15);border-radius:10px;padding:10px 16px;">Inicio</a>
-                <a href="farmacias.html" class="sub-nav-link" style="border:1px solid rgba(25,25,113,0.15);border-radius:10px;padding:10px 16px;">Farmacias de turno</a>
-                <a href="guardias.html" class="sub-nav-link" style="border:1px solid rgba(25,25,113,0.15);border-radius:10px;padding:10px 16px;">Guardias médicas</a>
-                <a href="laboratorios.html" class="sub-nav-link" style="border:1px solid rgba(25,25,113,0.15);border-radius:10px;padding:10px 16px;">Laboratorios</a>
-                <a href="ortopedias.html" class="sub-nav-link" style="border:1px solid rgba(25,25,113,0.15);border-radius:10px;padding:10px 16px;">Ortopedias</a>
+                <a href="index.html" class="sub-nav-link" style="border:1px solid rgba(25,25,113,0.15);border-radius:10px;padding:10px 16px;">Volver a Inicio</a>
             </div>
         </div>
     </main>
 
     <div id="bottom-nav-root"></div>
+    <script src="app.js" defer></script>
     <script src="js/bottom-nav-v2.js" defer></script>
 
 </body>
