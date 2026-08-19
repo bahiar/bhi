@@ -1,0 +1,28 @@
+{
+  "prestadores": [
+    { "TIPO": "FEMENINA", "PRESTADOR": "IMM (Instituto Médico para la Mujer)", "DOMICILIO": "Av. Alem 395", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914557818" },
+    { "TIPO": "FEMENINA", "PRESTADOR": "Medifem - IMAD", "DOMICILIO": "Av. Alem 180", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914561822" },
+    { "TIPO": "FEMENINA", "PRESTADOR": "Instituto Diagnóstico", "DOMICILIO": "Alsina 575", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542915043578" },
+    { "TIPO": "FEMENINA", "PRESTADOR": "Cemasur (Centro Mamario del Sur)", "DOMICILIO": "Zeballos 249", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914543000" },
+    { "TIPO": "FEMENINA", "PRESTADOR": "Matersur", "DOMICILIO": "Drago 23, Piso 11", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542915702540", "MOVIL": "https://wa.me/542915702540" },
+
+    { "TIPO": "SEPELIOS", "PRESTADOR": "Ferrandi Servicios Sociales", "DOMICILIO": "Estomba 241", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914520143" },
+    { "TIPO": "SEPELIOS", "PRESTADOR": "Sosa Servicios Funerarios", "DOMICILIO": "Güemes 716", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914043067" },
+    { "TIPO": "SEPELIOS", "PRESTADOR": "Grupo Bonacorsi (Administración)", "DOMICILIO": "Chiclana 380", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914550950" },
+    { "TIPO": "SEPELIOS", "PRESTADOR": "Grupo Bonacorsi (Sucursal Villa Mitre)", "DOMICILIO": "Falucho 218", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914812254" },
+    { "TIPO": "SEPELIOS", "PRESTADOR": "Bonacorsi Sepelios", "DOMICILIO": "Bartolomé Mitre 470", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914552222" },
+
+    { "TIPO": "PREPAGA", "PRESTADOR": "OSDE", "DOMICILIO": "Martiniano Rodríguez 362", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914598700" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Swiss Medical", "DOMICILIO": "Av. Alem 112", "LOCALIDAD": "Bahía Blanca", "FIJO": "08104447700" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Medifé", "DOMICILIO": "Donado 498", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914593300" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Galeno", "DOMICILIO": "Dorrego 3", "LOCALIDAD": "Bahía Blanca", "FIJO": "08109997828" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Sancor Salud", "DOMICILIO": "Sarmiento 1101", "LOCALIDAD": "Bahía Blanca", "FIJO": "08104447258" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Avalian (ex ACA Salud)", "DOMICILIO": "Sarmiento 1198", "LOCALIDAD": "Bahía Blanca", "FIJO": "08102222211" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Federada Salud", "DOMICILIO": "Av. Colón 201", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914554243" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Omint", "DOMICILIO": "Av. Lamadrid 292", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914590000" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Prevención Salud", "DOMICILIO": "Zelarrayán 277", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914532172" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Medicus", "DOMICILIO": "Undiano 14", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914555800" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Santé Médical", "DOMICILIO": "Saavedra 353", "LOCALIDAD": "Bahía Blanca", "FIJO": "+542914510318" },
+    { "TIPO": "PREPAGA", "PRESTADOR": "Jerárquicos Salud", "DOMICILIO": "Rondeau 222", "LOCALIDAD": "Bahía Blanca", "FIJO": "08005554888" }
+  ]
+}
