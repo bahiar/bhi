@@ -74,21 +74,25 @@
      *   4) Gestión/trámites: Medicina prepaga, Servicios fúnebres, Otros (catch-all al final)
      */
     var MAS_ITEMS = [
+        // 1) Diagnóstico → azul medio
         { href: 'laboratorios.html', label: 'Laboratorios', ...ACCENT_COLORS['blue-medium'], icon: ICONS.testPipe },
         { href: 'patologia.html', label: 'Patología', ...ACCENT_COLORS['blue-medium'], icon: ICONS.microscope },
         { href: 'imagenes.html', label: 'Imágenes', ...ACCENT_COLORS['blue-medium'], icon: ICONS.imaging },
 
-        { href: 'oftalmologia.html', label: 'Oftalmología', ...ACCENT_COLORS['blue-medium'], icon: ICONS.eye },
-        { href: 'opticas.html', label: 'Ópticas', ...ACCENT_COLORS['blue-medium'], icon: ICONS.glasses },
-        { href: 'kinesiologia.html', label: 'Kinesiología', ...ACCENT_COLORS['blue-medium'], icon: ICONS.physio },
-        { href: 'ortopedias.html', label: 'Ortopedias', ...ACCENT_COLORS['blue-medium'], icon: ICONS.crutches },
+        // 2) Especialidades/sentidos → azul claro
+        { href: 'oftalmologia.html', label: 'Oftalmología', ...ACCENT_COLORS['blue-light'], icon: ICONS.eye },
+        { href: 'opticas.html', label: 'Ópticas', ...ACCENT_COLORS['blue-light'], icon: ICONS.glasses },
+        { href: 'kinesiologia.html', label: 'Kinesiología', ...ACCENT_COLORS['blue-light'], icon: ICONS.physio },
+        { href: 'ortopedias.html', label: 'Ortopedias', ...ACCENT_COLORS['blue-light'], icon: ICONS.crutches },
 
-        { href: 'femenina.html', label: 'Atención mujer', ...ACCENT_COLORS['blue-medium'], icon: ICONS.genderFemale },
-        { href: 'unidades.html', label: 'Salas médicas', ...ACCENT_COLORS['blue-medium'], icon: ICONS.buildingHospital },
+        // 3) Salud de la mujer + salas → azul petróleo (intervención/atención directa)
+        { href: 'femenina.html', label: 'Atención mujer', ...ACCENT_COLORS['blue-petrol'], icon: ICONS.genderFemale },
+        { href: 'unidades.html', label: 'Salas médicas', ...ACCENT_COLORS['blue-petrol'], icon: ICONS.buildingHospital },
 
-        { href: 'prepaga.html', label: 'Medicina prepaga', ...ACCENT_COLORS['blue-medium'], icon: ICONS.calendarDollar },
-        { href: 'sepelios.html', label: 'Servicios fúnebres', ...ACCENT_COLORS['blue-medium'], icon: ICONS.ribbonHealth },
-        { href: 'otros.html', label: 'Otros', ...ACCENT_COLORS['blue-medium'], icon: ICONS.textPlus }
+        // 4) Gestión/trámites → azul más oscuro (especialidades profundas / catch-all)
+        { href: 'prepaga.html', label: 'Medicina prepaga', ...ACCENT_COLORS['blue-deeper'], icon: ICONS.calendarDollar },
+        { href: 'sepelios.html', label: 'Servicios fúnebres', ...ACCENT_COLORS['blue-deeper'], icon: ICONS.ribbonHealth },
+        { href: 'otros.html', label: 'Otros', ...ACCENT_COLORS['blue-deeper'], icon: ICONS.textPlus }
     ];
 
     function getCurrentPage() {
@@ -161,8 +165,35 @@
         var closeBtn = document.getElementById('mas-modal-close');
         if (!trigger || !overlay || !closeBtn) return;
 
+        // C2: ciclo de foco (focus trap) dentro del diálogo. Antes solo se
+        // enviaba el foco al abrir/cerrar, pero Tab/Shift+Tab podían sacar
+        // el foco del modal hacia contenido de fondo que sigue oculto
+        // visualmente detrás del overlay.
+        function getFocusables() {
+            return Array.prototype.slice.call(
+                overlay.querySelectorAll('a[href], button:not([disabled])')
+            );
+        }
+
         function onKeydown(e) {
-            if (e.key === 'Escape') closeModal();
+            if (e.key === 'Escape') {
+                closeModal();
+                return;
+            }
+            if (e.key !== 'Tab') return;
+
+            var focusables = getFocusables();
+            if (!focusables.length) return;
+            var first = focusables[0];
+            var last = focusables[focusables.length - 1];
+
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
         }
 
         function openModal() {

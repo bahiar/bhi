@@ -205,6 +205,27 @@
         updateEdgeFades();
     }
 
+    // M4: style2.css usa var(--header-h, 81px) para posicionar #update-banner
+    // debajo del header sticky, pero esa altura varía (con/sin sub-nav visible,
+    // mobile vs. desktop, ancho del header-ctx-strip) y nada la actualizaba.
+    // Esto la mantiene sincronizada con el alto real medido en cada resize.
+    function setupHeaderHeightVar() {
+        var header = document.querySelector('.main-header');
+        if (!header) return;
+
+        function updateHeaderHeightVar() {
+            document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+        }
+
+        updateHeaderHeightVar();
+
+        if (window.ResizeObserver) {
+            new ResizeObserver(updateHeaderHeightVar).observe(header);
+        } else {
+            window.addEventListener('resize', updateHeaderHeightVar);
+        }
+    }
+
     function mount() {
         var root = document.getElementById('header-nav-root');
         if (!root) return;
@@ -222,6 +243,7 @@
         root.replaceWith(tempContainer.firstChild, tempContainer.lastChild);
 
         setupSubNavScroll();
+        setupHeaderHeightVar();
 
         // Setup theme toggle si está disponible
         var themeBtn = document.getElementById('btn-theme-toggle');
