@@ -339,6 +339,46 @@
       "lat": -38.71833919380782,
       "lng": -62.260617805524824,
       "CP": "8000"
+    },
+    {
+      "TIPO": "ORTOPEDIA",
+      "ID": "ORT-018",
+      "PRESTADOR": "Ortopedia Española",
+      "DOMICILIO": "Casanova 70",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Casanova+70%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542915060627",
+      "MOVIL": "",
+      "GRUPO": "",
+      "NIVEL": "ESTANDART",
+      "STOCK": "",
+      "HORARIO": "",
+      "INYECTABLES": false,
+      "DELIVERY": false,
+      "OOSS": "",
+      "lat": null,
+      "lng": null,
+      "CP": "8000"
+    },
+    {
+      "TIPO": "ORTOPEDIA",
+      "ID": "ORT-019",
+      "PRESTADOR": "SIS",
+      "DOMICILIO": "Lamadrid 545",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Lamadrid+545%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "",
+      "MOVIL": "https://wa.me/5492914421377",
+      "GRUPO": "Sucursal 2",
+      "NIVEL": "ESTANDART",
+      "STOCK": "ALMOHADILLAS / CLIMATIZADOR PARA CAMA",
+      "HORARIO": "",
+      "INYECTABLES": false,
+      "DELIVERY": false,
+      "OOSS": "",
+      "lat": null,
+      "lng": null,
+      "CP": "8000"
     }
   ]
 }
