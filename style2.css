@@ -2013,22 +2013,31 @@ button.bottom-nav-item {
 }
 
 .header-btn {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 6px 13px;
-    min-height: 44px;
-    border-radius: 20px;
+    padding: 0 12px;
+    height: 28px;
+    border-radius: 9999px;
     background: rgba(255, 255, 255, 0.13);
     border: 1px solid rgba(255, 255, 255, 0.28);
     color: rgba(255, 255, 255, 0.95);
-    font-size: 12.5px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 500;
     cursor: pointer;
     font-family: var(--font-brand);
     letter-spacing: 0.01em;
     transition: background 0.15s, border-color 0.15s;
     appearance: none;
+}
+
+/* Área táctil ampliada a ~44px (el botón visual queda en 28px, pero el
+   target de toque en mobile respeta el mínimo recomendado). */
+.header-btn::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
 }
 
 .header-btn:hover {
@@ -2050,6 +2059,79 @@ button.bottom-nav-item {
 
 #btn-instalar-app[hidden] {
     display: none;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Misma lógica que .header-btn::before: área táctil ~44px sin agrandar
+   el switch visualmente. */
+.theme-switch::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+}
+
+.theme-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.theme-switch-track {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease;
+}
+
+.theme-switch-thumb::after {
+    content: "\2600";
+    font-size: 10px;
+    line-height: 1;
+    color: var(--orange);
+}
+
+.theme-switch input:checked + .theme-switch-track {
+    background: var(--orange-dark);
+    border-color: var(--orange);
+}
+
+.theme-switch input:checked + .theme-switch-track .theme-switch-thumb {
+    transform: translateX(20px);
+    background: #191971;
+}
+
+.theme-switch input:checked + .theme-switch-track .theme-switch-thumb::after {
+    content: "\263E";
+    color: #fff;
+}
+
+.theme-switch input:focus-visible + .theme-switch-track {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
 }
 
 .share-footer {
