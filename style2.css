@@ -919,42 +919,17 @@ body {
     width: 100%;
 }
 
-/* Estética "Uiverse" (satyamchaudharydev), adaptada a los tokens de BAHI.ar:
-   pill redondeado + subrayado animado que se expande al enfocar. */
 .search-container--main {
-    --sc-timing: 0.3s;
-    --sc-border-h: 2px;
-    --sc-radius: 30px;
     flex: 1;
     min-width: 0;
     margin: 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    background: var(--card-bg);
-    border: 1px solid var(--border-light);
-    border-radius: var(--sc-radius);
-    transition: border-radius 0.4s ease, border-color 0.3s ease;
-}
-
-.search-container--main .search-icon {
-    position: static;
-    transform: none;
-    flex-shrink: 0;
-    margin-left: 14px;
-    color: var(--text-muted);
-    transition: color var(--sc-timing) ease;
 }
 
 .search-container--main input[type="text"] {
-    flex: 1;
-    min-width: 0;
-    background: transparent;
-    border: none;
+    background: #fff;
+    border-color: var(--border-light);
     color: var(--text-main);
     font-size: 15px;
-    font-family: var(--font-base);
-    padding: 11px 10px;
 }
 
 .search-container--main input[type="text"]::placeholder {
@@ -962,72 +937,8 @@ body {
 }
 
 .search-container--main input[type="text"]:focus {
-    outline: none;
-}
-
-/* Subrayado animado: nace colapsado en el centro y se estira al enfocar */
-.search-container--main::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -1px;
-    width: 100%;
-    height: var(--sc-border-h);
-    background: var(--orange);
-    border-radius: 1px;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform var(--sc-timing) ease;
-    pointer-events: none;
-}
-
-.search-container--main:focus-within {
-    border-radius: 4px;
-    border-color: transparent;
-}
-
-.search-container--main:focus-within::before {
-    transform: scaleX(1);
-}
-
-.search-container--main:focus-within .search-icon {
-    color: var(--orange);
-}
-
-/* Botón "limpiar" (✕): oculto hasta que hay texto */
-.search-container--main .search-reset {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 28px;
-    height: 28px;
-    margin-right: 6px;
-    border: none;
-    background: none;
-    color: var(--text-muted);
-    border-radius: 50%;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(0.8);
-    cursor: pointer;
-    transition: opacity var(--sc-timing) ease, transform var(--sc-timing) ease, color var(--sc-timing) ease, background var(--sc-timing) ease;
-}
-
-.search-container--main .search-reset:hover {
-    background: var(--orange-light);
-    color: var(--orange-dark);
-}
-
-.search-container--main input[type="text"]:not(:placeholder-shown) ~ .search-reset {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-}
-
-[data-mode="dark"] .search-container--main {
-    background: var(--card-bg);
-    border-color: var(--border-light);
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px var(--orange-light);
 }
 
 .btn-map-toggle {
