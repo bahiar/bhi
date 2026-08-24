@@ -101,7 +101,8 @@
 
         var html = '<nav class="sub-nav" aria-label="Navegación principal">' +
             '<button type="button" class="sub-nav-arrow sub-nav-arrow--prev" aria-label="Ver secciones anteriores" tabindex="-1">' + arrowSvgPrev + '</button>' +
-            '<ul class="sub-nav-list">';
+            '<ul class="sub-nav-list">' +
+            '<span class="sub-nav-pill" aria-hidden="true"></span>';
 
         navItems.forEach(function(item) {
             var isCurrent = item.href === (current + '.html') || (current === 'index' && item.href === 'index.html');
@@ -202,6 +203,42 @@
         updateEdgeFades();
     }
 
+    // Pastilla deslizante detrás del link activo. offsetLeft/offsetWidth
+    // se miden contra .sub-nav-list (su offsetParent, position:relative),
+    // que es el mismo elemento con scroll horizontal — por eso la pastilla
+    // se mueve junto con el contenido al scrollear sin recálculo extra.
+    function setupSubNavPill() {
+        var list = document.querySelector('.sub-nav-list');
+        var pill = document.querySelector('.sub-nav-pill');
+        if (!list || !pill) return;
+
+        function positionPill(link, animate) {
+            if (!link) { pill.style.width = '0px'; return; }
+            if (!animate) pill.style.transition = 'none';
+            pill.style.left = link.offsetLeft + 'px';
+            pill.style.width = link.offsetWidth + 'px';
+            if (!animate) {
+                // Forzar reflow antes de restaurar la transición para que
+                // el posicionamiento inicial no se anime desde 0.
+                pill.offsetHeight;
+                pill.style.transition = '';
+            }
+        }
+
+        var activeLink = list.querySelector('.sub-nav-link.active');
+        positionPill(activeLink, false);
+
+        var resizeScheduled = false;
+        window.addEventListener('resize', function() {
+            if (resizeScheduled) return;
+            resizeScheduled = true;
+            requestAnimationFrame(function() {
+                resizeScheduled = false;
+                positionPill(list.querySelector('.sub-nav-link.active'), false);
+            });
+        });
+    }
+
     // M4: style2.css usa var(--header-h, 81px) para posicionar #update-banner
     // debajo del header sticky, pero esa altura varía (con/sin sub-nav visible,
     // mobile vs. desktop, ancho del header-ctx-strip) y nada la actualizaba.
@@ -240,6 +277,7 @@
         root.replaceWith(tempContainer.firstChild, tempContainer.lastChild);
 
         setupSubNavScroll();
+        setupSubNavPill();
         setupHeaderHeightVar();
 
         // Setup theme toggle si está disponible
