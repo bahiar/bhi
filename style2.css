@@ -2689,3 +2689,50 @@ button.bottom-nav-item {
     }
 }
 
+
+/* ── Nota "¿Buscás otros servicios?" debajo del grid de home ── */
+.home-services-more-note {
+    text-align: center;
+    margin: 4px 0 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.home-services-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    border: none;
+    background: none;
+    padding: 2px 4px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--orange-dark);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.home-services-more-link svg {
+    flex-shrink: 0;
+}
+
+@media (hover: hover) {
+    .home-services-more-link:hover {
+        color: var(--orange);
+        background: var(--orange-light);
+    }
+}
+
+.home-services-more-link:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
+}
+
+[data-mode="dark"] .home-services-more-note {
+    color: var(--text-muted);
+}
+
+[data-mode="dark"] .home-services-more-link {
+    color: var(--orange);
+}
