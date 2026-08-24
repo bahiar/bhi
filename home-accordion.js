@@ -36,6 +36,20 @@ window.HomeAccordion = (function () {
 
   const cache = {}; // clave -> array de items ya descargados
 
+  // M1: reutiliza .skeleton-card (ya definido en style2.css, antes sin uso
+  // en esta vista) en vez del texto plano "Cargando..." que había acá.
+  function skeletonHTML(n = 3) {
+    return `<div class="home-acc-cards">${Array.from({ length: n }, () => `
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-line skeleton-line-title"></div>
+        <div class="skeleton-line skeleton-line-addr"></div>
+        <div class="skeleton-btns">
+          <div class="skeleton-line skeleton-btn"></div>
+          <div class="skeleton-line skeleton-btn"></div>
+        </div>
+      </div>`).join('')}</div>`;
+  }
+
   async function cargarDatos(clave) {
     if (cache[clave]) return cache[clave];
     const cfg = CATEGORIAS[clave];
@@ -53,6 +67,8 @@ window.HomeAccordion = (function () {
 
     cargarDatos(clave)
       .then(items => {
+        panel.setAttribute('aria-busy', 'false');
+
         if (items.length === 0) {
           panel.innerHTML = '<p class="home-acc-msg">No hay resultados disponibles por ahora.</p>';
           return;
@@ -74,7 +90,11 @@ window.HomeAccordion = (function () {
       })
       .catch(err => {
         console.error(`[HomeAccordion] Error al cargar "${clave}":`, err);
-        panel.innerHTML = '<p class="home-acc-msg">No se pudo cargar la información. Probá de nuevo más tarde.</p>';
+        panel.setAttribute('aria-busy', 'false');
+        panel.innerHTML = `
+          <p class="home-acc-msg">No se pudo cargar la información. Probá de nuevo más tarde.</p>
+          <button type="button" class="error-state-action" data-reintentar="${clave}">Reintentar</button>
+        `;
         delete panel.dataset.cargado; // permite reintentar en el próximo click
       });
   }
@@ -108,10 +128,26 @@ window.HomeAccordion = (function () {
         // (no "farmacias-turno") y todavía no se cargó.
         if (panel && CATEGORIAS[clave] && !panel.dataset.cargado) {
           panel.dataset.cargado = '1';
-          panel.innerHTML = '<p class="home-acc-msg">Cargando...</p>';
+          panel.setAttribute('aria-live', 'polite');
+          panel.setAttribute('aria-busy', 'true');
+          panel.innerHTML = skeletonHTML();
           renderPanel(clave, panel);
         }
       });
+    });
+
+    // Q3: botón "Reintentar" del estado de error (mismo patrón que
+    // PillsEngine.limpiar en las páginas de categoría).
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('[data-reintentar]');
+      if (!btn) return;
+      const clave = btn.dataset.reintentar;
+      const panel = document.getElementById(`home-acc-panel-${clave}`);
+      if (!panel || !CATEGORIAS[clave]) return;
+      panel.dataset.cargado = '1';
+      panel.setAttribute('aria-busy', 'true');
+      panel.innerHTML = skeletonHTML();
+      renderPanel(clave, panel);
     });
   }
 

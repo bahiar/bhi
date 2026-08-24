@@ -123,6 +123,19 @@ window.PillsEngine = (function () {
       </div>`;
   }
 
+  // ── Skeleton loading (M1: reutiliza .skeleton-card ya definido en style2.css) ──
+  function skeletonHTML(n = 4) {
+    return Array.from({ length: n }, () => `
+      <div class="skeleton-card" aria-hidden="true">
+        <div class="skeleton-line skeleton-line-title"></div>
+        <div class="skeleton-line skeleton-line-addr"></div>
+        <div class="skeleton-btns">
+          <div class="skeleton-line skeleton-btn"></div>
+          <div class="skeleton-line skeleton-btn"></div>
+        </div>
+      </div>`).join('');
+  }
+
   function renderCards(vista, lista) {
     const estado = estados[vista];
     const { opciones } = estado;
@@ -133,6 +146,7 @@ window.PillsEngine = (function () {
 
     contenedor.classList.add('cards-grid--filtering');
     contenedor.classList.remove('cards-grid--visible');
+    contenedor.setAttribute('aria-busy', 'true');
 
     setTimeout(() => {
       if (lista.length === 0) {
@@ -153,6 +167,7 @@ window.PillsEngine = (function () {
       }
       contenedor.classList.remove('cards-grid--filtering');
       contenedor.classList.add('cards-grid--visible');
+      contenedor.setAttribute('aria-busy', 'false');
     }, 110);
   }
 
@@ -310,6 +325,14 @@ window.PillsEngine = (function () {
       opciones
     };
 
+    // C3: los cambios de contenido de este grid (skeleton -> cards / error /
+    // sin resultados) se anuncian a lectores de pantalla vía aria-live.
+    contenedor.setAttribute('aria-live', 'polite');
+    contenedor.setAttribute('aria-busy', 'true');
+    // M1: el CSS de skeleton ya existía en style2.css pero no se usaba acá;
+    // esto cubre la espera del fetch inicial (antes solo se veía el grid vacío).
+    contenedor.innerHTML = skeletonHTML();
+
     try {
       const response = await fetch(cfg.fuente);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -330,6 +353,7 @@ window.PillsEngine = (function () {
 
     } catch (err) {
       console.error(`[PillsEngine] Error al inicializar la vista "${vista}":`, err);
+      contenedor.setAttribute('aria-busy', 'false');
       contenedor.innerHTML = `
         <div class="error-state" role="alert">
           <p class="error-state-title">No se pudo cargar la información</p>
