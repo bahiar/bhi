@@ -453,13 +453,13 @@ body {
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--card-bg);
-    border: 1px solid var(--border-light);
-    border-top: none;
+    background: #E4E9F1;
+    border: 1px solid #C9D2DF;
+    border-top: 2px solid var(--orange);
     border-radius: 0 0 var(--radius-card) var(--radius-card);
     max-height: 400px;
     overflow-y: auto;
-    box-shadow: var(--shadow-soft);
+    box-shadow: 0 8px 16px rgba(20, 30, 50, 0.12);
     z-index: 100;
 }
 
@@ -2622,7 +2622,7 @@ button.bottom-nav-item {
 [data-mode="dark"] .busqueda-sin-resultados { color: var(--text-muted); }
 [data-mode="dark"] .resultado-busqueda { border-color: var(--border-light); }
 [data-mode="dark"] .resultado-busqueda:hover { background: rgba(255, 255, 255, 0.04); }
-[data-mode="dark"] .busqueda-global-resultados { background: var(--card-bg); border-color: var(--border-light); }
+[data-mode="dark"] .busqueda-global-resultados { background: #141926; border-color: #232B3D; border-top-color: var(--orange); }
 
 [data-mode="dark"] .section-header-meta { color: var(--text-muted); }
 
