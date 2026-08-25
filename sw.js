@@ -41,7 +41,7 @@
 // de estilos real fuera del app-shell durante el install, aunque terminaba
 // cacheándose igual en la primera visita online vía el fetch handler
 // cache-first. style.css se puede borrar del repo.
-const CACHE_VERSION = 'v4.493';
+const CACHE_VERSION = 'v4.494';
 const CACHE_NAME      = `bahi-static-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `bahi-data-${CACHE_VERSION}`;
 
