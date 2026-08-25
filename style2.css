@@ -1177,12 +1177,6 @@ body {
     border-color: transparent;
 }
 
-@media (hover: hover) {
-    .sub-nav-link:not(.active):hover {
-        color: var(--orange);
-    }
-}
-
 /* Secciones en construcción: opacidad reducida, sin badge (el badge
    sumaba ancho extra y empujaba ítems fuera de la fila visible) */
 .sub-nav-link[data-status="construccion"] {
@@ -1248,7 +1242,10 @@ body {
 }
 
 #update-banner {
-    background: var(--accent);
+    /* #1a68e0 en vez de var(--accent, #1f75fe): mismo azul de marca pero
+       oscurecido para llegar a 5.12:1 de contraste con blanco (antes 4.17:1,
+       bajo el mínimo AA de 4.5:1). Ver #btn-actualizar abajo. */
+    background: #1a68e0;
     color: #fff;
     padding: 10px 16px;
     display: flex;
@@ -1264,7 +1261,7 @@ body {
 
 #btn-actualizar {
     background: #fff;
-    color: var(--accent);
+    color: #1a68e0;
     border: none;
     padding: 5px 12px;
     border-radius: 6px;
@@ -1557,7 +1554,7 @@ body {
 
     @media (hover: hover) {
         .sub-nav-list .sub-nav-link:hover {
-            color: var(--orange);
+            color: var(--primary);
             border-bottom-color: var(--border-light);
         }
     }
@@ -2594,12 +2591,11 @@ button.bottom-nav-item {
     [data-mode="dark"] .filter-chip-select:hover { background: var(--surface-2); }
 }
 
-/* Desktop: .sub-nav-link.active usa var(--primary) como color de texto,
-   pero --primary no se redefine en dark mode (queda #191971, pensado
-   para fondo claro) => texto casi invisible sobre fondo oscuro. Se
-   corrige apuntando a --text-link, que sí tiene variante clara.
-   (El :hover ya no usa --primary sino var(--orange), que no necesita
-   este fix — el naranja tiene contraste propio en ambos modos.) */
+/* Desktop: .sub-nav-link usa var(--primary) como color de texto en
+   :hover/.active (línea ~1294/1301), pero --primary no se redefine en
+   dark mode (queda #191971, pensado para fondo claro) => texto casi
+   invisible sobre fondo oscuro. Se corrige apuntando a --text-link,
+   que sí tiene una variante clara definida arriba. */
 [data-mode="dark"] .sub-nav-pill {
     background: var(--text-link);
 }
@@ -2607,6 +2603,12 @@ button.bottom-nav-item {
 @media (min-width: 768px) {
     [data-mode="dark"] .sub-nav-list .sub-nav-link.active {
         color: var(--text-link);
+    }
+
+    @media (hover: hover) {
+        [data-mode="dark"] .sub-nav-list .sub-nav-link:hover {
+            color: var(--text-link);
+        }
     }
 }
 
