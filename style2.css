@@ -1177,6 +1177,12 @@ body {
     border-color: transparent;
 }
 
+@media (hover: hover) {
+    .sub-nav-link:not(.active):hover {
+        color: var(--orange);
+    }
+}
+
 /* Secciones en construcción: opacidad reducida, sin badge (el badge
    sumaba ancho extra y empujaba ítems fuera de la fila visible) */
 .sub-nav-link[data-status="construccion"] {
@@ -1551,7 +1557,7 @@ body {
 
     @media (hover: hover) {
         .sub-nav-list .sub-nav-link:hover {
-            color: var(--primary);
+            color: var(--orange);
             border-bottom-color: var(--border-light);
         }
     }
@@ -2588,11 +2594,12 @@ button.bottom-nav-item {
     [data-mode="dark"] .filter-chip-select:hover { background: var(--surface-2); }
 }
 
-/* Desktop: .sub-nav-link usa var(--primary) como color de texto en
-   :hover/.active (línea ~1294/1301), pero --primary no se redefine en
-   dark mode (queda #191971, pensado para fondo claro) => texto casi
-   invisible sobre fondo oscuro. Se corrige apuntando a --text-link,
-   que sí tiene una variante clara definida arriba. */
+/* Desktop: .sub-nav-link.active usa var(--primary) como color de texto,
+   pero --primary no se redefine en dark mode (queda #191971, pensado
+   para fondo claro) => texto casi invisible sobre fondo oscuro. Se
+   corrige apuntando a --text-link, que sí tiene variante clara.
+   (El :hover ya no usa --primary sino var(--orange), que no necesita
+   este fix — el naranja tiene contraste propio en ambos modos.) */
 [data-mode="dark"] .sub-nav-pill {
     background: var(--text-link);
 }
@@ -2600,12 +2607,6 @@ button.bottom-nav-item {
 @media (min-width: 768px) {
     [data-mode="dark"] .sub-nav-list .sub-nav-link.active {
         color: var(--text-link);
-    }
-
-    @media (hover: hover) {
-        [data-mode="dark"] .sub-nav-list .sub-nav-link:hover {
-            color: var(--text-link);
-        }
     }
 }
 
