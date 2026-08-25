@@ -332,6 +332,9 @@ body {
 
 .card-emergencia .card-addr {
     color: #DC2626;
+    font-size: 14.5px;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .card-emergencia .btn-accent {
