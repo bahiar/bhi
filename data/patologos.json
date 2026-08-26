@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_update": "2026-08-26T22:45:34.310Z",
+    "last_update": "2026-08-26T22:47:36.089Z",
     "version": "1.0.0"
   },
   "prestadores": [
@@ -14,7 +14,7 @@
       "FIJO": "tel:+542914551641",
       "MOVIL": "https://wa.me/5492914742810",
       "GRUPO": "",
-      "NIVEL": "PREMIUM",
+      "NIVEL": "ESTANDART",
       "STOCK": "",
       "HORARIO": "",
       "INYECTABLES": false,
