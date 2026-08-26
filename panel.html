@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>BAHI.ar · Panel admin farmacias</title>
+<style>
+  :root{
+    --navy:#191971;
+    --orange:#FF6B00;
+    --orange-dark:#e05f00;
+    --bg:#f4f5fa;
+    --card:#ffffff;
+    --border:#e4e6f0;
+    --text:#1c1c28;
+    --text-muted:#6b6d80;
+    --green:#1f9d55;
+    --red:#d64545;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    padding-bottom:100px;
+  }
+  header{
+    background:var(--navy);
+    color:#fff;
+    padding:20px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  header h1{
+    font-family:'Plus Jakarta Sans','Inter',sans-serif;
+    font-size:1.15rem;
+    margin:0;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  header h1 small{
+    font-weight:400;
+    font-size:0.75rem;
+    opacity:0.7;
+    display:block;
+  }
+  .container{
+    max-width:820px;
+    margin:0 auto;
+    padding:20px 16px;
+  }
+  .panel{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:16px;
+  }
+  .panel h2{
+    font-size:0.95rem;
+    margin:0 0 14px;
+    color:var(--navy);
+  }
+  label{
+    display:block;
+    font-size:0.78rem;
+    font-weight:600;
+    color:var(--text-muted);
+    margin-bottom:4px;
+  }
+  input[type="text"], input[type="password"]{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    font-size:0.9rem;
+    margin-bottom:12px;
+    font-family:inherit;
+  }
+  input:focus{outline:2px solid var(--orange);outline-offset:1px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .checkline{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.82rem;
+    color:var(--text-muted);
+    margin-bottom:14px;
+  }
+  .checkline input{width:auto;margin:0;}
+  button{
+    font-family:inherit;
+    cursor:pointer;
+    border:none;
+    border-radius:9px;
+    font-weight:600;
+    font-size:0.88rem;
+    padding:11px 18px;
+    transition:opacity .15s, transform .05s;
+  }
+  button:active{transform:scale(0.98);}
+  button:disabled{opacity:0.45;cursor:not-allowed;}
+  .btn-primary{background:var(--orange);color:#fff;}
+  .btn-primary:hover:not(:disabled){background:var(--orange-dark);}
+  .btn-secondary{background:#eceefb;color:var(--navy);}
+  .btn-secondary:hover:not(:disabled){background:#dfe1f5;}
+  .btn-block{width:100%;}
+  #login-error{
+    color:var(--red);
+    font-size:0.82rem;
+    margin-top:-4px;
+    margin-bottom:10px;
+    display:none;
+  }
+  #app{display:none;}
+  .toolbar{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:14px;
+    flex-wrap:wrap;
+  }
+  .toolbar input[type="text"]{margin:0;flex:1;min-width:180px;}
+  .stats{
+    display:flex;
+    gap:10px;
+    font-size:0.78rem;
+    color:var(--text-muted);
+    margin-bottom:14px;
+    flex-wrap:wrap;
+  }
+  .stat-chip{
+    background:#eceefb;
+    color:var(--navy);
+    padding:4px 10px;
+    border-radius:20px;
+    font-weight:600;
+  }
+  .stat-chip.premium{background:#fff1e2;color:var(--orange-dark);}
+  ul#list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    max-height:60vh;
+    overflow-y:auto;
+    border:1px solid var(--border);
+    border-radius:10px;
+  }
+  li.item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 14px;
+    border-bottom:1px solid var(--border);
+  }
+  li.item:last-child{border-bottom:none;}
+  li.item.changed{background:#fff8ec;}
+  .item-info{min-width:0;flex:1;}
+  .item-name{font-weight:600;font-size:0.88rem;}
+  .item-addr{font-size:0.76rem;color:var(--text-muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .switch-wrap{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .switch-label{font-size:0.72rem;font-weight:700;letter-spacing:0.02em;width:64px;text-align:right;}
+  .switch-label.premium{color:var(--orange-dark);}
+  .switch-label.estandar{color:var(--text-muted);}
+  .switch{
+    position:relative;
+    width:44px;
+    height:24px;
+    flex-shrink:0;
+  }
+  .switch input{opacity:0;width:0;height:0;}
+  .slider{
+    position:absolute;inset:0;
+    background:#c9cbdc;
+    border-radius:24px;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .slider::before{
+    content:"";
+    position:absolute;
+    width:18px;height:18px;
+    left:3px;top:3px;
+    background:#fff;
+    border-radius:50%;
+    transition:.2s;
+    box-shadow:0 1px 3px rgba(0,0,0,0.3);
+  }
+  .switch input:checked + .slider{background:var(--orange);}
+  .switch input:checked + .slider::before{transform:translateX(20px);}
+  .empty-msg{padding:30px 14px;text-align:center;color:var(--text-muted);font-size:0.85rem;}
+  #savebar{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    background:#fff;
+    border-top:1px solid var(--border);
+    padding:12px 16px;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    box-shadow:0 -4px 16px rgba(0,0,0,0.06);
+    z-index:20;
+  }
+  #savebar.visible{display:flex;}
+  #savebar span{font-size:0.85rem;color:var(--text-muted);}
+  #toast{
+    position:fixed;
+    top:16px;left:50%;
+    transform:translateX(-50%);
+    background:var(--text);
+    color:#fff;
+    padding:10px 18px;
+    border-radius:8px;
+    font-size:0.85rem;
+    z-index:30;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s;
+  }
+  #toast.show{opacity:1;}
+  #toast.error{background:var(--red);}
+  #toast.ok{background:var(--green);}
+  .help{font-size:0.75rem;color:var(--text-muted);line-height:1.5;margin-top:2px;}
+  .help a{color:var(--navy);}
+  #loading-msg{padding:20px;text-align:center;color:var(--text-muted);font-size:0.85rem;}
+  .logout-link{background:none;color:#fff;opacity:0.75;font-size:0.75rem;text-decoration:underline;padding:4px 0;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔒 BAHI.ar — Admin
+    <small>Nivel de farmacias (Estándar / Premium)</small>
+  </h1>
+  <button id="btn-logout" class="logout-link" style="display:none;">Cerrar sesión</button>
+</header>
+
+<div class="container">
+
+  <!-- LOGIN -->
+  <div class="panel" id="login-panel">
+    <h2>Conectar con GitHub</h2>
+    <label for="inp-token">Token de acceso personal (GitHub PAT)</label>
+    <input type="password" id="inp-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+
+    <div class="row2">
+      <div>
+        <label for="inp-owner">Usuario / organización</label>
+        <input type="text" id="inp-owner" value="bahiar">
+      </div>
+      <div>
+        <label for="inp-repo">Repositorio</label>
+        <input type="text" id="inp-repo" value="bhi">
+      </div>
+    </div>
+    <div class="row2">
+      <div>
+        <label for="inp-path">Ruta del archivo</label>
+        <input type="text" id="inp-path" value="data/bd_bahiar.json">
+      </div>
+      <div>
+        <label for="inp-branch">Rama</label>
+        <input type="text" id="inp-branch" value="main">
+      </div>
+    </div>
+
+    <div class="checkline">
+      <input type="checkbox" id="chk-remember">
+      <label for="chk-remember" style="margin:0;">Recordar token en este navegador</label>
+    </div>
+
+    <div id="login-error"></div>
+    <button class="btn-primary btn-block" id="btn-connect">Conectar y cargar farmacias</button>
+
+    <p class="help" style="margin-top:14px;">
+      Necesitás un <strong>Personal Access Token</strong> de GitHub con permiso de lectura/escritura
+      sobre <em>Contents</em> del repo <code>bahiar/bhi</code>. Generalo en
+      GitHub → Settings → Developer settings → Fine-grained tokens, con acceso limitado a este repositorio.
+      El token sólo se usa desde tu navegador para hablar con la API de GitHub; no se envía a ningún otro lado.
+    </p>
+  </div>
+
+  <!-- APP -->
+  <div id="app">
+    <div class="panel">
+      <div class="toolbar">
+        <input type="text" id="inp-search" placeholder="Buscar farmacia por nombre o dirección…">
+        <button class="btn-secondary" id="btn-reload">↻ Recargar</button>
+      </div>
+      <div class="stats">
+        <span class="stat-chip" id="stat-total">0 farmacias</span>
+        <span class="stat-chip premium" id="stat-premium">0 premium</span>
+      </div>
+      <div id="loading-msg" style="display:none;">Cargando datos desde GitHub…</div>
+      <ul id="list"></ul>
+    </div>
+  </div>
+
+</div>
+
+<div id="savebar">
+  <span id="savebar-text">0 cambios sin guardar</span>
+  <button class="btn-secondary" id="btn-discard">Descartar</button>
+  <button class="btn-primary" id="btn-save">Guardar cambios en GitHub</button>
+</div>
+
+<div id="toast"></div>
+
+<script>
+"use strict";
+
+let state = {
+  token: "", owner: "", repo: "", path: "", branch: "",
+  sha: null,
+  fullData: null,      // objeto completo bd_bahiar.json
+  farmacias: [],        // referencias directas a los objetos dentro de fullData.prestadores
+  originalNiveles: new Map(), // ID -> nivel original (para detectar cambios)
+  searchTerm: ""
+};
+
+const els = {
+  loginPanel: document.getElementById('login-panel'),
+  app: document.getElementById('app'),
+  loginError: document.getElementById('login-error'),
+  btnConnect: document.getElementById('btn-connect'),
+  btnLogout: document.getElementById('btn-logout'),
+  btnReload: document.getElementById('btn-reload'),
+  btnSave: document.getElementById('btn-save'),
+  btnDiscard: document.getElementById('btn-discard'),
+  list: document.getElementById('list'),
+  search: document.getElementById('inp-search'),
+  savebar: document.getElementById('savebar'),
+  savebarText: document.getElementById('savebar-text'),
+  loadingMsg: document.getElementById('loading-msg'),
+  statTotal: document.getElementById('stat-total'),
+  statPremium: document.getElementById('stat-premium'),
+  toast: document.getElementById('toast'),
+};
+
+// ---------- utilidades ----------
+
+function showToast(msg, type){
+  els.toast.textContent = msg;
+  els.toast.className = 'show' + (type ? ' ' + type : '');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=> els.toast.className = '', 3200);
+}
+
+function b64ToUtf8(b64){
+  const clean = b64.replace(/\n/g,'');
+  const binary = atob(clean);
+  const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
+function utf8ToB64(str){
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+
+function ghHeaders(){
+  return {
+    "Authorization": "Bearer " + state.token,
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28"
+  };
+}
+
+function apiUrl(){
+  return `https://api.github.com/repos/${state.owner}/${state.repo}/contents/${encodeURIComponent(state.path)}?ref=${encodeURIComponent(state.branch)}`;
+}
+
+// ---------- carga ----------
+
+async function cargarDatos(){
+  els.loadingMsg.style.display = 'block';
+  els.list.innerHTML = '';
+  try{
+    const res = await fetch(apiUrl(), { headers: ghHeaders() });
+    if(res.status === 401){ throw new Error("Token inválido o sin permisos."); }
+    if(res.status === 404){ throw new Error("No se encontró el archivo. Revisá usuario/repo/ruta/rama."); }
+    if(!res.ok){ throw new Error(`Error de GitHub (${res.status}).`); }
+    const json = await res.json();
+    state.sha = json.sha;
+    const text = b64ToUtf8(json.content);
+    state.fullData = JSON.parse(text);
+
+    state.farmacias = (state.fullData.prestadores || []).filter(p => p.TIPO === 'FARMACIA');
+    state.farmacias.sort((a,b) => (a.PRESTADOR||'').localeCompare(b.PRESTADOR||'', 'es'));
+
+    state.originalNiveles = new Map();
+    state.farmacias.forEach(f => state.originalNiveles.set(f.ID, f.NIVEL));
+
+    render();
+    els.loginPanel.style.display = 'none';
+    els.app.style.display = 'block';
+    els.btnLogout.style.display = 'inline';
+  }catch(err){
+    els.loginError.textContent = err.message || 'Error al conectar con GitHub.';
+    els.loginError.style.display = 'block';
+  }finally{
+    els.loadingMsg.style.display = 'none';
+  }
+}
+
+// ---------- render ----------
+
+function contarCambios(){
+  return state.farmacias.filter(f => f.NIVEL !== state.originalNiveles.get(f.ID)).length;
+}
+
+function render(){
+  const term = state.searchTerm.trim().toLowerCase();
+  const filtradas = state.farmacias.filter(f => {
+    if(!term) return true;
+    const n = (f.PRESTADOR||'').toLowerCase();
+    const d = (f.DOMICILIO||'').toLowerCase();
+    return n.includes(term) || d.includes(term);
+  });
+
+  els.list.innerHTML = '';
+
+  if(filtradas.length === 0){
+    els.list.innerHTML = `<li class="empty-msg">No se encontraron farmacias.</li>`;
+  }
+
+  filtradas.forEach(f => {
+    const li = document.createElement('li');
+    li.className = 'item';
+    const cambiada = f.NIVEL !== state.originalNiveles.get(f.ID);
+    if(cambiada) li.classList.add('changed');
+
+    const isPremium = f.NIVEL === 'PREMIUM';
+    const addr = [f.DOMICILIO, f.LOCALIDAD].filter(Boolean).join(' · ');
+
+    li.innerHTML = `
+      <div class="item-info">
+        <div class="item-name">${escHtml(f.PRESTADOR || '(sin nombre)')}</div>
+        <div class="item-addr">${escHtml(addr || '—')}</div>
+      </div>
+      <div class="switch-wrap">
+        <span class="switch-label estandar">ESTÁNDAR</span>
+        <label class="switch">
+          <input type="checkbox" data-id="${escAttr(f.ID)}" ${isPremium ? 'checked' : ''}>
+          <span class="slider"></span>
+        </label>
+        <span class="switch-label premium">PREMIUM</span>
+      </div>
+    `;
+    els.list.appendChild(li);
+  });
+
+  els.list.querySelectorAll('input[type="checkbox"]').forEach(chk => {
+    chk.addEventListener('change', onToggle);
+  });
+
+  els.statTotal.textContent = `${state.farmacias.length} farmacias`;
+  els.statPremium.textContent = `${state.farmacias.filter(f => f.NIVEL === 'PREMIUM').length} premium`;
+
+  updateSaveBar();
+}
+
+function onToggle(e){
+  const id = e.target.dataset.id;
+  const f = state.farmacias.find(x => x.ID === id);
+  if(!f) return;
+  f.NIVEL = e.target.checked ? 'PREMIUM' : 'ESTANDART';
+  render();
+}
+
+function updateSaveBar(){
+  const n = contarCambios();
+  els.savebar.classList.toggle('visible', n > 0);
+  els.savebarText.textContent = n === 1 ? '1 cambio sin guardar' : `${n} cambios sin guardar`;
+  els.btnSave.disabled = n === 0;
+}
+
+function escHtml(s){
+  const d = document.createElement('div');
+  d.textContent = s ?? '';
+  return d.innerHTML;
+}
+function escAttr(s){
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+}
+
+// ---------- guardar ----------
+
+async function guardarCambios(){
+  const n = contarCambios();
+  if(n === 0) return;
+  const ok = confirm(`Vas a subir ${n} cambio(s) de NIVEL a GitHub, en la rama "${state.branch}". ¿Confirmás?`);
+  if(!ok) return;
+
+  els.btnSave.disabled = true;
+  els.btnSave.textContent = 'Guardando…';
+
+  try{
+    if(state.fullData.metadata){
+      state.fullData.metadata.last_update = new Date().toISOString();
+    }
+    const newContent = JSON.stringify(state.fullData, null, 4);
+    const b64 = utf8ToB64(newContent);
+
+    const res = await fetch(
+      `https://api.github.com/repos/${state.owner}/${state.repo}/contents/${encodeURIComponent(state.path)}`,
+      {
+        method: 'PUT',
+        headers: { ...ghHeaders(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: `Admin: actualizar NIVEL de farmacias (${n} cambio(s))`,
+          content: b64,
+          sha: state.sha,
+          branch: state.branch
+        })
+      }
+    );
+
+    if(res.status === 409){
+      throw new Error('El archivo cambió en GitHub mientras editabas. Recargá y volvé a aplicar los cambios.');
+    }
+    if(!res.ok){
+      const errBody = await res.json().catch(()=> ({}));
+      throw new Error(errBody.message || `Error de GitHub (${res.status}).`);
+    }
+
+    const json = await res.json();
+    state.sha = json.content.sha;
+    state.originalNiveles = new Map();
+    state.farmacias.forEach(f => state.originalNiveles.set(f.ID, f.NIVEL));
+
+    render();
+    showToast('Cambios guardados en GitHub ✓', 'ok');
+  }catch(err){
+    showToast(err.message || 'No se pudo guardar.', 'error');
+  }finally{
+    els.btnSave.disabled = contarCambios() === 0;
+    els.btnSave.textContent = 'Guardar cambios en GitHub';
+  }
+}
+
+function descartarCambios(){
+  state.farmacias.forEach(f => {
+    f.NIVEL = state.originalNiveles.get(f.ID);
+  });
+  render();
+}
+
+// ---------- login / logout ----------
+
+const STORAGE_KEY = 'bahiar_admin_token';
+
+function tryAutoLogin(){
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if(saved){
+    try{
+      const data = JSON.parse(saved);
+      document.getElementById('inp-token').value = data.token || '';
+      document.getElementById('inp-owner').value = data.owner || 'bahiar';
+      document.getElementById('inp-repo').value = data.repo || 'bhi';
+      document.getElementById('inp-path').value = data.path || 'data/bd_bahiar.json';
+      document.getElementById('inp-branch').value = data.branch || 'main';
+      document.getElementById('chk-remember').checked = true;
+    }catch(e){}
+  }
+}
+
+async function onConnect(){
+  els.loginError.style.display = 'none';
+  state.token = document.getElementById('inp-token').value.trim();
+  state.owner = document.getElementById('inp-owner').value.trim();
+  state.repo = document.getElementById('inp-repo').value.trim();
+  state.path = document.getElementById('inp-path').value.trim();
+  state.branch = document.getElementById('inp-branch').value.trim() || 'main';
+
+  if(!state.token){
+    els.loginError.textContent = 'Ingresá tu token de GitHub.';
+    els.loginError.style.display = 'block';
+    return;
+  }
+
+  if(document.getElementById('chk-remember').checked){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      token: state.token, owner: state.owner, repo: state.repo,
+      path: state.path, branch: state.branch
+    }));
+  } else {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+
+  await cargarDatos();
+}
+
+function onLogout(){
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+// ---------- eventos ----------
+
+els.btnConnect.addEventListener('click', onConnect);
+els.btnLogout.addEventListener('click', onLogout);
+els.btnReload.addEventListener('click', () => {
+  if(contarCambios() > 0 && !confirm('Tenés cambios sin guardar. ¿Recargar de todos modos y perderlos?')) return;
+  cargarDatos();
+});
+els.btnSave.addEventListener('click', guardarCambios);
+els.btnDiscard.addEventListener('click', descartarCambios);
+els.search.addEventListener('input', e => {
+  state.searchTerm = e.target.value;
+  render();
+});
+
+document.getElementById('inp-token').addEventListener('keydown', e => {
+  if(e.key === 'Enter') onConnect();
+});
+
+tryAutoLogin();
+</script>
+
+</body>
+</html>
