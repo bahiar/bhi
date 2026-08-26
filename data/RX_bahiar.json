@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_update": "2026-08-26T22:45:57.669Z",
+    "last_update": "2026-08-26T22:47:56.872Z",
     "version": "1.0.0"
   },
   "prestadores": [
@@ -14,7 +14,7 @@
       "FIJO": "tel:+542914548919",
       "MOVIL": "https://wa.me/5492915093233",
       "GRUPO": "",
-      "NIVEL": "PREMIUM",
+      "NIVEL": "ESTANDART",
       "STOCK": "",
       "HORARIO": "",
       "INYECTABLES": false,
