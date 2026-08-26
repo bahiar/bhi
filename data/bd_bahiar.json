@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "last_update": "2026-08-26T16:07:13.225Z",
+        "last_update": "2026-08-26T16:08:36.018Z",
         "version": "1.0.0"
     },
     "prestadores": [
@@ -1374,7 +1374,7 @@
             "FIJO": "tel:+542914515179",
             "MOVIL": "",
             "GRUPO": "",
-            "NIVEL": "PREMIUM",
+            "NIVEL": "ESTANDART",
             "STOCK": "",
             "HORARIO": "",
             "INYECTABLES": false,
