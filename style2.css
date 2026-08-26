@@ -42,6 +42,18 @@
     --gold-dark: #8A6508;
     --gold-light: rgba(184, 134, 11, 0.10);
     --gold-border: rgba(184, 134, 11, 0.30);
+    /* Tokens semánticos de estado (auditoría de paleta): separados de
+       --orange para no confundir "CTA de acción" con "alerta del sistema".
+       Pensados para texto oscuro encima, no blanco (ver ratios en la
+       auditoría). */
+    --success: #16A34A;
+    --success-bg: #F0FDF4;
+    --warning: #D97706;
+    --warning-bg: #FFFBEB;
+    --error: #DC2626;
+    --error-bg: #FEF2F2;
+    --info: #1F75FE;
+    --info-bg: #EFF6FF;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -412,7 +424,9 @@ body {
     height: 22px;
     min-width: 22px;
     border-radius: 50%;
-    background: var(--gold);
+    /* var(--gold) con texto casi blanco daba 3.2:1 (falla AA).
+       var(--gold-dark) da 5.23:1. */
+    background: var(--gold-dark);
     color: #FFFDF5;
     font-size: 12px;
     line-height: 1;
