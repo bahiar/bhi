@@ -33,9 +33,23 @@
     padding:20px 24px;
     display:flex;
     align-items:center;
-    justify-content:flex-end;
+    justify-content:space-between;
     flex-wrap:wrap;
     gap:12px;
+  }
+  header h1{
+    font-family:'Plus Jakarta Sans','Inter',sans-serif;
+    font-size:1.15rem;
+    margin:0;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  header h1 small{
+    font-weight:400;
+    font-size:0.75rem;
+    opacity:0.7;
+    display:block;
   }
   .container{
     max-width:920px;
@@ -77,6 +91,15 @@
   input:focus, select:focus{outline:2px solid var(--orange);outline-offset:1px;}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+  .checkline{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.82rem;
+    color:var(--text-muted);
+    margin-bottom:14px;
+  }
+  .checkline input{width:auto;margin:0;}
   button{
     font-family:inherit;
     cursor:pointer;
@@ -89,7 +112,7 @@
   }
   button:active{transform:scale(0.98);}
   button:disabled{opacity:0.45;cursor:not-allowed;}
-  .btn-primary{background:var(--orange);color:#fff;min-height:42px;}
+  .btn-primary{background:var(--orange);color:#fff;}
   .btn-primary:hover:not(:disabled){background:var(--orange-dark);}
   .btn-secondary{background:#eceefb;color:var(--navy);}
   .btn-secondary:hover:not(:disabled){background:#dfe1f5;}
@@ -256,7 +279,7 @@
 
   <div class="panel" id="login-panel">
     <input type="password" id="inp-token" autocomplete="off">
-
+    <input type="checkbox" id="chk-remember" style="display:none;" checked>
     <button id="btn-connect" class="btn-primary btn-block"></button>
     <div id="login-error"></div>
   </div>
@@ -291,7 +314,7 @@
 
 <div id="savebar">
   <span id="savebar-text">1 cambio sin guardar</span>
-  <button id="btn-save" class="btn-primary">Guardar</button>
+  <button id="btn-save" class="btn-primary">Guardar en GitHub</button>
   <button id="btn-discard" class="btn-secondary">Descartar</button>
 </div>
 
@@ -327,6 +350,7 @@ const els = {
   loginPanel: document.getElementById('login-panel'),
   app: document.getElementById('app'),
   inpToken: document.getElementById('inp-token'),
+  chkRemember: document.getElementById('chk-remember'),
   loginError: document.getElementById('login-error'),
   btnConnect: document.getElementById('btn-connect'),
   btnLogout: document.getElementById('btn-logout'),
@@ -417,9 +441,9 @@ async function cargarDatos(dbKey){
     const url = apiUrl(dbKey);
     const res = await fetch(url, { headers: ghHeaders() });
 
-    if(res.status === 401){ throw new Error("Credenciales inválidas o sin permisos."); }
+    if(res.status === 401){ throw new Error("Token inválido o sin permisos."); }
     if(res.status === 404){ throw new Error(`No se encontró ${dbInfo.label}. Revisá la ruta.`); }
-    if(!res.ok){ throw new Error(`Error de conexión (${res.status}).`); }
+    if(!res.ok){ throw new Error(`Error de GitHub (${res.status}).`); }
 
     const json = await res.json();
     state.sha[dbKey] = json.sha;
@@ -438,7 +462,7 @@ async function cargarDatos(dbKey){
     els.filterPanel.style.display = 'block';
 
   }catch(err){
-    els.loadingMsg.textContent = err.message || 'Error al conectar.';
+    els.loadingMsg.textContent = err.message || 'Error al conectar con GitHub.';
     els.loginError.textContent = err.message;
     els.loginError.style.display = 'block';
   }finally{
@@ -529,7 +553,7 @@ async function guardarCambios(){
   if(n === 0) return;
 
   const dbInfo = DATABASES[dbKey];
-  const ok = confirm(`Vas a subir ${n} cambio(s) de NIVEL en ${dbInfo.label}. ¿Confirmás?`);
+  const ok = confirm(`Vas a subir ${n} cambio(s) de NIVEL a GitHub en ${dbInfo.label}, en la rama "${state.branch}". ¿Confirmás?`);
   if(!ok) return;
 
   els.btnSave.disabled = true;
@@ -558,11 +582,11 @@ async function guardarCambios(){
     );
 
     if(res.status === 409){
-      throw new Error('El archivo cambió mientras editabas. Recargá y volvé a aplicar.');
+      throw new Error('El archivo cambió en GitHub mientras editabas. Recargá y volvé a aplicar.');
     }
     if(!res.ok){
       const errBody = await res.json().catch(()=> ({}));
-      throw new Error(errBody.message || `Error de conexión (${res.status}).`);
+      throw new Error(errBody.message || `Error de GitHub (${res.status}).`);
     }
 
     const json = await res.json();
@@ -576,7 +600,7 @@ async function guardarCambios(){
     showToast(err.message || 'No se pudo guardar.', 'error');
   }finally{
     els.btnSave.disabled = contarCambios() === 0;
-    els.btnSave.textContent = 'Guardar';
+    els.btnSave.textContent = 'Guardar en GitHub';
   }
 }
 
@@ -595,6 +619,7 @@ function tryAutoLogin(){
     try{
       const data = JSON.parse(saved);
       document.getElementById('inp-token').value = typeof data === 'string' ? data : (data.token || '');
+      document.getElementById('chk-remember').checked = true;
     }catch(e){}
   }
 }
@@ -604,12 +629,16 @@ async function onConnect(){
   state.token = document.getElementById('inp-token').value.trim();
 
   if(!state.token){
-    els.loginError.textContent = 'Ingresá tus credenciales de acceso.';
+    els.loginError.textContent = 'Ingresá tu token de GitHub.';
     els.loginError.style.display = 'block';
     return;
   }
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ token: state.token }));
+  if(document.getElementById('chk-remember').checked){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ token: state.token }));
+  } else {
+    localStorage.removeItem(STORAGE_KEY);
+  }
 
   els.loginPanel.style.display = 'none';
   els.app.style.display = 'block';
