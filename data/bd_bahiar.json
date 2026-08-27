@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_update": "2026-08-27T13:46:04.078Z",
+    "last_update": "2026-08-27T13:46:26.550Z",
     "version": "1.0.0"
   },
   "prestadores": [
@@ -3214,7 +3214,7 @@
       "FIJO": "tel:+542914550283",
       "MOVIL": "",
       "GRUPO": "B",
-      "NIVEL": "ESTANDART",
+      "NIVEL": "PREMIUM",
       "STOCK": "",
       "HORARIO": "",
       "INYECTABLES": false,
