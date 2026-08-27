@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_update": "2026-08-27T14:30:33.076Z",
+    "last_update": "2026-08-27T14:33:59.020Z",
     "version": "1.0.0"
   },
   "prestadores": [
@@ -14,7 +14,7 @@
       "FIJO": "",
       "MOVIL": "https://wa.me/5492914073618",
       "GRUPO": "",
-      "NIVEL": "PREMIUM",
+      "NIVEL": "ESTANDART",
       "STOCK": "",
       "HORARIO": "",
       "INYECTABLES": false,
