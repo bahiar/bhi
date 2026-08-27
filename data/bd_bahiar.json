@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_update": "2026-08-27T13:49:27.486Z",
+    "last_update": "2026-08-27T00:00:00.000Z",
     "version": "1.0.0"
   },
   "prestadores": [
@@ -3942,6 +3942,26 @@
       "OOSS": "SI",
       "lat": -38.6969739,
       "lng": -62.2809044,
+      "CP": "8000"
+    },
+    {
+      "TIPO": "FARMACIA",
+      "ID": "FAR-112",
+      "PRESTADOR": "GRUNBEIN",
+      "DOMICILIO": "Rafael Obligado 5444",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://maps.app.goo.gl/TbfxvvfrzY82KTLV9",
+      "FIJO": "",
+      "MOVIL": "https://wa.me/5492915135162",
+      "GRUPO": "G",
+      "NIVEL": "ESTANDART",
+      "STOCK": "",
+      "HORARIO": "",
+      "INYECTABLES": false,
+      "DELIVERY": false,
+      "OOSS": "",
+      "lat": -38.75366871863097,
+      "lng": -62.17999054480931,
       "CP": "8000"
     }
   ]
