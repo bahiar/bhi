@@ -372,26 +372,38 @@ body {
    el nombre y la estrella ★ a la derecha. */
 .card--premium-wrap {
     position: relative;
-    padding: 5px;
-}
-
-.card--premium-wrap::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: calc(var(--radius-card) + 5px);
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-border) 60%, transparent 100%);
-    opacity: 0.55;
 }
 
 .card--premium {
     position: relative;
-    border: 1px solid var(--gold-border);
-    box-shadow: 0 8px 22px rgba(184, 134, 11, 0.25);
+    border: 1.5px solid var(--gold-border);
+    box-shadow: 0 4px 14px rgba(184, 134, 11, 0.18);
 }
 
 [data-mode="dark"] .card--premium {
-    box-shadow: 0 8px 22px rgba(224, 185, 77, 0.18);
+    box-shadow: 0 4px 14px rgba(224, 185, 77, 0.14);
+}
+
+/* Botones secundarios (WhatsApp/Mapa) dentro de la card premium:
+   look neutro gris, en línea con la estética navy/dorada, en vez
+   del verde WhatsApp o el naranja de marca que usa el resto del sitio. */
+.card--premium .btn-whatsapp,
+.card--premium .btn-outline {
+    background: var(--surface-2);
+    color: var(--text-muted);
+    border: 1.5px solid var(--border-light);
+}
+
+@media (hover: hover) {
+    .card--premium .btn-whatsapp:hover,
+    .card--premium .btn-outline:hover {
+        background: var(--border-light);
+    }
+}
+
+[data-mode="dark"] .card--premium .btn-whatsapp,
+[data-mode="dark"] .card--premium .btn-outline {
+    color: var(--text-main);
 }
 
 .card--premium .header-bar {
