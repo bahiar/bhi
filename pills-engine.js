@@ -136,6 +136,18 @@ window.PillsEngine = (function () {
       </div>`).join('');
   }
 
+  // Prioridad de visualización: los prestadores NIVEL "PREMIUM" van primero.
+  // Sort estable (no reordena el resto): respeta el orden que ya traía la
+  // lista dentro de cada grupo (ej. orden por cercanía si ya se activó
+  // "Ordenar por cercanía", o el orden original del JSON).
+  function ordenarPorPrioridad(lista) {
+    return [...lista].sort((a, b) => {
+      const prioridadA = a.NIVEL === 'PREMIUM' ? 0 : 1;
+      const prioridadB = b.NIVEL === 'PREMIUM' ? 0 : 1;
+      return prioridadA - prioridadB;
+    });
+  }
+
   function renderCards(vista, lista) {
     const estado = estados[vista];
     const { opciones } = estado;
@@ -143,17 +155,18 @@ window.PillsEngine = (function () {
     if (!contenedor) return;
 
     const metaCount = document.getElementById(opciones.metaCountId);
+    const listaOrdenada = ordenarPorPrioridad(lista);
 
     contenedor.classList.add('cards-grid--filtering');
     contenedor.classList.remove('cards-grid--visible');
     contenedor.setAttribute('aria-busy', 'true');
 
     setTimeout(() => {
-      if (lista.length === 0) {
+      if (listaOrdenada.length === 0) {
         contenedor.innerHTML = opciones.mensajeSinResultados || mensajeSinResultadosDefault(vista);
         if (metaCount) metaCount.textContent = 'Sin resultados';
       } else {
-        contenedor.innerHTML = lista
+        contenedor.innerHTML = listaOrdenada
           .map((item, i) => {
             const itemFinal = opciones.transformItem ? opciones.transformItem(item) : item;
             return window.crearCardHTML(itemFinal, opciones.tipoVista, i);
@@ -161,8 +174,8 @@ window.PillsEngine = (function () {
           .join('');
         if (metaCount) {
           metaCount.textContent = opciones.formatearContador
-            ? opciones.formatearContador(lista.length)
-            : `${lista.length} resultado${lista.length !== 1 ? 's' : ''}`;
+            ? opciones.formatearContador(listaOrdenada.length)
+            : `${listaOrdenada.length} resultado${listaOrdenada.length !== 1 ? 's' : ''}`;
         }
       }
       contenedor.classList.remove('cards-grid--filtering');
