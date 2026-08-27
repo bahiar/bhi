@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_update": "2026-08-26T22:47:56.872Z",
+    "last_update": "2026-08-27T13:20:50.066Z",
     "version": "1.0.0"
   },
   "prestadores": [
@@ -164,7 +164,7 @@
       "FIJO": "tel:+548103454300",
       "MOVIL": "https://wa.me/5492914706363",
       "GRUPO": "",
-      "NIVEL": "ESTANDART",
+      "NIVEL": "PREMIUM",
       "STOCK": "",
       "HORARIO": "",
       "INYECTABLES": false,
