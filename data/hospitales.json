@@ -1,0 +1,180 @@
+{
+  "metadata": {
+    "last_update": "2026-09-04T00:00:00.000Z",
+    "version": "2.0.0"
+  },
+  "hospitales": [
+    {
+      "TIPO": "HOSPITAL",
+      "ID": "HOS-001",
+      "PRESTADOR": "Hospital Municipal de Agudos Dr. Leónidas Lucero",
+      "DOMICILIO": "Estomba 968",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Estomba+968%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542914598484",
+      "MOVIL": "",
+      "lat": -38.711004320545,
+      "lng": -62.27652258968715,
+      "CP": "8000",
+      "SUBNOMBRE": [
+        "HMABB",
+        "Municipal"
+      ],
+      "TELEFONO": [
+        "tel:+542914598484"
+      ],
+      "URL": "https://hmabb.gov.ar/"
+    },
+    {
+      "TIPO": "HOSPITAL",
+      "ID": "HOS-002",
+      "PRESTADOR": "Hospital Interzonal General Dr. José Penna",
+      "DOMICILIO": "Av. Laínez 2401",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Av.+La%C3%ADnez+2401%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542914593600",
+      "MOVIL": "",
+      "lat": -38.72961424502735,
+      "lng": -62.227289250086216,
+      "CP": "8000",
+      "SUBNOMBRE": [
+        "HIGA",
+        "Penna"
+      ],
+      "TELEFONO": [
+        "tel:+542914593600",
+        "tel:+542914593611"
+      ],
+      "URL": ""
+    },
+    {
+      "TIPO": "HOSPITAL",
+      "ID": "HOS-003",
+      "PRESTADOR": "Hospital Privado del Sur",
+      "DOMICILIO": "Las Heras 164",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Las+Heras+164%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542914550270",
+      "MOVIL": "",
+      "lat": -38.71871608270039,
+      "lng": -62.26084052749779,
+      "CP": "8000",
+      "SUBNOMBRE": [
+        "HPS",
+        "Privado del Sur",
+        "Maternidad",
+        "FUMEBA"
+      ],
+      "TELEFONO": [
+        "tel:+542914550270",
+        "tel:+542914550280"
+      ],
+      "URL": ""
+    },
+    {
+      "TIPO": "HOSPITAL",
+      "ID": "HOS-004",
+      "PRESTADOR": "Hospital de la Asociación Médica",
+      "DOMICILIO": "Patricios 347",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Patricios+347%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542914557877",
+      "MOVIL": "",
+      "lat": -38.717110320924,
+      "lng": -62.27766792804365,
+      "CP": "8000",
+      "SUBNOMBRE": [
+        "Glasman",
+        "HAM",
+        "Ferroviario"
+      ],
+      "TELEFONO": [
+        "tel:+542914557877"
+      ],
+      "URL": ""
+    },
+    {
+      "TIPO": "HOSPITAL",
+      "ID": "HOS-005",
+      "PRESTADOR": "Hospital Italiano Regional del Sur",
+      "DOMICILIO": "Mariano Necochea 675",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Mariano+Necochea+675%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542914583100",
+      "MOVIL": "",
+      "lat": -38.73295359464816,
+      "lng": -62.233609204756405,
+      "CP": "8000",
+      "SUBNOMBRE": [
+        "Italiano"
+      ],
+      "TELEFONO": [
+        "tel:+542914583100"
+      ],
+      "URL": "https://www.hospitalitalianobb.com.ar/"
+    },
+    {
+      "TIPO": "HOSPITAL",
+      "ID": "HOS-006",
+      "PRESTADOR": "Hospital Regional Español",
+      "DOMICILIO": "Estomba 571",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Estomba+571%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542914595555",
+      "MOVIL": "https://wa.me/5492914406584",
+      "lat": -38.713306141675446,
+      "lng": -62.27196670660666,
+      "CP": "8000",
+      "SUBNOMBRE": [
+        "Español",
+        "Asociación Española de Beneficencia"
+      ],
+      "TELEFONO": [
+        "tel:+542914595555"
+      ],
+      "URL": "https://hrebb.com.ar/"
+    },
+    {
+      "TIPO": "HOSPITAL",
+      "ID": "HOS-007",
+      "PRESTADOR": "Hospital Dr. Raúl Matera",
+      "DOMICILIO": "9 de Julio 461",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=9+de+Julio+461%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542914030351",
+      "MOVIL": "",
+      "lat": -38.721193941843055,
+      "lng": -62.279452960578375,
+      "CP": "8000",
+      "SUBNOMBRE": [
+        "OSECAC"
+      ],
+      "TELEFONO": [
+        "tel:+542914030351",
+        "tel:+542914030353",
+        "tel:+542914529000"
+      ],
+      "URL": ""
+    },
+    {
+      "TIPO": "HOSPITAL",
+      "ID": "HOS-008",
+      "PRESTADOR": "Hospital Militar Bahía Blanca",
+      "DOMICILIO": "Florida 1450",
+      "LOCALIDAD": "Bahia Blanca",
+      "MAPS": "https://www.google.com/maps/search/?api=1&query=Florida+1450%2C+Bahia+Blanca%2C+Buenos+Aires%2C+Argentina",
+      "FIJO": "tel:+542915172132",
+      "MOVIL": "https://wa.me/5492914485229",
+      "lat": -38.68861763427801,
+      "lng": -62.265019744691294,
+      "CP": "8000",
+      "SUBNOMBRE": [
+        "FUSEA"
+      ],
+      "TELEFONO": [
+        "tel:+542915172132"
+      ],
+      "URL": ""
+    }
+  ]
+}
