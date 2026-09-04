@@ -210,7 +210,7 @@
             id="search-input"
             type="text"
             placeholder="Buscar en BAHI.ar..."
-            aria-label="Buscar hospitales, clínicas, emergencias y unidades sanitarias"
+            aria-label="Buscar hospitales y clínicas"
             autocomplete="off"
             autocorrect="off"
             spellcheck="false"
@@ -226,35 +226,6 @@
         </div>
 
         <div id="contenedor-cards" class="cards-grid" aria-live="polite" aria-label="Hospitales, sanatorios y clínicas privadas">
-          <div class="skeleton-card" aria-hidden="true">
-            <div class="skeleton-line skeleton-line-title"></div>
-            <div class="skeleton-line skeleton-line-addr"></div>
-            <div class="skeleton-btns">
-              <div class="skeleton-line skeleton-btn"></div>
-              <div class="skeleton-line skeleton-btn"></div>
-            </div>
-          </div>
-          <div class="skeleton-card" aria-hidden="true">
-            <div class="skeleton-line skeleton-line-title"></div>
-            <div class="skeleton-line skeleton-line-addr"></div>
-            <div class="skeleton-btns">
-              <div class="skeleton-line skeleton-btn"></div>
-              <div class="skeleton-line skeleton-btn"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="section-divider"></div>
-
-      <section id="unidades-sanitarias" aria-labelledby="titulo-unidades">
-        <div class="section-header">
-          <div class="section-header-titles">
-            <h2 id="titulo-unidades">Unidades Sanitarias Municipales</h2>
-          </div>
-        </div>
-
-        <div id="contenedor-unidades-sanitarias" class="cards-grid" aria-live="polite" aria-label="Unidades sanitarias municipales: CAPS y salitas médicas">
           <div class="skeleton-card" aria-hidden="true">
             <div class="skeleton-line skeleton-line-title"></div>
             <div class="skeleton-line skeleton-line-addr"></div>
@@ -295,20 +266,6 @@
             { PRESTADOR: "Hospital Dr. Raúl Matera",                        DOMICILIO: "9 de Julio 461",  FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647", HORARIO: "24 hs" }
           ];
           contenedor.innerHTML = guardiasEstaticas.map((item, i) => window.crearCardHTML(item, 'GUARDIA', i)).join('');
-        }
-
-        const contenedorUnidades = document.getElementById('contenedor-unidades-sanitarias');
-        if (contenedorUnidades && typeof window.crearCardHTML === 'function') {
-          fetch('data/bd_bahiar.json')
-            .then(response => response.json())
-            .then(data => {
-              const unidadesSanitarias = data.prestadores.filter(item => item.TIPO === 'UNIDAD SANITARIA');
-              contenedorUnidades.innerHTML = unidadesSanitarias.map((item, i) => window.crearCardHTML(item, 'UNIDAD_SANITARIA', i)).join('');
-            })
-            .catch(err => {
-              console.error('[BAHI.ar] Error al cargar unidades sanitarias:', err);
-              contenedorUnidades.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">No se pudieron cargar las unidades sanitarias</p>';
-            });
         }
 
       }, 150);
