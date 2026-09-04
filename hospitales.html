@@ -255,19 +255,24 @@
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         const contenedor = document.getElementById('contenedor-cards');
-        if (contenedor && typeof window.crearCardHTML === 'function') {
-          const guardiasEstaticas = [
-            { PRESTADOR: "Hospital Municipal Dr. Leónidas Lucero",           DOMICILIO: "Bravard 51",      FIJO: "02914598484", MAPS: "https://maps.google.com/?q=-38.71112540785631,-62.27675054678758", HORARIO: "24 hs" },
-            { PRESTADOR: "Hospital Interzonal General Dr José Penna",        DOMICILIO: "Av. Lainez 2401", FIJO: "02914593600", MAPS: "https://maps.google.com/?cid=16307574064946898385", HORARIO: "24 hs" },
-            { PRESTADOR: "Hospital Privado del Sur",                          DOMICILIO: "Soler 267",   FIJO: "02914550270", MAPS: "https://maps.google.com/maps/search/Soler+267,+Bahía+Blanca,+Argentina",  HORARIO: "24 hs" },
-            { PRESTADOR: "Hospital de la Asociación Médica", DOMICILIO: "Patricios 347", FIJO: "02914557877", MAPS: "https://maps.google.com/?cid=5361214841895970615",  HORARIO: "24 hs" },
-            { PRESTADOR: "Hospital Italiano Regional del Sur",               DOMICILIO: "Necochea 675",    FIJO: "02914583100", MAPS: "https://maps.google.com/?cid=3736778501007264660",  HORARIO: "24 hs" },
-            { PRESTADOR: "Hospital Regional Español",                        DOMICILIO: "Casanova 25",     FIJO: "02914595555", MAPS: "https://maps.google.com/maps/search/Casanova+25,+Bahía+Blanca,+Argentina",  HORARIO: "24 hs" },
-            { PRESTADOR: "Hospital Dr. Raúl Matera",                        DOMICILIO: "9 de Julio 461",  FIJO: "02914558880", MAPS: "https://maps.google.com/?cid=13981706602155362647", HORARIO: "24 hs" }
-          ];
-          contenedor.innerHTML = guardiasEstaticas.map((item, i) => window.crearCardHTML(item, 'GUARDIA', i)).join('');
-        }
+        if (!contenedor || typeof window.crearCardHTML !== 'function') return;
 
+        fetch('data/hospitales.json', { cache: 'no-cache' })
+          .then((res) => {
+            if (!res.ok) throw new Error('No se pudo cargar data/hospitales.json');
+            return res.json();
+          })
+          .then((data) => {
+            const hospitales = (data && data.hospitales) || [];
+            if (!hospitales.length) throw new Error('Sin datos de hospitales');
+            contenedor.innerHTML = hospitales
+              .map((item, i) => window.crearCardHTML(item, 'GUARDIA', i))
+              .join('');
+          })
+          .catch((err) => {
+            console.error('Error cargando hospitales:', err);
+            contenedor.innerHTML = '<p class="sin-resultados">No se pudo cargar la información de hospitales. Intentá nuevamente más tarde.</p>';
+          });
       }, 150);
     });
   </script>
