@@ -1,0 +1,40 @@
+{
+  "prestadores": [
+    {
+      "PRESTADOR": "IMM (Instituto Médico para la Mujer)",
+      "TIPO": "FEMENINA",
+      "DOMICILIO": "Av. Alem 395",
+      "FIJO": "tel:+542914557818",
+      "SITIO_WEB": "https://immbahiablanca.com.ar"
+    },
+    {
+      "PRESTADOR": "Medifem - IMAD",
+      "TIPO": "FEMENINA",
+      "DOMICILIO": "Av. Alem 180",
+      "FIJO": "tel:+542914561822",
+      "SITIO_WEB": "https://medifem-imad.com.ar"
+    },
+    {
+      "PRESTADOR": "Instituto Diagnóstico",
+      "TIPO": "FEMENINA",
+      "DOMICILIO": "Alsina 575",
+      "FIJO": "tel:+542915043578",
+      "SITIO_WEB": "https://idiagnostico.com.ar"
+    },
+    {
+      "PRESTADOR": "Cemasur (Centro Mamario del Sur)",
+      "TIPO": "FEMENINA",
+      "DOMICILIO": "Zeballos 249",
+      "FIJO": "tel:+542914543000",
+      "SITIO_WEB": "https://cemasur.com.ar"
+    },
+    {
+      "PRESTADOR": "Matersur",
+      "TIPO": "FEMENINA",
+      "DOMICILIO": "Drago 23, Piso 11",
+      "FIJO": "tel:+542915702540",
+      "MOVIL": "https://wa.me/542915702540",
+      "SITIO_WEB": "https://matersur.com"
+    }
+  ]
+}

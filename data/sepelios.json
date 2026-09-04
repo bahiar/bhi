@@ -1,0 +1,39 @@
+{
+  "prestadores": [
+    {
+      "PRESTADOR": "Ferrandi Servicios Sociales",
+      "TIPO": "SEPELIOS",
+      "DOMICILIO": "Estomba 241",
+      "FIJO": "tel:+542914520143",
+      "SITIO_WEB": "https://ferrandi.ar"
+    },
+    {
+      "PRESTADOR": "Sosa Servicios Funerarios",
+      "TIPO": "SEPELIOS",
+      "DOMICILIO": "Güemes 716",
+      "FIJO": "tel:+542914043067",
+      "SITIO_WEB": "https://sosaserviciosfunerarios.com.ar"
+    },
+    {
+      "PRESTADOR": "Grupo Bonacorsi (Administración)",
+      "TIPO": "SEPELIOS",
+      "DOMICILIO": "Chiclana 380",
+      "FIJO": "tel:+542914550950",
+      "SITIO_WEB": "https://grupobonacorsi.com.ar"
+    },
+    {
+      "PRESTADOR": "Grupo Bonacorsi (Sucursal Villa Mitre)",
+      "TIPO": "SEPELIOS",
+      "DOMICILIO": "Falucho 218",
+      "FIJO": "tel:+542914812254",
+      "SITIO_WEB": "https://grupobonacorsi.com.ar"
+    },
+    {
+      "PRESTADOR": "Bonacorsi Sepelios",
+      "TIPO": "SEPELIOS",
+      "DOMICILIO": "Bartolomé Mitre 470",
+      "FIJO": "tel:+542914552222",
+      "SITIO_WEB": "https://grupobonacorsi.com.ar"
+    }
+  ]
+}

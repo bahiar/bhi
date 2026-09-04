@@ -1,0 +1,88 @@
+{
+  "prestadores": [
+    {
+      "PRESTADOR": "OSDE",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Martiniano Rodríguez 362",
+      "FIJO": "tel:+542914598700",
+      "SITIO_WEB": "https://osde.com.ar"
+    },
+    {
+      "PRESTADOR": "Swiss Medical",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Av. Alem 112",
+      "FIJO": "tel:08104447700",
+      "SITIO_WEB": "https://swissmedical.com.ar"
+    },
+    {
+      "PRESTADOR": "Medifé",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Donado 498",
+      "FIJO": "tel:+542914593300",
+      "SITIO_WEB": "https://medife.com.ar"
+    },
+    {
+      "PRESTADOR": "Galeno",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Dorrego 3",
+      "FIJO": "tel:08109997828",
+      "SITIO_WEB": "https://e-galeno.com.ar"
+    },
+    {
+      "PRESTADOR": "Sancor Salud",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Sarmiento 1101",
+      "FIJO": "tel:08104447258",
+      "SITIO_WEB": "https://sancorsalud.com.ar"
+    },
+    {
+      "PRESTADOR": "Avalian (ex ACA Salud)",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Sarmiento 1198",
+      "FIJO": "tel:08102222211",
+      "SITIO_WEB": "https://avalian.com"
+    },
+    {
+      "PRESTADOR": "Federada Salud",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Av. Colón 201",
+      "FIJO": "tel:+542914554243",
+      "SITIO_WEB": "https://federada.com.ar"
+    },
+    {
+      "PRESTADOR": "Omint",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Av. Lamadrid 292",
+      "FIJO": "tel:+542914590000",
+      "SITIO_WEB": "https://omint.com.ar"
+    },
+    {
+      "PRESTADOR": "Prevención Salud",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Zelarrayán 277",
+      "FIJO": "tel:+542914532172",
+      "SITIO_WEB": "https://prevencionsalud.com.ar"
+    },
+    {
+      "PRESTADOR": "Medicus",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Undiano 14",
+      "FIJO": "tel:+542914555800",
+      "SITIO_WEB": "https://medicus.com.ar"
+    },
+    {
+      "PRESTADOR": "Santé Médical",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Saavedra 353",
+      "FIJO": "tel:+542914510318",
+      "SITIO_WEB": "https://sante-medical.com"
+    },
+    {
+      "PRESTADOR": "Jerárquicos Salud",
+      "TIPO": "PREPAGA",
+      "DOMICILIO": "Rondeau 222",
+      "FIJO": "tel:08005554888",
+      "SITIO_WEB": "https://jerarquicos.com"
+    }
+  ]
+}
