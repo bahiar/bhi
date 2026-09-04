@@ -25,17 +25,17 @@
     // enConstruccion:true agrega data-status="construccion" + badge "Próx." (ver CSS)
     var FULL_NAV_ITEMS = [
         { href: 'index.html',          label: 'Inicio' },
-        { href: 'farmacias.html',      label: 'Farmacias' },
         { href: 'emergencias.html',    label: 'Emergencias' },
+        { href: 'hospitales.html',     label: 'Hospitales' },
         { href: 'unidades.html',       label: 'Salas médicas' },
+        { href: 'farmacias.html',      label: 'Farmacias' },
         { href: 'laboratorios.html',   label: 'Laboratorios' },
         { href: 'imagenes.html',       label: 'Imágenes' },
         { href: 'ortopedias.html',     label: 'Ortopedias' },
         { href: 'opticas.html',        label: 'Ópticas' },
         { href: 'oftalmologia.html',   label: 'Oftalmología' },
         { href: 'patologia.html',      label: 'Patólogos' },
-        { href: 'kinesiologia.html',   label: 'Kinesiología' },
-        { href: 'otros.html',           label: 'Otros' }
+        { href: 'kinesiologia.html',   label: 'Kinesiología' }
     ];
 
     // Sub-nav reducido para páginas legales (primeras 6 secciones principales)
