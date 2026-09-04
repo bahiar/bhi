@@ -4,8 +4,8 @@
  * Variante distinta a js/bottom-nav.js (que usa 4 links directos sin modal).
  * Usar en páginas que necesiten: Inicio, Emergencia, Farmacias + "Más"
  * (Laboratorios, Patología, Imágenes, Oftalmología, Ópticas, Kinesiología,
- * Ortopedias, Atención mujer, Salas médicas, Medicina prepaga, Servicios
- * fúnebres, Otros).
+ * Ortopedias, Atención mujer, Salas médicas, Hospitales, Medicina prepaga,
+ * Servicios fúnebres).
  *
  * Incluir en cualquier página con:
  *   1) <div id="bottom-nav-root"></div>
@@ -70,8 +70,8 @@
      * Orden agrupado por afinidad temática (no alfabético ni de agregado):
      *   1) Diagnóstico: Laboratorios, Patología, Imágenes
      *   2) Especialidades/sentidos: Oftalmología, Ópticas, Kinesiología, Ortopedias
-     *   3) Salud de la mujer + salas: Atención mujer, Salas médicas
-     *   4) Gestión/trámites: Medicina prepaga, Servicios fúnebres, Otros (catch-all al final)
+     *   3) Salud de la mujer + salas + hospitales: Atención mujer, Salas médicas, Hospitales
+     *   4) Gestión/trámites: Medicina prepaga, Servicios fúnebres
      */
     var MAS_ITEMS = [
         // 1) Diagnóstico → azul medio
@@ -85,14 +85,14 @@
         { href: 'kinesiologia.html', label: 'Kinesiología', ...ACCENT_COLORS['blue-light'], icon: ICONS.physio },
         { href: 'ortopedias.html', label: 'Ortopedias', ...ACCENT_COLORS['blue-light'], icon: ICONS.crutches },
 
-        // 3) Salud de la mujer + salas → azul petróleo (intervención/atención directa)
+        // 3) Salud de la mujer + salas + hospitales → azul petróleo (intervención/atención directa)
         { href: 'femenina.html', label: 'Atención mujer', ...ACCENT_COLORS['blue-petrol'], icon: ICONS.genderFemale },
         { href: 'unidades.html', label: 'Salas médicas', ...ACCENT_COLORS['blue-petrol'], icon: ICONS.buildingHospital },
+        { href: 'hospitales.html', label: 'Hospitales', ...ACCENT_COLORS['blue-petrol'], icon: ICONS.buildingHospital },
 
-        // 4) Gestión/trámites → azul más oscuro (especialidades profundas / catch-all)
+        // 4) Gestión/trámites → azul más oscuro (especialidades profundas)
         { href: 'prepaga.html', label: 'Medicina prepaga', ...ACCENT_COLORS['blue-deeper'], icon: ICONS.calendarDollar },
-        { href: 'sepelios.html', label: 'Servicios fúnebres', ...ACCENT_COLORS['blue-deeper'], icon: ICONS.ribbonHealth },
-        { href: 'otros.html', label: 'Otros', ...ACCENT_COLORS['blue-deeper'], icon: ICONS.textPlus }
+        { href: 'sepelios.html', label: 'Servicios fúnebres', ...ACCENT_COLORS['blue-deeper'], icon: ICONS.ribbonHealth }
     ];
 
     function getCurrentPage() {
