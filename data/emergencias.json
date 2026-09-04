@@ -1,0 +1,78 @@
+{
+  "prestadores": [
+    {
+      "PRESTADOR": "107 - Emergencias médicas",
+      "TIPO": "EMERGENCIAS",
+      "DOMICILIO": "Emergencias en la vía pública: riesgo de vida, traumatismos y accidentes graves",
+      "FIJO": "tel:107"
+    },
+    {
+      "PRESTADOR": "SEM Emergencias Médicas",
+      "TIPO": "EMERGENCIAS",
+      "FIJO": "tel:02914591919",
+      "MOVIL": "https://wa.me/5492916492840"
+    },
+    {
+      "PRESTADOR": "Alerta Emergencias Médicas",
+      "TIPO": "EMERGENCIAS",
+      "FIJO": "tel:02914553388",
+      "SERVICIOS": "Teléfonos alternativos: (0291) 456-0000 / (0291) 456-2076"
+    },
+    {
+      "PRESTADOR": "Hospital Municipal Dr. Leónidas Lucero",
+      "TIPO": "EMERGENCIAS",
+      "DOMICILIO": "Bravard 51",
+      "FIJO": "tel:02914598484",
+      "MAPS": "https://maps.google.com/?q=-38.71112540785631,-62.27675054678758",
+      "HORARIO": "24 hs"
+    },
+    {
+      "PRESTADOR": "Hospital Interzonal General Dr José Penna",
+      "TIPO": "EMERGENCIAS",
+      "DOMICILIO": "Av. Lainez 2401",
+      "FIJO": "tel:02914593600",
+      "MAPS": "https://maps.google.com/?cid=16307574064946898385",
+      "HORARIO": "24 hs"
+    },
+    {
+      "PRESTADOR": "Hospital Privado del Sur",
+      "TIPO": "EMERGENCIAS",
+      "DOMICILIO": "Soler 267",
+      "FIJO": "tel:02914550270",
+      "MAPS": "https://maps.google.com/maps/search/Soler+267,+Bahía+Blanca,+Argentina",
+      "HORARIO": "24 hs"
+    },
+    {
+      "PRESTADOR": "Hospital de la Asociación Médica",
+      "TIPO": "EMERGENCIAS",
+      "DOMICILIO": "Patricios 347",
+      "FIJO": "tel:02914557877",
+      "MAPS": "https://maps.google.com/?cid=5361214841895970615",
+      "HORARIO": "24 hs"
+    },
+    {
+      "PRESTADOR": "Hospital Italiano Regional del Sur",
+      "TIPO": "EMERGENCIAS",
+      "DOMICILIO": "Necochea 675",
+      "FIJO": "tel:02914583100",
+      "MAPS": "https://maps.google.com/?cid=3736778501007264660",
+      "HORARIO": "24 hs"
+    },
+    {
+      "PRESTADOR": "Hospital Regional Español",
+      "TIPO": "EMERGENCIAS",
+      "DOMICILIO": "Casanova 25",
+      "FIJO": "tel:02914595555",
+      "MAPS": "https://maps.google.com/maps/search/Casanova+25,+Bahía+Blanca,+Argentina",
+      "HORARIO": "24 hs"
+    },
+    {
+      "PRESTADOR": "Hospital Dr. Raúl Matera",
+      "TIPO": "EMERGENCIAS",
+      "DOMICILIO": "9 de Julio 461",
+      "FIJO": "tel:02914558880",
+      "MAPS": "https://maps.google.com/?cid=13981706602155362647",
+      "HORARIO": "24 hs"
+    }
+  ]
+}
