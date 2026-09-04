@@ -267,9 +267,6 @@
       const mapsHref = window.safeMapsUrl(h.MAPS);
 
       const subnombres = Array.isArray(h.SUBNOMBRE) ? h.SUBNOMBRE.filter(Boolean) : [];
-      const chipsSubnombre = subnombres.length
-        ? `<div class="chip-row">${subnombres.map((s) => `<span class="chip">${window.esc(s)}</span>`).join('')}</div>`
-        : '';
 
       const direccion = [h.DOMICILIO, h.LOCALIDAD, h.CP ? `CP ${window.esc(h.CP)}` : null].filter(Boolean).join(' · ');
 
@@ -283,38 +280,23 @@
         h.URL ? `<a href="${window.escAttr(h.URL)}" class="btn btn-outline" target="_blank" rel="noopener noreferrer" aria-label="Sitio web de ${window.escAttr(h.PRESTADOR)}">${SVG_WEB} Sitio web</a>` : '',
       ].filter(Boolean).join('');
 
-      const detalleTelefonos = otrosTelefonos.length
+      const detalle = otrosTelefonos.length
         ? `<p class="card-detail-row">${SVG_TEL}<strong>Otros teléfonos:</strong> ${otrosTelefonos.map((t) => `<a href="${window.escAttr(normalizarTel(t))}">${window.esc(t.replace(/^tel:/i, ''))}</a>`).join(', ')}</p>`
         : '';
-
-      const detalle = [
-        detalleTelefonos,
-        h.ID ? `<p class="card-detail-row"><strong>ID:</strong> ${window.esc(h.ID)}</p>` : '',
-      ].filter(Boolean).join('');
-
-      const bodyId = `card-body-hospital-${window.escAttr(h.ID || '')}`;
-      const tieneMas = !!detalle;
 
       return `
 <article class="card" data-estado="" data-tipo="${window.escAttr(h.TIPO || '')}"
     data-domicilio="${window.escAttr(h.DOMICILIO || '')}" data-localidad="${window.escAttr(h.LOCALIDAD || '')}"
-    data-fijo="${window.escAttr(h.FIJO || '')}" data-movil="${window.escAttr(h.MOVIL || '')}">
+    data-fijo="${window.escAttr(h.FIJO || '')}" data-movil="${window.escAttr(h.MOVIL || '')}"
+    data-subnombre="${window.escAttr(subnombres.join(' | '))}">
     <div class="card-top">
         <div class="card-info">
             <h3 class="card-name">${window.esc(h.PRESTADOR)}</h3>
-            ${chipsSubnombre}
             ${direccion ? `<p class="card-addr">${window.esc(direccion)}</p>` : ''}
         </div>
     </div>
     ${acciones ? `<div class="card-actions">${acciones}</div>` : ''}
-    ${tieneMas ? `
-    <button class="card-header" aria-expanded="false" aria-controls="${bodyId}">
-        <span>Más información</span>
-        <span class="card-chevron" aria-hidden="true">▼</span>
-    </button>
-    <div class="card-body-collapse" id="${bodyId}" role="region" aria-label="Detalles de ${window.esc(h.PRESTADOR)}">
-        ${detalle}
-    </div>` : ''}
+    ${detalle ? `<div class="card-body-collapse open">${detalle}</div>` : ''}
 </article>`;
     }
 
