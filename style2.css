@@ -469,6 +469,33 @@ body {
     border: 1px solid var(--gold-border);
 }
 
+.tel-otro-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.tel-otro-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--orange-light);
+    color: var(--orange-dark);
+    border: 1px solid var(--orange-border);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+@media (hover: hover) {
+    .tel-otro-btn:hover { background: rgba(255, 107, 0, 0.18); }
+}
+
 /* Ficha de datos premium: siempre visible, no colapsa detrás de
    "Más información" como el resto de las cards (card-body-collapse) */
 .card-body-premium {

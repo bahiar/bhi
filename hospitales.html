@@ -281,7 +281,7 @@
       ].filter(Boolean).join('');
 
       const detalle = otrosTelefonos.length
-        ? `<p class="card-detail-row">${SVG_TEL}<strong>Otros teléfonos:</strong> ${otrosTelefonos.map((t) => `<a href="${window.escAttr(normalizarTel(t))}">${window.esc(t.replace(/^tel:/i, ''))}</a>`).join(', ')}</p>`
+        ? `<div class="card-detail-row">${SVG_TEL}<strong>Otros teléfonos:</strong><div class="tel-otro-row">${otrosTelefonos.map((t, i) => `<a href="${window.escAttr(normalizarTel(t))}" class="tel-otro-btn" aria-label="Llamar a ${window.escAttr(h.PRESTADOR)}, teléfono ${window.esc(t.replace(/^tel:/i, ''))}">Tel. (${i + 2})</a>`).join('')}</div></div>`
         : '';
 
       return `
