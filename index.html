@@ -1043,8 +1043,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             </div>
 
-            <h2 class="home-services-heading">Algunos servicios incorporados</h2>
-
             <!-- ── EMERGENCIAS (banner ancho, fuera del grid) ── -->
             <a class="home-service-card home-service-card--wide" data-categoria="emergencias" href="emergencias.html">
                 <span class="home-service-watermark" data-icon-src="js/ambulance-svgrepo-com.svg" aria-hidden="true"></span>
@@ -1252,11 +1250,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             function inicializarToggleTurno() {
                 const header = document.querySelector('.home-acc-header[data-categoria="farmacias-turno"]');
                 if (!header) return;
+                const item = header.closest('.home-acc-item');
+                let interactuoUsuario = false;
+
                 header.addEventListener('click', () => {
-                    const item = header.closest('.home-acc-item');
+                    interactuoUsuario = true;
                     const abierto = item.classList.toggle('home-acc-item--open');
                     header.setAttribute('aria-expanded', abierto ? 'true' : 'false');
                 });
+
+                // Plegado automático a los 5s si el usuario no tocó el acordeón.
+                setTimeout(() => {
+                    if (!interactuoUsuario && item.classList.contains('home-acc-item--open')) {
+                        item.classList.remove('home-acc-item--open');
+                        header.setAttribute('aria-expanded', 'false');
+                    }
+                }, 5000);
             }
 
             let posicionPromise = null;
