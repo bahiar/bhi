@@ -80,19 +80,19 @@
         { href: 'imagenes.html', label: 'Imágenes', ...ACCENT_COLORS['blue-medium'], icon: ICONS.imaging },
 
         // 2) Especialidades/sentidos → azul claro
-        { href: 'oftalmologia.html', label: 'Oftalmología', ...ACCENT_COLORS['blue-light'], icon: ICONS.eye },
-        { href: 'opticas.html', label: 'Ópticas', ...ACCENT_COLORS['blue-light'], icon: ICONS.glasses },
-        { href: 'kinesiologia.html', label: 'Kinesiología', ...ACCENT_COLORS['blue-light'], icon: ICONS.physio },
-        { href: 'ortopedias.html', label: 'Ortopedias', ...ACCENT_COLORS['blue-light'], icon: ICONS.crutches },
+        { href: 'oftalmologia.html', label: 'Oftalmología', ...ACCENT_COLORS['blue-medium'], icon: ICONS.eye },
+        { href: 'opticas.html', label: 'Ópticas', ...ACCENT_COLORS['blue-medium'], icon: ICONS.glasses },
+        { href: 'kinesiologia.html', label: 'Kinesiología', ...ACCENT_COLORS['blue-medium'], icon: ICONS.physio },
+        { href: 'ortopedias.html', label: 'Ortopedias', ...ACCENT_COLORS['blue-medium'], icon: ICONS.crutches },
 
         // 3) Salud de la mujer + salas + hospitales → azul petróleo (intervención/atención directa)
-        { href: 'femenina.html', label: 'Atención mujer', ...ACCENT_COLORS['blue-petrol'], icon: ICONS.genderFemale },
-        { href: 'unidades.html', label: 'Salas médicas', ...ACCENT_COLORS['blue-petrol'], icon: ICONS.buildingHospital },
-        { href: 'hospitales.html', label: 'Hospitales', ...ACCENT_COLORS['blue-petrol'], icon: ICONS.buildingHospital },
+        { href: 'femenina.html', label: 'Atención mujer', ...ACCENT_COLORS['blue-medium'], icon: ICONS.genderFemale },
+        { href: 'unidades.html', label: 'Salas médicas', ...ACCENT_COLORS['blue-medium'], icon: ICONS.buildingHospital },
+        { href: 'hospitales.html', label: 'Hospitales', ...ACCENT_COLORS['blue-medium'], icon: ICONS.buildingHospital },
 
         // 4) Gestión/trámites → azul más oscuro (especialidades profundas)
-        { href: 'prepaga.html', label: 'Medicina prepaga', ...ACCENT_COLORS['blue-deeper'], icon: ICONS.calendarDollar },
-        { href: 'sepelios.html', label: 'Servicios fúnebres', ...ACCENT_COLORS['blue-deeper'], icon: ICONS.ribbonHealth }
+        { href: 'prepaga.html', label: 'Medicina prepaga', ...ACCENT_COLORS['blue-medium'], icon: ICONS.calendarDollar },
+        { href: 'sepelios.html', label: 'Servicios fúnebres', ...ACCENT_COLORS['blue-medium'], icon: ICONS.ribbonHealth }
     ];
 
     function getCurrentPage() {
