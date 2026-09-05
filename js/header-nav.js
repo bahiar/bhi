@@ -35,7 +35,10 @@
         { href: 'opticas.html',        label: 'Ópticas' },
         { href: 'oftalmologia.html',   label: 'Oftalmología' },
         { href: 'patologia.html',      label: 'Patólogos' },
-        { href: 'kinesiologia.html',   label: 'Kinesiología' }
+        { href: 'kinesiologia.html',   label: 'Kinesiología' },
+        { href: 'femenina.html',       label: 'Atención femenina' },
+        { href: 'prepaga.html',        label: 'Medicina prepaga' },
+        { href: 'sepelios.html',       label: 'Sepelios' }
     ];
 
     // Sub-nav reducido para páginas legales (primeras 6 secciones principales)
