@@ -3,18 +3,16 @@
     "ciudad": "Bahía Blanca",
     "provincia": "Buenos Aires",
     "pais": "Argentina",
-    "total": 246,
+    "total": 216,
     "tipos": [
       "MC",
       "SF",
-      "US",
-      "CJ"
+      "US"
     ],
     "tipo_labels": {
       "MC": "Médico de Cabecera",
       "US": "Sala Médica (Unidad Sanitaria)",
-      "SF": "Sociedad de Fomento",
-      "CJ": "Centro de Jubilados y Pensionados"
+      "SF": "Sociedad de Fomento"
     }
   },
   "ubicaciones": [
@@ -24,9 +22,7 @@
       "nombre": "AGUIRRE, MARIA MERCEDES",
       "domicilio": "NEWTON 2311",
       "lat": -38.731934309367,
-      "lon": -62.2333290786257,
-      "ori": "DIR",
-      "distrib": "993"
+      "lon": -62.2333290786257
     },
     {
       "id": "MC-02",
@@ -34,9 +30,7 @@
       "nombre": "ALVAREZ YANEZ, ANA JULIA",
       "domicilio": "RINCON 615",
       "lat": -38.7146534730703,
-      "lon": -62.2482145065167,
-      "ori": "DIR",
-      "distrib": "632"
+      "lon": -62.2482145065167
     },
     {
       "id": "MC-03",
@@ -44,9 +38,7 @@
       "nombre": "BARBIERI LORENA",
       "domicilio": "SIXTO LASPIUR 425",
       "lat": -38.7230621354996,
-      "lon": -62.2817598059071,
-      "ori": "AMBB",
-      "distrib": "590"
+      "lon": -62.2817598059071
     },
     {
       "id": "MC-04",
@@ -54,9 +46,7 @@
       "nombre": "BREGANT, GUILLERMO JORGE",
       "domicilio": "D’ORBIGNY 2578",
       "lat": -38.7288780803656,
-      "lon": -62.2233209216205,
-      "ori": "DIR",
-      "distrib": "993"
+      "lon": -62.2233209216205
     },
     {
       "id": "MC-05",
@@ -64,9 +54,7 @@
       "nombre": "BRESCIA SERGIO",
       "domicilio": "TERRADA 286",
       "lat": -38.7211979704126,
-      "lon": -62.275798474447,
-      "ori": "AMBB",
-      "distrib": "610"
+      "lon": -62.275798474447
     },
     {
       "id": "MC-06",
@@ -74,9 +62,7 @@
       "nombre": "BUGATTI, FEDERICO",
       "domicilio": "AV. ALEM 1555",
       "lat": -38.6978859032133,
-      "lon": -62.2733618061983,
-      "ori": "DIR",
-      "distrib": "301"
+      "lon": -62.2733618061983
     },
     {
       "id": "MC-07",
@@ -84,9 +70,7 @@
       "nombre": "BUSTO, HERNAN SEBASTIAN",
       "domicilio": "SAAVEDRA 756",
       "lat": -38.7224600757101,
-      "lon": -62.3896860918819,
-      "ori": "DIR",
-      "distrib": "678"
+      "lon": -62.3896860918819
     },
     {
       "id": "MC-08",
@@ -94,9 +78,7 @@
       "nombre": "CAMPOS, GABRIELA VERONICA",
       "domicilio": "DARREGUEIRA 62",
       "lat": -38.7228706641715,
-      "lon": -62.2708212484916,
-      "ori": "DIR",
-      "distrib": "753"
+      "lon": -62.2708212484916
     },
     {
       "id": "MC-09",
@@ -104,9 +86,7 @@
       "nombre": "CARRASCO, CRISTINA PATRICIA",
       "domicilio": "NEWTON 2311",
       "lat": -38.731934309367,
-      "lon": -62.2333290786257,
-      "ori": "DIR",
-      "distrib": "1348"
+      "lon": -62.2333290786257
     },
     {
       "id": "MC-10",
@@ -114,9 +94,7 @@
       "nombre": "COLMENAREZ RIOS, MARIA FERNANDA",
       "domicilio": "CATRIEL 640",
       "lat": -38.7167423918277,
-      "lon": -62.2505632055954,
-      "ori": "DIR",
-      "distrib": "1079"
+      "lon": -62.2505632055954
     },
     {
       "id": "MC-11",
@@ -124,9 +102,7 @@
       "nombre": "COLMENAREZ RIOS, MARIA GABRIELA",
       "domicilio": "MISIONES 1570",
       "lat": -38.7425749217075,
-      "lon": -62.2719133044145,
-      "ori": "DIR",
-      "distrib": "936"
+      "lon": -62.2719133044145
     },
     {
       "id": "MC-12",
@@ -134,9 +110,7 @@
       "nombre": "CORDERO, ORIANNY",
       "domicilio": "RINCON 615",
       "lat": -38.7146534730703,
-      "lon": -62.2482145065167,
-      "ori": "DIR",
-      "distrib": "577"
+      "lon": -62.2482145065167
     },
     {
       "id": "MC-13",
@@ -144,9 +118,7 @@
       "nombre": "DAMIANI LUIS ALBERTO",
       "domicilio": "ROCA 402",
       "lat": -38.7193242559303,
-      "lon": -62.2761154061933,
-      "ori": "AMBB",
-      "distrib": "241"
+      "lon": -62.2761154061933
     },
     {
       "id": "MC-14",
@@ -154,9 +126,7 @@
       "nombre": "DEBLAUWE GERARDO",
       "domicilio": "SAAVEDRA 349",
       "lat": -38.7237587995934,
-      "lon": -62.2656718035048,
-      "ori": "DIR",
-      "distrib": "577"
+      "lon": -62.2656718035048
     },
     {
       "id": "MC-15",
@@ -164,9 +134,7 @@
       "nombre": "DELLA CHIARA MARIA",
       "domicilio": "SAAVEDRA 756",
       "lat": -38.7224600757101,
-      "lon": -62.3896860918819,
-      "ori": "AMBB",
-      "distrib": "595"
+      "lon": -62.3896860918819
     },
     {
       "id": "MC-16",
@@ -174,9 +142,7 @@
       "nombre": "DOTTA CLAUDIO FABIAN",
       "domicilio": "SALTA 418",
       "lat": -38.7069068697057,
-      "lon": -62.2691628767488,
-      "ori": "DIR",
-      "distrib": "1080"
+      "lon": -62.2691628767488
     },
     {
       "id": "MC-17",
@@ -184,9 +150,7 @@
       "nombre": "DUHALDE MARTIN PEDRO",
       "domicilio": "THOMPSON 229",
       "lat": -38.7254697607582,
-      "lon": -62.2704360071016,
-      "ori": "DIR",
-      "distrib": "1047"
+      "lon": -62.2704360071016
     },
     {
       "id": "MC-18",
@@ -194,9 +158,7 @@
       "nombre": "DURAN, LUCAS GONZALO",
       "domicilio": "DARREGUEIRA 64",
       "lat": -38.7228931647023,
-      "lon": -62.270811306204,
-      "ori": "DIR",
-      "distrib": "1150"
+      "lon": -62.270811306204
     },
     {
       "id": "MC-19",
@@ -204,9 +166,7 @@
       "nombre": "EBRILE GUILLERMINA",
       "domicilio": "SALTA 418",
       "lat": -38.7069068697057,
-      "lon": -62.2691628767488,
-      "ori": "AMBB",
-      "distrib": "950"
+      "lon": -62.2691628767488
     },
     {
       "id": "MC-20",
@@ -214,9 +174,7 @@
       "nombre": "FERNANDEZ KELLER PABLO ALEJANDRO",
       "domicilio": "TERRADA 584",
       "lat": -38.7185917377542,
-      "lon": -62.2793491049992,
-      "ori": "AMBB",
-      "distrib": "761"
+      "lon": -62.2793491049992
     },
     {
       "id": "MC-21",
@@ -224,9 +182,7 @@
       "nombre": "FERNANDEZ, DONIEL",
       "domicilio": "PAUNERO 546",
       "lat": -38.7355354584378,
-      "lon": -62.2764062644986,
-      "ori": "DIR",
-      "distrib": "1006"
+      "lon": -62.2764062644986
     },
     {
       "id": "MC-22",
@@ -234,9 +190,7 @@
       "nombre": "FRASER, ADRIANA NATALIA",
       "domicilio": "NEWTON 2311",
       "lat": -38.731934309367,
-      "lon": -62.2333290786257,
-      "ori": "DIR",
-      "distrib": "1287"
+      "lon": -62.2333290786257
     },
     {
       "id": "MC-23",
@@ -244,9 +198,7 @@
       "nombre": "GERES JORGE",
       "domicilio": "SALTA 418",
       "lat": -38.7069068697057,
-      "lon": -62.2691628767488,
-      "ori": "AMBB",
-      "distrib": "1298"
+      "lon": -62.2691628767488
     },
     {
       "id": "MC-24",
@@ -254,9 +206,7 @@
       "nombre": "GERTISER, CARLA YANET",
       "domicilio": "AV. ALEM 1585",
       "lat": -38.6976827022371,
-      "lon": -62.2730004484907,
-      "ori": "DIR",
-      "distrib": "813"
+      "lon": -62.2730004484907
     },
     {
       "id": "MC-25",
@@ -264,9 +214,7 @@
       "nombre": "GIL, RICARDO JAVIER",
       "domicilio": "CARONTI 72",
       "lat": -38.7127175396769,
-      "lon": -62.2708013062149,
-      "ori": "DIR",
-      "distrib": "1282"
+      "lon": -62.2708013062149
     },
     {
       "id": "MC-26",
@@ -274,9 +222,7 @@
       "nombre": "GOMEZ VIVIANA",
       "domicilio": "9 DE JULIO 525",
       "lat": -38.7205347471158,
-      "lon": -62.2807554359612,
-      "ori": "AMBB",
-      "distrib": "632"
+      "lon": -62.2807554359612
     },
     {
       "id": "MC-27",
@@ -284,9 +230,7 @@
       "nombre": "GOROSITO, ANTONELLA",
       "domicilio": "VILARINO 249",
       "lat": -38.7249087074397,
-      "lon": -62.2645486561083,
-      "ori": "DIR",
-      "distrib": "751"
+      "lon": -62.2645486561083
     },
     {
       "id": "MC-28",
@@ -294,9 +238,7 @@
       "nombre": "GUILLARMENC, EVELYN",
       "domicilio": "TUCUMAN 295",
       "lat": -38.721787133102,
-      "lon": -62.2767079860115,
-      "ori": "DIR",
-      "distrib": "870"
+      "lon": -62.2767079860115
     },
     {
       "id": "MC-29",
@@ -304,9 +246,7 @@
       "nombre": "IBAN ANGEL",
       "domicilio": "JUAN MOLINA 1039",
       "lat": -38.7209695303521,
-      "lon": -62.2875083770511,
-      "ori": "AMBB",
-      "distrib": "1138"
+      "lon": -62.2875083770511
     },
     {
       "id": "MC-30",
@@ -314,9 +254,7 @@
       "nombre": "IPANAQUE MONTEZA JOSE",
       "domicilio": "VILLARINO 171",
       "lat": -38.7243591068312,
-      "lon": -62.2636248747515,
-      "ori": "AMBB",
-      "distrib": "296"
+      "lon": -62.2636248747515
     },
     {
       "id": "MC-31",
@@ -324,9 +262,7 @@
       "nombre": "IPANAQUE RIVERA, NOELIA ELIZABETH",
       "domicilio": "VILLARINO 171",
       "lat": -38.7243256277659,
-      "lon": -62.2637107067934,
-      "ori": "DIR",
-      "distrib": "629"
+      "lon": -62.2637107067934
     },
     {
       "id": "MC-32",
@@ -334,9 +270,7 @@
       "nombre": "LIN, SHANG CHUN",
       "domicilio": "PARAGUAY 284",
       "lat": -38.709179032386,
-      "lon": -62.2703687793141,
-      "ori": "DIR",
-      "distrib": "534"
+      "lon": -62.2703687793141
     },
     {
       "id": "MC-33",
@@ -344,9 +278,7 @@
       "nombre": "LINDER RUBEN",
       "domicilio": "NEWTON 2311",
       "lat": -38.731934309367,
-      "lon": -62.2333290786257,
-      "ori": "DIR",
-      "distrib": "696"
+      "lon": -62.2333290786257
     },
     {
       "id": "MC-34",
@@ -354,9 +286,7 @@
       "nombre": "LOPES RODOLFO",
       "domicilio": "CERRITO 44",
       "lat": -38.7082278735776,
-      "lon": -62.2551243921728,
-      "ori": "DIR",
-      "distrib": "816"
+      "lon": -62.2551243921728
     },
     {
       "id": "MC-35",
@@ -364,9 +294,7 @@
       "nombre": "LOPEZ LUCIANO",
       "domicilio": "SALTA 418",
       "lat": -38.7069068697057,
-      "lon": -62.2691628767488,
-      "ori": "AMBB",
-      "distrib": "1180"
+      "lon": -62.2691628767488
     },
     {
       "id": "MC-36",
@@ -374,9 +302,7 @@
       "nombre": "MAROUN CARLOS MARIA",
       "domicilio": "ROCA 402",
       "lat": -38.7193409983101,
-      "lon": -62.2761475921741,
-      "ori": "AMBB",
-      "distrib": "279"
+      "lon": -62.2761475921741
     },
     {
       "id": "MC-37",
@@ -384,9 +310,7 @@
       "nombre": "MARTEARENA GUSTAVO CESAR",
       "domicilio": "SOCRATES 2543",
       "lat": -38.7346016696379,
-      "lon": -62.231729205007,
-      "ori": "AMBB",
-      "distrib": "801"
+      "lon": -62.231729205007
     },
     {
       "id": "MC-38",
@@ -394,9 +318,7 @@
       "nombre": "MARTINEZ JORGE ANDRES",
       "domicilio": "ALBERDI 1420",
       "lat": -38.7270789754713,
-      "lon": -62.2470469639107,
-      "ori": "AMBB",
-      "distrib": "225"
+      "lon": -62.2470469639107
     },
     {
       "id": "MC-39",
@@ -404,9 +326,7 @@
       "nombre": "MAS, PAMELA ERICA",
       "domicilio": "TERRADA 584",
       "lat": -38.7185666242506,
-      "lon": -62.2793169193525,
-      "ori": "DIR",
-      "distrib": "604"
+      "lon": -62.2793169193525
     },
     {
       "id": "MC-40",
@@ -414,9 +334,7 @@
       "nombre": "MIOTTO CAROLINA",
       "domicilio": "SAN MARTIN 730",
       "lat": -38.723172847107,
-      "lon": -62.2564826338736,
-      "ori": "AMBB",
-      "distrib": "320"
+      "lon": -62.2564826338736
     },
     {
       "id": "MC-41",
@@ -424,9 +342,7 @@
       "nombre": "MORGENSTERN, ESTEFANIA GALA",
       "domicilio": "NEWTON 2311",
       "lat": -38.731934309367,
-      "lon": -62.2333290786257,
-      "ori": "DIR",
-      "distrib": "1103"
+      "lon": -62.2333290786257
     },
     {
       "id": "MC-42",
@@ -434,9 +350,7 @@
       "nombre": "NUÑEZ, BRENDA MABEL",
       "domicilio": "MARTIN GIL 295",
       "lat": -38.7173659932022,
-      "lon": -62.3121526056036,
-      "ori": "DIR",
-      "distrib": "687"
+      "lon": -62.3121526056036
     },
     {
       "id": "MC-43",
@@ -444,9 +358,7 @@
       "nombre": "PANIZONI, ROMINA ANTONELA",
       "domicilio": "D’ORBIGNY 2578",
       "lat": -38.7288780803656,
-      "lon": -62.2233209216205,
-      "ori": "DIR",
-      "distrib": "678"
+      "lon": -62.2233209216205
     },
     {
       "id": "MC-44",
@@ -454,9 +366,7 @@
       "nombre": "PARRONDO, MARTA",
       "domicilio": "D’ORBIGNY 2578",
       "lat": -38.7288780803656,
-      "lon": -62.2233209216205,
-      "ori": "DIR",
-      "distrib": "641"
+      "lon": -62.2233209216205
     },
     {
       "id": "MC-45",
@@ -464,9 +374,7 @@
       "nombre": "PARROTTA GLADYS",
       "domicilio": "SARMIENTO 758",
       "lat": -38.7097869039359,
-      "lon": -62.2583919481974,
-      "ori": "DIR",
-      "distrib": "1110"
+      "lon": -62.2583919481974
     },
     {
       "id": "MC-46",
@@ -474,9 +382,7 @@
       "nombre": "PFEIFFER, CAROLINA ISABEL",
       "domicilio": "DARREGUEIRA 1365",
       "lat": -38.7342039304374,
-      "lon": -62.2563578767456,
-      "ori": "DIR",
-      "distrib": "740"
+      "lon": -62.2563578767456
     },
     {
       "id": "MC-47",
@@ -484,9 +390,7 @@
       "nombre": "PIETRACATELLA ANGEL JULIO",
       "domicilio": "MITRE 693",
       "lat": -38.7099448050117,
-      "lon": -62.270881434757,
-      "ori": "AMBB",
-      "distrib": "919"
+      "lon": -62.270881434757
     },
     {
       "id": "MC-48",
@@ -494,9 +398,7 @@
       "nombre": "POLLA SERGIO MARIO",
       "domicilio": "VIEYTES 1392",
       "lat": -38.7077837160144,
-      "lon": -62.2843895761494,
-      "ori": "AMBB",
-      "distrib": "794"
+      "lon": -62.2843895761494
     },
     {
       "id": "MC-49",
@@ -504,9 +406,7 @@
       "nombre": "RIBICHINI EDUARDO ALFREDO",
       "domicilio": "DONADO 433",
       "lat": -38.7244752090303,
-      "lon": -62.269943205597,
-      "ori": "DIR",
-      "distrib": "1010"
+      "lon": -62.269943205597
     },
     {
       "id": "MC-50",
@@ -514,9 +414,7 @@
       "nombre": "ROMERO, ESTEFANIA ALEJANDRA",
       "domicilio": "O’HIGGINS 1357",
       "lat": -38.73151714808,
-      "lon": -62.281086922199,
-      "ori": "DIR",
-      "distrib": "968"
+      "lon": -62.281086922199
     },
     {
       "id": "MC-51",
@@ -524,9 +422,7 @@
       "nombre": "RUGGERO, SANDRA LETICIA",
       "domicilio": "AV. ALEM 1585",
       "lat": -38.6976827022371,
-      "lon": -62.2730004484907,
-      "ori": "DIR",
-      "distrib": "344"
+      "lon": -62.2730004484907
     },
     {
       "id": "MC-52",
@@ -534,9 +430,7 @@
       "nombre": "SAEZ MARIANO JAVIER",
       "domicilio": "UNDIANO 594",
       "lat": -38.7293325203083,
-      "lon": -62.2670730633165,
-      "ori": "AMBB",
-      "distrib": "580"
+      "lon": -62.2670730633165
     },
     {
       "id": "MC-53",
@@ -544,9 +438,7 @@
       "nombre": "SALAS MANUELA",
       "domicilio": "JORGE MOORE 600",
       "lat": -38.7391008425188,
-      "lon": -62.2783169210278,
-      "ori": "DIR",
-      "distrib": "359"
+      "lon": -62.2783169210278
     },
     {
       "id": "MC-54",
@@ -554,9 +446,7 @@
       "nombre": "SANCHEZ, ERIKSON",
       "domicilio": "DARREGUEIRA 1386",
       "lat": -38.7342140613934,
-      "lon": -62.2559073770449,
-      "ori": "DIR",
-      "distrib": "1079"
+      "lon": -62.2559073770449
     },
     {
       "id": "MC-55",
@@ -564,9 +454,7 @@
       "nombre": "SERRANO, ALBERTO HORACIO",
       "domicilio": "BRASIL 357",
       "lat": -38.7097273771589,
-      "lon": -62.2874684210206,
-      "ori": "DIR",
-      "distrib": "695"
+      "lon": -62.2874684210206
     },
     {
       "id": "MC-56",
@@ -574,9 +462,7 @@
       "nombre": "SOLA CARLOS ALBERTO",
       "domicilio": "UNDIANO 594",
       "lat": -38.7293325203083,
-      "lon": -62.2670730633165,
-      "ori": "AMBB",
-      "distrib": "431"
+      "lon": -62.2670730633165
     },
     {
       "id": "MC-57",
@@ -584,9 +470,7 @@
       "nombre": "TEDESCO SAVERIO",
       "domicilio": "KNOUT 3814",
       "lat": -38.7812873086491,
-      "lon": -62.2689883350771,
-      "ori": "AMBB",
-      "distrib": "651"
+      "lon": -62.2689883350771
     },
     {
       "id": "MC-58",
@@ -594,9 +478,7 @@
       "nombre": "TORQUATTI ANTONIO",
       "domicilio": "ALVARADO 148",
       "lat": -38.713811599516,
-      "lon": -62.2641569377361,
-      "ori": "AMBB",
-      "distrib": "651"
+      "lon": -62.2641569377361
     },
     {
       "id": "MC-59",
@@ -604,9 +486,7 @@
       "nombre": "VANZINI, DAMIAN",
       "domicilio": "PAUNERO 546",
       "lat": -38.7355521956085,
-      "lon": -62.2763740773506,
-      "ori": "DIR",
-      "distrib": "1340"
+      "lon": -62.2763740773506
     },
     {
       "id": "MC-60",
@@ -614,9 +494,7 @@
       "nombre": "VENAFRI RAUL OSCAR",
       "domicilio": "TERRADA 156",
       "lat": -38.7222019454055,
-      "lon": -62.2745655627214,
-      "ori": "AMBB",
-      "distrib": "345"
+      "lon": -62.2745655627214
     },
     {
       "id": "MC-61",
@@ -624,9 +502,7 @@
       "nombre": "ZANI, MARCO",
       "domicilio": "ROCA 95",
       "lat": -38.7161653615037,
-      "lon": -62.272615276449,
-      "ori": "DIR",
-      "distrib": "1350"
+      "lon": -62.272615276449
     },
     {
       "id": "US-01",
@@ -6937,246 +6813,6 @@
           -62.308614
         ]
       ]
-    },
-    {
-      "id": "CJ-01",
-      "tipo": "CJ",
-      "nombre": "CONO SUR",
-      "domicilio": "Caronti 72",
-      "lat": -38.712646224558014,
-      "lon": -62.2709809023618
-    },
-    {
-      "id": "CJ-02",
-      "tipo": "CJ",
-      "nombre": "EL PORVENIR",
-      "domicilio": "José Ingenieros 2245",
-      "lat": -38.685084025180004,
-      "lon": -62.27219898886956
-    },
-    {
-      "id": "CJ-03",
-      "tipo": "CJ",
-      "nombre": "EL REENCUENTRO",
-      "domicilio": "Juncal 1080",
-      "lat": -38.7519553245983,
-      "lon": -62.24843974694011
-    },
-    {
-      "id": "CJ-04",
-      "tipo": "CJ",
-      "nombre": "PEDRO PICO",
-      "domicilio": "Darregueira 1365",
-      "lat": -38.73420395896644,
-      "lon": -62.25636860236103
-    },
-    {
-      "id": "CJ-05",
-      "tipo": "CJ",
-      "nombre": "VISTA ALEGRE",
-      "domicilio": "Martín Gil 2195",
-      "lat": -38.717366021493056,
-      "lon": -62.31215260236155
-    },
-    {
-      "id": "CJ-06",
-      "tipo": "CJ",
-      "nombre": "ALEGRIA DE VIVIR",
-      "domicilio": "E. González 50",
-      "lat": -38.69851171323393,
-      "lon": -62.29103900236233
-    },
-    {
-      "id": "CJ-07",
-      "tipo": "CJ",
-      "nombre": "SAN MARTIN",
-      "domicilio": "Paunero 546",
-      "lat": -38.73557733094823,
-      "lon": -62.27637407352523
-    },
-    {
-      "id": "CJ-08",
-      "tipo": "CJ",
-      "nombre": "LA FALDA",
-      "domicilio": "Yrigoyen 1417",
-      "lat": -38.7058297682357,
-      "lon": -62.25100660236188
-    },
-    {
-      "id": "CJ-09",
-      "tipo": "CJ",
-      "nombre": "RAMON ESTOMBA",
-      "domicilio": "F. Gonzalez 362",
-      "lat": -38.69916368825053,
-      "lon": -62.301573817704806
-    },
-    {
-      "id": "CJ-10",
-      "tipo": "CJ",
-      "nombre": "ADULTOS MAYORES DIPLOMADOS",
-      "domicilio": "Av Colon 446",
-      "lat": -38.72297023396382,
-      "lon": -62.27201807352568
-    },
-    {
-      "id": "CJ-11",
-      "tipo": "CJ",
-      "nombre": "LOS TOROS",
-      "domicilio": "D'Orbigny 2578",
-      "lat": -38.72889484714938,
-      "lon": -62.223310188868176
-    },
-    {
-      "id": "CJ-12",
-      "tipo": "CJ",
-      "nombre": "ÑANDE - ROGA",
-      "domicilio": "Enrique Julio 115",
-      "lat": -38.70171014088308,
-      "lon": -62.292459815854976
-    },
-    {
-      "id": "CJ-13",
-      "tipo": "CJ",
-      "nombre": "ABUELOS CORAJUDOS",
-      "domicilio": "Santa Cruz 760",
-      "lat": -38.72982724922436,
-      "lon": -62.29733217352555
-    },
-    {
-      "id": "CJ-14",
-      "tipo": "CJ",
-      "nombre": "ABUELOS DEL NOROESTE",
-      "domicilio": "Chancay 1962",
-      "lat": -38.727743004903466,
-      "lon": -62.29892076003256
-    },
-    {
-      "id": "CJ-15",
-      "tipo": "CJ",
-      "nombre": "CABILDO",
-      "domicilio": "La Plata 73",
-      "lat": -38.48376790799446,
-      "lon": -61.89447964469748
-    },
-    {
-      "id": "CJ-16",
-      "tipo": "CJ",
-      "nombre": "VILLA ROSAS",
-      "domicilio": "Nueva Provincia 2329",
-      "lat": -38.7542196033161,
-      "lon": -62.26068130236039
-    },
-    {
-      "id": "CJ-17",
-      "tipo": "CJ",
-      "nombre": "LA AMISTAD BAHIENSE",
-      "domicilio": "Catriel 640",
-      "lat": -38.71671730665353,
-      "lon": -62.25055247352594
-    },
-    {
-      "id": "CJ-18",
-      "tipo": "CJ",
-      "nombre": "CORONEL MALDONADO",
-      "domicilio": "Coulin 2203",
-      "lat": -38.716734533486644,
-      "lon": -62.317672173525864
-    },
-    {
-      "id": "CJ-19",
-      "tipo": "CJ",
-      "nombre": "ASOCIACION JUBILADOS BAHIENSES",
-      "domicilio": "Neuquén 563",
-      "lat": -38.735071953952946,
-      "lon": -62.25906508886794
-    },
-    {
-      "id": "CJ-20",
-      "tipo": "CJ",
-      "nombre": "INGENIERO WHITE",
-      "domicilio": "Plunket 3809",
-      "lat": -38.78110656342198,
-      "lon": -62.26879178886657
-    },
-    {
-      "id": "CJ-21",
-      "tipo": "CJ",
-      "nombre": "RENACER BARRIO COLON",
-      "domicilio": "O Higgins 1637",
-      "lat": -38.73407912778874,
-      "lon": -62.28406298886803
-    },
-    {
-      "id": "CJ-22",
-      "tipo": "CJ",
-      "nombre": "FERRO ALMA",
-      "domicilio": "Juan Molina 1039",
-      "lat": -38.72096118822201,
-      "lon": -62.28751910236149
-    },
-    {
-      "id": "CJ-23",
-      "tipo": "CJ",
-      "nombre": "RESIDENTES PAMPEANOS",
-      "domicilio": "Saavedra 448",
-      "lat": -38.72413093654703,
-      "lon": -62.26416387352574
-    },
-    {
-      "id": "CJ-24",
-      "tipo": "CJ",
-      "nombre": "JUBIVI",
-      "domicilio": "J. Moore 600 C21",
-      "lat": -38.738913189740586,
-      "lon": -62.27872038886802
-    },
-    {
-      "id": "CJ-25",
-      "tipo": "CJ",
-      "nombre": "LUIS PIEDRA BUENA",
-      "domicilio": "J. Azurduy 1105",
-      "lat": -38.748516658238884,
-      "lon": -62.27795760236072
-    },
-    {
-      "id": "CJ-26",
-      "tipo": "CJ",
-      "nombre": "NAPOSTA",
-      "domicilio": "San Salvador 266",
-      "lat": -38.707770511426865,
-      "lon": -62.258965346540215
-    },
-    {
-      "id": "CJ-27",
-      "tipo": "CJ",
-      "nombre": "VILLA RESSIA",
-      "domicilio": "Misiones 1267",
-      "lat": -38.73955359169165,
-      "lon": -62.26913381770346
-    },
-    {
-      "id": "CJ-28",
-      "tipo": "CJ",
-      "nombre": "VILLA MITRE",
-      "domicilio": "14 de Julio 443",
-      "lat": -38.72677483256919,
-      "lon": -62.24678446003234
-    },
-    {
-      "id": "CJ-29",
-      "tipo": "CJ",
-      "nombre": "1º DE MARZO / 28 DE AGOSTO",
-      "domicilio": "Humboldt 3758",
-      "lat": -38.73940256511559,
-      "lon": -62.212572317703525
-    },
-    {
-      "id": "CJ-30",
-      "tipo": "CJ",
-      "nombre": "ABRAZO DE MAIPU",
-      "domicilio": "Catamarca 1170",
-      "lat": -38.722587974007055,
-      "lon": -62.29802594469007
     }
   ]
 }
