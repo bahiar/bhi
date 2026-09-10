@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Mapa Bahía Blanca</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+  :root {
+    --primary: #F4FF2B;
+    --secondary: #0F191E;
+    --surface: #E2F1F2;
+    --mc: #1E88E5;
+    --us: #E53935;
+    --sf: #43A047;
+    --danger: #E53935;
+    --ok: #43A047;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--surface); color: var(--secondary); }
+
+  header {
+    background: var(--secondary);
+    color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 3px solid var(--primary);
+  }
+  header h1 { font-size: 16px; margin: 0; }
+  header .status { font-size: 12px; opacity: .8; }
+
+  #config {
+    background: #fff;
+    padding: 14px 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: end;
+    border-bottom: 1px solid #cfdde0;
+  }
+  #config label { display: flex; flex-direction: column; font-size: 11px; font-weight: 700; color: #667; gap: 4px; }
+  #config input { padding: 7px 10px; border: 1.5px solid #d7e0e1; border-radius: 6px; font-size: 13px; min-width: 140px; }
+  #config input#token { min-width: 260px; }
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity .15s;
+  }
+  button:hover { opacity: .85; }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+  .btn-primary { background: var(--secondary); color: #fff; }
+  .btn-accent { background: var(--primary); color: var(--secondary); }
+  .btn-danger { background: var(--danger); color: #fff; }
+  .btn-ghost { background: #eef3f3; color: var(--secondary); }
+
+  #layout { display: flex; height: calc(100% - 130px); }
+  #listPane { width: 42%; min-width: 340px; display: flex; flex-direction: column; border-right: 1px solid #cfdde0; background: #fff; }
+  #formPane { flex: 1; overflow-y: auto; padding: 20px; }
+
+  #toolbar { padding: 10px 14px; display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid #eef1f1; }
+  #toolbar input[type="text"] { flex: 1; min-width: 140px; padding: 7px 10px; border: 1.5px solid #d7e0e1; border-radius: 20px; font-size: 13px; }
+  .filter-chip { padding: 5px 10px; border-radius: 14px; border: 1.5px solid #d7e0e1; font-size: 12px; font-weight: 700; cursor: pointer; background: #fff; }
+  .filter-chip.active[data-tipo="MC"] { background: var(--mc); color: #fff; border-color: var(--mc); }
+  .filter-chip.active[data-tipo="US"] { background: var(--us); color: #fff; border-color: var(--us); }
+  .filter-chip.active[data-tipo="SF"] { background: var(--sf); color: #fff; border-color: var(--sf); }
+
+  #list { flex: 1; overflow-y: auto; }
+  .row {
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f3f3;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .row:hover { background: #f6faf9; }
+  .row.selected { background: #eaf5ee; }
+  .row .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .row .info { flex: 1; min-width: 0; }
+  .row .nombre { font-weight: 700; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row .dom { font-size: 11px; color: #778; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row .id-tag { font-size: 10px; color: #99a; font-family: monospace; }
+  .row.dirty .nombre::after { content: " ●"; color: #E5A800; }
+  .row.deleted { opacity: .4; text-decoration: line-through; }
+
+  #formPane h2 { font-size: 15px; margin: 0 0 14px; }
+  .field { margin-bottom: 12px; }
+  .field label { display: block; font-size: 11px; font-weight: 700; color: #667; margin-bottom: 4px; }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1.5px solid #d7e0e1;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+  }
+  .field textarea { min-height: 70px; font-family: monospace; font-size: 12px; }
+  .row2 { display: flex; gap: 10px; }
+  .row2 .field { flex: 1; }
+
+  #pickMap { height: 260px; border-radius: 8px; overflow: hidden; margin-bottom: 12px; border: 1.5px solid #d7e0e1; }
+  #formActions { display: flex; gap: 8px; margin-top: 16px; }
+
+  #empty { padding: 40px 20px; text-align: center; color: #99a; font-size: 13px; }
+
+  #saveBar {
+    padding: 12px 20px;
+    background: #fff;
+    border-top: 1px solid #cfdde0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  #saveBar .count { font-size: 12px; color: #667; }
+  #toast {
+    position: fixed; bottom: 20px; right: 20px; padding: 12px 18px; border-radius: 8px;
+    background: var(--secondary); color: #fff; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    display: none; z-index: 9999; max-width: 360px;
+  }
+  #toast.ok { background: var(--ok); }
+  #toast.error { background: var(--danger); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚙️ Administración · Mapa Bahía Blanca</h1>
+  <div class="status" id="status">Sin conectar</div>
+</header>
+
+<div id="config">
+  <label>Usuario/Org<input id="owner" value="bahiar" /></label>
+  <label>Repositorio<input id="repo" value="pami" /></label>
+  <label>Archivo<input id="path" value="ubicaciones.json" /></label>
+  <label>Rama<input id="branch" value="main" /></label>
+  <label>Token (fine-grained)<input id="token" type="password" placeholder="github_pat_..." /></label>
+  <button class="btn-primary" id="btnConnect">Conectar y cargar</button>
+</div>
+
+<div id="layout">
+  <div id="listPane">
+    <div id="toolbar">
+      <input type="text" id="search" placeholder="Buscar por nombre o dirección…" />
+      <span class="filter-chip active" data-tipo="MC">MC</span>
+      <span class="filter-chip active" data-tipo="US">US</span>
+      <span class="filter-chip active" data-tipo="SF">SF</span>
+    </div>
+    <div id="list"><div id="empty">Conectate arriba para cargar los datos del repo.</div></div>
+  </div>
+  <div id="formPane">
+    <div id="empty2" style="color:#99a; padding-top: 40px; text-align:center;">
+      Elegí una ubicación de la lista para editarla, o creá una nueva.
+    </div>
+  </div>
+</div>
+
+<div id="saveBar">
+  <div class="count" id="countInfo">0 cambios pendientes</div>
+  <div style="display:flex; gap:8px;">
+    <button class="btn-accent" id="btnNew">+ Nueva ubicación</button>
+    <button class="btn-primary" id="btnSave" disabled>Guardar cambios en GitHub</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const els = {
+  owner: document.getElementById('owner'),
+  repo: document.getElementById('repo'),
+  path: document.getElementById('path'),
+  branch: document.getElementById('branch'),
+  token: document.getElementById('token'),
+  status: document.getElementById('status'),
+  list: document.getElementById('list'),
+  formPane: document.getElementById('formPane'),
+  search: document.getElementById('search'),
+  countInfo: document.getElementById('countInfo'),
+  btnSave: document.getElementById('btnSave'),
+  toast: document.getElementById('toast'),
+};
+
+const COLORS = { MC: '#1E88E5', US: '#E53935', SF: '#43A047' };
+const LABELS = { MC: 'Médico de Cabecera', US: 'Sala Médica (Unidad Sanitaria)', SF: 'Sociedad de Fomento' };
+
+let state = {
+  sha: null,
+  metadata: null,
+  items: [],          // copia editable en memoria
+  dirtyIds: new Set(),
+  deletedIds: new Set(),
+  activeTipos: new Set(['MC', 'US', 'SF']),
+  selectedId: null,
+  pickMap: null,
+  pickMarker: null,
+};
+
+// Restaurar config guardada (menos el token, que se guarda aparte y con warning)
+['owner', 'repo', 'path', 'branch'].forEach(k => {
+  const saved = localStorage.getItem('admin_' + k);
+  if (saved) els[k].value = saved;
+});
+const savedToken = localStorage.getItem('admin_token');
+if (savedToken) els.token.value = savedToken;
+
+function toast(msg, type = '') {
+  els.toast.textContent = msg;
+  els.toast.className = type;
+  els.toast.style.display = 'block';
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => els.toast.style.display = 'none', 4000);
+}
+
+function utf8ToBase64(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+function base64ToUtf8(str) {
+  return decodeURIComponent(escape(atob(str)));
+}
+
+function apiHeaders() {
+  return {
+    'Authorization': 'Bearer ' + els.token.value.trim(),
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+}
+
+function apiUrl() {
+  return `https://api.github.com/repos/${els.owner.value.trim()}/${els.repo.value.trim()}/contents/${els.path.value.trim()}`;
+}
+
+async function loadFromGitHub() {
+  ['owner', 'repo', 'path', 'branch'].forEach(k => localStorage.setItem('admin_' + k, els[k].value.trim()));
+  localStorage.setItem('admin_token', els.token.value.trim());
+
+  if (!els.token.value.trim()) { toast('Falta el token', 'error'); return; }
+
+  els.status.textContent = 'Cargando…';
+  try {
+    const res = await fetch(apiUrl() + `?ref=${els.branch.value.trim()}`, { headers: apiHeaders() });
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(`${res.status} ${res.statusText} — ${body.message || ''}`);
+    }
+    const json = await res.json();
+    state.sha = json.sha;
+    const content = base64ToUtf8(json.content);
+    const data = JSON.parse(content);
+    state.metadata = data.metadata;
+    state.items = data.ubicaciones;
+    state.dirtyIds.clear();
+    state.deletedIds.clear();
+    els.status.textContent = `Conectado · ${state.items.length} ubicaciones cargadas`;
+    renderList();
+    updateSaveBar();
+    toast('Datos cargados correctamente', 'ok');
+  } catch (err) {
+    els.status.textContent = 'Error al conectar';
+    toast('Error: ' + err.message, 'error');
+    console.error(err);
+  }
+}
+
+function filteredItems() {
+  const q = els.search.value.trim().toLowerCase();
+  return state.items.filter(it => {
+    if (state.deletedIds.has(it.id) && it.id !== state.selectedId) {
+      // seguimos mostrando pero marcado como eliminado, se filtra por tipo igual
+    }
+    if (!state.activeTipos.has(it.tipo)) return false;
+    if (!q) return true;
+    return it.nombre.toLowerCase().includes(q) || (it.domicilio || '').toLowerCase().includes(q) || it.id.toLowerCase().includes(q);
+  });
+}
+
+function renderList() {
+  const items = filteredItems();
+  if (items.length === 0) {
+    els.list.innerHTML = '<div id="empty">No hay resultados.</div>';
+    return;
+  }
+  els.list.innerHTML = '';
+  items.forEach(it => {
+    const div = document.createElement('div');
+    div.className = 'row';
+    if (it.id === state.selectedId) div.classList.add('selected');
+    if (state.dirtyIds.has(it.id)) div.classList.add('dirty');
+    if (state.deletedIds.has(it.id)) div.classList.add('deleted');
+    div.innerHTML = `
+      <span class="dot" style="background:${COLORS[it.tipo]}"></span>
+      <div class="info">
+        <div class="nombre">${it.nombre || '(sin nombre)'}</div>
+        <div class="dom">${it.domicilio || ''}</div>
+      </div>
+      <span class="id-tag">${it.id}</span>
+    `;
+    div.addEventListener('click', () => selectItem(it.id));
+    els.list.appendChild(div);
+  });
+}
+
+function nextIdFor(tipo) {
+  const nums = state.items
+    .filter(i => i.tipo === tipo)
+    .map(i => parseInt((i.id.split('-')[1] || '0'), 10))
+    .filter(n => !isNaN(n));
+  const next = (nums.length ? Math.max(...nums) : 0) + 1;
+  return `${tipo}-${String(next).padStart(2, '0')}`;
+}
+
+function selectItem(id) {
+  state.selectedId = id;
+  renderList();
+  const item = state.items.find(i => i.id === id);
+  renderForm(item);
+}
+
+function renderForm(item, isNew = false) {
+  const tipo = item ? item.tipo : 'MC';
+  const isDeleted = item && state.deletedIds.has(item.id);
+
+  els.formPane.innerHTML = `
+    <h2>${isNew ? 'Nueva ubicación' : 'Editar ubicación'} ${isDeleted ? '<span style="color:#E53935;font-size:12px;">(marcada para eliminar)</span>' : ''}</h2>
+    <div class="row2">
+      <div class="field">
+        <label>Tipo</label>
+        <select id="f_tipo">
+          <option value="MC" ${tipo==='MC'?'selected':''}>MC — Médico de Cabecera</option>
+          <option value="US" ${tipo==='US'?'selected':''}>US — Sala Médica</option>
+          <option value="SF" ${tipo==='SF'?'selected':''}>SF — Sociedad de Fomento</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>ID</label>
+        <input id="f_id" value="${item ? item.id : nextIdFor('MC')}" ${isNew ? '' : 'readonly style="background:#f2f5f5;"'} />
+      </div>
+    </div>
+    <div class="field">
+      <label>Nombre</label>
+      <input id="f_nombre" value="${item ? (item.nombre || '').replace(/"/g,'&quot;') : ''}" placeholder="Apellido, Nombre" />
+    </div>
+    <div class="field">
+      <label>Domicilio</label>
+      <input id="f_domicilio" value="${item ? (item.domicilio || '').replace(/"/g,'&quot;') : ''}" placeholder="Calle 1234" />
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Latitud</label>
+        <input id="f_lat" value="${item && item.lat != null ? item.lat : ''}" placeholder="-38.7196" />
+      </div>
+      <div class="field">
+        <label>Longitud</label>
+        <input id="f_lon" value="${item && item.lon != null ? item.lon : ''}" placeholder="-62.2724" />
+      </div>
+    </div>
+    <div class="field">
+      <label>Mapa — hacé click para fijar lat/lon (solo para puntos, no polígonos)</label>
+      <div id="pickMap"></div>
+    </div>
+    <div class="field">
+      <label>Polígono (solo Sociedades de Fomento) — formato: lat,lon;lat,lon;…</label>
+      <textarea id="f_poligono" placeholder="-38.734,-62.211;-38.738,-62.207;...">${item && item.poligono ? item.poligono.map(p => p.join(',')).join(';') : ''}</textarea>
+    </div>
+    <div id="formActions">
+      <button class="btn-accent" id="f_save">${isNew ? 'Agregar a la lista' : 'Guardar cambios'}</button>
+      ${!isNew && !isDeleted ? '<button class="btn-danger" id="f_delete">Eliminar</button>' : ''}
+      ${!isNew && isDeleted ? '<button class="btn-ghost" id="f_restore">Restaurar</button>' : ''}
+      ${!isNew ? '<button class="btn-ghost" id="f_cancel">Cerrar</button>' : ''}
+    </div>
+  `;
+
+  // Mini mapa selector
+  const startLat = (item && item.lat) || -38.7196;
+  const startLon = (item && item.lon) || -62.2724;
+  const pm = L.map('pickMap').setView([startLat, startLon], item ? 15 : 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OSM' }).addTo(pm);
+  let marker = (item && item.lat && item.lon) ? L.marker([item.lat, item.lon]).addTo(pm) : null;
+  pm.on('click', (e) => {
+    document.getElementById('f_lat').value = e.latlng.lat.toFixed(6);
+    document.getElementById('f_lon').value = e.latlng.lng.toFixed(6);
+    if (marker) pm.removeLayer(marker);
+    marker = L.marker(e.latlng).addTo(pm);
+  });
+  setTimeout(() => pm.invalidateSize(), 50);
+
+  document.getElementById('f_tipo').addEventListener('change', (e) => {
+    if (isNew) document.getElementById('f_id').value = nextIdFor(e.target.value);
+  });
+
+  document.getElementById('f_save').addEventListener('click', () => saveForm(item, isNew));
+  const del = document.getElementById('f_delete');
+  if (del) del.addEventListener('click', () => deleteItem(item.id));
+  const res = document.getElementById('f_restore');
+  if (res) res.addEventListener('click', () => restoreItem(item.id));
+  const cancel = document.getElementById('f_cancel');
+  if (cancel) cancel.addEventListener('click', () => {
+    state.selectedId = null;
+    renderList();
+    els.formPane.innerHTML = '<div id="empty2" style="color:#99a; padding-top:40px; text-align:center;">Elegí una ubicación de la lista para editarla, o creá una nueva.</div>';
+  });
+}
+
+function parsePoligono(text) {
+  text = text.trim();
+  if (!text) return undefined;
+  return text.split(';').map(p => p.trim()).filter(Boolean).map(pair => {
+    const [la, lo] = pair.split(',').map(n => parseFloat(n.trim()));
+    return [la, lo];
+  });
+}
+
+function saveForm(item, isNew) {
+  const id = document.getElementById('f_id').value.trim();
+  const tipo = document.getElementById('f_tipo').value;
+  const nombre = document.getElementById('f_nombre').value.trim();
+  const domicilio = document.getElementById('f_domicilio').value.trim();
+  const latRaw = document.getElementById('f_lat').value.trim();
+  const lonRaw = document.getElementById('f_lon').value.trim();
+  const poligonoRaw = document.getElementById('f_poligono').value;
+
+  if (!id || !nombre) { toast('Falta ID o Nombre', 'error'); return; }
+  if (!isNew && state.items.some(i => i.id === id && i !== item)) { toast('Ya existe ese ID', 'error'); return; }
+  if (isNew && state.items.some(i => i.id === id)) { toast('Ese ID ya existe, cambialo', 'error'); return; }
+
+  const poligono = parsePoligono(poligonoRaw);
+  const newData = {
+    id, tipo, nombre, domicilio,
+    lat: latRaw ? parseFloat(latRaw) : undefined,
+    lon: lonRaw ? parseFloat(lonRaw) : undefined,
+  };
+  if (poligono) newData.poligono = poligono;
+
+  if (isNew) {
+    state.items.push(newData);
+  } else {
+    const idx = state.items.findIndex(i => i.id === item.id);
+    state.items[idx] = newData;
+  }
+  state.dirtyIds.add(id);
+  state.selectedId = id;
+  renderList();
+  updateSaveBar();
+  toast(isNew ? 'Ubicación agregada (pendiente de guardar en GitHub)' : 'Cambios guardados localmente (pendiente de subir)', 'ok');
+}
+
+function deleteItem(id) {
+  if (!confirm('¿Marcar esta ubicación para eliminar? Se borra recién al guardar en GitHub.')) return;
+  state.deletedIds.add(id);
+  state.dirtyIds.add(id);
+  renderList();
+  updateSaveBar();
+  selectItem(id);
+}
+
+function restoreItem(id) {
+  state.deletedIds.delete(id);
+  renderList();
+  updateSaveBar();
+  selectItem(id);
+}
+
+function updateSaveBar() {
+  const n = state.dirtyIds.size;
+  els.countInfo.textContent = `${n} cambio${n === 1 ? '' : 's'} pendiente${n === 1 ? '' : 's'}`;
+  els.btnSave.disabled = n === 0;
+}
+
+async function saveToGitHub() {
+  if (!state.sha) { toast('Primero conectate y cargá los datos', 'error'); return; }
+  const finalItems = state.items.filter(i => !state.deletedIds.has(i.id));
+
+  const payload = {
+    metadata: {
+      ...state.metadata,
+      total: finalItems.length,
+      tipos: [...new Set(finalItems.map(i => i.tipo))].sort(),
+    },
+    ubicaciones: finalItems
+  };
+
+  els.btnSave.disabled = true;
+  els.btnSave.textContent = 'Guardando…';
+  try {
+    // Traer el sha más reciente por si cambió el archivo mientras editabas
+    const check = await fetch(apiUrl() + `?ref=${els.branch.value.trim()}`, { headers: apiHeaders() });
+    const checkJson = await check.json();
+    const latestSha = checkJson.sha;
+
+    const res = await fetch(apiUrl(), {
+      method: 'PUT',
+      headers: { ...apiHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: `Actualización de ubicaciones (${state.dirtyIds.size} cambios) — ${new Date().toISOString()}`,
+        content: utf8ToBase64(JSON.stringify(payload, null, 2)),
+        sha: latestSha,
+        branch: els.branch.value.trim(),
+      })
+    });
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(`${res.status} — ${body.message || res.statusText}`);
+    }
+    const result = await res.json();
+    state.sha = result.content.sha;
+    state.items = finalItems;
+    state.dirtyIds.clear();
+    state.deletedIds.clear();
+    renderList();
+    updateSaveBar();
+    toast('Cambios guardados en GitHub ✅', 'ok');
+  } catch (err) {
+    toast('Error al guardar: ' + err.message, 'error');
+    console.error(err);
+  } finally {
+    els.btnSave.disabled = state.dirtyIds.size === 0;
+    els.btnSave.textContent = 'Guardar cambios en GitHub';
+  }
+}
+
+// Eventos generales
+document.getElementById('btnConnect').addEventListener('click', loadFromGitHub);
+document.getElementById('btnSave').addEventListener('click', saveToGitHub);
+document.getElementById('btnNew').addEventListener('click', () => {
+  state.selectedId = null;
+  renderList();
+  renderForm(null, true);
+});
+els.search.addEventListener('input', renderList);
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const tipo = chip.dataset.tipo;
+    chip.classList.toggle('active');
+    if (chip.classList.contains('active')) state.activeTipos.add(tipo);
+    else state.activeTipos.delete(tipo);
+    renderList();
+  });
+});
+
+window.addEventListener('beforeunload', (e) => {
+  if (state.dirtyIds.size > 0) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+</script>
+</body>
+</html>

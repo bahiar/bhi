@@ -1,0 +1,6818 @@
+{
+  "metadata": {
+    "ciudad": "Bahía Blanca",
+    "provincia": "Buenos Aires",
+    "pais": "Argentina",
+    "total": 216,
+    "tipos": [
+      "MC",
+      "SF",
+      "US"
+    ],
+    "tipo_labels": {
+      "MC": "Médico de Cabecera",
+      "US": "Sala Médica (Unidad Sanitaria)",
+      "SF": "Sociedad de Fomento"
+    }
+  },
+  "ubicaciones": [
+    {
+      "id": "MC-01",
+      "tipo": "MC",
+      "nombre": "AGUIRRE, MARIA MERCEDES",
+      "domicilio": "NEWTON 2311",
+      "lat": -38.731934309367,
+      "lon": -62.2333290786257
+    },
+    {
+      "id": "MC-02",
+      "tipo": "MC",
+      "nombre": "ALVAREZ YANEZ, ANA JULIA",
+      "domicilio": "RINCON 615",
+      "lat": -38.7146534730703,
+      "lon": -62.2482145065167
+    },
+    {
+      "id": "MC-03",
+      "tipo": "MC",
+      "nombre": "BARBIERI LORENA",
+      "domicilio": "SIXTO LASPIUR 425",
+      "lat": -38.7230621354996,
+      "lon": -62.2817598059071
+    },
+    {
+      "id": "MC-04",
+      "tipo": "MC",
+      "nombre": "BREGANT, GUILLERMO JORGE",
+      "domicilio": "D’ORBIGNY 2578",
+      "lat": -38.7288780803656,
+      "lon": -62.2233209216205
+    },
+    {
+      "id": "MC-05",
+      "tipo": "MC",
+      "nombre": "BRESCIA SERGIO",
+      "domicilio": "TERRADA 286",
+      "lat": -38.7211979704126,
+      "lon": -62.275798474447
+    },
+    {
+      "id": "MC-06",
+      "tipo": "MC",
+      "nombre": "BUGATTI, FEDERICO",
+      "domicilio": "AV. ALEM 1555",
+      "lat": -38.6978859032133,
+      "lon": -62.2733618061983
+    },
+    {
+      "id": "MC-07",
+      "tipo": "MC",
+      "nombre": "BUSTO, HERNAN SEBASTIAN",
+      "domicilio": "SAAVEDRA 756",
+      "lat": -38.7224600757101,
+      "lon": -62.3896860918819
+    },
+    {
+      "id": "MC-08",
+      "tipo": "MC",
+      "nombre": "CAMPOS, GABRIELA VERONICA",
+      "domicilio": "DARREGUEIRA 62",
+      "lat": -38.7228706641715,
+      "lon": -62.2708212484916
+    },
+    {
+      "id": "MC-09",
+      "tipo": "MC",
+      "nombre": "CARRASCO, CRISTINA PATRICIA",
+      "domicilio": "NEWTON 2311",
+      "lat": -38.731934309367,
+      "lon": -62.2333290786257
+    },
+    {
+      "id": "MC-10",
+      "tipo": "MC",
+      "nombre": "COLMENAREZ RIOS, MARIA FERNANDA",
+      "domicilio": "CATRIEL 640",
+      "lat": -38.7167423918277,
+      "lon": -62.2505632055954
+    },
+    {
+      "id": "MC-11",
+      "tipo": "MC",
+      "nombre": "COLMENAREZ RIOS, MARIA GABRIELA",
+      "domicilio": "MISIONES 1570",
+      "lat": -38.7425749217075,
+      "lon": -62.2719133044145
+    },
+    {
+      "id": "MC-12",
+      "tipo": "MC",
+      "nombre": "CORDERO, ORIANNY",
+      "domicilio": "RINCON 615",
+      "lat": -38.7146534730703,
+      "lon": -62.2482145065167
+    },
+    {
+      "id": "MC-13",
+      "tipo": "MC",
+      "nombre": "DAMIANI LUIS ALBERTO",
+      "domicilio": "ROCA 402",
+      "lat": -38.7193242559303,
+      "lon": -62.2761154061933
+    },
+    {
+      "id": "MC-14",
+      "tipo": "MC",
+      "nombre": "DEBLAUWE GERARDO",
+      "domicilio": "SAAVEDRA 349",
+      "lat": -38.7237587995934,
+      "lon": -62.2656718035048
+    },
+    {
+      "id": "MC-15",
+      "tipo": "MC",
+      "nombre": "DELLA CHIARA MARIA",
+      "domicilio": "SAAVEDRA 756",
+      "lat": -38.7224600757101,
+      "lon": -62.3896860918819
+    },
+    {
+      "id": "MC-16",
+      "tipo": "MC",
+      "nombre": "DOTTA CLAUDIO FABIAN",
+      "domicilio": "SALTA 418",
+      "lat": -38.7069068697057,
+      "lon": -62.2691628767488
+    },
+    {
+      "id": "MC-17",
+      "tipo": "MC",
+      "nombre": "DUHALDE MARTIN PEDRO",
+      "domicilio": "THOMPSON 229",
+      "lat": -38.7254697607582,
+      "lon": -62.2704360071016
+    },
+    {
+      "id": "MC-18",
+      "tipo": "MC",
+      "nombre": "DURAN, LUCAS GONZALO",
+      "domicilio": "DARREGUEIRA 64",
+      "lat": -38.7228931647023,
+      "lon": -62.270811306204
+    },
+    {
+      "id": "MC-19",
+      "tipo": "MC",
+      "nombre": "EBRILE GUILLERMINA",
+      "domicilio": "SALTA 418",
+      "lat": -38.7069068697057,
+      "lon": -62.2691628767488
+    },
+    {
+      "id": "MC-20",
+      "tipo": "MC",
+      "nombre": "FERNANDEZ KELLER PABLO ALEJANDRO",
+      "domicilio": "TERRADA 584",
+      "lat": -38.7185917377542,
+      "lon": -62.2793491049992
+    },
+    {
+      "id": "MC-21",
+      "tipo": "MC",
+      "nombre": "FERNANDEZ, DONIEL",
+      "domicilio": "PAUNERO 546",
+      "lat": -38.7355354584378,
+      "lon": -62.2764062644986
+    },
+    {
+      "id": "MC-22",
+      "tipo": "MC",
+      "nombre": "FRASER, ADRIANA NATALIA",
+      "domicilio": "NEWTON 2311",
+      "lat": -38.731934309367,
+      "lon": -62.2333290786257
+    },
+    {
+      "id": "MC-23",
+      "tipo": "MC",
+      "nombre": "GERES JORGE",
+      "domicilio": "SALTA 418",
+      "lat": -38.7069068697057,
+      "lon": -62.2691628767488
+    },
+    {
+      "id": "MC-24",
+      "tipo": "MC",
+      "nombre": "GERTISER, CARLA YANET",
+      "domicilio": "AV. ALEM 1585",
+      "lat": -38.6976827022371,
+      "lon": -62.2730004484907
+    },
+    {
+      "id": "MC-25",
+      "tipo": "MC",
+      "nombre": "GIL, RICARDO JAVIER",
+      "domicilio": "CARONTI 72",
+      "lat": -38.7127175396769,
+      "lon": -62.2708013062149
+    },
+    {
+      "id": "MC-26",
+      "tipo": "MC",
+      "nombre": "GOMEZ VIVIANA",
+      "domicilio": "9 DE JULIO 525",
+      "lat": -38.7205347471158,
+      "lon": -62.2807554359612
+    },
+    {
+      "id": "MC-27",
+      "tipo": "MC",
+      "nombre": "GOROSITO, ANTONELLA",
+      "domicilio": "VILARINO 249",
+      "lat": -38.7249087074397,
+      "lon": -62.2645486561083
+    },
+    {
+      "id": "MC-28",
+      "tipo": "MC",
+      "nombre": "GUILLARMENC, EVELYN",
+      "domicilio": "TUCUMAN 295",
+      "lat": -38.721787133102,
+      "lon": -62.2767079860115
+    },
+    {
+      "id": "MC-29",
+      "tipo": "MC",
+      "nombre": "IBAN ANGEL",
+      "domicilio": "JUAN MOLINA 1039",
+      "lat": -38.7209695303521,
+      "lon": -62.2875083770511
+    },
+    {
+      "id": "MC-30",
+      "tipo": "MC",
+      "nombre": "IPANAQUE MONTEZA JOSE",
+      "domicilio": "VILLARINO 171",
+      "lat": -38.7243591068312,
+      "lon": -62.2636248747515
+    },
+    {
+      "id": "MC-31",
+      "tipo": "MC",
+      "nombre": "IPANAQUE RIVERA, NOELIA ELIZABETH",
+      "domicilio": "VILLARINO 171",
+      "lat": -38.7243256277659,
+      "lon": -62.2637107067934
+    },
+    {
+      "id": "MC-32",
+      "tipo": "MC",
+      "nombre": "LIN, SHANG CHUN",
+      "domicilio": "PARAGUAY 284",
+      "lat": -38.709179032386,
+      "lon": -62.2703687793141
+    },
+    {
+      "id": "MC-33",
+      "tipo": "MC",
+      "nombre": "LINDER RUBEN",
+      "domicilio": "NEWTON 2311",
+      "lat": -38.731934309367,
+      "lon": -62.2333290786257
+    },
+    {
+      "id": "MC-34",
+      "tipo": "MC",
+      "nombre": "LOPES RODOLFO",
+      "domicilio": "CERRITO 44",
+      "lat": -38.7082278735776,
+      "lon": -62.2551243921728
+    },
+    {
+      "id": "MC-35",
+      "tipo": "MC",
+      "nombre": "LOPEZ LUCIANO",
+      "domicilio": "SALTA 418",
+      "lat": -38.7069068697057,
+      "lon": -62.2691628767488
+    },
+    {
+      "id": "MC-36",
+      "tipo": "MC",
+      "nombre": "MAROUN CARLOS MARIA",
+      "domicilio": "ROCA 402",
+      "lat": -38.7193409983101,
+      "lon": -62.2761475921741
+    },
+    {
+      "id": "MC-37",
+      "tipo": "MC",
+      "nombre": "MARTEARENA GUSTAVO CESAR",
+      "domicilio": "SOCRATES 2543",
+      "lat": -38.7346016696379,
+      "lon": -62.231729205007
+    },
+    {
+      "id": "MC-38",
+      "tipo": "MC",
+      "nombre": "MARTINEZ JORGE ANDRES",
+      "domicilio": "ALBERDI 1420",
+      "lat": -38.7270789754713,
+      "lon": -62.2470469639107
+    },
+    {
+      "id": "MC-39",
+      "tipo": "MC",
+      "nombre": "MAS, PAMELA ERICA",
+      "domicilio": "TERRADA 584",
+      "lat": -38.7185666242506,
+      "lon": -62.2793169193525
+    },
+    {
+      "id": "MC-40",
+      "tipo": "MC",
+      "nombre": "MIOTTO CAROLINA",
+      "domicilio": "SAN MARTIN 730",
+      "lat": -38.723172847107,
+      "lon": -62.2564826338736
+    },
+    {
+      "id": "MC-41",
+      "tipo": "MC",
+      "nombre": "MORGENSTERN, ESTEFANIA GALA",
+      "domicilio": "NEWTON 2311",
+      "lat": -38.731934309367,
+      "lon": -62.2333290786257
+    },
+    {
+      "id": "MC-42",
+      "tipo": "MC",
+      "nombre": "NUÑEZ, BRENDA MABEL",
+      "domicilio": "MARTIN GIL 295",
+      "lat": -38.7173659932022,
+      "lon": -62.3121526056036
+    },
+    {
+      "id": "MC-43",
+      "tipo": "MC",
+      "nombre": "PANIZONI, ROMINA ANTONELA",
+      "domicilio": "D’ORBIGNY 2578",
+      "lat": -38.7288780803656,
+      "lon": -62.2233209216205
+    },
+    {
+      "id": "MC-44",
+      "tipo": "MC",
+      "nombre": "PARRONDO, MARTA",
+      "domicilio": "D’ORBIGNY 2578",
+      "lat": -38.7288780803656,
+      "lon": -62.2233209216205
+    },
+    {
+      "id": "MC-45",
+      "tipo": "MC",
+      "nombre": "PARROTTA GLADYS",
+      "domicilio": "SARMIENTO 758",
+      "lat": -38.7097869039359,
+      "lon": -62.2583919481974
+    },
+    {
+      "id": "MC-46",
+      "tipo": "MC",
+      "nombre": "PFEIFFER, CAROLINA ISABEL",
+      "domicilio": "DARREGUEIRA 1365",
+      "lat": -38.7342039304374,
+      "lon": -62.2563578767456
+    },
+    {
+      "id": "MC-47",
+      "tipo": "MC",
+      "nombre": "PIETRACATELLA ANGEL JULIO",
+      "domicilio": "MITRE 693",
+      "lat": -38.7099448050117,
+      "lon": -62.270881434757
+    },
+    {
+      "id": "MC-48",
+      "tipo": "MC",
+      "nombre": "POLLA SERGIO MARIO",
+      "domicilio": "VIEYTES 1392",
+      "lat": -38.7077837160144,
+      "lon": -62.2843895761494
+    },
+    {
+      "id": "MC-49",
+      "tipo": "MC",
+      "nombre": "RIBICHINI EDUARDO ALFREDO",
+      "domicilio": "DONADO 433",
+      "lat": -38.7244752090303,
+      "lon": -62.269943205597
+    },
+    {
+      "id": "MC-50",
+      "tipo": "MC",
+      "nombre": "ROMERO, ESTEFANIA ALEJANDRA",
+      "domicilio": "O’HIGGINS 1357",
+      "lat": -38.73151714808,
+      "lon": -62.281086922199
+    },
+    {
+      "id": "MC-51",
+      "tipo": "MC",
+      "nombre": "RUGGERO, SANDRA LETICIA",
+      "domicilio": "AV. ALEM 1585",
+      "lat": -38.6976827022371,
+      "lon": -62.2730004484907
+    },
+    {
+      "id": "MC-52",
+      "tipo": "MC",
+      "nombre": "SAEZ MARIANO JAVIER",
+      "domicilio": "UNDIANO 594",
+      "lat": -38.7293325203083,
+      "lon": -62.2670730633165
+    },
+    {
+      "id": "MC-53",
+      "tipo": "MC",
+      "nombre": "SALAS MANUELA",
+      "domicilio": "JORGE MOORE 600",
+      "lat": -38.7391008425188,
+      "lon": -62.2783169210278
+    },
+    {
+      "id": "MC-54",
+      "tipo": "MC",
+      "nombre": "SANCHEZ, ERIKSON",
+      "domicilio": "DARREGUEIRA 1386",
+      "lat": -38.7342140613934,
+      "lon": -62.2559073770449
+    },
+    {
+      "id": "MC-55",
+      "tipo": "MC",
+      "nombre": "SERRANO, ALBERTO HORACIO",
+      "domicilio": "BRASIL 357",
+      "lat": -38.7097273771589,
+      "lon": -62.2874684210206
+    },
+    {
+      "id": "MC-56",
+      "tipo": "MC",
+      "nombre": "SOLA CARLOS ALBERTO",
+      "domicilio": "UNDIANO 594",
+      "lat": -38.7293325203083,
+      "lon": -62.2670730633165
+    },
+    {
+      "id": "MC-57",
+      "tipo": "MC",
+      "nombre": "TEDESCO SAVERIO",
+      "domicilio": "KNOUT 3814",
+      "lat": -38.7812873086491,
+      "lon": -62.2689883350771
+    },
+    {
+      "id": "MC-58",
+      "tipo": "MC",
+      "nombre": "TORQUATTI ANTONIO",
+      "domicilio": "ALVARADO 148",
+      "lat": -38.713811599516,
+      "lon": -62.2641569377361
+    },
+    {
+      "id": "MC-59",
+      "tipo": "MC",
+      "nombre": "VANZINI, DAMIAN",
+      "domicilio": "PAUNERO 546",
+      "lat": -38.7355521956085,
+      "lon": -62.2763740773506
+    },
+    {
+      "id": "MC-60",
+      "tipo": "MC",
+      "nombre": "VENAFRI RAUL OSCAR",
+      "domicilio": "TERRADA 156",
+      "lat": -38.7222019454055,
+      "lon": -62.2745655627214
+    },
+    {
+      "id": "MC-61",
+      "tipo": "MC",
+      "nombre": "ZANI, MARCO",
+      "domicilio": "ROCA 95",
+      "lat": -38.7161653615037,
+      "lon": -62.272615276449
+    },
+    {
+      "id": "US-01",
+      "tipo": "US",
+      "nombre": "12 DE OCTUBRE",
+      "domicilio": "Humboldt 3758",
+      "lat": -38.739697,
+      "lon": -62.212734
+    },
+    {
+      "id": "US-02",
+      "tipo": "US",
+      "nombre": "ALDEA ROMANA",
+      "domicilio": "Los Adobes 424",
+      "lat": -38.683224,
+      "lon": -62.215015
+    },
+    {
+      "id": "US-03",
+      "tipo": "US",
+      "nombre": "ANCHORENA",
+      "domicilio": "3 de Febrero 1658",
+      "lat": -38.724552,
+      "lon": -62.237785
+    },
+    {
+      "id": "US-04",
+      "tipo": "US",
+      "nombre": "AVELLANEDA",
+      "domicilio": "Nicaragua 2953",
+      "lat": -38.690586,
+      "lon": -62.293484
+    },
+    {
+      "id": "US-05",
+      "tipo": "US",
+      "nombre": "BARRIO LATINO",
+      "domicilio": "Leopoldo Lugones 46",
+      "lat": -38.690708,
+      "lon": -62.304245
+    },
+    {
+      "id": "US-06",
+      "tipo": "US",
+      "nombre": "BARRIO OBRERO",
+      "domicilio": "Chiclana 1974",
+      "lat": -38.735622,
+      "lon": -62.244587
+    },
+    {
+      "id": "US-07",
+      "tipo": "US",
+      "nombre": "BELLA VISTA",
+      "domicilio": "Charcas 906",
+      "lat": -38.715176,
+      "lon": -62.249252
+    },
+    {
+      "id": "US-08",
+      "tipo": "US",
+      "nombre": "C.I.C. SPURR",
+      "domicilio": "Esmeralda 1450",
+      "lat": -38.755676,
+      "lon": -62.25433
+    },
+    {
+      "id": "US-09",
+      "tipo": "US",
+      "nombre": "CENTENARIO",
+      "domicilio": "Cnel. Falcon 2098",
+      "lat": -38.74749,
+      "lon": -62.257511
+    },
+    {
+      "id": "US-10",
+      "tipo": "US",
+      "nombre": "COLON",
+      "domicilio": "O Higgins 1637",
+      "lat": -38.734276,
+      "lon": -62.283955
+    },
+    {
+      "id": "US-11",
+      "tipo": "US",
+      "nombre": "CS LUIS PINEIRO",
+      "domicilio": "A. Veres y Martin Gil",
+      "lat": -38.717712,
+      "lon": -62.312302
+    },
+    {
+      "id": "US-12",
+      "tipo": "US",
+      "nombre": "DON BOSCO",
+      "domicilio": "D Orbigny 2578",
+      "lat": -38.728649,
+      "lon": -62.224213
+    },
+    {
+      "id": "US-13",
+      "tipo": "US",
+      "nombre": "ENRIQUE JULIO",
+      "domicilio": "Av Gral. Arias 1730",
+      "lat": -38.750977,
+      "lon": -62.268929
+    },
+    {
+      "id": "US-14",
+      "tipo": "US",
+      "nombre": "ESTOMBA",
+      "domicilio": "Viamonte 2853",
+      "lat": -38.699234,
+      "lon": -62.302498
+    },
+    {
+      "id": "US-15",
+      "tipo": "US",
+      "nombre": "GRÜMBEIN",
+      "domicilio": "La Rioja 5700",
+      "lat": -38.752079,
+      "lon": -62.178837
+    },
+    {
+      "id": "US-16",
+      "tipo": "US",
+      "nombre": "HM Ingeniero White",
+      "domicilio": "Harris 3599",
+      "lat": -38.775532,
+      "lon": -62.271484
+    },
+    {
+      "id": "US-17",
+      "tipo": "US",
+      "nombre": "KILOMETRO 5",
+      "domicilio": "Maldonado 671",
+      "lat": -38.710346,
+      "lon": -62.293816
+    },
+    {
+      "id": "US-18",
+      "tipo": "US",
+      "nombre": "LA FALDA",
+      "domicilio": "Humboldt 56",
+      "lat": -38.712341,
+      "lon": -62.248016
+    },
+    {
+      "id": "US-19",
+      "tipo": "US",
+      "nombre": "LOMA PARAGUAYA",
+      "domicilio": "Félix Frias 850",
+      "lat": -38.747906,
+      "lon": -62.285938
+    },
+    {
+      "id": "US-20",
+      "tipo": "US",
+      "nombre": "LUJAN",
+      "domicilio": "Enrique Julio 806",
+      "lat": -38.708057,
+      "lon": -62.299793
+    },
+    {
+      "id": "US-21",
+      "tipo": "US",
+      "nombre": "MALDONADO",
+      "domicilio": "Gral. Richieri 2535",
+      "lat": -38.717358,
+      "lon": -62.319523
+    },
+    {
+      "id": "US-22",
+      "tipo": "US",
+      "nombre": "MARIANO MORENO",
+      "domicilio": "Mendoza 1250",
+      "lat": -38.72047,
+      "lon": -62.293373
+    },
+    {
+      "id": "US-23",
+      "tipo": "US",
+      "nombre": "Miramar",
+      "domicilio": "Laudelino Cruz 1892",
+      "lat": -38.708714,
+      "lon": -62.237194
+    },
+    {
+      "id": "US-24",
+      "tipo": "US",
+      "nombre": "NAPOSTA",
+      "domicilio": "19 de Mayo 769",
+      "lat": -38.70768,
+      "lon": -62.259628
+    },
+    {
+      "id": "US-25",
+      "tipo": "US",
+      "nombre": "NOROESTE",
+      "domicilio": "Líbano 589",
+      "lat": -38.727028,
+      "lon": -62.28994
+    },
+    {
+      "id": "US-26",
+      "tipo": "US",
+      "nombre": "NUEVA BELGRANO",
+      "domicilio": "Witcomb 3900",
+      "lat": -38.67709,
+      "lon": -62.295021
+    },
+    {
+      "id": "US-27",
+      "tipo": "US",
+      "nombre": "PAMPA CENTRAL",
+      "domicilio": "Jujuy 946",
+      "lat": -38.725643,
+      "lon": -62.296185
+    },
+    {
+      "id": "US-28",
+      "tipo": "US",
+      "nombre": "PATAGONIA",
+      "domicilio": "Lauquen 356",
+      "lat": -38.699696,
+      "lon": -62.214252
+    },
+    {
+      "id": "US-29",
+      "tipo": "US",
+      "nombre": "PEDRO PICO",
+      "domicilio": "Misiones 754",
+      "lat": -38.739033,
+      "lon": -62.275841
+    },
+    {
+      "id": "US-30",
+      "tipo": "US",
+      "nombre": "RIVADAVIA",
+      "domicilio": "Estados Unidos 503",
+      "lat": -38.738255,
+      "lon": -62.253784
+    },
+    {
+      "id": "US-31",
+      "tipo": "US",
+      "nombre": "ROSARIO SUR",
+      "domicilio": "Venezuela 296",
+      "lat": -38.740135,
+      "lon": -62.247002
+    },
+    {
+      "id": "US-32",
+      "tipo": "US",
+      "nombre": "SALADERO",
+      "domicilio": "Reconquista 2045",
+      "lat": -38.770741,
+      "lon": -62.245659
+    },
+    {
+      "id": "US-33",
+      "tipo": "US",
+      "nombre": "SAN CAYETANO",
+      "domicilio": "Alberti 477",
+      "lat": -38.696911,
+      "lon": -62.280235
+    },
+    {
+      "id": "US-34",
+      "tipo": "US",
+      "nombre": "SAN DIONISIO",
+      "domicilio": "Pacífico 154",
+      "lat": -38.736301,
+      "lon": -62.292007
+    },
+    {
+      "id": "US-35",
+      "tipo": "US",
+      "nombre": "SAN JOSE OBRERO",
+      "domicilio": "Reconquista 3084",
+      "lat": -38.778072,
+      "lon": -62.254627
+    },
+    {
+      "id": "US-36",
+      "tipo": "US",
+      "nombre": "SAN MARTÍN",
+      "domicilio": "Paunero 546",
+      "lat": -38.735886,
+      "lon": -62.276611
+    },
+    {
+      "id": "US-37",
+      "tipo": "US",
+      "nombre": "SANCHEZ ELIAS",
+      "domicilio": "Bermúdez 1580",
+      "lat": -38.72023,
+      "lon": -62.235477
+    },
+    {
+      "id": "US-38",
+      "tipo": "US",
+      "nombre": "TIRO FEDERAL",
+      "domicilio": "Pellegrini 638",
+      "lat": -38.721188,
+      "lon": -62.249859
+    },
+    {
+      "id": "US-39",
+      "tipo": "US",
+      "nombre": "UNIVERSITARIO",
+      "domicilio": "Uruguay 463",
+      "lat": -38.701511,
+      "lon": -62.27486
+    },
+    {
+      "id": "US-40",
+      "tipo": "US",
+      "nombre": "VILLA AMADUCCI",
+      "domicilio": "Rastreador Fournier 1809",
+      "lat": -38.723766,
+      "lon": -62.227394
+    },
+    {
+      "id": "US-41",
+      "tipo": "US",
+      "nombre": "VILLA DELFINA",
+      "domicilio": "Juana Azurduy 1345",
+      "lat": -38.750103,
+      "lon": -62.275799
+    },
+    {
+      "id": "US-42",
+      "tipo": "US",
+      "nombre": "Villa Esperanza",
+      "domicilio": "Berutti 2980",
+      "lat": -38.747196,
+      "lon": -62.238197
+    },
+    {
+      "id": "US-43",
+      "tipo": "US",
+      "nombre": "VILLA FLORESTA",
+      "domicilio": "José Ingenieros 2235",
+      "lat": -38.685474,
+      "lon": -62.272274
+    },
+    {
+      "id": "US-44",
+      "tipo": "US",
+      "nombre": "VILLA GLORIA",
+      "domicilio": "Ricardo Rojas 4898",
+      "lat": -38.749802,
+      "lon": -62.191753
+    },
+    {
+      "id": "US-45",
+      "tipo": "US",
+      "nombre": "VILLA HARDING GREEN",
+      "domicilio": "Salinas Chicas 4150",
+      "lat": -38.714485,
+      "lon": -62.189445
+    },
+    {
+      "id": "US-46",
+      "tipo": "US",
+      "nombre": "VILLA MITRE",
+      "domicilio": "Washington 232",
+      "lat": -38.73045,
+      "lon": -62.246513
+    },
+    {
+      "id": "US-47",
+      "tipo": "US",
+      "nombre": "VILLA NOCITO",
+      "domicilio": "Pacífico 1925",
+      "lat": -38.721699,
+      "lon": -62.312267
+    },
+    {
+      "id": "US-48",
+      "tipo": "US",
+      "nombre": "VILLA RESSIA",
+      "domicilio": "Misiones 1570",
+      "lat": -38.742634,
+      "lon": -62.272179
+    },
+    {
+      "id": "US-49",
+      "tipo": "US",
+      "nombre": "Villa Rosas",
+      "domicilio": "Libertad 1955",
+      "lat": -38.755962,
+      "lon": -62.261395
+    },
+    {
+      "id": "US-50",
+      "tipo": "US",
+      "nombre": "VILLA SERRA",
+      "domicilio": "Tarija 1350",
+      "lat": -38.757877,
+      "lon": -62.246681
+    },
+    {
+      "id": "SF-01",
+      "tipo": "SF",
+      "nombre": "12 de Octubre",
+      "domicilio": "-",
+      "lat": -38.7385743805539,
+      "lon": -62.2123915701367,
+      "poligono": [
+        [
+          -38.734822,
+          -62.211789
+        ],
+        [
+          -38.738024,
+          -62.207681
+        ],
+        [
+          -38.742347,
+          -62.212882
+        ],
+        [
+          -38.739065,
+          -62.217151
+        ],
+        [
+          -38.734822,
+          -62.211789
+        ]
+      ]
+    },
+    {
+      "id": "SF-02",
+      "tipo": "SF",
+      "nombre": "1810",
+      "domicilio": "-",
+      "lat": -38.7428544120015,
+      "lon": -62.2491588414144,
+      "poligono": [
+        [
+          -38.744402,
+          -62.249434
+        ],
+        [
+          -38.743509,
+          -62.25053
+        ],
+        [
+          -38.742479,
+          -62.249254
+        ],
+        [
+          -38.741516,
+          -62.250456
+        ],
+        [
+          -38.74109,
+          -62.249936
+        ],
+        [
+          -38.742856,
+          -62.2475
+        ],
+        [
+          -38.744402,
+          -62.249434
+        ]
+      ]
+    },
+    {
+      "id": "SF-03",
+      "tipo": "SF",
+      "nombre": "1º de Mayo",
+      "domicilio": "-",
+      "lat": -38.7170972716011,
+      "lon": -62.3062474473498,
+      "poligono": [
+        [
+          -38.715293,
+          -62.302554
+        ],
+        [
+          -38.716928,
+          -62.303374
+        ],
+        [
+          -38.717988,
+          -62.303589
+        ],
+        [
+          -38.719388,
+          -62.303703
+        ],
+        [
+          -38.72016,
+          -62.303724
+        ],
+        [
+          -38.721166,
+          -62.30407
+        ],
+        [
+          -38.71592,
+          -62.310942
+        ],
+        [
+          -38.71467,
+          -62.309367
+        ],
+        [
+          -38.715293,
+          -62.302554
+        ]
+      ]
+    },
+    {
+      "id": "SF-04",
+      "tipo": "SF",
+      "nombre": "5 de Abril",
+      "domicilio": "-",
+      "lat": -38.7521200098383,
+      "lon": -62.2291535941546,
+      "poligono": [
+        [
+          -38.754819,
+          -62.228061
+        ],
+        [
+          -38.753556,
+          -62.229659
+        ],
+        [
+          -38.753991,
+          -62.230197
+        ],
+        [
+          -38.752647,
+          -62.231944
+        ],
+        [
+          -38.752205,
+          -62.231382
+        ],
+        [
+          -38.751344,
+          -62.232548
+        ],
+        [
+          -38.751282,
+          -62.232449
+        ],
+        [
+          -38.749297,
+          -62.229957
+        ],
+        [
+          -38.75268,
+          -62.225541
+        ],
+        [
+          -38.754819,
+          -62.228061
+        ]
+      ]
+    },
+    {
+      "id": "SF-05",
+      "tipo": "SF",
+      "nombre": "Altos de Bahía",
+      "domicilio": "-",
+      "lat": -38.7043394212797,
+      "lon": -62.2349531899715,
+      "poligono": [
+        [
+          -38.701389,
+          -62.230653
+        ],
+        [
+          -38.70514,
+          -62.235562
+        ],
+        [
+          -38.708363,
+          -62.231327
+        ],
+        [
+          -38.709174,
+          -62.232346
+        ],
+        [
+          -38.703912,
+          -62.239293
+        ],
+        [
+          -38.70203,
+          -62.23722
+        ],
+        [
+          -38.702648,
+          -62.236419
+        ],
+        [
+          -38.701707,
+          -62.235276
+        ],
+        [
+          -38.702468,
+          -62.234261
+        ],
+        [
+          -38.700478,
+          -62.231843
+        ],
+        [
+          -38.7013,
+          -62.230759
+        ],
+        [
+          -38.701389,
+          -62.230653
+        ]
+      ]
+    },
+    {
+      "id": "SF-06",
+      "tipo": "SF",
+      "nombre": "Altos del Pinar",
+      "domicilio": "-",
+      "lat": -38.7134211734273,
+      "lon": -62.2208269824952,
+      "poligono": [
+        [
+          -38.707667,
+          -62.222508
+        ],
+        [
+          -38.711077,
+          -62.217978
+        ],
+        [
+          -38.711192,
+          -62.217928
+        ],
+        [
+          -38.714263,
+          -62.213834
+        ],
+        [
+          -38.717936,
+          -62.218376
+        ],
+        [
+          -38.718981,
+          -62.219614
+        ],
+        [
+          -38.715675,
+          -62.224018
+        ],
+        [
+          -38.713668,
+          -62.226617
+        ],
+        [
+          -38.713324,
+          -62.227112
+        ],
+        [
+          -38.71058,
+          -62.225667
+        ],
+        [
+          -38.708909,
+          -62.223615
+        ],
+        [
+          -38.708591,
+          -62.223309
+        ],
+        [
+          -38.707972,
+          -62.222745
+        ],
+        [
+          -38.707667,
+          -62.222508
+        ]
+      ]
+    },
+    {
+      "id": "SF-07",
+      "tipo": "SF",
+      "nombre": "ASOC. VECINOS BºSALADERO",
+      "domicilio": "-",
+      "lat": -38.7710075171685,
+      "lon": -62.2434340411138,
+      "poligono": [
+        [
+          -38.762468,
+          -62.236939
+        ],
+        [
+          -38.762842,
+          -62.236225
+        ],
+        [
+          -38.763351,
+          -62.235894
+        ],
+        [
+          -38.764045,
+          -62.235469
+        ],
+        [
+          -38.764518,
+          -62.23516
+        ],
+        [
+          -38.764853,
+          -62.235168
+        ],
+        [
+          -38.766209,
+          -62.235331
+        ],
+        [
+          -38.767067,
+          -62.235495
+        ],
+        [
+          -38.768286,
+          -62.235712
+        ],
+        [
+          -38.768582,
+          -62.236026
+        ],
+        [
+          -38.769485,
+          -62.236161
+        ],
+        [
+          -38.76996,
+          -62.236415
+        ],
+        [
+          -38.770319,
+          -62.236209
+        ],
+        [
+          -38.770613,
+          -62.236293
+        ],
+        [
+          -38.770434,
+          -62.236583
+        ],
+        [
+          -38.770583,
+          -62.238685
+        ],
+        [
+          -38.771177,
+          -62.239832
+        ],
+        [
+          -38.772224,
+          -62.241319
+        ],
+        [
+          -38.772872,
+          -62.24212
+        ],
+        [
+          -38.778935,
+          -62.249397
+        ],
+        [
+          -38.775734,
+          -62.253544
+        ],
+        [
+          -38.771969,
+          -62.248887
+        ],
+        [
+          -38.77052,
+          -62.246265
+        ],
+        [
+          -38.769129,
+          -62.244645
+        ],
+        [
+          -38.763939,
+          -62.238489
+        ],
+        [
+          -38.762898,
+          -62.237235
+        ],
+        [
+          -38.762468,
+          -62.236939
+        ]
+      ]
+    },
+    {
+      "id": "SF-08",
+      "tipo": "SF",
+      "nombre": "Barrio 10 de Junio",
+      "domicilio": "-",
+      "lat": -38.7146258723331,
+      "lon": -62.3887988384144,
+      "poligono": [
+        [
+          -38.71738,
+          -62.388333
+        ],
+        [
+          -38.713663,
+          -62.39317
+        ],
+        [
+          -38.712128,
+          -62.391235
+        ],
+        [
+          -38.714339,
+          -62.388375
+        ],
+        [
+          -38.712777,
+          -62.386408
+        ],
+        [
+          -38.714294,
+          -62.384446
+        ],
+        [
+          -38.71738,
+          -62.388333
+        ]
+      ]
+    },
+    {
+      "id": "SF-09",
+      "tipo": "SF",
+      "nombre": "Barrio 17 de Agosto",
+      "domicilio": "-",
+      "lat": -38.7213251313853,
+      "lon": -62.1935344512419,
+      "poligono": [
+        [
+          -38.718608,
+          -62.192276
+        ],
+        [
+          -38.720221,
+          -62.19013
+        ],
+        [
+          -38.724041,
+          -62.19481
+        ],
+        [
+          -38.722442,
+          -62.196936
+        ],
+        [
+          -38.718608,
+          -62.192276
+        ]
+      ]
+    },
+    {
+      "id": "SF-10",
+      "tipo": "SF",
+      "nombre": "Barrio 17 de Mayo",
+      "domicilio": "-",
+      "lat": -38.7470034842424,
+      "lon": -62.1604294680597,
+      "poligono": [
+        [
+          -38.742512,
+          -62.16341
+        ],
+        [
+          -38.749139,
+          -62.154567
+        ],
+        [
+          -38.75149,
+          -62.157514
+        ],
+        [
+          -38.744833,
+          -62.166284
+        ],
+        [
+          -38.742512,
+          -62.16341
+        ]
+      ]
+    },
+    {
+      "id": "SF-11",
+      "tipo": "SF",
+      "nombre": "Barrio 26 de Septiembre",
+      "domicilio": "-",
+      "lat": -38.7699471141048,
+      "lon": -62.2739755749063,
+      "poligono": [
+        [
+          -38.764632,
+          -62.271577
+        ],
+        [
+          -38.767981,
+          -62.267241
+        ],
+        [
+          -38.775269,
+          -62.276343
+        ],
+        [
+          -38.771873,
+          -62.280715
+        ],
+        [
+          -38.767735,
+          -62.275481
+        ],
+        [
+          -38.764632,
+          -62.271577
+        ]
+      ]
+    },
+    {
+      "id": "SF-12",
+      "tipo": "SF",
+      "nombre": "Barrio 9 de Noviembre",
+      "domicilio": "-",
+      "lat": -38.7193281713281,
+      "lon": -62.2228906272221,
+      "poligono": [
+        [
+          -38.715798,
+          -62.223854
+        ],
+        [
+          -38.719928,
+          -62.21842
+        ],
+        [
+          -38.722812,
+          -62.222031
+        ],
+        [
+          -38.718803,
+          -62.227296
+        ],
+        [
+          -38.715798,
+          -62.223854
+        ]
+      ]
+    },
+    {
+      "id": "SF-13",
+      "tipo": "SF",
+      "nombre": "Barrio Aerotalleres",
+      "domicilio": "-",
+      "lat": -38.7097769858141,
+      "lon": -62.3082917981386,
+      "poligono": [
+        [
+          -38.705218,
+          -62.312542
+        ],
+        [
+          -38.709028,
+          -62.30767
+        ],
+        [
+          -38.712915,
+          -62.302585
+        ],
+        [
+          -38.712955,
+          -62.30261
+        ],
+        [
+          -38.713519,
+          -62.303015
+        ],
+        [
+          -38.713832,
+          -62.303358
+        ],
+        [
+          -38.714086,
+          -62.303805
+        ],
+        [
+          -38.714139,
+          -62.304317
+        ],
+        [
+          -38.706482,
+          -62.314124
+        ],
+        [
+          -38.705218,
+          -62.312542
+        ]
+      ]
+    },
+    {
+      "id": "SF-14",
+      "tipo": "SF",
+      "nombre": "Barrio Anchorena",
+      "domicilio": "-",
+      "lat": -38.7249242932314,
+      "lon": -62.2391454312158,
+      "poligono": [
+        [
+          -38.722338,
+          -62.243859
+        ],
+        [
+          -38.723381,
+          -62.242625
+        ],
+        [
+          -38.720688,
+          -62.239064
+        ],
+        [
+          -38.722379,
+          -62.236867
+        ],
+        [
+          -38.725187,
+          -62.233237
+        ],
+        [
+          -38.729401,
+          -62.238482
+        ],
+        [
+          -38.727172,
+          -62.241393
+        ],
+        [
+          -38.726102,
+          -62.24278
+        ],
+        [
+          -38.725966,
+          -62.242681
+        ],
+        [
+          -38.725664,
+          -62.243088
+        ],
+        [
+          -38.723732,
+          -62.245596
+        ],
+        [
+          -38.722338,
+          -62.243859
+        ]
+      ]
+    },
+    {
+      "id": "SF-15",
+      "tipo": "SF",
+      "nombre": "Barrio Austral",
+      "domicilio": "-",
+      "lat": -38.7349733106431,
+      "lon": -62.2159188432788,
+      "poligono": [
+        [
+          -38.73892,
+          -62.216972
+        ],
+        [
+          -38.737369,
+          -62.218996
+        ],
+        [
+          -38.73711,
+          -62.219243
+        ],
+        [
+          -38.735695,
+          -62.221081
+        ],
+        [
+          -38.735137,
+          -62.220725
+        ],
+        [
+          -38.734948,
+          -62.220484
+        ],
+        [
+          -38.733778,
+          -62.219009
+        ],
+        [
+          -38.73426,
+          -62.218393
+        ],
+        [
+          -38.734637,
+          -62.217856
+        ],
+        [
+          -38.735243,
+          -62.21859
+        ],
+        [
+          -38.736019,
+          -62.217516
+        ],
+        [
+          -38.733566,
+          -62.214435
+        ],
+        [
+          -38.732347,
+          -62.216033
+        ],
+        [
+          -38.734253,
+          -62.218385
+        ],
+        [
+          -38.733772,
+          -62.219001
+        ],
+        [
+          -38.730794,
+          -62.215249
+        ],
+        [
+          -38.73402,
+          -62.210773
+        ],
+        [
+          -38.73892,
+          -62.216972
+        ]
+      ]
+    },
+    {
+      "id": "SF-16",
+      "tipo": "SF",
+      "nombre": "Barrio Avellaneda",
+      "domicilio": "-",
+      "lat": -38.6906177442759,
+      "lon": -62.2911935725883,
+      "poligono": [
+        [
+          -38.685037,
+          -62.289424
+        ],
+        [
+          -38.688632,
+          -62.284853
+        ],
+        [
+          -38.692116,
+          -62.289181
+        ],
+        [
+          -38.693112,
+          -62.287896
+        ],
+        [
+          -38.696253,
+          -62.291784
+        ],
+        [
+          -38.691653,
+          -62.297749
+        ],
+        [
+          -38.685037,
+          -62.289424
+        ]
+      ]
+    },
+    {
+      "id": "SF-17",
+      "tipo": "SF",
+      "nombre": "Barrio Bahia Blanca y Rosendo Lopez",
+      "domicilio": "-",
+      "lat": -38.7372933719774,
+      "lon": -62.2257051835913,
+      "poligono": [
+        [
+          -38.733763,
+          -62.227263
+        ],
+        [
+          -38.737009,
+          -62.223014
+        ],
+        [
+          -38.736411,
+          -62.22227
+        ],
+        [
+          -38.736865,
+          -62.221638
+        ],
+        [
+          -38.736943,
+          -62.221753
+        ],
+        [
+          -38.738142,
+          -62.220179
+        ],
+        [
+          -38.738981,
+          -62.221217
+        ],
+        [
+          -38.73899,
+          -62.221184
+        ],
+        [
+          -38.739806,
+          -62.220152
+        ],
+        [
+          -38.740605,
+          -62.221141
+        ],
+        [
+          -38.738146,
+          -62.224373
+        ],
+        [
+          -38.740043,
+          -62.226693
+        ],
+        [
+          -38.736739,
+          -62.230941
+        ],
+        [
+          -38.735898,
+          -62.229942
+        ],
+        [
+          -38.733763,
+          -62.227263
+        ]
+      ]
+    },
+    {
+      "id": "SF-18",
+      "tipo": "SF",
+      "nombre": "Barrio Ceferino Namuncura",
+      "domicilio": "-",
+      "lat": -38.7028435636443,
+      "lon": -62.2954146544361,
+      "poligono": [
+        [
+          -38.699533,
+          -62.295068
+        ],
+        [
+          -38.702537,
+          -62.291191
+        ],
+        [
+          -38.702645,
+          -62.291327
+        ],
+        [
+          -38.70286,
+          -62.291623
+        ],
+        [
+          -38.70327,
+          -62.291818
+        ],
+        [
+          -38.703643,
+          -62.292262
+        ],
+        [
+          -38.704487,
+          -62.293448
+        ],
+        [
+          -38.705136,
+          -62.294561
+        ],
+        [
+          -38.705442,
+          -62.295515
+        ],
+        [
+          -38.705976,
+          -62.296187
+        ],
+        [
+          -38.703236,
+          -62.299719
+        ],
+        [
+          -38.699533,
+          -62.295068
+        ]
+      ]
+    },
+    {
+      "id": "SF-19",
+      "tipo": "SF",
+      "nombre": "Barrio Colon",
+      "domicilio": "-",
+      "lat": -38.7343365161185,
+      "lon": -62.2842040915499,
+      "poligono": [
+        [
+          -38.728795,
+          -62.279348
+        ],
+        [
+          -38.730418,
+          -62.27717
+        ],
+        [
+          -38.739409,
+          -62.288318
+        ],
+        [
+          -38.738639,
+          -62.289336
+        ],
+        [
+          -38.739554,
+          -62.290505
+        ],
+        [
+          -38.73863,
+          -62.291641
+        ],
+        [
+          -38.728863,
+          -62.279455
+        ],
+        [
+          -38.728795,
+          -62.279348
+        ]
+      ]
+    },
+    {
+      "id": "SF-20",
+      "tipo": "SF",
+      "nombre": "Barrio Cooperacion II",
+      "domicilio": "-",
+      "lat": -38.6841208061284,
+      "lon": -62.294091313901,
+      "poligono": [
+        [
+          -38.681889,
+          -62.297074
+        ],
+        [
+          -38.680479,
+          -62.29533
+        ],
+        [
+          -38.685037,
+          -62.289424
+        ],
+        [
+          -38.687747,
+          -62.292834
+        ],
+        [
+          -38.683238,
+          -62.298762
+        ],
+        [
+          -38.681889,
+          -62.297074
+        ]
+      ]
+    },
+    {
+      "id": "SF-21",
+      "tipo": "SF",
+      "nombre": "Barrio Coronel Estomba",
+      "domicilio": "-",
+      "lat": -38.6994937276892,
+      "lon": -62.3003203603399,
+      "poligono": [
+        [
+          -38.695723,
+          -62.300977
+        ],
+        [
+          -38.699913,
+          -62.295548
+        ],
+        [
+          -38.703236,
+          -62.299719
+        ],
+        [
+          -38.699125,
+          -62.305059
+        ],
+        [
+          -38.695723,
+          -62.300977
+        ]
+      ]
+    },
+    {
+      "id": "SF-22",
+      "tipo": "SF",
+      "nombre": "Barrio Coronel Maldonado",
+      "domicilio": "-",
+      "lat": -38.7158657657928,
+      "lon": -62.3197183669529,
+      "poligono": [
+        [
+          -38.721065,
+          -62.312801
+        ],
+        [
+          -38.722088,
+          -62.314087
+        ],
+        [
+          -38.721429,
+          -62.315541
+        ],
+        [
+          -38.721461,
+          -62.315699
+        ],
+        [
+          -38.719004,
+          -62.320816
+        ],
+        [
+          -38.717393,
+          -62.324254
+        ],
+        [
+          -38.715897,
+          -62.327216
+        ],
+        [
+          -38.710601,
+          -62.320602
+        ],
+        [
+          -38.713382,
+          -62.314061
+        ],
+        [
+          -38.713447,
+          -62.313704
+        ],
+        [
+          -38.71366,
+          -62.313991
+        ],
+        [
+          -38.716982,
+          -62.31815
+        ],
+        [
+          -38.721065,
+          -62.312801
+        ]
+      ]
+    },
+    {
+      "id": "SF-23",
+      "tipo": "SF",
+      "nombre": "Barrio El Nacional",
+      "domicilio": "-",
+      "lat": -38.70741528817,
+      "lon": -62.2178784122823,
+      "poligono": [
+        [
+          -38.704474,
+          -62.218558
+        ],
+        [
+          -38.703808,
+          -62.217712
+        ],
+        [
+          -38.703787,
+          -62.217685
+        ],
+        [
+          -38.704258,
+          -62.217058
+        ],
+        [
+          -38.707093,
+          -62.213283
+        ],
+        [
+          -38.711077,
+          -62.217978
+        ],
+        [
+          -38.710616,
+          -62.2186
+        ],
+        [
+          -38.708764,
+          -62.22106
+        ],
+        [
+          -38.707667,
+          -62.222508
+        ],
+        [
+          -38.704474,
+          -62.218558
+        ]
+      ]
+    },
+    {
+      "id": "SF-24",
+      "tipo": "SF",
+      "nombre": "Barrio El Sol",
+      "domicilio": "-",
+      "lat": -38.7490468301462,
+      "lon": -62.2328307137016,
+      "poligono": [
+        [
+          -38.751282,
+          -62.232449
+        ],
+        [
+          -38.748825,
+          -62.23572
+        ],
+        [
+          -38.7468,
+          -62.233174
+        ],
+        [
+          -38.749297,
+          -62.229957
+        ],
+        [
+          -38.751282,
+          -62.232449
+        ]
+      ]
+    },
+    {
+      "id": "SF-25",
+      "tipo": "SF",
+      "nombre": "BARRIO LAS ACACIAS",
+      "domicilio": "-",
+      "lat": -38.6854386106409,
+      "lon": -62.2098927171514,
+      "poligono": [
+        [
+          -38.682744,
+          -62.209205
+        ],
+        [
+          -38.684773,
+          -62.20648
+        ],
+        [
+          -38.688135,
+          -62.21063
+        ],
+        [
+          -38.686116,
+          -62.213284
+        ],
+        [
+          -38.682744,
+          -62.209205
+        ]
+      ]
+    },
+    {
+      "id": "SF-26",
+      "tipo": "SF",
+      "nombre": "Barrio Latino",
+      "domicilio": "-",
+      "lat": -38.6916271933575,
+      "lon": -62.3038167292101,
+      "poligono": [
+        [
+          -38.687195,
+          -62.303671
+        ],
+        [
+          -38.691521,
+          -62.297924
+        ],
+        [
+          -38.693259,
+          -62.300006
+        ],
+        [
+          -38.692936,
+          -62.30039
+        ],
+        [
+          -38.696027,
+          -62.304211
+        ],
+        [
+          -38.691982,
+          -62.309573
+        ],
+        [
+          -38.687195,
+          -62.303671
+        ]
+      ]
+    },
+    {
+      "id": "SF-27",
+      "tipo": "SF",
+      "nombre": "Barrio Los Almendros",
+      "domicilio": "-",
+      "lat": -38.6956785399953,
+      "lon": -62.2968405179571,
+      "poligono": [
+        [
+          -38.691521,
+          -62.297924
+        ],
+        [
+          -38.696589,
+          -62.291355
+        ],
+        [
+          -38.699913,
+          -62.295548
+        ],
+        [
+          -38.694594,
+          -62.30244
+        ],
+        [
+          -38.692936,
+          -62.30039
+        ],
+        [
+          -38.693259,
+          -62.300006
+        ],
+        [
+          -38.691521,
+          -62.297924
+        ]
+      ]
+    },
+    {
+      "id": "SF-28",
+      "tipo": "SF",
+      "nombre": "Barrio Los Horneros",
+      "domicilio": "-",
+      "lat": -38.6902582028678,
+      "lon": -62.2024132371623,
+      "poligono": [
+        [
+          -38.686586,
+          -62.201867
+        ],
+        [
+          -38.689673,
+          -62.197734
+        ],
+        [
+          -38.693952,
+          -62.203018
+        ],
+        [
+          -38.692839,
+          -62.204428
+        ],
+        [
+          -38.690833,
+          -62.207074
+        ],
+        [
+          -38.686586,
+          -62.201867
+        ]
+      ]
+    },
+    {
+      "id": "SF-29",
+      "tipo": "SF",
+      "nombre": "Barrio Lujan",
+      "domicilio": "-",
+      "lat": -38.7067607451222,
+      "lon": -62.2995312010037,
+      "poligono": [
+        [
+          -38.703012,
+          -62.300011
+        ],
+        [
+          -38.705976,
+          -62.296187
+        ],
+        [
+          -38.707101,
+          -62.295332
+        ],
+        [
+          -38.708677,
+          -62.296672
+        ],
+        [
+          -38.710103,
+          -62.29804
+        ],
+        [
+          -38.710604,
+          -62.298684
+        ],
+        [
+          -38.706352,
+          -62.304199
+        ],
+        [
+          -38.703012,
+          -62.300011
+        ]
+      ]
+    },
+    {
+      "id": "SF-30",
+      "tipo": "SF",
+      "nombre": "Barrio Mara",
+      "domicilio": "-",
+      "lat": -38.7057721231118,
+      "lon": -62.308403067506,
+      "poligono": [
+        [
+          -38.702522,
+          -62.309163
+        ],
+        [
+          -38.706309,
+          -62.304254
+        ],
+        [
+          -38.709028,
+          -62.30767
+        ],
+        [
+          -38.705218,
+          -62.312542
+        ],
+        [
+          -38.702522,
+          -62.309163
+        ]
+      ]
+    },
+    {
+      "id": "SF-31",
+      "tipo": "SF",
+      "nombre": "Barrio Millamapu",
+      "domicilio": "-",
+      "lat": -38.6995534332613,
+      "lon": -62.2077276346996,
+      "poligono": [
+        [
+          -38.700469,
+          -62.213749
+        ],
+        [
+          -38.700494,
+          -62.213716
+        ],
+        [
+          -38.694029,
+          -62.205882
+        ],
+        [
+          -38.696656,
+          -62.202381
+        ],
+        [
+          -38.699429,
+          -62.205791
+        ],
+        [
+          -38.701237,
+          -62.203444
+        ],
+        [
+          -38.704839,
+          -62.207996
+        ],
+        [
+          -38.700469,
+          -62.213749
+        ]
+      ]
+    },
+    {
+      "id": "SF-32",
+      "tipo": "SF",
+      "nombre": "Barrio Miramar",
+      "domicilio": "-",
+      "lat": -38.7094311668469,
+      "lon": -62.2406029355824,
+      "poligono": [
+        [
+          -38.707949,
+          -62.244752
+        ],
+        [
+          -38.709835,
+          -62.242273
+        ],
+        [
+          -38.707192,
+          -62.239066
+        ],
+        [
+          -38.709024,
+          -62.236543
+        ],
+        [
+          -38.711097,
+          -62.239085
+        ],
+        [
+          -38.710762,
+          -62.239603
+        ],
+        [
+          -38.711254,
+          -62.240229
+        ],
+        [
+          -38.711129,
+          -62.240426
+        ],
+        [
+          -38.711537,
+          -62.240938
+        ],
+        [
+          -38.710105,
+          -62.242876
+        ],
+        [
+          -38.710541,
+          -62.243424
+        ],
+        [
+          -38.708764,
+          -62.245767
+        ],
+        [
+          -38.707949,
+          -62.244752
+        ]
+      ]
+    },
+    {
+      "id": "SF-33",
+      "tipo": "SF",
+      "nombre": "Barrio Napostá",
+      "domicilio": "-",
+      "lat": -38.7051606252772,
+      "lon": -62.2622792249988,
+      "poligono": [
+        [
+          -38.707008,
+          -62.258439
+        ],
+        [
+          -38.707379,
+          -62.25776
+        ],
+        [
+          -38.707671,
+          -62.257662
+        ],
+        [
+          -38.708561,
+          -62.257399
+        ],
+        [
+          -38.70905,
+          -62.257004
+        ],
+        [
+          -38.709987,
+          -62.256243
+        ],
+        [
+          -38.712119,
+          -62.259077
+        ],
+        [
+          -38.705659,
+          -62.264296
+        ],
+        [
+          -38.701483,
+          -62.26766
+        ],
+        [
+          -38.700092,
+          -62.268734
+        ],
+        [
+          -38.698074,
+          -62.264574
+        ],
+        [
+          -38.700409,
+          -62.264073
+        ],
+        [
+          -38.701231,
+          -62.263462
+        ],
+        [
+          -38.70229,
+          -62.262776
+        ],
+        [
+          -38.703196,
+          -62.262009
+        ],
+        [
+          -38.704458,
+          -62.260587
+        ],
+        [
+          -38.705638,
+          -62.258746
+        ],
+        [
+          -38.706326,
+          -62.25764
+        ],
+        [
+          -38.707008,
+          -62.258439
+        ]
+      ]
+    },
+    {
+      "id": "SF-34",
+      "tipo": "SF",
+      "nombre": "Barrio Oasis",
+      "domicilio": "-",
+      "lat": -38.742426594215,
+      "lon": -62.2171449750254,
+      "poligono": [
+        [
+          -38.744142,
+          -62.219324
+        ],
+        [
+          -38.742526,
+          -62.22144
+        ],
+        [
+          -38.739065,
+          -62.217151
+        ],
+        [
+          -38.742347,
+          -62.212882
+        ],
+        [
+          -38.745791,
+          -62.217076
+        ],
+        [
+          -38.744096,
+          -62.219249
+        ],
+        [
+          -38.744142,
+          -62.219324
+        ]
+      ]
+    },
+    {
+      "id": "SF-35",
+      "tipo": "SF",
+      "nombre": "Barrio Pacifico",
+      "domicilio": "-",
+      "lat": -38.7101617051339,
+      "lon": -62.2859743966254,
+      "poligono": [
+        [
+          -38.702304,
+          -62.287275
+        ],
+        [
+          -38.71152,
+          -62.275219
+        ],
+        [
+          -38.716531,
+          -62.281459
+        ],
+        [
+          -38.718458,
+          -62.283852
+        ],
+        [
+          -38.711726,
+          -62.292675
+        ],
+        [
+          -38.708677,
+          -62.296672
+        ],
+        [
+          -38.707101,
+          -62.295332
+        ],
+        [
+          -38.706067,
+          -62.294032
+        ],
+        [
+          -38.703662,
+          -62.28974
+        ],
+        [
+          -38.702304,
+          -62.287275
+        ]
+      ]
+    },
+    {
+      "id": "SF-36",
+      "tipo": "SF",
+      "nombre": "Barrio Parque Los Alamos",
+      "domicilio": "-",
+      "lat": -38.6991118360719,
+      "lon": -62.3106329086811,
+      "poligono": [
+        [
+          -38.697341,
+          -62.311027
+        ],
+        [
+          -38.69938,
+          -62.308385
+        ],
+        [
+          -38.700892,
+          -62.310219
+        ],
+        [
+          -38.700826,
+          -62.310306
+        ],
+        [
+          -38.698827,
+          -62.312893
+        ],
+        [
+          -38.697341,
+          -62.311027
+        ]
+      ]
+    },
+    {
+      "id": "SF-37",
+      "tipo": "SF",
+      "nombre": "Barrio Parque Norte",
+      "domicilio": "-",
+      "lat": -38.6669743094566,
+      "lon": -62.2603931701817,
+      "poligono": [
+        [
+          -38.663272,
+          -62.259726
+        ],
+        [
+          -38.666388,
+          -62.255663
+        ],
+        [
+          -38.670691,
+          -62.261042
+        ],
+        [
+          -38.667528,
+          -62.265128
+        ],
+        [
+          -38.663272,
+          -62.259726
+        ]
+      ]
+    },
+    {
+      "id": "SF-38",
+      "tipo": "SF",
+      "nombre": "Barrio Parque Palihue",
+      "domicilio": "-",
+      "lat": -38.7012518254666,
+      "lon": -62.2550692275106,
+      "poligono": [
+        [
+          -38.695547,
+          -62.254325
+        ],
+        [
+          -38.701009,
+          -62.247212
+        ],
+        [
+          -38.705235,
+          -62.252428
+        ],
+        [
+          -38.703733,
+          -62.254415
+        ],
+        [
+          -38.706326,
+          -62.25764
+        ],
+        [
+          -38.705638,
+          -62.258746
+        ],
+        [
+          -38.704458,
+          -62.260587
+        ],
+        [
+          -38.703196,
+          -62.262009
+        ],
+        [
+          -38.70229,
+          -62.262776
+        ],
+        [
+          -38.700025,
+          -62.259877
+        ],
+        [
+          -38.695701,
+          -62.254519
+        ],
+        [
+          -38.695547,
+          -62.254325
+        ]
+      ]
+    },
+    {
+      "id": "SF-39",
+      "tipo": "SF",
+      "nombre": "Barrio Parque Patagonia",
+      "domicilio": "-",
+      "lat": -38.6945150661372,
+      "lon": -62.21719555519,
+      "poligono": [
+        [
+          -38.694466,
+          -62.229954
+        ],
+        [
+          -38.687337,
+          -62.220901
+        ],
+        [
+          -38.690206,
+          -62.217119
+        ],
+        [
+          -38.68659,
+          -62.212669
+        ],
+        [
+          -38.692814,
+          -62.20446
+        ],
+        [
+          -38.703787,
+          -62.217685
+        ],
+        [
+          -38.694466,
+          -62.229954
+        ]
+      ]
+    },
+    {
+      "id": "SF-40",
+      "tipo": "SF",
+      "nombre": "Barrio Parque San Miguel",
+      "domicilio": "-",
+      "lat": -38.7444745553578,
+      "lon": -62.199343047845,
+      "poligono": [
+        [
+          -38.737516,
+          -62.19882
+        ],
+        [
+          -38.743961,
+          -62.190278
+        ],
+        [
+          -38.747939,
+          -62.19517
+        ],
+        [
+          -38.750479,
+          -62.198332
+        ],
+        [
+          -38.749808,
+          -62.201517
+        ],
+        [
+          -38.748765,
+          -62.204081
+        ],
+        [
+          -38.745439,
+          -62.208492
+        ],
+        [
+          -38.737516,
+          -62.19882
+        ]
+      ]
+    },
+    {
+      "id": "SF-41",
+      "tipo": "SF",
+      "nombre": "Barrio Parque Sesquicentenario",
+      "domicilio": "-",
+      "lat": -38.6893045983863,
+      "lon": -62.3087877210731,
+      "poligono": [
+        [
+          -38.68664,
+          -62.307986
+        ],
+        [
+          -38.688598,
+          -62.305401
+        ],
+        [
+          -38.691982,
+          -62.309573
+        ],
+        [
+          -38.689979,
+          -62.312175
+        ],
+        [
+          -38.68664,
+          -62.307986
+        ]
+      ]
+    },
+    {
+      "id": "SF-42",
+      "tipo": "SF",
+      "nombre": "Barrio Pque. San Agustin",
+      "domicilio": "-",
+      "lat": -38.7054267960565,
+      "lon": -62.2026866537931,
+      "poligono": [
+        [
+          -38.705867,
+          -62.197328
+        ],
+        [
+          -38.709504,
+          -62.20167
+        ],
+        [
+          -38.709649,
+          -62.201844
+        ],
+        [
+          -38.708325,
+          -62.20361
+        ],
+        [
+          -38.704972,
+          -62.20803
+        ],
+        [
+          -38.704848,
+          -62.207869
+        ],
+        [
+          -38.704794,
+          -62.207939
+        ],
+        [
+          -38.701237,
+          -62.203444
+        ],
+        [
+          -38.705867,
+          -62.197328
+        ]
+      ]
+    },
+    {
+      "id": "SF-43",
+      "tipo": "SF",
+      "nombre": "Barrio Ricchieri",
+      "domicilio": "-",
+      "lat": -38.7026190174662,
+      "lon": -62.3047796578163,
+      "poligono": [
+        [
+          -38.699125,
+          -62.305059
+        ],
+        [
+          -38.703012,
+          -62.300011
+        ],
+        [
+          -38.706352,
+          -62.304199
+        ],
+        [
+          -38.702229,
+          -62.309542
+        ],
+        [
+          -38.698885,
+          -62.305374
+        ],
+        [
+          -38.699125,
+          -62.305059
+        ]
+      ]
+    },
+    {
+      "id": "SF-44",
+      "tipo": "SF",
+      "nombre": "Barrio Rivadavia",
+      "domicilio": "-",
+      "lat": -38.739338279449,
+      "lon": -62.2515198818926,
+      "poligono": [
+        [
+          -38.730479,
+          -62.254409
+        ],
+        [
+          -38.734545,
+          -62.249093
+        ],
+        [
+          -38.735273,
+          -62.248926
+        ],
+        [
+          -38.735474,
+          -62.248846
+        ],
+        [
+          -38.73618,
+          -62.248642
+        ],
+        [
+          -38.736885,
+          -62.248478
+        ],
+        [
+          -38.737812,
+          -62.24823
+        ],
+        [
+          -38.739146,
+          -62.247744
+        ],
+        [
+          -38.740478,
+          -62.246964
+        ],
+        [
+          -38.741086,
+          -62.245936
+        ],
+        [
+          -38.741237,
+          -62.245464
+        ],
+        [
+          -38.742856,
+          -62.2475
+        ],
+        [
+          -38.74109,
+          -62.249936
+        ],
+        [
+          -38.741516,
+          -62.250456
+        ],
+        [
+          -38.742479,
+          -62.249254
+        ],
+        [
+          -38.743509,
+          -62.25053
+        ],
+        [
+          -38.744402,
+          -62.249434
+        ],
+        [
+          -38.748249,
+          -62.254247
+        ],
+        [
+          -38.737461,
+          -62.254425
+        ],
+        [
+          -38.737104,
+          -62.254402
+        ],
+        [
+          -38.736919,
+          -62.254287
+        ],
+        [
+          -38.736847,
+          -62.25417
+        ],
+        [
+          -38.734167,
+          -62.254211
+        ],
+        [
+          -38.733974,
+          -62.25444
+        ],
+        [
+          -38.730479,
+          -62.254409
+        ]
+      ]
+    },
+    {
+      "id": "SF-45",
+      "tipo": "SF",
+      "nombre": "Barrio San Agustin",
+      "domicilio": "-",
+      "lat": -38.6929306707744,
+      "lon": -62.1957436765421,
+      "poligono": [
+        [
+          -38.689673,
+          -62.197734
+        ],
+        [
+          -38.686274,
+          -62.19365
+        ],
+        [
+          -38.691017,
+          -62.187327
+        ],
+        [
+          -38.699518,
+          -62.197826
+        ],
+        [
+          -38.696758,
+          -62.201705
+        ],
+        [
+          -38.694891,
+          -62.20417
+        ],
+        [
+          -38.693952,
+          -62.203018
+        ],
+        [
+          -38.689673,
+          -62.197734
+        ]
+      ]
+    },
+    {
+      "id": "SF-46",
+      "tipo": "SF",
+      "nombre": "Barrio San Martin",
+      "domicilio": "-",
+      "lat": -38.7375752336352,
+      "lon": -62.2760657177294,
+      "poligono": [
+        [
+          -38.730418,
+          -62.27717
+        ],
+        [
+          -38.732886,
+          -62.273855
+        ],
+        [
+          -38.733007,
+          -62.273042
+        ],
+        [
+          -38.733186,
+          -62.271912
+        ],
+        [
+          -38.733226,
+          -62.271708
+        ],
+        [
+          -38.733407,
+          -62.27113
+        ],
+        [
+          -38.733964,
+          -62.269598
+        ],
+        [
+          -38.736153,
+          -62.26664
+        ],
+        [
+          -38.739263,
+          -62.270547
+        ],
+        [
+          -38.739512,
+          -62.270234
+        ],
+        [
+          -38.743364,
+          -62.275087
+        ],
+        [
+          -38.744805,
+          -62.276868
+        ],
+        [
+          -38.744805,
+          -62.276921
+        ],
+        [
+          -38.738615,
+          -62.285061
+        ],
+        [
+          -38.738256,
+          -62.284636
+        ],
+        [
+          -38.735143,
+          -62.280902
+        ],
+        [
+          -38.734992,
+          -62.280797
+        ],
+        [
+          -38.73432,
+          -62.280258
+        ],
+        [
+          -38.733413,
+          -62.279627
+        ],
+        [
+          -38.731755,
+          -62.278655
+        ],
+        [
+          -38.731627,
+          -62.27867
+        ],
+        [
+          -38.730418,
+          -62.27717
+        ]
+      ]
+    },
+    {
+      "id": "SF-47",
+      "tipo": "SF",
+      "nombre": "Barrio San Vicente",
+      "domicilio": "-",
+      "lat": -38.7408252067067,
+      "lon": -62.173864488773,
+      "poligono": [
+        [
+          -38.738338,
+          -62.175063
+        ],
+        [
+          -38.741644,
+          -62.17065
+        ],
+        [
+          -38.743325,
+          -62.172674
+        ],
+        [
+          -38.739975,
+          -62.177087
+        ],
+        [
+          -38.738338,
+          -62.175063
+        ]
+      ]
+    },
+    {
+      "id": "SF-48",
+      "tipo": "SF",
+      "nombre": "Barrio Thompson",
+      "domicilio": "-",
+      "lat": -38.744744707594,
+      "lon": -62.2446286476483,
+      "poligono": [
+        [
+          -38.741237,
+          -62.245464
+        ],
+        [
+          -38.741851,
+          -62.24366
+        ],
+        [
+          -38.744171,
+          -62.241082
+        ],
+        [
+          -38.745147,
+          -62.239958
+        ],
+        [
+          -38.745526,
+          -62.240379
+        ],
+        [
+          -38.748523,
+          -62.244102
+        ],
+        [
+          -38.744402,
+          -62.249434
+        ],
+        [
+          -38.741237,
+          -62.245464
+        ]
+      ]
+    },
+    {
+      "id": "SF-49",
+      "tipo": "SF",
+      "nombre": "Barrio Universitario",
+      "domicilio": "-",
+      "lat": -38.7046603709104,
+      "lon": -62.2759092478596,
+      "poligono": [
+        [
+          -38.697441,
+          -62.273768
+        ],
+        [
+          -38.69865,
+          -62.272985
+        ],
+        [
+          -38.700869,
+          -62.271509
+        ],
+        [
+          -38.701037,
+          -62.271322
+        ],
+        [
+          -38.702631,
+          -62.27024
+        ],
+        [
+          -38.706875,
+          -62.266304
+        ],
+        [
+          -38.710062,
+          -62.271012
+        ],
+        [
+          -38.710227,
+          -62.271168
+        ],
+        [
+          -38.711031,
+          -62.272347
+        ],
+        [
+          -38.712369,
+          -62.274107
+        ],
+        [
+          -38.702303,
+          -62.287276
+        ],
+        [
+          -38.702231,
+          -62.287144
+        ],
+        [
+          -38.701598,
+          -62.284951
+        ],
+        [
+          -38.701318,
+          -62.283941
+        ],
+        [
+          -38.697441,
+          -62.273768
+        ]
+      ]
+    },
+    {
+      "id": "SF-50",
+      "tipo": "SF",
+      "nombre": "Barrio Villa Buenos Aires",
+      "domicilio": "-",
+      "lat": -38.7361332628683,
+      "lon": -62.2221002044505,
+      "poligono": [
+        [
+          -38.731714,
+          -62.224692
+        ],
+        [
+          -38.734948,
+          -62.220484
+        ],
+        [
+          -38.735137,
+          -62.220725
+        ],
+        [
+          -38.735459,
+          -62.220947
+        ],
+        [
+          -38.735699,
+          -62.221076
+        ],
+        [
+          -38.736485,
+          -62.220075
+        ],
+        [
+          -38.73711,
+          -62.219243
+        ],
+        [
+          -38.737369,
+          -62.218996
+        ],
+        [
+          -38.73892,
+          -62.216972
+        ],
+        [
+          -38.741425,
+          -62.220075
+        ],
+        [
+          -38.740605,
+          -62.221141
+        ],
+        [
+          -38.739806,
+          -62.220152
+        ],
+        [
+          -38.73899,
+          -62.221184
+        ],
+        [
+          -38.738142,
+          -62.220179
+        ],
+        [
+          -38.736943,
+          -62.221753
+        ],
+        [
+          -38.736865,
+          -62.221638
+        ],
+        [
+          -38.736411,
+          -62.22227
+        ],
+        [
+          -38.737009,
+          -62.223014
+        ],
+        [
+          -38.733763,
+          -62.227263
+        ],
+        [
+          -38.731714,
+          -62.224692
+        ]
+      ]
+    },
+    {
+      "id": "SF-51",
+      "tipo": "SF",
+      "nombre": "Barrio Villa Delfina",
+      "domicilio": "-",
+      "lat": -38.7532987994951,
+      "lon": -62.2755393288493,
+      "poligono": [
+        [
+          -38.744805,
+          -62.276921
+        ],
+        [
+          -38.744805,
+          -62.276868
+        ],
+        [
+          -38.752952,
+          -62.266176
+        ],
+        [
+          -38.755908,
+          -62.269867
+        ],
+        [
+          -38.756585,
+          -62.270681
+        ],
+        [
+          -38.756663,
+          -62.270681
+        ],
+        [
+          -38.763764,
+          -62.270608
+        ],
+        [
+          -38.759723,
+          -62.275931
+        ],
+        [
+          -38.759812,
+          -62.276067
+        ],
+        [
+          -38.759007,
+          -62.2771
+        ],
+        [
+          -38.758899,
+          -62.277014
+        ],
+        [
+          -38.757466,
+          -62.278885
+        ],
+        [
+          -38.757585,
+          -62.279046
+        ],
+        [
+          -38.756983,
+          -62.279852
+        ],
+        [
+          -38.756865,
+          -62.279729
+        ],
+        [
+          -38.755858,
+          -62.281163
+        ],
+        [
+          -38.755702,
+          -62.281227
+        ],
+        [
+          -38.755314,
+          -62.281731
+        ],
+        [
+          -38.754821,
+          -62.282251
+        ],
+        [
+          -38.754675,
+          -62.282402
+        ],
+        [
+          -38.754306,
+          -62.282818
+        ],
+        [
+          -38.753129,
+          -62.283717
+        ],
+        [
+          -38.751252,
+          -62.284835
+        ],
+        [
+          -38.744805,
+          -62.276921
+        ]
+      ]
+    },
+    {
+      "id": "SF-52",
+      "tipo": "SF",
+      "nombre": "Barrio Villa Duprat",
+      "domicilio": "-",
+      "lat": -38.6874539988093,
+      "lon": -62.2982545233757,
+      "poligono": [
+        [
+          -38.687747,
+          -62.292834
+        ],
+        [
+          -38.691653,
+          -62.297749
+        ],
+        [
+          -38.687195,
+          -62.303671
+        ],
+        [
+          -38.683238,
+          -62.298762
+        ],
+        [
+          -38.687747,
+          -62.292834
+        ]
+      ]
+    },
+    {
+      "id": "SF-53",
+      "tipo": "SF",
+      "nombre": "Barrio Villa Italia",
+      "domicilio": "-",
+      "lat": -38.7411734899826,
+      "lon": -62.2322899967696,
+      "poligono": [
+        [
+          -38.736739,
+          -62.230941
+        ],
+        [
+          -38.740043,
+          -62.226693
+        ],
+        [
+          -38.745564,
+          -62.233508
+        ],
+        [
+          -38.744485,
+          -62.235125
+        ],
+        [
+          -38.743691,
+          -62.2361
+        ],
+        [
+          -38.742273,
+          -62.237891
+        ],
+        [
+          -38.73694,
+          -62.23121
+        ],
+        [
+          -38.736739,
+          -62.230941
+        ]
+      ]
+    },
+    {
+      "id": "SF-54",
+      "tipo": "SF",
+      "nombre": "Barrio Villa Muñiz",
+      "domicilio": "-",
+      "lat": -38.7442601638658,
+      "lon": -62.2267979772241,
+      "poligono": [
+        [
+          -38.739221,
+          -62.225688
+        ],
+        [
+          -38.740043,
+          -62.226693
+        ],
+        [
+          -38.739052,
+          -62.225482
+        ],
+        [
+          -38.742324,
+          -62.221187
+        ],
+        [
+          -38.742526,
+          -62.22144
+        ],
+        [
+          -38.744142,
+          -62.219324
+        ],
+        [
+          -38.744954,
+          -62.220345
+        ],
+        [
+          -38.744148,
+          -62.221402
+        ],
+        [
+          -38.748284,
+          -62.226524
+        ],
+        [
+          -38.747473,
+          -62.227614
+        ],
+        [
+          -38.74877,
+          -62.229207
+        ],
+        [
+          -38.748087,
+          -62.231192
+        ],
+        [
+          -38.746792,
+          -62.232738
+        ],
+        [
+          -38.745564,
+          -62.233508
+        ],
+        [
+          -38.740043,
+          -62.226693
+        ],
+        [
+          -38.739221,
+          -62.225688
+        ]
+      ]
+    },
+    {
+      "id": "SF-55",
+      "tipo": "SF",
+      "nombre": "Bella Vista",
+      "domicilio": "-",
+      "lat": -38.7143950067418,
+      "lon": -62.2470348644091,
+      "poligono": [
+        [
+          -38.708764,
+          -62.245767
+        ],
+        [
+          -38.710541,
+          -62.243424
+        ],
+        [
+          -38.710105,
+          -62.242876
+        ],
+        [
+          -38.711537,
+          -62.240938
+        ],
+        [
+          -38.711129,
+          -62.240426
+        ],
+        [
+          -38.711448,
+          -62.239923
+        ],
+        [
+          -38.712218,
+          -62.238604
+        ],
+        [
+          -38.713004,
+          -62.237264
+        ],
+        [
+          -38.713091,
+          -62.23693
+        ],
+        [
+          -38.713587,
+          -62.23774
+        ],
+        [
+          -38.714514,
+          -62.238966
+        ],
+        [
+          -38.715457,
+          -62.24008
+        ],
+        [
+          -38.715437,
+          -62.240229
+        ],
+        [
+          -38.71548,
+          -62.241596
+        ],
+        [
+          -38.715557,
+          -62.243903
+        ],
+        [
+          -38.716134,
+          -62.245062
+        ],
+        [
+          -38.716297,
+          -62.245606
+        ],
+        [
+          -38.716479,
+          -62.246209
+        ],
+        [
+          -38.716534,
+          -62.246331
+        ],
+        [
+          -38.718385,
+          -62.248664
+        ],
+        [
+          -38.718497,
+          -62.248853
+        ],
+        [
+          -38.720059,
+          -62.250823
+        ],
+        [
+          -38.72004,
+          -62.250963
+        ],
+        [
+          -38.719873,
+          -62.251308
+        ],
+        [
+          -38.72036,
+          -62.252268
+        ],
+        [
+          -38.720149,
+          -62.252642
+        ],
+        [
+          -38.720056,
+          -62.252744
+        ],
+        [
+          -38.719727,
+          -62.25298
+        ],
+        [
+          -38.718476,
+          -62.253969
+        ],
+        [
+          -38.717967,
+          -62.254431
+        ],
+        [
+          -38.715986,
+          -62.254443
+        ],
+        [
+          -38.713743,
+          -62.254414
+        ],
+        [
+          -38.713246,
+          -62.253338
+        ],
+        [
+          -38.713726,
+          -62.252923
+        ],
+        [
+          -38.714346,
+          -62.252491
+        ],
+        [
+          -38.712528,
+          -62.25024
+        ],
+        [
+          -38.712239,
+          -62.249887
+        ],
+        [
+          -38.712154,
+          -62.249994
+        ],
+        [
+          -38.708764,
+          -62.245767
+        ]
+      ]
+    },
+    {
+      "id": "SF-56",
+      "tipo": "SF",
+      "nombre": "Bº Juan D. PERON",
+      "domicilio": "-",
+      "lat": -38.7341439481399,
+      "lon": -62.2166277614372,
+      "poligono": [
+        [
+          -38.732347,
+          -62.216033
+        ],
+        [
+          -38.733566,
+          -62.214435
+        ],
+        [
+          -38.736019,
+          -62.217516
+        ],
+        [
+          -38.735243,
+          -62.21859
+        ],
+        [
+          -38.734637,
+          -62.217856
+        ],
+        [
+          -38.734257,
+          -62.218389
+        ],
+        [
+          -38.732347,
+          -62.216033
+        ]
+      ]
+    },
+    {
+      "id": "SF-57",
+      "tipo": "SF",
+      "nombre": "Bº Palermo",
+      "domicilio": "-",
+      "lat": -38.7553778867189,
+      "lon": -62.1827375368322,
+      "poligono": [
+        [
+          -38.755679,
+          -62.175398
+        ],
+        [
+          -38.757943,
+          -62.176339
+        ],
+        [
+          -38.754979,
+          -62.190147
+        ],
+        [
+          -38.752847,
+          -62.18941
+        ],
+        [
+          -38.755679,
+          -62.175398
+        ]
+      ]
+    },
+    {
+      "id": "SF-58",
+      "tipo": "SF",
+      "nombre": "BºSan Roque",
+      "domicilio": "-",
+      "lat": -38.7002542465176,
+      "lon": -62.2902809879034,
+      "poligono": [
+        [
+          -38.699533,
+          -62.295068
+        ],
+        [
+          -38.696589,
+          -62.291355
+        ],
+        [
+          -38.701598,
+          -62.284951
+        ],
+        [
+          -38.702231,
+          -62.287144
+        ],
+        [
+          -38.703662,
+          -62.28974
+        ],
+        [
+          -38.699533,
+          -62.295068
+        ]
+      ]
+    },
+    {
+      "id": "SF-59",
+      "tipo": "SF",
+      "nombre": "Boul. Juan B. Justo",
+      "domicilio": "-",
+      "lat": -38.7814920276607,
+      "lon": -62.2555112371792,
+      "poligono": [
+        [
+          -38.775789,
+          -62.253697
+        ],
+        [
+          -38.775957,
+          -62.253398
+        ],
+        [
+          -38.778884,
+          -62.249599
+        ],
+        [
+          -38.779043,
+          -62.249488
+        ],
+        [
+          -38.779131,
+          -62.249456
+        ],
+        [
+          -38.788246,
+          -62.261014
+        ],
+        [
+          -38.787407,
+          -62.26197
+        ],
+        [
+          -38.784192,
+          -62.259749
+        ],
+        [
+          -38.777548,
+          -62.255187
+        ],
+        [
+          -38.776477,
+          -62.254449
+        ],
+        [
+          -38.775789,
+          -62.253697
+        ]
+      ]
+    },
+    {
+      "id": "SF-60",
+      "tipo": "SF",
+      "nombre": "Enrique Julio",
+      "domicilio": "-",
+      "lat": -38.7499671160556,
+      "lon": -62.267666036522,
+      "poligono": [
+        [
+          -38.746995,
+          -62.269141
+        ],
+        [
+          -38.751051,
+          -62.263803
+        ],
+        [
+          -38.752952,
+          -62.266176
+        ],
+        [
+          -38.748862,
+          -62.271544
+        ],
+        [
+          -38.746995,
+          -62.269141
+        ]
+      ]
+    },
+    {
+      "id": "SF-61",
+      "tipo": "SF",
+      "nombre": "Enrique Julio",
+      "domicilio": "-",
+      "lat": -38.7431335576391,
+      "lon": -62.2826974301258,
+      "poligono": [
+        [
+          -38.738615,
+          -62.285061
+        ],
+        [
+          -38.744805,
+          -62.276921
+        ],
+        [
+          -38.747652,
+          -62.280444
+        ],
+        [
+          -38.741405,
+          -62.288448
+        ],
+        [
+          -38.738615,
+          -62.285061
+        ]
+      ]
+    },
+    {
+      "id": "SF-62",
+      "tipo": "SF",
+      "nombre": "Gral. Arias",
+      "domicilio": "-",
+      "lat": -38.7458926487141,
+      "lon": -62.2730141733877,
+      "poligono": [
+        [
+          -38.74291,
+          -62.274515
+        ],
+        [
+          -38.746995,
+          -62.269141
+        ],
+        [
+          -38.748862,
+          -62.271544
+        ],
+        [
+          -38.744805,
+          -62.276868
+        ],
+        [
+          -38.74291,
+          -62.274515
+        ]
+      ]
+    },
+    {
+      "id": "SF-63",
+      "tipo": "SF",
+      "nombre": "Grunbein",
+      "domicilio": "-",
+      "lat": -38.7517925664446,
+      "lon": -62.1787818465021,
+      "poligono": [
+        [
+          -38.748271,
+          -62.183109
+        ],
+        [
+          -38.750409,
+          -62.172733
+        ],
+        [
+          -38.754268,
+          -62.174081
+        ],
+        [
+          -38.754299,
+          -62.174083
+        ],
+        [
+          -38.75433,
+          -62.174087
+        ],
+        [
+          -38.754361,
+          -62.174092
+        ],
+        [
+          -38.754392,
+          -62.174098
+        ],
+        [
+          -38.754423,
+          -62.174106
+        ],
+        [
+          -38.754453,
+          -62.174115
+        ],
+        [
+          -38.754483,
+          -62.174125
+        ],
+        [
+          -38.754513,
+          -62.174137
+        ],
+        [
+          -38.754543,
+          -62.17415
+        ],
+        [
+          -38.754572,
+          -62.174164
+        ],
+        [
+          -38.754601,
+          -62.17418
+        ],
+        [
+          -38.754629,
+          -62.174196
+        ],
+        [
+          -38.754657,
+          -62.174215
+        ],
+        [
+          -38.754684,
+          -62.174234
+        ],
+        [
+          -38.754711,
+          -62.174254
+        ],
+        [
+          -38.754737,
+          -62.174276
+        ],
+        [
+          -38.754763,
+          -62.174299
+        ],
+        [
+          -38.754788,
+          -62.174322
+        ],
+        [
+          -38.754812,
+          -62.174347
+        ],
+        [
+          -38.754836,
+          -62.174373
+        ],
+        [
+          -38.754859,
+          -62.1744
+        ],
+        [
+          -38.754881,
+          -62.174428
+        ],
+        [
+          -38.754903,
+          -62.174457
+        ],
+        [
+          -38.754924,
+          -62.174487
+        ],
+        [
+          -38.754943,
+          -62.174518
+        ],
+        [
+          -38.754963,
+          -62.17455
+        ],
+        [
+          -38.754981,
+          -62.174582
+        ],
+        [
+          -38.754998,
+          -62.174615
+        ],
+        [
+          -38.755014,
+          -62.174649
+        ],
+        [
+          -38.75503,
+          -62.174684
+        ],
+        [
+          -38.755044,
+          -62.174719
+        ],
+        [
+          -38.755058,
+          -62.174755
+        ],
+        [
+          -38.75507,
+          -62.174792
+        ],
+        [
+          -38.755082,
+          -62.174829
+        ],
+        [
+          -38.755093,
+          -62.174867
+        ],
+        [
+          -38.755102,
+          -62.174905
+        ],
+        [
+          -38.755111,
+          -62.174943
+        ],
+        [
+          -38.755118,
+          -62.174982
+        ],
+        [
+          -38.755125,
+          -62.175021
+        ],
+        [
+          -38.75513,
+          -62.17506
+        ],
+        [
+          -38.755134,
+          -62.1751
+        ],
+        [
+          -38.755138,
+          -62.175139
+        ],
+        [
+          -38.75514,
+          -62.175179
+        ],
+        [
+          -38.755141,
+          -62.175219
+        ],
+        [
+          -38.755141,
+          -62.175259
+        ],
+        [
+          -38.75514,
+          -62.175299
+        ],
+        [
+          -38.755138,
+          -62.175338
+        ],
+        [
+          -38.755135,
+          -62.175378
+        ],
+        [
+          -38.75513,
+          -62.175418
+        ],
+        [
+          -38.755125,
+          -62.175457
+        ],
+        [
+          -38.755119,
+          -62.175496
+        ],
+        [
+          -38.755111,
+          -62.175535
+        ],
+        [
+          -38.755103,
+          -62.175573
+        ],
+        [
+          -38.755093,
+          -62.175611
+        ],
+        [
+          -38.755083,
+          -62.175649
+        ],
+        [
+          -38.75322,
+          -62.18477
+        ],
+        [
+          -38.748271,
+          -62.183109
+        ]
+      ]
+    },
+    {
+      "id": "SF-64",
+      "tipo": "SF",
+      "nombre": "Hipodromo",
+      "domicilio": "-",
+      "lat": -38.7230589261769,
+      "lon": -62.2098887838681,
+      "poligono": [
+        [
+          -38.723023,
+          -62.213818
+        ],
+        [
+          -38.71991,
+          -62.210116
+        ],
+        [
+          -38.723112,
+          -62.205942
+        ],
+        [
+          -38.726199,
+          -62.209695
+        ],
+        [
+          -38.723023,
+          -62.213818
+        ]
+      ]
+    },
+    {
+      "id": "SF-65",
+      "tipo": "SF",
+      "nombre": "Ingeniero White",
+      "domicilio": "-",
+      "lat": -38.7770231233505,
+      "lon": -62.2671343529762,
+      "poligono": [
+        [
+          -38.767981,
+          -62.267241
+        ],
+        [
+          -38.771492,
+          -62.262687
+        ],
+        [
+          -38.77119,
+          -62.256574
+        ],
+        [
+          -38.774498,
+          -62.258709
+        ],
+        [
+          -38.787175,
+          -62.267174
+        ],
+        [
+          -38.787145,
+          -62.267455
+        ],
+        [
+          -38.784994,
+          -62.272622
+        ],
+        [
+          -38.784299,
+          -62.273891
+        ],
+        [
+          -38.783742,
+          -62.275086
+        ],
+        [
+          -38.781718,
+          -62.272574
+        ],
+        [
+          -38.781391,
+          -62.272998
+        ],
+        [
+          -38.780594,
+          -62.27196
+        ],
+        [
+          -38.781683,
+          -62.270576
+        ],
+        [
+          -38.780644,
+          -62.269256
+        ],
+        [
+          -38.778519,
+          -62.272241
+        ],
+        [
+          -38.775269,
+          -62.276343
+        ],
+        [
+          -38.767981,
+          -62.267241
+        ]
+      ]
+    },
+    {
+      "id": "SF-66",
+      "tipo": "SF",
+      "nombre": "Jardines de la Bahía",
+      "domicilio": "-",
+      "lat": -38.6755442428511,
+      "lon": -62.2441929716349,
+      "poligono": [
+        [
+          -38.668509,
+          -62.239956
+        ],
+        [
+          -38.670902,
+          -62.242957
+        ],
+        [
+          -38.674306,
+          -62.23839
+        ],
+        [
+          -38.674826,
+          -62.239058
+        ],
+        [
+          -38.67881,
+          -62.234018
+        ],
+        [
+          -38.681307,
+          -62.238662
+        ],
+        [
+          -38.682623,
+          -62.241386
+        ],
+        [
+          -38.683781,
+          -62.244112
+        ],
+        [
+          -38.680128,
+          -62.247943
+        ],
+        [
+          -38.67661,
+          -62.251536
+        ],
+        [
+          -38.67466,
+          -62.254013
+        ],
+        [
+          -38.669426,
+          -62.247316
+        ],
+        [
+          -38.669047,
+          -62.247796
+        ],
+        [
+          -38.665906,
+          -62.243663
+        ],
+        [
+          -38.668509,
+          -62.239956
+        ]
+      ]
+    },
+    {
+      "id": "SF-67",
+      "tipo": "SF",
+      "nombre": "Kilometro 5",
+      "domicilio": "-",
+      "lat": -38.7155183219869,
+      "lon": -62.2918694702651,
+      "poligono": [
+        [
+          -38.708677,
+          -62.296672
+        ],
+        [
+          -38.718458,
+          -62.283852
+        ],
+        [
+          -38.721917,
+          -62.288188
+        ],
+        [
+          -38.714927,
+          -62.29728
+        ],
+        [
+          -38.714069,
+          -62.296223
+        ],
+        [
+          -38.711426,
+          -62.299716
+        ],
+        [
+          -38.711148,
+          -62.299382
+        ],
+        [
+          -38.710103,
+          -62.29804
+        ],
+        [
+          -38.709328,
+          -62.297226
+        ],
+        [
+          -38.708677,
+          -62.296672
+        ]
+      ]
+    },
+    {
+      "id": "SF-68",
+      "tipo": "SF",
+      "nombre": "La Falda",
+      "domicilio": "-",
+      "lat": -38.7083662867875,
+      "lon": -62.2518992453222,
+      "poligono": [
+        [
+          -38.703691,
+          -62.250522
+        ],
+        [
+          -38.706413,
+          -62.247063
+        ],
+        [
+          -38.706258,
+          -62.246898
+        ],
+        [
+          -38.707949,
+          -62.244752
+        ],
+        [
+          -38.712154,
+          -62.249994
+        ],
+        [
+          -38.712239,
+          -62.249887
+        ],
+        [
+          -38.712528,
+          -62.25024
+        ],
+        [
+          -38.714346,
+          -62.252491
+        ],
+        [
+          -38.713704,
+          -62.252939
+        ],
+        [
+          -38.713246,
+          -62.253338
+        ],
+        [
+          -38.712901,
+          -62.253518
+        ],
+        [
+          -38.712612,
+          -62.253692
+        ],
+        [
+          -38.712073,
+          -62.254098
+        ],
+        [
+          -38.711797,
+          -62.254776
+        ],
+        [
+          -38.711017,
+          -62.255506
+        ],
+        [
+          -38.710377,
+          -62.255804
+        ],
+        [
+          -38.709987,
+          -62.256243
+        ],
+        [
+          -38.708561,
+          -62.257399
+        ],
+        [
+          -38.707379,
+          -62.25776
+        ],
+        [
+          -38.707008,
+          -62.258439
+        ],
+        [
+          -38.706328,
+          -62.257637
+        ],
+        [
+          -38.703733,
+          -62.254415
+        ],
+        [
+          -38.705235,
+          -62.252428
+        ],
+        [
+          -38.703691,
+          -62.250522
+        ]
+      ]
+    },
+    {
+      "id": "SF-69",
+      "tipo": "SF",
+      "nombre": "Loma Paraguaya",
+      "domicilio": "-",
+      "lat": -38.7465902318282,
+      "lon": -62.2854879793257,
+      "poligono": [
+        [
+          -38.751648,
+          -62.285371
+        ],
+        [
+          -38.751252,
+          -62.284835
+        ],
+        [
+          -38.751648,
+          -62.285371
+        ],
+        [
+          -38.75112,
+          -62.285573
+        ],
+        [
+          -38.745584,
+          -62.288794
+        ],
+        [
+          -38.743282,
+          -62.289538
+        ],
+        [
+          -38.741405,
+          -62.288448
+        ],
+        [
+          -38.747652,
+          -62.280444
+        ],
+        [
+          -38.751252,
+          -62.284835
+        ],
+        [
+          -38.751648,
+          -62.285371
+        ]
+      ]
+    },
+    {
+      "id": "SF-70",
+      "tipo": "SF",
+      "nombre": "Los Chañares",
+      "domicilio": "-",
+      "lat": -38.6789845103243,
+      "lon": -62.3280055710727,
+      "poligono": [
+        [
+          -38.671561,
+          -62.326129
+        ],
+        [
+          -38.677413,
+          -62.318552
+        ],
+        [
+          -38.686404,
+          -62.3299
+        ],
+        [
+          -38.680569,
+          -62.337453
+        ],
+        [
+          -38.671561,
+          -62.326129
+        ]
+      ]
+    },
+    {
+      "id": "SF-71",
+      "tipo": "SF",
+      "nombre": "Mariano Moreno",
+      "domicilio": "-",
+      "lat": -38.7192025437848,
+      "lon": -62.2957021638806,
+      "poligono": [
+        [
+          -38.721917,
+          -62.288188
+        ],
+        [
+          -38.722781,
+          -62.287056
+        ],
+        [
+          -38.725193,
+          -62.290061
+        ],
+        [
+          -38.724336,
+          -62.291206
+        ],
+        [
+          -38.725199,
+          -62.292283
+        ],
+        [
+          -38.716764,
+          -62.303292
+        ],
+        [
+          -38.715025,
+          -62.302412
+        ],
+        [
+          -38.713233,
+          -62.301461
+        ],
+        [
+          -38.712147,
+          -62.300584
+        ],
+        [
+          -38.714775,
+          -62.297092
+        ],
+        [
+          -38.714927,
+          -62.29728
+        ],
+        [
+          -38.721917,
+          -62.288188
+        ]
+      ]
+    },
+    {
+      "id": "SF-72",
+      "tipo": "SF",
+      "nombre": "Molina Campos",
+      "domicilio": "-",
+      "lat": -38.6853235553725,
+      "lon": -62.2227738501085,
+      "poligono": [
+        [
+          -38.681622,
+          -62.222618
+        ],
+        [
+          -38.684965,
+          -62.218053
+        ],
+        [
+          -38.689035,
+          -62.223057
+        ],
+        [
+          -38.685724,
+          -62.227432
+        ],
+        [
+          -38.684362,
+          -62.225707
+        ],
+        [
+          -38.684268,
+          -62.225844
+        ],
+        [
+          -38.681622,
+          -62.222618
+        ]
+      ]
+    },
+    {
+      "id": "SF-73",
+      "tipo": "SF",
+      "nombre": "Molina Campos",
+      "domicilio": "-",
+      "lat": -38.6840991434051,
+      "lon": -62.2257230104917,
+      "poligono": [
+        [
+          -38.68659,
+          -62.212669
+        ],
+        [
+          -38.686102,
+          -62.213301
+        ],
+        [
+          -38.68659,
+          -62.212669
+        ],
+        [
+          -38.690206,
+          -62.217119
+        ],
+        [
+          -38.687337,
+          -62.220901
+        ],
+        [
+          -38.694466,
+          -62.229954
+        ],
+        [
+          -38.692328,
+          -62.23284
+        ],
+        [
+          -38.691186,
+          -62.234411
+        ],
+        [
+          -38.694378,
+          -62.238077
+        ],
+        [
+          -38.689632,
+          -62.244265
+        ],
+        [
+          -38.68998,
+          -62.244973
+        ],
+        [
+          -38.690208,
+          -62.245811
+        ],
+        [
+          -38.69041,
+          -62.246911
+        ],
+        [
+          -38.690547,
+          -62.248012
+        ],
+        [
+          -38.687796,
+          -62.251751
+        ],
+        [
+          -38.685344,
+          -62.245708
+        ],
+        [
+          -38.68445,
+          -62.243727
+        ],
+        [
+          -38.682741,
+          -62.240277
+        ],
+        [
+          -38.682163,
+          -62.239156
+        ],
+        [
+          -38.681259,
+          -62.237442
+        ],
+        [
+          -38.680518,
+          -62.235992
+        ],
+        [
+          -38.67994,
+          -62.234792
+        ],
+        [
+          -38.679889,
+          -62.234036
+        ],
+        [
+          -38.679878,
+          -62.233728
+        ],
+        [
+          -38.679972,
+          -62.230366
+        ],
+        [
+          -38.68,
+          -62.229038
+        ],
+        [
+          -38.679839,
+          -62.228519
+        ],
+        [
+          -38.679271,
+          -62.226819
+        ],
+        [
+          -38.6787,
+          -62.226008
+        ],
+        [
+          -38.678289,
+          -62.225539
+        ],
+        [
+          -38.677891,
+          -62.225119
+        ],
+        [
+          -38.677313,
+          -62.22464
+        ],
+        [
+          -38.677183,
+          -62.223587
+        ],
+        [
+          -38.676619,
+          -62.222696
+        ],
+        [
+          -38.676683,
+          -62.219297
+        ],
+        [
+          -38.676725,
+          -62.216214
+        ],
+        [
+          -38.676586,
+          -62.214794
+        ],
+        [
+          -38.676338,
+          -62.212416
+        ],
+        [
+          -38.676133,
+          -62.210914
+        ],
+        [
+          -38.675921,
+          -62.208808
+        ],
+        [
+          -38.675751,
+          -62.20806
+        ],
+        [
+          -38.675487,
+          -62.207676
+        ],
+        [
+          -38.675012,
+          -62.207338
+        ],
+        [
+          -38.67436,
+          -62.206966
+        ],
+        [
+          -38.673764,
+          -62.206641
+        ],
+        [
+          -38.673309,
+          -62.206527
+        ],
+        [
+          -38.673066,
+          -62.206246
+        ],
+        [
+          -38.672718,
+          -62.205048
+        ],
+        [
+          -38.672349,
+          -62.203939
+        ],
+        [
+          -38.672291,
+          -62.20356
+        ],
+        [
+          -38.672323,
+          -62.202896
+        ],
+        [
+          -38.67241,
+          -62.201972
+        ],
+        [
+          -38.672508,
+          -62.201378
+        ],
+        [
+          -38.672691,
+          -62.200997
+        ],
+        [
+          -38.672884,
+          -62.200723
+        ],
+        [
+          -38.674197,
+          -62.200104
+        ],
+        [
+          -38.67475,
+          -62.19983
+        ],
+        [
+          -38.675178,
+          -62.200496
+        ],
+        [
+          -38.675674,
+          -62.201151
+        ],
+        [
+          -38.678242,
+          -62.204307
+        ],
+        [
+          -38.679653,
+          -62.205983
+        ],
+        [
+          -38.679299,
+          -62.206451
+        ],
+        [
+          -38.682146,
+          -62.209974
+        ],
+        [
+          -38.682744,
+          -62.209205
+        ],
+        [
+          -38.685396,
+          -62.212415
+        ],
+        [
+          -38.686102,
+          -62.213301
+        ],
+        [
+          -38.686116,
+          -62.213284
+        ],
+        [
+          -38.68659,
+          -62.212669
+        ]
+      ]
+    },
+    {
+      "id": "SF-74",
+      "tipo": "SF",
+      "nombre": "Noroeste",
+      "domicilio": "-",
+      "lat": -38.7296290966562,
+      "lon": -62.288893379647,
+      "poligono": [
+        [
+          -38.720195,
+          -62.286029
+        ],
+        [
+          -38.726995,
+          -62.277214
+        ],
+        [
+          -38.728795,
+          -62.279348
+        ],
+        [
+          -38.73863,
+          -62.291641
+        ],
+        [
+          -38.738759,
+          -62.29184
+        ],
+        [
+          -38.731863,
+          -62.300592
+        ],
+        [
+          -38.725199,
+          -62.292283
+        ],
+        [
+          -38.724336,
+          -62.291206
+        ],
+        [
+          -38.725193,
+          -62.290061
+        ],
+        [
+          -38.722781,
+          -62.287056
+        ],
+        [
+          -38.721917,
+          -62.288188
+        ],
+        [
+          -38.720195,
+          -62.286029
+        ]
+      ]
+    },
+    {
+      "id": "SF-75",
+      "tipo": "SF",
+      "nombre": "Nueva Belgrano",
+      "domicilio": "-",
+      "lat": -38.6765028680854,
+      "lon": -62.2956383269056,
+      "poligono": [
+        [
+          -38.67111,
+          -62.294179
+        ],
+        [
+          -38.675179,
+          -62.288814
+        ],
+        [
+          -38.680479,
+          -62.29533
+        ],
+        [
+          -38.681889,
+          -62.297074
+        ],
+        [
+          -38.677808,
+          -62.302484
+        ],
+        [
+          -38.674106,
+          -62.297866
+        ],
+        [
+          -38.671213,
+          -62.294308
+        ],
+        [
+          -38.67111,
+          -62.294179
+        ]
+      ]
+    },
+    {
+      "id": "SF-76",
+      "tipo": "SF",
+      "nombre": "Palos Verdes",
+      "domicilio": "-",
+      "lat": -38.6979185602217,
+      "lon": -62.2354154960554,
+      "poligono": [
+        [
+          -38.701707,
+          -62.235276
+        ],
+        [
+          -38.702648,
+          -62.236419
+        ],
+        [
+          -38.70203,
+          -62.23722
+        ],
+        [
+          -38.703912,
+          -62.239293
+        ],
+        [
+          -38.699618,
+          -62.244781
+        ],
+        [
+          -38.69787,
+          -62.242747
+        ],
+        [
+          -38.694577,
+          -62.237904
+        ],
+        [
+          -38.694378,
+          -62.238077
+        ],
+        [
+          -38.691186,
+          -62.234411
+        ],
+        [
+          -38.697436,
+          -62.226046
+        ],
+        [
+          -38.7013,
+          -62.230759
+        ],
+        [
+          -38.700478,
+          -62.231843
+        ],
+        [
+          -38.702468,
+          -62.234261
+        ],
+        [
+          -38.701707,
+          -62.235276
+        ]
+      ]
+    },
+    {
+      "id": "SF-77",
+      "tipo": "SF",
+      "nombre": "Pampa Central",
+      "domicilio": "-",
+      "lat": -38.724955538768,
+      "lon": -62.3003863621991,
+      "poligono": [
+        [
+          -38.716764,
+          -62.303292
+        ],
+        [
+          -38.725199,
+          -62.292283
+        ],
+        [
+          -38.731863,
+          -62.300592
+        ],
+        [
+          -38.726554,
+          -62.307467
+        ],
+        [
+          -38.726386,
+          -62.307335
+        ],
+        [
+          -38.725632,
+          -62.306519
+        ],
+        [
+          -38.723762,
+          -62.305311
+        ],
+        [
+          -38.721552,
+          -62.304203
+        ],
+        [
+          -38.721166,
+          -62.30407
+        ],
+        [
+          -38.72016,
+          -62.303724
+        ],
+        [
+          -38.717988,
+          -62.303589
+        ],
+        [
+          -38.716928,
+          -62.303374
+        ],
+        [
+          -38.716764,
+          -62.303292
+        ],
+        [
+          -38.725199,
+          -62.292283
+        ],
+        [
+          -38.716764,
+          -62.303292
+        ]
+      ]
+    },
+    {
+      "id": "SF-78",
+      "tipo": "SF",
+      "nombre": "Pedro Pico",
+      "domicilio": "-",
+      "lat": -38.7328480057584,
+      "lon": -62.2623656008023,
+      "poligono": [
+        [
+          -38.732683,
+          -62.271311
+        ],
+        [
+          -38.73204,
+          -62.270513
+        ],
+        [
+          -38.731153,
+          -62.271707
+        ],
+        [
+          -38.724917,
+          -62.263885
+        ],
+        [
+          -38.731812,
+          -62.254861
+        ],
+        [
+          -38.732129,
+          -62.254424
+        ],
+        [
+          -38.734109,
+          -62.254441
+        ],
+        [
+          -38.735259,
+          -62.254652
+        ],
+        [
+          -38.735628,
+          -62.254701
+        ],
+        [
+          -38.736366,
+          -62.255118
+        ],
+        [
+          -38.737335,
+          -62.255674
+        ],
+        [
+          -38.738122,
+          -62.256212
+        ],
+        [
+          -38.738326,
+          -62.256415
+        ],
+        [
+          -38.738717,
+          -62.256886
+        ],
+        [
+          -38.7391,
+          -62.257418
+        ],
+        [
+          -38.7393,
+          -62.25778
+        ],
+        [
+          -38.739533,
+          -62.258233
+        ],
+        [
+          -38.739702,
+          -62.258787
+        ],
+        [
+          -38.7398,
+          -62.259211
+        ],
+        [
+          -38.739883,
+          -62.259857
+        ],
+        [
+          -38.73991,
+          -62.260312
+        ],
+        [
+          -38.73983,
+          -62.260938
+        ],
+        [
+          -38.739747,
+          -62.26132
+        ],
+        [
+          -38.739664,
+          -62.261702
+        ],
+        [
+          -38.739507,
+          -62.262084
+        ],
+        [
+          -38.739392,
+          -62.262399
+        ],
+        [
+          -38.738343,
+          -62.26376
+        ],
+        [
+          -38.737104,
+          -62.265383
+        ],
+        [
+          -38.736033,
+          -62.266799
+        ],
+        [
+          -38.735409,
+          -62.267609
+        ],
+        [
+          -38.734913,
+          -62.268322
+        ],
+        [
+          -38.734408,
+          -62.269004
+        ],
+        [
+          -38.732683,
+          -62.271311
+        ]
+      ]
+    },
+    {
+      "id": "SF-79",
+      "tipo": "SF",
+      "nombre": "Puertas al sur",
+      "domicilio": "-",
+      "lat": -38.7346824849253,
+      "lon": -62.2997072613172,
+      "poligono": [
+        [
+          -38.732294,
+          -62.300045
+        ],
+        [
+          -38.734941,
+          -62.296686
+        ],
+        [
+          -38.73705,
+          -62.299338
+        ],
+        [
+          -38.73447,
+          -62.302739
+        ],
+        [
+          -38.732294,
+          -62.300045
+        ]
+      ]
+    },
+    {
+      "id": "SF-80",
+      "tipo": "SF",
+      "nombre": "San Cayetano",
+      "domicilio": "-",
+      "lat": -38.6973792617872,
+      "lon": -62.2831949746904,
+      "poligono": [
+        [
+          -38.696253,
+          -62.291784
+        ],
+        [
+          -38.693112,
+          -62.287896
+        ],
+        [
+          -38.697395,
+          -62.282446
+        ],
+        [
+          -38.693811,
+          -62.278122
+        ],
+        [
+          -38.695537,
+          -62.275813
+        ],
+        [
+          -38.696877,
+          -62.274072
+        ],
+        [
+          -38.697116,
+          -62.273882
+        ],
+        [
+          -38.697441,
+          -62.273768
+        ],
+        [
+          -38.701318,
+          -62.283941
+        ],
+        [
+          -38.701598,
+          -62.284951
+        ],
+        [
+          -38.696253,
+          -62.291784
+        ]
+      ]
+    },
+    {
+      "id": "SF-81",
+      "tipo": "SF",
+      "nombre": "San Ignacio",
+      "domicilio": "-",
+      "lat": -38.7109282676823,
+      "lon": -62.2133488138604,
+      "poligono": [
+        [
+          -38.711192,
+          -62.217928
+        ],
+        [
+          -38.711077,
+          -62.217978
+        ],
+        [
+          -38.707222,
+          -62.213436
+        ],
+        [
+          -38.71077,
+          -62.208621
+        ],
+        [
+          -38.714658,
+          -62.213416
+        ],
+        [
+          -38.714263,
+          -62.213834
+        ],
+        [
+          -38.711192,
+          -62.217928
+        ]
+      ]
+    },
+    {
+      "id": "SF-82",
+      "tipo": "SF",
+      "nombre": "San Jorge",
+      "domicilio": "-",
+      "lat": -38.726911918664,
+      "lon": -62.2145691886035,
+      "poligono": [
+        [
+          -38.726199,
+          -62.209695
+        ],
+        [
+          -38.730794,
+          -62.215249
+        ],
+        [
+          -38.727589,
+          -62.219481
+        ],
+        [
+          -38.725496,
+          -62.216874
+        ],
+        [
+          -38.723331,
+          -62.214154
+        ],
+        [
+          -38.723023,
+          -62.213818
+        ],
+        [
+          -38.726199,
+          -62.209695
+        ]
+      ]
+    },
+    {
+      "id": "SF-83",
+      "tipo": "SF",
+      "nombre": "Santa Margarita",
+      "domicilio": "-",
+      "lat": -38.6929915379453,
+      "lon": -62.2836297105895,
+      "poligono": [
+        [
+          -38.697395,
+          -62.282446
+        ],
+        [
+          -38.692116,
+          -62.289181
+        ],
+        [
+          -38.688632,
+          -62.284853
+        ],
+        [
+          -38.693229,
+          -62.278782
+        ],
+        [
+          -38.693811,
+          -62.278122
+        ],
+        [
+          -38.697395,
+          -62.282446
+        ]
+      ]
+    },
+    {
+      "id": "SF-84",
+      "tipo": "SF",
+      "nombre": "Stella Maris",
+      "domicilio": "-",
+      "lat": -38.7248774981734,
+      "lon": -62.2203537730054,
+      "poligono": [
+        [
+          -38.722169,
+          -62.221226
+        ],
+        [
+          -38.725496,
+          -62.216874
+        ],
+        [
+          -38.727589,
+          -62.219481
+        ],
+        [
+          -38.724264,
+          -62.223821
+        ],
+        [
+          -38.724218,
+          -62.223792
+        ],
+        [
+          -38.722169,
+          -62.221226
+        ]
+      ]
+    },
+    {
+      "id": "SF-85",
+      "tipo": "SF",
+      "nombre": "Tiro Federal",
+      "domicilio": "-",
+      "lat": -38.723332021661,
+      "lon": -62.2497169812739,
+      "poligono": [
+        [
+          -38.718497,
+          -62.248853
+        ],
+        [
+          -38.722338,
+          -62.243859
+        ],
+        [
+          -38.728192,
+          -62.251153
+        ],
+        [
+          -38.7287,
+          -62.251171
+        ],
+        [
+          -38.728722,
+          -62.253198
+        ],
+        [
+          -38.719754,
+          -62.253247
+        ],
+        [
+          -38.719727,
+          -62.25298
+        ],
+        [
+          -38.720056,
+          -62.252744
+        ],
+        [
+          -38.720149,
+          -62.252642
+        ],
+        [
+          -38.72036,
+          -62.252268
+        ],
+        [
+          -38.719873,
+          -62.251308
+        ],
+        [
+          -38.72004,
+          -62.250963
+        ],
+        [
+          -38.720059,
+          -62.250823
+        ],
+        [
+          -38.718497,
+          -62.248853
+        ]
+      ]
+    },
+    {
+      "id": "SF-86",
+      "tipo": "SF",
+      "nombre": "Villa Amaducci",
+      "domicilio": "-",
+      "lat": -38.7247057110244,
+      "lon": -62.2285128902222,
+      "poligono": [
+        [
+          -38.720972,
+          -62.228021
+        ],
+        [
+          -38.724218,
+          -62.223792
+        ],
+        [
+          -38.728442,
+          -62.228997
+        ],
+        [
+          -38.725187,
+          -62.233237
+        ],
+        [
+          -38.720972,
+          -62.228021
+        ]
+      ]
+    },
+    {
+      "id": "SF-87",
+      "tipo": "SF",
+      "nombre": "Villa Belgrano",
+      "domicilio": "-",
+      "lat": -38.6724860647488,
+      "lon": -62.2808616312691,
+      "poligono": [
+        [
+          -38.658264,
+          -62.275903
+        ],
+        [
+          -38.665277,
+          -62.266402
+        ],
+        [
+          -38.666748,
+          -62.265731
+        ],
+        [
+          -38.667903,
+          -62.26576
+        ],
+        [
+          -38.669253,
+          -62.266279
+        ],
+        [
+          -38.671062,
+          -62.268431
+        ],
+        [
+          -38.674989,
+          -62.273442
+        ],
+        [
+          -38.675828,
+          -62.274294
+        ],
+        [
+          -38.676956,
+          -62.275143
+        ],
+        [
+          -38.678273,
+          -62.27558
+        ],
+        [
+          -38.680847,
+          -62.276707
+        ],
+        [
+          -38.683004,
+          -62.278201
+        ],
+        [
+          -38.68491,
+          -62.280435
+        ],
+        [
+          -38.686268,
+          -62.282183
+        ],
+        [
+          -38.688491,
+          -62.284947
+        ],
+        [
+          -38.687228,
+          -62.286656
+        ],
+        [
+          -38.684165,
+          -62.290526
+        ],
+        [
+          -38.680479,
+          -62.29533
+        ],
+        [
+          -38.675179,
+          -62.288814
+        ],
+        [
+          -38.67111,
+          -62.294179
+        ],
+        [
+          -38.666761,
+          -62.288733
+        ],
+        [
+          -38.662214,
+          -62.283174
+        ],
+        [
+          -38.658451,
+          -62.278572
+        ],
+        [
+          -38.658211,
+          -62.276456
+        ],
+        [
+          -38.658264,
+          -62.275903
+        ]
+      ]
+    },
+    {
+      "id": "SF-88",
+      "tipo": "SF",
+      "nombre": "Villa Bordeu y Don Ramiro",
+      "domicilio": "-",
+      "lat": -38.6926684111604,
+      "lon": -62.3383926143488,
+      "poligono": [
+        [
+          -38.680569,
+          -62.337453
+        ],
+        [
+          -38.692179,
+          -62.322441
+        ],
+        [
+          -38.695287,
+          -62.326423
+        ],
+        [
+          -38.6953,
+          -62.32861
+        ],
+        [
+          -38.69562,
+          -62.329014
+        ],
+        [
+          -38.697716,
+          -62.328982
+        ],
+        [
+          -38.702341,
+          -62.334782
+        ],
+        [
+          -38.703465,
+          -62.334386
+        ],
+        [
+          -38.70406,
+          -62.335134
+        ],
+        [
+          -38.695047,
+          -62.355588
+        ],
+        [
+          -38.680569,
+          -62.337453
+        ]
+      ]
+    },
+    {
+      "id": "SF-89",
+      "tipo": "SF",
+      "nombre": "Villa Cerrito",
+      "domicilio": "-",
+      "lat": -38.7312469002452,
+      "lon": -62.2199841239295,
+      "poligono": [
+        [
+          -38.731714,
+          -62.224692
+        ],
+        [
+          -38.727543,
+          -62.219542
+        ],
+        [
+          -38.730794,
+          -62.215249
+        ],
+        [
+          -38.734948,
+          -62.220484
+        ],
+        [
+          -38.731714,
+          -62.224692
+        ]
+      ]
+    },
+    {
+      "id": "SF-90",
+      "tipo": "SF",
+      "nombre": "Villa del Parque",
+      "domicilio": "-",
+      "lat": -38.6889464242186,
+      "lon": -62.2790977072407,
+      "poligono": [
+        [
+          -38.684649,
+          -62.279555
+        ],
+        [
+          -38.689176,
+          -62.273705
+        ],
+        [
+          -38.693229,
+          -62.278782
+        ],
+        [
+          -38.690418,
+          -62.282461
+        ],
+        [
+          -38.689685,
+          -62.283404
+        ],
+        [
+          -38.688931,
+          -62.283841
+        ],
+        [
+          -38.688138,
+          -62.283742
+        ],
+        [
+          -38.68726,
+          -62.2826
+        ],
+        [
+          -38.687128,
+          -62.282724
+        ],
+        [
+          -38.684649,
+          -62.279555
+        ]
+      ]
+    },
+    {
+      "id": "SF-91",
+      "tipo": "SF",
+      "nombre": "Villa Don Bosco",
+      "domicilio": "-",
+      "lat": -38.7279840929772,
+      "lon": -62.2242670059413,
+      "poligono": [
+        [
+          -38.724218,
+          -62.223792
+        ],
+        [
+          -38.724944,
+          -62.222938
+        ],
+        [
+          -38.727543,
+          -62.219542
+        ],
+        [
+          -38.731714,
+          -62.224692
+        ],
+        [
+          -38.728442,
+          -62.228997
+        ],
+        [
+          -38.724218,
+          -62.223792
+        ]
+      ]
+    },
+    {
+      "id": "SF-92",
+      "tipo": "SF",
+      "nombre": "Villa Floresta",
+      "domicilio": "-",
+      "lat": -38.6867566145436,
+      "lon": -62.2728156527968,
+      "poligono": [
+        [
+          -38.690745,
+          -62.266679
+        ],
+        [
+          -38.690856,
+          -62.266541
+        ],
+        [
+          -38.694564,
+          -62.271125
+        ],
+        [
+          -38.693168,
+          -62.272937
+        ],
+        [
+          -38.695537,
+          -62.275813
+        ],
+        [
+          -38.693811,
+          -62.278122
+        ],
+        [
+          -38.691492,
+          -62.275232
+        ],
+        [
+          -38.691856,
+          -62.274744
+        ],
+        [
+          -38.690987,
+          -62.273664
+        ],
+        [
+          -38.690084,
+          -62.272523
+        ],
+        [
+          -38.686475,
+          -62.277219
+        ],
+        [
+          -38.684649,
+          -62.279555
+        ],
+        [
+          -38.683545,
+          -62.278172
+        ],
+        [
+          -38.682786,
+          -62.277331
+        ],
+        [
+          -38.682221,
+          -62.27705
+        ],
+        [
+          -38.681185,
+          -62.276281
+        ],
+        [
+          -38.678557,
+          -62.275259
+        ],
+        [
+          -38.677796,
+          -62.274964
+        ],
+        [
+          -38.677765,
+          -62.274849
+        ],
+        [
+          -38.68051,
+          -62.271302
+        ],
+        [
+          -38.68291,
+          -62.268162
+        ],
+        [
+          -38.683908,
+          -62.269386
+        ],
+        [
+          -38.685724,
+          -62.267002
+        ],
+        [
+          -38.688194,
+          -62.270105
+        ],
+        [
+          -38.690745,
+          -62.266679
+        ]
+      ]
+    },
+    {
+      "id": "SF-93",
+      "tipo": "SF",
+      "nombre": "Villa Gloria",
+      "domicilio": "-",
+      "lat": -38.7497087464023,
+      "lon": -62.1942876274738,
+      "poligono": [
+        [
+          -38.747939,
+          -62.19517
+        ],
+        [
+          -38.748936,
+          -62.190232
+        ],
+        [
+          -38.751483,
+          -62.193428
+        ],
+        [
+          -38.750479,
+          -62.198332
+        ],
+        [
+          -38.747939,
+          -62.19517
+        ]
+      ]
+    },
+    {
+      "id": "SF-94",
+      "tipo": "SF",
+      "nombre": "Villa Harding Green",
+      "domicilio": "-",
+      "lat": -38.7141255694501,
+      "lon": -62.1909788631513,
+      "poligono": [
+        [
+          -38.708337,
+          -62.196095
+        ],
+        [
+          -38.711497,
+          -62.191878
+        ],
+        [
+          -38.707827,
+          -62.187398
+        ],
+        [
+          -38.71129,
+          -62.183059
+        ],
+        [
+          -38.714882,
+          -62.187447
+        ],
+        [
+          -38.717307,
+          -62.184193
+        ],
+        [
+          -38.719943,
+          -62.18552
+        ],
+        [
+          -38.721865,
+          -62.18798
+        ],
+        [
+          -38.720221,
+          -62.19013
+        ],
+        [
+          -38.718608,
+          -62.192276
+        ],
+        [
+          -38.712165,
+          -62.200788
+        ],
+        [
+          -38.708337,
+          -62.196095
+        ]
+      ]
+    },
+    {
+      "id": "SF-95",
+      "tipo": "SF",
+      "nombre": "Villa Irupe",
+      "domicilio": "-",
+      "lat": -38.6962332305719,
+      "lon": -62.3082249379454,
+      "poligono": [
+        [
+          -38.691982,
+          -62.309573
+        ],
+        [
+          -38.696027,
+          -62.304211
+        ],
+        [
+          -38.697159,
+          -62.3027
+        ],
+        [
+          -38.699125,
+          -62.305059
+        ],
+        [
+          -38.698885,
+          -62.305374
+        ],
+        [
+          -38.700712,
+          -62.307651
+        ],
+        [
+          -38.69942,
+          -62.308317
+        ],
+        [
+          -38.69938,
+          -62.308385
+        ],
+        [
+          -38.695293,
+          -62.31368
+        ],
+        [
+          -38.691982,
+          -62.309573
+        ]
+      ]
+    },
+    {
+      "id": "SF-96",
+      "tipo": "SF",
+      "nombre": "Villa Libre",
+      "domicilio": "-",
+      "lat": -38.7289215512486,
+      "lon": -62.2337390068753,
+      "poligono": [
+        [
+          -38.725187,
+          -62.233237
+        ],
+        [
+          -38.728442,
+          -62.228997
+        ],
+        [
+          -38.732656,
+          -62.234239
+        ],
+        [
+          -38.729401,
+          -62.238482
+        ],
+        [
+          -38.725187,
+          -62.233237
+        ]
+      ]
+    },
+    {
+      "id": "SF-97",
+      "tipo": "SF",
+      "nombre": "Villa Libre Sur",
+      "domicilio": "-",
+      "lat": -38.7321748034536,
+      "lon": -62.2294661747045,
+      "poligono": [
+        [
+          -38.728442,
+          -62.228997
+        ],
+        [
+          -38.731714,
+          -62.224692
+        ],
+        [
+          -38.735898,
+          -62.229942
+        ],
+        [
+          -38.732656,
+          -62.234239
+        ],
+        [
+          -38.728442,
+          -62.228997
+        ]
+      ]
+    },
+    {
+      "id": "SF-98",
+      "tipo": "SF",
+      "nombre": "Villa Moresino",
+      "domicilio": "-",
+      "lat": -38.7518715653023,
+      "lon": -62.242007826038,
+      "poligono": [
+        [
+          -38.745147,
+          -62.239958
+        ],
+        [
+          -38.745245,
+          -62.239845
+        ],
+        [
+          -38.74661,
+          -62.23932
+        ],
+        [
+          -38.74819,
+          -62.23891
+        ],
+        [
+          -38.748983,
+          -62.237939
+        ],
+        [
+          -38.749597,
+          -62.23714
+        ],
+        [
+          -38.750183,
+          -62.236378
+        ],
+        [
+          -38.750999,
+          -62.236061
+        ],
+        [
+          -38.751596,
+          -62.23602
+        ],
+        [
+          -38.75216,
+          -62.236093
+        ],
+        [
+          -38.752861,
+          -62.235998
+        ],
+        [
+          -38.753265,
+          -62.236038
+        ],
+        [
+          -38.753865,
+          -62.236251
+        ],
+        [
+          -38.754568,
+          -62.23656
+        ],
+        [
+          -38.754982,
+          -62.236784
+        ],
+        [
+          -38.755654,
+          -62.238071
+        ],
+        [
+          -38.756195,
+          -62.238752
+        ],
+        [
+          -38.75625,
+          -62.239344
+        ],
+        [
+          -38.75632,
+          -62.239589
+        ],
+        [
+          -38.757487,
+          -62.242443
+        ],
+        [
+          -38.756342,
+          -62.24395
+        ],
+        [
+          -38.754947,
+          -62.245796
+        ],
+        [
+          -38.753989,
+          -62.247058
+        ],
+        [
+          -38.75185,
+          -62.249861
+        ],
+        [
+          -38.750893,
+          -62.248667
+        ],
+        [
+          -38.749842,
+          -62.247366
+        ],
+        [
+          -38.747879,
+          -62.244935
+        ],
+        [
+          -38.748523,
+          -62.244102
+        ],
+        [
+          -38.745526,
+          -62.240379
+        ],
+        [
+          -38.745147,
+          -62.239958
+        ]
+      ]
+    },
+    {
+      "id": "SF-99",
+      "tipo": "SF",
+      "nombre": "Villa Nocito",
+      "domicilio": "-",
+      "lat": -38.7216231901183,
+      "lon": -62.3081362913916,
+      "poligono": [
+        [
+          -38.725877,
+          -62.306784
+        ],
+        [
+          -38.721169,
+          -62.312931
+        ],
+        [
+          -38.717698,
+          -62.308614
+        ],
+        [
+          -38.721166,
+          -62.30407
+        ],
+        [
+          -38.723762,
+          -62.305311
+        ],
+        [
+          -38.725632,
+          -62.306519
+        ],
+        [
+          -38.725877,
+          -62.306784
+        ]
+      ]
+    },
+    {
+      "id": "SF-100",
+      "tipo": "SF",
+      "nombre": "Villa Parodi",
+      "domicilio": "-",
+      "lat": -38.7473185710336,
+      "lon": -62.2643403454816,
+      "poligono": [
+        [
+          -38.743583,
+          -62.264922
+        ],
+        [
+          -38.747629,
+          -62.259554
+        ],
+        [
+          -38.747779,
+          -62.259717
+        ],
+        [
+          -38.751051,
+          -62.263803
+        ],
+        [
+          -38.746984,
+          -62.269127
+        ],
+        [
+          -38.744515,
+          -62.266047
+        ],
+        [
+          -38.744134,
+          -62.265556
+        ],
+        [
+          -38.743982,
+          -62.265437
+        ],
+        [
+          -38.743583,
+          -62.264922
+        ]
+      ]
+    },
+    {
+      "id": "SF-101",
+      "tipo": "SF",
+      "nombre": "Villa Ressia",
+      "domicilio": "-",
+      "lat": -38.7417980377832,
+      "lon": -62.2684420070595,
+      "poligono": [
+        [
+          -38.74291,
+          -62.274515
+        ],
+        [
+          -38.739512,
+          -62.270234
+        ],
+        [
+          -38.739263,
+          -62.270547
+        ],
+        [
+          -38.736537,
+          -62.267122
+        ],
+        [
+          -38.740064,
+          -62.262657
+        ],
+        [
+          -38.74279,
+          -62.265977
+        ],
+        [
+          -38.743583,
+          -62.264922
+        ],
+        [
+          -38.743982,
+          -62.265437
+        ],
+        [
+          -38.744134,
+          -62.265556
+        ],
+        [
+          -38.744515,
+          -62.266047
+        ],
+        [
+          -38.746995,
+          -62.269141
+        ],
+        [
+          -38.74291,
+          -62.274515
+        ]
+      ]
+    },
+    {
+      "id": "SF-102",
+      "tipo": "SF",
+      "nombre": "Villa Rosas",
+      "domicilio": "-",
+      "lat": -38.755759096494,
+      "lon": -62.2613575934567,
+      "poligono": [
+        [
+          -38.747629,
+          -62.259554
+        ],
+        [
+          -38.749231,
+          -62.257421
+        ],
+        [
+          -38.751316,
+          -62.259925
+        ],
+        [
+          -38.755371,
+          -62.254667
+        ],
+        [
+          -38.757373,
+          -62.25463
+        ],
+        [
+          -38.758499,
+          -62.254913
+        ],
+        [
+          -38.759537,
+          -62.255523
+        ],
+        [
+          -38.760277,
+          -62.256236
+        ],
+        [
+          -38.761051,
+          -62.257469
+        ],
+        [
+          -38.761456,
+          -62.258756
+        ],
+        [
+          -38.76163,
+          -62.260028
+        ],
+        [
+          -38.761523,
+          -62.261319
+        ],
+        [
+          -38.761274,
+          -62.2624
+        ],
+        [
+          -38.760518,
+          -62.264046
+        ],
+        [
+          -38.760062,
+          -62.264655
+        ],
+        [
+          -38.755908,
+          -62.269867
+        ],
+        [
+          -38.747779,
+          -62.259717
+        ],
+        [
+          -38.747629,
+          -62.259554
+        ]
+      ]
+    },
+    {
+      "id": "SF-103",
+      "tipo": "SF",
+      "nombre": "Villa Sanchez Elia",
+      "domicilio": "-",
+      "lat": -38.7209521642135,
+      "lon": -62.2334861403618,
+      "poligono": [
+        [
+          -38.720688,
+          -62.239064
+        ],
+        [
+          -38.718753,
+          -62.236525
+        ],
+        [
+          -38.718954,
+          -62.236212
+        ],
+        [
+          -38.716813,
+          -62.233531
+        ],
+        [
+          -38.71679,
+          -62.23351
+        ],
+        [
+          -38.717922,
+          -62.232032
+        ],
+        [
+          -38.720972,
+          -62.228021
+        ],
+        [
+          -38.725187,
+          -62.233237
+        ],
+        [
+          -38.720688,
+          -62.239064
+        ]
+      ]
+    },
+    {
+      "id": "SF-104",
+      "tipo": "SF",
+      "nombre": "Villa Soldati",
+      "domicilio": "-",
+      "lat": -38.7333127480561,
+      "lon": -62.2392226021979,
+      "poligono": [
+        [
+          -38.729401,
+          -62.238482
+        ],
+        [
+          -38.732656,
+          -62.234239
+        ],
+        [
+          -38.737217,
+          -62.239925
+        ],
+        [
+          -38.733977,
+          -62.244226
+        ],
+        [
+          -38.729401,
+          -62.238482
+        ]
+      ]
+    },
+    {
+      "id": "SF-105",
+      "tipo": "SF",
+      "nombre": "Vista Alegre",
+      "domicilio": "-",
+      "lat": -38.7173554462724,
+      "lon": -62.313385389683,
+      "poligono": [
+        [
+          -38.717698,
+          -62.308614
+        ],
+        [
+          -38.721065,
+          -62.312801
+        ],
+        [
+          -38.716982,
+          -62.31815
+        ],
+        [
+          -38.71366,
+          -62.313991
+        ],
+        [
+          -38.717698,
+          -62.308614
+        ]
+      ]
+    }
+  ]
+}
