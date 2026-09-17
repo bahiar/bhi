@@ -203,7 +203,10 @@
 
         list.addEventListener('scroll', scheduleEdgeFadesUpdate, { passive: true });
         window.addEventListener('resize', scheduleEdgeFadesUpdate);
-        updateEdgeFades();
+        // Diferido a rAF: la primera lectura de layout justo después de
+        // insertar el nav forzaba un reflow síncrono sobre DOM recién
+        // invalidado (detectado por Lighthouse en header-nav.js:165).
+        scheduleEdgeFadesUpdate();
     }
 
     // Pastilla deslizante detrás del link activo. offsetLeft/offsetWidth
