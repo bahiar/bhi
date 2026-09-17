@@ -8,6 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="BAHI.ar">
     <link rel="preconnect" href="https://cloud.umami.is">
+    <link rel="preconnect" href="https://gateway.umami.is">
     <link rel="preconnect" href="https://static.cloudflareinsights.com">
 <script>
 (function () {
@@ -1031,8 +1032,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 </div>
                             </div>
                         </div>
+                        <script>
+                        // Ajusta la cantidad de skeletons al número de farmacias
+                        // que trajo la última visita (guardado en inicializarTurnos),
+                        // para que el contenedor no salte de tamaño cuando lleguen
+                        // los datos reales. Corre sincrónico, antes de pintar esta
+                        // sección, así que no cuenta como reflow forzado.
+                        (function() {
+                            try {
+                                var n = parseInt(localStorage.getItem('bahi_turno_count'), 10);
+                                if (!n || n <= 3 || n > 30) return;
+                                var cont = document.getElementById('contenedor-cards');
+                                var base = cont && cont.querySelector('.skeleton-card');
+                                if (!base) return;
+                                var frag = document.createDocumentFragment();
+                                for (var i = 3; i < n; i++) frag.appendChild(base.cloneNode(true));
+                                cont.appendChild(frag);
+                            } catch (e) {}
+                        })();
+                        </script>
 
-                        <img src="assets/images/colegio.png" alt="Colegio de Farmacéuticos - Filial Bahía Blanca" class="fuente-oficial-logo">
+                        <img src="assets/images/colegio.png" alt="Colegio de Farmacéuticos - Filial Bahía Blanca" class="fuente-oficial-logo" width="201" height="61">
 
                         <p class="fuente-oficial-nota">
                             (*) Los datos de las farmacias de turno son oficiales y se publican gracias a la colaboración del Colegio de Farmacéuticos de la Provincia de Buenos Aires - Filial Bahía Blanca.
@@ -1382,6 +1402,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         setTimeout(() => inicializarTurnos(reintentos + 1), 100);
                         return;
                     }
+
+                    try { localStorage.setItem('bahi_turno_count', String(deTurno.length)); } catch (e) {}
 
                     deTurnoActual = deTurno;
 

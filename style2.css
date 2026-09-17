@@ -884,9 +884,21 @@ body {
 }
 
 .skeleton-line {
+    position: relative;
+    overflow: hidden;
     border-radius: 6px;
-    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
-    background-size: 200% 100%;
+    background: #e2e8f0;
+}
+
+/* Shimmer vía pseudo-elemento + transform: se anima en el compositor
+   (GPU), sin repintar el layout en cada frame — a diferencia de animar
+   background-position, que Lighthouse marca como "animación no compositada". */
+.skeleton-line::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, #f1f5f9, transparent);
+    transform: translateX(-100%);
     animation: skeleton-shimmer 1.4s ease-in-out infinite;
 }
 
@@ -914,12 +926,11 @@ body {
 }
 
 @keyframes skeleton-shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    100% { transform: translateX(100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .skeleton-line { animation: none; }
+    .skeleton-line::after { animation: none; }
     .btn, .card-body-collapse { transition: none; }
 }
 
@@ -2696,8 +2707,11 @@ button.bottom-nav-item {
 [data-mode="dark"] .faq-report-row__label { color: var(--text-muted); }
 
 [data-mode="dark"] .skeleton-line {
-    background: linear-gradient(90deg, #1C2740 25%, #263049 50%, #1C2740 75%);
-    background-size: 200% 100%;
+    background: #1C2740;
+}
+
+[data-mode="dark"] .skeleton-line::after {
+    background: linear-gradient(90deg, transparent, #263049, transparent);
 }
 
 /* ── Botón de cambio de tema ── */
