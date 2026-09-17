@@ -115,17 +115,20 @@ window.dataLayer = window.dataLayer || [];
             stroke-width: 3;
             stroke-linecap: round;
             stroke-linejoin: round;
-            stroke-dasharray: 90;
-            stroke-dashoffset: 90;
-            animation: ekg 1.6s linear infinite;
+            animation: ekg-scroll 1.6s linear infinite;
         }
-        @keyframes ekg {
-            0%       { stroke-dashoffset: 90; }
-            60%, 75% { stroke-dashoffset: 0; }
-            100%     { stroke-dashoffset: -90; }
+        /* El <svg> raíz clipea por defecto (overflow:hidden en la UA
+           stylesheet de SVG2), así que basta con trasladar la polyline
+           un período completo (64 unidades = ancho del viewBox) para
+           lograr el efecto de latido continuo, sin tocar stroke-dashoffset
+           (esa animación pinta cada frame y Lighthouse la marca como
+           no compositada). translateX sí corre en el compositor/GPU. */
+        @keyframes ekg-scroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-64px); }
         }
         @media (prefers-reduced-motion: reduce) {
-            .ld-ekg polyline { animation: none; stroke-dashoffset: 0; }
+            .ld-ekg polyline { animation: none; }
         }
         .fuente-oficial-nota {
             margin: 14px 2px 4px;
@@ -885,7 +888,7 @@ window.dataLayer = window.dataLayer || [];
 <div id="splash-custom" aria-hidden="true">
     <img src="assets/images/mask-icon.svg" alt="" width="84" height="84" fetchpriority="high">
     <span id="splash-brand">BAHI.ar</span>
-    <svg class="ld-ekg" viewBox="0 0 64 32"><polyline points="0,16 14,16 20,6 28,26 34,16 64,16" /></svg>
+    <svg class="ld-ekg" viewBox="0 0 64 32"><polyline points="0,16 14,16 20,6 28,26 34,16 64,16 78,16 84,6 92,26 98,16 128,16" /></svg>
 </div>
 <script>
     (function () {
