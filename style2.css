@@ -1570,10 +1570,10 @@ body {
     .sub-nav.is-at-end::after { opacity: 0; }
 
     /* Flechas tipo Airbnb: circulares, flotando sobre el degradé,
-       ocultas hasta que se pasa el mouse por el nav; cada una se
+       siempre visibles (antes solo aparecían con hover y los
+       usuarios no notaban que había más secciones); cada una se
        esconde sola cuando ya no hay nada para ese lado (is-at-start /
-       is-at-end, misma lógica que los fades). Solo tiene sentido con
-       mouse (hover: hover) — en touch el swipe nativo ya alcanza. */
+       is-at-end, misma lógica que los fades). */
     .sub-nav-arrow {
         position: absolute;
         top: 50%;
@@ -1585,12 +1585,12 @@ body {
         border: 1px solid var(--border-light);
         background: var(--card-bg);
         color: var(--text-main);
-        display: none;
+        display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
-        opacity: 0;
+        opacity: 1;
         transition: opacity 0.15s ease, box-shadow 0.15s ease;
     }
 
@@ -1603,12 +1603,6 @@ body {
     }
 
     @media (hover: hover) {
-        .sub-nav-arrow {
-            display: flex;
-        }
-        .sub-nav:hover .sub-nav-arrow {
-            opacity: 1;
-        }
         .sub-nav-arrow:hover {
             box-shadow: 0 3px 10px rgba(15, 23, 42, 0.22);
         }
