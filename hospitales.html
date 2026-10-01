@@ -2,6 +2,17 @@
 <html lang="es-AR">
 <head>
   <meta charset="UTF-8">
+<script>
+(function () {
+    try {
+        var stored = localStorage.getItem('bahi-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-mode', theme);
+    } catch (e) {
+        document.documentElement.setAttribute('data-mode', 'light');
+    }
+})();
+</script>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -17,6 +28,25 @@
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
   <link rel="preload" href="style2.css" as="style">
   <link rel="stylesheet" href="style2.css">
+  <style>
+    :root {
+        --header-h: 52px;
+        --cat-ortopedia: #0E9F6E;
+        --cat-ortopedia-dark: #0A7A54;
+        --cat-imagenes: #5B4FE8;
+        --cat-imagenes-dark: #4438C4;
+        --cat-laboratorio-dark: #1558C4;
+    }
+    [data-mode="dark"] {
+        --bg-main: #0e1220;
+        --card-bg: #181d33;
+        --text-main: #eef0f5;
+        --text-muted: #9a9fb5;
+        --border-light: #2a3050;
+        --footer-bg: #0b0f1e;
+        --text-link: #8FA6FF;
+    }
+  </style>
   <meta property="og:title" content="Hospitales y Clínicas — Bahía Blanca | BAHI.ar">
   <meta property="og:description" content="Hospitales públicos y privados, sanatorios y clínicas en Bahía Blanca, Ingeniero White, Cabildo y Gral. Daniel Cerri. Direcciones, teléfonos y ubicación en el mapa. Actualizado periódicamente.">
   <meta property="og:url" content="https://www.bahi.ar/hospitales.html">
@@ -351,10 +381,10 @@
   </div>
 
   <style>
-    .faq-i{border-bottom:0.5px solid rgba(0,0,0,0.08);}
-    .faq-btn{width:100%;background:none;border:none;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;text-align:left;font-size:13.5px;font-weight:500;color:#1a1a2e;font-family:inherit;}
-    .faq-chv{flex-shrink:0;color:#888;transition:transform 0.2s;}
-    .faq-ans{display:none;padding:0 20px 13px;font-size:13px;color:#555;line-height:1.65;}
+    .faq-i{border-bottom:0.5px solid var(--border-light,rgba(0,0,0,0.08));}
+    .faq-btn{width:100%;background:none;border:none;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;text-align:left;font-size:13.5px;font-weight:500;color:var(--text-main,#1a1a2e);font-family:inherit;}
+    .faq-chv{flex-shrink:0;color:var(--text-muted,#888);transition:transform 0.2s;}
+    .faq-ans{display:none;padding:0 20px 13px;font-size:13px;color:var(--text-muted,#555);line-height:1.65;}
     .faq-i.open .faq-chv{transform:rotate(180deg);}
     .faq-i.open .faq-ans{display:block;}
   </style>
